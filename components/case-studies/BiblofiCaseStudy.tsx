@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { accessibilityCards, bibloFeatures, bibloMeta, bibloRoleChips, bibloTeam, diamondSteps, learnings, personas, researchStats, testResults, wireframes } from "./biblofiData";
 
@@ -45,7 +44,6 @@ export function BiblofiCaseStudy() {
   return (
     <div className="biblofi-case-study" ref={pageRef}>
       <div className="progress-bar" ref={progressRef} />
-      <CaseNav />
       <Hero />
       <Overview />
       <DoubleDiamond />
@@ -59,22 +57,6 @@ export function BiblofiCaseStudy() {
       <Learnings />
       <NextProject />
     </div>
-  );
-}
-
-function CaseNav() {
-  return (
-    <nav>
-      <Link href="/" className="nav-back">
-        ← Back to portfolio
-      </Link>
-      <Link href="/" className="nav-logo">
-        Nikunj Tyagi
-      </Link>
-      <div className="nav-meta">
-        <span className="nav-tag">Case Study · 03</span>
-      </div>
-    </nav>
   );
 }
 
