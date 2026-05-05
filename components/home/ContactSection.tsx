@@ -1,32 +1,23 @@
-import Link from "next/link";
+const html = `<section class="contact" id="contact">
+  <div class="contact-glow"></div>
+  <div class="contact-illustration"><div class="illus-placeholder"><span class="illus-icon">🎨</span><span class="illus-label">your self-portrait<br>illustration here</span></div></div>
+  <div class="contact-inner">
+    <p class="contact-eyebrow reveal">Get in touch</p>
+    <h2 class="contact-title reveal reveal-delay-1">Let's grab<br>a <span class="coffee">coffee</span> ☕</h2>
+    <p class="contact-sub reveal reveal-delay-2">Whether it's a role, a collab, or just a good conversation about design — I'm always up for it.</p>
+    <div class="contact-links reveal reveal-delay-3">
+      <a href="mailto:tyaginikunj26@gmail.com" class="contact-link"><div class="contact-link-left"><span class="contact-link-platform">Email</span><span class="contact-link-value">tyaginikunj26@gmail.com</span></div><span class="contact-link-arrow">↗</span></a>
+      <a href="https://linkedin.com/in/nikunj-tyagi" target="_blank" class="contact-link"><div class="contact-link-left"><span class="contact-link-platform">LinkedIn</span><span class="contact-link-value">nikunj-tyagi</span></div><span class="contact-link-arrow">↗</span></a>
+      <a href="https://instagram.com" target="_blank" class="contact-link"><div class="contact-link-left"><span class="contact-link-platform">Instagram</span><span class="contact-link-value">@nikunj</span></div><span class="contact-link-arrow">↗</span></a>
+    </div>
+    <div class="contact-footer reveal reveal-delay-4">
+      <span class="contact-footer-name">Nikunj Tyagi · Product Designer</span>
+      <span class="contact-footer-hand">made with ☕ & obsession</span>
+      <span class="contact-footer-copy">© 2025</span>
+    </div>
+  </div>
+</section>`;
 
 export function ContactSection() {
-  return (
-    <section id="contact" className="relative overflow-hidden bg-bg px-6 py-24 md:px-16">
-      <div className="pointer-events-none absolute right-[-120px] top-20 h-[420px] w-[420px] rounded-full bg-pink/10 blur-3xl" />
-      <div className="mx-auto max-w-6xl">
-        <p className="section-label">Get in touch</p>
-        <h2 className="font-hand text-[clamp(3.2rem,7vw,5.5rem)] font-bold leading-none text-ink">
-          Let&apos;s grab
-          <br />a <span className="text-pink">coffee</span>
-        </h2>
-        <p className="mt-6 max-w-md font-serif text-lg italic leading-8 text-ink3">Whether it&apos;s a role, a collab, or just a good conversation about design, I&apos;m always up for it.</p>
-        <div className="mt-10 flex flex-col md:max-w-md">
-          {[
-            ["Email", "tyaginikunj26@gmail.com", "mailto:tyaginikunj26@gmail.com"],
-            ["LinkedIn", "nikunj-tyagi", "https://linkedin.com/in/nikunj-tyagi"],
-            ["GitHub", "NikunjTyagi26", "https://github.com/NikunjTyagi26"]
-          ].map(([platform, value, href]) => (
-            <Link key={platform} href={href} className="group flex items-center justify-between border-y border-[rgba(180,140,130,0.15)] py-4 transition hover:pl-3">
-              <span>
-                <span className="block text-[0.65rem] uppercase tracking-[0.16em] text-pink">{platform}</span>
-                <span className="font-serif text-lg text-ink3 group-hover:text-pink">{value}</span>
-              </span>
-              <span className="text-ink4 group-hover:text-pink">↗</span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }

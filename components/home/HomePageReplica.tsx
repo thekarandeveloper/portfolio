@@ -2,11 +2,14 @@ import { AboutSection } from "./AboutSection";
 import { ContactSection } from "./ContactSection";
 import { GallerySection } from "./GallerySection";
 import { HeroSection } from "./HeroSection";
+import { HomeBehavior } from "./HomeBehavior";
 import { HomeLoader } from "./HomeLoader";
 import { HomeNav } from "./HomeNav";
+import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
 import { ProcessSection } from "./ProcessSection";
 import { ScrapbookSection } from "./ScrapbookSection";
+import { ShowcaseSection } from "./ShowcaseSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { ToolkitSection } from "./ToolkitSection";
 import { WorkSection } from "./WorkSection";
@@ -14,10 +17,14 @@ import { WorkSection } from "./WorkSection";
 export function HomePageReplica() {
   return (
     <main>
+      <HomeStyles />
+      <HomeBehavior />
+      <div className="custom-cursor" id="cursor"></div>
       <HomeLoader />
       <HomeNav />
       <HeroSection />
       <WorkSection />
+      <ShowcaseSection />
       <ProcessSection />
       <AboutSection />
       <GallerySection />

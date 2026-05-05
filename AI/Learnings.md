@@ -35,3 +35,9 @@ FAILED: Treated BibloFi as a short resume-supported project summary.
 WHY: The source reference `biblofi-case-study.html` contains a full standalone case study with its own nav, progress bar, research, wireframes, accessibility, testing, mascot, learnings, and next-project CTA.
 CORRECT: Preserve the full reference structure in modular case-study components and scope all replica CSS under `.biblofi-case-study`.
 DATE: 2026-05-05
+
+[HOME] Loader screenshot timing
+FAILED: Compared first-pass headless screenshots with a short virtual-time budget.
+WHY: The Figma intro loader can be captured at different transition phases between the local Next page and the file reference, producing blank or mid-loader frames.
+CORRECT: Use a late virtual-time budget after the loader finishes before judging hero pixels, then compare the local and reference captures at the same viewport.
+DATE: 2026-05-05

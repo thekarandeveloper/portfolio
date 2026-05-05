@@ -42,6 +42,14 @@ Components:
 - Figma-style intro loader.
 - Hero with large Caveat name and serif italic support copy.
 - Project card: white surface, 20px radius, thin border, 3px pink top rule on hover.
+- UI showcase marquee strip with 280x180 rounded cards.
+- Flip-card process grid with 280px cards and 20px radius.
+- About bento grid using 12 columns, 80px row tracks, and 12px card radius.
+- Gallery mosaic with 12-column placement and 120px row tracks.
+- Scrapbook canvas with absolute note cards, tape/pin accents, and dashed doodle connectors.
+- Human-to-AI spectrum bar with positioned tool dots and process pills.
+- Journey timeline with 56px dot column and sticky left narrative.
+- Testimonial cards with serif italic quote copy.
 - Contact links: stacked rows with subtle left shift on hover.
 
 ## AIR iQ Case Study System

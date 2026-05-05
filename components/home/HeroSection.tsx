@@ -1,32 +1,31 @@
+const html = `<section class="hero" id="home">
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <div class="hero-name-wrap">
+    <span class="hero-name"><span class="name-accent">Nikunj</span> Tyagi</span>
+    <div class="hero-role">
+      <div class="role-line"></div>
+      <div class="typing-wrap">
+        <span class="typing-text" id="typingText"></span>
+        <span class="typing-cursor"></span>
+      </div>
+      <div class="role-line"></div>
+    </div>
+  </div>
+
+  <p class="hero-tagline">Turning complex systems into things that just feel <em style="font-style:normal;color:var(--pink);font-weight:500;">obvious.</em></p>
+
+  <!-- Floating elements — staggered entrance via JS -->
+  <div class="float-el float-photo" id="fe1"><div class="polaroid"><div class="polaroid-img">your photo ✦</div><p class="polaroid-caption">that's me :)</p></div></div>
+  <div class="float-el float-sticky" id="fe2"><div class="sticky"><p class="sticky-label">fun fact</p><p class="sticky-text">I'll redo the whole thing if it's 1px off. Not sorry.</p></div></div>
+  <div class="float-el float-coffee" id="fe3"><div class="coffee-tag"><span>☕</span><p>coffee powered</p></div></div>
+  <div class="float-el float-spidey" id="fe4"><div class="spidey-badge"><span class="s-icon">🕷</span><span class="s-text">neighborhood fav</span></div></div>
+  <div class="float-el float-currently" id="fe5"><div class="currently-tag"><p class="curr-label-t"><span class="curr-dot-live"></span> Currently</p><p class="curr-val">Designing @<br>Air IQ</p></div></div>
+  <div class="float-el float-hp" id="fe6"><div class="hp-chip"><span class="hp-icon">⚡</span><span class="hp-text">always Hogwarts</span></div></div>
+  <div class="float-el float-photo2" id="fe7"><div class="polaroid2"><div class="polaroid2-img">café shot ✦</div><p class="polaroid2-caption">café vibes ☕</p></div></div>
+  <div class="hero-scroll-hint" id="heroScrollHint"><div class="scroll-line"></div> Scroll to explore</div>
+</section>`;
+
 export function HeroSection() {
-  return (
-    <section id="home" className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-bg px-6 pb-16 pt-28 text-center">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(232,84,122,0.1)_0%,rgba(232,84,122,0.04)_40%,transparent_70%)]" />
-      <div className="absolute left-[8%] top-[22%] hidden rotate-[-8deg] rounded-[20px] border border-[rgba(180,140,130,0.15)] bg-white p-4 shadow-[0_20px_60px_rgba(232,84,122,0.08)] md:block">
-        <p className="font-hand text-2xl text-pink">coffee first</p>
-        <p className="text-[0.65rem] text-ink4">always</p>
-      </div>
-      <div className="absolute right-[8%] top-[26%] hidden rotate-[7deg] rounded-[20px] border border-[rgba(180,140,130,0.15)] bg-bg2 p-5 md:block">
-        <p className="text-2xl">✦</p>
-        <p className="text-[0.65rem] uppercase tracking-[0.12em] text-ink4">pixel obsessed</p>
-      </div>
-      <div className="relative z-10">
-        <p className="mb-4 text-[0.65rem] uppercase tracking-[0.2em] text-pink">Portfolio · Product Designer</p>
-        <h1 className="font-hand text-[clamp(5rem,14vw,11rem)] font-bold leading-[0.88] text-ink">
-          <span className="text-pink">Nikunj</span> Tyagi
-        </h1>
-        <p className="mx-auto mt-6 max-w-xl font-serif text-[clamp(1rem,2vw,1.4rem)] font-light italic leading-relaxed text-ink3">
-          Turning complex systems into things that just feel <span className="font-sans not-italic text-pink">obvious.</span>
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href="#work" className="pill border-pink bg-pink text-white hover:bg-pink2">
-            View work
-          </a>
-          <a href="#contact" className="pill">
-            Contact
-          </a>
-        </div>
-      </div>
-    </section>
-  );
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }

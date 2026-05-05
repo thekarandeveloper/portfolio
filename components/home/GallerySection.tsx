@@ -1,27 +1,16 @@
-export function GallerySection() {
-  const items = ["Cafe", "Travel", "Architecture", "Aesthetic", "Nature", "Journey"];
+const html = `<section class="gallery-section" id="gallery">
+  <p class="section-label reveal">Through my lens</p>
+  <h2 class="section-title reveal reveal-delay-1">Life outside<br><em>the pixels.</em></h2>
+  <div class="gallery-grid reveal reveal-delay-2">
+    <div class="gallery-item g1" style="grid-row:span 2;"><div class="gallery-placeholder">☕ café corner<br><span style="font-size:0.65rem;opacity:0.6;">drop your photo</span></div><span class="gallery-label">Café</span></div>
+    <div class="gallery-item g2"><div class="gallery-placeholder">🌆 travel<br><span style="font-size:0.65rem;opacity:0.6;">drop your photo</span></div><span class="gallery-label">Travel</span></div>
+    <div class="gallery-item g3"><div class="gallery-placeholder">🏛 architecture<br><span style="font-size:0.65rem;opacity:0.6;">drop your photo</span></div><span class="gallery-label">Architecture</span></div>
+    <div class="gallery-item g4" style="grid-row:span 2;"><div class="gallery-placeholder">📸 aesthetic<br><span style="font-size:0.65rem;opacity:0.6;">drop your photo</span></div><span class="gallery-label">Aesthetic</span></div>
+    <div class="gallery-item g2" style="grid-row:2;"><div class="gallery-placeholder">🌸 nature<br><span style="font-size:0.65rem;opacity:0.6;">drop your photo</span></div><span class="gallery-label">Nature</span></div>
+    <div class="gallery-item g3" style="grid-row:2;"><div class="gallery-placeholder">✈ wandering<br><span style="font-size:0.65rem;opacity:0.6;">drop your photo</span></div><span class="gallery-label">Journey</span></div>
+  </div>
+</section>`;
 
-  return (
-    <section className="bg-bg2 px-6 py-24 md:px-16">
-      <div className="mx-auto max-w-6xl">
-        <p className="section-label">Through my lens</p>
-        <h2 className="section-title">
-          Life outside
-          <br />
-          <em>the pixels.</em>
-        </h2>
-        <div className="grid auto-rows-[180px] gap-4 md:grid-cols-4">
-          {items.map((item, index) => (
-            <div key={item} className={`portfolio-card flex items-end overflow-hidden bg-bg3 p-5 ${index === 0 || index === 3 ? "md:row-span-2" : ""}`}>
-              <div>
-                <p className="mb-2 text-3xl">{["☕", "🌆", "🏛", "📸", "🌸", "✈"][index]}</p>
-                <p className="font-serif text-2xl text-ink">{item}</p>
-                <p className="text-xs text-ink4">drop your photo</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+export function GallerySection() {
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }
