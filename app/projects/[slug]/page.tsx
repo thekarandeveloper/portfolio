@@ -20,13 +20,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   try {
     const project = getContentItem("projects", slug);
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nikunjtyagi.design";
     return {
       title: project.title,
       description: project.description,
+      alternates: { canonical: `/projects/${slug}` },
       openGraph: {
+        type: "article",
         title: project.title,
         description: project.description,
-        images: [{ url: project.coverImage }]
+        url: `${siteUrl}/projects/${slug}`,
+        authors: ["Nikunj Tyagi"],
+        images: project.coverImage ? [{ url: project.coverImage, width: 1200, height: 630, alt: project.title }] : []
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: project.title,
+        description: project.description,
+        images: project.coverImage ? [project.coverImage] : []
       }
     };
   } catch {
@@ -52,11 +63,31 @@ export default async function ProjectPage({ params }: Props) {
     notFound();
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nikunjtyagi.design";
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.description,
+    url: `${siteUrl}/projects/${slug}`,
+    creator: {
+      "@type": "Person",
+      name: "Nikunj Tyagi",
+      url: siteUrl
+    },
+    ...(project.coverImage && { image: project.coverImage }),
+    keywords: project.tags?.join(", ") ?? ""
+  };
+
   const isAir = project.palette === "airiq";
   const isBiblo = project.palette === "biblofi";
 
   return (
     <main className={isAir ? "bg-air-off" : isBiblo ? "bg-biblo-bg" : "bg-bg dark:bg-ink"}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
       <section className={`relative min-h-[88vh] overflow-hidden px-6 pb-20 pt-36 md:px-12 ${isAir ? "bg-air-navy" : isBiblo ? "bg-ink" : "bg-bg dark:bg-ink"}`}>
         {(isAir || isBiblo) && (
           <>

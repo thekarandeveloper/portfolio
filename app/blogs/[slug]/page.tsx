@@ -17,13 +17,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   try {
     const blog = getContentItem("blogs", slug);
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nikunjtyagi.design";
     return {
       title: blog.title,
       description: blog.description,
+      alternates: { canonical: `/blogs/${slug}` },
       openGraph: {
+        type: "article",
         title: blog.title,
         description: blog.description,
-        images: [{ url: blog.coverImage }]
+        url: `${siteUrl}/blogs/${slug}`,
+        publishedTime: blog.date,
+        authors: ["Nikunj Tyagi"],
+        images: blog.coverImage ? [{ url: blog.coverImage, width: 1200, height: 630, alt: blog.title }] : []
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: blog.title,
+        description: blog.description,
+        images: blog.coverImage ? [blog.coverImage] : []
       }
     };
   } catch {
@@ -40,8 +52,35 @@ export default async function BlogPage({ params }: Props) {
     notFound();
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nikunjtyagi.design";
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blog.title,
+    description: blog.description,
+    datePublished: blog.date,
+    dateModified: blog.date,
+    url: `${siteUrl}/blogs/${slug}`,
+    author: {
+      "@type": "Person",
+      name: "Nikunj Tyagi",
+      url: siteUrl
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Nikunj Tyagi",
+      url: siteUrl
+    },
+    ...(blog.coverImage && { image: blog.coverImage }),
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteUrl}/blogs/${slug}` }
+  };
+
   return (
     <main className="min-h-screen bg-bg px-6 pb-24 pt-32 dark:bg-ink md:px-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <Container className="px-0">
         <Link href="/blogs" className="mb-12 inline-flex text-[0.72rem] uppercase tracking-[0.08em] text-ink3 hover:text-pink dark:text-bg4">
           ← Back to writing

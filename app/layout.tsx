@@ -4,6 +4,7 @@ import { Caveat, Cormorant_Garamond, DM_Sans, Lato } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -31,24 +32,143 @@ const lato = Lato({
   variable: "--font-lato"
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nikunjtyagi.design";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://nikunj-portfolio.vercel.app"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Nikunj Tyagi · Product Designer",
     template: "%s · Nikunj Tyagi"
   },
-  description: "Portfolio for Nikunj Tyagi, a product designer focused on B2B booking workflows, healthcare products, iOS UX, and design systems.",
+  description:
+    "Nikunj Tyagi is a Product Designer crafting B2B SaaS, healthcare, and iOS experiences. Explore UX case studies, design systems, and product work.",
+  keywords: [
+    "Nikunj Tyagi",
+    "Product Designer",
+    "UX Designer",
+    "UI Designer",
+    "B2B SaaS Design",
+    "Healthcare UX",
+    "iOS App Design",
+    "Design Systems",
+    "Product Design Portfolio",
+    "UX Portfolio India",
+    "Interaction Design",
+    "Figma Designer"
+  ],
+  authors: [{ name: "Nikunj Tyagi", url: siteUrl }],
+  creator: "Nikunj Tyagi",
+  publisher: "Nikunj Tyagi",
+  category: "portfolio",
+  alternates: {
+    canonical: "/"
+  },
   openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: siteUrl,
+    siteName: "Nikunj Tyagi",
     title: "Nikunj Tyagi · Product Designer",
-    description: "Selected UX, product design, B2B, healthcare, and iOS product work.",
-    type: "website"
+    description:
+      "Product Designer crafting B2B SaaS, healthcare, and iOS experiences. See UX case studies and design systems.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Nikunj Tyagi · Product Designer"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nikunj Tyagi · Product Designer",
+    description:
+      "Product Designer crafting B2B SaaS, healthcare, and iOS experiences.",
+    images: ["/opengraph-image"],
+    creator: "@nikunjtyagi"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
   }
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Nikunj Tyagi",
+      jobTitle: "Product Designer",
+      description:
+        "Product Designer specializing in B2B SaaS, healthcare UX, iOS app design, and design systems.",
+      url: siteUrl,
+      image: `${siteUrl}/nikunj.jpg`,
+      sameAs: [
+        "https://www.linkedin.com/in/nikunj-tyagi",
+        "https://dribbble.com/nikunjtyagi",
+        "https://behance.net/nikunjtyagi"
+      ],
+      knowsAbout: [
+        "UX Design",
+        "Product Design",
+        "B2B SaaS",
+        "Healthcare Design",
+        "iOS Design",
+        "Design Systems",
+        "Figma"
+      ],
+      nationality: {
+        "@type": "Country",
+        name: "India"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Nikunj Tyagi · Product Designer",
+      description:
+        "Portfolio of Nikunj Tyagi, a Product Designer crafting B2B SaaS, healthcare, and iOS experiences.",
+      publisher: { "@id": `${siteUrl}/#person` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${siteUrl}/blogs?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable} ${caveat.variable} ${lato.variable}`}>
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${dmSans.variable} ${caveat.variable} ${lato.variable}`}
+    >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+      </head>
       <body>
+        <GoogleAnalytics />
         <Navbar />
         {children}
         <Footer />
