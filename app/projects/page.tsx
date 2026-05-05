@@ -3,12 +3,24 @@ import { Container } from "@/components/Container";
 import { TagFilter } from "@/components/TagFilter";
 import { getAllContent } from "@/lib/mdx";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nikunjtyagi.design";
+
 export const metadata: Metadata = {
   title: "Projects",
   description: "Selected B2B, healthcare, and iOS product design case studies by Nikunj Tyagi.",
+  alternates: { canonical: "/projects" },
   openGraph: {
+    type: "website",
+    url: `${siteUrl}/projects`,
     title: "Projects · Nikunj Tyagi",
-    description: "Selected B2B, healthcare, and iOS product design case studies by Nikunj Tyagi."
+    description: "Selected B2B, healthcare, and iOS product design case studies by Nikunj Tyagi.",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Projects · Nikunj Tyagi" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects · Nikunj Tyagi",
+    description: "Selected B2B, healthcare, and iOS product design case studies by Nikunj Tyagi.",
+    images: ["/opengraph-image"]
   }
 };
 

@@ -9,8 +9,8 @@ export const alt = "Nikunj Tyagi · Product Designer";
 export default async function OgImage() {
   let photoSrc = "";
   try {
-    const imageData = await readFile(join(process.cwd(), "public/nikunj.jpg"));
-    photoSrc = `data:image/jpeg;base64,${imageData.toString("base64")}`;
+    const imageData = await readFile(join(process.cwd(), "public/nikunj.png"));
+    photoSrc = `data:image/png;base64,${imageData.toString("base64")}`;
   } catch {
     // no photo
   }

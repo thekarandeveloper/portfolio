@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Caveat, Cormorant_Garamond, DM_Sans, Lato } from "next/font/google";
 import "./globals.css";
@@ -33,6 +33,17 @@ const lato = Lato({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nikunjtyagi.design";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafaf8" },
+    { media: "(prefers-color-scheme: dark)", color: "#1a1a1a" }
+  ],
+  colorScheme: "light dark"
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -101,6 +112,22 @@ export const metadata: Metadata = {
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Nikunj Tyagi",
+    statusBarStyle: "default"
+  },
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false
+  },
+  referrer: "origin-when-cross-origin",
+  other: {
+    "msapplication-TileColor": "#1a1a1a",
+    "msapplication-config": "/browserconfig.xml",
+    "application-name": "Nikunj Tyagi"
   }
 };
 
@@ -115,7 +142,7 @@ const personSchema = {
       description:
         "Product Designer specializing in B2B SaaS, healthcare UX, iOS app design, and design systems.",
       url: siteUrl,
-      image: `${siteUrl}/nikunj.jpg`,
+      image: `${siteUrl}/nikunj.png`,
       sameAs: [
         "https://www.linkedin.com/in/nikunj-tyagi",
         "https://dribbble.com/nikunjtyagi",
