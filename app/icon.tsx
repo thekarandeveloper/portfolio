@@ -8,8 +8,8 @@ export const contentType = "image/png";
 export default async function Icon() {
   let photoSrc = "";
   try {
-    const imageData = await readFile(join(process.cwd(), "public/nikunj.jpg"));
-    photoSrc = `data:image/jpeg;base64,${imageData.toString("base64")}`;
+    const imageData = await readFile(join(process.cwd(), "public/nikunj.png"));
+    photoSrc = `data:image/png;base64,${imageData.toString("base64")}`;
   } catch {
     // fallback to initials
   }
