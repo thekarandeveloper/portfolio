@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AirIqCaseStudy } from "@/components/case-studies/AirIqCaseStudy";
 import { BiblofiCaseStudy } from "@/components/case-studies/BiblofiCaseStudy";
+import { EcotrackCaseStudy } from "@/components/case-studies/EcotrackCaseStudy";
 import { CloudinaryImage } from "@/components/CloudinaryImage";
 import { Container } from "@/components/Container";
 import { MDXRenderer } from "@/components/MDXRenderer";
@@ -54,6 +55,10 @@ export default async function ProjectPage({ params }: Props) {
 
   if (slug === "biblofi") {
     return <BiblofiCaseStudy />;
+  }
+
+  if (slug === "ecotrack") {
+    return <EcotrackCaseStudy />;
   }
 
   let project;

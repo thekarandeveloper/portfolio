@@ -61,6 +61,22 @@
   --color-biblo-success: #27AE60;
   --color-biblo-warning: #E67E22;
   --color-biblo-danger-soft: #FFE5E5;
+  --color-eco-bg: #F2FAF3;
+  --color-eco-bg2: #E4F4E7;
+  --color-eco-bg3: #D0EAD4;
+  --color-eco-bg4: #B8DABD;
+  --color-eco-surface: #9ECBA5;
+  --color-eco-ink: #0D2312;
+  --color-eco-ink2: #1B4022;
+  --color-eco-ink3: #3B6B45;
+  --color-eco-ink4: #7AAD85;
+  --color-eco-green: #2D7D43;
+  --color-eco-green2: #48A362;
+  --color-eco-green5: #E8F7EC;
+  --color-eco-dark: #0A1F0F;
+  --color-eco-dark2: #162C1B;
+  --color-eco-teal: #00796B;
+  --color-eco-amber: #E65100;
   --font-serif: var(--font-cormorant), Georgia, serif;
   --font-sans: var(--font-dm-sans), sans-serif;
   --font-air: var(--font-lato), sans-serif;
@@ -3340,5 +3356,1228 @@ body {
   .biblofi-case-study .oreo-card {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   ECOTRACK CASE STUDY
+   ═══════════════════════════════════════════ */
+
+.ecotrack-case-study {
+  --eco-bg: #F2FAF3;
+  --eco-bg2: #E4F4E7;
+  --eco-bg3: #D0EAD4;
+  --eco-bg4: #B8DABD;
+  --eco-border: rgba(45, 125, 67, 0.12);
+  --eco-border2: rgba(45, 125, 67, 0.22);
+  --eco-ink: #0D2312;
+  --eco-ink2: #1B4022;
+  --eco-ink3: #3B6B45;
+  --eco-ink4: #7AAD85;
+  --eco-green: #2D7D43;
+  --eco-green2: #48A362;
+  --eco-green3: rgba(45, 125, 67, 0.08);
+  --eco-green5: #E8F7EC;
+  --eco-dark: #0A1F0F;
+  --eco-dark2: #162C1B;
+  --eco-teal: #00796B;
+  --eco-amber: #E65100;
+  background: var(--eco-bg);
+  color: var(--eco-ink);
+  font-family: var(--font-dm-sans), sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.ecotrack-case-study *,
+.ecotrack-case-study *::before,
+.ecotrack-case-study *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Progress bar ── */
+.ecotrack-case-study .eco-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--eco-green), var(--eco-teal));
+  z-index: 300;
+  width: 0%;
+  transition: width 0.08s linear;
+}
+
+/* ── Container ── */
+.ecotrack-case-study .eco-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+/* ── Reveal animations ── */
+.ecotrack-case-study .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.ecotrack-case-study .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ecotrack-case-study .rd1 { transition-delay: 0.1s; }
+.ecotrack-case-study .rd2 { transition-delay: 0.2s; }
+.ecotrack-case-study .rd3 { transition-delay: 0.3s; }
+.ecotrack-case-study .rd4 { transition-delay: 0.4s; }
+.ecotrack-case-study .rd5 { transition-delay: 0.5s; }
+
+/* ── Section commons ── */
+.ecotrack-case-study .eco-overview,
+.ecotrack-case-study .eco-process,
+.ecotrack-case-study .eco-competitor,
+.ecotrack-case-study .eco-persona,
+.ecotrack-case-study .eco-design,
+.ecotrack-case-study .eco-wireframes,
+.ecotrack-case-study .eco-iterations {
+  padding: 7rem 0;
+  background: #fff;
+}
+
+.ecotrack-case-study .eco-problem,
+.ecotrack-case-study .eco-research,
+.ecotrack-case-study .eco-empathy,
+.ecotrack-case-study .eco-testing {
+  padding: 7rem 0;
+  background: var(--eco-bg2);
+}
+
+.ecotrack-case-study .eco-learnings {
+  padding: 7rem 0;
+  background: var(--eco-dark);
+  color: #fff;
+}
+
+.ecotrack-case-study .eco-next {
+  padding: 5rem 0;
+  background: var(--eco-bg);
+  border-top: 1px solid var(--eco-border);
+}
+
+.ecotrack-case-study .section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--eco-green);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.ecotrack-case-study .section-label::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--eco-green);
+  flex-shrink: 0;
+}
+
+.ecotrack-case-study .section-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--eco-ink);
+  margin-bottom: 1.25rem;
+}
+.ecotrack-case-study .section-title em {
+  font-style: italic;
+  color: var(--eco-green);
+}
+.ecotrack-case-study .section-title.light { color: #fff; }
+.ecotrack-case-study .section-title.light em { color: var(--eco-green2); }
+
+.ecotrack-case-study .body-text {
+  font-size: 0.9rem;
+  color: var(--eco-ink3);
+  line-height: 1.8;
+  max-width: 640px;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Image placeholder ── */
+.ecotrack-case-study .eco-img {
+  background: linear-gradient(135deg, var(--eco-bg2), var(--eco-bg3));
+  border: 1.5px dashed var(--eco-border2);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.ecotrack-case-study .eco-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: ecoShimmer 2.8s ease-in-out infinite;
+}
+@keyframes ecoShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.ecotrack-case-study .eco-img-icon {
+  font-size: 2.2rem;
+  opacity: 0.45;
+  position: relative;
+  z-index: 1;
+}
+.ecotrack-case-study .eco-img-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--eco-ink3);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+.ecotrack-case-study .eco-img-sub {
+  font-size: 0.64rem;
+  color: var(--eco-ink4);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HERO ── */
+.ecotrack-case-study .eco-hero-wrap {
+  background: linear-gradient(135deg, #0A1F0F 0%, #0F2A18 50%, #162C1B 100%);
+  position: relative;
+}
+.ecotrack-case-study .eco-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(45, 125, 67, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 125, 67, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.ecotrack-case-study .eco-hero-glow {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45, 125, 67, 0.22) 0%, transparent 70%);
+  bottom: -180px;
+  right: -80px;
+  pointer-events: none;
+}
+.ecotrack-case-study .eco-hero-glow2 {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 121, 107, 0.14) 0%, transparent 70%);
+  top: -60px;
+  left: 18%;
+  pointer-events: none;
+}
+.ecotrack-case-study .eco-hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 8rem 3rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr min(300px, 30vw);
+  align-items: flex-end;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+}
+.ecotrack-case-study .eco-hero-content { position: relative; }
+
+.ecotrack-case-study .cs-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--eco-green2);
+  margin-bottom: 1.25rem;
+  padding: 0.28rem 0.75rem;
+  border: 1px solid rgba(72, 163, 98, 0.25);
+  border-radius: 99px;
+  background: rgba(72, 163, 98, 0.08);
+}
+.ecotrack-case-study .cs-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+.ecotrack-case-study .cs-title em {
+  font-style: italic;
+  color: var(--eco-green2);
+}
+.ecotrack-case-study .cs-tagline {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.48);
+  max-width: 500px;
+  line-height: 1.72;
+  margin-bottom: 2.5rem;
+}
+.ecotrack-case-study .eco-meta {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.ecotrack-case-study .eco-meta-item {
+  border-left: 2px solid rgba(45, 125, 67, 0.4);
+  padding-left: 0.75rem;
+}
+.ecotrack-case-study .eco-meta-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.32);
+  margin-bottom: 0.2rem;
+}
+.ecotrack-case-study .eco-meta-val {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+/* ── Hero phone mockup ── */
+.ecotrack-case-study .eco-hero-phone {
+  align-self: flex-end;
+}
+.ecotrack-case-study .eco-phone {
+  background: #fff;
+  border-radius: 28px 28px 0 0;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  width: 100%;
+}
+.ecotrack-case-study .eco-phone-top {
+  height: 26px;
+  background: var(--eco-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ecotrack-case-study .eco-phone-notch {
+  width: 50px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+}
+.ecotrack-case-study .eco-phone-screen {
+  background: var(--eco-bg);
+  padding: 10px 12px 12px;
+}
+.ecotrack-case-study .eco-screen-status {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.55rem;
+  color: var(--eco-ink3);
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+.ecotrack-case-study .eco-screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+}
+.ecotrack-case-study .eco-screen-header p {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--eco-ink);
+}
+.ecotrack-case-study .eco-screen-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--eco-bg3);
+  border: 1.5px solid var(--eco-border2);
+}
+.ecotrack-case-study .eco-ring-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--eco-border);
+  box-shadow: 0 2px 8px rgba(45, 125, 67, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 7px;
+}
+.ecotrack-case-study .eco-ring {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: conic-gradient(var(--eco-green) 0deg 200deg, var(--eco-bg3) 200deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  position: relative;
+}
+.ecotrack-case-study .eco-ring::before {
+  content: '';
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+}
+.ecotrack-case-study .eco-ring-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.ecotrack-case-study .eco-ring-val {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--eco-green);
+  line-height: 1;
+}
+.ecotrack-case-study .eco-ring-unit {
+  font-size: 0.44rem;
+  color: var(--eco-ink3);
+  letter-spacing: 0.03em;
+}
+.ecotrack-case-study .eco-ring-label {
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: var(--eco-ink2);
+}
+.ecotrack-case-study .eco-ring-sub {
+  font-size: 0.48rem;
+  color: var(--eco-green);
+  margin-top: 2px;
+}
+.ecotrack-case-study .eco-categories {
+  background: #fff;
+  border-radius: 10px;
+  padding: 7px 8px;
+  border: 1px solid var(--eco-border);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 7px;
+}
+.ecotrack-case-study .eco-cat-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.5rem;
+}
+.ecotrack-case-study .eco-cat-row > span:first-child {
+  font-size: 0.7rem;
+  width: 14px;
+  flex-shrink: 0;
+}
+.ecotrack-case-study .eco-cat-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--eco-bg3);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.ecotrack-case-study .eco-cat-bar div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--eco-green), var(--eco-green2));
+  border-radius: 99px;
+}
+.ecotrack-case-study .eco-cat-row > span:last-child {
+  color: var(--eco-ink3);
+  font-weight: 500;
+  font-size: 0.5rem;
+  width: 18px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.ecotrack-case-study .eco-fab {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--eco-green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 0 auto 7px;
+  box-shadow: 0 3px 10px rgba(45, 125, 67, 0.4);
+}
+.ecotrack-case-study .eco-tabs {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid var(--eco-border);
+  padding-top: 6px;
+}
+.ecotrack-case-study .eco-tab {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  opacity: 0.38;
+}
+.ecotrack-case-study .eco-tab.active {
+  opacity: 1;
+  background: var(--eco-green5);
+}
+
+/* ── Features grid ── */
+.ecotrack-case-study .eco-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.ecotrack-case-study .eco-feature-card {
+  background: var(--eco-bg);
+  border: 1px solid var(--eco-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.ecotrack-case-study .eco-feature-card:hover {
+  border-color: var(--eco-border2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(45, 125, 67, 0.08);
+}
+.ecotrack-case-study .eco-feature-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.ecotrack-case-study .eco-feature-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--eco-ink2);
+  margin-bottom: 0.4rem;
+}
+.ecotrack-case-study .eco-feature-desc {
+  font-size: 0.8rem;
+  color: var(--eco-ink3);
+  line-height: 1.65;
+}
+
+/* ── Problem / Callout ── */
+.ecotrack-case-study .problem-statement {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--eco-ink2);
+  border-left: 3px solid var(--eco-green);
+  padding-left: 1.5rem;
+  margin-bottom: 3rem;
+}
+.ecotrack-case-study .problem-statement strong {
+  color: var(--eco-green);
+  font-weight: 600;
+}
+.ecotrack-case-study .eco-callout {
+  background: linear-gradient(135deg, var(--eco-green5), #fff);
+  border: 1px solid var(--eco-border);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.ecotrack-case-study .eco-callout-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.ecotrack-case-study .eco-callout-text {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--eco-ink2);
+  line-height: 1.5;
+}
+
+/* ── Process steps ── */
+.ecotrack-case-study .eco-process-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin-top: 3rem;
+  position: relative;
+}
+.ecotrack-case-study .eco-process-steps::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--eco-border), var(--eco-green), var(--eco-border));
+  z-index: 0;
+}
+.ecotrack-case-study .eco-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.4rem;
+  position: relative;
+  z-index: 1;
+}
+.ecotrack-case-study .eco-step-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--eco-bg2);
+  border: 2px solid var(--eco-border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 0.85rem;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+.ecotrack-case-study .eco-step-circle.active {
+  background: var(--eco-green);
+  border-color: var(--eco-green);
+  box-shadow: 0 0 22px rgba(45, 125, 67, 0.35);
+}
+.ecotrack-case-study .eco-step:hover .eco-step-circle {
+  background: var(--eco-green);
+  border-color: var(--eco-green);
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(45, 125, 67, 0.3);
+}
+.ecotrack-case-study .eco-step-phase {
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--eco-green);
+  margin-bottom: 0.2rem;
+}
+.ecotrack-case-study .eco-step-name {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--eco-ink2);
+  margin-bottom: 0.4rem;
+}
+.ecotrack-case-study .eco-step-desc {
+  font-size: 0.7rem;
+  color: var(--eco-ink3);
+  line-height: 1.55;
+}
+
+/* ── Research stats ── */
+.ecotrack-case-study .eco-stat-row {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.ecotrack-case-study .eco-stat {
+  background: #fff;
+  border: 1px solid var(--eco-border);
+  border-radius: 16px;
+  padding: 1.25rem 1.75rem;
+  flex: 1;
+  min-width: 160px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.ecotrack-case-study .eco-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(45, 125, 67, 0.08);
+}
+.ecotrack-case-study .eco-stat-val {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--eco-green);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.ecotrack-case-study .eco-stat-label {
+  font-size: 0.76rem;
+  color: var(--eco-ink3);
+  line-height: 1.4;
+}
+
+/* ── Competitor cards ── */
+.ecotrack-case-study .eco-comp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.ecotrack-case-study .eco-comp-card {
+  border: 1px solid var(--eco-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: var(--eco-bg);
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.ecotrack-case-study .eco-comp-card:hover {
+  border-color: var(--eco-border2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(45, 125, 67, 0.07);
+}
+.ecotrack-case-study .eco-comp-name {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--eco-ink2);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--eco-border);
+}
+.ecotrack-case-study .eco-comp-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.ecotrack-case-study .eco-comp-col-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.ecotrack-case-study .eco-comp-col-label.pros { color: var(--eco-green); }
+.ecotrack-case-study .eco-comp-col-label.cons { color: var(--eco-amber); }
+.ecotrack-case-study .eco-comp-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.ecotrack-case-study .eco-comp-list li {
+  font-size: 0.76rem;
+  color: var(--eco-ink3);
+  line-height: 1.4;
+  padding-left: 1rem;
+  position: relative;
+}
+.ecotrack-case-study .eco-comp-list.pros li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--eco-green);
+  font-size: 0.68rem;
+}
+.ecotrack-case-study .eco-comp-list.cons li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  color: var(--eco-amber);
+  font-size: 0.68rem;
+}
+
+/* ── Empathy mapping ── */
+.ecotrack-case-study .eco-empathy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.ecotrack-case-study .eco-empathy-card {
+  background: #fff;
+  border: 1px solid var(--eco-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.25s;
+}
+.ecotrack-case-study .eco-empathy-card:hover {
+  box-shadow: 0 8px 24px rgba(45, 125, 67, 0.08);
+}
+.ecotrack-case-study .eco-empathy-header {
+  background: linear-gradient(135deg, var(--eco-dark), var(--eco-dark2));
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.ecotrack-case-study .eco-empathy-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(45, 125, 67, 0.12);
+  border: 2px solid rgba(72, 163, 98, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.ecotrack-case-study .eco-empathy-name {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.1rem;
+}
+.ecotrack-case-study .eco-empathy-role {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.42);
+}
+.ecotrack-case-study .eco-empathy-rows {
+  padding: 0.5rem;
+}
+.ecotrack-case-study .eco-emp-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 0.75rem;
+  padding: 0.65rem 0.5rem;
+  border-bottom: 1px solid var(--eco-border);
+  align-items: start;
+}
+.ecotrack-case-study .eco-emp-row:last-child {
+  border-bottom: none;
+}
+.ecotrack-case-study .eco-emp-cat {
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--eco-green);
+  font-weight: 600;
+  padding-top: 0.1rem;
+}
+.ecotrack-case-study .eco-emp-insight {
+  font-size: 0.78rem;
+  color: var(--eco-ink3);
+  line-height: 1.55;
+}
+
+/* ── Persona cards ── */
+.ecotrack-case-study .eco-persona-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.ecotrack-case-study .eco-persona-card {
+  border: 1px solid var(--eco-border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.ecotrack-case-study .eco-persona-card:hover {
+  border-color: var(--eco-border2);
+  box-shadow: 0 12px 36px rgba(45, 125, 67, 0.07);
+}
+.ecotrack-case-study .eco-persona-img {
+  height: 180px;
+  background: linear-gradient(135deg, var(--eco-bg2), var(--eco-bg3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.ecotrack-case-study .eco-persona-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: ecoShimmer 2.8s ease-in-out infinite;
+}
+.ecotrack-case-study .eco-persona-img-icon {
+  font-size: 2.4rem;
+  opacity: 0.3;
+  position: relative;
+  z-index: 1;
+}
+.ecotrack-case-study .eco-persona-img-label {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--eco-ink4);
+  z-index: 1;
+}
+.ecotrack-case-study .eco-persona-body {
+  padding: 1.5rem;
+  background: #fff;
+}
+.ecotrack-case-study .eco-persona-name {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--eco-ink2);
+  margin-bottom: 0.2rem;
+}
+.ecotrack-case-study .eco-persona-tag {
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--eco-green);
+  margin-bottom: 1rem;
+}
+.ecotrack-case-study .eco-persona-detail {
+  font-size: 0.8rem;
+  color: var(--eco-ink3);
+  line-height: 1.65;
+  padding-top: 1rem;
+  border-top: 1px solid var(--eco-border);
+}
+
+/* ── Typography display ── */
+.ecotrack-case-study .eco-type-display {
+  background: #fff;
+  border: 1px solid var(--eco-border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+.ecotrack-case-study .eco-type-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--eco-ink4);
+  margin-bottom: 0.5rem;
+}
+.ecotrack-case-study .eco-type-heading {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--eco-ink);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.ecotrack-case-study .eco-type-weights {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--eco-border);
+}
+.ecotrack-case-study .eco-weight {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.ecotrack-case-study .eco-weight-sample {
+  font-size: 1.3rem;
+  color: var(--eco-ink);
+  line-height: 1;
+}
+.ecotrack-case-study .eco-weight-label {
+  font-size: 0.6rem;
+  color: var(--eco-ink4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Wireframes ── */
+.ecotrack-case-study .eco-wf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.ecotrack-case-study .eco-wf-wide {
+  grid-column: 1 / -1;
+}
+
+/* ── Testing insights ── */
+.ecotrack-case-study .eco-insights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.ecotrack-case-study .eco-insight-group {
+  background: #fff;
+  border: 1px solid var(--eco-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.ecotrack-case-study .eco-insight-group-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--eco-green);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.ecotrack-case-study .eco-insight-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.ecotrack-case-study .eco-insight-list li {
+  font-size: 0.82rem;
+  color: var(--eco-ink3);
+  line-height: 1.55;
+  padding-left: 1.3rem;
+  position: relative;
+}
+.ecotrack-case-study .eco-insight-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--eco-green);
+  font-size: 0.72rem;
+}
+
+/* ── Iterations ── */
+.ecotrack-case-study .eco-iteration-block {
+  margin-bottom: 4.5rem;
+  padding-bottom: 4.5rem;
+  border-bottom: 1px solid var(--eco-border);
+}
+.ecotrack-case-study .eco-iteration-block:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.ecotrack-case-study .eco-iter-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--eco-green);
+  margin-bottom: 0.75rem;
+  background: var(--eco-green5);
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+}
+.ecotrack-case-study .eco-iter-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 300;
+  color: var(--eco-ink2);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+.ecotrack-case-study .eco-ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.ecotrack-case-study .eco-ba-col-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.ecotrack-case-study .eco-ba-col-label.before { color: var(--eco-amber); }
+.ecotrack-case-study .eco-ba-col-label.after  { color: var(--eco-green); }
+.ecotrack-case-study .eco-ba-desc {
+  font-size: 0.82rem;
+  color: var(--eco-ink3);
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
+/* ── Learnings ── */
+.ecotrack-case-study .eco-learnings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.ecotrack-case-study .eco-learning-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+.ecotrack-case-study .eco-learning-card:hover {
+  background: rgba(45, 125, 67, 0.12);
+  border-color: rgba(45, 125, 67, 0.28);
+  transform: translateY(-3px);
+}
+.ecotrack-case-study .eco-learning-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.ecotrack-case-study .eco-learning-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+.ecotrack-case-study .eco-learning-desc {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.65;
+}
+
+/* ── Next project ── */
+.ecotrack-case-study .eco-next-card {
+  background: #fff;
+  border: 1px solid var(--eco-border);
+  border-radius: 20px;
+  padding: 2.25rem 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+.ecotrack-case-study .eco-next-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--eco-green), var(--eco-teal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.ecotrack-case-study .eco-next-card:hover::before {
+  transform: scaleX(1);
+}
+.ecotrack-case-study .eco-next-card:hover {
+  border-color: var(--eco-border2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(45, 125, 67, 0.08);
+}
+.ecotrack-case-study .eco-next-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--eco-ink4);
+  margin-bottom: 0.5rem;
+}
+.ecotrack-case-study .eco-next-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 300;
+  color: var(--eco-ink2);
+}
+.ecotrack-case-study .eco-next-arrow {
+  font-size: 1.5rem;
+  color: var(--eco-green);
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+.ecotrack-case-study .eco-next-card:hover .eco-next-arrow {
+  transform: translateX(8px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ecotrack-case-study .eco-hero {
+    grid-template-columns: 1fr;
+    padding: 7rem 1.5rem 3rem;
+    gap: 2rem;
+  }
+  .ecotrack-case-study .eco-hero-phone {
+    display: none;
+  }
+  .ecotrack-case-study .eco-container {
+    padding: 0 1.5rem;
+  }
+  .ecotrack-case-study .eco-overview,
+  .ecotrack-case-study .eco-problem,
+  .ecotrack-case-study .eco-process,
+  .ecotrack-case-study .eco-research,
+  .ecotrack-case-study .eco-competitor,
+  .ecotrack-case-study .eco-empathy,
+  .ecotrack-case-study .eco-persona,
+  .ecotrack-case-study .eco-design,
+  .ecotrack-case-study .eco-wireframes,
+  .ecotrack-case-study .eco-testing,
+  .ecotrack-case-study .eco-iterations,
+  .ecotrack-case-study .eco-learnings,
+  .ecotrack-case-study .eco-next {
+    padding: 5rem 0;
+  }
+  .ecotrack-case-study .eco-process-steps {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .ecotrack-case-study .eco-process-steps::before {
+    display: none;
+  }
+  .ecotrack-case-study .eco-step {
+    flex-direction: row;
+    text-align: left;
+    gap: 1rem;
+  }
+  .ecotrack-case-study .eco-step-circle {
+    flex-shrink: 0;
+    margin-bottom: 0;
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+  .ecotrack-case-study .eco-features-grid,
+  .ecotrack-case-study .eco-comp-grid,
+  .ecotrack-case-study .eco-empathy-grid,
+  .ecotrack-case-study .eco-persona-grid,
+  .ecotrack-case-study .eco-insights-grid,
+  .ecotrack-case-study .eco-ba-grid {
+    grid-template-columns: 1fr;
+  }
+  .ecotrack-case-study .eco-wf-grid {
+    grid-template-columns: 1fr;
+  }
+  .ecotrack-case-study .eco-learnings-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ecotrack-case-study .eco-next-card {
+    padding: 1.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ecotrack-case-study .eco-learnings-grid {
+    grid-template-columns: 1fr;
+  }
+  .ecotrack-case-study .eco-stat-row {
+    flex-direction: column;
+  }
+  .ecotrack-case-study .eco-type-weights {
+    gap: 1.25rem;
   }
 }

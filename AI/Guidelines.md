@@ -117,6 +117,29 @@ Colors:
 
 Use for BibloFi project detail hero and case-study accents only.
 
+## EcoTrack Case Study System
+
+Colors:
+
+- `eco-bg`: `#F2FAF3`
+- `eco-bg2`: `#E4F4E7`
+- `eco-bg3`: `#D0EAD4`
+- `eco-bg4`: `#B8DABD`
+- `eco-surface`: `#9ECBA5`
+- `eco-ink`: `#0D2312`
+- `eco-ink2`: `#1B4022`
+- `eco-ink3`: `#3B6B45`
+- `eco-ink4`: `#7AAD85`
+- `eco-green`: `#2D7D43`
+- `eco-green2`: `#48A362`
+- `eco-green5`: `#E8F7EC`
+- `eco-dark`: `#0A1F0F`
+- `eco-dark2`: `#162C1B`
+- `eco-teal`: `#00796B`
+- `eco-amber`: `#E65100`
+
+Use for EcoTrack project detail hero and case-study accents only.
+
 ## Spacing And Radius
 
 Use the documented 4pt system from the references:
