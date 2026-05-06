@@ -9,7 +9,7 @@ type CloudinaryOptions = {
 };
 
 export function cloudinaryUrl(publicId: string, options: CloudinaryOptions = {}) {
-  if (publicId.startsWith("http")) {
+  if (publicId.startsWith("http") || publicId.startsWith("/")) {
     return publicId;
   }
 
