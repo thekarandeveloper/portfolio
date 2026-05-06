@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { accessibilityCards, bibloFeatures, bibloMeta, bibloRoleChips, bibloTeam, diamondSteps, learnings, personas, researchStats, testResults, wireframes } from "./biblofiData";
+import Image from "next/image";
+import { accessibilityCards, bibloFeatures, bibloMeta, bibloRoleChips, bibloTeam, diamondSteps, learnings, personas, researchStats, testResults } from "./biblofiData";
 
 type FeaturePhoneType = (typeof bibloFeatures)[number]["phone"];
 
@@ -51,6 +52,7 @@ export function BiblofiCaseStudy() {
       <Personas />
       <Wireframes />
       <Features />
+      <FinalScreens />
       <Accessibility />
       <Testing />
       <Oreo />
@@ -161,7 +163,13 @@ function Overview() {
               <div className="team-items">
                 {bibloTeam.map((item) => (
                   <div className="team-item" key={item.dot}>
-                    <div className="team-dot">{item.dot}</div>
+                    {item.dot === "NT" ? (
+                      <div className="team-dot" style={{ padding: 0, overflow: "hidden" }}>
+                        <Image src="/Image/Biblofi/me.png" alt="Nikunj Tyagi" width={28} height={28} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      </div>
+                    ) : (
+                      <div className="team-dot">{item.dot}</div>
+                    )}
                     <div>
                       <div className="team-title">{item.title}</div>
                       <div className="team-sub">{item.sub}</div>
@@ -173,6 +181,9 @@ function Overview() {
             <div className="goal-box">
               <p className="team-label">Project goal</p>
               <p>&quot;Create a seamless, feature-rich library app that empowers members to discover, reserve, and borrow books efficiently while reducing friction.&quot;</p>
+            </div>
+            <div className="team-photo-wrap">
+              <Image src="/Image/Biblofi/team.png" alt="Biblofi team at Infosys" width={600} height={320} style={{ width: "100%", height: "auto", borderRadius: "12px" }} />
             </div>
           </div>
         </div>
@@ -218,6 +229,9 @@ function Research() {
         </h2>
         <p className="body-text reveal rd2">I conducted surveys, contextual interviews, and observation sessions to capture real-life experiences of both library members and librarians. The goal: understand the recurring frustrations that disrupt the library experience.</p>
         <p className="body-text reveal rd3">Key finding: the friction wasn&apos;t in the library itself — it was in the invisible overhead. Not knowing if a book was available before visiting. Not being able to reserve a seat. No reminders for due dates. Digital tools existed, but none were designed with student workflows in mind.</p>
+        <div className="method-img-wrap reveal rd3">
+          <Image src="/Image/Biblofi/method.png" alt="Research methodology" width={900} height={480} style={{ width: "100%", height: "auto", borderRadius: "14px" }} />
+        </div>
         <div className="stat-row reveal rd2">
           {researchStats.map((stat) => (
             <div className="stat-pill" key={stat.label}>
@@ -284,32 +298,22 @@ function Wireframes() {
           <em>to structured flows.</em>
         </h2>
         <p className="body-text reveal rd2">The brainstorming started in WhatsApp chats and rough sketches — raw ideas that I then translated into structured lo-fi wireframes in FigJam. From there, I built out 7 complete user flows covering every core feature.</p>
-        <div className="wf-row reveal rd2">
-          {wireframes.map((label, index) => (
-            <WireframeCard key={label} label={label} index={index} />
+        <div className="wf-img-grid reveal rd2">
+          {[
+            { src: "/Image/Biblofi/wireframe1.png", label: "Onboarding" },
+            { src: "/Image/Biblofi/wireframe2.png", label: "Browse by Genre" },
+            { src: "/Image/Biblofi/wireframe3.png", label: "Scan & Search" },
+            { src: "/Image/Biblofi/wireframe4.png", label: "Seat Booking" },
+          ].map(({ src, label }) => (
+            <div className="wf-img-card" key={label}>
+              <Image src={src} alt={`${label} wireframe`} width={300} height={540} style={{ width: "100%", height: "auto", display: "block" }} />
+              <div className="wf-img-label">{label}</div>
+            </div>
           ))}
         </div>
         <p className="body-text reveal rd3 wf-note">7 complete user flows designed: Onboarding · Sign In · Browse by Genre · Search by Author · Scan & Search · Notifications & Profile · Seat Booking</p>
       </div>
     </section>
-  );
-}
-
-function WireframeCard({ label, index }: { label: string; index: number }) {
-  return (
-    <div className="wf-frame">
-      <div className="wf-bar">
-        <div className="wf-notch" />
-      </div>
-      <div className={`wf-body wf-${index}`}>
-        <div className="wf-row-el" />
-        <div className="wf-block" />
-        <div className="wf-row-el" />
-        <div className="wf-row-el short" />
-        {index === 3 ? <div className="wf-calendar" /> : <div className="wf-block small" />}
-      </div>
-      <div className="wf-label">{label}</div>
-    </div>
   );
 }
 
@@ -467,6 +471,40 @@ function ScanScreen() {
         <div className="book-author">Shelf B4 · Row 3 · Available</div>
       </div>
     </>
+  );
+}
+
+function FinalScreens() {
+  const screens = [
+    "/Image/Biblofi/final1.png",
+    "/Image/Biblofi/final2.png",
+    "/Image/Biblofi/final3.png",
+    "/Image/Biblofi/final4.png",
+    "/Image/Biblofi/final5.png",
+    "/Image/Biblofi/final6.png",
+    "/Image/Biblofi/final7.png",
+    "/Image/Biblofi/final8.png",
+    "/Image/Biblofi/final9.png",
+  ];
+  return (
+    <section className="final-screens-section">
+      <div className="container">
+        <p className="section-label reveal">Deliver — Final Designs</p>
+        <h2 className="section-title reveal rd1">
+          The finished product —
+          <br />
+          <em>every screen, polished.</em>
+        </h2>
+        <p className="body-text reveal rd2">From onboarding to book discovery, seat booking to fine tracking — here are the final high-fidelity screens delivered to the Infosys engineering team.</p>
+        <div className="final-screens-grid reveal rd2">
+          {screens.map((src, i) => (
+            <div className="final-screen-item" key={i}>
+              <Image src={src} alt={`BibloFi final screen ${i + 1}`} width={320} height={640} style={{ width: "100%", height: "auto", display: "block" }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

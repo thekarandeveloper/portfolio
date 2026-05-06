@@ -3359,6 +3359,81 @@ body {
   }
 }
 
+/* ── Biblofi asset additions ── */
+
+.biblofi-case-study .team-photo-wrap {
+  margin-top: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--biblo-border);
+}
+
+.biblofi-case-study .method-img-wrap {
+  margin: 2rem 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--biblo-border);
+}
+
+.biblofi-case-study .wf-img-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.biblofi-case-study .wf-img-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1.5px solid var(--biblo-border2);
+  box-shadow: 0 4px 16px rgba(91, 63, 212, 0.07);
+  background: #fff;
+}
+
+.biblofi-case-study .wf-img-label {
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--biblo-ink3);
+  padding: 0.6rem 0.75rem;
+  font-family: var(--font-dm-sans), sans-serif;
+  border-top: 1px solid var(--biblo-border);
+  background: #fff;
+}
+
+.biblofi-case-study .final-screens-section {
+  background: var(--biblo-bg2);
+  padding: 6rem 0;
+}
+
+.biblofi-case-study .final-screens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.biblofi-case-study .final-screen-item {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(91, 63, 212, 0.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.biblofi-case-study .final-screen-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(91, 63, 212, 0.18);
+}
+
+@media (max-width: 768px) {
+  .biblofi-case-study .wf-img-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .biblofi-case-study .final-screens-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* ═══════════════════════════════════════════
    ECOTRACK CASE STUDY
    ═══════════════════════════════════════════ */
