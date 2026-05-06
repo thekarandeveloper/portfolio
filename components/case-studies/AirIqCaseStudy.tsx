@@ -123,49 +123,51 @@ function HeroSection() {
   return (
     <section id="hero">
       <div className="hero-grid" />
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
-      <div className="orb orb-3" />
 
-      <div className="hero-content">
-        <div className="hero-live-badge">
-          <div className="live-dot" />
-          Live in production &nbsp;·&nbsp; B2B SaaS &nbsp;·&nbsp; Travel Agents
-        </div>
+      <div className="hero-inner">
+        <div className="hero-left">
+          <div className="hero-live-badge">
+            <div className="live-dot" />
+            Live in production &nbsp;·&nbsp; B2B SaaS &nbsp;·&nbsp; Travel Agents
+          </div>
 
-        <div className="hero-title">
-          <span className="air">AIR </span>
-          <span className="iq">iQ</span>
-        </div>
-        <div className="hero-descriptor">Simplifying Complex Booking Systems</div>
+          <div className="hero-title">
+            <span className="air">AIR </span>
+            <span className="iq">iQ</span>
+          </div>
 
-        <div className="hero-metrics">
-          {airHeroMetrics.map((metric) => (
-            <div className="h-metric" key={metric.label}>
-              <div className="hm-val">
-                {metric.value}
-                <span>{metric.accent}</span>
+          <div className="hero-descriptor">Simplifying Complex Booking Systems</div>
+          <div className="hero-meta">UI/UX Designer &nbsp;·&nbsp; 6 Months &nbsp;·&nbsp; Figma + v0 + AI workflow</div>
+
+          <div className="hero-metrics">
+            {airHeroMetrics.map((metric) => (
+              <div className="h-metric" key={metric.label}>
+                <div className="hm-val">
+                  {metric.value}
+                  <span>{metric.accent}</span>
+                </div>
+                <div className="hm-label">{metric.label}</div>
               </div>
-              <div className="hm-label">{metric.label}</div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <div className="hero-links">
+            <a className="hero-link hl-primary" href={airFigmaLinks.desktop} target="_blank" rel="noreferrer">
+              <span>View Desktop Design</span>
+              <span className="hl-icon">↗</span>
+            </a>
+            <a className="hero-link hl-secondary" href={airFigmaLinks.mobile} target="_blank" rel="noreferrer">
+              <span>View Mobile Design</span>
+              <span className="hl-icon">↗</span>
+            </a>
+          </div>
         </div>
 
-        <div className="hero-links">
-          <a className="hero-link hl-primary" href={airFigmaLinks.desktop} target="_blank" rel="noreferrer">
-            <span>View Desktop Design</span>
-            <span className="hl-icon">↗</span>
-          </a>
-          <a className="hero-link hl-secondary" href={airFigmaLinks.mobile} target="_blank" rel="noreferrer">
-            <span>View Mobile Design</span>
-            <span className="hl-icon">↗</span>
-          </a>
+        <div className="hero-right">
+          <div className="hero-img-wrap">
+            <img src="/Image/Airiq/thumbnail.png" alt="AIR iQ product — flight search interface" />
+          </div>
         </div>
-      </div>
-
-      <div className="hero-role">
-        <div className="role-title">UI/UX Designer &nbsp;·&nbsp; 6 Months</div>
-        <div className="role-sub">Figma &nbsp;·&nbsp; v0 &nbsp;·&nbsp; AI-accelerated workflow</div>
       </div>
 
       <div className="hero-scroll-hint">
