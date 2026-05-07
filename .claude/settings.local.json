@@ -8,7 +8,20 @@
       "Bash(pip3 show *)",
       "Bash(git filter-repo *)",
       "Bash(npx tsc *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(git commit *)",
+      "Bash(mkdir -p /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio/public/Image/Biblofi)",
+      "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio add components/case-studies/BiblofiCaseStudy.tsx app/globals.css public/Image/Biblofi/)",
+      "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio commit -m ' *)",
+      "Bash(lsof -iTCP -sTCP:LISTEN -n -P)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(sleep 4 && cat /tmp/portfolio-dev.log)",
+      "Read(//private/tmp/**)",
+      "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio push origin main)",
+      "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio add -A)"
+    ],
+    "additionalDirectories": [
+      "/Users/nikunjtyagi/Documents/Portfolio-5may/portfolio/public/Image"
     ]
   }
 }

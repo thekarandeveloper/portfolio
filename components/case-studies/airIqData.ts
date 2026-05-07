@@ -270,3 +270,105 @@ export const airDesignStats = [
   { value: "3", label: "Icon size scales" },
   { value: "4", accent: "pt", label: "Base grid" }
 ];
+
+export const airHeroAnnotations = [
+  "274px persistent sidebar — not modal",
+  "Dark navy header — tool zone vs content zone",
+  "1130px card — full fare data without expanding",
+  "+1 day tooltip — custom icon, hover triggered",
+  "Price primary — agents decide on cost first"
+];
+
+export const airHeroDecisions = [
+  { label: "Filter panel", text: "Persistent, not modal. Agents compare results while filtering. Modal breaks that loop completely." },
+  { label: "Card width", text: "1130px fixed. Every fare data point visible without click. No information is hidden." },
+  { label: "Header colour", text: "#183057 dark navy. Signals professional tool, not consumer app. Built for all-day use." }
+];
+
+export const airIterationGroups = [
+  {
+    label: "Filter panel — 3 versions",
+    items: [
+      { status: "DISCARDED", title: "Modal filter", reason: "Broke the compare-filter-compare loop", img: "filter-v1.png" },
+      { status: "ITERATION", title: "Slide-in panel", reason: "Collapsed by default — agents had to open it every session", img: "filter-v2.png" },
+      { status: "FINAL", title: "274px persistent sidebar", reason: "Always visible. Zero context switching for agents.", img: "filter-v3.png" }
+    ]
+  },
+  {
+    label: "Flight card — 3 versions",
+    items: [
+      { status: "DISCARDED", title: "Equal weight layout", reason: "Agents missed refundability and seat count every time", img: "card-v1.png" },
+      { status: "ITERATION", title: "Grouped sections", reason: "Better but grouping created extra cognitive load on scan", img: "card-v2.png" },
+      { status: "FINAL", title: "Hierarchy-first card", reason: "Price primary. Status tags scannable in 2 seconds.", img: "card-v3.png" }
+    ]
+  }
+];
+
+export const airDecisionBlocks = [
+  {
+    num: "01",
+    label: "Filter panel",
+    title: "Persistent, not modal",
+    text: "First instinct: modal — clean, common. Built a v0 prototype in 30 min. One walkthrough made it obvious: agents compare while filtering. Modal kills that. Rebuilt as 274px fixed sidebar.",
+    outcome: "Zero context switching for agents",
+    img: "filter-v3.png"
+  },
+  {
+    num: "02",
+    label: "Flight card hierarchy",
+    title: "The gap no one had flagged",
+    text: "Previous card: equal weight on all 15+ data points. Agents were missing refundability and seat count before anything else. Restructured hierarchy — price + airline primary, status tags colour-coded.",
+    outcome: "Reduced missed information — shipped to production",
+    img: "card-v3.png"
+  },
+  {
+    num: "03",
+    label: "Header colour",
+    title: "#183057 — not white",
+    text: "Most booking interfaces use white headers. Dark navy creates a strong visual anchor — separates navigation from content. Signals professional tool. Agents use this all day.",
+    outcome: "Stakeholder: 'feels enterprise-grade immediately'",
+    img: null
+  },
+  {
+    num: "04",
+    label: "Mobile adaptation",
+    title: "Sidebar → bottom sheet",
+    text: "On 375px, a persistent sidebar consumes the full viewport. Adapted: sticky filter button → full-screen bottom sheet. Last selection persists when closed. Same mental model, different form.",
+    outcome: "Consistent behaviour across both platforms",
+    img: "mobile-filter.png"
+  }
+];
+
+export const airJourneyBlocks = [
+  { step: "01 / Home", title: "Where every booking begins", url: "airiq.app/", decisions: ["Trip-type toggle sets full form state before any input", "Swap icon — agents flip routes constantly"], img: "home.png" },
+  { step: "02 / Search results", title: "The core agent workspace", url: "airiq.app/search", decisions: ["Sort by price — default, agents optimise cost first", "Fare breakdown inline — no modal, no context loss"], img: "results-oneway.png" },
+  { step: "03 / Round-trip", title: "Two journeys. One decision.", url: "airiq.app/search?mode=rt", decisions: ["Side-by-side date columns — outbound left, return right", "4 variants: one-way/round-trip × domestic/international"], img: "results-roundtrip.png" },
+  { step: "04 / Itinerary", title: "Fare rules. Baggage. All of it.", url: "airiq.app/itinerary", decisions: ["Fare rule breakdown — 4 component states", "Meal selection separate from passenger form — reduces length"], img: "itinerary.png" },
+  { step: "05 / Passenger details", title: "Multi-pax. Full validation.", url: "airiq.app/passengers", decisions: ["Inline validation on blur — not on submit", "Infant + adult association — conditional UI only when needed"], img: "passenger.png" },
+  { step: "06 / Review & confirm", title: "5 booking states. All designed.", url: "airiq.app/review", decisions: ["Full GST breakdown before CTA — agents need total before committing", "5 states: confirmed / pending / on hold / released / failed"], img: "review.png" },
+  { step: "07 / Share flow", title: "Send a fare in one flow.", url: "airiq.app/share", decisions: ["Close guard — prevents losing unsent share mid-session", "To + CC fields — agents copy multiple contacts at once"], img: "share.png" },
+  { step: "08 / Responsive", title: "Same screen. Two platforms.", url: "airiq.app/search", decisions: ["Desktop: 274px sidebar persistent", "Mobile: bottom sheet — identical mental model, adapted form"], img: "results-oneway.png" }
+];
+
+export const airEdgeCases = [
+  { icon: "∅", title: "No results", desc: "Helpful empty state with suggestions — not a blank screen", badge: "Edge case", cls: "ecb-edge" },
+  { icon: "◷", title: "API timeout", desc: "GDS APIs are slow. Agents need feedback during load — not a broken UI", badge: "Edge case", cls: "ecb-edge" },
+  { icon: "✕", title: "Sold-out flight", desc: "Seats disappear between search and booking. Disabled state + guidance", badge: "Critical path", cls: "ecb-critical" },
+  { icon: "+1", title: "+1 day arrival", desc: "Custom icon + hover tooltip. Agents book wrong itineraries without this", badge: "My initiative", cls: "ecb-initiative" },
+  { icon: "⊕", title: "Nearby airport", desc: "Airport code, name, distance. Not in brief — proposed and adopted", badge: "My initiative", cls: "ecb-initiative" },
+  { icon: "◎", title: "Infant + adult", desc: "Conditional UI for infant-adult seat association — complex multi-pax case", badge: "Edge case", cls: "ecb-edge" },
+  { icon: "⚠", title: "Share — incomplete", desc: "Must select fare before sharing. Close guard prevents accidental dismissal", badge: "Edge case", cls: "ecb-edge" },
+  { icon: "◆", title: "Update markup", desc: "Admin screen: agents set margin on base fares. B2B-exclusive feature", badge: "My initiative", cls: "ecb-initiative" }
+];
+
+export const airOutcomeMetrics = [
+  { value: "30–40", accent: "%", label: "Faster booking completion vs previous system" },
+  { value: "2", accent: "×", label: "Clearer data presentation on flight cards" },
+  { value: "25–35", accent: "%", label: "Fewer support tickets about UI confusion" }
+];
+
+export const airReflections = [
+  { num: "01", text: "B2B is not B2C with a logo — professionals tolerate complexity, but only organised complexity" },
+  { num: "02", text: "The design system paid for itself — screens 10–20 were built 4× faster than screens 1–5" },
+  { num: "03", text: "Working without a senior made every decision independently defensible — that muscle is permanent" }
+];
