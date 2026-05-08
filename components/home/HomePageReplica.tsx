@@ -1,6 +1,5 @@
 import { AboutSection } from "./AboutSection";
 import { ContactSection } from "./ContactSection";
-import { GallerySection } from "./GallerySection";
 import { HeroSection } from "./HeroSection";
 import { HomeBehavior } from "./HomeBehavior";
 import { HomeLoader } from "./HomeLoader";
@@ -8,7 +7,6 @@ import { HomeNav } from "./HomeNav";
 import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
 import { ProcessSection } from "./ProcessSection";
-import { ScrapbookSection } from "./ScrapbookSection";
 import { ShowcaseSection } from "./ShowcaseSection";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { ToolkitSection } from "./ToolkitSection";
@@ -27,8 +25,6 @@ export function HomePageReplica() {
       <ShowcaseSection />
       <ProcessSection />
       <AboutSection />
-      <GallerySection />
-      <ScrapbookSection />
       <ToolkitSection />
       <JourneySection />
       <TestimonialsSection />
