@@ -9,7 +9,6 @@ import { JourneySection } from "./JourneySection";
 import { ProcessSection } from "./ProcessSection";
 import { ShowcaseSection } from "./ShowcaseSection";
 import { TestimonialsSection } from "./TestimonialsSection";
-import { ToolkitSection } from "./ToolkitSection";
 import { WorkSection } from "./WorkSection";
 
 export function HomePageReplica() {
@@ -25,7 +24,6 @@ export function HomePageReplica() {
       <ShowcaseSection />
       <ProcessSection />
       <AboutSection />
-      <ToolkitSection />
       <JourneySection />
       <TestimonialsSection />
       <ContactSection />
