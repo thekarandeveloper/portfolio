@@ -1,48 +1,34 @@
 const html = `<section class="about" id="about">
-  <div class="about-header reveal">
-    <p class="section-label">About me</p>
-    <h2 class="about-intro">Pixel-perfect by day.<br><em>Café-hopping, camera-clicking,</em><br>slightly shopaholic by nature.</h2>
-  </div>
-  <div class="bento reveal reveal-delay-1">
-
-    <!-- col 1 — tall portrait (40% width, all 3 rows) -->
-    <div class="bento-card b-photo">
-      <div class="photo-placeholder">Add your best photo here ✦</div>
-      <div class="photo-overlay"><p class="photo-name">Nikunj Tyagi</p><p class="photo-role">Product Designer · India</p></div>
-    </div>
-
-    <!-- col 2-3 row 1 — bio -->
-    <div class="bento-card b-hello">
-      <p class="bento-tag">Who I am</p>
-      <p class="bento-title">I untangle messy systems and make them feel obvious.</p>
-      <p class="bento-sub" style="margin-top:0.4rem;color:rgba(255,255,255,0.4);">Extrovert. Pixel-obsessed.</p>
-    </div>
-
-    <!-- col 2 row 2 — sticky note -->
-    <div class="bento-card b-note" style="transform:rotate(1.2deg);">
-      <p class="note-text">I&rsquo;ll redo the whole thing if it&rsquo;s 1px off.</p>
-      <p class="note-pin">— me, 2am 📌</p>
-    </div>
-
-    <!-- col 3 row 2 — café photo -->
-    <div class="bento-card b-doodle">
-      <div class="doodle-wrap">
-        <p style="font-size:2rem;margin-bottom:0.4rem;">🏙</p>
-        <p class="doodle-caption">café shot here</p>
+  <div class="about-2col reveal">
+    <div class="about-photo-grid">
+      <div class="about-photo ap-1">
+        <div class="ap-placeholder">📸</div>
+      </div>
+      <div class="about-photo ap-2 ap-rotated">
+        <div class="ap-placeholder">☕</div>
+      </div>
+      <div class="about-photo ap-3">
+        <div class="ap-placeholder">🎯</div>
+      </div>
+      <div class="about-photo ap-4">
+        <div class="ap-placeholder">✈️</div>
       </div>
     </div>
-
-    <!-- col 2-3 row 3 — currently -->
-    <div class="bento-card b-currently">
-      <div><p class="curr-label2">Currently</p><p class="curr-title2">Leading hotel<br>design @ Air IQ</p></div>
-      <div class="current-divider"></div>
-      <div class="curr-items">
-        <div class="curr-item"><div class="curr-dot2"></div>Learning motion design</div>
-        <div class="curr-item"><div class="curr-dot2"></div>Building design systems</div>
-        <div class="curr-item"><div class="curr-dot2"></div>Open to opportunities</div>
+    <div class="about-text">
+      <p class="about-sublabel">ABOUT ME</p>
+      <h2 class="about-heading">Engineer by training.<br>Designer by choice.</h2>
+      <div class="about-letter">
+        <p class="letter-greeting">Hey there,</p>
+        <p class="letter-body">I started out in engineering, where I learned how systems think. Then I discovered something more interesting — how people think. That shift changed everything.</p>
+        <p class="letter-body">Now I design at the intersection of research and systems, building products that feel effortless to use because I spent a long time understanding why they're hard. Currently doing that at Air IQ.</p>
+        <p class="letter-body">When I'm not designing, I'm probably in a café with a cold brew, exploring a city I've never been to, or deep in a rabbit hole about something no one asked me to care about.</p>
+        <div class="letter-sign">
+          <span class="letter-closing">Warmly,</span>
+          <span class="letter-name">Nikunj</span>
+        </div>
       </div>
+      <a href="/about" class="about-cta">Know More <span class="about-cta-arrow">→</span></a>
     </div>
-
   </div>
 </section>`;
 

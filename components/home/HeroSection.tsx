@@ -31,20 +31,21 @@ const html = `<section class="hero" id="home">
     </div>
   </div>
 
-  <!-- Name — Nico Moji, one line -->
-  <div class="hero-name-wrap" id="heroNameWrap">
-    <span class="hero-hi">Hi, I&rsquo;m</span>
-    <span class="hero-name">Nikunj Tyagi</span>
+  <!-- Name block -->
+  <div class="hero-name-wrap hero-text" id="heroNameWrap">
+    <h1 class="hero-line1">
+      <span>👋 Hi, I&rsquo;m Nikunj Tyagi,</span>
+      <span>a&nbsp;<span class="typed-role" id="typed-role"></span><span class="hero-cursor" id="role-cursor"></span></span>
+    </h1>
+    <p class="hero-line2">who turns complex problems into clear, considered designs —<br>one research insight at a time.</p>
+    <p class="hero-line3"><span class="plane-icon">✈️</span> Currently designing @ Air IQ</p>
   </div>
 
-  <!-- Typing role -->
-  <div class="hero-role">
-    <div class="role-line"></div>
-    <div class="typing-wrap">
-      <span class="typing-text" id="typingText"></span>
-      <span class="typing-cursor"></span>
+  <!-- Scroll arrow with glass orb -->
+  <div class="hero-scroll-hint">
+    <div class="scroll-glass-orb">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E90FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
     </div>
-    <div class="role-line"></div>
   </div>
 
 </section>`;
