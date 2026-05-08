@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Caveat, Cormorant_Garamond, DM_Sans, Lato } from "next/font/google";
+import { Caveat, Cormorant_Garamond, Instrument_Sans, Lato } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -14,10 +14,10 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant"
 });
 
-const dmSans = DM_Sans({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-dm-sans"
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-instrument"
 });
 
 const caveat = Caveat({
@@ -187,9 +187,12 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${dmSans.variable} ${caveat.variable} ${lato.variable}`}
+      className={`${cormorant.variable} ${instrumentSans.variable} ${caveat.variable} ${lato.variable}`}
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=Nico+Moji&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

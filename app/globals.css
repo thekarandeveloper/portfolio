@@ -78,8 +78,8 @@
   --color-eco-teal: #00796B;
   --color-eco-amber: #E65100;
   --font-serif: var(--font-cormorant), Georgia, serif;
-  --font-sans: var(--font-dm-sans), sans-serif;
-  --font-air: var(--font-lato), sans-serif;
+  --font-sans: var(--font-instrument), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-air: var(--font-instrument), -apple-system, BlinkMacSystemFont, sans-serif;
   --font-hand: var(--font-caveat), cursive;
   --radius-card: 20px;
 }
@@ -99,7 +99,7 @@ body {
   overflow-x: hidden;
   background: #FDFAF8;
   color: #1A1210;
-  font-family: var(--font-dm-sans), sans-serif;
+  font-family: var(--font-instrument), -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 300;
   line-height: 1.6;
 }
@@ -221,7 +221,7 @@ body {
   --airq-placeholder: #A3A3A3;
   background: var(--airq-off);
   color: var(--airq-gray-800);
-  font-family: var(--font-lato), sans-serif;
+  font-family: var(--font-instrument), -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: normal;
   overflow-x: hidden;
 }
@@ -490,13 +490,46 @@ body {
 }
 
 .airiq-case-study .s-inner {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 8%;
+  padding: 68px 6%;
 }
 
 .airiq-case-study .s-inner.wide {
   max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* split layout — text left, image right */
+.airiq-case-study .split-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 48px;
+}
+.airiq-case-study .split-row.reverse {
+  grid-template-columns: 1.2fr 1fr;
+}
+.airiq-case-study .split-row.reverse .split-img {
+  order: -1;
+}
+.airiq-case-study .split-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.airiq-case-study .split-img {
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--airq-gray-100);
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--airq-gray-200);
+  box-shadow: 0 12px 40px rgba(11,30,61,0.08);
 }
 
 .airiq-case-study .eyebrow {
