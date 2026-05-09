@@ -1,46 +1,42 @@
 const html = `<section class="process-section" id="process">
 
   <div class="process-heading reveal">
-    <h2 class="process-main-title"><em>How I actually work.</em></h2>
+    <h2 class="process-main-title">How I actually</h2>
+    <span class="process-title-script">work.</span>
   </div>
 
-  <div class="conv-wrap reveal">
-    <div class="conv-window" id="convWindow">
+  <div class="conv-stage reveal" id="convStage">
 
-      <!-- Glass chat header -->
-      <div class="conv-titlebar">
-        <div class="conv-gchat-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-        </div>
-        <div class="conv-group-info">
-          <span class="conv-group-name">new-feature-discussion 💬</span>
-          <span class="conv-group-sub">Nikunj Tyagi &amp; PM &middot; 2 members</span>
-        </div>
-        <div class="conv-header-avatars">
-          <div class="conv-hdr-av pm-hdr">PM</div>
-          <div class="conv-hdr-av nik-hdr">NT</div>
-        </div>
+    <div class="q-panel" id="qPanel">
+      <p class="q-eyebrow">your turn</p>
+      <p class="q-prompt">Got a question?</p>
+      <div class="q-chips" id="qChips">
+        <button class="q-chip" data-q="0">How fast can you move?</button>
+        <button class="q-chip" data-q="1">What if I have no brief?</button>
+        <button class="q-chip" data-q="2">Do you work with devs?</button>
+        <button class="q-chip" data-q="3">What tools do you use?</button>
       </div>
+      <a class="q-connect" id="qConnect" href="#contact">Let&rsquo;s see if we click &rarr;</a>
+    </div>
 
-      <!-- Messages area — starts with cute empty state -->
-      <div class="conv-body" id="convBody">
-        <div class="conv-empty" id="convEmptyState">
-          <div class="conv-empty-bubbles">
-            <div class="conv-empty-bubble eb-pm"></div>
-            <div class="conv-empty-bubble eb-nik"></div>
-            <div class="conv-empty-bubble eb-pm eb-short"></div>
+    <div class="conv-panel-wrap" id="convPanelWrap">
+      <div class="conv-window" id="convWindow">
+        <div class="conv-body" id="convBody">
+          <div class="conv-empty" id="convEmptyState">
+            <div class="conv-empty-bubbles">
+              <div class="conv-empty-bubble eb-pm"></div>
+              <div class="conv-empty-bubble eb-nik"></div>
+              <div class="conv-empty-bubble eb-pm eb-short"></div>
+            </div>
+            <span class="conv-empty-label">loading</span>
           </div>
-          <span class="conv-empty-label">✦ conversation loading</span>
+        </div>
+        <div class="conv-foot">
+          <button class="conv-replay" id="convReplay">&#8635; replay</button>
         </div>
       </div>
-
     </div>
 
-    <!-- End state — only replay, no CTA -->
-    <div class="conv-end" id="convEnd">
-      <p class="conv-end-quote"><em>&ldquo;Every project starts with a conversation.&rdquo;</em></p>
-      <button class="conv-replay" id="convReplay">&#8635; replay</button>
-    </div>
   </div>
 
 </section>`;

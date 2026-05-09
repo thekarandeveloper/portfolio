@@ -37,8 +37,8 @@ const html = `<section class="hero" id="home">
       <span>👋 Hi, I&rsquo;m Nikunj Tyagi,</span>
       <span>a&nbsp;<span class="typed-role" id="typed-role"></span><span class="hero-cursor" id="role-cursor"></span></span>
     </h1>
-    <p class="hero-line2">who turns complex problems into clear, considered designs —<br>one research insight at a time.</p>
-    <p class="hero-line3"><span class="plane-icon">✈️</span> Currently designing @ Air IQ</p>
+    <p class="hero-line2">who turns complex problems into clear, considered designs<br>one research insight at a time.</p>
+    <p class="hero-line3"><span class="work-icon">💼</span> Currently designing @ Air IQ</p>
   </div>
 
   <!-- Scroll arrow with glass orb -->

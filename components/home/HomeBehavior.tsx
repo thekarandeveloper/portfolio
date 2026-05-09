@@ -394,24 +394,31 @@ if(heroBlob) {
   }, { passive: true });
 }
 
-// ── CONVERSATION REPLAY ──
+// ── CONVERSATION ──
 (function(){
   var EXCHANGES=[
-    {pm:"Users keep dropping off. Can you just redesign the UI?",nik:"Before Figma — what's the one assumption we might be most wrong about?",sticky:"⚡ Feed every brief to AI first. Ask it to challenge your assumptions.",stickyType:"yellow"},
-    {pm:"...maybe that more features = better. They might be overwhelmed.",nik:"That's it. That's where I start. Not wireframes.",sticky:"⚡ AI surfaces blind spots — ones I'm too close to see.",stickyType:"green"},
-    {pm:"So nothing in Figma yet?",nik:"First I find the cheapest way to be wrong. Then I design.",sticky:"⚡ Map edge cases first. Who does this break for?",stickyType:"yellow"},
-    {pm:"When does research end and design begin?",nik:"It doesn't. Discovery runs in every sprint — not just at the start.",sticky:"⚡ AI synthesizes patterns across sessions so I never go in blind.",stickyType:"green"},
-    {pm:"How do you know when it's actually working?",nik:"I define the metric before the first frame. No measure = no design.",sticky:"⚡ AI pressure-tests the metric — right thing, or just easy thing?",stickyType:"yellow"},
-    {pm:"You rely on AI a lot, huh?",nik:"As a thinking partner — not an autopilot. Decisions are still mine.",sticky:"⚡ Claude · Figma Make · v0 · Midjourney — each for different thinking.",stickyType:"green"}
+    {pm:"Users are dropping off. Can you just redesign the UI?",nik:"What's the one assumption we might be most wrong about?"},
+    {pm:"...that more features = better?",nik:"That's it. That's where I start. Not wireframes."},
+    {pm:"So nothing in Figma yet?",nik:"First I find the cheapest way to be wrong."},
+    {pm:"When does research end?",nik:"It doesn't. Discovery runs in every sprint."},
+    {pm:"How do you know when it's working?",nik:"I set the metric before the first frame."}
   ];
-  var EMPTY_STATE_HTML='<div class="conv-empty" id="convEmptyState"><div class="conv-empty-bubbles"><div class="conv-empty-bubble eb-pm"></div><div class="conv-empty-bubble eb-nik"></div><div class="conv-empty-bubble eb-pm eb-short"></div></div><span class="conv-empty-label">✦ conversation loading</span></div>';
+  var QA=[
+    {q:"How fast can you move?",a:"First frame in 48h if the brief is clear."},
+    {q:"What if I have no brief?",a:"Good. We write it together — that's where real design starts."},
+    {q:"Do you work with devs?",a:"Always in the same doc, same sprint."},
+    {q:"What tools do you use?",a:"Figma, Claude, v0 — lenses. The thinking is mine."}
+  ];
+  var EMPTY_HTML='<div class="conv-empty" id="convEmptyState"><div class="conv-empty-bubbles"><div class="conv-empty-bubble eb-pm"></div><div class="conv-empty-bubble eb-nik"></div><div class="conv-empty-bubble eb-pm eb-short"></div></div><span class="conv-empty-label">loading</span></div>';
   var convBody=document.getElementById('convBody');
   var convWindow=document.getElementById('convWindow');
-  var convEnd=document.getElementById('convEnd');
+  var convStage=document.getElementById('convStage');
   var convReplay=document.getElementById('convReplay');
+  var qChips=document.getElementById('qChips');
+  var qConnect=document.getElementById('qConnect');
   if(!convBody)return;
   var step=0,playing=false,started=false,observer;
-  function typingMs(t){var l=t.length;return l<50?1100:l<90?1450:1800;}
+  function typingMs(t){var l=t.length;return l<40?900:l<70?1200:1500;}
   function scrollBottom(){convBody.scrollTop=convBody.scrollHeight;}
   function makeRow(isPM){
     var row=document.createElement('div');
@@ -425,7 +432,7 @@ if(heroBlob) {
     row.appendChild(bwrap);
     return {row:row,av:av,bwrap:bwrap};
   }
-  function addMsg(isPM,text,sticky,stickyType){
+  function addMsg(isPM,text){
     return new Promise(function(resolve){
       var parts=makeRow(isPM);
       var typ=document.createElement('div');
@@ -442,47 +449,55 @@ if(heroBlob) {
         bub.textContent=text;
         parts.bwrap.replaceChild(bub,typ);
         scrollBottom();
-        if(!isPM&&sticky){
-          setTimeout(function(){
-            var st=document.createElement('div');
-            st.className='conv-sticky '+stickyType+' conv-msg-enter-nik';
-            st.textContent=sticky;
-            parts.bwrap.appendChild(st);
-            scrollBottom();
-            resolve();
-          },480);
-        }else{resolve();}
+        resolve();
       },typingMs(text));
     });
   }
-  function showEnd(){
+  function showSplit(){
     setTimeout(function(){
-      if(convWindow)convWindow.classList.add('blurred');
-      setTimeout(function(){
-        if(convEnd){requestAnimationFrame(function(){requestAnimationFrame(function(){convEnd.classList.add('show');});});}
-      },600);
-    },1000);
+      if(convStage)convStage.classList.add('split');
+      if(convReplay)convReplay.classList.add('show');
+    },800);
   }
   function runNext(){
     if(playing||step>=EXCHANGES.length)return;
     playing=true;
     if(step===0){var es=document.getElementById('convEmptyState');if(es)es.remove();}
     var ex=EXCHANGES[step];
-    addMsg(true,ex.pm,null,null).then(function(){
-      return new Promise(function(r){setTimeout(r,600);});
+    addMsg(true,ex.pm).then(function(){
+      return new Promise(function(r){setTimeout(r,500);});
     }).then(function(){
-      return addMsg(false,ex.nik,ex.sticky,ex.stickyType);
+      return addMsg(false,ex.nik);
     }).then(function(){
       step++;playing=false;
-      if(step<EXCHANGES.length){setTimeout(runNext,2600);}
-      else{showEnd();}
+      if(step<EXCHANGES.length){setTimeout(runNext,2200);}
+      else{showSplit();}
+    });
+  }
+  if(qChips){
+    qChips.addEventListener('click',function(e){
+      var chip=e.target.closest('.q-chip');
+      if(!chip||chip.classList.contains('used'))return;
+      var idx=parseInt(chip.getAttribute('data-q'),10);
+      var qa=QA[idx];
+      if(!qa)return;
+      chip.classList.add('used');
+      addMsg(true,qa.q).then(function(){
+        return new Promise(function(r){setTimeout(r,400);});
+      }).then(function(){
+        return addMsg(false,qa.a);
+      }).then(function(){
+        setTimeout(function(){if(qConnect)qConnect.classList.add('show');},600);
+      });
     });
   }
   function reset(){
     step=0;playing=false;started=false;
-    if(convBody)convBody.innerHTML=EMPTY_STATE_HTML;
-    if(convWindow)convWindow.classList.remove('blurred');
-    if(convEnd)convEnd.classList.remove('show');
+    if(convBody)convBody.innerHTML=EMPTY_HTML;
+    if(convStage)convStage.classList.remove('split');
+    if(qConnect)qConnect.classList.remove('show');
+    if(convReplay)convReplay.classList.remove('show');
+    document.querySelectorAll('.q-chip').forEach(function(c){c.classList.remove('used');});
     if(convWindow&&observer)observer.observe(convWindow);
   }
   observer=new IntersectionObserver(function(entries){
@@ -502,7 +517,63 @@ var bgSections=Array.from(document.querySelectorAll('.work,.journey,.about,.gall
 window.addEventListener('scroll',function(){bgSections.forEach(function(section){var rect=section.getBoundingClientRect();section.style.backgroundPositionY=(rect.top/window.innerHeight*20)+'px';});},{passive:true});
 
 initParallax();
-runParallax();`;
+runParallax();
+
+// ── GRAVITY SHAPES ──
+(function(){
+  var section=document.getElementById('contact');
+  var canvas=document.getElementById('gravCanvas');
+  if(!section||!canvas)return;
+  var shapes=Array.from(canvas.querySelectorAll('.grav-shape'));
+  if(!shapes.length)return;
+
+  var homes=[];
+  function measureHomes(){
+    homes=shapes.map(function(s){
+      return{x:s.offsetLeft+s.offsetWidth/2,y:s.offsetTop+s.offsetHeight/2};
+    });
+  }
+  requestAnimationFrame(function(){requestAnimationFrame(measureHomes);});
+  window.addEventListener('resize',function(){requestAnimationFrame(measureHomes);},{passive:true});
+
+  var cx=[],cy=[],tx=[],ty=[];
+  shapes.forEach(function(){cx.push(0);cy.push(0);tx.push(0);ty.push(0);});
+
+  var mx=-9999,my=-9999,inSection=false;
+  var RADIUS=170,PULL=0.38,LERP=0.09;
+
+  section.addEventListener('mousemove',function(e){
+    var cr=canvas.getBoundingClientRect();
+    mx=e.clientX-cr.left;my=e.clientY-cr.top;inSection=true;
+  });
+  section.addEventListener('mouseleave',function(){inSection=false;mx=-9999;my=-9999;});
+
+  var running=false;
+  function animate(){
+    if(!running)return;
+    shapes.forEach(function(shape,i){
+      if(!homes[i])return;
+      var hx=homes[i].x,hy=homes[i].y,ox=0,oy=0;
+      if(inSection){
+        var dx=mx-hx,dy=my-hy,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<RADIUS&&dist>1){var f=(1-dist/RADIUS)*PULL;ox=dx*f;oy=dy*f;}
+      }
+      tx[i]=ox;ty[i]=oy;
+      cx[i]+=(tx[i]-cx[i])*LERP;
+      cy[i]+=(ty[i]-cy[i])*LERP;
+      shape.style.transform='translate('+cx[i].toFixed(2)+'px,'+cy[i].toFixed(2)+'px)';
+    });
+    requestAnimationFrame(animate);
+  }
+
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){running=true;animate();}
+      else{running=false;}
+    });
+  },{threshold:0});
+  obs.observe(section);
+})();`;
 
 export function HomeBehavior() {
   useEffect(() => {

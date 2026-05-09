@@ -16,6 +16,9 @@ export function HomePageReplica() {
       <HomeBehavior />
       <div className="custom-cursor" id="cursor"></div>
       <div className="glass-orb" id="glassOrb"></div>
+      <div className="scroll-tube" id="scrollTube">
+        <div className="scroll-tube-fill" id="scrollTubeFill"></div>
+      </div>
       <HomeLoader />
       <HomeNav />
       <HeroSection />

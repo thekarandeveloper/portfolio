@@ -1,6 +1,6 @@
 const html = `<section class="work" id="work">
 
-  <div class="work-heading-wrap">
+  <div class="work-heading-wrap reveal">
     <h2 class="work-title-main">Here&rsquo;s where ideas</h2>
     <span class="work-title-script">got real.</span>
   </div>
@@ -8,7 +8,7 @@ const html = `<section class="work" id="work">
   <div class="bento-work-grid">
 
     <!-- Air IQ — wide (span 2), row 1 -->
-    <a class="bento-work-card wide" href="/projects/airiq" style="background:linear-gradient(180deg,#eef6fc 0%,#ffffff 100%);">
+    <a class="bento-work-card wide reveal reveal-delay-2" href="/projects/airiq" style="background:linear-gradient(180deg,#eef6fc 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">✈️</div>
@@ -52,13 +52,13 @@ const html = `<section class="work" id="work">
     </a>
 
     <!-- Care Autor — span 1, row 1 -->
-    <a class="bento-work-card" href="/projects/care-autor" style="background:linear-gradient(180deg,#f2eeff 0%,#ffffff 100%);">
+    <a class="bento-work-card reveal reveal-delay-3" href="/projects/care-autor" style="background:linear-gradient(180deg,#f2eeff 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">🏥</div>
         </div>
         <h3 class="bento-proj-title">Care Autor</h3>
-        <p class="bento-proj-desc">One platform for three care journeys &mdash; Alzheimer&rsquo;s, Autism &amp; Fitness.</p>
+        <p class="bento-proj-desc">One platform for three care journeys: Alzheimer&rsquo;s, Autism &amp; Fitness.</p>
         <div class="bento-proj-visual" style="justify-content:center;">
           <div class="bento-mock" style="width:105px;border-radius:14px;transform:rotate(2deg);">
             <div class="bento-mock-bar" style="background:rgba(123,107,224,0.07);">
@@ -76,7 +76,7 @@ const html = `<section class="work" id="work">
     </a>
 
     <!-- Design System — span 1, row 2 -->
-    <a class="bento-work-card" href="#" style="background:linear-gradient(180deg,#fef0f7 0%,#ffffff 100%);">
+    <a class="bento-work-card reveal reveal-delay-2" href="#" style="background:linear-gradient(180deg,#fef0f7 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">🎨</div>
@@ -101,7 +101,7 @@ const html = `<section class="work" id="work">
     </a>
 
     <!-- BiblioFi — span 1, row 2 -->
-    <a class="bento-work-card" href="/projects/biblofi" style="background:linear-gradient(180deg,#fef8f0 0%,#ffffff 100%);">
+    <a class="bento-work-card reveal reveal-delay-3" href="/projects/biblofi" style="background:linear-gradient(180deg,#fef8f0 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">📚</div>
@@ -127,7 +127,7 @@ const html = `<section class="work" id="work">
     </a>
 
     <!-- EcoTrack — span 1, row 2 -->
-    <a class="bento-work-card" href="/projects/ecotrack" style="background:linear-gradient(180deg,#edf8f1 0%,#ffffff 100%);">
+    <a class="bento-work-card reveal reveal-delay-4" href="/projects/ecotrack" style="background:linear-gradient(180deg,#edf8f1 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">🌱</div>

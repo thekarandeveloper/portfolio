@@ -1,7 +1,7 @@
 const html = `<section class="spectrum-section" id="toolkit">
   <div class="spectrum-top reveal">
     <div><p class="spectrum-eyebrow">My stack</p><h2 class="spectrum-title">Human intuition.<br><em>AI velocity.</em></h2></div>
-    <p class="spectrum-note">Every tool sits somewhere between pure craft and AI. I use both ends — intentionally.</p>
+    <p class="spectrum-note">Every tool sits somewhere between pure craft and AI. I use both ends, intentionally.</p>
   </div>
   <div class="reveal reveal-delay-1">
     <div class="spectrum-ends"><span class="spectrum-end-label human">← Human craft</span><span class="spectrum-end-label ai">AI powered →</span></div>
