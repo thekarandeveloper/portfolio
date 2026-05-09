@@ -2,7 +2,46 @@
 
 import { useEffect } from "react";
 
-const script = `// ── HERO WAVE CANVAS ──
+const script = `// ── WATER RIPPLE CURSOR EFFECT ──
+(function(){
+  var canvas=document.createElement('canvas');
+  canvas.id='rippleCanvas';
+  canvas.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9994;';
+  document.body.appendChild(canvas);
+  var ctx=canvas.getContext('2d');
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  var ripples=[],lx=-999,ly=-999,MIN_D=15;
+  document.addEventListener('mousemove',function(e){
+    var dx=e.clientX-lx,dy=e.clientY-ly;
+    if(dx*dx+dy*dy<MIN_D*MIN_D)return;
+    lx=e.clientX;ly=e.clientY;
+    for(var k=0;k<3;k++){
+      ripples.push({x:e.clientX,y:e.clientY,r:k*9,maxR:52+k*20,a:0.26-k*0.07,spd:1.5+k*0.4,lw:1.2-k*0.3});
+    }
+    if(ripples.length>150)ripples.splice(0,30);
+  });
+  function frame(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(var i=ripples.length-1;i>=0;i--){
+      var rp=ripples[i];
+      rp.r+=rp.spd;
+      var p=rp.r/rp.maxR;
+      var alpha=rp.a*(1-p)*(1-p);
+      if(alpha<0.005||rp.r>rp.maxR){ripples.splice(i,1);continue;}
+      ctx.beginPath();
+      ctx.arc(rp.x,rp.y,rp.r,0,6.28318);
+      ctx.strokeStyle='rgba(30,144,255,'+alpha.toFixed(3)+')';
+      ctx.lineWidth=rp.lw;
+      ctx.stroke();
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+// ── HERO WAVE CANVAS ──
 (function(){
   const hero = document.getElementById('home');
   if(!hero) return;
@@ -74,43 +113,70 @@ if (!loaderSeen) {
 
   // Phase 1 — blob scales in and starts morphing
   setTimeout(function(){
-    blob.style.transition = 'transform 0.85s cubic-bezier(0.34,1.56,0.64,1)';
-    blob.style.transform = 'translate(-50%,-50%) scale(1)';
-    blob.style.animation = 'blobMorph 2.8s ease-in-out infinite';
+    blob.style.transition = 'transform 0.9s cubic-bezier(0.34,1.56,0.64,1)';
+    blob.style.transform = 'translate(-50%,-54%) scale(1)';
+    blob.style.animation = 'blobMorph 3.2s ease-in-out infinite';
   }, 80);
 
   // Phase 2 — settle to circle, then stretch into a thin line
   setTimeout(function(){
     blob.style.animation = 'none';
-    blob.style.transition = 'border-radius 0.32s ease';
+    blob.style.transition = 'border-radius 0.35s ease';
     blob.style.borderRadius = '50%';
     setTimeout(function(){
       blob.style.transition = 'width 0.72s cubic-bezier(0.76,0,0.24,1),height 0.52s cubic-bezier(0.76,0,0.24,1),border-radius 0.4s ease,box-shadow 0.45s ease';
       blob.style.width = '110vw';
       blob.style.height = '4px';
       blob.style.borderRadius = '3px';
-      blob.style.boxShadow = '0 0 18px 4px rgba(30,144,255,0.55),0 0 55px 14px rgba(30,144,255,0.2)';
-    }, 340);
-  }, 2400);
+      blob.style.boxShadow = '0 0 18px 4px rgba(30,144,255,0.6),0 0 55px 14px rgba(30,144,255,0.22)';
+    }, 360);
+  }, 2500);
 
   // Phase 3 — line rises to top edge of screen
   setTimeout(function(){
-    blob.style.transition = 'transform 0.62s cubic-bezier(0.76,0,0.24,1)';
+    blob.style.transition = 'transform 0.65s cubic-bezier(0.76,0,0.24,1)';
     blob.style.transform = 'translate(-50%,calc(-50vh + 2px))';
-  }, 3430);
+  }, 3560);
 
-  // Phase 4 — fade out, reveal portfolio
+  // Phase 4 — fade out, reveal portfolio with staggered entrance
   setTimeout(function(){
     loader.style.transition = 'opacity 0.55s ease';
     loader.style.opacity = '0';
     setTimeout(function(){
       loader.classList.add('gone');
       document.body.classList.remove('loading');
-      var heroName = document.querySelector('.hero-name-wrap');
-      if (heroName) heroName.classList.add('enter');
+
+      // Staggered entrance: nav → hero cards → hero name
+      var navEl = document.getElementById('nav');
+      if(navEl){
+        navEl.style.opacity='0';
+        navEl.style.transform='translateX(-50%) translateY(-10px)';
+        navEl.style.transition='opacity 0.5s ease,transform 0.5s cubic-bezier(0.34,1.4,0.64,1)';
+        requestAnimationFrame(function(){requestAnimationFrame(function(){
+          navEl.style.opacity='';
+          navEl.style.transform='';
+        });});
+      }
+
+      var heroCards = document.querySelector('.hero-cards');
+      if(heroCards){
+        heroCards.style.opacity='0';
+        heroCards.style.transform='translateY(16px)';
+        heroCards.style.transition='opacity 0.6s ease 0.12s,transform 0.6s cubic-bezier(0.34,1.4,0.64,1) 0.12s';
+        requestAnimationFrame(function(){requestAnimationFrame(function(){
+          heroCards.style.opacity='';
+          heroCards.style.transform='';
+        });});
+      }
+
+      setTimeout(function(){
+        var heroName = document.querySelector('.hero-name-wrap');
+        if(heroName) heroName.classList.add('enter');
+      }, 200);
+
       checkInView();
     }, 650);
-  }, 4060);
+  }, 4220);
 }
 
 
@@ -175,7 +241,17 @@ function checkInView(){
   tlItems.forEach(i=>{if(i.getBoundingClientRect().top<vh*0.88)setTimeout(()=>i.classList.add('in-view'),parseInt(i.dataset.tlDelay||0));});
 }
 
-window.addEventListener('scroll',()=>{if(nav)nav.classList.toggle('scrolled',window.scrollY>40);updateNav();checkInView();runParallax();},{passive:true});
+// ── SCROLL TUBE ──
+const scrollTubeFill=document.getElementById('scrollTubeFill');
+function updateScrollTube(){
+  if(!scrollTubeFill)return;
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  const pct=max>0?Math.min(100,Math.round(window.scrollY/max*1000)/10):0;
+  scrollTubeFill.style.height=pct+'%';
+}
+updateScrollTube();
+
+window.addEventListener('scroll',()=>{if(nav)nav.classList.toggle('scrolled',window.scrollY>40);updateNav();checkInView();runParallax();updateScrollTube();},{passive:true});
 
 // ── SCROLL SHAPES ──
 const scrollShapeEls = document.querySelectorAll('.ss, .ss-line');
