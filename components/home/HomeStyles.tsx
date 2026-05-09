@@ -22,64 +22,34 @@ body{
     radial-gradient(ellipse at 85% 85%, rgba(200,185,255,0.05) 0%, transparent 50%);
 }
 
-/* ── LIQUID BLOB LOADER ── */
-#loader{
-  position:fixed;inset:0;z-index:9999;
-  background:#ffffff;
-  overflow:hidden;
-}
-#blobWrap{
+/* ── LIQUID GLASS LOADER ── */
+#loader{position:fixed;inset:0;z-index:9999;background:#ffffff;overflow:hidden;}
+#glassBlob{
   position:absolute;top:50%;left:50%;
-  width:0;height:0;
-  transform:scale(0);
-  transform-origin:center;
-  will-change:transform,opacity;
-}
-#blobPink{
-  position:absolute;
-  width:420px;height:420px;
+  width:260px;height:260px;
+  transform:translate(-50%,-50%) scale(0);
   border-radius:50%;
-  background:radial-gradient(circle, rgba(255,145,195,0.78) 0%, rgba(255,175,212,0.44) 44%, transparent 70%);
-  filter:blur(58px);
-  transform:translate(-25%,-88%);
+  background:rgba(255,255,255,0.52);
+  backdrop-filter:blur(24px) saturate(1.6);
+  -webkit-backdrop-filter:blur(24px) saturate(1.6);
+  border:1px solid rgba(255,255,255,0.82);
+  box-shadow:0 8px 40px rgba(30,144,255,0.12),0 2px 8px rgba(0,0,0,0.06),
+             inset 0 1.5px 0 rgba(255,255,255,1),inset 0 -1px 0 rgba(255,255,255,0.5);
+  display:flex;align-items:center;justify-content:center;
 }
-#blobBlue{
-  position:absolute;
-  width:420px;height:420px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(80,148,255,0.74) 0%, rgba(112,168,255,0.40) 44%, transparent 70%);
-  filter:blur(62px);
-  transform:translate(-75%,-12%);
+#glassArrow{opacity:0;transform:scale(0.4);transition:opacity 0.35s ease,transform 0.4s cubic-bezier(0.34,1.4,0.64,1);}
+#glassArrow.show{opacity:1;transform:scale(1);}
+@keyframes liquidMorph{
+  0%,100%{border-radius:50%;}
+  20%{border-radius:58% 42% 54% 46%/46% 54% 46% 54%;}
+  40%{border-radius:42% 58% 46% 54%/54% 46% 54% 46%;}
+  60%{border-radius:54% 46% 42% 58%/58% 42% 56% 44%;}
+  80%{border-radius:46% 54% 58% 42%/44% 56% 44% 56%;}
 }
-@keyframes blobWrapIn{
-  0%  {transform:scale(0);}
-  68% {transform:scale(1.05);}
-  84% {transform:scale(0.97);}
-  100%{transform:scale(1);}
+@keyframes liquidPulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1);}
+  50%{transform:translate(-50%,-50%) scale(1.05);}
 }
-@keyframes blobWrapBreathe{
-  0%,100%{transform:scale(1);}
-  50%    {transform:scale(1.06);}
-}
-@keyframes pinkDrift{
-  0%,100%{transform:translate(-25%,-88%);filter:blur(58px);}
-  50%    {transform:translate(-38%,-62%);filter:blur(65px);}
-}
-@keyframes blueDrift{
-  0%,100%{transform:translate(-75%,-12%);filter:blur(62px);}
-  50%    {transform:translate(-62%,-38%);filter:blur(70px);}
-}
-#blobLine{
-  position:absolute;top:50%;left:50%;
-  width:0;height:4px;
-  transform:translate(-50%,-50%);
-  border-radius:3px;
-  background:linear-gradient(90deg,rgba(80,148,255,0.82) 0%,rgba(172,118,240,0.72) 50%,rgba(255,148,195,0.82) 100%);
-  box-shadow:0 0 14px 3px rgba(155,130,230,0.4);
-  opacity:0;
-  will-change:transform,width,opacity;
-}
-#loader.final-fade{opacity:0;transition:opacity 0.6s ease;}
 #loader.gone{display:none;}
 
 body.loading{overflow:hidden;}

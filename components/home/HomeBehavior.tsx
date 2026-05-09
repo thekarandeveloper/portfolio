@@ -103,82 +103,96 @@ const script = `// ── WATER RIPPLE CURSOR EFFECT ──
 // ── SESSION CHECK ──
 const loaderSeen = sessionStorage.getItem('loader_seen');
 
-// ── LIQUID BLOB INTRO (first visit only) ──
+// ── LIQUID GLASS INTRO (first visit only) ──
 if (!loaderSeen) {
   sessionStorage.setItem('loader_seen', '1');
   document.body.classList.add('loading');
 
-  const loader = document.getElementById('loader');
-  const blobWrap = document.getElementById('blobWrap');
-  const blobPink = document.getElementById('blobPink');
-  const blobBlue = document.getElementById('blobBlue');
-  const blobLine = document.getElementById('blobLine');
+  var loader = document.getElementById('loader');
+  var blob = document.getElementById('glassBlob');
+  var arrow = document.getElementById('glassArrow');
 
-  // Phase 1 — wrap scales in, then orbs drift toward each other
+  // Phase 1 — spring scale-in
   setTimeout(function(){
-    blobWrap.style.animation = 'blobWrapIn 0.95s cubic-bezier(0.34,1.56,0.64,1) forwards';
+    blob.style.transition = 'transform 0.8s cubic-bezier(0.34,1.56,0.64,1)';
+    blob.style.transform = 'translate(-50%,-50%) scale(1)';
+    // Phase 2 — liquid morph begins once blob is open
     setTimeout(function(){
-      blobPink.style.animation = 'pinkDrift 3.6s ease-in-out infinite alternate';
-      blobBlue.style.animation = 'blueDrift 3.6s ease-in-out infinite alternate';
-      blobWrap.style.animation = 'blobWrapBreathe 2.8s ease-in-out infinite';
-    }, 1000);
-  }, 80);
+      blob.style.transition = '';
+      blob.style.animation = 'liquidMorph 2.4s ease-in-out infinite, liquidPulse 2.8s ease-in-out infinite';
+    }, 820);
+  }, 100);
 
-  // Phase 2 — orbs fade out, line expands from center
+  // Phase 3 — contract to scroll-glass-orb size and position
   setTimeout(function(){
-    blobPink.style.animation = 'none';
-    blobBlue.style.animation = 'none';
-    blobWrap.style.animation = 'none';
-    blobWrap.style.transition = 'opacity 0.38s ease, transform 0.38s ease';
-    blobWrap.style.opacity = '0';
-    blobWrap.style.transform = 'scale(0.88)';
+    blob.style.animation = '';
+
+    // Switch from % positioning to exact pixels so CSS can transition top/left
+    var cx = window.innerWidth / 2;
+    var cy = window.innerHeight / 2;
+    blob.style.transition = 'none';
+    blob.style.left = cx + 'px';
+    blob.style.top = cy + 'px';
+    blob.style.transform = 'translate(-50%,-50%) scale(1)';
+    blob.getBoundingClientRect(); // force reflow
+
+    // Target = center of the real scroll-glass-orb
+    var tx = cx;
+    var ty = window.innerHeight - parseFloat(getComputedStyle(document.documentElement).fontSize) * 2.2 - 19;
+    var orbEl = document.querySelector('.scroll-glass-orb');
+    if (orbEl) {
+      var r = orbEl.getBoundingClientRect();
+      tx = r.left + r.width / 2;
+      ty = r.top + r.height / 2;
+    }
+
+    blob.style.transition = 'top 0.72s cubic-bezier(0.34,1.2,0.64,1),left 0.72s cubic-bezier(0.34,1.2,0.64,1),width 0.65s cubic-bezier(0.34,1.4,0.64,1),height 0.65s cubic-bezier(0.34,1.4,0.64,1),box-shadow 0.5s ease';
+    blob.style.left = tx + 'px';
+    blob.style.top = ty + 'px';
+    blob.style.width = '38px';
+    blob.style.height = '38px';
+
+    // Phase 4 — arrow fades in inside the contracted orb
     setTimeout(function(){
-      blobLine.style.transition = 'width 0.72s cubic-bezier(0.76,0,0.24,1), opacity 0.28s ease';
-      blobLine.style.width = '110vw';
-      blobLine.style.opacity = '1';
-    }, 320);
-  }, 2700);
+      arrow.classList.add('show');
 
-  // Phase 3 — line rises to top
-  setTimeout(function(){
-    blobLine.style.transition = 'transform 0.65s cubic-bezier(0.76,0,0.24,1)';
-    blobLine.style.transform = 'translate(-50%, calc(-50vh + 2px))';
-  }, 3720);
+      // Fade out loader, then staggered hero entrance
+      setTimeout(function(){
+        loader.style.transition = 'opacity 0.55s ease';
+        loader.style.opacity = '0';
 
-  // Phase 4 — fade out, staggered presenting entrance
-  setTimeout(function(){
-    loader.style.transition = 'opacity 0.55s ease';
-    loader.style.opacity = '0';
-    setTimeout(function(){
-      loader.classList.add('gone');
-
-      var navEl = document.getElementById('nav');
-      var hcards = document.querySelectorAll('.hero-card');
-      var scrollHint = document.querySelector('.hero-scroll-hint');
-      if(navEl){ navEl.style.opacity='0'; navEl.style.transition='opacity 0.45s ease,transform 0.45s cubic-bezier(0.34,1.4,0.64,1)'; navEl.style.transform='translateX(-50%) translateY(-10px)'; }
-      hcards.forEach(function(c){ c.style.opacity='0'; c.style.transform='translateY(20px)'; });
-      if(scrollHint){ scrollHint.style.opacity='0'; }
-
-      document.body.classList.remove('loading');
-
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){
-        if(navEl){ navEl.style.opacity=''; navEl.style.transform=''; }
-        hcards.forEach(function(c, i){
-          c.style.transition='opacity 0.45s ease '+(0.07*i+0.08)+'s,transform 0.5s cubic-bezier(0.34,1.4,0.64,1) '+(0.07*i+0.08)+'s';
-          c.style.opacity=''; c.style.transform='';
-        });
         setTimeout(function(){
-          var heroName = document.querySelector('.hero-name-wrap');
-          if(heroName) heroName.classList.add('enter');
-        }, 220);
-        setTimeout(function(){
-          if(scrollHint){ scrollHint.style.transition='opacity 0.5s ease'; scrollHint.style.opacity='1'; }
-        }, 480);
-      }); });
+          loader.classList.add('gone');
 
-      checkInView();
-    }, 650);
-  }, 4380);
+          var navEl = document.getElementById('nav');
+          var hcards = document.querySelectorAll('.hero-card');
+          var scrollHint = document.querySelector('.hero-scroll-hint');
+          if(navEl){ navEl.style.opacity='0'; navEl.style.transition='opacity 0.45s ease,transform 0.45s cubic-bezier(0.34,1.4,0.64,1)'; navEl.style.transform='translateX(-50%) translateY(-10px)'; }
+          hcards.forEach(function(c){ c.style.opacity='0'; c.style.transform='translateY(20px)'; });
+          if(scrollHint){ scrollHint.style.opacity='0'; }
+
+          document.body.classList.remove('loading');
+
+          requestAnimationFrame(function(){ requestAnimationFrame(function(){
+            if(navEl){ navEl.style.opacity=''; navEl.style.transform=''; }
+            hcards.forEach(function(c, i){
+              c.style.transition='opacity 0.45s ease '+(0.07*i+0.08)+'s,transform 0.5s cubic-bezier(0.34,1.4,0.64,1) '+(0.07*i+0.08)+'s';
+              c.style.opacity=''; c.style.transform='';
+            });
+            setTimeout(function(){
+              var heroName = document.querySelector('.hero-name-wrap');
+              if(heroName) heroName.classList.add('enter');
+            }, 220);
+            setTimeout(function(){
+              if(scrollHint){ scrollHint.style.transition='opacity 0.5s ease'; scrollHint.style.opacity='1'; }
+            }, 480);
+          }); });
+
+          checkInView();
+        }, 620);
+      }, 560);
+    }, 760);
+  }, 2100);
 }
 
 
