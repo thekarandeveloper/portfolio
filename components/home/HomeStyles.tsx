@@ -64,32 +64,43 @@ nav{
   z-index:100;
   display:flex;align-items:center;gap:3px;
   padding:6px 8px;
-  background:rgba(255,255,255,0.42);
-  backdrop-filter:blur(44px) saturate(2.2) brightness(1.06);
-  -webkit-backdrop-filter:blur(44px) saturate(2.2) brightness(1.06);
-  border:1px solid rgba(255,255,255,0.82);
+  background:#fff;
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(0,0,0,0.06);
   border-radius:99px;
   box-shadow:0 2px 18px rgba(0,0,0,0.07),0 1px 3px rgba(0,0,0,0.04),inset 0 1.5px 0 rgba(255,255,255,1),inset 0 -1px 0 rgba(255,255,255,0.5);
   transition:background 0.3s,box-shadow 0.3s;
   white-space:nowrap;
 }
 nav.scrolled{
-  background:rgba(255,255,255,0.68);
+  background:#fff;
   box-shadow:0 4px 28px rgba(0,0,0,0.09),0 2px 6px rgba(0,0,0,0.04),inset 0 1.5px 0 rgba(255,255,255,1);
 }
+.nav-active-indicator{
+  position:absolute;top:6px;left:0;
+  width:0;height:calc(100% - 12px);
+  border-radius:99px;
+  background:var(--pink);
+  transform:translateX(0);
+  transition:transform 0.32s cubic-bezier(0.22,1,0.36,1),width 0.32s cubic-bezier(0.22,1,0.36,1);
+  pointer-events:none;
+}
 .nav-link-item{
+  position:relative;z-index:1;
   display:inline-flex;align-items:center;gap:6px;
   font-size:0.76rem;letter-spacing:0.02em;
   color:rgba(30,30,40,0.60);text-decoration:none;
   padding:0.55rem 1.1rem;border-radius:99px;
-  transition:background 0.18s,color 0.18s;
+  transition:color 0.18s;
   font-family:var(--sans);font-weight:500;
 }
 .nav-link-item svg{flex-shrink:0;opacity:0.55;transition:opacity 0.18s;}
 .nav-link-item:hover{background:rgba(0,0,0,0.06);color:#111;}
 .nav-link-item:hover svg{opacity:0.85;}
-.nav-link-item.active{background:rgba(30,144,255,0.10);color:#1E90FF;}
-.nav-link-item.active svg{opacity:1;color:#1E90FF;}
+.nav-link-item.active{color:#fff;}
+.nav-link-item.active:hover{background:transparent;color:#fff;}
+.nav-link-item.active svg{opacity:1;color:#fff;}
 .nav-divider{width:1px;height:16px;background:rgba(0,0,0,0.09);flex-shrink:0;margin:0 2px;}
 .nav-resume{
   display:inline-flex;align-items:center;gap:6px;

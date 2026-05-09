@@ -244,8 +244,21 @@ setTimeout(type,1000);
 
 // ── NAV ──
 const nav=document.getElementById('nav'),navLinks=document.querySelectorAll('.nav-link-item');
-const sections=['home','work','process','about','gallery','shelf','journey','testimonials','contact'];
-function updateNav(){let current='home';sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=80)current=id;});navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href').replace('#','')===current));}
+const navIndicator=document.querySelector('.nav-active-indicator');
+function positionNavIndicator(activeLink){
+  if(!nav||!navIndicator||!activeLink)return;
+  const navRect=nav.getBoundingClientRect();
+  const linkRect=activeLink.getBoundingClientRect();
+  navIndicator.style.width=linkRect.width+'px';
+  navIndicator.style.transform='translateX('+(linkRect.left-navRect.left)+'px)';
+}
+function updateNav(){
+  const about=document.getElementById('about');
+  const current=about&&about.getBoundingClientRect().top<=120?'about':'work';
+  let activeLink=null;
+  navLinks.forEach(a=>{const isActive=a.getAttribute('href').replace('#','')===current;a.classList.toggle('active',isActive);if(isActive)activeLink=a;});
+  positionNavIndicator(activeLink);
+}
 
 // ── SCROLL REVEAL ──
 const reveals=document.querySelectorAll('.reveal');
@@ -266,8 +279,10 @@ function updateScrollTube(){
   scrollTubeFill.style.height=pct+'%';
 }
 updateScrollTube();
+updateNav();
 
 window.addEventListener('scroll',()=>{if(nav)nav.classList.toggle('scrolled',window.scrollY>40);updateNav();checkInView();runParallax();updateScrollTube();},{passive:true});
+window.addEventListener('resize',updateNav);
 
 // ── SCROLL SHAPES ──
 const scrollShapeEls = document.querySelectorAll('.ss, .ss-line');
