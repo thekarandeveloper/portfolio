@@ -111,68 +111,74 @@ if (!loaderSeen) {
   const loader = document.getElementById('loader');
   const blob = document.getElementById('blob');
 
-  // Phase 1 — blob scales in and starts morphing
+  // Phase 1 — blob scales in with spring, then morphs + breathes
   setTimeout(function(){
-    blob.style.transition = 'transform 0.9s cubic-bezier(0.34,1.56,0.64,1)';
+    blob.style.transition = 'transform 0.92s cubic-bezier(0.34,1.56,0.64,1)';
     blob.style.transform = 'translate(-50%,-54%) scale(1)';
-    blob.style.animation = 'blobMorph 3.2s ease-in-out infinite';
+    setTimeout(function(){
+      blob.style.animation = 'blobMorph 3.8s ease-in-out infinite, blobGlow 2.6s ease-in-out infinite';
+    }, 950);
   }, 80);
 
-  // Phase 2 — settle to circle, then stretch into a thin line
+  // Phase 2 — stop breathing, settle to circle, then stretch into a thin line
   setTimeout(function(){
     blob.style.animation = 'none';
-    blob.style.transition = 'border-radius 0.35s ease';
+    blob.style.transition = 'border-radius 0.32s ease';
     blob.style.borderRadius = '50%';
     setTimeout(function(){
-      blob.style.transition = 'width 0.72s cubic-bezier(0.76,0,0.24,1),height 0.52s cubic-bezier(0.76,0,0.24,1),border-radius 0.4s ease,box-shadow 0.45s ease';
+      blob.style.transition = 'width 0.72s cubic-bezier(0.76,0,0.24,1),height 0.52s cubic-bezier(0.76,0,0.24,1),border-radius 0.38s ease,box-shadow 0.42s ease';
       blob.style.width = '110vw';
       blob.style.height = '4px';
       blob.style.borderRadius = '3px';
-      blob.style.boxShadow = '0 0 18px 4px rgba(30,144,255,0.6),0 0 55px 14px rgba(30,144,255,0.22)';
-    }, 360);
-  }, 2500);
+      blob.style.boxShadow = '0 0 16px 4px rgba(30,144,255,0.55),0 0 50px 14px rgba(30,144,255,0.18)';
+    }, 340);
+  }, 2600);
 
-  // Phase 3 — line rises to top edge of screen
+  // Phase 3 — line rises to top edge
   setTimeout(function(){
     blob.style.transition = 'transform 0.65s cubic-bezier(0.76,0,0.24,1)';
     blob.style.transform = 'translate(-50%,calc(-50vh + 2px))';
-  }, 3560);
+  }, 3650);
 
-  // Phase 4 — fade out, reveal portfolio with staggered entrance
+  // Phase 4 — fade out, staggered presenting entrance
   setTimeout(function(){
     loader.style.transition = 'opacity 0.55s ease';
     loader.style.opacity = '0';
     setTimeout(function(){
       loader.classList.add('gone');
+
+      // Pre-hide elements before revealing page
+      var navEl = document.getElementById('nav');
+      var hcards = document.querySelectorAll('.hero-card');
+      var scrollHint = document.querySelector('.hero-scroll-hint');
+      if(navEl){ navEl.style.opacity='0'; navEl.style.transition='opacity 0.45s ease,transform 0.45s cubic-bezier(0.34,1.4,0.64,1)'; navEl.style.transform='translateX(-50%) translateY(-10px)'; }
+      hcards.forEach(function(c){ c.style.opacity='0'; c.style.transform='translateY(20px)'; });
+      if(scrollHint){ scrollHint.style.opacity='0'; }
+
       document.body.classList.remove('loading');
 
-      // Staggered entrance: nav → hero cards → hero name
-      var navEl = document.getElementById('nav');
-      if(navEl){
-        navEl.style.opacity='0';
-        navEl.style.transform='translateX(-50%) translateY(-10px)';
-        navEl.style.transition='opacity 0.5s ease,transform 0.5s cubic-bezier(0.34,1.4,0.64,1)';
-        requestAnimationFrame(function(){requestAnimationFrame(function(){
-          navEl.style.opacity='';
-          navEl.style.transform='';
-        });});
-      }
+      // Trigger staggered entrance
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        // Nav drops in
+        if(navEl){ navEl.style.opacity=''; navEl.style.transform=''; }
 
-      var heroCards = document.querySelector('.hero-cards');
-      if(heroCards){
-        heroCards.style.opacity='0';
-        heroCards.style.transform='translateY(16px)';
-        heroCards.style.transition='opacity 0.6s ease 0.12s,transform 0.6s cubic-bezier(0.34,1.4,0.64,1) 0.12s';
-        requestAnimationFrame(function(){requestAnimationFrame(function(){
-          heroCards.style.opacity='';
-          heroCards.style.transform='';
-        });});
-      }
+        // Cards: each card lifts into its tilted position
+        hcards.forEach(function(c, i){
+          c.style.transition='opacity 0.45s ease '+(0.07*i+0.08)+'s,transform 0.5s cubic-bezier(0.34,1.4,0.64,1) '+(0.07*i+0.08)+'s';
+          c.style.opacity=''; c.style.transform='';
+        });
 
-      setTimeout(function(){
-        var heroName = document.querySelector('.hero-name-wrap');
-        if(heroName) heroName.classList.add('enter');
-      }, 200);
+        // Text lines present line-by-line
+        setTimeout(function(){
+          var heroName = document.querySelector('.hero-name-wrap');
+          if(heroName) heroName.classList.add('enter');
+        }, 220);
+
+        // Scroll hint fades in last
+        setTimeout(function(){
+          if(scrollHint){ scrollHint.style.transition='opacity 0.5s ease'; scrollHint.style.opacity='1'; }
+        }, 480);
+      }); });
 
       checkInView();
     }, 650);
