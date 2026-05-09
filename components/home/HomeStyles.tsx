@@ -21,6 +21,73 @@ body{
     radial-gradient(ellipse at 15% 10%, rgba(180,210,255,0.07) 0%, transparent 55%),
     radial-gradient(ellipse at 85% 85%, rgba(200,185,255,0.05) 0%, transparent 50%);
 }
+@media (hover:hover) and (pointer:fine){
+  body,
+  body a,
+  body button,
+  .hero-card,
+  .bento-work-card,
+  .gallery-item,
+  .obsession-card,
+  .sc-card,
+  .testimonial-card,
+  .contact-link,
+  .q-chip,
+  .conv-replay{cursor:none;}
+}
+.water-surface{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  --water-x:50%;
+  --water-y:50%;
+}
+.water-surface::before,
+.water-surface::after{
+  content:'';
+  position:absolute;
+  left:var(--water-x);
+  top:var(--water-y);
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  transform:translate(-50%,-50%) scale(0);
+  pointer-events:none;
+  z-index:0;
+  opacity:0;
+}
+.water-surface::before{
+  border:1px solid rgba(30,144,255,0.34);
+  box-shadow:
+    0 0 0 10px rgba(30,144,255,0.05),
+    0 0 0 24px rgba(30,144,255,0.035),
+    inset 0 0 18px rgba(255,255,255,0.72);
+}
+.water-surface::after{
+  background:
+    radial-gradient(circle,rgba(255,255,255,0.72) 0 12%,rgba(30,144,255,0.18) 13% 20%,transparent 21%),
+    repeating-radial-gradient(circle,rgba(30,144,255,0.23) 0 1px,transparent 2px 10px);
+  filter:blur(0.2px);
+  mix-blend-mode:multiply;
+}
+.water-surface:hover::before{animation:waterRing 1.2s ease-out infinite;}
+.water-surface:hover::after{animation:waterSurface 1.2s ease-out infinite;}
+.water-surface > *{position:relative;z-index:1;}
+.nav-link-item.water-surface,
+.nav-resume.water-surface{isolation:auto;}
+.nav-link-item.water-surface::before,
+.nav-link-item.water-surface::after,
+.nav-resume.water-surface::before,
+.nav-resume.water-surface::after{z-index:-1;}
+@keyframes waterRing{
+  0%{opacity:0.55;transform:translate(-50%,-50%) scale(0.25);}
+  72%{opacity:0.22;}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(8);}
+}
+@keyframes waterSurface{
+  0%{opacity:0.42;transform:translate(-50%,-50%) scale(0.45) rotate(0deg);}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(9) rotate(18deg);}
+}
 
 /* ── LIQUID GLASS LOADER ── */
 #loader{position:fixed;inset:0;z-index:9999;background:#ffffff;overflow:hidden;}
@@ -117,8 +184,20 @@ nav.scrolled{
 /* ── HERO ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7rem 250px 5rem;position:relative;overflow:hidden;cursor:none;}
 .cursor-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.03) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left 0.08s ease,top 0.08s ease;z-index:0;}
-.custom-cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;transform:translate(-50%,-50%);z-index:9998;transition:transform 0.15s ease,width 0.15s,height 0.15s;}
-.custom-cursor.big{width:36px;height:36px;opacity:0.15;}
+.custom-cursor{
+  position:fixed;width:10px;height:10px;border-radius:50%;
+  background:var(--pink);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:9998;
+  box-shadow:0 0 0 5px rgba(30,144,255,0.10),0 0 20px rgba(30,144,255,0.28);
+  transition:width 0.22s ease,height 0.22s ease,opacity 0.22s ease,background 0.22s ease,box-shadow 0.22s ease,border-radius 0.6s ease;
+}
+.custom-cursor.big{
+  width:14px;height:14px;
+  background:var(--pink);
+  box-shadow:0 0 0 7px rgba(30,144,255,0.10),0 0 24px rgba(30,144,255,0.34);
+}
 
 /* canvas wave injected by HomeBehavior — no static CSS needed */
 #heroWaveCanvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
@@ -172,6 +251,7 @@ nav.scrolled{
 
 /* ── GLASS ORB (liquid water) ── */
 .glass-orb{
+  display:none;
   position:fixed;width:110px;height:110px;
   border-radius:47% 53% 63% 37%/38% 48% 52% 62%;
   background:

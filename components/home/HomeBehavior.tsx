@@ -2,43 +2,19 @@
 
 import { useEffect } from "react";
 
-const script = `// ── WATER RIPPLE CURSOR EFFECT ──
+const script = `// ── WATER SURFACE HOVER EFFECT ──
 (function(){
-  var canvas=document.createElement('canvas');
-  canvas.id='rippleCanvas';
-  canvas.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9994;';
-  document.body.appendChild(canvas);
-  var ctx=canvas.getContext('2d');
-  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-  resize();
-  window.addEventListener('resize',resize,{passive:true});
-  var ripples=[],lx=-999,ly=-999,MIN_D=15;
+  var hoverSelector='a,button,.hero-card,.bento-work-card,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.q-chip,.conv-replay';
   document.addEventListener('mousemove',function(e){
-    var dx=e.clientX-lx,dy=e.clientY-ly;
-    if(dx*dx+dy*dy<MIN_D*MIN_D)return;
-    lx=e.clientX;ly=e.clientY;
-    for(var k=0;k<3;k++){
-      ripples.push({x:e.clientX,y:e.clientY,r:k*9,maxR:52+k*20,a:0.26-k*0.07,spd:1.5+k*0.4,lw:1.2-k*0.3});
-    }
-    if(ripples.length>150)ripples.splice(0,30);
+    var surface=e.target&&e.target.closest&&e.target.closest(hoverSelector);
+    if(!surface)return;
+    var rect=surface.getBoundingClientRect();
+    surface.style.setProperty('--water-x',(e.clientX-rect.left)+'px');
+    surface.style.setProperty('--water-y',(e.clientY-rect.top)+'px');
   });
-  function frame(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    for(var i=ripples.length-1;i>=0;i--){
-      var rp=ripples[i];
-      rp.r+=rp.spd;
-      var p=rp.r/rp.maxR;
-      var alpha=rp.a*(1-p)*(1-p);
-      if(alpha<0.005||rp.r>rp.maxR){ripples.splice(i,1);continue;}
-      ctx.beginPath();
-      ctx.arc(rp.x,rp.y,rp.r,0,6.28318);
-      ctx.strokeStyle='rgba(30,144,255,'+alpha.toFixed(3)+')';
-      ctx.lineWidth=rp.lw;
-      ctx.stroke();
-    }
-    requestAnimationFrame(frame);
-  }
-  frame();
+  document.querySelectorAll(hoverSelector).forEach(function(el){
+    el.classList.add('water-surface');
+  });
 })();
 
 // ── HERO WAVE CANVAS ──
@@ -232,7 +208,7 @@ document.addEventListener('mousemove',e=>{
   const hero=document.getElementById('home');
   if(hero&&cursorGlow){const rect=hero.getBoundingClientRect();if(e.clientY>=rect.top&&e.clientY<=rect.bottom){cursorGlow.style.left=(e.clientX-rect.left)+'px';cursorGlow.style.top=(e.clientY-rect.top)+'px';}}
 });
-document.querySelectorAll('a,button,.obsession-card').forEach(el=>{el.addEventListener('mouseenter',()=>{if(cursor)cursor.classList.add('big');});el.addEventListener('mouseleave',()=>{if(cursor)cursor.classList.remove('big');});});
+document.querySelectorAll('a,button,.hero-card,.bento-work-card,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.q-chip,.conv-replay').forEach(el=>{el.addEventListener('mouseenter',()=>{if(cursor)cursor.classList.add('big');});el.addEventListener('mouseleave',()=>{if(cursor)cursor.classList.remove('big');});});
 
 // ── TYPING ANIMATION ──
 const ROLES=['product designer','ux researcher','storyteller'];
