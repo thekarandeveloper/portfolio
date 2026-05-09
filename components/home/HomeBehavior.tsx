@@ -64,112 +64,88 @@ const script = `// ── HERO WAVE CANVAS ──
 // ── SESSION CHECK ──
 const loaderSeen = sessionStorage.getItem('loader_seen');
 
-// ── FIGMA FRAME INTRO (first visit only) ──
+// ── LIQUID BLOB INTRO (first visit only) ──
 if (!loaderSeen) {
   sessionStorage.setItem('loader_seen', '1');
   document.body.classList.add('loading');
 
   const loader = document.getElementById('loader');
-  const figmaFrame = document.getElementById('figmaFrame');
-  const figmaFrameTag = document.getElementById('figmaFrameTag');
-  const figmaFrameContent = document.getElementById('figmaFrameContent');
-  const fiCursor = document.getElementById('fiCursor');
-  const fiCursorLabel = document.getElementById('fiCursorLabel');
-  const fiNameText = document.getElementById('fiNameText');
-  const fiNameCursor = document.getElementById('fiNameCursor');
-  const fiRole = document.getElementById('fiRole');
-  const fiTagline = document.getElementById('fiTagline');
-  const figmaPanel = document.getElementById('figmaPanel');
-  const figmaHint = document.getElementById('figmaHint');
-  const handles = document.querySelectorAll('.f-handle');
-  const layers = document.querySelectorAll('.figma-layer');
+  const blob = document.getElementById('blob');
 
-  const W = window.innerWidth, H = window.innerHeight;
-  const frameW = Math.min(W * 0.52, 580);
-  const frameH = Math.min(H * 0.48, 340);
+  // Phase 1 — blob scales in and starts morphing
+  setTimeout(function(){
+    blob.style.transition = 'transform 0.85s cubic-bezier(0.34,1.56,0.64,1)';
+    blob.style.transform = 'translate(-50%,-50%) scale(1)';
+    blob.style.animation = 'blobMorph 2.8s ease-in-out infinite';
+  }, 80);
 
-  function setCursor(x, y){
-    fiCursor.style.left = x + 'px';
-    fiCursor.style.top = y + 'px';
-  }
-
-  function phase5(){
-    figmaHint.classList.remove('show');
-    loader.classList.add('zoom-out');
-    figmaFrame.style.width = W + 'px';
-    figmaFrame.style.height = H + 'px';
-    figmaFrame.style.borderColor = 'transparent';
-    setTimeout(()=>{
-      loader.classList.add('final-fade');
-      setTimeout(()=>{
-        loader.classList.add('gone');
-        document.body.classList.remove('loading');
-        setTimeout(()=>{
-          document.querySelector('.hero-name-wrap').classList.add('enter');
-        }, 100);
-        checkInView();
-      }, 700);
-    }, 950);
-  }
-
-  // Step 1 — cursor appears, moves to start corner
-  setTimeout(()=>{
-    fiCursorLabel.style.opacity = '1';
-    setCursor(W*0.25, H*0.28);
-  }, 300);
-
-  // Step 2 — cursor drags, frame draws
-  setTimeout(()=>{
-    fiCursorLabel.style.opacity = '0';
-    setCursor(W*0.25 + frameW, H*0.28 + frameH);
-    figmaFrame.style.transition = \`width 0.75s cubic-bezier(0.25,1,0.5,1), height 0.75s cubic-bezier(0.25,1,0.5,1)\`;
-    figmaFrame.style.width = frameW + 'px';
-    figmaFrame.style.height = frameH + 'px';
-  }, 900);
-
-  // Step 3 — frame drawn, show label + handles + panel
-  setTimeout(()=>{
-    setCursor(W*0.25 + frameW + 30, H*0.28 - 20);
-    figmaFrameTag.style.opacity = '1';
-    handles.forEach(h => h.style.opacity = '1');
-    figmaPanel.classList.add('show');
-    layers.forEach((l, i) => setTimeout(()=> l.classList.add('show'), i * 80));
-    figmaHint.classList.add('show');
-  }, 1750);
-
-  // Step 4 — name types inside frame
-  setTimeout(()=>{
-    figmaFrameContent.style.opacity = '1';
-    const fullName = 'Nikunj Tyagi';
-    let i = 0;
-    const typer = setInterval(()=>{
-      fiNameText.textContent = fullName.slice(0, i+1);
-      i++;
-      if(i === fullName.length){
-        clearInterval(typer);
-        setTimeout(()=>{
-          fiNameCursor.style.display = 'none';
-          fiRole.style.opacity = '1';
-          setTimeout(()=>{
-            fiTagline.style.opacity = '1';
-            setTimeout(phase5, 1000);
-          }, 400);
-        }, 500);
-      }
-    }, 80);
+  // Phase 2 — settle to circle, then stretch into a thin line
+  setTimeout(function(){
+    blob.style.animation = 'none';
+    blob.style.transition = 'border-radius 0.32s ease';
+    blob.style.borderRadius = '50%';
+    setTimeout(function(){
+      blob.style.transition = 'width 0.72s cubic-bezier(0.76,0,0.24,1),height 0.52s cubic-bezier(0.76,0,0.24,1),border-radius 0.4s ease,box-shadow 0.45s ease';
+      blob.style.width = '110vw';
+      blob.style.height = '4px';
+      blob.style.borderRadius = '3px';
+      blob.style.boxShadow = '0 0 22px 5px rgba(30,144,255,0.98),0 0 70px 18px rgba(30,144,255,0.42)';
+    }, 340);
   }, 2400);
+
+  // Phase 3 — line rises to top edge of screen
+  setTimeout(function(){
+    blob.style.transition = 'transform 0.62s cubic-bezier(0.76,0,0.24,1)';
+    blob.style.transform = 'translate(-50%,calc(-50vh + 2px))';
+  }, 3430);
+
+  // Phase 4 — fade out, reveal portfolio
+  setTimeout(function(){
+    loader.style.transition = 'opacity 0.55s ease';
+    loader.style.opacity = '0';
+    setTimeout(function(){
+      loader.classList.add('gone');
+      document.body.classList.remove('loading');
+      var heroName = document.querySelector('.hero-name-wrap');
+      if (heroName) heroName.classList.add('enter');
+      checkInView();
+    }, 650);
+  }, 4060);
 }
+
 
 // ── CURSOR GLOW + GLASS ORB ──
 const cursorGlow=document.getElementById('cursorGlow'),cursor=document.getElementById('cursor');
 const glassOrb=document.getElementById('glassOrb');
-let glassVisible=false;
+let glassVisible=false,orbOverText=false;
+function checkOrbOverText(el){
+  let node=el;
+  while(node&&node!==document.body){
+    const tag=node.tagName?node.tagName.toLowerCase():'';
+    if(['p','h1','h2','h3','h4','h5','h6','a','button','label','li','input','textarea','time','blockquote'].indexOf(tag)!==-1)return true;
+    if(['span','strong','em','b','i'].indexOf(tag)!==-1){
+      const kids=node.childNodes;
+      for(let i=0;i<kids.length;i++){if(kids[i].nodeType===3&&kids[i].textContent.trim().length>0)return true;}
+    }
+    if(['div','section'].indexOf(tag)!==-1){
+      const kids=node.childNodes;
+      for(let i=0;i<kids.length;i++){if(kids[i].nodeType===3&&kids[i].textContent.trim().length>0)return true;}
+    }
+    node=node.parentElement;
+  }
+  return false;
+}
+document.addEventListener('mouseover',e=>{
+  if(!glassOrb)return;
+  const over=checkOrbOverText(e.target);
+  if(orbOverText!==over){orbOverText=over;if(glassVisible)glassOrb.style.opacity=over?'0':'1';}
+});
 document.addEventListener('mousemove',e=>{
   if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';}
   if(glassOrb){
     glassOrb.style.left=e.clientX+'px';
     glassOrb.style.top=e.clientY+'px';
-    if(!glassVisible){glassVisible=true;glassOrb.style.opacity='1';}
+    if(!glassVisible){glassVisible=true;if(!orbOverText)glassOrb.style.opacity='1';}
   }
   const hero=document.getElementById('home');
   if(hero&&cursorGlow){const rect=hero.getBoundingClientRect();if(e.clientY>=rect.top&&e.clientY<=rect.bottom){cursorGlow.style.left=(e.clientX-rect.left)+'px';cursorGlow.style.top=(e.clientY-rect.top)+'px';}}
