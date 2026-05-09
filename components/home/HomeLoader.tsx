@@ -2,7 +2,7 @@
 
 import { useLayoutEffect, useState } from "react";
 
-const html = `<div id="loader"><div id="blob"></div></div>`;
+const html = `<div id="loader"><div id="blobWrap"><div id="blobPink"></div><div id="blobBlue"></div></div><div id="blobLine"></div></div>`;
 
 export function HomeLoader() {
   const [hide, setHide] = useState(false);

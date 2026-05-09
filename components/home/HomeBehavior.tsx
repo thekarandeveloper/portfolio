@@ -109,36 +109,41 @@ if (!loaderSeen) {
   document.body.classList.add('loading');
 
   const loader = document.getElementById('loader');
-  const blob = document.getElementById('blob');
+  const blobWrap = document.getElementById('blobWrap');
+  const blobPink = document.getElementById('blobPink');
+  const blobBlue = document.getElementById('blobBlue');
+  const blobLine = document.getElementById('blobLine');
 
-  // Phase 1 — blob scales in with spring, then morphs + breathes
+  // Phase 1 — wrap scales in, then orbs drift toward each other
   setTimeout(function(){
-    blob.style.transition = 'transform 0.92s cubic-bezier(0.34,1.56,0.64,1)';
-    blob.style.transform = 'translate(-50%,-54%) scale(1)';
+    blobWrap.style.animation = 'blobWrapIn 0.95s cubic-bezier(0.34,1.56,0.64,1) forwards';
     setTimeout(function(){
-      blob.style.animation = 'blobMorph 3.8s ease-in-out infinite, blobGlow 2.6s ease-in-out infinite';
-    }, 950);
+      blobPink.style.animation = 'pinkDrift 3.6s ease-in-out infinite alternate';
+      blobBlue.style.animation = 'blueDrift 3.6s ease-in-out infinite alternate';
+      blobWrap.style.animation = 'blobWrapBreathe 2.8s ease-in-out infinite';
+    }, 1000);
   }, 80);
 
-  // Phase 2 — stop breathing, settle to circle, then stretch into a thin line
+  // Phase 2 — orbs fade out, line expands from center
   setTimeout(function(){
-    blob.style.animation = 'none';
-    blob.style.transition = 'border-radius 0.32s ease';
-    blob.style.borderRadius = '50%';
+    blobPink.style.animation = 'none';
+    blobBlue.style.animation = 'none';
+    blobWrap.style.animation = 'none';
+    blobWrap.style.transition = 'opacity 0.38s ease, transform 0.38s ease';
+    blobWrap.style.opacity = '0';
+    blobWrap.style.transform = 'scale(0.88)';
     setTimeout(function(){
-      blob.style.transition = 'width 0.72s cubic-bezier(0.76,0,0.24,1),height 0.52s cubic-bezier(0.76,0,0.24,1),border-radius 0.38s ease,box-shadow 0.42s ease';
-      blob.style.width = '110vw';
-      blob.style.height = '4px';
-      blob.style.borderRadius = '3px';
-      blob.style.boxShadow = '0 0 16px 4px rgba(30,144,255,0.55),0 0 50px 14px rgba(30,144,255,0.18)';
-    }, 340);
-  }, 2600);
+      blobLine.style.transition = 'width 0.72s cubic-bezier(0.76,0,0.24,1), opacity 0.28s ease';
+      blobLine.style.width = '110vw';
+      blobLine.style.opacity = '1';
+    }, 320);
+  }, 2700);
 
-  // Phase 3 — line rises to top edge
+  // Phase 3 — line rises to top
   setTimeout(function(){
-    blob.style.transition = 'transform 0.65s cubic-bezier(0.76,0,0.24,1)';
-    blob.style.transform = 'translate(-50%,calc(-50vh + 2px))';
-  }, 3650);
+    blobLine.style.transition = 'transform 0.65s cubic-bezier(0.76,0,0.24,1)';
+    blobLine.style.transform = 'translate(-50%, calc(-50vh + 2px))';
+  }, 3720);
 
   // Phase 4 — fade out, staggered presenting entrance
   setTimeout(function(){
@@ -147,7 +152,6 @@ if (!loaderSeen) {
     setTimeout(function(){
       loader.classList.add('gone');
 
-      // Pre-hide elements before revealing page
       var navEl = document.getElementById('nav');
       var hcards = document.querySelectorAll('.hero-card');
       var scrollHint = document.querySelector('.hero-scroll-hint');
@@ -157,24 +161,16 @@ if (!loaderSeen) {
 
       document.body.classList.remove('loading');
 
-      // Trigger staggered entrance
       requestAnimationFrame(function(){ requestAnimationFrame(function(){
-        // Nav drops in
         if(navEl){ navEl.style.opacity=''; navEl.style.transform=''; }
-
-        // Cards: each card lifts into its tilted position
         hcards.forEach(function(c, i){
           c.style.transition='opacity 0.45s ease '+(0.07*i+0.08)+'s,transform 0.5s cubic-bezier(0.34,1.4,0.64,1) '+(0.07*i+0.08)+'s';
           c.style.opacity=''; c.style.transform='';
         });
-
-        // Text lines present line-by-line
         setTimeout(function(){
           var heroName = document.querySelector('.hero-name-wrap');
           if(heroName) heroName.classList.add('enter');
         }, 220);
-
-        // Scroll hint fades in last
         setTimeout(function(){
           if(scrollHint){ scrollHint.style.transition='opacity 0.5s ease'; scrollHint.style.opacity='1'; }
         }, 480);
@@ -182,7 +178,7 @@ if (!loaderSeen) {
 
       checkInView();
     }, 650);
-  }, 4220);
+  }, 4380);
 }
 
 
