@@ -7,8 +7,6 @@ import { HomeNav } from "./HomeNav";
 import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
 import { ProcessSection } from "./ProcessSection";
-import { ShowcaseSection } from "./ShowcaseSection";
-import { ToolkitSection } from "./ToolkitSection";
 import { WorkSection } from "./WorkSection";
 
 export function HomePageReplica() {
@@ -22,11 +20,9 @@ export function HomePageReplica() {
       <HomeNav />
       <HeroSection />
       <WorkSection />
-      <ShowcaseSection />
       <ProcessSection />
-      <AboutSection />
-      <ToolkitSection />
       <JourneySection />
+      <AboutSection />
       <ContactSection />
     </main>
   );

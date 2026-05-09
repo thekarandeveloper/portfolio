@@ -174,7 +174,7 @@ document.addEventListener('mousemove',e=>{
   const hero=document.getElementById('home');
   if(hero&&cursorGlow){const rect=hero.getBoundingClientRect();if(e.clientY>=rect.top&&e.clientY<=rect.bottom){cursorGlow.style.left=(e.clientX-rect.left)+'px';cursorGlow.style.top=(e.clientY-rect.top)+'px';}}
 });
-document.querySelectorAll('a,button,.pendulum-bob,.obsession-card').forEach(el=>{el.addEventListener('mouseenter',()=>{if(cursor)cursor.classList.add('big');});el.addEventListener('mouseleave',()=>{if(cursor)cursor.classList.remove('big');});});
+document.querySelectorAll('a,button,.obsession-card').forEach(el=>{el.addEventListener('mouseenter',()=>{if(cursor)cursor.classList.add('big');});el.addEventListener('mouseleave',()=>{if(cursor)cursor.classList.remove('big');});});
 
 // ── TYPING ANIMATION ──
 const ROLES=['product designer','ux researcher','storyteller'];
@@ -186,7 +186,7 @@ setTimeout(type,1000);
 
 // ── NAV ──
 const nav=document.getElementById('nav'),navLinks=document.querySelectorAll('.nav-link-item');
-const sections=['home','work','process','about','gallery','shelf','toolkit','journey','testimonials','contact'];
+const sections=['home','work','process','about','gallery','shelf','journey','testimonials','contact'];
 function updateNav(){let current='home';sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=80)current=id;});navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href').replace('#','')===current));}
 
 // ── SCROLL REVEAL ──
@@ -198,78 +198,6 @@ function checkInView(){
   reveals.forEach(el=>{if(el.getBoundingClientRect().top<vh*0.92)el.classList.add('visible');});
   tlItems.forEach(i=>{if(i.getBoundingClientRect().top<vh*0.88)setTimeout(()=>i.classList.add('in-view'),parseInt(i.dataset.tlDelay||0));});
 }
-
-// ── PENDULUM — DATA ──
-var P_STEPS=[
-  {num:'01',name:'Discover',desc:'I go deep before I design. User interviews, analytics dives, competitor audits — this phase is about surfacing hidden truths, not assumptions.'},
-  {num:'02',name:'Define',desc:'I turn raw research into sharp direction. HMW statements, personas, and problem frames that align the team before a single pixel is drawn.'},
-  {num:'03',name:'Ideate',desc:'Wide before narrow. Crazy 8s, design studios, and concept sprints — I exhaust the obvious before committing to the right direction.'},
-  {num:'04',name:'Prototype',desc:'The minimum version needed for a meaningful answer. Fidelity matches the question, not the ego.'},
-  {num:'05',name:'Test',desc:'Real users, real feedback. I watch where they hesitate and backtrack more than where they succeed.'},
-  {num:'06',name:'Iterate',desc:'Testing surfaces truth. Iteration acts on it — every cycle tighter, every decision evidence-backed, never opinion-driven.'},
-  {num:'07',name:'Ship',desc:'Shipping is a new loop, not an ending. I stay close through dev, annotate every edge case, and feed learnings back in.'}
-];
-
-function setInfo(idx){
-  var s=P_STEPS[idx];
-  var el2=document.getElementById('info-name');
-  var el3=document.getElementById('info-desc');
-  if(el2)el2.textContent=s.name;
-  if(el3)el3.textContent=s.desc;
-  document.querySelectorAll('.pendulum-unit').forEach(function(u,i){u.classList.toggle('p-active',i===idx);});
-}
-
-// ── PENDULUM — HOVER ──
-var collideStep=0;
-document.querySelectorAll('.pendulum-unit').forEach(function(unit,i){
-  unit.addEventListener('mouseenter',function(){setInfo(i);});
-  unit.addEventListener('mouseleave',function(){setInfo(collideStep);});
-});
-
-// ── PENDULUM — DROP-IN ──
-var pendulumDropped=false;
-var pendulumScene=document.querySelector('.pendulum-scene');
-var dropObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting&&!pendulumDropped){pendulumDropped=true;document.querySelectorAll('.pendulum-arm-wrap').forEach(function(wrap){var unit=wrap.closest('.pendulum-unit');var delay=parseInt((unit&&unit.dataset.delay)||'0');setTimeout(function(){wrap.classList.add('dropped');},delay);});setTimeout(scheduleNext,1400);dropObs.disconnect();}});},{threshold:0.2});
-if(pendulumScene)dropObs.observe(pendulumScene);
-
-// ── PENDULUM — SEQUENTIAL COLLISION (one step every 8s) ──
-var EASE='cubic-bezier(0.45,0.05,0.55,0.95)';
-
-function getArms(){return Array.from(document.querySelectorAll('.pendulum-arm'));}
-
-function doCollision(fromIdx,toIdx){
-  var arms=getArms();
-  var af=arms[fromIdx],at=arms[toIdx];
-  if(!af||!at)return;
-  // Pull from-ball back
-  af.style.transition='none';
-  af.style.transform='rotate(-22deg)';
-  setTimeout(function(){
-    // Swing forward and hit
-    af.style.transition='transform 700ms '+EASE;
-    af.style.transform='rotate(0deg)';
-    setTimeout(function(){
-      // To-ball swings out — update text at moment of impact
-      collideStep=toIdx;
-      setInfo(toIdx);
-      at.style.transition='transform 580ms '+EASE;
-      at.style.transform='rotate(20deg)';
-      setTimeout(function(){
-        at.style.transition='transform 580ms '+EASE;
-        at.style.transform='rotate(0deg)';
-      },580);
-    },680);
-  },40);
-}
-
-function scheduleNext(){
-  setTimeout(function(){
-    var toIdx=(collideStep+1)%P_STEPS.length;
-    doCollision(collideStep,toIdx);
-    scheduleNext();
-  },8000);
-}
-
 
 window.addEventListener('scroll',()=>{if(nav)nav.classList.toggle('scrolled',window.scrollY>40);updateNav();checkInView();runParallax();},{passive:true});
 
@@ -309,15 +237,14 @@ const parallaxMap = [
   { sel: '.bento-work-card:nth-child(even)', speed: -0.018 },
 
   // About
-  { sel: '.about-photo-grid',   speed: -0.04 },
-  { sel: '.about-text',         speed: -0.03 },
+  { sel: '.about-ed-title',      speed: -0.04 },
+  { sel: '.about-ed-text-wrap',  speed: -0.03 },
 
   // Process
-  { sel: '.process-section .section-title', speed: -0.05 },
-  { sel: '.pendulum-unit:nth-child(1)',      speed: -0.04 },
-  { sel: '.pendulum-unit:nth-child(3)',      speed: -0.06 },
-  { sel: '.pendulum-unit:nth-child(5)',      speed: -0.03 },
-  { sel: '.pendulum-unit:nth-child(7)',      speed: -0.05 },
+  { sel: '.process-main-title',                              speed: -0.05 },
+  { sel: '.process-phase:nth-child(1) .process-phase-left', speed: -0.03 },
+  { sel: '.process-phase:nth-child(3) .process-phase-left', speed: -0.04 },
+  { sel: '.process-phase:nth-child(5) .process-phase-left', speed: -0.03 },
 
   // Gallery
   { sel: '.gallery-section .section-title',   speed: -0.05 },
@@ -337,12 +264,6 @@ const parallaxMap = [
   { sel: '.sc-travel',  speed: -0.06 },
   { sel: '.sc-photo',   speed: -0.10 },
   { sel: '.sc-shop',    speed: -0.08 },
-
-  // Toolkit / Spectrum
-  { sel: '.spectrum-section .spectrum-title', speed: -0.04 },
-  { sel: '.spectrum-note',      speed: -0.03 },
-  { sel: '.spectrum-dots',      speed: -0.05 },
-  { sel: '.spectrum-process',   speed: -0.02 },
 
   // Journey
   { sel: '.journey-left',               speed: -0.04 },
@@ -405,7 +326,111 @@ if(heroBlob) {
   }, { passive: true });
 }
 
-var bgSections=Array.from(document.querySelectorAll('.work,.journey,.about,.gallery-section,.testimonials-section,.process-section,.contact,.scrapbook-section,.spectrum-section'));
+// ── CONVERSATION REPLAY ──
+(function(){
+  var EXCHANGES=[
+    {pm:"Users keep dropping off. Can you just redesign the UI?",nik:"Before Figma — what's the one assumption we might be most wrong about?",sticky:"⚡ Feed every brief to AI first. Ask it to challenge your assumptions.",stickyType:"yellow"},
+    {pm:"...maybe that more features = better. They might be overwhelmed.",nik:"That's it. That's where I start. Not wireframes.",sticky:"⚡ AI surfaces blind spots — ones I'm too close to see.",stickyType:"green"},
+    {pm:"So nothing in Figma yet?",nik:"First I find the cheapest way to be wrong. Then I design.",sticky:"⚡ Map edge cases first. Who does this break for?",stickyType:"yellow"},
+    {pm:"When does research end and design begin?",nik:"It doesn't. Discovery runs in every sprint — not just at the start.",sticky:"⚡ AI synthesizes patterns across sessions so I never go in blind.",stickyType:"green"},
+    {pm:"How do you know when it's actually working?",nik:"I define the metric before the first frame. No measure = no design.",sticky:"⚡ AI pressure-tests the metric — right thing, or just easy thing?",stickyType:"yellow"},
+    {pm:"You rely on AI a lot, huh?",nik:"As a thinking partner — not an autopilot. Decisions are still mine.",sticky:"⚡ Claude · Figma Make · v0 · Midjourney — each for different thinking.",stickyType:"green"}
+  ];
+  var EMPTY_STATE_HTML='<div class="conv-empty" id="convEmptyState"><div class="conv-empty-bubbles"><div class="conv-empty-bubble eb-pm"></div><div class="conv-empty-bubble eb-nik"></div><div class="conv-empty-bubble eb-pm eb-short"></div></div><span class="conv-empty-label">✦ conversation loading</span></div>';
+  var convBody=document.getElementById('convBody');
+  var convWindow=document.getElementById('convWindow');
+  var convEnd=document.getElementById('convEnd');
+  var convReplay=document.getElementById('convReplay');
+  if(!convBody)return;
+  var step=0,playing=false,started=false,observer;
+  function typingMs(t){var l=t.length;return l<50?1100:l<90?1450:1800;}
+  function scrollBottom(){convBody.scrollTop=convBody.scrollHeight;}
+  function makeRow(isPM){
+    var row=document.createElement('div');
+    row.className='conv-msg '+(isPM?'pm':'nik');
+    var av=document.createElement('div');
+    av.className='conv-av '+(isPM?'pm-av':'nik-av');
+    av.textContent=isPM?'PM':'NT';
+    var bwrap=document.createElement('div');
+    bwrap.className='conv-bubble-wrap';
+    row.appendChild(av);
+    row.appendChild(bwrap);
+    return {row:row,av:av,bwrap:bwrap};
+  }
+  function addMsg(isPM,text,sticky,stickyType){
+    return new Promise(function(resolve){
+      var parts=makeRow(isPM);
+      var typ=document.createElement('div');
+      typ.className='conv-typing';
+      typ.innerHTML='<div class="conv-typing-dot"></div><div class="conv-typing-dot"></div><div class="conv-typing-dot"></div>';
+      parts.bwrap.appendChild(typ);
+      parts.av.classList.add('conv-av-pulse');
+      convBody.appendChild(parts.row);
+      scrollBottom();
+      setTimeout(function(){
+        parts.av.classList.remove('conv-av-pulse');
+        var bub=document.createElement('div');
+        bub.className='conv-bubble '+(isPM?'conv-msg-enter-pm':'conv-msg-enter-nik');
+        bub.textContent=text;
+        parts.bwrap.replaceChild(bub,typ);
+        scrollBottom();
+        if(!isPM&&sticky){
+          setTimeout(function(){
+            var st=document.createElement('div');
+            st.className='conv-sticky '+stickyType+' conv-msg-enter-nik';
+            st.textContent=sticky;
+            parts.bwrap.appendChild(st);
+            scrollBottom();
+            resolve();
+          },480);
+        }else{resolve();}
+      },typingMs(text));
+    });
+  }
+  function showEnd(){
+    setTimeout(function(){
+      if(convWindow)convWindow.classList.add('blurred');
+      setTimeout(function(){
+        if(convEnd){requestAnimationFrame(function(){requestAnimationFrame(function(){convEnd.classList.add('show');});});}
+      },600);
+    },1000);
+  }
+  function runNext(){
+    if(playing||step>=EXCHANGES.length)return;
+    playing=true;
+    if(step===0){var es=document.getElementById('convEmptyState');if(es)es.remove();}
+    var ex=EXCHANGES[step];
+    addMsg(true,ex.pm,null,null).then(function(){
+      return new Promise(function(r){setTimeout(r,600);});
+    }).then(function(){
+      return addMsg(false,ex.nik,ex.sticky,ex.stickyType);
+    }).then(function(){
+      step++;playing=false;
+      if(step<EXCHANGES.length){setTimeout(runNext,2600);}
+      else{showEnd();}
+    });
+  }
+  function reset(){
+    step=0;playing=false;started=false;
+    if(convBody)convBody.innerHTML=EMPTY_STATE_HTML;
+    if(convWindow)convWindow.classList.remove('blurred');
+    if(convEnd)convEnd.classList.remove('show');
+    if(convWindow&&observer)observer.observe(convWindow);
+  }
+  observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting&&!started){
+        started=true;
+        observer.unobserve(entry.target);
+        setTimeout(runNext,900);
+      }
+    });
+  },{threshold:0.3});
+  if(convWindow)observer.observe(convWindow);
+  if(convReplay)convReplay.addEventListener('click',function(){reset();setTimeout(runNext,900);});
+})();
+
+var bgSections=Array.from(document.querySelectorAll('.work,.journey,.about,.gallery-section,.testimonials-section,.process-section,.contact,.scrapbook-section'));
 window.addEventListener('scroll',function(){bgSections.forEach(function(section){var rect=section.getBoundingClientRect();section.style.backgroundPositionY=(rect.top/window.innerHeight*20)+'px';});},{passive:true});
 
 initParallax();
