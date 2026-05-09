@@ -89,7 +89,7 @@ if (!loaderSeen) {
       blob.style.width = '110vw';
       blob.style.height = '4px';
       blob.style.borderRadius = '3px';
-      blob.style.boxShadow = '0 0 22px 5px rgba(30,144,255,0.98),0 0 70px 18px rgba(30,144,255,0.42)';
+      blob.style.boxShadow = '0 0 18px 4px rgba(30,144,255,0.55),0 0 55px 14px rgba(30,144,255,0.2)';
     }, 340);
   }, 2400);
 

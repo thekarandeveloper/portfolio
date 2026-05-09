@@ -25,7 +25,7 @@ body{
 /* ── LIQUID BLOB LOADER ── */
 #loader{
   position:fixed;inset:0;z-index:9999;
-  background:radial-gradient(ellipse at 50% 52%,#0e0e22 0%,#050507 68%);
+  background:radial-gradient(ellipse at 50% 52%,#eef6ff 0%,#ffffff 68%);
   overflow:hidden;
 }
 #blob{
@@ -35,9 +35,9 @@ body{
   background:linear-gradient(135deg,#1E90FF 0%,#38c5ff 52%,#0044ff 100%);
   border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;
   box-shadow:
-    0 0 60px 12px rgba(30,144,255,0.52),
-    0 0 130px 45px rgba(30,144,255,0.22),
-    0 0 260px 80px rgba(30,144,255,0.08);
+    0 0 40px 8px rgba(30,144,255,0.28),
+    0 0 90px 30px rgba(30,144,255,0.12),
+    0 0 180px 60px rgba(30,144,255,0.05);
   will-change:transform,border-radius,width,height;
 }
 @keyframes blobMorph{
