@@ -5,28 +5,29 @@ const html = `<section class="hero" id="home">
   <!-- 4 Photo Cards above name -->
   <div class="hero-cards" id="heroCards">
     <div class="hero-card hc-1" id="hc1">
-      <div class="hc-photo">
-        <img src="/Image/hero/Nikunj.png" alt="Nikunj" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+      <div class="hc-photo" style="background:linear-gradient(135deg,#f5f5f5,#e8e8e8);">
+        <span class="hc-emoji">🌅</span>
       </div>
-      <div class="hc-label">Hi There</div>
+      <div class="hc-label">golden hour</div>
     </div>
     <div class="hero-card hc-2" id="hc2">
-      <div class="hc-photo">
-        <img src="/Image/hero/Cafe.png" alt="Cafe" style="width:100%;height:100%;object-fit:cover;object-position:center center;" />
+      <div class="hc-photo" style="background:linear-gradient(135deg,#ebebeb,#ddd);">
+        <span class="hc-emoji">☕</span>
       </div>
-      <div class="hc-label">Brew Mode</div>
+      <div class="hc-label">café shot</div>
     </div>
     <div class="hero-card hc-3" id="hc3">
-      <div class="hc-photo">
-        <img src="/Image/hero/flower.png" alt="Flower" style="width:100%;height:100%;object-fit:cover;object-position:center center;" />
+      <div class="hc-photo" style="background:linear-gradient(135deg,#f0f0f0,#e2e2e2);">
+        <img src="/nikunj.png" alt="Nikunj" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextSibling.style.display='flex'"/>
+        <span class="hc-emoji" style="display:none;">✨</span>
       </div>
-      <div class="hc-label">Still Life</div>
+      <div class="hc-label">that&rsquo;s me</div>
     </div>
     <div class="hero-card hc-4" id="hc4">
-      <div class="hc-photo">
-        <img src="/Image/hero/ice-cream.png" alt="Ice cream" style="width:100%;height:100%;object-fit:cover;object-position:center center;" />
+      <div class="hc-photo" style="background:linear-gradient(135deg,#e8e8e8,#d5d5d5);">
+        <span class="hc-emoji">📐</span>
       </div>
-      <div class="hc-label">Sweet Spot</div>
+      <div class="hc-label">at work</div>
     </div>
   </div>
 

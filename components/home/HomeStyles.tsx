@@ -169,25 +169,21 @@ nav.scrolled{
 #heroWaveCanvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
 
 /* hero photo cards */
-.hero-cards{display:flex;align-items:flex-end;justify-content:center;gap:12px;margin-bottom:2.5rem;position:relative;z-index:2;height:158px;}
-/* no border, no overflow:hidden — clip lives on hc-photo instead */
-.hero-card{width:88px;height:118px;border-radius:16px;background:transparent;border:none;box-shadow:0 4px 18px rgba(0,0,0,0.09),0 1px 4px rgba(0,0,0,0.05);overflow:visible;cursor:pointer;position:relative;flex-shrink:0;transition:width 0.45s cubic-bezier(0.34,1.4,0.64,1),height 0.45s cubic-bezier(0.34,1.4,0.64,1),transform 0.45s cubic-bezier(0.34,1.4,0.64,1),box-shadow 0.35s ease,z-index 0s;}
+.hero-cards{display:flex;align-items:flex-end;justify-content:center;gap:12px;margin-bottom:2.5rem;position:relative;z-index:2;height:110px;}
+.hero-card{width:96px;height:78px;border-radius:16px;background:#fff;border:1px solid rgba(0,0,0,0.07);box-shadow:0 4px 18px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);overflow:hidden;cursor:pointer;position:relative;flex-shrink:0;transition:width 0.45s cubic-bezier(0.34,1.4,0.64,1),height 0.45s cubic-bezier(0.34,1.4,0.64,1),transform 0.45s cubic-bezier(0.34,1.4,0.64,1),box-shadow 0.35s ease,z-index 0s;}
 .hc-1{transform:rotate(-9deg) translateY(10px);}.hc-2{transform:rotate(-3deg) translateY(4px);}.hc-3{transform:rotate(4deg) translateY(6px);}.hc-4{transform:rotate(9deg) translateY(12px);}
-.hero-card:hover{width:216px;height:288px;transform:rotate(0deg) translateY(-36px) scale(1.02)!important;box-shadow:0 36px 80px rgba(0,0,0,0.20),0 8px 24px rgba(0,0,0,0.09);z-index:10;border-radius:22px;}
+.hero-card:hover{width:168px;height:126px;transform:rotate(0deg) translateY(-18px) scale(1.02)!important;box-shadow:0 28px 64px rgba(0,0,0,0.15),0 6px 20px rgba(0,0,0,0.07);z-index:10;border-radius:20px;}
 .hero-cards:has(.hc-1:hover) .hc-2{transform:rotate(-1deg) translateX(10px) translateY(2px);}
 .hero-cards:has(.hc-2:hover) .hc-1{transform:rotate(-10deg) translateX(-8px) translateY(12px);}
 .hero-cards:has(.hc-2:hover) .hc-3{transform:rotate(1deg) translateX(10px) translateY(3px);}
 .hero-cards:has(.hc-3:hover) .hc-2{transform:rotate(-4deg) translateX(-8px) translateY(6px);}
 .hero-cards:has(.hc-3:hover) .hc-4{transform:rotate(5deg) translateX(8px) translateY(6px);}
 .hero-cards:has(.hc-4:hover) .hc-3{transform:rotate(5deg) translateX(-8px) translateY(8px);}
-/* photo fills full card; border-radius here does the clipping */
-.hc-photo{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:16px;transition:border-radius 0.45s cubic-bezier(0.34,1.4,0.64,1);}
-.hero-card:hover .hc-photo{border-radius:22px;}
+.hc-photo{width:100%;height:74%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .hc-emoji{font-size:1.5rem;transition:font-size 0.3s ease;}
 .hero-card:hover .hc-emoji{font-size:2.2rem;}
-/* label floats above the card as a pill — outside the frame */
-.hc-label{position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%) translateY(7px);padding:4px 11px;font-size:0.58rem;letter-spacing:0.08em;font-weight:700;color:#111;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(0,0,0,0.07);border-radius:99px;text-transform:uppercase;font-family:var(--sans);white-space:nowrap;opacity:0;transition:opacity 0.25s ease,transform 0.28s cubic-bezier(0.34,1.2,0.64,1);pointer-events:none;z-index:30;}
-.hero-card:hover .hc-label{opacity:1;transform:translateX(-50%) translateY(0);}
+.hc-label{position:absolute;bottom:0;left:0;right:0;padding:5px 9px;font-size:0.58rem;letter-spacing:0.06em;font-weight:600;color:var(--ink2);background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);text-transform:uppercase;font-family:var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(4px);transition:opacity 0.25s ease,transform 0.25s ease;}
+.hero-card:hover .hc-label{opacity:1;transform:translateY(0);}
 
 /* hero name */
 .hero-name-wrap{text-align:center;position:relative;z-index:2;opacity:0;}
@@ -404,6 +400,10 @@ nav.scrolled{
 .letter-body{font-size:1.13rem;color:#3a3a3a;line-height:1.9;margin-bottom:0.9rem;}
 .letter-body em{color:#1E90FF;font-style:italic;font-weight:600;}
 .letter-sign{font-size:2rem;font-weight:700;color:#1a1a1a;margin-top:1.5rem;line-height:1;}
+.about-cta{display:inline-flex;align-items:center;gap:7px;margin-top:1.4rem;padding:9px 20px;font-family:var(--sans);font-size:0.82rem;font-weight:600;color:#fff;background:var(--pink);border-radius:99px;text-decoration:none;transition:background 0.2s,transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 18px rgba(30,144,255,0.25);}
+.about-cta:hover{background:var(--pink2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(30,144,255,0.32);}
+.about-cta svg{transition:transform 0.2s;}
+.about-cta:hover svg{transform:translateX(3px);}
 
 /* ── PHOTO GALLERY ── */
 .gallery-section{padding:7rem 250px;background:var(--bg);}
@@ -616,7 +616,7 @@ nav.scrolled{
   .pendulum-bob{width:66px;height:66px;}.pendulum-string{height:90px;}.ball-label{font-size:10px;}
   .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:100px;}
   .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8,.g9,.g10{grid-column:auto;grid-row:auto;}
-  .hero-cards{gap:8px;height:126px;}.hero-card{width:68px;height:92px;}.hero-card:hover{width:168px;height:224px;}
+  .hero-cards{gap:8px;}.hero-card{width:76px;height:60px;}.hero-card:hover{width:130px;height:100px;}
   .contact-flex{flex-direction:column;gap:2rem;}.contact-left{width:100%;}
   .contact-gravity-wrap{height:300px;}.grav-hint{display:none;}
   .bento-work-grid{grid-template-columns:1fr 1fr;}
@@ -627,9 +627,9 @@ nav.scrolled{
   .hero-line1{font-size:clamp(20px,5.5vw,34px);flex-wrap:wrap;white-space:normal;gap:0 6px;}
   .hero-line2{font-size:13px;padding:0 4px;}
   .hero-line3{font-size:12px;padding:5px 13px;}
-  .hero-cards{gap:6px;height:112px;}
-  .hero-card{width:58px;height:78px;border-radius:14px;}
-  .hero-card:hover{width:144px;height:192px;}
+  .hero-cards{gap:6px;height:90px;}
+  .hero-card{width:64px;height:52px;border-radius:12px;}
+  .hero-card:hover{width:110px;height:84px;}
   .hero-text{padding:0 8px;max-width:100%;}
   .hero-scroll-hint{bottom:1.5rem;}
 }
@@ -641,7 +641,7 @@ nav.scrolled{
   .postcard-backing{width:220px;height:290px;}
   .letter-paper{padding:2rem 1.75rem 1.75rem;}
   .hero-line1{font-size:clamp(18px,5vw,28px);}
-  .hero-cards{gap:5px;height:104px;}
+  .hero-cards{gap:5px;height:80px;}
   .hero-card{width:52px;height:70px;border-radius:12px;}
 }
 
