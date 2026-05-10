@@ -1,34 +1,97 @@
 const html = `<section class="about" id="about">
-  <div class="about-letter-wrap reveal">
-
-    <div class="about-postcard-col">
-      <div class="postcard-scene">
-        <div class="postcard-backing"></div>
-        <div class="postcard-main">
-          <img src="/nikunj.png" alt="Nikunj" />
+  <div class="about-inner reveal">
+    <h2 class="about-title">Person behind <em>the pixels.</em></h2>
+    <div class="about-book-stage" aria-label="Open scrapbook about Nikunj">
+      <div class="about-book-shell" aria-hidden="true">
+        <div class="about-book-page about-book-page-left"></div>
+        <div class="about-book-page about-book-page-right"></div>
+        <div class="about-book-spine"></div>
+        <div class="about-turn-page"></div>
+      </div>
+      <div class="about-page-content">
+        <div class="about-page-spread active" data-about-page="0">
+          <div class="about-left-page">
+            <div class="about-photo-box large">
+              <img src="/about/portrait.jpg" alt="Nikunj portrait" />
+              <span>me, somewhere between work and wonder</span>
+            </div>
+            <div class="about-photo-row">
+              <div class="about-photo-box small">
+                <img src="/about/work.jpg" alt="Nikunj working" />
+              </div>
+              <div class="about-photo-box small">
+                <img src="/thumbnails/airiq.jpg" alt="Design work snapshot" />
+              </div>
+            </div>
+          </div>
+          <div class="about-right-page about-lined-page">
+            <p class="about-page-num">01</p>
+            <h3>Designer with an engineer's muscle memory.</h3>
+            <p>I am Nikunj, a product designer who enjoys turning complex workflows into calm, usable experiences.</p>
+            <p>I listen closely, sketch quickly, and care about the tiny moments where a product starts feeling human.</p>
+          </div>
         </div>
-        <div class="postcard-stamp">
-          <img src="/nikunj.png" alt="" />
-          <span class="stamp-year">97</span>
+
+        <div class="about-page-spread" data-about-page="1">
+          <div class="about-left-page">
+            <div class="about-photo-box large">
+              <img src="/Image/hero/Cafe.png" alt="Cafe tour memory" />
+              <span>cafe corners, warm light, fresh ideas</span>
+            </div>
+            <div class="about-photo-row">
+              <div class="about-photo-box small">
+                <img src="/about/work.jpg" alt="Coffee and work moment" />
+              </div>
+              <div class="about-photo-box small">
+                <img src="/Image/hero/ice-cream.png" alt="Sweet cafe detail" />
+              </div>
+            </div>
+          </div>
+          <div class="about-right-page about-lined-page">
+            <p class="about-page-num">02</p>
+            <h3>Cafe tours and coffee love.</h3>
+            <p>I like finding quiet cafes, ordering coffee, and letting the place slowly become a little design studio.</p>
+            <p>Good coffee, good light, and a notebook can fix almost any stuck thought.</p>
+          </div>
+        </div>
+
+        <div class="about-page-spread" data-about-page="2">
+          <div class="about-left-page">
+            <div class="about-photo-box large">
+              <img src="/thumbnails/airiq.jpg" alt="Travel product design snapshot" />
+              <span>travel teaches me how people really move</span>
+            </div>
+            <div class="about-photo-row">
+              <div class="about-photo-box small">
+                <img src="/about/portrait.jpg" alt="Travel portrait" />
+              </div>
+              <div class="about-photo-box small">
+                <img src="/thumbnails/biblofi.jpg" alt="Journey snapshot" />
+              </div>
+            </div>
+          </div>
+          <div class="about-right-page about-lined-page">
+            <p class="about-page-num">03</p>
+            <h3>Traveling keeps my eyes awake.</h3>
+            <p>I love noticing stations, streets, signs, menus, and the small systems that help people move through new places.</p>
+            <p>Every trip gives me references I quietly bring back into my design work.</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="about-letter-col">
-      <div class="letter-paper">
-        <p class="letter-greeting">Hey there,</p>
-        <p class="letter-body">I'm Nikunj — a designer who started out as an engineer and somewhere along the way fell completely in love with making things feel effortless.</p>
-        <p class="letter-body">I care deeply about the details most people never notice but always <em>feel</em>. The micro-interactions, the rhythm of a layout, the moment a product just clicks.</p>
-        <p class="letter-body">When I'm not designing, you'll find me brewing the perfect cup of coffee, obsessing over type specimens, or deep in a rabbit hole of cognitive psychology.</p>
-        <p class="letter-body">I believe good design is really just good empathy — and I'm always looking for the next problem worth solving.</p>
-        <p class="letter-sign">Nikunj 🌸</p>
-        <a href="/about" class="about-cta">
-          Know More
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+      <div class="about-page-controls" aria-label="About pages">
+        <button class="about-page-dot active" type="button" data-about-target="0" aria-label="Show about page 1"></button>
+        <button class="about-page-dot" type="button" data-about-target="1" aria-label="Show about page 2"></button>
+        <button class="about-page-dot" type="button" data-about-target="2" aria-label="Show about page 3"></button>
       </div>
-    </div>
+      <button class="about-page-grab about-page-grab-next" type="button" aria-label="Turn to next page"></button>
+      <button class="about-page-grab about-page-grab-prev" type="button" aria-label="Turn to previous page"></button>
 
+      <img class="about-ribbon about-float-slow" src="/Image/hero/Ribbon.png" alt="" />
+      <img class="about-flower about-flower-one about-float" src="/Image/hero/flower1.png" alt="" />
+      <img class="about-flower about-flower-two about-float-reverse" src="/Image/hero/flower2.png" alt="" />
+      <img class="about-flower about-flower-three about-float-soft" src="/Image/hero/flower3.png" alt="" />
+    </div>
   </div>
 </section>`;
 

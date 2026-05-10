@@ -13,6 +13,7 @@ const portfolioLinks = [
 
 const defaultNavItems = [
   { href: "/projects", label: "Work" },
+  { href: "/#about", label: "About" },
   { href: "/#experience", label: "Experience" },
   { href: "/#skills", label: "Skills" },
   { href: "/#contact", label: "Contact" }

@@ -146,6 +146,18 @@ function updateNav(){
 // ── SCROLL REVEAL ──
 const reveals=document.querySelectorAll('.reveal');
 const tlItems=document.querySelectorAll('.timeline-item');
+const fadeSections=document.querySelectorAll('.hero,.work,.process-section,.journey,.about,.contact');
+
+const sectionFadeObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting)entry.target.classList.add('section-visible');
+  });
+},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+
+fadeSections.forEach(section=>{
+  section.classList.add('section-fade');
+  sectionFadeObserver.observe(section);
+});
 
 function checkInView(){
   const vh=window.innerHeight;
@@ -198,8 +210,8 @@ const parallaxMap = [
   { sel: '.bento-work-card:nth-child(even)', speed: -0.018 },
 
   // About
-  { sel: '.about-ed-title',      speed: -0.04 },
-  { sel: '.about-ed-text-wrap',  speed: -0.03 },
+  { sel: '.about-title',      speed: -0.03 },
+  { sel: '.about-book-stage', speed: -0.02 },
 
   // Process
   { sel: '.process-main-title',  speed: -0.05 },
@@ -328,6 +340,85 @@ if(heroBlob) {
   },{threshold:0.3});
   var stage=document.querySelector('.anno-stage');
   if(stage)annoObs.observe(stage);
+})();
+
+// ── ABOUT BOOK PAGES ──
+(function(){
+  var spreads=Array.from(document.querySelectorAll('.about-page-spread'));
+  var dots=Array.from(document.querySelectorAll('.about-page-dot'));
+  var stage=document.querySelector('.about-book-stage');
+  var nextGrab=document.querySelector('.about-page-grab-next');
+  var prevGrab=document.querySelector('.about-page-grab-prev');
+  if(!spreads.length||!dots.length)return;
+  var current=0;
+  var flipTimer=null;
+  var swapTimer=null;
+  var isTurning=false;
+  var dragStartX=0;
+
+  function updateGrabs(){
+    if(prevGrab)prevGrab.classList.toggle('is-disabled',current===0);
+    if(nextGrab)nextGrab.classList.toggle('is-disabled',current===spreads.length-1);
+  }
+
+  function showPage(idx){
+    if(idx<0||idx>=spreads.length||isTurning)return;
+    if(idx===current)return;
+    var previous=current;
+    var next=idx;
+    isTurning=true;
+    if(stage){
+      window.clearTimeout(flipTimer);
+      window.clearTimeout(swapTimer);
+      stage.classList.remove('turning-forward','turning-back');
+      void stage.offsetWidth;
+      stage.classList.add(next>previous?'turning-forward':'turning-back');
+      swapTimer=window.setTimeout(function(){
+        spreads.forEach(function(spread,i){spread.classList.toggle('active',i===next);});
+        dots.forEach(function(dot,i){dot.classList.toggle('active',i===next);});
+        current=next;
+        updateGrabs();
+      },720);
+      flipTimer=window.setTimeout(function(){
+        stage.classList.remove('turning-forward','turning-back');
+        isTurning=false;
+      },1500);
+    }else{
+      spreads.forEach(function(spread,i){spread.classList.toggle('active',i===next);});
+      dots.forEach(function(dot,i){dot.classList.toggle('active',i===next);});
+      current=next;
+      updateGrabs();
+      isTurning=false;
+    }
+  }
+
+  function bindGrab(el,dir){
+    if(!el)return;
+    el.addEventListener('pointerdown',function(e){
+      dragStartX=e.clientX;
+      el.setPointerCapture&&el.setPointerCapture(e.pointerId);
+    });
+    el.addEventListener('pointerup',function(e){
+      var dx=e.clientX-dragStartX;
+      var draggedForward=dir>0&&dx<-18;
+      var draggedBack=dir<0&&dx>18;
+      if(Math.abs(dx)<18||draggedForward||draggedBack)showPage(current+dir);
+    });
+    el.addEventListener('click',function(e){
+      e.preventDefault();
+    });
+  }
+
+  dots.forEach(function(dot){
+    dot.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      showPage(parseInt(dot.getAttribute('data-about-target')||'0',10));
+    });
+  });
+  bindGrab(nextGrab,1);
+  bindGrab(prevGrab,-1);
+  updateGrabs();
 })();
 
 // ── ZOOM INTERLUDE ──
@@ -463,7 +554,11 @@ runParallax();
 export function HomeBehavior() {
   useEffect(() => {
     const tag = document.createElement("script");
-    tag.textContent = script;
+    tag.textContent = `(function(){
+      if(window.__homeBehaviorReady)return;
+      window.__homeBehaviorReady=true;
+      ${script}
+    })();`;
     document.body.appendChild(tag);
     return () => {
       tag.remove();

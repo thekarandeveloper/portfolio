@@ -1,18 +1,44 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
-
-const html = `<div id="loader"><div id="glassBlob"><svg id="glassArrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E90FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></div></div>`;
+import { useEffect, useState } from "react";
 
 export function HomeLoader() {
-  const [hide, setHide] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [phase, setPhase] = useState<"loading" | "exit" | "done">("loading");
 
-  useLayoutEffect(() => {
-    if (sessionStorage.getItem("loader_seen")) {
-      setHide(true);
-    }
+  useEffect(() => {
+    document.body.classList.add("home-loading");
+
+    let value = 0;
+    const timeouts: number[] = [];
+    const timer = window.setInterval(() => {
+      value = Math.min(100, value + Math.ceil((100 - value) * 0.08) + 1);
+      setProgress(value);
+
+      if (value >= 100) {
+        window.clearInterval(timer);
+        timeouts.push(window.setTimeout(() => {
+          setPhase("exit");
+          timeouts.push(window.setTimeout(() => {
+            setPhase("done");
+            document.body.classList.remove("home-loading");
+          }, 920));
+        }, 620));
+      }
+    }, 58);
+
+    return () => {
+      window.clearInterval(timer);
+      timeouts.forEach((timeout) => window.clearTimeout(timeout));
+      document.body.classList.remove("home-loading");
+    };
   }, []);
 
-  if (hide) return null;
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  if (phase === "done") return null;
+
+  return (
+    <div className={`home-loader ${phase === "exit" ? "is-exit" : ""}`} aria-live="polite" aria-label="Loading portfolio">
+      <div className="home-loader-num">{progress}%</div>
+    </div>
+  );
 }

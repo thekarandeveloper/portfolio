@@ -16,35 +16,8 @@ const html = `<section class="work" id="work">
         <h3 class="bento-proj-title">Air IQ</h3>
         <p class="bento-proj-desc">Simplifying B2B flight booking for 25,000+ travel agents across India.</p>
         <div class="bento-proj-visual">
-          <div style="display:flex;gap:10px;align-items:flex-end;">
-            <div class="bento-mock" style="width:148px;transform:rotate(-1.5deg);">
-              <div class="bento-mock-bar">
-                <div class="bento-mock-dot" style="background:#FF5F57;"></div>
-                <div class="bento-mock-dot" style="background:#FFBD2E;"></div>
-                <div class="bento-mock-dot" style="background:#28CA41;"></div>
-              </div>
-              <div class="bento-mock-body">
-                <div class="bento-mock-row" style="width:70%;background:rgba(30,144,255,0.14);"></div>
-                <div class="bento-mock-row" style="width:50%;background:rgba(0,0,0,0.05);"></div>
-                <div class="bento-mock-grid">
-                  <div class="bento-mock-block" style="background:rgba(30,144,255,0.08);"></div>
-                  <div class="bento-mock-block" style="background:rgba(30,144,255,0.08);"></div>
-                  <div class="bento-mock-block" style="background:rgba(0,0,0,0.04);"></div>
-                  <div class="bento-mock-block" style="background:rgba(0,0,0,0.04);"></div>
-                </div>
-              </div>
-            </div>
-            <div class="bento-mock" style="width:116px;opacity:0.5;transform:rotate(1deg) translateY(-10px);">
-              <div class="bento-mock-bar">
-                <div class="bento-mock-dot" style="background:#ddd;"></div>
-                <div class="bento-mock-dot" style="background:#e5e5e5;"></div>
-              </div>
-              <div class="bento-mock-body">
-                <div class="bento-mock-row" style="width:90%;background:rgba(0,0,0,0.06);"></div>
-                <div class="bento-mock-row" style="width:60%;background:rgba(0,0,0,0.04);"></div>
-                <div class="bento-mock-row" style="width:75%;background:rgba(30,144,255,0.10);"></div>
-              </div>
-            </div>
+          <div class="bento-image-frame bento-image-frame-wide">
+            <img src="/thumbnails/airiq.jpg" alt="Air IQ booking interface preview" loading="lazy" />
           </div>
         </div>
         <span class="bento-cta">View Case Study &rarr;</span>
@@ -109,17 +82,8 @@ const html = `<section class="work" id="work">
         <h3 class="bento-proj-title">BiblioFi</h3>
         <p class="bento-proj-desc">iOS library management reimagining book discovery and borrowing.</p>
         <div class="bento-proj-visual" style="justify-content:center;">
-          <div class="bento-mock" style="width:84px;border-radius:14px;transform:rotate(-2deg);">
-            <div class="bento-mock-bar" style="height:14px;background:rgba(180,83,9,0.06);border-radius:14px 14px 0 0;justify-content:center;">
-              <div style="width:16px;height:3px;background:rgba(0,0,0,0.09);border-radius:2px;"></div>
-            </div>
-            <div class="bento-mock-body" style="gap:4px;">
-              <div style="height:24px;background:rgba(180,83,9,0.09);border-radius:3px;"></div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;">
-                <div style="height:18px;background:rgba(0,0,0,0.05);border-radius:3px;"></div>
-                <div style="height:18px;background:rgba(180,83,9,0.07);border-radius:3px;"></div>
-              </div>
-            </div>
+          <div class="bento-image-frame bento-image-frame-phone">
+            <img src="/thumbnails/biblofi.jpg" alt="BiblioFi iOS app preview" loading="lazy" />
           </div>
         </div>
         <span class="bento-cta">View Case Study &rarr;</span>
