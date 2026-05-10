@@ -2,11 +2,9 @@ import { AboutSection } from "./AboutSection";
 import { ContactSection } from "./ContactSection";
 import { HeroSection } from "./HeroSection";
 import { HomeBehavior } from "./HomeBehavior";
-import { HomeLoader } from "./HomeLoader";
 import { HomeNav } from "./HomeNav";
 import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
-import { ProcessSection } from "./ProcessSection";
 import { WorkSection } from "./WorkSection";
 
 export function HomePageReplica() {
@@ -19,11 +17,9 @@ export function HomePageReplica() {
       <div className="scroll-tube" id="scrollTube">
         <div className="scroll-tube-fill" id="scrollTubeFill"></div>
       </div>
-      <HomeLoader />
       <HomeNav />
       <HeroSection />
       <WorkSection />
-      <ProcessSection />
       <JourneySection />
       <AboutSection />
       <ContactSection />

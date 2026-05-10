@@ -18,7 +18,8 @@
       "Bash(sleep 4 && cat /tmp/portfolio-dev.log)",
       "Read(//private/tmp/**)",
       "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio push origin main)",
-      "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio add -A)"
+      "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio add -A)",
+      "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio add components/home/HomePageReplica.tsx)"
     ],
     "additionalDirectories": [
       "/Users/nikunjtyagi/Documents/Portfolio-5may/portfolio/public/Image"

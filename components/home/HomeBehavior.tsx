@@ -76,100 +76,7 @@ const script = `// ── WATER SURFACE HOVER EFFECT ──
   obs.observe(hero);
 })();
 
-// ── SESSION CHECK ──
-const loaderSeen = sessionStorage.getItem('loader_seen');
 
-// ── LIQUID GLASS INTRO (first visit only) ──
-if (!loaderSeen) {
-  sessionStorage.setItem('loader_seen', '1');
-  document.body.classList.add('loading');
-
-  var loader = document.getElementById('loader');
-  var blob = document.getElementById('glassBlob');
-  var arrow = document.getElementById('glassArrow');
-
-  // Phase 1 — spring scale-in
-  setTimeout(function(){
-    blob.style.transition = 'transform 0.8s cubic-bezier(0.34,1.56,0.64,1)';
-    blob.style.transform = 'translate(-50%,-50%) scale(1)';
-    // Phase 2 — liquid morph begins once blob is open
-    setTimeout(function(){
-      blob.style.transition = '';
-      blob.style.animation = 'liquidMorph 2.4s ease-in-out infinite, liquidPulse 2.8s ease-in-out infinite';
-    }, 820);
-  }, 100);
-
-  // Phase 3 — contract to scroll-glass-orb size and position
-  setTimeout(function(){
-    blob.style.animation = '';
-
-    // Switch from % positioning to exact pixels so CSS can transition top/left
-    var cx = window.innerWidth / 2;
-    var cy = window.innerHeight / 2;
-    blob.style.transition = 'none';
-    blob.style.left = cx + 'px';
-    blob.style.top = cy + 'px';
-    blob.style.transform = 'translate(-50%,-50%) scale(1)';
-    blob.getBoundingClientRect(); // force reflow
-
-    // Target = center of the real scroll-glass-orb
-    var tx = cx;
-    var ty = window.innerHeight - parseFloat(getComputedStyle(document.documentElement).fontSize) * 2.2 - 19;
-    var orbEl = document.querySelector('.scroll-glass-orb');
-    if (orbEl) {
-      var r = orbEl.getBoundingClientRect();
-      tx = r.left + r.width / 2;
-      ty = r.top + r.height / 2;
-    }
-
-    blob.style.transition = 'top 0.72s cubic-bezier(0.34,1.2,0.64,1),left 0.72s cubic-bezier(0.34,1.2,0.64,1),width 0.65s cubic-bezier(0.34,1.4,0.64,1),height 0.65s cubic-bezier(0.34,1.4,0.64,1),box-shadow 0.5s ease';
-    blob.style.left = tx + 'px';
-    blob.style.top = ty + 'px';
-    blob.style.width = '38px';
-    blob.style.height = '38px';
-
-    // Phase 4 — arrow fades in inside the contracted orb
-    setTimeout(function(){
-      arrow.classList.add('show');
-
-      // Fade out loader, then staggered hero entrance
-      setTimeout(function(){
-        loader.style.transition = 'opacity 0.55s ease';
-        loader.style.opacity = '0';
-
-        setTimeout(function(){
-          loader.classList.add('gone');
-
-          var navEl = document.getElementById('nav');
-          var hcards = document.querySelectorAll('.hero-card');
-          var scrollHint = document.querySelector('.hero-scroll-hint');
-          if(navEl){ navEl.style.opacity='0'; navEl.style.transition='opacity 0.45s ease,transform 0.45s cubic-bezier(0.34,1.4,0.64,1)'; navEl.style.transform='translateX(-50%) translateY(-10px)'; }
-          hcards.forEach(function(c){ c.style.opacity='0'; c.style.transform='translateY(20px)'; });
-          if(scrollHint){ scrollHint.style.opacity='0'; }
-
-          document.body.classList.remove('loading');
-
-          requestAnimationFrame(function(){ requestAnimationFrame(function(){
-            if(navEl){ navEl.style.opacity=''; navEl.style.transform=''; }
-            hcards.forEach(function(c, i){
-              c.style.transition='opacity 0.45s ease '+(0.07*i+0.08)+'s,transform 0.5s cubic-bezier(0.34,1.4,0.64,1) '+(0.07*i+0.08)+'s';
-              c.style.opacity=''; c.style.transform='';
-            });
-            setTimeout(function(){
-              var heroName = document.querySelector('.hero-name-wrap');
-              if(heroName) heroName.classList.add('enter');
-            }, 220);
-            setTimeout(function(){
-              if(scrollHint){ scrollHint.style.transition='opacity 0.5s ease'; scrollHint.style.opacity='1'; }
-            }, 480);
-          }); });
-
-          checkInView();
-        }, 620);
-      }, 560);
-    }, 760);
-  }, 2100);
-}
 
 
 // ── CURSOR GLOW + GLASS ORB ──
@@ -272,15 +179,10 @@ scrollShapeEls.forEach(el => shapeObserver.observe(el));
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.08});
 reveals.forEach(el=>observer.observe(el));
 
-// ── SHOW CONTENT IMMEDIATELY (return visit) ──
-if (loaderSeen) {
-  const loaderEl = document.getElementById('loader');
-  if (loaderEl) loaderEl.classList.add('gone');
-  document.body.classList.remove('loading');
-  const heroName = document.querySelector('.hero-name-wrap');
-  if (heroName) heroName.classList.add('enter');
-  checkInView();
-}
+// ── HERO ENTRANCE ──
+const heroName = document.querySelector('.hero-name-wrap');
+if (heroName) heroName.classList.add('enter');
+checkInView();
 
 // ── PARALLAX ──
 const parallaxMap = [
@@ -300,10 +202,9 @@ const parallaxMap = [
   { sel: '.about-ed-text-wrap',  speed: -0.03 },
 
   // Process
-  { sel: '.process-main-title',                              speed: -0.05 },
-  { sel: '.process-phase:nth-child(1) .process-phase-left', speed: -0.03 },
-  { sel: '.process-phase:nth-child(3) .process-phase-left', speed: -0.04 },
-  { sel: '.process-phase:nth-child(5) .process-phase-left', speed: -0.03 },
+  { sel: '.process-main-title',  speed: -0.05 },
+  { sel: '.anno-canvas-wrap',    speed: -0.03 },
+  { sel: '.anno-legend',         speed: -0.02 },
 
   // Gallery
   { sel: '.gallery-section .section-title',   speed: -0.05 },
@@ -385,123 +286,116 @@ if(heroBlob) {
   }, { passive: true });
 }
 
-// ── CONVERSATION ──
+// ── ANNOTATION PINS ──
 (function(){
-  var EXCHANGES=[
-    {pm:"Users are dropping off. Can you just redesign the UI?",nik:"What's the one assumption we might be most wrong about?"},
-    {pm:"...that more features = better?",nik:"That's it. That's where I start. Not wireframes."},
-    {pm:"So nothing in Figma yet?",nik:"First I find the cheapest way to be wrong."},
-    {pm:"When does research end?",nik:"It doesn't. Discovery runs in every sprint."},
-    {pm:"How do you know when it's working?",nik:"I set the metric before the first frame."}
-  ];
-  var QA=[
-    {q:"How fast can you move?",a:"First frame in 48h if the brief is clear."},
-    {q:"What if I have no brief?",a:"Good. We write it together — that's where real design starts."},
-    {q:"Do you work with devs?",a:"Always in the same doc, same sprint."},
-    {q:"What tools do you use?",a:"Figma, Claude, v0 — lenses. The thinking is mine."}
-  ];
-  var EMPTY_HTML='<div class="conv-empty" id="convEmptyState"><div class="conv-empty-bubbles"><div class="conv-empty-bubble eb-pm"></div><div class="conv-empty-bubble eb-nik"></div><div class="conv-empty-bubble eb-pm eb-short"></div></div><span class="conv-empty-label">loading</span></div>';
-  var convBody=document.getElementById('convBody');
-  var convWindow=document.getElementById('convWindow');
-  var convStage=document.getElementById('convStage');
-  var convReplay=document.getElementById('convReplay');
-  var qChips=document.getElementById('qChips');
-  var qConnect=document.getElementById('qConnect');
-  if(!convBody)return;
-  var step=0,playing=false,started=false,observer;
-  function typingMs(t){var l=t.length;return l<40?900:l<70?1200:1500;}
-  function scrollBottom(){convBody.scrollTop=convBody.scrollHeight;}
-  function makeRow(isPM){
-    var row=document.createElement('div');
-    row.className='conv-msg '+(isPM?'pm':'nik');
-    var av=document.createElement('div');
-    av.className='conv-av '+(isPM?'pm-av':'nik-av');
-    av.textContent=isPM?'PM':'NT';
-    var bwrap=document.createElement('div');
-    bwrap.className='conv-bubble-wrap';
-    row.appendChild(av);
-    row.appendChild(bwrap);
-    return {row:row,av:av,bwrap:bwrap};
+  var pins=Array.from(document.querySelectorAll('.anno-pin'));
+  var legs=Array.from(document.querySelectorAll('.anno-legend-step'));
+  var active=-1;
+  function setActive(idx){
+    pins.forEach(function(p,i){p.classList.toggle('pinned',i===idx);});
+    legs.forEach(function(l,i){l.classList.toggle('leg-active',i===idx);});
+    active=idx;
   }
-  function addMsg(isPM,text){
-    return new Promise(function(resolve){
-      var parts=makeRow(isPM);
-      var typ=document.createElement('div');
-      typ.className='conv-typing';
-      typ.innerHTML='<div class="conv-typing-dot"></div><div class="conv-typing-dot"></div><div class="conv-typing-dot"></div>';
-      parts.bwrap.appendChild(typ);
-      parts.av.classList.add('conv-av-pulse');
-      convBody.appendChild(parts.row);
-      scrollBottom();
-      setTimeout(function(){
-        parts.av.classList.remove('conv-av-pulse');
-        var bub=document.createElement('div');
-        bub.className='conv-bubble '+(isPM?'conv-msg-enter-pm':'conv-msg-enter-nik');
-        bub.textContent=text;
-        parts.bwrap.replaceChild(bub,typ);
-        scrollBottom();
-        resolve();
-      },typingMs(text));
+  function clear(){
+    pins.forEach(function(p){p.classList.remove('pinned');});
+    legs.forEach(function(l){l.classList.remove('leg-active');});
+    active=-1;
+  }
+  pins.forEach(function(pin,i){
+    pin.addEventListener('click',function(e){
+      e.stopPropagation();
+      active===i?clear():setActive(i);
     });
-  }
-  function showSplit(){
-    setTimeout(function(){
-      if(convStage)convStage.classList.add('split');
-      if(convReplay)convReplay.classList.add('show');
-    },800);
-  }
-  function runNext(){
-    if(playing||step>=EXCHANGES.length)return;
-    playing=true;
-    if(step===0){var es=document.getElementById('convEmptyState');if(es)es.remove();}
-    var ex=EXCHANGES[step];
-    addMsg(true,ex.pm).then(function(){
-      return new Promise(function(r){setTimeout(r,500);});
-    }).then(function(){
-      return addMsg(false,ex.nik);
-    }).then(function(){
-      step++;playing=false;
-      if(step<EXCHANGES.length){setTimeout(runNext,2200);}
-      else{showSplit();}
+  });
+  legs.forEach(function(leg,i){
+    leg.addEventListener('click',function(){
+      active===i?clear():setActive(i);
     });
-  }
-  if(qChips){
-    qChips.addEventListener('click',function(e){
-      var chip=e.target.closest('.q-chip');
-      if(!chip||chip.classList.contains('used'))return;
-      var idx=parseInt(chip.getAttribute('data-q'),10);
-      var qa=QA[idx];
-      if(!qa)return;
-      chip.classList.add('used');
-      addMsg(true,qa.q).then(function(){
-        return new Promise(function(r){setTimeout(r,400);});
-      }).then(function(){
-        return addMsg(false,qa.a);
-      }).then(function(){
-        setTimeout(function(){if(qConnect)qConnect.classList.add('show');},600);
-      });
-    });
-  }
-  function reset(){
-    step=0;playing=false;started=false;
-    if(convBody)convBody.innerHTML=EMPTY_HTML;
-    if(convStage)convStage.classList.remove('split');
-    if(qConnect)qConnect.classList.remove('show');
-    if(convReplay)convReplay.classList.remove('show');
-    document.querySelectorAll('.q-chip').forEach(function(c){c.classList.remove('used');});
-    if(convWindow&&observer)observer.observe(convWindow);
-  }
-  observer=new IntersectionObserver(function(entries){
+  });
+  document.addEventListener('click',function(){if(active!==-1)clear();});
+  var annoObs=new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
-      if(entry.isIntersecting&&!started){
-        started=true;
-        observer.unobserve(entry.target);
-        setTimeout(runNext,900);
+      if(entry.isIntersecting){
+        pins.forEach(function(pin,i){
+          setTimeout(function(){
+            pin.classList.add('anno-pin-pulse');
+            setTimeout(function(){pin.classList.remove('anno-pin-pulse');},1900);
+          },i*150+200);
+        });
+        annoObs.unobserve(entry.target);
       }
     });
   },{threshold:0.3});
-  if(convWindow)observer.observe(convWindow);
-  if(convReplay)convReplay.addEventListener('click',function(){reset();setTimeout(runNext,900);});
+  var stage=document.querySelector('.anno-stage');
+  if(stage)annoObs.observe(stage);
+})();
+
+// ── ZOOM INTERLUDE ──
+(function(){
+  var section=document.getElementById('zoom-interlude');
+  if(!section)return;
+  var l1=section.querySelector('.zoom-line-1');
+  var l2=section.querySelector('.zoom-line-2');
+  var l3=section.querySelector('.zoom-line-3');
+  var sub=section.querySelector('.zoom-sub');
+  var ticking=false;
+  function c(v){return v<0?0:v>1?1:v;}
+  function mr(p,s,e){return c((p-s)/(e-s));}
+  function eOut(t){return 1-(1-t)*(1-t)*(1-t);}
+  function update(){
+    var rect=section.getBoundingClientRect();
+    var total=section.offsetHeight-window.innerHeight;
+    var p=c(-rect.top/total);
+    var l1o=p<0.06?mr(p,0,0.06):p>0.80?1-mr(p,0.80,0.90):1;
+    var l1s=4-3*eOut(mr(p,0.06,0.42));
+    l1.style.opacity=l1o;
+    l1.style.transform='scale('+l1s+')';
+    l2.style.opacity=p<0.42?0:p>0.80?1-mr(p,0.80,0.90):mr(p,0.42,0.54);
+    l3.style.opacity=p<0.55?0:p>0.80?1-mr(p,0.80,0.90):mr(p,0.55,0.65);
+    sub.style.opacity=p<0.66?0:p>0.80?1-mr(p,0.80,0.90):mr(p,0.66,0.74);
+    ticking=false;
+  }
+  var inView=false;
+  new IntersectionObserver(function(es){es.forEach(function(e){inView=e.isIntersecting;});},{threshold:0}).observe(section);
+  window.addEventListener('scroll',function(){if(!inView||ticking)return;ticking=true;requestAnimationFrame(update);},{passive:true});
+  update();
+})();
+
+// ── SIGNOFF SECTION ──
+(function(){
+  var section=document.getElementById('signoff');
+  if(!section)return;
+  var fixed=false;
+
+  /* Trigger entrance animation when section scrolls into view */
+  var enterObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting&&!fixed)section.classList.add('stage-entered');
+    });
+  },{threshold:0.3});
+  enterObs.observe(section);
+
+  /* Click anywhere in section → snap blocks to monogram */
+  section.addEventListener('click',function(){
+    if(fixed)return;
+    fixed=true;
+    section.classList.add('stage-fixed');
+  });
+
+  /* Custom cursor: big on hover (communicates clickability) */
+  section.addEventListener('mouseenter',function(){
+    var cur=document.getElementById('cursor');
+    if(cur)cur.classList.add('big');
+  });
+  section.addEventListener('mouseleave',function(){
+    var cur=document.getElementById('cursor');
+    if(cur)cur.classList.remove('big');
+  });
+  /* After fix, restore normal cursor size */
+  section.addEventListener('click',function(){
+    var cur=document.getElementById('cursor');
+    if(cur)cur.classList.remove('big');
+  });
 })();
 
 var bgSections=Array.from(document.querySelectorAll('.work,.journey,.about,.gallery-section,.testimonials-section,.process-section,.contact,.scrapbook-section'));
