@@ -509,8 +509,14 @@ function ScreensSection() {
               {feature.impact}
             </span>
           </div>
-          <div style={{ order: feature.reverse ? 1 : 2 }}>
-            <CsImg label={`${feature.title} — feature screen`} aspect="9/16" icon="📱" sub="Hi-fi iOS screen" />
+          <div style={{ order: feature.reverse ? 1 : 2, borderRadius:14, overflow:"hidden" }}>
+            <Image
+              src={feature.img}
+              alt={feature.title}
+              width={600}
+              height={1067}
+              style={{ width:"100%", height:"auto", display:"block", borderRadius:14 }}
+            />
           </div>
         </div>
       ))}

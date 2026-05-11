@@ -56,6 +56,7 @@ export const bibloFeatures = [
       "18 out of 20 usability test participants successfully found and located a book on their first attempt."
     ],
     impact: "📚 90% search success rate in testing",
+    img: "/Image/Biblofi/smart-book.png",
     phone: "discover"
   },
   {
@@ -67,22 +68,12 @@ export const bibloFeatures = [
       "17 out of 20 participants successfully booked a seat in usability testing. The 3 who struggled found the confirmation step slightly unclear — which we improved in the final iteration."
     ],
     impact: "📚 85% seat booking success rate",
+    img: "/Image/Biblofi/seat.png",
     phone: "seat",
     reverse: true
   },
   {
     num: "03",
-    tag: "Issue & Return Tracking",
-    title: "No more queues. No more forgotten due dates.",
-    desc: [
-      "The issue and return flow is the heart of the app. Students can request a book digitally, track its status, and receive push notifications when due dates approach. The fine tracker shows exactly what's owed and why — no surprises at the counter.",
-      "A personal reading history log also lets students track books they've previously borrowed — solving a pain point both personas mentioned during research."
-    ],
-    impact: "📚 Automated reminders reduce fines",
-    phone: "books"
-  },
-  {
-    num: "04",
     tag: "Scan & Search",
     title: "Point your camera. Find the book instantly.",
     desc: [
@@ -90,6 +81,7 @@ export const bibloFeatures = [
       "This was particularly well-received by tech-savvy users like Arjun's persona — the speed of scanning eliminated the need to ask librarians for basic information."
     ],
     impact: "📚 Eliminates dependency on librarians",
+    img: "/Image/Biblofi/scan.png",
     phone: "scan",
     reverse: true
   }
