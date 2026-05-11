@@ -1244,11 +1244,14 @@ function CompatibilityShowcase() {
   return (
     <div style={{ marginTop: 28 }}>
       {/* Label */}
-      <div style={{
-        fontSize: "0.52rem", fontWeight: 800, letterSpacing: "0.18em",
-        textTransform: "uppercase", color: "#9CA3AF", marginBottom: 14,
-        fontFamily: "ui-monospace, monospace",
-      }}>Works across all search types</div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
+        <div style={{ width: 3, height: 16, borderRadius: 2, background: "#1E90FF", flexShrink: 0 }} />
+        <span style={{
+          fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
+          textTransform: "uppercase", color: "#374151",
+          fontFamily: "ui-monospace, monospace",
+        }}>Works across all search types</span>
+      </div>
 
       {/* Stage */}
       <div style={{
@@ -1412,11 +1415,14 @@ function FareListingBlock() {
 
       {/* ── Old Design ── */}
       <div style={{ marginBottom: 36 }}>
-        <div style={{
-          fontSize: "0.52rem", fontWeight: 800, letterSpacing: "0.18em",
-          textTransform: "uppercase", color: "#9CA3AF", marginBottom: 10,
-          fontFamily: "ui-monospace, monospace",
-        }}>The outdated design</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#EF4444", flexShrink: 0 }} />
+          <span style={{
+            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
+            textTransform: "uppercase", color: "#374151",
+            fontFamily: "ui-monospace, monospace",
+          }}>The outdated design</span>
+        </div>
         <div style={{
           borderRadius: 16, overflow: "hidden",
           border: "1.5px solid #E5E7EB",
@@ -1441,11 +1447,14 @@ function FareListingBlock() {
 
       {/* ── What I Tried — vertical timeline ── */}
       <div>
-        <div style={{
-          fontSize: "0.52rem", fontWeight: 800, letterSpacing: "0.18em",
-          textTransform: "uppercase", color: "#9CA3AF", marginBottom: 24,
-          fontFamily: "ui-monospace, monospace",
-        }}>What I Tried</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 24 }}>
+          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#111827", flexShrink: 0 }} />
+          <span style={{
+            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
+            textTransform: "uppercase", color: "#374151",
+            fontFamily: "ui-monospace, monospace",
+          }}>What I Tried</span>
+        </div>
 
         {/* Timeline container */}
         <div style={{ position: "relative", paddingLeft: 44 }}>
