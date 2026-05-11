@@ -151,7 +151,7 @@ export function PasswordGate({ children, slug }: { children: ReactNode; slug: st
       <div ref={glowRef} className="pgx-cursor-glow" aria-hidden="true" />
 
       {/* Back button — floating pill, matching nav style */}
-      <Link href="/projects" className="pgx-back">
+      <Link href="/" className="pgx-back">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <polyline points="15 18 9 12 15 6" />
         </svg>
