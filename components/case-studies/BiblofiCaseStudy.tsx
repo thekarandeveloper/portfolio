@@ -51,144 +51,51 @@ const META_ROWS = [
 ];
 
 /* ─────────────────────────────────────────────────────────────────────
-   BOOK ANIMATION COMPONENTS
+   HERO PHONE MOCKUP
 ───────────────────────────────────────────────────────────────────── */
-
-function OpenBook() {
-  const lines = [26, 40, 54, 68, 82, 96, 110, 124];
+function PhoneMockupScene() {
   return (
     <div style={{
-      position: "relative", width: 240, height: 162,
-      filter: "drop-shadow(0 22px 42px rgba(0,0,0,0.48))",
+      position:"relative", width:"100%", height:380,
+      display:"flex", alignItems:"center", justifyContent:"center",
     }}>
-      {/* Cover base */}
+      {/* Ambient glow */}
       <div style={{
-        position: "absolute", bottom: -8, left: 6, right: 6, height: 16,
-        background: "linear-gradient(to bottom, #4A2008, #2D1204)",
-        borderRadius: "0 0 6px 6px", boxShadow: "0 8px 24px rgba(0,0,0,0.5)", zIndex: 0,
+        position:"absolute", width:260, height:260, borderRadius:"50%",
+        background:"radial-gradient(circle, rgba(200,112,58,0.22) 0%, transparent 70%)",
+        animation:"bibloGlowPulse 5s ease-in-out infinite",
+        pointerEvents:"none",
       }} />
 
-      {/* Left page */}
-      <div style={{
-        position: "absolute", left: 0, top: 0,
-        width: "calc(50% - 3px)", height: "100%",
-        background: "linear-gradient(120deg,#FEF8ED 0%,#F5E6C4 100%)",
-        borderRadius: "6px 0 0 2px",
-        transformOrigin: "right center",
-        animation: "bibloPageLeft 6s ease-in-out infinite",
-        boxShadow: "inset -6px 0 12px rgba(0,0,0,0.12),-2px 4px 16px rgba(0,0,0,0.2)",
-        overflow: "hidden", zIndex: 1,
-      }}>
-        <div style={{ position:"absolute", top:10, left:8, right:8, fontSize:"4.5px", fontWeight:700, color:"rgba(100,60,20,0.5)", letterSpacing:"0.15em", textTransform:"uppercase" }}>BibloFi</div>
-        {lines.map((top, i) => (
-          <div key={i} style={{ position:"absolute", left:8, right: i%4===0?22:6, top, height:1.5, background:`rgba(120,70,20,${i===0?0.22:0.1})`, borderRadius:1 }} />
-        ))}
-      </div>
-
-      {/* Right page */}
-      <div style={{
-        position: "absolute", right: 0, top: 0,
-        width: "calc(50% - 3px)", height: "100%",
-        background: "linear-gradient(60deg,#F5E6C4 0%,#FEF0D4 100%)",
-        borderRadius: "0 6px 2px 0",
-        transformOrigin: "left center",
-        animation: "bibloPageRight 6s ease-in-out infinite 0.4s",
-        boxShadow: "inset 6px 0 12px rgba(0,0,0,0.12),2px 4px 16px rgba(0,0,0,0.2)",
-        overflow: "hidden", zIndex: 1,
-      }}>
-        {lines.map((top, i) => (
-          <div key={i} style={{ position:"absolute", left: i%4===2?18:6, right:8, top, height:1.5, background:`rgba(120,70,20,${i===4?0.22:0.1})`, borderRadius:1 }} />
-        ))}
-        <div style={{ position:"absolute", bottom:14, right:10, width:24, height:24, borderRadius:"50%", border:"1.5px solid rgba(200,112,58,0.28)", background:"rgba(200,112,58,0.1)" }} />
-      </div>
-
-      {/* Spine */}
-      <div style={{
-        position: "absolute", left:"50%", top:0, bottom:0, width:6,
-        transform: "translateX(-50%)",
-        background: "linear-gradient(to right,#5C2E0A,#7A3E15,#5C2E0A)",
-        zIndex: 3, boxShadow: "0 0 8px rgba(0,0,0,0.4)",
-      }} />
-
-      {/* Bookmark ribbon */}
-      <div style={{
-        position:"absolute", top:0, right:"32%", width:7, height:38,
-        background: "linear-gradient(to bottom,#B83232,#7A1A1A)",
-        zIndex:4, clipPath:"polygon(0 0,100% 0,100% 75%,50% 100%,0 75%)",
-      }} />
-    </div>
-  );
-}
-
-function MiniBook({ color, width = 30, height = 46 }: { color: string; width?: number; height?: number }) {
-  const r = parseInt(color.slice(1,3),16);
-  const g = parseInt(color.slice(3,5),16);
-  const b = parseInt(color.slice(5,7),16);
-  const lighter = `rgb(${Math.min(r+40,255)},${Math.min(g+28,255)},${Math.min(b+18,255)})`;
-  return (
-    <div style={{
-      width, height,
-      background: `linear-gradient(135deg,${lighter} 0%,${color} 100%)`,
-      borderRadius: "2px 4px 4px 2px",
-      position: "relative", overflow: "hidden",
-      boxShadow: "2px 4px 14px rgba(0,0,0,0.38)",
-    }}>
-      <div style={{ position:"absolute", left:0, top:0, bottom:0, width:5, background:"rgba(0,0,0,0.22)" }} />
-      <div style={{ position:"absolute", left:8, right:4, top:"28%", height:1.5, background:"rgba(255,255,255,0.35)", borderRadius:1 }} />
-      <div style={{ position:"absolute", left:8, right:10, top:"42%", height:1.5, background:"rgba(255,255,255,0.2)", borderRadius:1 }} />
-    </div>
-  );
-}
-
-const SHELF_BOOKS = [
-  { color:"#6B3A1F", h:48, w:15 },
-  { color:"#C17F3E", h:40, w:11, pop:true },
-  { color:"#8B4513", h:54, w:17 },
-  { color:"#D4854A", h:44, w:13 },
-  { color:"#5C2E0A", h:50, w:19 },
-  { color:"#A0522D", h:38, w:11 },
-  { color:"#CD853F", h:52, w:15 },
-  { color:"#8B6914", h:42, w:13, pop:true },
-  { color:"#B85C38", h:46, w:17 },
-  { color:"#7A4520", h:36, w:11 },
-  { color:"#C17F3E", h:48, w:13 },
-  { color:"#6B3A1F", h:44, w:16 },
-];
-
-function ShelfScene() {
-  return (
-    <div style={{ position:"relative", display:"flex", alignItems:"flex-end", justifyContent:"center", gap:2, width:"100%", paddingBottom:8 }}>
-      {SHELF_BOOKS.map((book, i) => (
-        <div key={i} style={{
-          width: book.w, height: book.h,
-          background: `linear-gradient(to right,rgba(0,0,0,0.18),transparent 25%,transparent 75%,rgba(0,0,0,0.08)),${book.color}`,
-          borderRadius: "2px 2px 0 0", flexShrink: 0,
-          animation: book.pop ? `bibloShelfPop ${4+i*0.35}s ease-in-out infinite ${i*0.4}s` : undefined,
+      {/* iPhone frame */}
+      <div className="biblo-phone-wrap">
+        {/* Dynamic island */}
+        <div style={{
+          position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
+          width:88, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
         }} />
-      ))}
-      {/* Shelf plank */}
-      <div style={{
-        position:"absolute", bottom:0, left:"4%", right:"4%", height:7,
-        background:"linear-gradient(to bottom,#5C3010,#3D1E05)",
-        borderRadius:"1px 1px 3px 3px", boxShadow:"0 4px 14px rgba(0,0,0,0.45)",
-      }} />
-    </div>
-  );
-}
-
-function LibraryScene() {
-  return (
-    <div style={{ position:"relative", width:"100%", height:360, display:"flex", alignItems:"center", justifyContent:"center" }}>
-      <div className="biblo-scene-glow" />
-      <div className="biblo-mini biblo-mini-1"><MiniBook color="#8B4513" width={34} height={50} /></div>
-      <div className="biblo-mini biblo-mini-2"><MiniBook color="#C17F3E" width={26} height={42} /></div>
-      <div className="biblo-mini biblo-mini-3"><MiniBook color="#A0522D" width={22} height={36} /></div>
-      <div className="biblo-book-main"><OpenBook /></div>
-      <span className="biblo-sparkle biblo-sp-1">✦</span>
-      <span className="biblo-sparkle biblo-sp-2">✦</span>
-      <span className="biblo-sparkle biblo-sp-3">✦</span>
-      <span className="biblo-sparkle biblo-sp-4">✦</span>
-      <div className="biblo-shelf-row"><ShelfScene /></div>
+        {/* Screen */}
+        <div style={{ position:"absolute", inset:0, borderRadius:42, overflow:"hidden" }}>
+          <Image
+            src="/Image/Biblofi/smart-book.png"
+            alt="BibloFi — Smart Book Discovery screen"
+            width={280}
+            height={606}
+            style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}
+          />
+          {/* Glass sheen */}
+          <div style={{
+            position:"absolute", inset:0,
+            background:"linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%)",
+            borderRadius:42, pointerEvents:"none",
+          }} />
+        </div>
+        {/* Power button */}
+        <div style={{ position:"absolute", right:-4, top:110, width:4, height:64, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
+        {/* Volume buttons */}
+        <div style={{ position:"absolute", left:-4, top:88,  width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
+        <div style={{ position:"absolute", left:-4, top:142, width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
+      </div>
     </div>
   );
 }
@@ -219,9 +126,9 @@ function BibloHero() {
             ))}
           </div>
         </div>
-        {/* Right — animated library scene */}
+        {/* Right — phone mockup */}
         <div className="csl-hero-right">
-          <LibraryScene />
+          <PhoneMockupScene />
         </div>
       </div>
 

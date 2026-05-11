@@ -6788,6 +6788,26 @@ body.csl-page-active footer { display: none !important; }
 ═══════════════════════════════════════════════════════════════════════ */
 
 /* Atmospheric warm glow behind the open book */
+/* ── Phone mockup hero ── */
+.biblo-phone-wrap {
+  position: relative;
+  width: 210px;
+  height: 454px;
+  background: #161616;
+  border-radius: 42px;
+  box-shadow:
+    0 0 0 1.5px rgba(255,255,255,0.07),
+    0 0 0 3px #222,
+    0 40px 80px rgba(0,0,0,0.55),
+    0 12px 28px rgba(0,0,0,0.3);
+  animation: bibloPhoneFloat 5s ease-in-out infinite;
+  transform: rotate(-2deg);
+}
+@keyframes bibloPhoneFloat {
+  0%, 100% { transform: rotate(-2deg) translateY(0px); }
+  50%       { transform: rotate(-2deg) translateY(-14px); }
+}
+
 .biblo-scene-glow {
   position: absolute;
   width: 300px; height: 300px;
