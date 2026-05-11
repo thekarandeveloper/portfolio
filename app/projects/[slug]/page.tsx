@@ -4,6 +4,9 @@ import Link from "next/link";
 import { AirIqCaseStudy } from "@/components/case-studies/AirIqCaseStudy";
 import { BiblofiCaseStudy } from "@/components/case-studies/BiblofiCaseStudy";
 import { EcotrackCaseStudy } from "@/components/case-studies/EcotrackCaseStudy";
+import { CareAutorCaseStudy } from "@/components/case-studies/CareAutorCaseStudy";
+import { DesignSystemCaseStudy } from "@/components/case-studies/DesignSystemCaseStudy";
+import { PasswordGate } from "@/components/PasswordGate";
 import { CloudinaryImage } from "@/components/CloudinaryImage";
 import { Container } from "@/components/Container";
 import { MDXRenderer } from "@/components/MDXRenderer";
@@ -50,7 +53,11 @@ export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
 
   if (slug === "airiq") {
-    return <AirIqCaseStudy />;
+    return (
+      <PasswordGate slug="airiq">
+        <AirIqCaseStudy />
+      </PasswordGate>
+    );
   }
 
   if (slug === "biblofi") {
@@ -59,6 +66,18 @@ export default async function ProjectPage({ params }: Props) {
 
   if (slug === "ecotrack") {
     return <EcotrackCaseStudy />;
+  }
+
+  if (slug === "care-autor") {
+    return (
+      <PasswordGate slug="care-autor">
+        <CareAutorCaseStudy />
+      </PasswordGate>
+    );
+  }
+
+  if (slug === "project-5") {
+    return <DesignSystemCaseStudy />;
   }
 
   let project;

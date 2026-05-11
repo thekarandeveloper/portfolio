@@ -49,7 +49,7 @@ const html = `<section class="work" id="work">
     </a>
 
     <!-- Design System — span 1, row 2 -->
-    <a class="bento-work-card reveal reveal-delay-2" href="#" style="background:linear-gradient(180deg,#fef0f7 0%,#ffffff 100%);">
+    <a class="bento-work-card reveal reveal-delay-2" href="/projects/project-5" style="background:linear-gradient(180deg,#fef0f7 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">🎨</div>

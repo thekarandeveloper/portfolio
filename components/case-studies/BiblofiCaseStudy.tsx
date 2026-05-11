@@ -1,631 +1,572 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { accessibilityCards, bibloFeatures, bibloMeta, bibloRoleChips, bibloTeam, diamondSteps, learnings, personas, researchStats, testResults } from "./biblofiData";
+import { CaseStudyPage, CsSection, CsSectionHeader, CsImg } from "./CaseStudyLayout";
+import {
+  accessibilityCards,
+  bibloFeatures,
+  bibloMeta,
+  bibloRoleChips,
+  bibloTeam,
+  diamondSteps,
+  learnings,
+  personas,
+  researchStats,
+  testResults,
+} from "./biblofiData";
 
-type FeaturePhoneType = (typeof bibloFeatures)[number]["phone"];
+/* ─────────────────────────────────────────────────────────────────────
+   TOC + META
+───────────────────────────────────────────────────────────────────── */
+const TOC_ITEMS = [
+  { id: "overview",     label: "Overview"         },
+  { id: "process",      label: "Design Process"   },
+  { id: "research",     label: "Research"         },
+  { id: "insights",     label: "Personas"         },
+  { id: "wireframes",   label: "Wireframes"       },
+  { id: "screens",      label: "Key Features"     },
+  { id: "final",        label: "Final Screens"    },
+  { id: "accessibility",label: "Accessibility"    },
+  { id: "testing",      label: "Usability Testing"},
+  { id: "learnings",    label: "Learnings"        },
+];
 
-export function BiblofiCaseStudy() {
-  const pageRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
+const META_ROWS = [
+  { label: "Role",     value: "Lead UX Designer" },
+  { label: "Duration", value: "1 Month"          },
+  { label: "Platform", value: "iOS App"          },
+  { label: "Tools",    value: "Figma · FigJam"   },
+  { label: "Context",  value: "Infosys Internship"},
+];
 
-  useEffect(() => {
-    const root = pageRef.current;
-    const progress = progressRef.current;
-    if (!root || !progress) return;
-
-    const updateProgress = () => {
-      const d = document.documentElement;
-      progress.style.width = `${(d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100}%`;
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    root.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
-    updateProgress();
-
-    return () => {
-      window.removeEventListener("scroll", updateProgress);
-      observer.disconnect();
-    };
-  }, []);
-
+/* ─────────────────────────────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────────────────────────────── */
+function BibloHero() {
   return (
-    <div className="biblofi-case-study" ref={pageRef}>
-      <div className="progress-bar" ref={progressRef} />
-      <Hero />
-      <Overview />
-      <DoubleDiamond />
-      <Research />
-      <Personas />
-      <Wireframes />
-      <Features />
-      <FinalScreens />
-      <Accessibility />
-      <Testing />
-      <Oreo />
-      <Learnings />
-      <NextProject />
-    </div>
-  );
-}
-
-function Hero() {
-  return (
-    <div className="cs-hero">
-      <div className="hero-bg" />
-      <div className="hero-grid" />
-      <div className="hero-glow" />
-      <div className="hero-glow2" />
-      <div className="hero-phone">
-        <HeroPhone />
-      </div>
-      <div className="hero-content">
-        <p className="cs-company">Infosys Internship · iOS App</p>
-        <h1 className="cs-title">
-          BibloFi —<br />
-          <em>Where Convenience</em>
-          <br />
-          Meets Curiosity
-        </h1>
-        <p className="cs-tagline">Redesigning the library experience for digital-first students — from browsing to booking, everything just a tap away.</p>
-        <div className="cs-meta">
-          {bibloMeta.map((item) => (
-            <div key={item.label}>
-              <p className="cs-meta-label">{item.label}</p>
-              <p className="cs-meta-val">{item.value}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function HeroPhone() {
-  return (
-    <div className="phone-shell">
-      <div className="phone-bar">
-        <div className="phone-notch" />
-      </div>
-      <div className="phone-screen">
-        <div className="mini-head">
-          <div className="mini-brand">BibloFi</div>
-          <div className="mini-badge">📚 Library</div>
-        </div>
-        <div className="mini-card">
-          <div className="mini-muted">Search books</div>
-          <div className="mini-search">🔍 Title, author, genre...</div>
-        </div>
-        <div className="mini-card">
-          <div className="mini-section">Available now</div>
-          <div className="mini-books">
-            <div />
-            <div />
-            <div />
+    <div className="csl-hero">
+      <div className="csl-hero-grid" />
+      <div className="csl-hero-glow" />
+      <div className="csl-hero-inner">
+        {/* Left */}
+        <div className="csl-hero-left">
+          <div className="csl-hero-eyebrow">Infosys Internship · iOS App</div>
+          <h1 className="csl-hero-title">
+            BibloFi —<br />
+            <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.65)" }}>Where Convenience</em>
+            <br />Meets Curiosity
+          </h1>
+          <p className="csl-hero-desc">
+            Redesigning the library experience for digital-first students — from browsing to booking, everything just a tap away.
+          </p>
+          <div className="csl-hero-chips">
+            {bibloMeta.map((item) => (
+              <span className="csl-hero-chip" key={item.label}>
+                {item.label}: {item.value}
+              </span>
+            ))}
           </div>
         </div>
-        <div className="mini-cta">Book a Study Seat →</div>
-        <MiniTabs />
-      </div>
-    </div>
-  );
-}
-
-function MiniTabs() {
-  return (
-    <div className="fp-tabs">
-      <div className="fp-tab active">🏠 Home</div>
-      <div className="fp-tab">🔍 Search</div>
-      <div className="fp-tab">📖 My Books</div>
-      <div className="fp-tab">👤 Profile</div>
-    </div>
-  );
-}
-
-function Overview() {
-  return (
-    <section className="overview">
-      <div className="container">
-        <div className="ov-grid">
-          <div>
-            <p className="section-label reveal">Project Overview</p>
-            <h2 className="section-title reveal rd1">
-              A library app built
-              <br />
-              <em>for how students actually live.</em>
-            </h2>
-            <p className="body-text reveal rd2">BibloFi is a mobile app designed to simplify how library members access books and services. From browsing by genre to scanning for availability, issuing books, and booking seats — everything is just a tap away.</p>
-            <p className="body-text reveal rd3">This project was developed in one month during my internship at Infosys. I led the design of the entire member experience, focusing on creating an interface that feels effortless, modern, and human.</p>
-            <div className="role-chips reveal rd3">
-              {bibloRoleChips.map((chip) => (
-                <span className="chip" key={chip}>
-                  {chip}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="reveal rd2">
-            <div className="team-box">
-              <p className="team-label">My team</p>
-              <div className="team-items">
-                {bibloTeam.map((item) => (
-                  <div className="team-item" key={item.dot}>
-                    {item.dot === "NT" ? (
-                      <div className="team-dot" style={{ padding: 0, overflow: "hidden" }}>
-                        <Image src="/Image/Biblofi/me.png" alt="Nikunj Tyagi" width={28} height={28} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                      </div>
-                    ) : (
-                      <div className="team-dot">{item.dot}</div>
-                    )}
-                    <div>
-                      <div className="team-title">{item.title}</div>
-                      <div className="team-sub">{item.sub}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="goal-box">
-              <p className="team-label">Project goal</p>
-              <p>&quot;Create a seamless, feature-rich library app that empowers members to discover, reserve, and borrow books efficiently while reducing friction.&quot;</p>
-            </div>
-            <div className="team-photo-wrap">
-              <Image src="/Image/Biblofi/team.png" alt="Biblofi team at Infosys" width={600} height={320} style={{ width: "100%", height: "auto", borderRadius: "12px" }} />
-            </div>
-          </div>
+        {/* Right — phone mockup */}
+        <div className="csl-hero-right">
+          <BibloHeroPhone />
         </div>
       </div>
-    </section>
-  );
-}
 
-function DoubleDiamond() {
-  return (
-    <section className="diamond-section">
-      <div className="container">
-        <p className="section-label reveal">Design Process</p>
-        <h2 className="section-title reveal rd1">
-          The Double Diamond
-          <br />
-          <em>framework in practice.</em>
-        </h2>
-        <div className="diamond-flow reveal rd2">
-          {diamondSteps.map((step) => (
-            <div className={step.active ? "diamond-step active" : "diamond-step"} key={step.name}>
-              <div className="diamond-icon">{step.icon}</div>
-              <p className="diamond-phase">{step.phase}</p>
-              <p className="diamond-name">{step.name}</p>
-              <p className="diamond-desc">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Research() {
-  return (
-    <section className="research-section">
-      <div className="container">
-        <p className="section-label reveal">Discover — Research</p>
-        <h2 className="section-title reveal rd1">
-          Understanding how students
-          <br />
-          <em>actually use libraries.</em>
-        </h2>
-        <p className="body-text reveal rd2">I conducted surveys, contextual interviews, and observation sessions to capture real-life experiences of both library members and librarians. The goal: understand the recurring frustrations that disrupt the library experience.</p>
-        <p className="body-text reveal rd3">Key finding: the friction wasn&apos;t in the library itself — it was in the invisible overhead. Not knowing if a book was available before visiting. Not being able to reserve a seat. No reminders for due dates. Digital tools existed, but none were designed with student workflows in mind.</p>
-        <div className="method-img-wrap reveal rd3">
-          <Image src="/Image/Biblofi/method.png" alt="Research methodology" width={900} height={480} style={{ width: "100%", height: "auto", borderRadius: "14px" }} />
-        </div>
-        <div className="stat-row reveal rd2">
-          {researchStats.map((stat) => (
-            <div className="stat-pill" key={stat.label}>
-              <p className="stat-num">{stat.value}</p>
-              <p className="stat-label">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Personas() {
-  return (
-    <section className="persona-section">
-      <div className="container">
-        <p className="section-label reveal">Define — Personas</p>
-        <h2 className="section-title reveal rd1">
-          Two students, two stories,
-          <br />
-          <em>one shared frustration.</em>
-        </h2>
-        <p className="body-text reveal rd2">Based on real research insights, I created two fictional personas representing the core user archetypes. These guided every design decision from information architecture to feature prioritisation.</p>
-        <div className="problem-box reveal rd2">
-          <p className="pb-text">&quot;Despite living in a digital-first world, library visits remain stuck in the past — long queues, no way to check book availability, and zero flexibility in planning. The result? A frustrating, disconnected experience that fails modern users.&quot;</p>
-        </div>
-        <div className="persona-grid">
-          {personas.map((persona, index) => (
-            <div className={index === 0 ? "persona-card reveal" : "persona-card reveal rd1"} key={persona.name}>
-              <div className="persona-avatar">{persona.avatar}</div>
-              <h3 className="persona-name">{persona.name}</h3>
-              <p className="persona-meta">{persona.meta}</p>
-              <p className="persona-section-title">Goals</p>
-              {persona.goals.map((goal) => (
-                <div className="persona-goal" key={goal}>
-                  <span className="goal-check">✓</span>
-                  {goal}
-                </div>
-              ))}
-              <p className="persona-section-title">Pain Points</p>
-              {persona.pains.map((pain) => (
-                <div className="persona-pain" key={pain}>
-                  <span className="pain-x">✗</span>
-                  {pain}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Wireframes() {
-  return (
-    <section className="wireframe-section">
-      <div className="container">
-        <p className="section-label reveal">Develop — Wireframes</p>
-        <h2 className="section-title reveal rd1">
-          From rough sketches
-          <br />
-          <em>to structured flows.</em>
-        </h2>
-        <p className="body-text reveal rd2">The brainstorming started in WhatsApp chats and rough sketches — raw ideas that I then translated into structured lo-fi wireframes in FigJam. From there, I built out 7 complete user flows covering every core feature.</p>
-        <div className="wf-img-grid reveal rd2">
-          {[
-            { src: "/Image/Biblofi/wireframe1.png", label: "Onboarding" },
-            { src: "/Image/Biblofi/wireframe2.png", label: "Browse by Genre" },
-            { src: "/Image/Biblofi/wireframe3.png", label: "Scan & Search" },
-            { src: "/Image/Biblofi/wireframe4.png", label: "Seat Booking" },
-          ].map(({ src, label }) => (
-            <div className="wf-img-card" key={label}>
-              <Image src={src} alt={`${label} wireframe`} width={300} height={540} style={{ width: "100%", height: "auto", display: "block" }} />
-              <div className="wf-img-label">{label}</div>
-            </div>
-          ))}
-        </div>
-        <p className="body-text reveal rd3 wf-note">7 complete user flows designed: Onboarding · Sign In · Browse by Genre · Search by Author · Scan & Search · Notifications & Profile · Seat Booking</p>
-      </div>
-    </section>
-  );
-}
-
-function Features() {
-  return (
-    <section className="features">
-      <div className="container-wide">
-        <p className="section-label reveal">Deliver — Key Features</p>
-        <h2 className="section-title reveal rd1">
-          Five features that make
-          <br />
-          <em>library visits optional.</em>
-        </h2>
-        {bibloFeatures.map((feature) => (
-          <div className={feature.reverse ? "feature-block reverse reveal" : "feature-block reveal"} key={feature.title}>
-            <div>
-              <p className="feature-num">{feature.num}</p>
-              <p className="feature-tag">{feature.tag}</p>
-              <h3 className="feature-title">{feature.title}</h3>
-              {feature.desc.map((line) => (
-                <p className="feature-desc" key={line}>
-                  {line}
-                </p>
-              ))}
-              <span className="feature-impact">{feature.impact}</span>
-            </div>
-            <div>
-              <FeaturePhone type={feature.phone} />
-            </div>
+      {/* Stats strip */}
+      <div className="csl-hero-stats">
+        {[
+          { val: "20",     label: "Usability test users" },
+          { val: "90%",    label: "Task completion rate" },
+          { val: "7",      label: "User flows designed"  },
+          { val: "1 mo",   label: "Project duration"     },
+        ].map((s) => (
+          <div className="csl-hero-stat" key={s.label}>
+            <div className="csl-hero-stat-val">{s.val}</div>
+            <div className="csl-hero-stat-label">{s.label}</div>
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
 
-function FeaturePhone({ type }: { type: FeaturePhoneType }) {
+function BibloHeroPhone() {
   return (
-    <div className="feature-phone">
-      <div className="fp-topbar">
-        <div className="fp-notch" />
+    <div style={{
+      width: "min(220px, 100%)", background: "#0D0B1F",
+      borderRadius: 36, overflow: "hidden",
+      border: "1.5px solid rgba(91,63,212,0.4)",
+      boxShadow: "0 24px 60px rgba(91,63,212,0.3)",
+    }}>
+      <div style={{ height: 24, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ width: 40, height: 4, background: "rgba(255,255,255,0.15)", borderRadius: 2 }} />
       </div>
-      <div className="fp-screen">
-        {type === "discover" && <DiscoverScreen />}
-        {type === "seat" && <SeatScreen />}
-        {type === "books" && <BooksScreen />}
-        {type === "scan" && <ScanScreen />}
+      <div style={{ background: "#F8F7FC", padding: "16px 12px", minHeight: 200 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
+          <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#12101F" }}>BibloFi</span>
+          <span style={{ fontSize: "0.65rem", background: "#EAE6F5", color: "#5B3FD4", padding: "2px 8px", borderRadius: 100, fontWeight: 600 }}>📚 Library</span>
+        </div>
+        <div style={{ background: "#EAE6F5", borderRadius: 8, padding: "8px 10px", marginBottom: 8 }}>
+          <div style={{ fontSize: "0.62rem", color: "#9A94B8", marginBottom: 4 }}>Search books</div>
+          <div style={{ fontSize: "0.68rem", color: "#5A5275" }}>🔍 Title, author, genre...</div>
+        </div>
+        <div style={{ background: "#fff", borderRadius: 8, padding: "8px 10px", marginBottom: 8 }}>
+          <div style={{ fontSize: "0.62rem", fontWeight: 600, color: "#5B3FD4", marginBottom: 6 }}>Available now</div>
+          <div style={{ display: "flex", gap: 6 }}>
+            {[0.5, 0.65, 0.5].map((h, i) => (
+              <div key={i} style={{ flex: 1, height: 52, background: `rgba(91,63,212,${h * 0.25})`, borderRadius: 6 }} />
+            ))}
+          </div>
+        </div>
+        <div style={{ background: "#5B3FD4", borderRadius: 8, padding: "8px 12px", textAlign: "center", fontSize: "0.68rem", fontWeight: 600, color: "#fff" }}>
+          Book a Study Seat →
+        </div>
       </div>
     </div>
   );
 }
 
-function DiscoverScreen() {
+/* ─────────────────────────────────────────────────────────────────────
+   §01  OVERVIEW
+───────────────────────────────────────────────────────────────────── */
+function OverviewSection() {
   return (
-    <>
-      <div className="fp-header">
-        <div className="fp-title">Discover</div>
-        <div className="fp-bell">🔔</div>
-      </div>
-      <div className="fp-search">🔍 Search title, author, ISBN...</div>
-      <div className="fp-label">Browse by Genre</div>
-      <div className="genre-grid">
-        {["📚 Fiction", "🔬 Science", "💻 Technology", "🏛 History"].map((item, index) => (
-          <div className={index === 0 ? "genre-card active" : "genre-card"} key={item}>
-            <div>{item.split(" ")[0]}</div>
-            <span>{item.split(" ")[1]}</span>
-          </div>
-        ))}
-      </div>
-      <div className="book-result">
-        <div className="book-cover" />
+    <CsSection id="overview">
+      <CsSectionHeader
+        label="Project Overview"
+        title={<>A library app built <em style={{ fontStyle: "italic" }}>for how students actually live.</em></>}
+      />
+
+      <div className="csl-card-2col csl-reveal">
         <div>
-          <div className="book-title">Atomic Habits</div>
-          <div className="book-author">James Clear</div>
-          <div className="available-pill">Available</div>
+          <p className="csl-text">
+            BibloFi is a mobile app designed to simplify how library members access books and services. From browsing by genre to scanning for availability, issuing books, and booking seats — everything is just a tap away.
+          </p>
+          <p className="csl-text">
+            This project was developed in one month during my internship at Infosys. I led the design of the entire member experience, focusing on creating an interface that feels effortless, modern, and human.
+          </p>
+          <div className="csl-tags csl-reveal rd1">
+            {bibloRoleChips.map((chip) => (
+              <span className="csl-tag" key={chip}>{chip}</span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          {/* Team box */}
+          <div className="csl-card csl-reveal rd1" style={{ marginBottom: 14 }}>
+            <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 14 }}>My team</p>
+            {bibloTeam.map((item) => (
+              <div key={item.dot} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#EAE6F5", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.7rem", fontWeight: 700, color: "#5B3FD4", flexShrink: 0, overflow: "hidden" }}>
+                  {item.dot === "NT"
+                    ? <Image src="/Image/Biblofi/me.png" alt="Nikunj" width={28} height={28} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    : item.dot}
+                </div>
+                <div>
+                  <div style={{ fontSize: "0.76rem", fontWeight: 600, color: "#111827" }}>{item.title}</div>
+                  <div style={{ fontSize: "0.68rem", color: "#9CA3AF" }}>{item.sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Goal box */}
+          <div style={{ background: "#F4F2FF", borderRadius: 14, padding: "16px 18px" }}>
+            <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#5B3FD4", marginBottom: 8 }}>Project Goal</p>
+            <p style={{ fontSize: "0.78rem", color: "#2A2540", lineHeight: 1.65 }}>
+              &quot;Create a seamless, feature-rich library app that empowers members to discover, reserve, and borrow books efficiently while reducing friction.&quot;
+            </p>
+          </div>
         </div>
       </div>
-    </>
+
+      {/* Team photo */}
+      <div className="csl-reveal rd2" style={{ marginTop: 28 }}>
+        <CsImg label="Internship team at Infosys" height={280} icon="👥" sub="Place team photo here · /Image/Biblofi/team.png" />
+      </div>
+    </CsSection>
   );
 }
 
-function SeatScreen() {
+/* ─────────────────────────────────────────────────────────────────────
+   §02  DESIGN PROCESS
+───────────────────────────────────────────────────────────────────── */
+function ProcessSection() {
   return (
-    <>
-      <div className="fp-header">
-        <div className="fp-title">Book a Seat</div>
-        <div className="fp-time">Today · 3 PM</div>
-      </div>
-      <div className="fp-label">Study Hall — Floor 2</div>
-      <div className="seat-grid">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <div className={index === 1 ? "seat selected" : index === 3 || index === 4 || index === 7 ? "seat taken" : "seat"} key={index} />
+    <CsSection id="process">
+      <CsSectionHeader
+        label="Design Process"
+        title={<>The Double Diamond <em style={{ fontStyle: "italic" }}>framework in practice.</em></>}
+      />
+
+      <div className="csl-process-grid csl-reveal">
+        {diamondSteps.map((step) => (
+          <div key={step.name} className="csl-process-step" style={step.active ? { borderTopColor: "#5B3FD4" } : {}}>
+            <div style={{ fontSize: "1.2rem", marginBottom: 10 }}>{step.icon}</div>
+            <div className="csl-process-num">{step.phase}</div>
+            <div className="csl-process-title">{step.name}</div>
+            <p className="csl-process-text">{step.desc}</p>
+          </div>
         ))}
       </div>
-      <div className="seat-legend">
-        <span><i />Free</span>
-        <span className="selected"><i />Selected</span>
-        <span className="taken"><i />Taken</span>
+
+      <div className="csl-reveal rd1" style={{ marginTop: 28 }}>
+        <CsImg label="Double Diamond process diagram" height={260} icon="💎" sub="Diverge → Converge · Two phases" />
       </div>
-      <div className="fp-primary">Confirm Seat B2 →</div>
-    </>
+    </CsSection>
   );
 }
 
-function BooksScreen() {
+/* ─────────────────────────────────────────────────────────────────────
+   §03  RESEARCH
+───────────────────────────────────────────────────────────────────── */
+function ResearchSection() {
   return (
-    <>
-      <div className="fp-header">
-        <div className="fp-title">My Books</div>
-        <div className="fp-link">History</div>
+    <CsSection id="research">
+      <CsSectionHeader
+        label="Discover — Research"
+        title={<>Understanding how students <em style={{ fontStyle: "italic" }}>actually use libraries.</em></>}
+      />
+
+      <p className="csl-text csl-reveal">
+        I conducted surveys, contextual interviews, and observation sessions to capture real-life experiences of both library members and librarians. The goal: understand the recurring frustrations that disrupt the library experience.
+      </p>
+      <p className="csl-text csl-reveal rd1">
+        Key finding: the friction wasn&apos;t in the library itself — it was in the invisible overhead. Not knowing if a book was available before visiting. Not being able to reserve a seat. No reminders for due dates. Digital tools existed, but none were designed with student workflows in mind.
+      </p>
+
+      {/* Research methodology image */}
+      <div className="csl-reveal rd2" style={{ marginBottom: 28 }}>
+        <CsImg label="Research methodology — surveys, interviews & observation" height={340} icon="🔍" sub="Place /Image/Biblofi/method.png here" />
       </div>
-      <div className="issued-card">
-        <div className="fp-label">Currently issued</div>
-        <div className="issued-row">
-          <div className="book-cover small" />
-          <div className="issued-copy">
-            <div className="book-title">The Psychology of Money</div>
-            <div className="book-author">Due: 28 May 2025</div>
+
+      {/* Stats */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 14 }} className="csl-reveal rd2">
+        {researchStats.map((stat) => (
+          <div key={stat.label} style={{ background: "#fff", borderRadius: 16, padding: "22px 16px", textAlign: "center", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+            <p style={{ fontSize: "1.6rem", fontWeight: 800, color: "#5B3FD4", lineHeight: 1, marginBottom: 6 }}>{stat.value}</p>
+            <p style={{ fontSize: "0.7rem", color: "#6B7280", textTransform: "uppercase", letterSpacing: "0.06em" }}>{stat.label}</p>
           </div>
-          <div className="days-pill">3 days</div>
-        </div>
-        <div className="loan-bar"><span /></div>
-        <div className="loan-note">75% of loan period used</div>
+        ))}
       </div>
-      <div className="fine-card">
-        <div className="fp-label">Fine status</div>
-        <div className="fine-row">
-          <span>₹0</span>
-          <i>All clear ✓</i>
-        </div>
-      </div>
-    </>
+    </CsSection>
   );
 }
 
-function ScanScreen() {
+/* ─────────────────────────────────────────────────────────────────────
+   §04  PERSONAS
+───────────────────────────────────────────────────────────────────── */
+function InsightsSection() {
   return (
-    <>
-      <div className="fp-header">
-        <div className="fp-title">Scan Book</div>
+    <CsSection id="insights">
+      <CsSectionHeader
+        label="Define — Personas"
+        title={<>Two students, two stories, <em style={{ fontStyle: "italic" }}>one shared frustration.</em></>}
+        sub="Based on real research insights, I created two fictional personas representing the core user archetypes."
+      />
+
+      <div className="csl-callout csl-reveal" style={{ marginBottom: 32 }}>
+        &quot;Despite living in a digital-first world, library visits remain stuck in the past — long queues, no way to check book availability, and zero flexibility in planning. The result? A frustrating, disconnected experience that fails modern users.&quot;
       </div>
-      <div className="scan-box">
-        <div className="scan-frame">
-          <i />
-          <i />
-          <i />
-          <i />
-          <span />
-        </div>
-        <div className="scan-help">Point at barcode or ISBN</div>
+
+      <div className="csl-persona-grid csl-reveal rd1">
+        {personas.map((persona) => (
+          <div className="csl-persona-card" key={persona.name}>
+            <div className="csl-persona-img" style={{ background: "#F4F2FF" }}>
+              <span className="csl-persona-img-icon">{persona.avatar}</span>
+              <span className="csl-persona-img-label">Persona photo placeholder</span>
+            </div>
+            <div className="csl-persona-body">
+              <p className="csl-persona-name">{persona.name}</p>
+              <p className="csl-persona-tag">{persona.meta}</p>
+              <p style={{ fontSize: "0.68rem", fontWeight: 700, color: "#5B3FD4", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8, marginTop: 12 }}>Goals</p>
+              {persona.goals.map((goal) => (
+                <div key={goal} style={{ display: "flex", gap: 8, marginBottom: 5, fontSize: "0.76rem", color: "#374151" }}>
+                  <span style={{ color: "#10B981" }}>✓</span>{goal}
+                </div>
+              ))}
+              <p style={{ fontSize: "0.68rem", fontWeight: 700, color: "#EF4444", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8, marginTop: 12 }}>Pain Points</p>
+              {persona.pains.map((pain) => (
+                <div key={pain} style={{ display: "flex", gap: 8, marginBottom: 5, fontSize: "0.76rem", color: "#374151" }}>
+                  <span style={{ color: "#EF4444" }}>✕</span>{pain}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="scan-result">
-        <div className="fp-label">Last scan result</div>
-        <div className="book-title">Design of Everyday Things</div>
-        <div className="book-author">Shelf B4 · Row 3 · Available</div>
-      </div>
-    </>
+    </CsSection>
   );
 }
 
-function FinalScreens() {
-  const screens = [
-    "/Image/Biblofi/final1.png",
-    "/Image/Biblofi/final2.png",
-    "/Image/Biblofi/final3.png",
-    "/Image/Biblofi/final4.png",
-    "/Image/Biblofi/final5.png",
-    "/Image/Biblofi/final6.png",
-    "/Image/Biblofi/final7.png",
-    "/Image/Biblofi/final8.png",
-    "/Image/Biblofi/final9.png",
+/* ─────────────────────────────────────────────────────────────────────
+   §05  WIREFRAMES
+───────────────────────────────────────────────────────────────────── */
+function WireframesSection() {
+  const wfItems = [
+    { label: "Onboarding",       src: "/Image/Biblofi/wireframe1.png" },
+    { label: "Browse by Genre",  src: "/Image/Biblofi/wireframe2.png" },
+    { label: "Scan & Search",    src: "/Image/Biblofi/wireframe3.png" },
+    { label: "Seat Booking",     src: "/Image/Biblofi/wireframe4.png" },
   ];
+
   return (
-    <section className="final-screens-section">
-      <div className="container">
-        <p className="section-label reveal">Deliver — Final Designs</p>
-        <h2 className="section-title reveal rd1">
-          The finished product —
-          <br />
-          <em>every screen, polished.</em>
-        </h2>
-        <p className="body-text reveal rd2">From onboarding to book discovery, seat booking to fine tracking — here are the final high-fidelity screens delivered to the Infosys engineering team.</p>
-        <div className="final-screens-grid reveal rd2">
-          {screens.map((src, i) => (
-            <div className="final-screen-item" key={i}>
-              <Image src={src} alt={`BibloFi final screen ${i + 1}`} width={320} height={640} style={{ width: "100%", height: "auto", display: "block" }} />
-            </div>
-          ))}
-        </div>
+    <CsSection id="wireframes">
+      <CsSectionHeader
+        label="Develop — Wireframes"
+        title={<>From rough sketches <em style={{ fontStyle: "italic" }}>to structured flows.</em></>}
+        sub="The brainstorming started in WhatsApp chats and rough sketches — raw ideas translated into structured lo-fi wireframes in FigJam."
+      />
+
+      <div className="csl-img-2up csl-reveal">
+        {wfItems.slice(0, 2).map(({ label }) => (
+          <div key={label}>
+            <CsImg label={label} aspect="9/16" icon="📱" sub="Lo-fi wireframe" />
+            <p className="csl-img-caption">{label}</p>
+          </div>
+        ))}
       </div>
-    </section>
+      <div className="csl-img-2up csl-reveal rd1" style={{ marginTop: 14 }}>
+        {wfItems.slice(2).map(({ label }) => (
+          <div key={label}>
+            <CsImg label={label} aspect="9/16" icon="📱" sub="Lo-fi wireframe" />
+            <p className="csl-img-caption">{label}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="csl-text csl-reveal rd2" style={{ marginTop: 20, fontStyle: "italic", color: "#9CA3AF" }}>
+        7 complete user flows designed: Onboarding · Sign In · Browse by Genre · Search by Author · Scan &amp; Search · Notifications &amp; Profile · Seat Booking
+      </p>
+    </CsSection>
   );
 }
 
-function Accessibility() {
+/* ─────────────────────────────────────────────────────────────────────
+   §06  KEY FEATURES
+───────────────────────────────────────────────────────────────────── */
+function ScreensSection() {
   return (
-    <section className="a11y-section">
-      <div className="container">
-        <p className="section-label reveal">Accessibility & Inclusivity</p>
-        <h2 className="section-title reveal rd1">
-          Designed for
-          <br />
-          <em>everyone to use.</em>
-        </h2>
-        <p className="body-text reveal rd2">BibloFi was designed to be inclusive and accessible for all users — from day one, not as an afterthought.</p>
-        <div className="a11y-grid reveal rd2">
-          {accessibilityCards.map((card) => (
-            <div className="a11y-card" key={card.title}>
-              <div className="a11y-icon">{card.icon}</div>
-              <h3 className="a11y-title">{card.title}</h3>
-              <p className="a11y-desc">{card.desc}</p>
-              <span className="wcag-badge">{card.badge}</span>
-            </div>
-          ))}
-        </div>
-        <p className="body-text reveal rd3 a11y-note">Design system built on iOS 18 UI Kit (Figma Community) and Apple&apos;s Human Interface Guidelines — ensuring the app felt native and familiar to iOS users.</p>
-      </div>
-    </section>
-  );
-}
+    <CsSection id="screens">
+      <CsSectionHeader
+        label="Deliver — Key Features"
+        title={<>Five features that make <em style={{ fontStyle: "italic" }}>library visits optional.</em></>}
+      />
 
-function Testing() {
-  return (
-    <section className="testing">
-      <div className="container">
-        <p className="section-label reveal">Usability Testing</p>
-        <h2 className="section-title reveal rd1">
-          20 real users.
-          <br />
-          <em>Three core tasks.</em>
-        </h2>
-        <p className="body-text reveal rd2">I conducted usability testing with 20 participants to validate the design before final delivery. Each participant attempted three core tasks without any guidance — mimicking real-world use.</p>
-        <div className="test-results reveal rd2">
-          {testResults.map((result) => (
-            <div className="test-card" key={result.task}>
-              <p className="test-task">{result.task}</p>
-              <p className="test-fraction">{result.fraction}</p>
-              <p className="test-label">{result.label}</p>
-              <p className="test-note">{result.note}</p>
-            </div>
-          ))}
-        </div>
-        <div className="test-overall reveal rd3">
-          <p className="test-overall-num">90%</p>
-          <p className="test-overall-label">Overall task completion rate across all 3 tasks · 20 participants</p>
-        </div>
-        <p className="body-text reveal rd3 testing-note">Key improvement from testing: secondary navigation was unclear in early iterations. We restructured the tab bar and improved labelling — which was reflected positively in final feedback sessions.</p>
-      </div>
-    </section>
-  );
-}
-
-function Oreo() {
-  return (
-    <section className="oreo-section">
-      <div className="container">
-        <p className="section-label reveal">The Details</p>
-        <h2 className="section-title reveal rd1">
-          Meet Oreo — the character
-          <br />
-          <em>that made BibloFi, BibloFi.</em>
-        </h2>
-        <div className="oreo-card reveal rd2">
-          <div className="oreo-icon">🐾</div>
-          <div className="oreo-content">
-            <h3 className="oreo-title">A mascot with personality</h3>
-            <p className="oreo-desc">Every great app has a soul. Oreo is the character we created to give BibloFi a unique theme and personality — a small detail that made the experience feel warm, playful, and human. Good UX isn&apos;t just about flows and components. It&apos;s about the moments that make users smile.</p>
+      {bibloFeatures.map((feature, i) => (
+        <div key={feature.title} className="csl-reveal" style={{
+          background: "#fff", borderRadius: 20, padding: "28px 24px",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.05)", marginBottom: 20,
+          display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "center",
+        }}
+          /* eslint-disable-next-line react/no-unknown-property */
+          data-reverse={feature.reverse ? "true" : "false"}
+        >
+          <div style={{ order: feature.reverse ? 2 : 1 }}>
+            <p style={{ fontSize: "0.62rem", fontWeight: 700, color: "#5B3FD4", fontFamily: "ui-monospace, monospace", marginBottom: 6 }}>{feature.num}</p>
+            <p style={{ fontSize: "0.68rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9A94B8", marginBottom: 10 }}>{feature.tag}</p>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 800, color: "#111827", marginBottom: 12 }}>{feature.title}</h3>
+            {feature.desc.map((line) => (
+              <p key={line} className="csl-text">{line}</p>
+            ))}
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: "0.72rem", fontWeight: 600, color: "#5B3FD4", background: "#F4F2FF", padding: "5px 12px", borderRadius: 100, marginTop: 10 }}>
+              {feature.impact}
+            </span>
+          </div>
+          <div style={{ order: feature.reverse ? 1 : 2 }}>
+            <CsImg
+              label={`${feature.title} — feature screen`}
+              aspect="9/16"
+              icon="📱"
+              sub="Hi-fi iOS screen"
+            />
           </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </CsSection>
   );
 }
 
-function Learnings() {
+/* ─────────────────────────────────────────────────────────────────────
+   §07  FINAL SCREENS
+───────────────────────────────────────────────────────────────────── */
+function FinalScreensSection() {
+  const screens = Array.from({ length: 9 }, (_, i) => ({
+    src: `/Image/Biblofi/final${i + 1}.png`,
+    label: `Final screen ${i + 1}`,
+  }));
+
   return (
-    <section className="learnings">
-      <div className="container">
-        <p className="section-label reveal">What I Learned</p>
-        <h2 className="section-title reveal rd1">
-          Growing as a designer
-          <br />
-          <em>and a leader.</em>
-        </h2>
-        <div className="learning-list">
-          {learnings.map((learning) => (
-            <div className={learning.delay ? `learning-item reveal ${learning.delay}` : "learning-item reveal"} key={learning.num}>
-              <p className="learning-num">{learning.num}</p>
-              <div>
-                <h3 className="learning-title">{learning.title}</h3>
-                <p className="learning-text">{learning.text}</p>
-              </div>
-            </div>
-          ))}
+    <CsSection id="final">
+      <CsSectionHeader
+        label="Deliver — Final Designs"
+        title={<>The finished product — <em style={{ fontStyle: "italic" }}>every screen, polished.</em></>}
+        sub="From onboarding to book discovery, seat booking to fine tracking — final high-fidelity screens delivered to the Infosys engineering team."
+      />
+
+      {/* 3-up grid of screens */}
+      <div className="csl-img-3up csl-reveal">
+        {screens.slice(0, 3).map((s) => (
+          <CsImg key={s.src} label={s.label} aspect="9/16" icon="📱" sub="Final hi-fi screen" />
+        ))}
+      </div>
+      <div className="csl-img-3up csl-reveal rd1" style={{ marginTop: 14 }}>
+        {screens.slice(3, 6).map((s) => (
+          <CsImg key={s.src} label={s.label} aspect="9/16" icon="📱" sub="Final hi-fi screen" />
+        ))}
+      </div>
+      <div className="csl-img-3up csl-reveal rd2" style={{ marginTop: 14 }}>
+        {screens.slice(6).map((s) => (
+          <CsImg key={s.src} label={s.label} aspect="9/16" icon="📱" sub="Final hi-fi screen" />
+        ))}
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §08  ACCESSIBILITY
+───────────────────────────────────────────────────────────────────── */
+function AccessibilitySection() {
+  return (
+    <CsSection id="accessibility">
+      <CsSectionHeader
+        label="Accessibility & Inclusivity"
+        title={<>Designed for <em style={{ fontStyle: "italic" }}>everyone to use.</em></>}
+        sub="BibloFi was designed to be inclusive and accessible for all users — from day one, not as an afterthought."
+      />
+
+      <div className="csl-card-grid csl-reveal">
+        {accessibilityCards.map((card) => (
+          <div key={card.title} style={{ background: "#fff", borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+            <div style={{ fontSize: "1.5rem", marginBottom: 12 }}>{card.icon}</div>
+            <h3 style={{ fontSize: "0.86rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{card.title}</h3>
+            <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6, marginBottom: 12 }}>{card.desc}</p>
+            <span style={{ fontSize: "0.62rem", fontWeight: 700, background: "#F4F2FF", color: "#5B3FD4", padding: "3px 10px", borderRadius: 100 }}>{card.badge}</span>
+          </div>
+        ))}
+      </div>
+
+      <p className="csl-text csl-reveal rd1" style={{ marginTop: 20, color: "#9CA3AF", fontStyle: "italic" }}>
+        Design system built on iOS 18 UI Kit (Figma Community) and Apple&apos;s Human Interface Guidelines — ensuring the app felt native and familiar to iOS users.
+      </p>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §09  USABILITY TESTING
+───────────────────────────────────────────────────────────────────── */
+function TestingSection() {
+  return (
+    <CsSection id="testing">
+      <CsSectionHeader
+        label="Usability Testing"
+        title={<>20 real users. <em style={{ fontStyle: "italic" }}>Three core tasks.</em></>}
+        sub="I conducted usability testing with 20 participants to validate the design before final delivery. Each participant attempted three core tasks without any guidance."
+      />
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }} className="csl-reveal">
+        {testResults.map((result) => (
+          <div key={result.task} style={{ background: "#fff", borderRadius: 18, padding: "22px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)", textAlign: "center" }}>
+            <p style={{ fontSize: "0.72rem", color: "#6B7280", marginBottom: 14, lineHeight: 1.5 }}>{result.task}</p>
+            <p style={{ fontSize: "2rem", fontWeight: 800, color: "#5B3FD4", lineHeight: 1 }}>{result.fraction}</p>
+            <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#111827", marginTop: 4 }}>{result.label}</p>
+            <p style={{ fontSize: "0.68rem", color: "#9CA3AF", marginTop: 6, lineHeight: 1.5 }}>{result.note}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="csl-reveal rd1" style={{ marginTop: 20, background: "#F4F2FF", borderRadius: 16, padding: "20px 24px", textAlign: "center" }}>
+        <p style={{ fontSize: "2.5rem", fontWeight: 800, color: "#5B3FD4", lineHeight: 1 }}>90%</p>
+        <p style={{ fontSize: "0.8rem", color: "#5A5275", marginTop: 6 }}>
+          Overall task completion rate across all 3 tasks · 20 participants
+        </p>
+      </div>
+
+      <p className="csl-text csl-reveal rd2" style={{ marginTop: 20 }}>
+        Key improvement from testing: secondary navigation was unclear in early iterations. We restructured the tab bar and improved labelling — which was reflected positively in final feedback sessions.
+      </p>
+
+      {/* Oreo mascot */}
+      <div className="csl-reveal rd2" style={{
+        marginTop: 28, background: "#fff", borderRadius: 20, padding: "24px",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.05)", display: "flex", gap: 20, alignItems: "center",
+      }}>
+        <div style={{ fontSize: "2.5rem", flexShrink: 0 }}>🐾</div>
+        <div>
+          <h3 style={{ fontSize: "0.92rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>Meet Oreo — A mascot with personality</h3>
+          <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.65 }}>
+            Every great app has a soul. Oreo is the character we created to give BibloFi a unique theme and personality — a small detail that made the experience feel warm, playful, and human. Good UX isn&apos;t just about flows and components. It&apos;s about the moments that make users smile.
+          </p>
         </div>
       </div>
-    </section>
+    </CsSection>
   );
 }
 
-function NextProject() {
+/* ─────────────────────────────────────────────────────────────────────
+   §10  LEARNINGS
+───────────────────────────────────────────────────────────────────── */
+function LearningsSection() {
   return (
-    <div className="next-project">
-      <p className="np-label">Next case study</p>
-      <h2 className="np-title">
-        EcoTrack —
-        <br />
-        <em>Carbon footprint tracking.</em>
-      </h2>
-      <a href="ecotrack-case-study.html" className="np-btn">
-        View case study →
+    <CsSection id="learnings" last>
+      <CsSectionHeader
+        label="What I Learned"
+        title={<>Growing as a designer <em style={{ fontStyle: "italic" }}>and a leader.</em></>}
+      />
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        {learnings.map((learning) => (
+          <div key={learning.num} className="csl-reveal" style={{
+            display: "flex", gap: 20, background: "#fff",
+            borderRadius: 18, padding: "22px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)",
+          }}>
+            <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#5B3FD4", fontFamily: "ui-monospace, monospace", flexShrink: 0, marginTop: 2 }}>{learning.num}</p>
+            <div>
+              <h3 style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{learning.title}</h3>
+              <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.7 }}>{learning.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Next project */}
+      <a href="/projects/ecotrack" className="csl-next csl-reveal" style={{ marginTop: 56 }}>
+        <div>
+          <p className="csl-next-label">Next Case Study</p>
+          <p className="csl-next-title">EcoTrack — Carbon Footprint Tracking</p>
+        </div>
+        <span className="csl-next-arrow">→</span>
       </a>
-    </div>
+    </CsSection>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MAIN EXPORT
+════════════════════════════════════════════════════════════════════════ */
+export function BiblofiCaseStudy() {
+  return (
+    <CaseStudyPage
+      theme="biblo"
+      title="BibloFi"
+      tag="iOS App · Library"
+      tocItems={TOC_ITEMS}
+      metaRows={META_ROWS}
+      hero={<BibloHero />}
+    >
+      <OverviewSection />
+      <ProcessSection />
+      <ResearchSection />
+      <InsightsSection />
+      <WireframesSection />
+      <ScreensSection />
+      <FinalScreensSection />
+      <AccessibilitySection />
+      <TestingSection />
+      <LearningsSection />
+    </CaseStudyPage>
   );
 }

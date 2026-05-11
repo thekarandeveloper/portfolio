@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { CaseStudyPage, CsSection, CsSectionHeader, CsImg } from "./CaseStudyLayout";
 import {
   ecoCompetitors,
   ecoEmpathy1,
@@ -15,724 +16,693 @@ import {
   ecoTestInsights,
 } from "./ecotrackData";
 
-export function EcotrackCaseStudy() {
-  const pageRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
+/* ─────────────────────────────────────────────────────────────────────
+   TOC + META
+───────────────────────────────────────────────────────────────────── */
+const TOC_ITEMS = [
+  { id: "overview",    label: "Overview"           },
+  { id: "problem",     label: "The Problem"        },
+  { id: "process",     label: "Design Process"     },
+  { id: "research",    label: "User Research"      },
+  { id: "competitive", label: "Competitive Analysis"},
+  { id: "empathy",     label: "Empathy Mapping"    },
+  { id: "personas",    label: "User Personas"      },
+  { id: "wireframes",  label: "Wireframes"         },
+  { id: "design",      label: "Visual Design"      },
+  { id: "testing",     label: "User Testing"       },
+  { id: "iterations",  label: "Iterations"         },
+  { id: "learnings",   label: "Learnings"          },
+];
 
+const META_ROWS = [
+  { label: "Role",     value: "UX Designer"         },
+  { label: "Duration", value: "4-Week Sprint"        },
+  { label: "Platform", value: "iOS App"              },
+  { label: "Tools",    value: "Figma"                },
+  { label: "Type",     value: "Personal Project"     },
+];
+
+/* ─────────────────────────────────────────────────────────────────────
+   COUNT ANIMATION HOOK
+───────────────────────────────────────────────────────────────────── */
+function useCountAnimation(rootRef: React.RefObject<HTMLElement | null>) {
   useEffect(() => {
-    const root = pageRef.current;
-    const progress = progressRef.current;
-    if (!root || !progress) return;
-
-    const updateProgress = () => {
-      const d = document.documentElement;
-      const scrolled = d.scrollTop / (d.scrollHeight - d.clientHeight);
-      progress.style.width = `${scrolled * 100}%`;
-    };
-
-    const observer = new IntersectionObserver(
+    const root = rootRef.current;
+    if (!root) return;
+    const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const counterObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement;
-            const target = parseInt(el.dataset.target || "0");
-            const suffix = el.dataset.suffix || "";
-            animateCount(el, target, suffix);
-            counterObserver.unobserve(el);
-          }
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.target || "0");
+          const suffix = el.dataset.suffix || "";
+          let current = 0;
+          const step = target / (1200 / 16);
+          const timer = setInterval(() => {
+            current = Math.min(current + step, target);
+            el.textContent = Math.floor(current) + suffix;
+            if (current >= target) clearInterval(timer);
+          }, 16);
+          obs.unobserve(el);
         });
       },
       { threshold: 0.5 }
     );
-
-    root.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    root.querySelectorAll(".eco-count").forEach((el) => counterObserver.observe(el));
-
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    updateProgress();
-
-    return () => {
-      window.removeEventListener("scroll", updateProgress);
-      observer.disconnect();
-      counterObserver.disconnect();
-    };
-  }, []);
-
-  return (
-    <div className="ecotrack-case-study" ref={pageRef}>
-      <div className="eco-progress-bar" ref={progressRef} />
-      <EcoHero />
-      <EcoOverview />
-      <EcoProblem />
-      <EcoProcess />
-      <EcoResearch />
-      <EcoCompetitor />
-      <EcoQualResearch />
-      <EcoEmpathy />
-      <EcoPersona />
-      <EcoDesign />
-      <EcoWireframes />
-      <EcoTesting />
-      <EcoIterations />
-      <EcoLearnings />
-      <EcoNext />
-    </div>
-  );
+    root.querySelectorAll(".eco-count").forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [rootRef]);
 }
 
-function animateCount(el: HTMLElement, target: number, suffix: string) {
-  let current = 0;
-  const duration = 1200;
-  const step = target / (duration / 16);
-  const timer = window.setInterval(() => {
-    current = Math.min(current + step, target);
-    el.textContent = Math.floor(current) + suffix;
-    if (current >= target) window.clearInterval(timer);
-  }, 16);
-}
-
-function ImagePlaceholder({
-  label,
-  height = 360,
-  icon = "🖼️",
-  sub,
-}: {
-  label: string;
-  height?: number;
-  icon?: string;
-  sub?: string;
-}) {
+/* ─────────────────────────────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────────────────────────────── */
+function EcoHero() {
   return (
-    <div className="eco-img" style={{ height }}>
-      <span className="eco-img-icon">{icon}</span>
-      <p className="eco-img-label">{label}</p>
-      {sub && <p className="eco-img-sub">{sub}</p>}
+    <div className="csl-hero">
+      <div className="csl-hero-grid" />
+      <div className="csl-hero-glow" />
+      <div className="csl-hero-inner">
+        {/* Left */}
+        <div className="csl-hero-left">
+          <div className="csl-hero-eyebrow">🌱 Personal Project · iOS App</div>
+          <h1 className="csl-hero-title">
+            EcoTrack —<br />
+            <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.65)" }}>Making the Planet</em>
+            <br />Count.
+          </h1>
+          <p className="csl-hero-desc">
+            A clean, intuitive app that helps users track their carbon footprint, understand their daily impact, and grow sustainable habits with ease.
+          </p>
+          <div className="csl-hero-chips">
+            {ecoMeta.map((item) => (
+              <span className="csl-hero-chip" key={item.label}>
+                {item.label}: {item.value}
+              </span>
+            ))}
+          </div>
+        </div>
+        {/* Right — phone mockup */}
+        <div className="csl-hero-right">
+          <EcoPhoneMockup />
+        </div>
+      </div>
+
+      {/* Stats strip */}
+      <div className="csl-hero-stats">
+        {[
+          { val: "5",   label: "Users interviewed"    },
+          { val: "3",   label: "App competitors audited"},
+          { val: "2",   label: "Iterations completed" },
+          { val: "4wk", label: "Sprint duration"      },
+        ].map((s) => (
+          <div className="csl-hero-stat" key={s.label}>
+            <div className="csl-hero-stat-val">{s.val}</div>
+            <div className="csl-hero-stat-label">{s.label}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 function EcoPhoneMockup() {
   return (
-    <div className="eco-phone">
-      <div className="eco-phone-top">
-        <div className="eco-phone-notch" />
+    <div style={{
+      width: "min(220px, 100%)", background: "#0A1F0F",
+      borderRadius: 36, overflow: "hidden",
+      border: "1.5px solid rgba(45,125,67,0.4)",
+      boxShadow: "0 24px 60px rgba(45,125,67,0.25)",
+    }}>
+      <div style={{ height: 24, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ width: 40, height: 4, background: "rgba(255,255,255,0.15)", borderRadius: 2 }} />
       </div>
-      <div className="eco-phone-screen">
-        <div className="eco-screen-status">
-          <span>9:41</span>
-          <span>●●●</span>
+      <div style={{ background: "#F2FAF3", padding: "16px 12px", minHeight: 220 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+          <p style={{ fontSize: "0.72rem", color: "#0D2312", fontWeight: 600 }}>Good morning 🌱</p>
+          <div style={{ width: 22, height: 22, borderRadius: "50%", background: "#D0EAD4" }} />
         </div>
-        <div className="eco-screen-header">
-          <p>Good morning 🌱</p>
-          <div className="eco-screen-avatar" />
+        <div style={{ background: "#fff", borderRadius: 12, padding: "14px 12px", textAlign: "center", marginBottom: 10 }}>
+          <div style={{ width: 60, height: 60, borderRadius: "50%", border: "4px solid #2D7D43", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", margin: "0 auto 8px" }}>
+            <p style={{ fontSize: "0.9rem", fontWeight: 800, color: "#2D7D43", lineHeight: 1 }}>2.4</p>
+            <p style={{ fontSize: "0.52rem", color: "#7AAD85" }}>kg CO₂</p>
+          </div>
+          <p style={{ fontSize: "0.62rem", color: "#3B6B45" }}>Today&apos;s footprint</p>
+          <p style={{ fontSize: "0.6rem", color: "#48A362" }}>↓ 18% vs yesterday</p>
         </div>
-        <div className="eco-ring-card">
-          <div className="eco-ring">
-            <div className="eco-ring-inner">
-              <p className="eco-ring-val">2.4</p>
-              <p className="eco-ring-unit">kg CO₂</p>
+        {[
+          { icon: "🚗", w: "72%", val: "0.8" },
+          { icon: "⚡", w: "45%", val: "1.1" },
+          { icon: "🍽️", w: "30%", val: "0.5" },
+        ].map((row) => (
+          <div key={row.icon} style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+            <span style={{ fontSize: "0.7rem" }}>{row.icon}</span>
+            <div style={{ flex: 1, height: 5, background: "#D0EAD4", borderRadius: 3 }}>
+              <div style={{ width: row.w, height: "100%", background: "#2D7D43", borderRadius: 3 }} />
             </div>
+            <span style={{ fontSize: "0.6rem", color: "#3B6B45", width: 20 }}>{row.val}</span>
           </div>
-          <p className="eco-ring-label">Today&apos;s footprint</p>
-          <p className="eco-ring-sub">↓ 18% vs yesterday</p>
-        </div>
-        <div className="eco-categories">
-          <div className="eco-cat-row">
-            <span>🚗</span>
-            <div className="eco-cat-bar"><div style={{ width: "72%" }} /></div>
-            <span>0.8</span>
-          </div>
-          <div className="eco-cat-row">
-            <span>⚡</span>
-            <div className="eco-cat-bar"><div style={{ width: "45%" }} /></div>
-            <span>1.1</span>
-          </div>
-          <div className="eco-cat-row">
-            <span>🍽️</span>
-            <div className="eco-cat-bar"><div style={{ width: "30%" }} /></div>
-            <span>0.5</span>
-          </div>
-        </div>
-        <div className="eco-fab">+</div>
-        <div className="eco-tabs">
-          <span className="eco-tab active">🏠</span>
-          <span className="eco-tab">📊</span>
-          <span className="eco-tab">💡</span>
-          <span className="eco-tab">👤</span>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
 
-function EcoHero() {
+/* ─────────────────────────────────────────────────────────────────────
+   §01  OVERVIEW
+───────────────────────────────────────────────────────────────────── */
+function OverviewSection() {
   return (
-    <div className="eco-hero-wrap">
-      <div className="eco-hero-grid" />
-      <div className="eco-hero-glow" />
-      <div className="eco-hero-glow2" />
-      <div className="eco-hero">
-        <div className="eco-hero-content">
-          <span className="cs-tag">🌱 Personal Project · iOS App</span>
-          <h1 className="cs-title">
-            EcoTrack —<br />
-            <em>Making the Planet</em>
-            <br />
-            Count.
-          </h1>
-          <p className="cs-tagline">
-            A clean, intuitive app that helps users track their carbon footprint, understand their daily impact, and grow sustainable habits with ease.
-          </p>
-          <div className="eco-meta">
-            {ecoMeta.map((item) => (
-              <div className="eco-meta-item" key={item.label}>
-                <p className="eco-meta-label">{item.label}</p>
-                <p className="eco-meta-val">{item.value}</p>
+    <CsSection id="overview">
+      <CsSectionHeader
+        label="Project Overview"
+        title={<>Helping people understand <em style={{ fontStyle: "italic" }}>their daily impact on Earth.</em></>}
+        sub="EcoTrack empowers users to measure their carbon emissions from daily activities and provides actionable insights to help them live more sustainably."
+      />
+
+      {/* App overview image */}
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+        <CsImg label="App overview — final hi-fi screens" height={400} icon="📱" sub="Place app overview screenshot here" />
+      </div>
+
+      {/* Feature cards */}
+      <div className="csl-card-grid csl-reveal rd1">
+        {ecoFeatures.map((f) => (
+          <div key={f.title} style={{ background: "#fff", borderRadius: 18, padding: "22px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+            <div style={{ fontSize: "1.5rem", marginBottom: 10 }}>{f.icon}</div>
+            <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{f.title}</p>
+            <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §02  THE PROBLEM
+───────────────────────────────────────────────────────────────────── */
+function ProblemSection() {
+  return (
+    <CsSection id="problem">
+      <CsSectionHeader label="The Problem" title="Why sustainable living feels out of reach." />
+
+      <div className="csl-callout csl-reveal" style={{ fontSize: "1rem", marginBottom: 28 }}>
+        People want to reduce their environmental impact but struggle to understand how daily actions affect their carbon footprint —{" "}
+        <strong>most tools are too complex or unengaging, making sustainable living feel out of reach.</strong>
+      </div>
+
+      {/* Problem visualization */}
+      <div className="csl-reveal rd1" style={{ marginBottom: 28 }}>
+        <CsImg label="Problem space visualization — user pain points" height={300} icon="🌡️" sub="Research findings · User pain point mapping" />
+      </div>
+
+      {/* Potential solution */}
+      <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em", color: "#2D7D43", marginBottom: 12 }} className="csl-reveal rd2">
+        Potential Solution
+      </p>
+      <div className="csl-callout csl-reveal rd2" style={{ borderLeftColor: "#2D7D43", background: "#E8F7EC" }}>
+        <span style={{ fontSize: "1.2rem", marginRight: 8 }}>💡</span>
+        A clean, intuitive app that helps users track their carbon footprint, understand their daily impact, and grow sustainable habits with ease.
+      </div>
+
+      {/* Solution overview image */}
+      <div className="csl-reveal rd3" style={{ marginTop: 24 }}>
+        <CsImg label="Solution overview — key interactions" height={300} icon="✅" sub="App concept · Core feature screens" />
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §03  DESIGN PROCESS
+───────────────────────────────────────────────────────────────────── */
+function ProcessSection() {
+  return (
+    <CsSection id="process">
+      <CsSectionHeader
+        label="Design Thinking Process"
+        title={<>Five phases, one goal — <em style={{ fontStyle: "italic" }}>making sustainability approachable.</em></>}
+      />
+
+      <div className="csl-process-grid csl-reveal">
+        {ecoProcess.map((step, i) => (
+          <div key={step.name} className="csl-process-step" style={step.active ? { borderTopColor: "#2D7D43" } : {}}>
+            <div style={{ fontSize: "1.2rem", marginBottom: 8 }}>{step.icon}</div>
+            <div className="csl-process-num">{step.phase}</div>
+            <div className="csl-process-title">{step.name}</div>
+            <p className="csl-process-text">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="csl-img-2up csl-reveal rd1" style={{ marginTop: 28 }}>
+        <CsImg label="Design thinking process diagram" height={240} icon="🗺️" sub="Five phases overview" />
+        <CsImg label="Project timeline — 4-week sprint" height={240} icon="📅" sub="Week-by-week breakdown" />
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §04  USER RESEARCH
+───────────────────────────────────────────────────────────────────── */
+function ResearchSection() {
+  const rootRef = useRef<HTMLElement>(null);
+  useCountAnimation(rootRef as React.RefObject<HTMLElement | null>);
+
+  return (
+    <CsSection id="research">
+      <CsSectionHeader
+        label="User Research"
+        title={<>Understanding what users <em style={{ fontStyle: "italic" }}>actually need from an eco app.</em></>}
+      />
+
+      <div className="csl-callout csl-reveal" style={{ marginBottom: 28, borderLeftColor: "#2D7D43", background: "#E8F7EC" }}>
+        <span style={{ fontSize: "1.2rem", marginRight: 8 }}>🎯</span>
+        To understand user awareness, challenges, and expectations around tracking their carbon footprint in daily life.
+      </div>
+
+      {/* Research findings image */}
+      <div className="csl-reveal rd1" style={{ marginBottom: 28 }}>
+        <CsImg label="User research findings — survey results & interview insights" height={300} icon="🔍" sub="Quantitative survey · 5 qualitative interviews" />
+      </div>
+
+      {/* Animated stats */}
+      <div
+        ref={rootRef as React.RefObject<HTMLDivElement>}
+        style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 14 }}
+        className="csl-reveal rd2"
+      >
+        {ecoResearchStats.map((stat, i) => (
+          <div key={stat.label} style={{ background: "#fff", borderRadius: 16, padding: "22px 16px", textAlign: "center", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+            <p
+              className="eco-count"
+              data-target={stat.value}
+              data-suffix={stat.suffix}
+              style={{ fontSize: "1.8rem", fontWeight: 800, color: "#2D7D43", lineHeight: 1, marginBottom: 6 }}
+            >
+              0{stat.suffix}
+            </p>
+            <p style={{ fontSize: "0.68rem", color: "#6B7280", textTransform: "uppercase", letterSpacing: "0.06em" }}>{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §05  COMPETITIVE ANALYSIS
+───────────────────────────────────────────────────────────────────── */
+function CompetitiveSection() {
+  return (
+    <CsSection id="competitive">
+      <CsSectionHeader
+        label="Competitor Analysis"
+        title={<>What the market gets right — <em style={{ fontStyle: "italic" }}>and where EcoTrack fills the gap.</em></>}
+      />
+
+      <div className="csl-card-grid csl-reveal">
+        {ecoCompetitors.map((comp) => (
+          <div key={comp.name} style={{ background: "#fff", borderRadius: 18, padding: "22px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+            <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>{comp.name}</p>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              <div>
+                <p style={{ fontSize: "0.62rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>Pros</p>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {comp.pros.map((p) => (
+                    <li key={p} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.5, marginBottom: 4, display: "flex", gap: 6 }}>
+                      <span style={{ color: "#10B981", flexShrink: 0 }}>+</span>{p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p style={{ fontSize: "0.62rem", fontWeight: 700, color: "#EF4444", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>Cons</p>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {comp.cons.map((c) => (
+                    <li key={c} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.5, marginBottom: 4, display: "flex", gap: 6 }}>
+                      <span style={{ color: "#EF4444", flexShrink: 0 }}>–</span>{c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="csl-callout csl-reveal rd1" style={{ marginTop: 20, borderLeftColor: "#2D7D43", background: "#E8F7EC" }}>
+        <span style={{ fontSize: "1.2rem", marginRight: 8 }}>💡</span>
+        While these apps offer great features individually, most lack <strong>simplicity</strong>, <strong>daily usability</strong>, or <strong>engagement</strong>. EcoTrack combines the best of all — making sustainability simple, interactive, and personally rewarding.
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §06  EMPATHY MAPPING
+───────────────────────────────────────────────────────────────────── */
+function EmpathySection() {
+  return (
+    <CsSection id="empathy">
+      <CsSectionHeader
+        label="User Empathy Mapping"
+        title={<>Stepping into the shoes <em style={{ fontStyle: "italic" }}>of our users.</em></>}
+        sub="Empathy maps helped us design features that address true needs — not just actions, but how users think and feel about sustainable living."
+      />
+
+      {/* Empathy map overview image */}
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+        <CsImg label="Empathy map canvas — Think · See · Say · Feel · Pain · Gain" height={280} icon="🧠" sub="Full empathy analysis from interviews" />
+      </div>
+
+      <div className="csl-card-2col csl-reveal rd1">
+        {/* Priya */}
+        <div style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
+          <div style={{ background: "#E8F7EC", padding: "18px 20px", display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ fontSize: "1.8rem" }}>👩</div>
+            <div>
+              <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "#0D2312" }}>Priya, 22</p>
+              <p style={{ fontSize: "0.7rem", color: "#3B6B45" }}>College student · Eco-curious beginner</p>
+            </div>
+          </div>
+          <div style={{ padding: "16px 20px" }}>
+            {ecoEmpathy1.map((row) => (
+              <div key={row.cat} style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 10, marginBottom: 10 }}>
+                <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
+                <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.55 }}>{row.insight}</p>
               </div>
             ))}
           </div>
         </div>
-        <div className="eco-hero-phone">
-          <EcoPhoneMockup />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function EcoOverview() {
-  return (
-    <section className="eco-overview">
-      <div className="eco-container">
-        <p className="section-label reveal">Project Overview</p>
-        <h2 className="section-title reveal rd1">
-          Helping people understand
-          <br />
-          <em>their daily impact on Earth.</em>
-        </h2>
-        <p className="body-text reveal rd2">
-          EcoTrack empowers users to measure their carbon emissions from daily activities like transport, electricity usage, food, and more — and provides actionable insights to help them live more sustainably.
-        </p>
-        <div className="reveal rd2" style={{ marginBottom: "2.5rem" }}>
-          <ImagePlaceholder label="App Overview Screenshot" height={400} icon="📱" sub="High-fidelity screens · Figma" />
-        </div>
-        <div className="eco-features-grid reveal rd3">
-          {ecoFeatures.map((f) => (
-            <div className="eco-feature-card" key={f.title}>
-              <div className="eco-feature-icon">{f.icon}</div>
-              <p className="eco-feature-title">{f.title}</p>
-              <p className="eco-feature-desc">{f.desc}</p>
+        {/* Arjun */}
+        <div style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
+          <div style={{ background: "#D0EAD4", padding: "18px 20px", display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ fontSize: "1.8rem" }}>👨</div>
+            <div>
+              <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "#0D2312" }}>Arjun, 28</p>
+              <p style={{ fontSize: "0.7rem", color: "#3B6B45" }}>Working professional · Active eco-enthusiast</p>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EcoProblem() {
-  return (
-    <section className="eco-problem">
-      <div className="eco-container">
-        <p className="section-label reveal">The Problem</p>
-        <p className="problem-statement reveal rd1">
-          People want to reduce their environmental impact but struggle to understand how daily actions affect their carbon footprint —{" "}
-          <strong>most tools are too complex or unengaging, making sustainable living feel out of reach.</strong>
-        </p>
-        <div className="reveal rd2" style={{ marginBottom: "2.5rem" }}>
-          <ImagePlaceholder label="Problem Visualization" height={320} icon="🌡️" sub="Research findings · User pain points" />
-        </div>
-        <p className="section-label reveal">Potential Solution</p>
-        <div className="eco-callout reveal rd1">
-          <span className="eco-callout-icon">💡</span>
-          <p className="eco-callout-text">
-            A clean, intuitive app that helps users track their carbon footprint, understand their daily impact, and grow sustainable habits with ease.
-          </p>
-        </div>
-        <div className="reveal rd2">
-          <ImagePlaceholder label="Solution Overview" height={320} icon="✅" sub="App concept · Key interactions" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EcoProcess() {
-  return (
-    <section className="eco-process">
-      <div className="eco-container">
-        <p className="section-label reveal">Design Thinking Process</p>
-        <h2 className="section-title reveal rd1">
-          Five phases, one goal —
-          <br />
-          <em>making sustainability approachable.</em>
-        </h2>
-        <div className="eco-process-steps">
-          {ecoProcess.map((step, i) => (
-            <div className={`eco-step reveal rd${i + 1}`} key={step.name}>
-              <div className={`eco-step-circle${step.active ? " active" : ""}`}>{step.icon}</div>
-              <p className="eco-step-phase">{step.phase}</p>
-              <p className="eco-step-name">{step.name}</p>
-              <p className="eco-step-desc">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-        <div className="reveal" style={{ marginTop: "3rem" }}>
-          <ImagePlaceholder label="Design Thinking Process Diagram" height={280} icon="🗺️" sub="Process overview · Double diamond" />
-        </div>
-        <div className="reveal" style={{ marginTop: "1.5rem" }}>
-          <ImagePlaceholder label="Project Timeline" height={200} icon="📅" sub="4-week sprint breakdown" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EcoResearch() {
-  return (
-    <section className="eco-research">
-      <div className="eco-container">
-        <p className="section-label reveal">User Research</p>
-        <h2 className="section-title reveal rd1">
-          Understanding what users
-          <br />
-          <em>actually need from an eco app.</em>
-        </h2>
-        <div className="eco-callout reveal rd2" style={{ marginBottom: "2rem" }}>
-          <span className="eco-callout-icon">🎯</span>
-          <p className="eco-callout-text">
-            To understand user awareness, challenges, and expectations around tracking their carbon footprint in daily life.
-          </p>
-        </div>
-        <div className="reveal rd2" style={{ marginBottom: "2.5rem" }}>
-          <ImagePlaceholder label="User Research Findings" height={320} icon="🔍" sub="Survey results · Interview insights" />
-        </div>
-        <div className="eco-stat-row">
-          {ecoResearchStats.map((stat, i) => (
-            <div className={`eco-stat reveal rd${i + 1}`} key={stat.label}>
-              <p
-                className="eco-stat-val eco-count"
-                data-target={stat.value}
-                data-suffix={stat.suffix}
-              >
-                0{stat.suffix}
-              </p>
-              <p className="eco-stat-label">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EcoCompetitor() {
-  return (
-    <section className="eco-competitor">
-      <div className="eco-container">
-        <p className="section-label reveal">Competitor Analysis</p>
-        <h2 className="section-title reveal rd1">
-          What the market gets right —
-          <br />
-          <em>and where EcoTrack fills the gap.</em>
-        </h2>
-        <div className="eco-comp-grid">
-          {ecoCompetitors.map((comp, i) => (
-            <div className={`eco-comp-card reveal rd${(i % 2) + 1}`} key={comp.name}>
-              <p className="eco-comp-name">{comp.name}</p>
-              <div className="eco-comp-cols">
-                <div>
-                  <p className="eco-comp-col-label pros">Pros</p>
-                  <ul className="eco-comp-list pros">
-                    {comp.pros.map((p) => <li key={p}>{p}</li>)}
-                  </ul>
-                </div>
-                <div>
-                  <p className="eco-comp-col-label cons">Cons</p>
-                  <ul className="eco-comp-list cons">
-                    {comp.cons.map((c) => <li key={c}>{c}</li>)}
-                  </ul>
-                </div>
+          </div>
+          <div style={{ padding: "16px 20px" }}>
+            {ecoEmpathy2.map((row) => (
+              <div key={row.cat} style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 10, marginBottom: 10 }}>
+                <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
+                <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.55 }}>{row.insight}</p>
               </div>
-            </div>
-          ))}
-        </div>
-        <div className="eco-callout reveal" style={{ marginTop: "2rem" }}>
-          <span className="eco-callout-icon">💡</span>
-          <p className="eco-callout-text">
-            While these apps offer great features individually, most lack <strong>simplicity</strong>, <strong>daily usability</strong>, or <strong>engagement</strong>. EcoTrack combines the best of all — making sustainability simple, interactive, and personally rewarding.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EcoQualResearch() {
-  return (
-    <section className="eco-research" style={{ background: "var(--eco-bg3, #D0EAD4)" }}>
-      <div className="eco-container">
-        <p className="section-label reveal">Qualitative Research</p>
-        <h2 className="section-title reveal rd1">
-          Real conversations,
-          <br />
-          <em>real insights.</em>
-        </h2>
-        <p className="body-text reveal rd2">
-          We conducted in-depth user interviews with individuals from our target demographic to gain a deeper understanding of their lifestyle habits, environmental concerns, and expectations from a carbon tracking app. These conversations revealed valuable emotional and behavioral insights that went beyond what quantitative data could uncover.
-        </p>
-        <div className="reveal rd2">
-          <ImagePlaceholder label="User Interview Photos & Notes" height={360} icon="🗣️" sub="5 interviews · 2 age groups" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EcoEmpathy() {
-  return (
-    <section className="eco-empathy">
-      <div className="eco-container">
-        <p className="section-label reveal">User Empathy Mapping</p>
-        <h2 className="section-title reveal rd1">
-          Stepping into the shoes
-          <br />
-          <em>of our users.</em>
-        </h2>
-        <p className="body-text reveal rd2">
-          To better understand user emotions, motivations, and frustrations, we created empathy maps based on real interview insights. These maps helped us design features that address true needs — not just actions, but how users think and feel about sustainable living.
-        </p>
-        <div className="reveal rd2" style={{ marginBottom: "2.5rem" }}>
-          <ImagePlaceholder label="Empathy Map Overview" height={300} icon="🧠" sub="Think · See · Say · Feel · Pain · Gain" />
-        </div>
-        <div className="eco-empathy-grid">
-          <div className="eco-empathy-card reveal rd1">
-            <div className="eco-empathy-header">
-              <div className="eco-empathy-avatar">👩</div>
-              <div>
-                <p className="eco-empathy-name">Priya, 22</p>
-                <p className="eco-empathy-role">College student · Eco-curious beginner</p>
-              </div>
-            </div>
-            <div className="eco-empathy-rows">
-              {ecoEmpathy1.map((row) => (
-                <div className="eco-emp-row" key={row.cat}>
-                  <p className="eco-emp-cat">{row.cat}</p>
-                  <p className="eco-emp-insight">{row.insight}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="eco-empathy-card reveal rd2">
-            <div className="eco-empathy-header">
-              <div className="eco-empathy-avatar">👨</div>
-              <div>
-                <p className="eco-empathy-name">Arjun, 28</p>
-                <p className="eco-empathy-role">Working professional · Active eco-enthusiast</p>
-              </div>
-            </div>
-            <div className="eco-empathy-rows">
-              {ecoEmpathy2.map((row) => (
-                <div className="eco-emp-row" key={row.cat}>
-                  <p className="eco-emp-cat">{row.cat}</p>
-                  <p className="eco-emp-insight">{row.insight}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="reveal" style={{ marginTop: "2.5rem" }}>
-          <ImagePlaceholder label="Full Empathy Map Canvas" height={280} icon="🗺️" sub="Detailed empathy analysis" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EcoPersona() {
-  return (
-    <section className="eco-persona">
-      <div className="eco-container">
-        <p className="section-label reveal">User Personas</p>
-        <h2 className="section-title reveal rd1">
-          Fictional representations,
-          <br />
-          <em>built from real research.</em>
-        </h2>
-        <p className="body-text reveal rd2">
-          These personas are fictional representations of our target users, created using real research insights. They help us understand needs, motivations, and pain points to design a more user-centered solution.
-        </p>
-        <div className="eco-persona-grid">
-          <div className="eco-persona-card reveal rd1">
-            <div className="eco-persona-img">
-              <span className="eco-persona-img-icon">👩‍🎓</span>
-              <span className="eco-persona-img-label">Persona Photo · Place image here</span>
-            </div>
-            <div className="eco-persona-body">
-              <p className="eco-persona-name">Priya Sharma</p>
-              <p className="eco-persona-tag">22 · College Student · Mumbai</p>
-              <p className="eco-persona-detail">
-                Eco-curious beginner who cares about the planet but doesn&apos;t know where to start. Wants a friendly, visual app that guides her through sustainable choices without overwhelming her with data.
-              </p>
-            </div>
-          </div>
-          <div className="eco-persona-card reveal rd2">
-            <div className="eco-persona-img">
-              <span className="eco-persona-img-icon">👨‍💼</span>
-              <span className="eco-persona-img-label">Persona Photo · Place image here</span>
-            </div>
-            <div className="eco-persona-body">
-              <p className="eco-persona-name">Arjun Mehta</p>
-              <p className="eco-persona-tag">28 · Product Manager · Bangalore</p>
-              <p className="eco-persona-detail">
-                Active eco-enthusiast who has built green habits but wants data-driven proof of their impact. Looking for a sleek, efficient app that gives meaningful feedback without information overload.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="reveal" style={{ marginTop: "2rem" }}>
-          <ImagePlaceholder label="Full Persona Documents" height={260} icon="👤" sub="Detailed persona sheets from Figma" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EcoDesign() {
-  return (
-    <section className="eco-design">
-      <div className="eco-container">
-        <p className="section-label reveal">Typography</p>
-        <h2 className="section-title reveal rd1">
-          Inter — clean, modern,
-          <br />
-          <em>built for readability.</em>
-        </h2>
-        <p className="body-text reveal rd2">
-          I chose Inter for its clean, modern look and excellent readability on screens. Its versatility helped create a clear visual hierarchy — bold for emphasis, regular weights for smooth, accessible reading across the app.
-        </p>
-        <div className="eco-type-display reveal rd2">
-          <p className="eco-type-label">Primary Typeface</p>
-          <p className="eco-type-heading">Inter</p>
-          <div className="eco-type-weights">
-            <div className="eco-weight">
-              <span className="eco-weight-sample" style={{ fontWeight: 700 }}>Bold</span>
-              <span className="eco-weight-label">700 · Headings</span>
-            </div>
-            <div className="eco-weight">
-              <span className="eco-weight-sample" style={{ fontWeight: 500 }}>Medium</span>
-              <span className="eco-weight-label">500 · Labels</span>
-            </div>
-            <div className="eco-weight">
-              <span className="eco-weight-sample" style={{ fontWeight: 400 }}>Regular</span>
-              <span className="eco-weight-label">400 · Body</span>
-            </div>
-            <div className="eco-weight">
-              <span className="eco-weight-sample" style={{ fontWeight: 300 }}>Light</span>
-              <span className="eco-weight-label">300 · Captions</span>
-            </div>
-          </div>
-          <div className="reveal rd3">
-            <ImagePlaceholder label="Typography & Colour Palette Specimen" height={220} icon="🎨" sub="Full design system · Figma styles" />
+            ))}
           </div>
         </div>
       </div>
-    </section>
+    </CsSection>
   );
 }
 
-function EcoWireframes() {
+/* ─────────────────────────────────────────────────────────────────────
+   §07  USER PERSONAS
+───────────────────────────────────────────────────────────────────── */
+function PersonasSection() {
   return (
-    <section className="eco-wireframes">
-      <div className="eco-container">
-        <p className="section-label reveal">Mid-Fidelity Wireframes</p>
-        <h2 className="section-title reveal rd1">
-          Layout, structure, and flow —
-          <br />
-          <em>without visual distraction.</em>
-        </h2>
-        <p className="body-text reveal rd2">
-          I developed mid-fidelity wireframes to refine the layout, structure, and functionality of the app, focusing on user experience without visual distractions.
-        </p>
-        <div className="reveal rd2">
-          <ImagePlaceholder label="Mid-Fidelity Wireframes" height={400} icon="📐" sub="6 key screens · Wireframe flow" />
-        </div>
+    <CsSection id="personas">
+      <CsSectionHeader
+        label="User Personas"
+        title={<>Fictional representations, <em style={{ fontStyle: "italic" }}>built from real research.</em></>}
+        sub="These personas guided every feature decision from information architecture to gamification mechanics."
+      />
 
-        <div style={{ marginTop: "5rem" }}>
-          <p className="section-label reveal">High-Fidelity Wireframes</p>
-          <h2 className="section-title reveal rd1">
-            Bringing the app to life
-            <br />
-            <em>with colour, depth, and detail.</em>
-          </h2>
-          <p className="body-text reveal rd2">
-            I designed high-fidelity wireframes to bring the app to life with detailed visuals, colors, and typography, closely representing the final user interface.
-          </p>
-          <div className="eco-wf-grid reveal rd2">
-            <ImagePlaceholder label="Dashboard Screen" height={320} icon="🏠" sub="Home · Daily tracker" />
-            <ImagePlaceholder label="Carbon Details Screen" height={320} icon="📊" sub="Impact breakdown · Charts" />
-            <ImagePlaceholder label="Learning Hub Screen" height={320} icon="💡" sub="Tips · Eco habits" />
-            <ImagePlaceholder label="Add Activity Screen" height={320} icon="➕" sub="Log transport · Food · Energy" />
-            <ImagePlaceholder label="Progress Screen" height={320} icon="📈" sub="Weekly · Monthly charts" />
-            <ImagePlaceholder label="Profile Screen" height={320} icon="👤" sub="Achievements · Goals" />
+      <div className="csl-persona-grid csl-reveal">
+        {/* Priya Sharma */}
+        <div className="csl-persona-card">
+          <div className="csl-persona-img" style={{ background: "#E8F7EC" }}>
+            <span className="csl-persona-img-icon">👩‍🎓</span>
+            <span className="csl-persona-img-label">Persona photo placeholder</span>
           </div>
-          <div className="reveal" style={{ marginTop: "1rem" }}>
-            <ImagePlaceholder label="Full App Flow — All Screens" height={280} icon="🔗" sub="Prototype connections · User flow" />
+          <div className="csl-persona-body">
+            <p className="csl-persona-name">Priya Sharma</p>
+            <p className="csl-persona-tag">22 · College Student · Mumbai</p>
+            <p className="csl-persona-detail">
+              Eco-curious beginner who cares about the planet but doesn&apos;t know where to start. Wants a friendly, visual app that guides her through sustainable choices without overwhelming her with data.
+            </p>
+          </div>
+        </div>
+        {/* Arjun Mehta */}
+        <div className="csl-persona-card">
+          <div className="csl-persona-img" style={{ background: "#D0EAD4" }}>
+            <span className="csl-persona-img-icon">👨‍💼</span>
+            <span className="csl-persona-img-label">Persona photo placeholder</span>
+          </div>
+          <div className="csl-persona-body">
+            <p className="csl-persona-name">Arjun Mehta</p>
+            <p className="csl-persona-tag">28 · Product Manager · Bangalore</p>
+            <p className="csl-persona-detail">
+              Active eco-enthusiast who has built green habits but wants data-driven proof of their impact. Looking for a sleek, efficient app that gives meaningful feedback without information overload.
+            </p>
           </div>
         </div>
       </div>
-    </section>
-  );
-}
 
-function EcoTesting() {
-  return (
-    <section className="eco-testing">
-      <div className="eco-container">
-        <p className="section-label reveal">User Testing</p>
-        <h2 className="section-title reveal rd1">
-          Real users, real friction —
-          <br />
-          <em>real improvements.</em>
-        </h2>
-        <div className="eco-callout reveal rd2" style={{ marginBottom: "2.5rem" }}>
-          <span className="eco-callout-icon">🎯</span>
-          <p className="eco-callout-text">
-            <strong>Test Goal:</strong> To evaluate the usability, clarity, and overall experience of the carbon tracking app with real users from the target audience.
-          </p>
-        </div>
-        <div className="eco-insights-grid">
-          <div className="eco-insight-group reveal rd1">
-            <p className="eco-insight-group-label">Key Insights Gained</p>
-            <ul className="eco-insight-list">
-              {ecoTestInsights.map((insight) => (
-                <li key={insight}>{insight}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="eco-insight-group reveal rd2">
-            <p className="eco-insight-group-label">How It Helped</p>
-            <ul className="eco-insight-list">
-              {ecoTestHelped.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      {/* Full persona documents image */}
+      <div className="csl-reveal rd1" style={{ marginTop: 24 }}>
+        <CsImg label="Full persona documents — detailed sheets from Figma" height={240} icon="👤" sub="Goals · Pain points · Motivations · Behaviours" />
       </div>
-    </section>
+    </CsSection>
   );
 }
 
-function EcoIterations() {
+/* ─────────────────────────────────────────────────────────────────────
+   §08  WIREFRAMES
+───────────────────────────────────────────────────────────────────── */
+function WireframesSection() {
   return (
-    <section className="eco-iterations">
-      <div className="eco-container">
-        <p className="section-label reveal">Before → After Iteration</p>
-        <h2 className="section-title reveal rd1">
-          Small changes,
-          <br />
-          <em>significant impact.</em>
-        </h2>
+    <CsSection id="wireframes">
+      <CsSectionHeader
+        label="Mid-Fidelity Wireframes"
+        title={<>Layout, structure, and flow — <em style={{ fontStyle: "italic" }}>without visual distraction.</em></>}
+        sub="Mid-fidelity wireframes to refine layout, structure, and functionality — focusing on user experience without visual distractions."
+      />
 
-        <div className="eco-iteration-block reveal rd2">
-          <span className="eco-iter-label">🔄 Iteration 01</span>
-          <p className="eco-iter-title">The Add Button — From Hidden to Front and Centre</p>
-          <div className="eco-ba-grid">
-            <div>
-              <p className="eco-ba-col-label before">✕ Before</p>
-              <ImagePlaceholder label="Before: Tab Bar with Hidden Add Button" height={300} icon="📱" sub="Original design · Centre tab" />
-              <p className="eco-ba-desc">
-                The add button was hidden in the centre of the tab bar, making it hard for users to notice and access quickly during daily logging.
-              </p>
-            </div>
-            <div>
-              <p className="eco-ba-col-label after">✓ After</p>
-              <ImagePlaceholder label="After: Floating Add Button on Home Screen" height={300} icon="📱" sub="Revised design · FAB" />
-              <p className="eco-ba-desc">
-                Replaced with a prominent floating action button on the home screen for better visibility and quicker daily input without extra navigation.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="eco-iteration-block reveal rd2">
-          <span className="eco-iter-label">🔄 Iteration 02</span>
-          <p className="eco-iter-title">Carbon Charts — From Technical to Intuitive</p>
-          <div className="eco-ba-grid">
-            <div>
-              <p className="eco-ba-col-label before">✕ Before</p>
-              <ImagePlaceholder label="Before: Complex Data Visualisation" height={300} icon="📊" sub="Original charts · Data-heavy" />
-              <p className="eco-ba-desc">
-                Carbon data visualizations were too technical, lacked contextual language, and overwhelmed users unfamiliar with CO₂ metrics.
-              </p>
-            </div>
-            <div>
-              <p className="eco-ba-col-label after">✓ After</p>
-              <ImagePlaceholder label="After: Simplified & Contextual Charts" height={300} icon="📊" sub="Revised charts · Plain language" />
-              <p className="eco-ba-desc">
-                Simplified visuals with plain-language labels, colour-coded context (good/bad days), and relative comparisons to yesterday.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Mid-fi wireframes */}
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+        <CsImg label="Mid-fidelity wireframes — 6 key screens" height={380} icon="📐" sub="Wireframe flow · Layout explorations" />
       </div>
-    </section>
+
+      {/* High-fi header */}
+      <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em", color: "#2D7D43", marginBottom: 12 }} className="csl-reveal rd1">
+        High-Fidelity Wireframes
+      </p>
+      <h3 style={{ fontSize: "1.3rem", fontWeight: 800, color: "#111827", marginBottom: 12, letterSpacing: "-0.02em" }} className="csl-reveal rd1">
+        Bringing the app to life with colour, depth, and detail.
+      </h3>
+
+      <div className="csl-img-3up csl-reveal rd2">
+        <CsImg label="Dashboard Screen" aspect="9/16" icon="🏠" sub="Home · Daily tracker" />
+        <CsImg label="Carbon Details Screen" aspect="9/16" icon="📊" sub="Impact breakdown · Charts" />
+        <CsImg label="Learning Hub Screen" aspect="9/16" icon="💡" sub="Tips · Eco habits" />
+      </div>
+      <div className="csl-img-3up csl-reveal rd3" style={{ marginTop: 14 }}>
+        <CsImg label="Add Activity Screen" aspect="9/16" icon="➕" sub="Log transport · Food · Energy" />
+        <CsImg label="Progress Screen" aspect="9/16" icon="📈" sub="Weekly · Monthly charts" />
+        <CsImg label="Profile Screen" aspect="9/16" icon="👤" sub="Achievements · Goals" />
+      </div>
+
+      <div className="csl-reveal" style={{ marginTop: 16 }}>
+        <CsImg label="Full app flow — all screens connected" height={260} icon="🔗" sub="Prototype connections · Complete user flow" />
+      </div>
+    </CsSection>
   );
 }
 
-function EcoLearnings() {
+/* ─────────────────────────────────────────────────────────────────────
+   §09  VISUAL DESIGN
+───────────────────────────────────────────────────────────────────── */
+function DesignSection() {
   return (
-    <section className="eco-learnings">
-      <div className="eco-container">
-        <p className="section-label reveal" style={{ color: "rgba(72,163,98,0.8)" }}>Key Learnings</p>
-        <h2 className="section-title light reveal rd1">
-          Improvements &
-          <br />
-          <em>what I took away.</em>
-        </h2>
-        <p className="reveal rd2" style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, maxWidth: "580px", marginBottom: "0" }}>
-          Throughout the design process, several iterations and testing phases led to meaningful improvements in both usability and user satisfaction.
-        </p>
-        <div className="eco-learnings-grid">
-          {ecoLearnings.map((l, i) => (
-            <div className={`eco-learning-card reveal rd${(i % 3) + 1}`} key={l.title}>
-              <span className="eco-learning-icon">{l.icon}</span>
-              <p className="eco-learning-title">{l.title}</p>
-              <p className="eco-learning-desc">{l.desc}</p>
+    <CsSection id="design">
+      <CsSectionHeader
+        label="Typography & Visual Design"
+        title={<>Inter — clean, modern, <em style={{ fontStyle: "italic" }}>built for readability.</em></>}
+        sub="Chosen for its clean look and excellent readability on screens. Its versatility helped create clear visual hierarchy across all app states."
+      />
+
+      {/* Type specimen */}
+      <div className="csl-card csl-reveal" style={{ marginBottom: 24 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 16 }}>Primary typeface</p>
+        <p style={{ fontSize: "2.5rem", fontWeight: 800, color: "#2D7D43", marginBottom: 20, letterSpacing: "-0.04em" }}>Inter</p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }}>
+          {[
+            { w: 700, label: "Bold", meta: "700 · Headings" },
+            { w: 500, label: "Medium", meta: "500 · Labels" },
+            { w: 400, label: "Regular", meta: "400 · Body" },
+            { w: 300, label: "Light", meta: "300 · Captions" },
+          ].map((t) => (
+            <div key={t.label}>
+              <p style={{ fontSize: "1rem", fontWeight: t.w, color: "#111827", marginBottom: 4 }}>{t.label}</p>
+              <p style={{ fontSize: "0.62rem", color: "#9CA3AF", fontFamily: "ui-monospace, monospace" }}>{t.meta}</p>
             </div>
           ))}
         </div>
       </div>
-    </section>
+
+      {/* Colour & typography image */}
+      <div className="csl-reveal rd1">
+        <CsImg label="Typography & Colour Palette specimen — full design system" height={220} icon="🎨" sub="Figma styles · Colour tokens · Type scale" />
+      </div>
+    </CsSection>
   );
 }
 
-function EcoNext() {
+/* ─────────────────────────────────────────────────────────────────────
+   §10  USER TESTING
+───────────────────────────────────────────────────────────────────── */
+function TestingSection() {
   return (
-    <section className="eco-next">
-      <div className="eco-container">
-        <p className="section-label reveal">Up Next</p>
-        <Link href="/projects/biblofi" className="eco-next-card reveal rd1">
-          <div>
-            <p className="eco-next-label">Next Case Study</p>
-            <p className="eco-next-title">BibloFi — Library Management System</p>
-          </div>
-          <span className="eco-next-arrow">→</span>
-        </Link>
+    <CsSection id="testing">
+      <CsSectionHeader
+        label="User Testing"
+        title={<>Real users, real friction — <em style={{ fontStyle: "italic" }}>real improvements.</em></>}
+      />
+
+      <div className="csl-callout csl-reveal" style={{ marginBottom: 28, borderLeftColor: "#2D7D43", background: "#E8F7EC" }}>
+        <span style={{ fontSize: "1.2rem", marginRight: 8 }}>🎯</span>
+        <strong>Test Goal:</strong> To evaluate the usability, clarity, and overall experience of the carbon tracking app with real users from the target audience.
       </div>
-    </section>
+
+      <div className="csl-card-2col csl-reveal rd1">
+        <div style={{ background: "#fff", borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+          <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>Key Insights Gained</p>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {ecoTestInsights.map((insight) => (
+              <li key={insight} style={{ display: "flex", gap: 8, marginBottom: 10, fontSize: "0.78rem", color: "#374151", lineHeight: 1.55 }}>
+                <span style={{ color: "#2D7D43", flexShrink: 0 }}>→</span>{insight}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div style={{ background: "#fff", borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+          <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>How It Helped</p>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {ecoTestHelped.map((item) => (
+              <li key={item} style={{ display: "flex", gap: 8, marginBottom: 10, fontSize: "0.78rem", color: "#374151", lineHeight: 1.55 }}>
+                <span style={{ color: "#10B981", flexShrink: 0 }}>✓</span>{item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §11  ITERATIONS
+───────────────────────────────────────────────────────────────────── */
+function IterationsSection() {
+  const iterations = [
+    {
+      label: "Iteration 01",
+      title: "The Add Button — From Hidden to Front and Centre",
+      before: { label: "Before: Tab bar with hidden add button", desc: "The add button was hidden in the centre of the tab bar, making it hard for users to notice and access quickly during daily logging." },
+      after:  { label: "After: Floating action button on home screen", desc: "Replaced with a prominent floating action button on the home screen for better visibility and quicker daily input without extra navigation." },
+    },
+    {
+      label: "Iteration 02",
+      title: "Carbon Charts — From Technical to Intuitive",
+      before: { label: "Before: Complex data visualisation", desc: "Carbon data visualizations were too technical, lacked contextual language, and overwhelmed users unfamiliar with CO₂ metrics." },
+      after:  { label: "After: Simplified & contextual charts", desc: "Simplified visuals with plain-language labels, colour-coded context (good/bad days), and relative comparisons to yesterday." },
+    },
+  ];
+
+  return (
+    <CsSection id="iterations">
+      <CsSectionHeader
+        label="Before → After Iterations"
+        title={<>Small changes, <em style={{ fontStyle: "italic" }}>significant impact.</em></>}
+      />
+
+      {iterations.map((iter, i) => (
+        <div key={iter.label} className="csl-reveal" style={{ marginBottom: i < iterations.length - 1 ? 32 : 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+            <span style={{ fontSize: "0.62rem", fontWeight: 700, background: "#E8F7EC", color: "#2D7D43", padding: "4px 12px", borderRadius: 100 }}>{iter.label}</span>
+          </div>
+          <h3 style={{ fontSize: "0.96rem", fontWeight: 700, color: "#111827", marginBottom: 16 }}>{iter.title}</h3>
+          <div className="csl-ba-grid">
+            <div>
+              <p className="csl-ba-label before">✕ Before</p>
+              <CsImg label={iter.before.label} aspect="9/16" icon="📱" sub="Original design" />
+              <p className="csl-ba-desc">{iter.before.desc}</p>
+            </div>
+            <div>
+              <p className="csl-ba-label after">✓ After</p>
+              <CsImg label={iter.after.label} aspect="9/16" icon="📱" sub="Revised design" />
+              <p className="csl-ba-desc">{iter.after.desc}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §12  LEARNINGS
+───────────────────────────────────────────────────────────────────── */
+function LearningsSection() {
+  return (
+    <CsSection id="learnings" last>
+      <CsSectionHeader
+        label="Key Learnings"
+        title={<>Improvements & <em style={{ fontStyle: "italic" }}>what I took away.</em></>}
+        sub="Throughout the design process, several iterations and testing phases led to meaningful improvements in both usability and user satisfaction."
+      />
+
+      <div className="csl-card-grid csl-reveal">
+        {ecoLearnings.map((l, i) => (
+          <div key={l.title} style={{ background: "#fff", borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+            <span style={{ fontSize: "1.5rem", display: "block", marginBottom: 12 }}>{l.icon}</span>
+            <p style={{ fontSize: "0.86rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{l.title}</p>
+            <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>{l.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Next project */}
+      <Link href="/projects/biblofi" className="csl-next csl-reveal" style={{ marginTop: 56 }}>
+        <div>
+          <p className="csl-next-label">Next Case Study</p>
+          <p className="csl-next-title">BibloFi — Library Management System</p>
+        </div>
+        <span className="csl-next-arrow">→</span>
+      </Link>
+    </CsSection>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MAIN EXPORT
+════════════════════════════════════════════════════════════════════════ */
+export function EcotrackCaseStudy() {
+  return (
+    <CaseStudyPage
+      theme="eco"
+      title="EcoTrack"
+      tag="iOS App · Sustainability"
+      tocItems={TOC_ITEMS}
+      metaRows={META_ROWS}
+      hero={<EcoHero />}
+    >
+      <OverviewSection />
+      <ProblemSection />
+      <ProcessSection />
+      <ResearchSection />
+      <CompetitiveSection />
+      <EmpathySection />
+      <PersonasSection />
+      <WireframesSection />
+      <DesignSection />
+      <TestingSection />
+      <IterationsSection />
+      <LearningsSection />
+    </CaseStudyPage>
   );
 }
