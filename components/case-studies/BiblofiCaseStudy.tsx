@@ -470,7 +470,7 @@ function LoFiWireframesSection() {
 
       <div className="csl-reveal" style={{ borderRadius:16, overflow:"hidden" }}>
         <Image
-          src="/Image/Biblofi/wireframe1.png"
+          src="/Image/Biblofi/wireframe.png"
           alt="Lo-fi wireframes"
           width={1400}
           height={900}
