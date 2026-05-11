@@ -125,6 +125,46 @@ function EcoHero() {
   );
 }
 
+const ECO_RING_R = 24;
+const ECO_RING_CIRC = 2 * Math.PI * ECO_RING_R; // ~150.8
+
+function EcoCO2Ring() {
+  return (
+    <div style={{ position: "relative", width: 60, height: 60, margin: "0 auto 8px" }}>
+      <style>{`
+        @keyframes eco-ring-draw {
+          from { stroke-dashoffset: ${ECO_RING_CIRC}; }
+          to   { stroke-dashoffset: 0; }
+        }
+        @keyframes eco-ring-glow {
+          0%, 100% { filter: drop-shadow(0 0 0px #2D7D43); }
+          50%       { filter: drop-shadow(0 0 5px #2D7D43); }
+        }
+      `}</style>
+      <svg width="60" height="60" style={{ transform: "rotate(-90deg)" }}>
+        <circle cx="30" cy="30" r={ECO_RING_R} fill="none" stroke="#D0EAD4" strokeWidth="4" />
+        <circle
+          cx="30" cy="30" r={ECO_RING_R}
+          fill="none"
+          stroke="#2D7D43"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeDasharray={ECO_RING_CIRC}
+          strokeDashoffset={ECO_RING_CIRC}
+          style={{
+            animation: `eco-ring-draw 1.2s ease-out 0.4s forwards,
+                        eco-ring-glow  2.4s ease-in-out 1.6s infinite`,
+          }}
+        />
+      </svg>
+      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+        <p style={{ fontSize: "0.9rem", fontWeight: 800, color: "#2D7D43", lineHeight: 1 }}>2.4</p>
+        <p style={{ fontSize: "0.52rem", color: "#7AAD85" }}>kg CO₂</p>
+      </div>
+    </div>
+  );
+}
+
 function EcoPhoneMockup() {
   return (
     <div style={{
@@ -142,10 +182,7 @@ function EcoPhoneMockup() {
           <div style={{ width: 22, height: 22, borderRadius: "50%", background: "#D0EAD4" }} />
         </div>
         <div style={{ background: "#fff", borderRadius: 12, padding: "14px 12px", textAlign: "center", marginBottom: 10 }}>
-          <div style={{ width: 60, height: 60, borderRadius: "50%", border: "4px solid #2D7D43", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", margin: "0 auto 8px" }}>
-            <p style={{ fontSize: "0.9rem", fontWeight: 800, color: "#2D7D43", lineHeight: 1 }}>2.4</p>
-            <p style={{ fontSize: "0.52rem", color: "#7AAD85" }}>kg CO₂</p>
-          </div>
+          <EcoCO2Ring />
           <p style={{ fontSize: "0.62rem", color: "#3B6B45" }}>Today&apos;s footprint</p>
           <p style={{ fontSize: "0.6rem", color: "#48A362" }}>↓ 18% vs yesterday</p>
         </div>
