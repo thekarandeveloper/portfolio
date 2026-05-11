@@ -496,7 +496,7 @@ function ScreensSection() {
         <div key={feature.title} className="csl-reveal" style={{
           background:"#fff", borderRadius:20, padding:"28px 24px",
           boxShadow:"0 4px 20px rgba(0,0,0,0.05)", marginBottom:20,
-          display:"grid", gridTemplateColumns:"1fr 1fr", gap:32, alignItems:"center",
+          display:"grid", gridTemplateColumns:"1.8fr 1fr", gap:32, alignItems:"center",
         }}>
           <div style={{ order: feature.reverse ? 2 : 1 }}>
             <p style={{ fontSize:"0.62rem", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", marginBottom:6 }}>{feature.num}</p>
@@ -509,13 +509,13 @@ function ScreensSection() {
               {feature.impact}
             </span>
           </div>
-          <div style={{ order: feature.reverse ? 1 : 2, borderRadius:14, overflow:"hidden" }}>
+          <div style={{ order: feature.reverse ? 1 : 2, display:"flex", justifyContent:"center" }}>
             <Image
               src={feature.img}
               alt={feature.title}
-              width={600}
-              height={1067}
-              style={{ width:"100%", height:"auto", display:"block", borderRadius:14 }}
+              width={240}
+              height={427}
+              style={{ width:"100%", maxWidth:220, height:"auto", display:"block", borderRadius:20, boxShadow:"0 8px 32px rgba(0,0,0,0.12)" }}
             />
           </div>
         </div>
@@ -528,10 +528,23 @@ function ScreensSection() {
    §07  FINAL SCREENS
 ───────────────────────────────────────────────────────────────────── */
 function FinalScreensSection() {
-  const screens = Array.from({ length:9 }, (_, i) => ({
-    src: `/Image/Biblofi/final${i+1}.png`,
-    label: `Final screen ${i+1}`,
-  }));
+  const rows = [
+    [
+      { src:"/Image/Biblofi/final1.png", label:"Onboarding" },
+      { src:"/Image/Biblofi/final2.png", label:"Home" },
+      { src:"/Image/Biblofi/final3.png", label:"Browse" },
+    ],
+    [
+      { src:"/Image/Biblofi/final4.png", label:"Book Detail" },
+      { src:"/Image/Biblofi/final5.png", label:"Search" },
+      { src:"/Image/Biblofi/final6.png", label:"Scan" },
+    ],
+    [
+      { src:"/Image/Biblofi/final7.png", label:"Seat Booking" },
+      { src:"/Image/Biblofi/final8.png", label:"My Books" },
+      { src:"/Image/Biblofi/final9.png", label:"Profile" },
+    ],
+  ];
 
   return (
     <CsSection id="final">
@@ -541,21 +554,19 @@ function FinalScreensSection() {
         sub="From onboarding to book discovery, seat booking to fine tracking — final high-fidelity screens delivered to the Infosys engineering team."
       />
 
-      <div className="csl-img-3up csl-reveal">
-        {screens.slice(0,3).map((s) => (
-          <CsImg key={s.src} label={s.label} aspect="9/16" icon="📱" sub="Final hi-fi screen" />
-        ))}
-      </div>
-      <div className="csl-img-3up csl-reveal rd1" style={{ marginTop:14 }}>
-        {screens.slice(3,6).map((s) => (
-          <CsImg key={s.src} label={s.label} aspect="9/16" icon="📱" sub="Final hi-fi screen" />
-        ))}
-      </div>
-      <div className="csl-img-3up csl-reveal rd2" style={{ marginTop:14 }}>
-        {screens.slice(6).map((s) => (
-          <CsImg key={s.src} label={s.label} aspect="9/16" icon="📱" sub="Final hi-fi screen" />
-        ))}
-      </div>
+      {rows.map((row, ri) => (
+        <div key={ri} className={`csl-reveal${ri > 0 ? ` rd${ri}` : ""}`}
+          style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16, marginBottom:16 }}>
+          {row.map(({ src, label }) => (
+            <div key={src} style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10 }}>
+              <div style={{ width:"100%", borderRadius:20, overflow:"hidden", boxShadow:"0 8px 28px rgba(0,0,0,0.1)" }}>
+                <CsImg label={label} aspect="9/16" icon="📱" sub="Upload final screen here" />
+              </div>
+              <p style={{ fontSize:"0.72rem", color:"#9CA3AF", textAlign:"center" }}>{label}</p>
+            </div>
+          ))}
+        </div>
+      ))}
     </CsSection>
   );
 }

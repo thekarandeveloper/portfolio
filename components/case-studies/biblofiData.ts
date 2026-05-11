@@ -82,8 +82,7 @@ export const bibloFeatures = [
     ],
     impact: "📚 Eliminates dependency on librarians",
     img: "/Image/Biblofi/scan.png",
-    phone: "scan",
-    reverse: true
+    phone: "scan"
   }
 ];
 
