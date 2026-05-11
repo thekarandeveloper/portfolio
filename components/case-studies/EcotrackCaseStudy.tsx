@@ -131,16 +131,6 @@ const ECO_RING_CIRC = 2 * Math.PI * ECO_RING_R; // ~150.8
 function EcoCO2Ring() {
   return (
     <div style={{ position: "relative", width: 60, height: 60, margin: "0 auto 8px" }}>
-      <style>{`
-        @keyframes eco-ring-draw {
-          from { stroke-dashoffset: ${ECO_RING_CIRC}; }
-          to   { stroke-dashoffset: 0; }
-        }
-        @keyframes eco-ring-glow {
-          0%, 100% { filter: drop-shadow(0 0 0px #2D7D43); }
-          50%       { filter: drop-shadow(0 0 5px #2D7D43); }
-        }
-      `}</style>
       <svg width="60" height="60" style={{ transform: "rotate(-90deg)" }}>
         <circle cx="30" cy="30" r={ECO_RING_R} fill="none" stroke="#D0EAD4" strokeWidth="4" />
         <circle

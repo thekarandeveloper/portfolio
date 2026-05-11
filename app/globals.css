@@ -6885,4 +6885,12 @@ body.csl-page-active footer { display: none !important; }
   0%, 80%, 100% { transform: translateY(0px); }
   90%            { transform: translateY(-7px); }
 }
+@keyframes eco-ring-draw {
+  from { stroke-dashoffset: 150.796; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes eco-ring-glow {
+  0%, 100% { filter: drop-shadow(0 0 0px #2D7D43); }
+  50%       { filter: drop-shadow(0 0 5px #2D7D43); }
+}
 
