@@ -7,13 +7,14 @@ import { airFigmaLinks } from "./airIqData";
    TOC
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",  label: "Overview"          },
-  { id: "problem",   label: "The Problem"        },
-  { id: "approach",  label: "Research & Approach"},
-  { id: "insights",  label: "Core Components"    },
-  { id: "product",   label: "The Product"        },
-  { id: "results",   label: "Results"            },
-  { id: "learnings", label: "Learnings"          },
+  { id: "overview",       label: "Overview"          },
+  { id: "problem",        label: "The Problem"        },
+  { id: "approach",       label: "Research & Approach"},
+  { id: "insights",       label: "Core Components"    },
+  { id: "product",        label: "The Product"        },
+  { id: "design-system",  label: "Design System"      },
+  { id: "results",        label: "Results"            },
+  { id: "learnings",      label: "Learnings"          },
 ];
 
 const META_ROWS = [
@@ -1840,12 +1841,97 @@ function TheProductSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §06  RESULTS
+   §06  DESIGN SYSTEM
+───────────────────────────────────────────────────────────────────── */
+function DesignSystemSection() {
+  const systemEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.designSystem)}`;
+
+  const stats = [
+    { val: "80+",  label: "Components",   sub: "buttons, inputs, cards, modals" },
+    { val: "3",    label: "Icon sizes",   sub: "16 · 20 · 24px, drawn from scratch" },
+    { val: "12",   label: "Color tokens", sub: "semantic, not just palette" },
+    { val: "Zero", label: "Libraries used", sub: "everything built in-house" },
+  ];
+
+  return (
+    <CsSection id="design-system">
+      <CsSectionHeader
+        num="06"
+        title="Design System"
+        sub="No library existed. Every token, component, icon, and spacing rule was built from zero in Figma."
+      />
+
+      {/* Figma embed */}
+      <div className="csl-reveal" style={{ marginBottom: 24 }}>
+        <div style={{
+          borderRadius: 18, overflow: "hidden",
+          border: "1px solid rgba(0,0,0,0.08)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
+        }}>
+          <div style={{
+            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "0 16px",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+                <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
+              ))}
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
+                Air IQ — Design System
+              </span>
+              <span style={{
+                fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.1em",
+                textTransform: "uppercase", color: "#059669",
+                background: "#ECFDF5", border: "1px solid rgba(5,150,105,0.25)",
+                borderRadius: 100, padding: "2px 8px", marginLeft: 4,
+              }}>80+ Components</span>
+            </div>
+            <a
+              href={airFigmaLinks.designSystem}
+              target="_blank"
+              rel="noreferrer"
+              style={{ fontSize: "0.62rem", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}
+            >
+              Open in Figma ↗
+            </a>
+          </div>
+          <iframe
+            src={systemEmbedUrl}
+            allowFullScreen
+            style={{ width: "100%", height: 520, border: "none", display: "block" }}
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      {/* Stat chips */}
+      <div className="csl-reveal" style={{
+        display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12,
+      }}>
+        {stats.map((s) => (
+          <div key={s.val} style={{
+            background: "#fff", borderRadius: 14,
+            border: "1px solid #E5E7EB", padding: "16px 16px",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.04)",
+          }}>
+            <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#111827", marginBottom: 4 }}>{s.val}</div>
+            <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "#374151", marginBottom: 3 }}>{s.label}</div>
+            <div style={{ fontSize: "0.62rem", color: "#9CA3AF", lineHeight: 1.4 }}>{s.sub}</div>
+          </div>
+        ))}
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §07  RESULTS
 ───────────────────────────────────────────────────────────────────── */
 function ResultsSection() {
   return (
     <CsSection id="results">
-      <CsSectionHeader num="06" title="The Impact" />
+      <CsSectionHeader num="07" title="The Impact" />
 
       {/* Big metric callout */}
       <div className="csl-reveal" style={{
@@ -1942,7 +2028,7 @@ function LearningsSection() {
 
   return (
     <CsSection id="learnings" last>
-      <CsSectionHeader num="07" title="Learnings" sub="What this project taught me about designing for real-world, complex B2B workflows." />
+      <CsSectionHeader num="08" title="Learnings" sub="What this project taught me about designing for real-world, complex B2B workflows." />
 
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         {items.map((item) => (
@@ -1986,6 +2072,7 @@ export function AirIqCaseStudy() {
       <ApproachSection />
       <CoreComponentsSection />
       <TheProductSection />
+      <DesignSystemSection />
       <ResultsSection />
       <LearningsSection />
     </CaseStudyPage>
