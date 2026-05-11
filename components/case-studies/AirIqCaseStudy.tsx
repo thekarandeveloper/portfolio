@@ -7,15 +7,13 @@ import { airFigmaLinks } from "./airIqData";
    TOC
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",   label: "Overview"          },
-  { id: "problem",    label: "The Problem"        },
-  { id: "approach",   label: "Research & Approach"},
-  { id: "insights",   label: "Core Components"    },
-  { id: "wireframes", label: "Wireframes"         },
-  { id: "screens",    label: "Final Screens"      },
-  { id: "system",     label: "Design System"      },
-  { id: "results",    label: "Results"            },
-  { id: "learnings",  label: "Learnings"          },
+  { id: "overview",  label: "Overview"          },
+  { id: "problem",   label: "The Problem"        },
+  { id: "approach",  label: "Research & Approach"},
+  { id: "insights",  label: "Core Components"    },
+  { id: "product",   label: "The Product"        },
+  { id: "results",   label: "Results"            },
+  { id: "learnings", label: "Learnings"          },
 ];
 
 const META_ROWS = [
@@ -278,69 +276,6 @@ function LiveSearchDemo() {
         </div>
       </div>
     </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   WIREFRAME SKELETON (placeholder frame component)
-───────────────────────────────────────────────────────────────────── */
-type FrameKind = "ui" | "table" | "form" | "mobile";
-
-function SkeletonFrame({
-  label,
-  caption,
-  aspect = "16/9",
-  kind = "ui",
-}: {
-  label?: string;
-  caption?: string;
-  aspect?: string;
-  kind?: FrameKind;
-}) {
-  const rows = kind === "table"
-    ? ["100%","100%","100%","100%"]
-    : kind === "form"
-    ? ["100%","100%","60%","100%","100%","60%"]
-    : ["92%","68%","84%","55%","78%","62%"];
-
-  return (
-    <figure style={{ margin: 0 }}>
-      <div style={{
-        aspectRatio: aspect, background: "#F3F4F6", borderRadius: 12,
-        border: "1.5px solid #E5E7EB", overflow: "hidden", display: "flex",
-        flexDirection: "column",
-      }}>
-        {/* Chrome bar */}
-        <div style={{ height: 28, background: "#E9ECEF", display: "flex", alignItems: "center", padding: "0 10px", gap: 6, flexShrink: 0 }}>
-          {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
-            <span key={c} style={{ width: 8, height: 8, borderRadius: "50%", background: c }} />
-          ))}
-          <div style={{ flex: 1, height: 14, background: "rgba(0,0,0,0.08)", borderRadius: 4, marginLeft: 6 }} />
-        </div>
-        {/* Body skeleton */}
-        <div style={{ flex: 1, display: "flex", padding: 10, gap: 8 }}>
-          {kind !== "mobile" && kind !== "form" && (
-            <div style={{ width: 48, background: "rgba(0,0,0,0.06)", borderRadius: 6, flexShrink: 0 }} />
-          )}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
-            <div style={{ height: 14, background: "rgba(0,0,0,0.1)", borderRadius: 4, width: "60%" }} />
-            {rows.map((w, i) => (
-              <div key={i} style={{ height: 8, background: "rgba(0,0,0,0.06)", borderRadius: 4, width: w }} />
-            ))}
-          </div>
-        </div>
-      </div>
-      {label && (
-        <div style={{ fontSize: "0.7rem", color: "#9CA3AF", marginTop: 6, textAlign: "center", letterSpacing: "0.02em" }}>
-          {label}
-        </div>
-      )}
-      {caption && (
-        <figcaption style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4, textAlign: "center" }}>
-          {caption}
-        </figcaption>
-      )}
-    </figure>
   );
 }
 
@@ -2009,210 +1944,93 @@ function CoreComponentsSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §05  WIREFRAMES
+   §05  THE PRODUCT
 ───────────────────────────────────────────────────────────────────── */
-function WireframesSection() {
-  return (
-    <CsSection id="wireframes">
-      <CsSectionHeader
-        num="05"
-        title="Wireframes & Iterations"
-        sub="What I tried, what I scrapped, and why every dead end made the final solution better."
-      />
-
-      {/* Lo-fi wireframes image */}
-      <div className="csl-reveal" style={{ marginBottom: 24 }}>
-        <CsImg label="Lo-fi wireframes — early exploration" height={320} icon="📐" sub="Sketch → FigJam → Figma low-fidelity" />
-      </div>
-
-      {/* Iteration pairs */}
-      {[
-        {
-          scrapped: "Mega dropdown — cabin class",
-          why: "Decision paralysis. Agents overwhelmed on every booking.",
-          shipped: "Progressive disclosure + defaults",
-        },
-        {
-          scrapped: "Vertical stepper — itinerary",
-          why: "Broke on tablet. Too much cognitive load for multi-leg trips.",
-          shipped: "Horizontal condensed timeline",
-        },
-        {
-          scrapped: "Floating action button — edits",
-          why: "Zero discoverability in a data-dense screen.",
-          shipped: "Inline edit with contextual highlight",
-        },
-      ].map((r, i) => (
-        <div key={i} className="csl-reveal" style={{
-          background: "#fff", borderRadius: 18, padding: "20px 22px",
-          boxShadow: "0 4px 14px rgba(0,0,0,0.04)", marginBottom: 16,
-        }}>
-          <div className="csl-ba-grid">
-            <div>
-              <p className="csl-ba-label before">✕ Scrapped — {r.scrapped}</p>
-              <SkeletonFrame label={r.scrapped} aspect="4/3" kind="ui" />
-            </div>
-            <div>
-              <p className="csl-ba-label after">✓ Shipped — {r.shipped}</p>
-              <SkeletonFrame label={r.shipped} aspect="4/3" kind="ui" />
-            </div>
-          </div>
-          <p style={{ fontSize: "0.76rem", color: "#6B7280", marginTop: 12, lineHeight: 1.6 }}>
-            <strong style={{ color: "#111827" }}>Why it failed:</strong> {r.why}
-          </p>
-        </div>
-      ))}
-
-      {/* Mid-fi wireframes placeholder */}
-      <div className="csl-reveal rd2" style={{ marginTop: 24 }}>
-        <CsImg label="Mid-fidelity wireframes — key flows" height={300} icon="📋" sub="Search flow · Booking flow · Confirmation flow" />
-      </div>
-    </CsSection>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   §06  FINAL SCREENS
-───────────────────────────────────────────────────────────────────── */
-function ScreensSection() {
+function TheProductSection() {
   const flows = [
     {
-      num: "Flow 01",
-      title: "Search → Results",
-      body: "Real-time search with 15+ filters and 4 trip variants. Price is largest. Filters persist. 6 data points visible without a single click.",
+      label: "Search & Results",
+      desc: "Real-time fare grid with 15+ filters. Price hierarchy, multi-trip variants, and saved searches — all above the fold.",
     },
     {
-      num: "Flow 02",
-      title: "Itinerary → Passenger Details",
-      body: "Multi-pax, infants, wheelchair, special meals — all handled per-passenger. Edge cases designed explicitly, not assumed away.",
+      label: "Itinerary Builder",
+      desc: "Multi-leg itinerary with per-passenger rules, date locks, and cabin class selection built into one condensed timeline.",
     },
     {
-      num: "Flow 03",
-      title: "Review → Confirmation",
-      body: "Mismatches surface inline. Agents resolve without leaving the screen. Final confirmation is unambiguous. Error rate dropped.",
+      label: "Review & Confirm",
+      desc: "Inline mismatch warnings surface before payment. Agents resolve edge cases without leaving the screen.",
+    },
+    {
+      label: "Booking Dashboard",
+      desc: "Status, agent performance, and booking history in a single pane. No more jumping between tools.",
     },
   ];
 
   return (
-    <CsSection id="screens">
+    <CsSection id="product">
       <CsSectionHeader
-        num="06"
-        title="Screen by Screen"
-        sub="20+ screens across 5 core flows. Three are shown here."
+        num="05"
+        title="The Product"
+        sub="20+ screens shipped across 5 flows. One platform, every booking."
       />
 
-      {flows.map((f, fi) => (
-        <div key={f.num} className="csl-reveal" style={{ marginBottom: fi < flows.length - 1 ? 48 : 0 }}>
-          <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 18 }}>
-            <span style={{ fontSize: "0.62rem", fontWeight: 700, color: "#1E90FF", fontFamily: "ui-monospace, monospace", marginTop: 2 }}>{f.num}</span>
-            <div>
-              <div style={{ fontSize: "0.92rem", fontWeight: 700, color: "#111827", marginBottom: 4 }}>{f.title}</div>
-              <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.6 }}>{f.body}</p>
-            </div>
-          </div>
-          {/* Full-width screen */}
-          <CsImg label={`${f.title} — full screen view`} aspect="16/9" icon="🖥️" sub="Final hi-fi design" className="csl-reveal" />
-          {/* 2-up detail shots */}
-          <div className="csl-img-2up" style={{ marginTop: 12 }}>
-            <CsImg label={`${f.title} — detail A`} aspect="4/3" icon="🔍" sub="Component closeup" />
-            <CsImg label={`${f.title} — detail B`} aspect="4/3" icon="🔍" sub="Edge case state" />
-          </div>
-        </div>
-      ))}
-
-      <div className="csl-callout csl-reveal" style={{ marginTop: 32 }}>
-        <strong>Dashboard deep-dive available</strong> — 20+ screens across 5 flows: analytics, agent management, inventory, booking history, and more. Happy to walk through in interview.
-      </div>
-    </CsSection>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   §07  DESIGN SYSTEM
-───────────────────────────────────────────────────────────────────── */
-function DesignSystemSection() {
-  const colors = [
-    { name: "Primary",  hex: "#1076BC" },
-    { name: "Navy",     hex: "#0B1E3D" },
-    { name: "Blue Mid", hex: "#378ADD" },
-    { name: "Success",  hex: "#0D9E75" },
-    { name: "Error",    hex: "#E53E3E" },
-    { name: "Warning",  hex: "#D97706" },
-    { name: "Surface",  hex: "#F9FAFC", border: true },
-    { name: "Border",   hex: "#E0E6EC", border: true },
-  ];
-
-  const comps = [
-    ["⬜","Buttons","8 variants"],["📋","Inputs","12 states"],
-    ["🔲","Cards","6 types"],["📊","Tables","4 variants"],
-    ["🏷️","Badges","10 states"],["💬","Toasts","5 types"],
-    ["📑","Modals","4 layouts"],["🗂️","Nav","3 patterns"],
-  ];
-
-  return (
-    <CsSection id="system">
-      <CsSectionHeader
-        num="07"
-        title="The Design System"
-        sub="No existing library. Every token, component, and icon drawn in Figma."
-      />
-
-      <div className="csl-card-2col csl-reveal">
-        {/* Color system */}
-        <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "rgba(0,0,0,0.35)", fontFamily: "ui-monospace, monospace", marginBottom: 14 }}>Color system</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
-            {colors.map((c) => (
-              <div key={c.name} style={{ textAlign: "center" }}>
-                <div style={{ height: 40, borderRadius: 8, background: c.hex, border: c.border ? "1px solid rgba(0,0,0,0.1)" : "none", marginBottom: 4 }} />
-                <div style={{ fontSize: "0.62rem", color: "#6B7280" }}>{c.name}</div>
-              </div>
+      {/* Wide hero strip */}
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+        <div style={{
+          borderRadius: 18,
+          overflow: "hidden",
+          border: "1px solid #E5E7EB",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
+        }}>
+          <div style={{
+            height: 36,
+            background: "#F3F4F6",
+            borderBottom: "1px solid #E5E7EB",
+            display: "flex", alignItems: "center", padding: "0 14px", gap: 6,
+          }}>
+            {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+              <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
             ))}
+            <div style={{ flex: 1, height: 13, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
           </div>
+          <CsImg
+            label="Air IQ — full platform overview"
+            aspect="16/7"
+            icon="✈️"
+            sub="Complete booking platform · 5 flows · 20+ screens"
+          />
         </div>
+      </div>
 
-        {/* Typography */}
-        <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "rgba(0,0,0,0.35)", fontFamily: "ui-monospace, monospace", marginBottom: 14 }}>Typography — Lato</p>
-          {[
-            { sample: "Display",    px: 48, w: 900 },
-            { sample: "Heading",    px: 28, w: 700 },
-            { sample: "Subheading", px: 20, w: 600 },
-            { sample: "Body text",  px: 14, w: 400 },
-            { sample: "Caption",    px: 12, w: 500 },
-          ].map((t) => (
-            <div key={t.sample} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: Math.max(11, t.px * 0.36), fontWeight: t.w, color: "#111827" }}>{t.sample}</span>
-              <span style={{ fontSize: "0.62rem", color: "#9CA3AF", fontFamily: "ui-monospace, monospace" }}>{t.px}px / {t.w}</span>
+      {/* Flow grid */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gap: 14,
+      }}>
+        {flows.map((f, i) => (
+          <div key={f.label} className={`csl-reveal rd${i}`} style={{
+            background: "#fff",
+            borderRadius: 16,
+            border: "1px solid #E5E7EB",
+            overflow: "hidden",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.04)",
+          }}>
+            <CsImg label={f.label} aspect="16/9" icon="🖥️" sub="Hi-fi screen" />
+            <div style={{ padding: "14px 16px" }}>
+              <div style={{
+                fontSize: "0.74rem", fontWeight: 700, color: "#111827", marginBottom: 4,
+              }}>{f.label}</div>
+              <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Component library image */}
-      <div className="csl-reveal rd1" style={{ marginTop: 20 }}>
-        <CsImg label="Component library — 80+ components across 8 categories" aspect="16/6" icon="🧩" sub="All states documented · Token-driven" />
-      </div>
-
-      {/* Component grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginTop: 16 }} className="csl-reveal rd2">
-        {comps.map(([icon, name, count]) => (
-          <div key={name} style={{ background: "#F9FAFB", borderRadius: 12, padding: "14px 12px", textAlign: "center" }}>
-            <div style={{ fontSize: "1.2rem", marginBottom: 6 }}>{icon}</div>
-            <div style={{ fontSize: "0.74rem", fontWeight: 600, color: "#111827" }}>{name}</div>
-            <div style={{ fontSize: "0.64rem", color: "#9CA3AF" }}>{count}</div>
           </div>
         ))}
       </div>
 
-      {/* Icon system image */}
-      <div className="csl-reveal rd3" style={{ marginTop: 16 }}>
-        <CsImg label="Custom icon system — 3 sizes, drawn from scratch, zero libraries" aspect="16/5" icon="🎨" sub="Line icons · Filled variants · Illustrated set" />
-      </div>
-
-      <div style={{ marginTop: 20 }} className="csl-reveal">
+      {/* Figma CTA */}
+      <div className="csl-reveal" style={{ marginTop: 24 }}>
         <a className="csl-btn-primary" href={airFigmaLinks.desktop} target="_blank" rel="noreferrer">
-          View full design system in Figma ↗
+          View full prototype in Figma ↗
         </a>
       </div>
     </CsSection>
@@ -2220,12 +2038,12 @@ function DesignSystemSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §08  RESULTS
+   §06  RESULTS
 ───────────────────────────────────────────────────────────────────── */
 function ResultsSection() {
   return (
     <CsSection id="results">
-      <CsSectionHeader num="08" title="The Impact" />
+      <CsSectionHeader num="06" title="The Impact" />
 
       {/* Big metric callout */}
       <div className="csl-reveal" style={{
@@ -2321,7 +2139,7 @@ function LearningsSection() {
 
   return (
     <CsSection id="learnings" last>
-      <CsSectionHeader num="09" title="Learnings" sub="What this project taught me about designing for real-world, complex B2B workflows." />
+      <CsSectionHeader num="07" title="Learnings" sub="What this project taught me about designing for real-world, complex B2B workflows." />
 
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         {items.map((item) => (
@@ -2364,9 +2182,7 @@ export function AirIqCaseStudy() {
       <ProblemSection />
       <ApproachSection />
       <CoreComponentsSection />
-      <WireframesSection />
-      <ScreensSection />
-      <DesignSystemSection />
+      <TheProductSection />
       <ResultsSection />
       <LearningsSection />
     </CaseStudyPage>
