@@ -84,8 +84,8 @@ const html = `<section class="about" id="about">
         <button class="about-page-dot" type="button" data-about-target="1" aria-label="Show about page 2"></button>
         <button class="about-page-dot" type="button" data-about-target="2" aria-label="Show about page 3"></button>
       </div>
-      <button class="about-page-grab about-page-grab-next" type="button" aria-label="Turn to next page"></button>
-      <button class="about-page-grab about-page-grab-prev" type="button" aria-label="Turn to previous page"></button>
+      <button class="about-page-grab about-page-grab-next" type="button" aria-label="Turn to next page"><span class="about-turn-hint">tap to turn page →</span></button>
+      <button class="about-page-grab about-page-grab-prev" type="button" aria-label="Turn to previous page"><span class="about-turn-hint">← tap to turn page</span></button>
 
       <img class="about-ribbon about-float-slow" src="/Image/hero/Ribbon.png" alt="" />
       <img class="about-flower about-flower-one about-float" src="/Image/hero/flower1.png" alt="" />

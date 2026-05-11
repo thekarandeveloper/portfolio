@@ -378,11 +378,11 @@ if(heroBlob) {
         dots.forEach(function(dot,i){dot.classList.toggle('active',i===next);});
         current=next;
         updateGrabs();
-      },720);
+      },1200);
       flipTimer=window.setTimeout(function(){
         stage.classList.remove('turning-forward','turning-back');
         isTurning=false;
-      },1500);
+      },2500);
     }else{
       spreads.forEach(function(spread,i){spread.classList.toggle('active',i===next);});
       dots.forEach(function(dot,i){dot.classList.toggle('active',i===next);});
