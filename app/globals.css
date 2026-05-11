@@ -6807,13 +6807,6 @@ body.csl-page-active footer { display: none !important; }
   0%, 100% { transform: rotate(-2deg) translateY(0px); }
   50%       { transform: rotate(-2deg) translateY(-14px); }
 }
-@keyframes bibloScreenCycle {
-  0%   { opacity: 0; }
-  5%   { opacity: 1; }
-  28%  { opacity: 1; }
-  33%  { opacity: 0; }
-  100% { opacity: 0; }
-}
 
 .biblo-scene-glow {
   position: absolute;
