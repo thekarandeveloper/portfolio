@@ -429,12 +429,6 @@ function InsightsSection() {
    §05  WIREFRAMES
 ───────────────────────────────────────────────────────────────────── */
 function WireframesSection() {
-  const wfItems = [
-    { label:"Onboarding",      src:"/Image/Biblofi/wireframe1.png" },
-    { label:"Browse by Genre", src:"/Image/Biblofi/wireframe2.png" },
-    { label:"Scan & Search",   src:"/Image/Biblofi/wireframe3.png" },
-    { label:"Seat Booking",    src:"/Image/Biblofi/wireframe4.png" },
-  ];
 
   return (
     <CsSection id="wireframes">
@@ -444,21 +438,14 @@ function WireframesSection() {
         sub="The brainstorming started in WhatsApp chats and rough sketches — raw ideas translated into structured lo-fi wireframes in FigJam."
       />
 
-      <div className="csl-img-2up csl-reveal">
-        {wfItems.slice(0,2).map(({ label }) => (
-          <div key={label}>
-            <CsImg label={label} aspect="9/16" icon="📱" sub="Lo-fi wireframe" />
-            <p className="csl-img-caption">{label}</p>
-          </div>
-        ))}
-      </div>
-      <div className="csl-img-2up csl-reveal rd1" style={{ marginTop:14 }}>
-        {wfItems.slice(2).map(({ label }) => (
-          <div key={label}>
-            <CsImg label={label} aspect="9/16" icon="📱" sub="Lo-fi wireframe" />
-            <p className="csl-img-caption">{label}</p>
-          </div>
-        ))}
+      <div className="csl-reveal" style={{ borderRadius:16, overflow:"hidden" }}>
+        <Image
+          src="/Image/Biblofi/rough.png"
+          alt="Rough sketches and lo-fi wireframes"
+          width={1400}
+          height={900}
+          style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
+        />
       </div>
 
       <p className="csl-text csl-reveal rd2" style={{ marginTop:20, fontStyle:"italic", color:"#9CA3AF" }}>
