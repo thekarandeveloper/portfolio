@@ -33,7 +33,8 @@ const TOC_ITEMS = [
   { id: "process",       label: "Design Process"    },
   { id: "research",      label: "Research"          },
   { id: "insights",      label: "Personas"          },
-  { id: "wireframes",    label: "Wireframes"        },
+  { id: "wireframes",    label: "Rough Sketches"    },
+  { id: "lofi",          label: "Wireframes"        },
   { id: "screens",       label: "Key Features"      },
   { id: "final",         label: "Final Screens"     },
   { id: "accessibility", label: "Accessibility"     },
@@ -456,6 +457,61 @@ function WireframesSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
+   §05b  LO-FI WIREFRAMES
+───────────────────────────────────────────────────────────────────── */
+function LoFiWireframesSection() {
+  const wfItems = [
+    { label: "Onboarding",      src: "/Image/Biblofi/wireframe1.png" },
+    { label: "Browse by Genre", src: "/Image/Biblofi/wireframe2.png" },
+    { label: "Scan & Search",   src: "/Image/Biblofi/wireframe3.png" },
+    { label: "Seat Booking",    src: "/Image/Biblofi/wireframe4.png" },
+  ];
+
+  return (
+    <CsSection id="lofi">
+      <CsSectionHeader
+        label="Develop — Lo-Fi Wireframes"
+        title={<>Rough ideas turned into <em style={{ fontStyle:"italic" }}>structured screens.</em></>}
+        sub="Each flow was mapped out screen by screen — laying the foundation before moving into high-fidelity design."
+      />
+
+      <div className="csl-img-2up csl-reveal">
+        {wfItems.slice(0, 2).map(({ label, src }) => (
+          <div key={label}>
+            <div style={{ borderRadius:14, overflow:"hidden" }}>
+              <Image
+                src={src}
+                alt={label}
+                width={600}
+                height={1067}
+                style={{ width:"100%", height:"auto", display:"block" }}
+              />
+            </div>
+            <p className="csl-img-caption">{label}</p>
+          </div>
+        ))}
+      </div>
+      <div className="csl-img-2up csl-reveal rd1" style={{ marginTop:14 }}>
+        {wfItems.slice(2).map(({ label, src }) => (
+          <div key={label}>
+            <div style={{ borderRadius:14, overflow:"hidden" }}>
+              <Image
+                src={src}
+                alt={label}
+                width={600}
+                height={1067}
+                style={{ width:"100%", height:"auto", display:"block" }}
+              />
+            </div>
+            <p className="csl-img-caption">{label}</p>
+          </div>
+        ))}
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
    §06  KEY FEATURES
 ───────────────────────────────────────────────────────────────────── */
 function ScreensSection() {
@@ -664,6 +720,7 @@ export function BiblofiCaseStudy() {
       <ResearchSection />
       <InsightsSection />
       <WireframesSection />
+      <LoFiWireframesSection />
       <ScreensSection />
       <FinalScreensSection />
       <AccessibilitySection />
