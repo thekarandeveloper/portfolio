@@ -1,24 +1,22 @@
 "use client";
 
-import { CaseStudyPage, CsSection, CsSectionHeader, CsImg } from "./CaseStudyLayout";
+import { CaseStudyPage, CsSection, CsSectionHeader } from "./CaseStudyLayout";
 
 /* ─────────────────────────────────────────────────────────────────────
    TOC
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",     label: "Overview"           },
-  { id: "problem",      label: "The Problem"        },
-  { id: "audit",        label: "Design Audit"       },
-  { id: "foundations",  label: "Foundations"        },
-  { id: "components",   label: "Components"         },
-  { id: "tokens",       label: "Design Tokens"      },
-  { id: "documentation",label: "Documentation"      },
-  { id: "governance",   label: "Governance"         },
-  { id: "results",      label: "Results & Impact"   },
-  { id: "learnings",    label: "Learnings"          },
+  { id: "overview",    label: "Overview"        },
+  { id: "discovery",   label: "Discovery"       },
+  { id: "approach",    label: "Approach"        },
+  { id: "color",       label: "Color System"    },
+  { id: "typography",  label: "Typography"      },
+  { id: "iconography", label: "Iconography"     },
+  { id: "components",  label: "Components"      },
+  { id: "grid",        label: "Layout & Grid"   },
+  { id: "results",     label: "Results & Impact"},
+  { id: "learnings",   label: "Learnings"       },
 ];
-
-const LOREM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
 
 /* ─────────────────────────────────────────────────────────────────────
    HERO
@@ -30,20 +28,31 @@ function DSHero() {
       <div className="csl-hero-glow" />
       <div className="csl-hero-inner">
         <div className="csl-hero-left">
-          <div className="csl-hero-eyebrow">Design System · Foundations for Scale</div>
+          <div className="csl-hero-eyebrow">Design System · AirIQ</div>
           <h1 className="csl-hero-title">
-            Building a Design System<br />
-            <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.6)" }}>From the Ground Up.</em>
+            One system.<br />
+            <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.55)" }}>Built for scale.</em>
           </h1>
           <p className="csl-hero-desc">
-            A comprehensive design system built from scratch — tokens, components, documentation, and governance — creating a single source of truth that scaled across an entire product.
+            As Lead Product Designer, I planned, designed, and scaled a unified design system across multiple products. One Figma library that gave design and engineering a shared language — and ended the inconsistency for good.
           </p>
           <div className="csl-hero-chips">
-            <span className="csl-hero-chip">Lead Designer</span>
-            <span className="csl-hero-chip">3 Months</span>
-            <span className="csl-hero-chip">Figma · Storybook</span>
+            <span className="csl-hero-chip">Lead Product Designer</span>
+            <span className="csl-hero-chip">Jan – Aug 2023</span>
+            <span className="csl-hero-chip">Figma · Lato</span>
             <span className="csl-hero-chip">0 → 1 System</span>
           </div>
+          <a
+            href="#"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: "#1076BC", color: "#fff", borderRadius: 8,
+              padding: "10px 20px", fontSize: "0.76rem", fontWeight: 600,
+              textDecoration: "none", marginTop: 8, width: "fit-content",
+            }}
+          >
+            View on Figma ↗
+          </a>
         </div>
         <div className="csl-hero-right">
           <DSHeroVisual />
@@ -51,10 +60,10 @@ function DSHero() {
       </div>
       <div className="csl-hero-stats">
         {[
-          { val: "120+", label: "Components built"      },
-          { val: "40%",  label: "Design time saved"     },
-          { val: "60%",  label: "Dev handoff faster"    },
-          { val: "0 → 1",label: "Complete system"       },
+          { val: "150+", label: "Icons designed"    },
+          { val: "30+",  label: "Color tokens"      },
+          { val: "3",    label: "Grid systems"      },
+          { val: "0 → 1",label: "Complete system"   },
         ].map((s) => (
           <div className="csl-hero-stat" key={s.label}>
             <div className="csl-hero-stat-val">{s.val}</div>
@@ -67,39 +76,53 @@ function DSHero() {
 }
 
 function DSHeroVisual() {
-  const comps = ["Button", "Input", "Card", "Badge", "Modal", "Nav", "Toast", "Table"];
   return (
     <div style={{
-      background: "#1C1C2E", borderRadius: 16, padding: "20px",
-      border: "1.5px solid rgba(124,58,237,0.3)",
-      boxShadow: "0 24px 60px rgba(124,58,237,0.2)",
+      background: "#0D1829", borderRadius: 16, padding: "20px",
+      border: "1.5px solid rgba(16,118,188,0.35)",
+      boxShadow: "0 24px 60px rgba(16,118,188,0.2)",
       width: "100%", maxWidth: 400,
     }}>
-      {/* Toolbar */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
         <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#FF5F57" }} />
         <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#FFBD2E" }} />
         <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28CA41" }} />
         <div style={{ flex: 1, height: 18, background: "rgba(255,255,255,0.06)", borderRadius: 4, marginLeft: 6 }} />
       </div>
-      {/* Token row */}
       <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
-        {["#7C3AED","#A78BFA","#EDE9FE","#F9FAFB"].map((c, i) => (
-          <div key={i} style={{ flex: 1, height: 28, borderRadius: 6, background: c, border: i > 1 ? "1px solid rgba(0,0,0,0.1)" : "none" }} />
-        ))}
-      </div>
-      {/* Component grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
-        {comps.map((comp) => (
-          <div key={comp} style={{ background: "rgba(255,255,255,0.06)", borderRadius: 8, padding: "8px 4px", textAlign: "center" }}>
-            <div style={{ height: 24, background: "rgba(124,58,237,0.3)", borderRadius: 4, marginBottom: 5 }} />
-            <p style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.5)" }}>{comp}</p>
+        {[
+          { c: "#1076BC", label: "Tech Blue" },
+          { c: "#F2616E", label: "Coral" },
+          { c: "#E3F3FF", label: "Lt Blue" },
+          { c: "#F9FAFC", label: "BG" },
+        ].map(({ c, label }, i) => (
+          <div key={label} style={{ flex: 1 }}>
+            <div style={{ height: 32, borderRadius: 6, background: c, border: i > 1 ? "1px solid rgba(255,255,255,0.12)" : "none", marginBottom: 4 }} />
+            <p style={{ fontSize: "0.44rem", color: "rgba(255,255,255,0.3)", textAlign: "center", fontFamily: "ui-monospace,monospace" }}>{label}</p>
           </div>
         ))}
       </div>
-      <div style={{ marginTop: 14, background: "rgba(124,58,237,0.15)", borderRadius: 8, padding: "8px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: "0.62rem", color: "#A78BFA" }}>Design Tokens</span>
-        <span style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.4)" }}>v2.1.0</span>
+      <div style={{ display: "flex", gap: 7, marginBottom: 14, alignItems: "center" }}>
+        <div style={{ background: "#1076BC", borderRadius: 6, padding: "7px 14px" }}>
+          <span style={{ fontSize: "0.58rem", color: "#fff", fontWeight: 600 }}>Button ↗</span>
+        </div>
+        <div style={{ background: "#F2616E", borderRadius: 6, padding: "7px 14px" }}>
+          <span style={{ fontSize: "0.58rem", color: "#fff", fontWeight: 600 }}>Button</span>
+        </div>
+        <div style={{ border: "1.5px solid rgba(255,255,255,0.2)", borderRadius: 6, padding: "7px 14px" }}>
+          <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)", fontWeight: 500 }}>Button</span>
+        </div>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", gap: 5, marginBottom: 14 }}>
+        {["✉","✕","⌕","⊞","≡","⬇","⚠","⊙","✓","+","—","!","⊗","⌃","↕","⊖"].map((icon, i) => (
+          <div key={i} style={{ background: "rgba(255,255,255,0.05)", borderRadius: 5, padding: "5px", textAlign: "center" }}>
+            <span style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.4)" }}>{icon}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{ background: "rgba(16,118,188,0.18)", borderRadius: 8, padding: "7px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: "0.62rem", color: "#60BDFF" }}>AirIQ Design System</span>
+        <span style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.35)" }}>v1.0</span>
       </div>
     </div>
   );
@@ -114,14 +137,35 @@ function OverviewSection() {
       <CsSectionHeader
         label="Project Overview"
         title="One system. Every product. Zero inconsistency."
-        sub="Before this design system existed, the product had 14 different button styles, 6 shades of the same primary blue, and no single component that looked the same twice."
       />
 
-      <div className="csl-role-strip csl-reveal">
+      {/* Meta block */}
+      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: "#E0E6EC", borderRadius: 14, overflow: "hidden", marginBottom: 32 }}>
         {[
-          { icon: "🎯", head: "Single source of truth",  body: "One Figma library, one token set, one component API. Designers and developers finally speaking the same language."  },
-          { icon: "⚡", head: "Speed at scale",          body: "New features ship 40% faster. Designers stopped rebuilding the same button. Developers stopped guessing font sizes." },
-          { icon: "🔄", head: "Living system",           body: "Not a locked spec doc — a living system. Change a token, every component updates. Publish once, everywhere."       },
+          { label: "Role",             value: "Lead Product Designer"                    },
+          { label: "Duration",         value: "Jan – August 2023"                        },
+          { label: "Team",             value: "1 Developer"                              },
+          { label: "Responsibilities", value: "Architecture · Components · Consistency"  },
+        ].map((item) => (
+          <div key={item.label} style={{ background: "#fff", padding: "18px 22px" }}>
+            <p style={{ fontSize: "0.58rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{item.label}</p>
+            <p style={{ fontSize: "0.78rem", fontWeight: 600, color: "#111827", lineHeight: 1.4 }}>{item.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="csl-text csl-reveal">
+        Design systems at my previous two organizations were among my first and most foundational projects as a designer. As Lead Product Designer, I planned, designed, and scaled a unified design system across multiple products within the organization&rsquo;s ecosystem.
+      </p>
+      <p className="csl-text csl-reveal rd1">
+        At the time, the organization had several products — each evolving independently. This resulted in visual inconsistency, fragmented user experiences, and mounting inefficiencies across both design and development. The goal was clear: create a single source of truth that aligned the brand, streamlined workflows, and scaled with the platform.
+      </p>
+
+      <div className="csl-role-strip csl-reveal rd2">
+        {[
+          { icon: "🎯", head: "Single source of truth",  body: "One Figma library, one token set, one icon grid. Design and engineering finally speaking the same visual language across every product."  },
+          { icon: "⚡", head: "Speed at scale",          body: "New features assembled from the library in hours, not days. Designers stopped rebuilding the same buttons every sprint."               },
+          { icon: "🔄", head: "Living system",           body: "Not a locked spec doc — every color, icon, and component is documented and versioned so the system evolves with the product."         },
         ].map((r) => (
           <div className="csl-role-chip" key={r.head}>
             <div className="csl-role-icon">{r.icon}</div>
@@ -131,75 +175,55 @@ function OverviewSection() {
         ))}
       </div>
 
-      <div className="csl-reveal rd1" style={{ marginTop: 32 }}>
-        <CsImg label="Design system overview — full library view in Figma" height={400} icon="🧩" sub="Place design system overview screenshot here" />
+      {/* NDA note */}
+      <div className="csl-reveal rd3" style={{ display: "flex", gap: 12, background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: "14px 18px", marginTop: 8 }}>
+        <span style={{ fontSize: "1.1rem", flexShrink: 0, marginTop: 1 }}>💡</span>
+        <p style={{ fontSize: "0.72rem", color: "#92400E", lineHeight: 1.7 }}>
+          This design system was designed and built from scratch for a production organization and later scaled across products. To comply with NDA, certain components and visuals have been edited or replaced.
+        </p>
       </div>
+
     </CsSection>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §02  THE PROBLEM
+   §02  DISCOVERY
 ───────────────────────────────────────────────────────────────────── */
-function ProblemSection() {
+function DiscoverySection() {
   return (
-    <CsSection id="problem">
+    <CsSection id="discovery">
       <CsSectionHeader
-        label="The Problem"
-        title="Inconsistency is a tax on every team."
+        label="Discovery Phase"
+        title="The reality check: inconsistency everywhere."
+        sub="Before designing anything new, I conducted a full audit of every existing product across the organization. The goal was to understand what already existed — and where things were breaking down."
       />
 
-      <div className="csl-callout csl-reveal" style={{ borderLeftColor: "#7C3AED", background: "#F5F3FF" }}>
-        Every new feature required designers to rebuild the same components. Every sprint, developers asked what the right padding value was. Every QA cycle caught the same inconsistencies. The product looked different on every page.
+      <div className="csl-callout csl-reveal" style={{ borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
+        The product looked different on every page. Not dramatically — subtly. Different border radii, slightly different shades of the same blue, icons that mixed outlined and filled styles in the same flow. Small things that compound into a product that never feels fully finished.
       </div>
 
-      <div className="csl-img-2up csl-reveal rd1" style={{ marginTop: 28 }}>
-        <CsImg label="Before — 14 button variants across the product" aspect="16/9" icon="😰" sub="Inconsistent components audit" />
-        <CsImg label="After — one button, 6 states, consistent everywhere" aspect="16/9" icon="✨" sub="Unified design system" />
-      </div>
-
-      <div className="csl-card-grid csl-reveal rd2" style={{ marginTop: 24 }}>
+      <p style={{ fontSize: "0.8rem", fontWeight: 700, color: "#111827", marginBottom: 14 }} className="csl-reveal rd1">What I found:</p>
+      <div className="csl-card-grid csl-reveal rd2">
         {[
-          { title: "14 button styles",       body: "Across a single product. No shared base component or style rule."    },
-          { title: "6 shades of primary",    body: "The same 'blue' had 6 different hex values in production."           },
-          { title: "No component reuse",     body: "Designers rebuilt components from scratch on every new feature."     },
-          { title: "Slow handoff",           body: "Developers reverse-engineered spacing and type from screenshots."    },
+          { title: "Multiple component versions",   body: "Buttons, tables, and form fields had 2–3 different versions each. No shared base component, no shared rules."               },
+          { title: "3 shades of the same blue",     body: "Tech Blue had three different hex values in production — all intended to be 'the primary blue'."                              },
+          { title: "No shared spacing or type rules",body: "Font sizes and spacing values were eyeballed per feature. No tokens, no scale, no documentation."                          },
+          { title: "Figma files impossible to reuse",body: "Files were organized per-feature with no shared styles or components. Onboarding a new designer meant learning 12 files."  },
         ].map((item) => (
-          <div key={item.title} style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)", borderLeft: "3px solid #EDE9FE" }}>
-            <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#7C3AED", marginBottom: 8 }}>{item.title}</div>
+          <div key={item.title} style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)", borderLeft: "3px solid #E3F3FF" }}>
+            <div style={{ fontSize: "0.84rem", fontWeight: 700, color: "#1076BC", marginBottom: 8 }}>{item.title}</div>
             <div style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>{item.body}</div>
           </div>
         ))}
       </div>
-    </CsSection>
-  );
-}
 
-/* ─────────────────────────────────────────────────────────────────────
-   §03  DESIGN AUDIT
-───────────────────────────────────────────────────────────────────── */
-function AuditSection() {
-  return (
-    <CsSection id="audit">
-      <CsSectionHeader
-        label="Design Audit"
-        title="You can't fix what you haven't mapped."
-        sub="Before building anything, I audited every screen in the product — cataloguing every color, font size, spacing value, and component pattern in use."
-      />
-
-      <p className="csl-text csl-reveal">{LOREM}</p>
-
-      {/* Audit spreadsheet / visual */}
-      <div className="csl-reveal rd1" style={{ marginBottom: 24, marginTop: 20 }}>
-        <CsImg label="Component audit — full inventory of existing UI patterns" height={360} icon="📊" sub="Catalogued 200+ UI elements · Identified 47 unique patterns to consolidate" />
-      </div>
-
-      <div className="csl-process-grid csl-reveal rd2">
+      <div className="csl-process-grid csl-reveal rd3">
         {[
-          { n: "200+", t: "UI elements catalogued",     d: "Every button, input, card, and label inventoried before touching Figma."    },
-          { n: "47",   t: "Patterns to consolidate",    d: "The audit revealed the true scope: 47 duplicate patterns across 8 product areas." },
-          { n: "3",    t: "Teams interviewed",           d: "Design, engineering, and product — each had a different definition of 'consistent'." },
-          { n: "2wk",  t: "Audit duration",             d: "Spent 2 weeks mapping before building. Saved months of rework later."             },
+          { n: "40+",  t: "Screens audited",            d: "Every page of every product mapped before a single new component was drawn." },
+          { n: "3×",   t: "Same components built",      d: "The average component existed in 3 slightly different versions across the product." },
+          { n: "2 wk", t: "Audit duration",             d: "Two weeks of mapping prevented months of rework. The audit revealed the true scope." },
+          { n: "4",    t: "Teams interviewed",          d: "Design, engineering, product, and QA each had a different definition of 'consistent'." },
         ].map((s) => (
           <div className="csl-process-step" key={s.n}>
             <div className="csl-process-num" style={{ fontSize: "1rem", letterSpacing: 0 }}>{s.n}</div>
@@ -213,122 +237,322 @@ function AuditSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §04  FOUNDATIONS
+   §03  APPROACH
 ───────────────────────────────────────────────────────────────────── */
-function FoundationsSection() {
-  const colorGroups = [
-    { label: "Primary",   colors: ["#7C3AED","#8B5CF6","#A78BFA","#C4B5FD","#EDE9FE"] },
-    { label: "Neutral",   colors: ["#111827","#374151","#6B7280","#D1D5DB","#F9FAFB"] },
-    { label: "Semantic",  colors: ["#059669","#F59E0B","#EF4444","#3B82F6","#8B5CF6"] },
-  ];
-
+function ApproachSection() {
   return (
-    <CsSection id="foundations">
+    <CsSection id="approach">
       <CsSectionHeader
-        label="Foundations"
-        title="Tokens first. Everything else flows from here."
-        sub="The design system starts at the atomic level — color, typography, spacing, and elevation. Every component is built from these building blocks."
+        label="Approach & Strategy"
+        title="Structure first. Components second."
+        sub="Rather than immediately designing components, I focused on process. How would work be tracked? How would developers be involved? What principles would guide every decision? These were answered before Figma was opened."
       />
 
-      {/* Color scales */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Color scales</p>
-        {colorGroups.map((group) => (
-          <div key={group.label} style={{ marginBottom: 14 }}>
-            <p style={{ fontSize: "0.68rem", fontWeight: 600, color: "#6B7280", marginBottom: 8 }}>{group.label}</p>
-            <div style={{ display: "flex", gap: 6 }}>
-              {group.colors.map((c, i) => (
-                <div key={i} style={{ flex: 1, height: 36, borderRadius: 6, background: c, border: i > 2 ? "1px solid rgba(0,0,0,0.08)" : "none" }} title={c} />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="csl-card-2col csl-reveal rd1">
-        {/* Spacing scale */}
-        <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Spacing scale</p>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Key decisions made at the start</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {[
-            { token: "--space-1", val: "4px",  name: "xs"  },
-            { token: "--space-2", val: "8px",  name: "sm"  },
-            { token: "--space-3", val: "12px", name: "md"  },
-            { token: "--space-4", val: "16px", name: "base"},
-            { token: "--space-6", val: "24px", name: "lg"  },
-            { token: "--space-8", val: "32px", name: "xl"  },
-          ].map((s) => (
-            <div key={s.token} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-              <div style={{ width: parseInt(s.val) * 1.5, height: 16, background: "#EDE9FE", borderRadius: 2, flexShrink: 0 }} />
-              <div style={{ display: "flex", justifyContent: "space-between", flex: 1 }}>
-                <span style={{ fontSize: "0.68rem", color: "#111827", fontFamily: "ui-monospace,monospace" }}>{s.val}</span>
-                <span style={{ fontSize: "0.62rem", color: "#9CA3AF" }}>{s.name}</span>
+            { icon: "⬇", decision: "Top-down approach",       reason: "Start with high-impact, high-frequency components. Deliver value to teams fast — don't get lost building atoms for weeks."              },
+            { icon: "⚛", decision: "Atomic Design principles", reason: "Every component is composed of tokens → atoms → molecules → organisms. Scalability is structural, not cosmetic."                        },
+            { icon: "🤝", decision: "Dev partnership from day 1",reason: "Partnered with the frontend developer before designing components. Named properties, constraints, and behaviors aligned from the start." },
+            { icon: "📋", decision: "Kanban board in Figma",   reason: "Built a component tracking board directly inside the Figma file — status, feedback, and iteration all in one place, accessible to all."  },
+          ].map((item, i, arr) => (
+            <div key={item.decision} style={{ display: "flex", gap: 16, padding: "18px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none", alignItems: "flex-start" }}>
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: "#E3F3FF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "1rem" }}>{item.icon}</div>
+              <div>
+                <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 4 }}>{item.decision}</p>
+                <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>{item.reason}</p>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Type scale */}
-        <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Type scale</p>
-          {[
-            { name: "Display",  px: "48px", lh: "1.0" },
-            { name: "H1",       px: "36px", lh: "1.1" },
-            { name: "H2",       px: "28px", lh: "1.2" },
-            { name: "H3",       px: "22px", lh: "1.3" },
-            { name: "Body",     px: "16px", lh: "1.6" },
-            { name: "Caption",  px: "12px", lh: "1.5" },
-          ].map((t) => (
-            <div key={t.name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: `${parseInt(t.px) * 0.32}px`, fontWeight: 700, color: "#111827", minWidth: 60 }}>{t.name}</span>
-              <span style={{ fontSize: "0.6rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{t.px} / {t.lh}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
-      {/* Foundation image */}
-      <div className="csl-reveal rd2" style={{ marginTop: 20 }}>
-        <CsImg label="Foundations reference sheet — all tokens documented" aspect="16/6" icon="📐" sub="Color · Typography · Spacing · Elevation · Border radius" />
+      {/* Figma foundations */}
+      <div className="csl-card-3col csl-reveal rd1" style={{ marginBottom: 20 }}>
+        {[
+          { icon: "⚙", title: "Auto Layout",        desc: "Every component uses auto layout — so it stretches, wraps, and adapts to content without ever needing manual resizing."    },
+          { icon: "🔀", title: "Variants",           desc: "Component variants encode all states (default, hover, focus, disabled) in one master component. No duplicate files."        },
+          { icon: "🪆", title: "Nested components",  desc: "Icons, badges, and labels are nested inside cards and inputs. Change the nested atom — every organism that uses it updates." },
+        ].map((item) => (
+          <div key={item.title} style={{ background: "#fff", borderRadius: 16, padding: "20px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+            <div style={{ width: 40, height: 40, borderRadius: 10, background: "#E3F3FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem", marginBottom: 14 }}>{item.icon}</div>
+            <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{item.title}</p>
+            <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>{item.desc}</p>
+          </div>
+        ))}
       </div>
+
     </CsSection>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §05  COMPONENTS
+   §04  COLOR SYSTEM
 ───────────────────────────────────────────────────────────────────── */
-function ComponentsSection() {
-  const categories = [
-    { icon: "🔘", name: "Buttons",    count: "8 variants · 5 states · 3 sizes"      },
-    { icon: "📝", name: "Inputs",     count: "12 types · 6 states · Error handling"  },
-    { icon: "🃏", name: "Cards",      count: "6 layouts · Hover · Loading states"    },
-    { icon: "📊", name: "Data tables",count: "Sort · Filter · Pagination built-in"   },
-    { icon: "🏷️", name: "Badges",    count: "10 semantic variants · Icon support"   },
-    { icon: "💬", name: "Modals",     count: "4 sizes · Drawer variant · Overlay"    },
-    { icon: "🍞", name: "Toasts",     count: "5 types · Auto-dismiss · Queue"        },
-    { icon: "🧭", name: "Navigation", count: "Sidebar · Topnav · Breadcrumb · Tabs" },
-    { icon: "📋", name: "Forms",      count: "Field groups · Validation · Layouts"   },
-    { icon: "📈", name: "Charts",     count: "Line · Bar · Donut · Sparkline"        },
-    { icon: "🖼️", name: "Media",     count: "Avatar · Image · Video · Skeleton"     },
-    { icon: "🔔", name: "Feedback",   count: "Alert · Progress · Spinner · Empty"   },
+function ColorSection() {
+  const mainColors = [
+    { name: "Tech Blue",       hex: "#1076BC", border: false },
+    { name: "Coral",           hex: "#F2616E", border: false },
+    { name: "White",           hex: "#FFFFFF", border: true  },
+    { name: "Light Tech Blue", hex: "#E3F3FF", border: true  },
+    { name: "Light Coral",     hex: "#FFD6DA", border: true  },
+  ];
+
+  const neutrals = [
+    { name: "Background",   hex: "#F9FAFC" },
+    { name: "Background 2", hex: "#E8EFF5" },
+    { name: "Border",       hex: "#E0E6EC" },
+    { name: "Disability",   hex: "#B0B8C0" },
+    { name: "Placeholder",  hex: "#A3A3A3" },
+    { name: "Grey Text",    hex: "#6B7280" },
+    { name: "Grey Text 2",  hex: "#4D4D4D" },
+    { name: "Body Text",    hex: "#333333" },
+    { name: "Dark Text",    hex: "#1C1C1C" },
+  ];
+
+  const signals = [
+    { name: "Green",    hex: "#059669" },
+    { name: "Teal",     hex: "#0FBCAC" },
+    { name: "Blue",     hex: "#2D9EED" },
+    { name: "Violet",   hex: "#606EF2" },
+    { name: "Red",      hex: "#EC1A2E" },
+    { name: "Burgundy", hex: "#BC1176" },
+    { name: "Pink",     hex: "#E561F2" },
+    { name: "Orange",   hex: "#FF8934" },
+    { name: "Brown",    hex: "#A75B00" },
+    { name: "Yellow",   hex: "#EDD916" },
   ];
 
   return (
-    <CsSection id="components">
+    <CsSection id="color">
       <CsSectionHeader
-        label="Components"
-        title={<>120+ components. <em style={{ fontStyle: "italic" }}>Every state documented.</em></>}
-        sub="Built in Figma with variant properties for every state, size, and theme. Each component mirrors the engineering API exactly — no translation needed."
+        label="Color System"
+        title="A color language every team speaks."
+        sub="Three tiers: brand primaries that define the product's identity, a nine-step neutral scale for hierarchy and structure, and a ten-color semantic signal palette for status and feedback. Every value documented as a token."
       />
 
-      {/* Component library image */}
-      <div className="csl-reveal" style={{ marginBottom: 24 }}>
-        <CsImg label="Full component library — all 120+ components in Figma" aspect="16/7" icon="🧩" sub="All states · All variants · All sizes" />
+      <div className="csl-card csl-reveal" style={{ marginBottom: 14 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Main Colors — Brand Primaries</p>
+        <div style={{ display: "flex", gap: 14 }}>
+          {mainColors.map((c) => (
+            <div key={c.hex} style={{ flex: 1 }}>
+              <div style={{ height: 72, borderRadius: 10, background: c.hex, border: c.border ? "1px solid #E0E6EC" : "none", marginBottom: 10 }} />
+              <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#111827", marginBottom: 3, lineHeight: 1.3 }}>{c.name}</p>
+              <p style={{ fontSize: "0.6rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{c.hex}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="csl-card csl-reveal rd1" style={{ marginBottom: 14 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Neutral Scale — Background to Dark Text</p>
+        <div style={{ display: "flex", gap: 8 }}>
+          {neutrals.map((c, i) => (
+            <div key={c.hex} style={{ flex: 1 }}>
+              <div style={{ height: 52, borderRadius: 8, background: c.hex, border: "1px solid #E0E6EC", marginBottom: 7 }} />
+              <p style={{ fontSize: "0.56rem", fontWeight: 600, color: "#374151", marginBottom: 2, lineHeight: 1.2 }}>{c.name}</p>
+              <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{c.hex}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="csl-card csl-reveal rd2" style={{ marginBottom: 20 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Signal Colors — Status & Feedback</p>
+        <div style={{ display: "flex", gap: 8 }}>
+          {signals.map((c) => (
+            <div key={c.hex} style={{ flex: 1 }}>
+              <div style={{ height: 44, borderRadius: 8, background: c.hex, marginBottom: 7 }} />
+              <p style={{ fontSize: "0.58rem", fontWeight: 600, color: "#111827", marginBottom: 2, lineHeight: 1.2 }}>{c.name}</p>
+              <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{c.hex}</p>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontSize: "0.68rem", color: "#6B7280", marginTop: 14, lineHeight: 1.6 }}>
+          Each signal color ships with a light tint variant used for alert and badge backgrounds. Hover states are defined for the three primary interactive colors. All text-on-color combinations were verified for WCAG AA contrast.
+        </p>
+      </div>
+
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §05  TYPOGRAPHY
+───────────────────────────────────────────────────────────────────── */
+function TypographySection() {
+  const bodyRows = [
+    { size: "19pt", weights: "400 · 500 · 600 · 700 · 900", use: "Lead text · Hero descriptions", px: 19 },
+    { size: "17pt", weights: "400 · 500 · 600 · 700 · 900", use: "Primary body copy",             px: 17 },
+    { size: "15pt", weights: "400 · 500 · 600 · 700 · 900", use: "Secondary body · Descriptions", px: 15 },
+    { size: "13pt", weights: "400 · 500 · 600 · 700",       use: "Labels · Form fields",          px: 13 },
+    { size: "11pt", weights: "400 · 500 · 600",             use: "Legal text · Helper text",       px: 11 },
+  ];
+
+  return (
+    <CsSection id="typography">
+      <CsSectionHeader
+        label="Typography"
+        title={<>Lato. Clean, <em style={{ fontStyle: "italic" }}>human, readable.</em></>}
+        sub="Lato was chosen for its humanist warmth, geometric precision, and excellent legibility at all sizes. A consistent 140% line height and −0.5% letter spacing run across every size — giving the type scale a calm, unified rhythm."
+      />
+
+      <div className="csl-card csl-reveal" style={{ marginBottom: 14, display: "flex", gap: 40, flexWrap: "wrap", alignItems: "flex-start" }}>
+        <div>
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Typeface</p>
+          <p style={{ fontSize: "2.6rem", fontWeight: 700, color: "#111827", lineHeight: 1, marginBottom: 4 }}>Lato</p>
+          <p style={{ fontSize: "0.72rem", color: "#6B7280" }}>Google Fonts · Open Source · Humanist sans-serif</p>
+        </div>
+        <div style={{ borderLeft: "1px solid #F3F4F6", paddingLeft: 40 }}>
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Weights in use</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {[
+              { w: 400, n: "Regular" },
+              { w: 500, n: "Medium" },
+              { w: 600, n: "Semi-Bold" },
+              { w: 700, n: "Bold" },
+              { w: 900, n: "Black" },
+            ].map(({ w, n }) => (
+              <div key={w} style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
+                <span style={{ fontWeight: w, fontSize: "0.88rem", color: "#111827", minWidth: 110 }}>Lato {n}</span>
+                <span style={{ fontSize: "0.6rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{w}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{ borderLeft: "1px solid #F3F4F6", paddingLeft: 40 }}>
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Global settings</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {[
+              { k: "Line height",    v: "140%"  },
+              { k: "Letter spacing", v: "−0.5%" },
+            ].map(({ k, v }) => (
+              <div key={k}>
+                <p style={{ fontSize: "0.6rem", color: "#9CA3AF", marginBottom: 2 }}>{k}</p>
+                <p style={{ fontSize: "0.92rem", fontWeight: 700, color: "#1076BC", fontFamily: "ui-monospace,monospace" }}>{v}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 14 }}>
+        <div className="csl-card">
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Heading Scale</p>
+          {[
+            { label: "Heading 1", desktop: "28pt", mobile: "20pt", w: 700 },
+            { label: "Heading 2", desktop: "25pt", mobile: "16pt", w: 700 },
+          ].map((h, i, arr) => (
+            <div key={h.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none" }}>
+              <span style={{ fontSize: `${i === 0 ? 1.7 : 1.35}rem`, fontWeight: h.w, color: "#111827" }}>{h.label}</span>
+              <div style={{ display: "flex", gap: 20, flexShrink: 0 }}>
+                {[{ k: "Desktop", v: h.desktop }, { k: "Mobile", v: h.mobile }, { k: "LH", v: "140%" }].map(({ k, v }) => (
+                  <div key={k} style={{ textAlign: "right" }}>
+                    <p style={{ fontSize: "0.55rem", color: "#9CA3AF" }}>{k}</p>
+                    <p style={{ fontSize: "0.74rem", fontWeight: 700, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="csl-card">
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Body Scale — 5 sizes · 5 weights</p>
+          {bodyRows.map((row, i) => (
+            <div key={row.size} style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 0", borderBottom: i < bodyRows.length - 1 ? "1px solid #F3F4F6" : "none" }}>
+              <span style={{ fontSize: `${row.px * 0.7}px`, color: "#111827", minWidth: 60, flexShrink: 0 }}>Body</span>
+              <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111827", fontFamily: "ui-monospace,monospace", minWidth: 32 }}>{row.size}</span>
+              <span style={{ fontSize: "0.58rem", color: "#9CA3AF", flex: 1 }}>{row.use}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §06  ICONOGRAPHY
+───────────────────────────────────────────────────────────────────── */
+function IconographySection() {
+  const categories = [
+    { icon: "✉",  name: "Communication",   count: "Mail · Chat · Alert · Notification · 12 icons"  },
+    { icon: "✕",  name: "Actions",          count: "Close · Add · Delete · Edit · Filter · 18 icons" },
+    { icon: "⌕",  name: "Search & Nav",     count: "Search · Sort · Navigate · Expand · 14 icons"   },
+    { icon: "⊞",  name: "Layout",           count: "Grid · Split · Columns · Stack · 10 icons"      },
+    { icon: "👤", name: "User & Identity",  count: "User · Group · Lock · Settings · 12 icons"      },
+    { icon: "📅", name: "Time & Date",      count: "Calendar · Clock · Timer · History · 10 icons"  },
+    { icon: "🏠", name: "Travel",            count: "Home · Luggage · Restaurant · Star · 16 icons" },
+    { icon: "📊", name: "Data",              count: "Filter · Hash · Table · Badge · 12 icons"      },
+    { icon: "↕",  name: "Direction",        count: "Up · Down · Left · Right · Diagonal · 10 icons" },
+    { icon: "⚠",  name: "Status",           count: "Warning · Error · Success · Info · 8 icons"     },
+    { icon: "☀",  name: "Modes",            count: "Light · Dark · Dawn · Moon · Refresh · 10 icons"},
+    { icon: "✏",  name: "Editing",          count: "Pen · Pencil · Sliders · Write · Tune · 8 icons"},
+  ];
+
+  return (
+    <CsSection id="iconography">
+      <CsSectionHeader
+        label="Iconography"
+        title={<>150+ icons. <em style={{ fontStyle: "italic" }}>One grid. Three sizes.</em></>}
+        sub="Every icon is drawn on a 24×24px keyline grid with a consistent 2px stroke weight and 2px corner radius. Each ships in three sizes — 24px, 20px, and 16px — with identical proportions and optical centre across all three."
+      />
+
+      <div className="csl-card-2col csl-reveal" style={{ marginBottom: 20 }}>
+        <div className="csl-card">
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Keyline construction grid</p>
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
+            <div style={{ position: "relative", width: 88, height: 88, border: "2px solid #1076BC", borderRadius: 14 }}>
+              <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.2 }} viewBox="0 0 88 88">
+                {[22,44,66].map(x => <line key={`v${x}`} x1={x} y1="0" x2={x} y2="88" stroke="#1076BC" strokeWidth="0.5"/>)}
+                {[22,44,66].map(y => <line key={`h${y}`} x1="0" y1={y} x2="88" y2={y} stroke="#1076BC" strokeWidth="0.5"/>)}
+              </svg>
+              <div style={{ position: "absolute", inset: 10, border: "1.5px solid #1076BC", borderRadius: "50%", opacity: 0.4 }} />
+              <div style={{ position: "absolute", top: "50%", left: "50%", width: 6, height: 6, background: "#1076BC", borderRadius: "50%", transform: "translate(-50%,-50%)" }} />
+            </div>
+          </div>
+          {[
+            { k: "Canvas",        v: "24 × 24 px" },
+            { k: "Live area",     v: "20 × 20 px" },
+            { k: "Stroke weight", v: "2 px"        },
+            { k: "Corner radius", v: "2 px"        },
+            { k: "Sizes",         v: "24 · 20 · 16 px" },
+            { k: "Export",        v: "SVG"         },
+          ].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
+              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+        </div>
+        <div className="csl-card">
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Three sizes · same proportions</p>
+          <div style={{ display: "flex", gap: 20, alignItems: "flex-end", justifyContent: "center", marginBottom: 24 }}>
+            {[{ size: 56, px: "24px" }, { size: 46, px: "20px" }, { size: 36, px: "16px" }].map(({ size, px }) => (
+              <div key={px} style={{ textAlign: "center" }}>
+                <div style={{ width: size, height: size, border: "2px solid #1076BC", borderRadius: Math.round(size * 0.33), margin: "0 auto 10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ width: size * 0.3, height: size * 0.3, borderRadius: "50%", background: "rgba(16,118,188,0.25)" }} />
+                </div>
+                <p style={{ fontSize: "0.62rem", fontWeight: 700, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{px}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.7 }}>
+            Icons are exported as SVG for production. All three sizes share the same stroke weight and optical centre — they look consistent whether used in a top navigation or as a small inline indicator inside a table cell.
+          </p>
+          <div style={{ marginTop: 14, display: "flex", gap: 8, flexWrap: "wrap" }}>
+            {["Outlined style", "2px stroke", "SVG export", "Optical centre"].map((tag) => (
+              <span key={tag} style={{ fontSize: "0.6rem", fontWeight: 600, background: "#E3F3FF", color: "#1076BC", borderRadius: 20, padding: "3px 10px" }}>{tag}</span>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }} className="csl-reveal rd1">
         {categories.map((cat) => (
-          <div key={cat.name} style={{ background: "#fff", borderRadius: 14, padding: "16px 14px", boxShadow: "0 4px 12px rgba(0,0,0,0.04)" }}>
+          <div key={cat.name} style={{ background: "#fff", borderRadius: 14, padding: "16px 14px", boxShadow: "0 4px 12px rgba(0,0,0,0.04)", borderTop: "3px solid #E3F3FF" }}>
             <div style={{ fontSize: "1.2rem", marginBottom: 8 }}>{cat.icon}</div>
             <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{cat.name}</div>
             <div style={{ fontSize: "0.62rem", color: "#9CA3AF", lineHeight: 1.5 }}>{cat.count}</div>
@@ -336,121 +560,173 @@ function ComponentsSection() {
         ))}
       </div>
 
-      {/* Deep-dive component image */}
-      <div className="csl-reveal rd2" style={{ marginTop: 20 }}>
-        <CsImg label="Button component — all 8 variants across 5 states at 3 sizes" aspect="16/6" icon="🔘" sub="Hover · Focus · Disabled · Loading · Active" />
-      </div>
-
-      <div className="csl-reveal rd3" style={{ marginTop: 14 }}>
-        <CsImg label="Form components — inputs, selects, checkboxes, radio buttons" aspect="16/7" icon="📝" sub="All field types · All validation states · Inline errors" />
-      </div>
-    </CsSection>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   §06  DESIGN TOKENS
-───────────────────────────────────────────────────────────────────── */
-function TokensSection() {
-  return (
-    <CsSection id="tokens">
-      <CsSectionHeader
-        label="Design Tokens"
-        title="Change once. Update everywhere."
-        sub="Semantic tokens sit on top of primitive tokens. Designers and developers use the same token names — --color-primary, --space-4, --radius-card. Update the primitive, everything inherits."
-      />
-
-      <div className="csl-card csl-reveal" style={{ fontFamily: "ui-monospace, monospace", background: "#18181B", color: "#A78BFA", fontSize: "0.75rem", lineHeight: 2 }}>
-        <div style={{ marginBottom: 6, color: "rgba(255,255,255,0.4)", fontSize: "0.62rem" }}>tokens/base.json</div>
-        {[
-          ['  "color-primary":    ', '"#7C3AED"'],
-          ['  "color-primary-dark":', '"#5B21B6"'],
-          ['  "color-surface":    ', '"#F9FAFB"'],
-          ['  "space-4":          ', '"16px"'   ],
-          ['  "radius-card":      ', '"16px"'   ],
-          ['  "shadow-card":      ', '"0 4px 20px rgba(0,0,0,0.05)"'],
-        ].map(([key, val], i) => (
-          <div key={i}>
-            <span style={{ color: "rgba(255,255,255,0.5)" }}>{key}</span>
-            <span style={{ color: "#34D399" }}>{val}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="csl-img-2up csl-reveal rd1" style={{ marginTop: 24 }}>
-        <CsImg label="Token architecture — primitive → semantic → component" aspect="4/3" icon="🏗️" sub="Three-tier token system" />
-        <CsImg label="Token usage in Figma variables panel" aspect="4/3" icon="🔧" sub="Figma variables · Auto-theming" />
-      </div>
-
-      <p className="csl-text csl-reveal rd2" style={{ marginTop: 20 }}>{LOREM}</p>
-    </CsSection>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   §07  DOCUMENTATION
-───────────────────────────────────────────────────────────────────── */
-function DocumentationSection() {
-  return (
-    <CsSection id="documentation">
-      <CsSectionHeader
-        label="Documentation"
-        title="A design system without docs is just a Figma file."
-        sub="Every component has a dedicated documentation page with: when to use it, when not to, all variants, accessibility notes, and the exact Figma component path."
-      />
-
-      <p className="csl-text csl-reveal">{LOREM}</p>
-
-      <div className="csl-reveal rd1" style={{ marginBottom: 24, marginTop: 20 }}>
-        <CsImg label="Documentation site — component reference pages" height={380} icon="📚" sub="Storybook · Usage guidelines · Code examples" />
-      </div>
-
-      <div className="csl-card-3col csl-reveal rd2">
-        {[
-          { icon: "📖", title: "Usage guidelines",    desc: "Do/don't examples for every component with real product screenshots."  },
-          { icon: "♿", title: "Accessibility notes",  desc: "ARIA requirements, keyboard nav patterns, screen reader behavior."      },
-          { icon: "💻", title: "Code snippets",       desc: "Copy-paste React props with all required and optional parameters shown." },
-        ].map((item) => (
-          <div key={item.title} style={{ background: "#fff", borderRadius: 16, padding: "20px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
-            <div style={{ fontSize: "1.4rem", marginBottom: 10 }}>{item.icon}</div>
-            <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{item.title}</p>
-            <p style={{ fontSize: "0.75rem", color: "#6B7280", lineHeight: 1.6 }}>{item.desc}</p>
-          </div>
-        ))}
+      <div className="csl-reveal rd2" style={{ marginTop: 20, borderRadius: 16, overflow: "hidden" }}>
+        <img
+          src="/Design System/icons.png"
+          alt="Full icon library — all 150+ icons across 12 categories at 3 sizes"
+          style={{ width: "100%", display: "block", borderRadius: 16 }}
+        />
       </div>
     </CsSection>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §08  GOVERNANCE
+   §07  COMPONENTS
 ───────────────────────────────────────────────────────────────────── */
-function GovernanceSection() {
+function ComponentsSection() {
+  const buttonTypes = [
+    { type: "Primary",    bg: "#1076BC",     color: "#fff",     border: "none",                   note: "Main CTA — search, book, confirm"   },
+    { type: "Secondary",  bg: "#F2616E",     color: "#fff",     border: "none",                   note: "Destructive · Alerts · Promotions"   },
+    { type: "Tertiary",   bg: "transparent", color: "#1C1C1C",  border: "1.5px solid #E0E6EC",   note: "Secondary actions · Cancel · Filters" },
+    { type: "Borderless", bg: "transparent", color: "#1076BC",  border: "none",                   note: "Inline links · Low-emphasis actions"  },
+  ];
+
+  const states = [
+    { label: "Default",  bgs: ["#1076BC","#F2616E","transparent","transparent"], disabled: false, focused: false },
+    { label: "Hover",    bgs: ["#0F71B5","#E95D6A","#F5F5F5","transparent"],    disabled: false, focused: false },
+    { label: "Focus",    bgs: ["#1076BC","#F2616E","transparent","transparent"], disabled: false, focused: true  },
+    { label: "Disabled", bgs: ["#B0B8C0","#B0B8C0","transparent","transparent"], disabled: true, focused: false },
+  ];
+
   return (
-    <CsSection id="governance">
+    <CsSection id="components">
       <CsSectionHeader
-        label="Governance"
-        title="A system that teams actually maintain."
-        sub="A design system dies when nobody owns it. I established a governance model: who can propose changes, how they're reviewed, how they're versioned, and how they're communicated."
+        label="Components"
+        title="Buttons — four types, four states."
+        sub="The button system is the backbone of all user interactions. Four types handle every context — from primary CTAs to borderless inline links — with all states documented so developers never have to guess."
       />
 
-      <div className="csl-process-grid csl-reveal">
-        {[
-          { n: "Propose",  t: "RFC process",       d: "Any designer or developer can propose a new component or token change via a lightweight RFC template."           },
-          { n: "Review",   t: "Weekly sync",        d: "A 30-minute weekly review with design and engineering leads. No RFC ships without cross-functional sign-off."   },
-          { n: "Version",  t: "Semantic versioning", d: "Breaking changes = major version. New components = minor. Bug fixes = patch. Changelog auto-generated."        },
-          { n: "Communicate", t: "Changelog + Slack", d: "Every publish triggers a Slack notification with what changed, what to update, and where to find docs."       },
-        ].map((s) => (
-          <div className="csl-process-step" key={s.n}>
-            <div className="csl-process-num">{s.n}</div>
-            <div className="csl-process-title">{s.t}</div>
-            <p className="csl-process-text">{s.d}</p>
+      <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Main Buttons — 4 types · 4 states</p>
+        <div style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 12, alignItems: "end" }}>
+          <div />
+          {buttonTypes.map((b) => (
+            <div key={b.type}>
+              <p style={{ fontSize: "0.68rem", fontWeight: 700, color: "#111827", marginBottom: 3 }}>{b.type}</p>
+              <p style={{ fontSize: "0.58rem", color: "#9CA3AF", lineHeight: 1.4 }}>{b.note}</p>
+            </div>
+          ))}
+        </div>
+        {states.map(({ label, bgs, disabled, focused }) => (
+          <div key={label} style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 10, alignItems: "center" }}>
+            <p style={{ fontSize: "0.65rem", color: "#6B7280", fontWeight: 500 }}>{label}</p>
+            {buttonTypes.map((b, i) => (
+              <div key={b.type}>
+                <div style={{
+                  background: disabled ? "#B0B8C0" : bgs[i],
+                  color: disabled ? "#F9FAFC" : b.color,
+                  border: b.border,
+                  outline: focused ? "2px solid #1076BC" : "none",
+                  outlineOffset: 2,
+                  borderRadius: 8, padding: "8px 14px",
+                  fontSize: "0.68rem", fontWeight: 600,
+                  opacity: disabled ? 0.7 : 1,
+                  display: "inline-flex", alignItems: "center", gap: 4,
+                  whiteSpace: "nowrap",
+                }}>
+                  {b.type === "Primary" ? "Button ↗" : "Button"}
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+        <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid #F3F4F6" }}>
+          <p style={{ fontSize: "0.65rem", fontWeight: 700, color: "#6B7280", marginBottom: 12 }}>Miscellaneous — Icon Button</p>
+          <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
+            <div style={{ background: "#1076BC", borderRadius: 8, padding: "9px 18px", display: "inline-flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: "0.72rem", color: "#fff", fontWeight: 600 }}>Find Flights</span>
+              <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.8)" }}>⌕</span>
+            </div>
+            <p style={{ fontSize: "0.7rem", color: "#6B7280", maxWidth: 280, lineHeight: 1.6 }}>Icon buttons pair a label with a trailing icon. Used for primary search CTAs and key conversion actions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 20 }}>
+        <div className="csl-card">
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Desktop specs</p>
+          {[
+            { k: "Height",        v: "36 px" },
+            { k: "Padding H",     v: "16 px" },
+            { k: "Corner radius", v: "8 px"  },
+            { k: "Font",          v: "Lato · 13pt · 600" },
+            { k: "Icon gap",      v: "6 px"  },
+            { k: "Focus ring",    v: "2px offset, accent" },
+          ].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
+              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+        </div>
+        <div className="csl-card">
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Mobile specs</p>
+          {[
+            { k: "Height",       v: "44 px (min touch)" },
+            { k: "Padding H",    v: "20 px" },
+            { k: "Corner radius",v: "8 px"  },
+            { k: "Font",         v: "Lato · 15pt · 600" },
+            { k: "Full-width",   v: "Yes — fills container" },
+            { k: "Focus ring",   v: "2px offset, accent" },
+          ].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
+              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §08  GRID
+───────────────────────────────────────────────────────────────────── */
+function GridSection() {
+  const grids = [
+    { name: "General Grid",  cols: 12, margin: "12 px", gutter: "12 px", context: "Desktop — all standard pages",      note: "Homepage, listing, profile, settings — every general layout uses this grid."                                         },
+    { name: "Search Grid",   cols: 5,  margin: "12 px", gutter: "12 px", context: "Desktop — search results",          note: "Sidebar takes 1 column; results take 4. No arbitrary pixel overrides needed."                                     },
+    { name: "Mobile Grid",   cols: 4,  margin: "12 px", gutter: "8 px",  context: "All mobile screens",                note: "Tighter 8px gutter maximises usable width on small screens while preserving breathing room between elements."       },
+  ];
+
+  return (
+    <CsSection id="grid">
+      <CsSectionHeader
+        label="Layout & Grid"
+        title="Three grids. Every context covered."
+        sub="The layout system defines how content flows across all contexts. A 12-column general grid, a specialised 5-column search layout for the results page, and a compact mobile grid with tighter gutters."
+      />
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }} className="csl-reveal">
+        {grids.map((g) => (
+          <div key={g.name} style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 12px rgba(0,0,0,0.04)", display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", gap: 3, marginBottom: 16, height: 44 }}>
+              {Array(g.cols).fill(0).map((_, i) => (
+                <div key={i} style={{ flex: 1, background: "#E3F3FF", borderRadius: 2 }} />
+              ))}
+            </div>
+            <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>{g.name}</p>
+            {[
+              { k: "Columns", v: String(g.cols) },
+              { k: "Margin",  v: g.margin },
+              { k: "Gutter",  v: g.gutter },
+            ].map(({ k, v }) => (
+              <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 7, marginBottom: 7, borderBottom: "1px solid #F3F4F6" }}>
+                <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+                <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#1076BC", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+              </div>
+            ))}
+            <p style={{ fontSize: "0.62rem", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>{g.context}</p>
+            <p style={{ fontSize: "0.68rem", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>{g.note}</p>
           </div>
         ))}
       </div>
 
-      <div className="csl-reveal rd1" style={{ marginTop: 24 }}>
-        <CsImg label="Governance workflow diagram — proposal to publish" height={260} icon="🔄" sub="RFC → Review → Version → Publish → Communicate" />
+      <div className="csl-callout csl-reveal rd2" style={{ marginTop: 20, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
+        <strong>Why a separate search grid?</strong> The results page has a persistent filter sidebar. A 5-column grid maps the sidebar to exactly 1 column and the results panel to 4 — the layout is intentional, not improvised.
       </div>
     </CsSection>
   );
@@ -463,16 +739,17 @@ function ResultsSection() {
   return (
     <CsSection id="results">
       <CsSectionHeader
-        label="Results & Impact"
-        title="The numbers told the story."
+        label="Final Output & Impact"
+        title="A complete system, actively in use."
+        sub="By the end of the project, a complete, scalable design system was in place — all core components documented, all tokens defined, and the system actively adopted across products."
       />
 
       <div className="csl-metrics csl-reveal">
         {[
-          { val: "40%", label: "Design time saved"         },
-          { val: "60%", label: "Faster dev handoff"        },
-          { val: "120+",label: "Components in library"     },
-          { val: "0",   label: "Duplicate components left" },
+          { val: "150+", label: "Icons in the library"        },
+          { val: "↓",    label: "Design–dev back-and-forth"   },
+          { val: "↑",    label: "Consistency across products" },
+          { val: "↑",    label: "Onboarding speed for designers" },
         ].map((m) => (
           <div className="csl-metric" key={m.label}>
             <div className="csl-metric-val">{m.val}</div>
@@ -481,29 +758,26 @@ function ResultsSection() {
         ))}
       </div>
 
-      <div className="csl-callout csl-reveal rd1">
-        <strong>Before:</strong> designers spent 30% of sprint time rebuilding components. <strong>After:</strong> new features are composed from existing building blocks. The design system paid for itself in the first month.
-      </div>
-
-      <div style={{ marginTop: 24 }} className="csl-reveal rd2">
+      <div style={{ marginTop: 24 }} className="csl-reveal rd1">
         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
           <thead>
             <tr>
               <th style={{ padding: "10px 16px", background: "#F3F4F6", borderRadius: "8px 0 0 0", textAlign: "left", color: "#6B7280", fontWeight: 600 }}>Before</th>
-              <th style={{ padding: "10px 16px", background: "#F5F3FF", borderRadius: "0 8px 0 0", textAlign: "left", color: "#7C3AED", fontWeight: 600 }}>After</th>
+              <th style={{ padding: "10px 16px", background: "#E3F3FF", borderRadius: "0 8px 0 0", textAlign: "left", color: "#1076BC", fontWeight: 600 }}>After</th>
             </tr>
           </thead>
           <tbody>
             {[
-              ["14 button variants across the product",     "1 button component, 8 variants, consistent everywhere"],
-              ["Designers rebuilding the same components",  "New features built from the library in hours not days"],
-              ["Developers guessing spacing values",        "Tokens in code match tokens in Figma exactly"],
-              ["No shared language between design & eng",   "Same terminology, same variable names, zero translation"],
-              ["Design drift on every new feature",         "Consistent, on-brand output by default"],
+              ["3 different 'primary blue' hex values in production",   "One Tech Blue token — #1076BC — used everywhere"],
+              ["Icon style mixed outlined and filled in the same flow",  "150+ outlined icons, one grid, consistent stroke weight"],
+              ["Designers rebuilding components from scratch every sprint", "New screens assembled from the library in hours"],
+              ["Developers reverse-engineering spacing from screenshots",  "Token names match exactly between Figma and code"],
+              ["Difficult Figma files, hard to navigate and reuse",       "One organized library file, accessible and well-documented"],
+              ["Slow onboarding for new designers",                       "Shared system means new designers are productive faster"],
             ].map(([b, a], i) => (
               <tr key={i} style={{ borderBottom: "1px solid #F3F4F6" }}>
                 <td style={{ padding: "10px 16px", color: "#374151" }}>{b}</td>
-                <td style={{ padding: "10px 16px", color: "#7C3AED", fontWeight: 500 }}>{a}</td>
+                <td style={{ padding: "10px 16px", color: "#1076BC", fontWeight: 500 }}>{a}</td>
               </tr>
             ))}
           </tbody>
@@ -517,26 +791,34 @@ function ResultsSection() {
    §10  LEARNINGS
 ───────────────────────────────────────────────────────────────────── */
 function LearningsSection() {
-  const items = [
+  const learnings = [
     {
-      n: "01",
-      title: "Audit before you build",
-      text: "Two weeks mapping the existing UI was the best investment. It prevented building new components that replicated existing ones, and gave stakeholders a visceral sense of the problem scale.",
+      category: "Process",
+      assumption: "I thought building the components was the hard part.",
+      reality: "The real work was everything around them — the Kanban tracking, developer alignment, naming conventions, and communication cadence. The Figma file was 50% of the job.",
+      color: "#1076BC",
+      bg: "#E3F3FF",
     },
     {
-      n: "02",
-      title: "Semantic tokens beat primitives",
-      text: "Naming tokens by their role (--color-primary) rather than their value (#7C3AED) means themes, dark mode, and rebranding require no component changes at all.",
+      category: "Foundation",
+      assumption: "I thought I could skip the audit and jump straight into designing.",
+      reality: "Two weeks of mapping the existing product revealed the true scope of the problem — and prevented me from building components that already existed in slightly different forms.",
+      color: "#059669",
+      bg: "#DCFFEA",
     },
     {
-      n: "03",
-      title: "Governance is half the system",
-      text: "A design system without clear ownership becomes stale within 6 months. The RFC process felt bureaucratic at first — but it's why the system is still being used and maintained.",
+      category: "Scale",
+      assumption: "I thought 'done' meant all components were built.",
+      reality: "A design system is never done. Publishing the library was day one of adoption, not the finish line. Systems evolve — the governance around them is what keeps them alive.",
+      color: "#606EF2",
+      bg: "#EDEDFF",
     },
     {
-      n: "04",
-      title: "Engineers are your best allies",
-      text: "Involving engineering in component API decisions early meant zero translation layer. What the component was named in Figma was exactly what it was named in code.",
+      category: "Collaboration",
+      assumption: "I thought design decisions could be made in isolation, then handed off.",
+      reality: "Partnering with the developer from day one — on naming, component properties, and constraints — meant zero translation overhead. What was named in Figma was named in code.",
+      color: "#F2616E",
+      bg: "#FFF0F1",
     },
   ];
 
@@ -544,19 +826,34 @@ function LearningsSection() {
     <CsSection id="learnings" last>
       <CsSectionHeader
         label="Learnings"
-        title="A design system is a product. Treat it like one."
+        title="What I thought going in — and what actually happened."
+        sub="The most valuable lessons from this project weren't about design craft. They were about process, systems thinking, and working cross-functionally at scale."
       />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-        {items.map((item) => (
-          <div key={item.n} className="csl-reveal" style={{ display: "flex", gap: 20, background: "#fff", borderRadius: 18, padding: "22px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
-            <span style={{ fontSize: "0.6rem", fontWeight: 700, color: "#7C3AED", fontFamily: "ui-monospace,monospace", flexShrink: 0, marginTop: 2 }}>{item.n}</span>
-            <div>
-              <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{item.title}</div>
-              <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.7 }}>{item.text}</p>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        {learnings.map((item, i) => (
+          <div
+            key={item.category}
+            className="csl-reveal"
+            style={{ background: "#fff", borderRadius: 18, padding: "28px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)", borderLeft: `4px solid ${item.color}` }}
+          >
+            <span style={{ fontSize: "0.58rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: item.color, background: item.bg, borderRadius: 20, padding: "3px 10px", display: "inline-block", marginBottom: 16 }}>
+              {item.category}
+            </span>
+            <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#9CA3AF", marginBottom: 12, lineHeight: 1.6 }}>
+              &ldquo;{item.assumption}&rdquo;
+            </p>
+            <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+              <span style={{ color: item.color, fontWeight: 700, fontSize: "1.1rem", flexShrink: 0, lineHeight: 1.4 }}>→</span>
+              <p style={{ fontSize: "0.84rem", fontWeight: 600, color: "#111827", lineHeight: 1.65 }}>{item.reality}</p>
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Mentorship note */}
+      <div className="csl-callout csl-reveal" style={{ marginTop: 32, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
+        <strong>Beyond the system itself —</strong> as part of this work I also mentored junior designers on component usage and design system thinking. Helping others understand the system revealed gaps in the documentation that I wouldn&apos;t have found on my own.
       </div>
 
       <a href="/projects/care-autor" className="csl-next csl-reveal" style={{ marginTop: 56 }}>
@@ -578,18 +875,18 @@ export function DesignSystemCaseStudy() {
     <CaseStudyPage
       theme="ds"
       title="Design System"
-      tag="Design Systems · Foundations"
+      tag="AirIQ · Design Systems"
       tocItems={TOC_ITEMS}
       hero={<DSHero />}
     >
       <OverviewSection />
-      <ProblemSection />
-      <AuditSection />
-      <FoundationsSection />
+      <DiscoverySection />
+      <ApproachSection />
+      <ColorSection />
+      <TypographySection />
+      <IconographySection />
       <ComponentsSection />
-      <TokensSection />
-      <DocumentationSection />
-      <GovernanceSection />
+      <GridSection />
       <ResultsSection />
       <LearningsSection />
     </CaseStudyPage>

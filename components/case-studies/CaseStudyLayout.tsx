@@ -18,11 +18,11 @@ const THEME_VARS: Record<CsTheme, CSSProperties> = {
     "--csl-toc-active-bg": "#EAF3FF",
   } as CSSProperties,
   biblo: {
-    "--csl-accent":        "#5B3FD4",
-    "--csl-accent-dim":    "rgba(91,63,212,0.1)",
-    "--csl-hero-bg":       "#0D0B1F",
-    "--csl-tag-bg":        "#F4F2FF",
-    "--csl-toc-active-bg": "#F4F2FF",
+    "--csl-accent":        "#C8703A",
+    "--csl-accent-dim":    "rgba(200,112,58,0.1)",
+    "--csl-hero-bg":       "#1C0F08",
+    "--csl-tag-bg":        "#FEF4E8",
+    "--csl-toc-active-bg": "#FEF4E8",
   } as CSSProperties,
   eco: {
     "--csl-accent":        "#2D7D43",
@@ -39,11 +39,11 @@ const THEME_VARS: Record<CsTheme, CSSProperties> = {
     "--csl-toc-active-bg": "#E0F2FE",
   } as CSSProperties,
   ds: {
-    "--csl-accent":        "#7C3AED",
-    "--csl-accent-dim":    "rgba(124,58,237,0.1)",
-    "--csl-hero-bg":       "#18181B",
-    "--csl-tag-bg":        "#F5F3FF",
-    "--csl-toc-active-bg": "#F5F3FF",
+    "--csl-accent":        "#1076BC",
+    "--csl-accent-dim":    "rgba(16,118,188,0.1)",
+    "--csl-hero-bg":       "#071E35",
+    "--csl-tag-bg":        "#E3F3FF",
+    "--csl-toc-active-bg": "#E3F3FF",
   } as CSSProperties,
 };
 
