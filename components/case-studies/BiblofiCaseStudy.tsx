@@ -297,8 +297,14 @@ function OverviewSection() {
       </div>
 
       {/* Team photo */}
-      <div className="csl-reveal rd2" style={{ marginTop:28 }}>
-        <CsImg label="Internship team at Infosys" height={280} icon="👥" sub="Place team photo here · /Image/Biblofi/team.png" />
+      <div className="csl-reveal rd2" style={{ marginTop:28, borderRadius:16, overflow:"hidden" }}>
+        <Image
+          src="/Image/Biblofi/team-infosys.png"
+          alt="Internship team at Infosys"
+          width={1200}
+          height={560}
+          style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
+        />
       </div>
     </CsSection>
   );
@@ -326,8 +332,14 @@ function ProcessSection() {
         ))}
       </div>
 
-      <div className="csl-reveal rd1" style={{ marginTop:28 }}>
-        <CsImg label="Double Diamond process diagram" height={260} icon="💎" sub="Diverge → Converge · Two phases" />
+      <div className="csl-reveal rd1" style={{ marginTop:28, borderRadius:16, overflow:"hidden" }}>
+        <Image
+          src="/Image/Biblofi/design-process.png"
+          alt="Double Diamond design process diagram"
+          width={1200}
+          height={560}
+          style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
+        />
       </div>
     </CsSection>
   );
