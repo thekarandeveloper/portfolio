@@ -125,31 +125,46 @@ function EcoHero() {
   );
 }
 
-const ECO_RING_R = 24;
-const ECO_RING_CIRC = 2 * Math.PI * ECO_RING_R; // ~150.8
-
 function EcoCO2Ring() {
   return (
     <div style={{ position: "relative", width: 60, height: 60, margin: "0 auto 8px" }}>
-      <svg width="60" height="60" style={{ transform: "rotate(-90deg)" }}>
-        <circle cx="30" cy="30" r={ECO_RING_R} fill="none" stroke="#D0EAD4" strokeWidth="4" />
-        <circle
-          cx="30" cy="30" r={ECO_RING_R}
-          fill="none"
-          stroke="#2D7D43"
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeDasharray={ECO_RING_CIRC}
-          strokeDashoffset={ECO_RING_CIRC}
-          style={{
-            animation: `eco-ring-draw 1.2s ease-out 0.4s forwards,
-                        eco-ring-glow  2.4s ease-in-out 1.6s infinite`,
-          }}
-        />
+      <svg width="60" height="60" viewBox="0 0 60 60">
+        <defs>
+          <clipPath id="eco-liquid-clip">
+            <circle cx="30" cy="30" r="26" />
+          </clipPath>
+        </defs>
+
+        {/* bg */}
+        <circle cx="30" cy="30" r="26" fill="#E8F7EC" />
+
+        {/* liquid — clip stays fixed, inner groups animate */}
+        <g clipPath="url(#eco-liquid-clip)">
+          <g style={{ animation: "eco-liquid-rise 1.6s cubic-bezier(0.4,0,0.2,1) 0.4s both" }}>
+            <g style={{ animation: "eco-wave-scroll 2s linear infinite" }}>
+              {/* main fill wave */}
+              <path
+                d="M-60,25 C-45,19 -15,31 0,25 C15,19 45,31 60,25 C75,19 105,31 120,25 L120,60 L-60,60 Z"
+                fill="#2D7D43"
+              />
+              {/* second wave for depth */}
+              <path
+                d="M-60,29 C-45,23 -15,35 0,29 C15,23 45,35 60,29 C75,23 105,35 120,29 L120,60 L-60,60 Z"
+                fill="#48A362"
+                opacity="0.35"
+              />
+            </g>
+          </g>
+        </g>
+
+        {/* border */}
+        <circle cx="30" cy="30" r="26" fill="none" stroke="#2D7D43" strokeWidth="2" />
       </svg>
-      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-        <p style={{ fontSize: "0.9rem", fontWeight: 800, color: "#2D7D43", lineHeight: 1 }}>2.4</p>
-        <p style={{ fontSize: "0.52rem", color: "#7AAD85" }}>kg CO₂</p>
+
+      {/* text over liquid */}
+      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
+        <p style={{ fontSize: "0.9rem", fontWeight: 800, color: "#fff", lineHeight: 1, textShadow: "0 1px 3px rgba(0,30,15,0.7)" }}>2.4</p>
+        <p style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.9)", textShadow: "0 1px 2px rgba(0,30,15,0.5)" }}>kg CO₂</p>
       </div>
     </div>
   );
