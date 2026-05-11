@@ -1722,7 +1722,8 @@ function TheProductSection() {
     },
   ];
 
-  const embedUrl = `https://www.figma.com/embed?embed_host=share&url=${airFigmaLinks.desktop}`;
+  const desktopEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.desktop)}`;
+  const mobileEmbedUrl  = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.mobile)}`;
 
   return (
     <CsSection id="product">
@@ -1763,7 +1764,51 @@ function TheProductSection() {
             </a>
           </div>
           <iframe
-            src={embedUrl}
+            src={desktopEmbedUrl}
+            allowFullScreen
+            style={{ width: "100%", height: 520, border: "none", display: "block" }}
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      {/* Mobile design embed */}
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+        <div style={{
+          borderRadius: 18, overflow: "hidden",
+          border: "1px solid rgba(0,0,0,0.08)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
+        }}>
+          <div style={{
+            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "0 16px",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+                <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
+              ))}
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
+                Air IQ — Mobile Design
+              </span>
+              <span style={{
+                fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.1em",
+                textTransform: "uppercase", color: "#1076BC",
+                background: "#EBF5FF", border: "1px solid rgba(16,118,188,0.25)",
+                borderRadius: 100, padding: "2px 8px", marginLeft: 4,
+              }}>375px</span>
+            </div>
+            <a
+              href={airFigmaLinks.mobile}
+              target="_blank"
+              rel="noreferrer"
+              style={{ fontSize: "0.62rem", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}
+            >
+              Open in Figma ↗
+            </a>
+          </div>
+          <iframe
+            src={mobileEmbedUrl}
             allowFullScreen
             style={{ width: "100%", height: 520, border: "none", display: "block" }}
             loading="lazy"

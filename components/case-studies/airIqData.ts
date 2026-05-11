@@ -1,6 +1,6 @@
 export const airFigmaLinks = {
   desktop: "https://www.figma.com/design/64MuAcPHGp3vcWTQheTK5l/AIR-iQ-Desktop",
-  mobile: "https://www.figma.com/design/34tj6z1oOaVtCRrD1b7zCB/AIR-iQ-Mobile"
+  mobile: "https://www.figma.com/design/D6XwtXxLfGueNa2O4fwkHy/AirIQ-Case-Study?node-id=444-40978&t=2oaxYzmdtrjQjfOl-1",
 };
 
 export const airHeroMetrics = [
