@@ -510,21 +510,25 @@ const PAIN_MOMENTS = [
     title: "3 tools for 1 booking",
     scene: "Every booking started with the same ritual — GDS terminal open, airline website in another tab, spreadsheet in a third. Three windows. One fare. Before anything was booked, the agent had already context-switched twice.",
     tag: "~3 min wasted before typing starts",
+    solvedBy: "Unified platform",
   },
   {
     title: "Fare rules you couldn't trust",
     scene: "Refundability lived in a wall of legal text — no summary, no highlights, no visual indicator. Agents guessed. Sometimes they guessed wrong and the client got incorrect information.",
     tag: "High error risk on every booking",
+    solvedBy: "Fare Listing Card",
   },
   {
     title: "Sharing a fare: 4 steps minimum",
     scene: "Copy the price. Open email. Write the passenger's name. Attach a PDF. Send. Then answer the follow-up call because the client didn't understand the format. A 30-second task became a 5-minute one.",
     tag: "No quick share flow existed",
+    solvedBy: "Itinerary Card",
   },
   {
     title: "Errors surfaced at payment",
     scene: "Name mismatch, wrong fare class, expired passport — none of it was caught until the final step. By then, re-booking fees applied and the agent had to start over with a frustrated client on hold.",
     tag: "Zero validation before confirmation",
+    solvedBy: "Review Table View",
   },
 ];
 
@@ -555,18 +559,51 @@ function ProblemSection() {
               <p style={{ fontSize: "0.75rem", color: "#4B5563", lineHeight: 1.75, fontStyle: "italic", marginBottom: 14 }}>
                 {m.scene}
               </p>
-              <div style={{
-                display: "inline-flex", alignItems: "center", gap: 6,
-                fontSize: "0.6rem", fontWeight: 700, color: "#EF4444",
-                background: "#FEF2F2", border: "1px solid #FECACA",
-                borderRadius: 100, padding: "3px 10px",
-                fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em",
-              }}>
-                {m.tag}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                <div style={{
+                  display: "inline-flex", alignItems: "center", gap: 6,
+                  fontSize: "0.6rem", fontWeight: 700, color: "#EF4444",
+                  background: "#FEF2F2", border: "1px solid #FECACA",
+                  borderRadius: 100, padding: "3px 10px",
+                  fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em",
+                }}>
+                  {m.tag}
+                </div>
+                <div style={{
+                  display: "inline-flex", alignItems: "center", gap: 5,
+                  fontSize: "0.58rem", fontWeight: 700, color: "#1076BC",
+                  background: "#EBF5FF", border: "1px solid rgba(16,118,188,0.25)",
+                  borderRadius: 100, padding: "3px 10px",
+                  fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em",
+                }}>
+                  ✓ {m.solvedBy}
+                </div>
               </div>
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Agent quote */}
+      <div className="csl-reveal" style={{
+        marginTop: 24,
+        background: "#FAFAFA", border: "1px solid #E5E7EB",
+        borderLeft: "3px solid #EF4444",
+        borderRadius: 12, padding: "18px 20px",
+      }}>
+        <div style={{
+          fontSize: "1.6rem", color: "#FCA5A5", fontFamily: "Georgia, serif",
+          lineHeight: 1, marginBottom: 6, marginTop: -4,
+        }}>&ldquo;</div>
+        <p style={{
+          fontSize: "0.82rem", color: "#374151", lineHeight: 1.75,
+          fontStyle: "italic", margin: "0 0 10px",
+        }}>
+          I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.
+        </p>
+        <div style={{ fontSize: "0.62rem", color: "#9CA3AF", fontWeight: 600 }}>
+          — Senior travel agent, pre-launch interview
+        </div>
       </div>
     </CsSection>
   );
@@ -742,8 +779,61 @@ function ApproachSection() {
         sub="Four competitor platforms studied before a single wireframe was drawn."
       />
 
-      <div className="csl-reveal" style={{ marginBottom: 32 }}>
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
         <CompetitiveCarousel />
+      </div>
+
+      {/* Research → Design bridge */}
+      <div className="csl-reveal" style={{ marginBottom: 8 }}>
+        <div style={{
+          fontSize: "0.56rem", fontWeight: 700, textTransform: "uppercase",
+          letterSpacing: "0.18em", color: "rgba(0,0,0,0.28)",
+          fontFamily: "ui-monospace, monospace", marginBottom: 12,
+        }}>
+          What research told us to design
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {[
+            {
+              insight: "Price and refundability must land in the same scan — not one click apart",
+              decision: "Fare Listing Card: price hierarchy first, refund badge always visible inline",
+            },
+            {
+              insight: "Agents confirm journey details verbally while the client waits on the other line",
+              decision: "Itinerary Card: single-glance route, dates, and times — nothing collapsed or hidden",
+            },
+            {
+              insight: "Errors found late cost re-booking fees and client trust — not just time",
+              decision: "Review Table: dense, explicit, zero blank cells before the agent submits",
+            },
+          ].map((r, i) => (
+            <div key={i} style={{
+              display: "flex", gap: 14, alignItems: "flex-start",
+              padding: "14px 16px",
+              background: "#FAFAFA", border: "1px solid #E5E7EB",
+              borderRadius: 10,
+            }}>
+              <div style={{
+                width: 22, height: 22, borderRadius: "50%",
+                background: "#F3F4F6", border: "1px solid #E5E7EB",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "0.6rem", fontWeight: 800, color: "#374151",
+                flexShrink: 0, marginTop: 1,
+              }}>{i + 1}</div>
+              <div>
+                <div style={{ fontSize: "0.74rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>
+                  {r.insight}
+                </div>
+                <div style={{
+                  fontSize: "0.68rem", color: "#1076BC", fontWeight: 600,
+                  display: "flex", alignItems: "center", gap: 5,
+                }}>
+                  <span style={{ color: "#9CA3AF" }}>→</span> {r.decision}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </CsSection>
   );
@@ -752,24 +842,6 @@ function ApproachSection() {
 /* ─────────────────────────────────────────────────────────────────────
    §04  CORE COMPONENTS
 ───────────────────────────────────────────────────────────────────── */
-
-type ApproachCard = {
-  label: string;
-  caption: string;
-  isFinal?: boolean;
-};
-
-type CoreComponent = {
-  num: string;
-  title: string;
-  subtitle: string;
-  where: string;
-  problem: string;
-  approaches: ApproachCard[];
-  learned: string;
-  impact: string;
-  usedIn: string[];
-};
 
 /* ── Fare Listing Card: approach carousel data ── */
 const FARE_APPROACHES = [
@@ -813,321 +885,6 @@ const FARE_COMPAT = [
   { label: "One Way International", img: "/Image/Airiq/first%20core/one-way-int.png", sub: "Cross-border single leg"       },
   { label: "Round Trip",            img: "/Image/Airiq/first%20core/round-trip.png",  sub: "Outbound + return in one view" },
 ];
-
-const CORE_COMPONENTS: CoreComponent[] = [
-  {
-    num: "2",
-    title: "Passenger Add-ons Panel",
-    subtitle: "From scattered to seamless.",
-    where: "Booking flow, step 2. Every agent touches this for every multi-pax booking.",
-    problem: "Agents had to navigate across multiple steps to select passengers and apply actions — increasing time and cognitive load on high-frequency tasks.",
-    approaches: [
-      { label: "Approach 1", caption: "Separate page per passenger — too many context switches" },
-      { label: "Approach 2", caption: "Modal per add-on — lost overview of full booking" },
-      { label: "Approach 3", caption: "Inline rows, no grouping — visually noisy at 4+ pax" },
-      { label: "Approach 4 — Final", caption: "Single guided panel with hierarchy + inline actions", isFinal: true },
-    ],
-    learned: "Consolidated passenger selection and actions into one screen. Clear hierarchy, inline interactions, zero page-switching.",
-    impact: "Reduced navigation effort and made high-frequency tasks faster and easier to execute.",
-    usedIn: ["Multi-Pax Booking", "Group Bookings", "Add-On Selection"],
-  },
-];
-
-/* Image placeholder specifically sized for core component screens */
-function ComponentImgSlot({
-  label,
-  aspect = "16/9",
-  dark = false,
-  minH,
-}: {
-  label: string;
-  aspect?: string;
-  dark?: boolean;
-  minH?: number;
-}) {
-  return (
-    <div style={{
-      aspectRatio: aspect,
-      minHeight: minH,
-      borderRadius: 12,
-      background: dark
-        ? "linear-gradient(135deg, #0B1E3D 0%, #102A4C 100%)"
-        : "#F3F4F6",
-      border: dark
-        ? "1px solid rgba(55,138,221,0.2)"
-        : "1.5px dashed #D1D5DB",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: 8,
-      padding: 16,
-    }}>
-      <div style={{
-        width: 32, height: 32, borderRadius: 8,
-        background: dark ? "rgba(55,138,221,0.15)" : "rgba(0,0,0,0.06)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontSize: "0.9rem",
-      }}>
-        {dark ? "🖥" : "📷"}
-      </div>
-      <span style={{
-        fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.08em",
-        textTransform: "uppercase",
-        color: dark ? "rgba(255,255,255,0.28)" : "rgba(0,0,0,0.28)",
-        textAlign: "center",
-      }}>
-        {label}
-      </span>
-    </div>
-  );
-}
-
-/* Approach card — single horizontally-scrollable card */
-function ApproachCardItem({ card, index }: { card: ApproachCard; index: number }) {
-  return (
-    <div style={{
-      minWidth: 200,
-      maxWidth: 200,
-      flexShrink: 0,
-      borderRadius: 12,
-      overflow: "hidden",
-      border: card.isFinal
-        ? "1.5px solid rgba(30,144,255,0.5)"
-        : "1.5px solid #E5E7EB",
-      background: card.isFinal
-        ? "linear-gradient(160deg,#EBF5FF 0%,#F0F7FF 100%)"
-        : "#FAFAFA",
-      position: "relative",
-    }}>
-      {card.isFinal && (
-        <div style={{
-          position: "absolute", top: 8, right: 8,
-          fontSize: "0.48rem", fontWeight: 800, letterSpacing: "0.12em",
-          textTransform: "uppercase", color: "#fff",
-          background: "#1E90FF", borderRadius: 100, padding: "2px 7px",
-          zIndex: 1,
-        }}>
-          Final
-        </div>
-      )}
-
-      {/* Mini image slot */}
-      <div style={{
-        height: 110,
-        background: card.isFinal
-          ? "linear-gradient(135deg,#1076BC18 0%,#1E90FF0A 100%)"
-          : "rgba(0,0,0,0.04)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        borderBottom: card.isFinal ? "1px solid rgba(30,144,255,0.15)" : "1px solid #EBEBEB",
-      }}>
-        <div style={{
-          width: 28, height: 28, borderRadius: 7,
-          background: card.isFinal ? "rgba(30,144,255,0.12)" : "rgba(0,0,0,0.07)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: "0.75rem",
-        }}>
-          {card.isFinal ? "✓" : index + 1}
-        </div>
-      </div>
-
-      <div style={{ padding: "10px 12px" }}>
-        <div style={{
-          fontSize: "0.6rem", fontWeight: 800, letterSpacing: "0.06em",
-          color: card.isFinal ? "#1076BC" : "#374151",
-          textTransform: "uppercase", marginBottom: 4,
-        }}>
-          {card.label}
-        </div>
-        <p style={{
-          fontSize: "0.63rem", color: "#6B7280",
-          lineHeight: 1.55, margin: 0,
-        }}>
-          {card.caption}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-/* One full core component block */
-function CoreComponentBlock({ comp, isLast }: { comp: CoreComponent; isLast: boolean }) {
-  return (
-    <div className="csl-reveal" style={{
-      marginBottom: isLast ? 0 : 64,
-      position: "relative",
-    }}>
-      {/* ── Number + Title ── */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 18, marginBottom: 20 }}>
-        <div style={{
-          width: 48, height: 48, borderRadius: "50%",
-          background: "#111827",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: "1.1rem", fontWeight: 900, color: "#fff",
-          flexShrink: 0, marginTop: 2,
-          boxShadow: "0 4px 14px rgba(0,0,0,0.15)",
-        }}>
-          {comp.num}
-        </div>
-        <div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
-            <h3 style={{ fontSize: "1.15rem", fontWeight: 800, color: "#111827", margin: 0, lineHeight: 1.2 }}>
-              {comp.title}
-            </h3>
-            <span style={{ fontSize: "0.7rem", color: "#9CA3AF", fontStyle: "italic" }}>{comp.subtitle}</span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 6 }}>
-            <span style={{
-              fontSize: "0.54rem", fontWeight: 700, letterSpacing: "0.1em",
-              textTransform: "uppercase", color: "#9CA3AF",
-            }}>WHERE</span>
-            <span style={{ fontSize: "0.7rem", color: "#4B5563", lineHeight: 1.5 }}>{comp.where}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ── PROBLEM ── */}
-      <div style={{
-        background: "#FFF5F5",
-        border: "1px solid #FED7D7",
-        borderRadius: 14,
-        padding: "16px 18px",
-        marginBottom: 20,
-      }}>
-        <div style={{
-          fontSize: "0.54rem", fontWeight: 800, letterSpacing: "0.16em",
-          textTransform: "uppercase", color: "#E53E3E", marginBottom: 6,
-        }}>
-          PROBLEM
-        </div>
-        <p style={{ fontSize: "0.78rem", color: "#742A2A", lineHeight: 1.65, margin: 0 }}>
-          {comp.problem}
-        </p>
-      </div>
-
-      {/* ── BEFORE image placeholder ── */}
-      <div style={{ marginBottom: 20 }}>
-        <div style={{
-          fontSize: "0.54rem", fontWeight: 700, letterSpacing: "0.14em",
-          textTransform: "uppercase", color: "#9CA3AF", marginBottom: 8,
-        }}>
-          BEFORE
-        </div>
-        <ComponentImgSlot label={`Before — ${comp.title}`} aspect="16/7" />
-      </div>
-
-      {/* ── WHAT I TRIED — horizontal scroll ── */}
-      <div style={{ marginBottom: 20 }}>
-        <div style={{
-          fontSize: "0.54rem", fontWeight: 700, letterSpacing: "0.14em",
-          textTransform: "uppercase", color: "#9CA3AF", marginBottom: 10,
-        }}>
-          WHAT I TRIED &nbsp;
-          <span style={{ fontWeight: 400, fontSize: "0.52rem", color: "#C4C4C4" }}>
-            — scroll →
-          </span>
-        </div>
-        {/* Scrollable row */}
-        <div style={{
-          display: "flex", gap: 12, overflowX: "auto",
-          paddingBottom: 8,
-          scrollbarWidth: "none",
-          WebkitOverflowScrolling: "touch",
-        } as React.CSSProperties}>
-          {comp.approaches.map((card, i) => (
-            <ApproachCardItem key={card.label} card={card} index={i} />
-          ))}
-          {/* Fade hint at right edge — visual only */}
-          <div style={{ minWidth: 1, flexShrink: 0 }} />
-        </div>
-      </div>
-
-      {/* ── WHAT I LEARNED ── */}
-      <div style={{
-        background: "#F0FDF4",
-        border: "1px solid #BBF7D0",
-        borderRadius: 14,
-        padding: "16px 18px",
-        marginBottom: 20,
-      }}>
-        <div style={{
-          fontSize: "0.54rem", fontWeight: 800, letterSpacing: "0.16em",
-          textTransform: "uppercase", color: "#16A34A", marginBottom: 6,
-        }}>
-          WHAT I LEARNED
-        </div>
-        <p style={{ fontSize: "0.78rem", color: "#14532D", lineHeight: 1.65, margin: 0 }}>
-          {comp.learned}
-        </p>
-      </div>
-
-      {/* ── FINAL DESIGN ── */}
-      <div style={{ marginBottom: 20 }}>
-        <div style={{
-          fontSize: "0.54rem", fontWeight: 700, letterSpacing: "0.14em",
-          textTransform: "uppercase", color: "#1076BC", marginBottom: 8,
-          display: "flex", alignItems: "center", gap: 8,
-        }}>
-          <span style={{
-            display: "inline-block", width: 8, height: 8, borderRadius: "50%",
-            background: "#1E90FF",
-          }} />
-          FINAL DESIGN
-        </div>
-        <ComponentImgSlot label={`Final design — ${comp.title}`} aspect="16/7" dark />
-      </div>
-
-      {/* ── IMPACT ── */}
-      <div style={{
-        display: "flex", alignItems: "flex-start", gap: 12,
-        marginBottom: 16,
-      }}>
-        <div style={{
-          width: 3, alignSelf: "stretch", background: "#1E90FF",
-          borderRadius: 4, flexShrink: 0,
-        }} />
-        <div>
-          <div style={{
-            fontSize: "0.54rem", fontWeight: 800, letterSpacing: "0.16em",
-            textTransform: "uppercase", color: "#9CA3AF", marginBottom: 4,
-          }}>
-            IMPACT
-          </div>
-          <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "#111827", lineHeight: 1.5, margin: 0 }}>
-            {comp.impact}
-          </p>
-        </div>
-      </div>
-
-      {/* ── Used in ── */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-        <span style={{
-          fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.12em",
-          textTransform: "uppercase", color: "#9CA3AF",
-        }}>
-          USED IN
-        </span>
-        {comp.usedIn.map((tag) => (
-          <span key={tag} style={{
-            fontSize: "0.62rem", fontWeight: 600, color: "#374151",
-            background: "#F3F4F6", border: "1px solid #E5E7EB",
-            borderRadius: 100, padding: "3px 10px",
-          }}>
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {/* Divider between blocks */}
-      {!isLast && (
-        <div style={{
-          marginTop: 52, height: 1,
-          background: "linear-gradient(90deg, transparent, #E5E7EB 30%, #E5E7EB 70%, transparent)",
-        }} />
-      )}
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────────────────────────────────
    COMPATIBILITY SHOWCASE  (auto-cycling animated reveal)
@@ -1678,7 +1435,7 @@ function ItineraryCardBlock() {
           textTransform: "uppercase", color: "#1E90FF", whiteSpace: "nowrap", marginTop: 1,
         }}>IMPACT</div>
         <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.65, margin: 0 }}>
-          Enabled quick understanding of the journey at a glance — agents could confirm route, dates, and stopovers with clients in seconds, reducing effort and improving task speed on every booking call.
+          Agents stopped fumbling for details mid-call. Route, class, and times confirmed in under 5 seconds — down from navigating 3 scattered sections. The card became the single reference point on every client conversation, and was reused across all confirmation flows in the platform.
         </p>
       </div>
 
@@ -1886,7 +1643,7 @@ function ReviewTableBlock() {
           textTransform: "uppercase", color: "#1E90FF", whiteSpace: "nowrap", marginTop: 1,
         }}>IMPACT</div>
         <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.65, margin: 0 }}>
-          Improved scan efficiency and ensured agents could review all critical details quickly and confidently before submission — zero ambiguity at the most important step in the booking flow.
+          Agents stopped second-guessing the data. Pre-submission review went from triple-checking every row to a single confident scan. Operations reported a visible drop in error queries in the first weeks after launch — the table earned trust by looking trustworthy.
         </p>
       </div>
 
@@ -1916,7 +1673,7 @@ function CoreComponentsSection() {
           color: "#111827", margin: 0, lineHeight: 1.15,
           letterSpacing: "-0.03em", marginBottom: 12,
         }}>
-          4 Core Components<br />That Fixed The Flow
+          3 Core Components<br />That Fixed The Flow
         </h2>
         <p style={{
           fontSize: "0.82rem", color: "#6B7280", lineHeight: 1.7,
@@ -1934,11 +1691,6 @@ function CoreComponentsSection() {
 
       {/* Component 3 — Review Table */}
       <ReviewTableBlock />
-
-      {/* Component 4 — generic block (images to be added later) */}
-      {CORE_COMPONENTS.map((comp, i) => (
-        <CoreComponentBlock key={comp.num} comp={comp} isLast={i === CORE_COMPONENTS.length - 1} />
-      ))}
     </CsSection>
   );
 }
@@ -1949,22 +1701,28 @@ function CoreComponentsSection() {
 function TheProductSection() {
   const flows = [
     {
+      num: "Flow 01",
       label: "Search & Results",
-      desc: "Real-time fare grid with 15+ filters. Price hierarchy, multi-trip variants, and saved searches — all above the fold.",
+      desc: "Real-time fare grid with 15+ filters. Price is the visual anchor. Refundability, baggage, and seat count visible without a single click.",
     },
     {
+      num: "Flow 02",
       label: "Itinerary Builder",
-      desc: "Multi-leg itinerary with per-passenger rules, date locks, and cabin class selection built into one condensed timeline.",
+      desc: "Multi-leg itinerary with per-passenger rules, date locks, and cabin class — all in one condensed, scannable card.",
     },
     {
+      num: "Flow 03",
       label: "Review & Confirm",
-      desc: "Inline mismatch warnings surface before payment. Agents resolve edge cases without leaving the screen.",
+      desc: "Inline mismatch warnings surface before payment. Name errors, expired passports, fare class conflicts — caught here, not at the airline.",
     },
     {
+      num: "Flow 04",
       label: "Booking Dashboard",
-      desc: "Status, agent performance, and booking history in a single pane. No more jumping between tools.",
+      desc: "Status, agent performance, and booking history in a single pane. No more jumping between three tools to answer one client question.",
     },
   ];
+
+  const embedUrl = `https://www.figma.com/embed?embed_host=share&url=${airFigmaLinks.desktop}`;
 
   return (
     <CsSection id="product">
@@ -1974,64 +1732,63 @@ function TheProductSection() {
         sub="20+ screens shipped across 5 flows. One platform, every booking."
       />
 
-      {/* Wide hero strip */}
+      {/* Figma embed — live product view */}
       <div className="csl-reveal" style={{ marginBottom: 28 }}>
         <div style={{
-          borderRadius: 18,
-          overflow: "hidden",
-          border: "1px solid #E5E7EB",
+          borderRadius: 18, overflow: "hidden",
+          border: "1px solid rgba(0,0,0,0.08)",
           boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
         }}>
+          {/* Chrome bar */}
           <div style={{
-            height: 36,
-            background: "#F3F4F6",
-            borderBottom: "1px solid #E5E7EB",
-            display: "flex", alignItems: "center", padding: "0 14px", gap: 6,
+            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "0 16px",
           }}>
-            {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
-              <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
-            ))}
-            <div style={{ flex: 1, height: 13, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+                <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
+              ))}
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
+                Air IQ — Full Platform
+              </span>
+            </div>
+            <a
+              href={airFigmaLinks.desktop}
+              target="_blank"
+              rel="noreferrer"
+              style={{ fontSize: "0.62rem", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}
+            >
+              Open in Figma ↗
+            </a>
           </div>
-          <CsImg
-            label="Air IQ — full platform overview"
-            aspect="16/7"
-            icon="✈️"
-            sub="Complete booking platform · 5 flows · 20+ screens"
+          <iframe
+            src={embedUrl}
+            allowFullScreen
+            style={{ width: "100%", height: 520, border: "none", display: "block" }}
+            loading="lazy"
           />
         </div>
       </div>
 
-      {/* Flow grid */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gap: 14,
-      }}>
+      {/* Flow grid — description cards */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
         {flows.map((f, i) => (
           <div key={f.label} className={`csl-reveal rd${i}`} style={{
-            background: "#fff",
-            borderRadius: 16,
+            background: "#fff", borderRadius: 14,
             border: "1px solid #E5E7EB",
-            overflow: "hidden",
+            padding: "18px 18px",
             boxShadow: "0 2px 10px rgba(0,0,0,0.04)",
           }}>
-            <CsImg label={f.label} aspect="16/9" icon="🖥️" sub="Hi-fi screen" />
-            <div style={{ padding: "14px 16px" }}>
-              <div style={{
-                fontSize: "0.74rem", fontWeight: 700, color: "#111827", marginBottom: 4,
-              }}>{f.label}</div>
-              <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
-            </div>
+            <div style={{
+              fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.14em",
+              textTransform: "uppercase", color: "#1E90FF",
+              fontFamily: "ui-monospace, monospace", marginBottom: 6,
+            }}>{f.num}</div>
+            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{f.label}</div>
+            <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
           </div>
         ))}
-      </div>
-
-      {/* Figma CTA */}
-      <div className="csl-reveal" style={{ marginTop: 24 }}>
-        <a className="csl-btn-primary" href={airFigmaLinks.desktop} target="_blank" rel="noreferrer">
-          View full prototype in Figma ↗
-        </a>
       </div>
     </CsSection>
   );
@@ -2062,14 +1819,15 @@ function ResultsSection() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16, flex: 1, minWidth: 240 }}>
           {[
-            { val: "30–40%", label: "Faster completion"         },
-            { val: "80+",    label: "Components from zero"      },
-            { val: "20+",    label: "Screens shipped"           },
-            { val: "2×",     label: "Data clarity on cards"     },
+            { val: "30–40%", label: "Faster completion", ctx: "vs. pre-launch baseline" },
+            { val: "80+",    label: "Components built",  ctx: "from zero, token-driven" },
+            { val: "20+",    label: "Screens shipped",   ctx: "across 5 core flows"     },
+            { val: "2×",     label: "Data clarity",      ctx: "on fare cards vs. before" },
           ].map((m) => (
             <div key={m.label}>
               <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#1E90FF" }}>{m.val}</div>
-              <div style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.06em" }}>{m.label}</div>
+              <div style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.55)", textTransform: "uppercase", letterSpacing: "0.06em" }}>{m.label}</div>
+              <div style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.3)", marginTop: 2 }}>{m.ctx}</div>
             </div>
           ))}
         </div>
