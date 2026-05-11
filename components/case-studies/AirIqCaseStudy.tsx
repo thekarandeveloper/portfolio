@@ -897,22 +897,6 @@ const CORE_COMPONENTS: CoreComponent[] = [
     usedIn: ["Multi-Pax Booking", "Group Bookings", "Add-On Selection"],
   },
   {
-    num: "3",
-    title: "Itinerary Card",
-    subtitle: "One card saves everyone 5 mins/conversation.",
-    where: "Confirmation flow and email summary. Agents share this directly with clients.",
-    problem: "Agents had to scan multiple sections to understand journey details — leading to confusion and slower decision-making on the phone.",
-    approaches: [
-      { label: "Approach 1", caption: "Full itinerary table — overwhelming for clients" },
-      { label: "Approach 2", caption: "Vertical timeline — broke on tablet, too tall" },
-      { label: "Approach 3", caption: "Mini summary card — missing key segment data" },
-      { label: "Approach 4 — Final", caption: "Condensed horizontal timeline, scannable at a glance", isFinal: true },
-    ],
-    learned: "Designed a compact itinerary card that highlights key information — segments, dates, route — in a clean, scannable format.",
-    impact: "Enabled quick understanding of the journey at a glance, reducing effort and improving task speed.",
-    usedIn: ["Flight Confirmation", "Email Summary", "Agent Share View"],
-  },
-  {
     num: "4",
     title: "Review Table View",
     subtitle: "The 8% empty-cells problem, solved.",
@@ -1580,6 +1564,214 @@ function FareListingBlock() {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────────────
+   ITINERARY CARD BLOCK  (component 2 — old vs new, two images)
+───────────────────────────────────────────────────────────────────── */
+function ItineraryCardBlock() {
+  const Bar = ({ tint = false }: { tint?: boolean }) => (
+    <div style={{
+      height: 34,
+      background: tint ? "#DCE9F7" : "#F3F4F6",
+      borderBottom: `1px solid ${tint ? "rgba(30,144,255,0.18)" : "#E5E7EB"}`,
+      display: "flex", alignItems: "center", padding: "0 14px", gap: 6,
+    }}>
+      {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+        <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
+      ))}
+      <div style={{ flex: 1, height: 13, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
+      {tint && (
+        <span style={{
+          fontSize: "0.48rem", fontWeight: 800, letterSpacing: "0.1em",
+          textTransform: "uppercase", color: "#fff",
+          background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
+        }}>Redesigned</span>
+      )}
+    </div>
+  );
+
+  return (
+    <div className="csl-reveal" style={{ marginBottom: 64 }}>
+
+      {/* ── Header ── */}
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 18, marginBottom: 28 }}>
+        <div style={{
+          width: 52, height: 52, borderRadius: "50%", background: "#111827",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: "1.25rem", fontWeight: 900, color: "#fff", flexShrink: 0,
+          boxShadow: "0 4px 20px rgba(0,0,0,0.22)",
+        }}>2</div>
+        <div>
+          <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#111827", margin: "0 0 4px", lineHeight: 1.2 }}>
+            Itinerary Card
+          </h3>
+          <p style={{ fontSize: "0.72rem", color: "#9CA3AF", margin: "0 0 8px", fontStyle: "italic" }}>
+            One card saves everyone 5 mins per conversation.
+          </p>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 6 }}>
+            <span style={{
+              fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.1em",
+              textTransform: "uppercase", color: "#9CA3AF", marginTop: 2, whiteSpace: "nowrap",
+            }}>WHERE</span>
+            <span style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.5 }}>
+              Booking confirmation flow. Agents share this directly with clients on a call.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── The Problem + Old Design ── */}
+      <div style={{ marginBottom: 28 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#EF4444", flexShrink: 0 }} />
+          <span style={{
+            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
+            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
+          }}>The Problem</span>
+        </div>
+        <div style={{
+          borderRadius: 16, overflow: "hidden",
+          border: "1.5px solid #FED7D7",
+          boxShadow: "0 4px 20px rgba(239,68,68,0.07)",
+        }}>
+          <Bar />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Image/Airiq/Second%20core/old.png" alt="Old itinerary design" style={{ width: "100%", height: "auto", display: "block" }} />
+        </div>
+        <div style={{
+          marginTop: 10, padding: "12px 16px",
+          background: "#FFF5F5", border: "1px solid #FED7D7", borderRadius: 10,
+          fontSize: "0.72rem", color: "#742A2A", lineHeight: 1.65,
+        }}>
+          Agents had to scan multiple scattered sections to understand journey details — leading to confusion and slower decision-making on calls with clients.
+        </div>
+      </div>
+
+      {/* ── Transition ── */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28 }}>
+        <div style={{ flex: 1, height: 1, background: "#F3F4F6" }} />
+        <div style={{
+          fontSize: "0.56rem", fontWeight: 700, color: "#9CA3AF",
+          letterSpacing: "0.1em", textTransform: "uppercase",
+          display: "flex", alignItems: "center", gap: 6,
+        }}>
+          <span>↓</span><span>Then I redesigned it</span><span>↓</span>
+        </div>
+        <div style={{ flex: 1, height: 1, background: "#F3F4F6" }} />
+      </div>
+
+      {/* ── What I Learned ── */}
+      <div style={{ marginBottom: 28 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#111827", flexShrink: 0 }} />
+          <span style={{
+            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
+            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
+          }}>What I Learned</span>
+        </div>
+        <div style={{
+          background: "#F8F9FA", border: "1px solid #E9ECEF",
+          borderRadius: 14, padding: "20px 20px 16px",
+        }}>
+          <div style={{
+            fontSize: "2rem", color: "#D1D5DB", fontFamily: "Georgia, serif",
+            lineHeight: 1, marginBottom: 6, marginTop: -6,
+          }}>&ldquo;</div>
+          <p style={{
+            fontSize: "0.82rem", color: "#374151", lineHeight: 1.75,
+            fontStyle: "italic", margin: "0 0 14px",
+          }}>
+            Agents read this card on a phone call with a client. They need to confirm route, dates, and time in under 5 seconds — not navigate through scattered sections. The card had to do one job, perfectly.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
+            {["Route at a glance", "Dates + times grouped", "Flat — nothing collapsed"].map((tag) => (
+              <span key={tag} style={{
+                fontSize: "0.6rem", fontWeight: 600, color: "#374151",
+                background: "#fff", border: "1px solid #E5E7EB",
+                borderRadius: 100, padding: "3px 10px",
+              }}>{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── The New Design ── */}
+      <div style={{ marginBottom: 24 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#1E90FF", flexShrink: 0 }} />
+          <span style={{
+            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
+            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
+          }}>The New Design</span>
+        </div>
+        <div style={{
+          borderRadius: 16, overflow: "hidden",
+          border: "2px solid rgba(30,144,255,0.45)",
+          boxShadow: "0 6px 32px rgba(30,144,255,0.15)",
+          marginBottom: 14,
+        }}>
+          <Bar tint />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Image/Airiq/Second%20core/new.png" alt="Redesigned itinerary card" style={{ width: "100%", height: "auto", display: "block" }} />
+        </div>
+
+        {/* How it works */}
+        <div style={{
+          background: "#F0FDF4", border: "1px solid #BBF7D0",
+          borderRadius: 12, padding: "14px 16px",
+        }}>
+          <div style={{
+            fontSize: "0.54rem", fontWeight: 800, letterSpacing: "0.14em",
+            textTransform: "uppercase", color: "#16A34A", marginBottom: 12,
+          }}>How it works</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {[
+              { label: "Segment at a glance",      detail: "Origin → destination in one clear row. No scrolling to find the route."                              },
+              { label: "Dates + times grouped",     detail: "Departure and arrival sit side-by-side — not buried across separate sections."                      },
+              { label: "Flat, single-card format",  detail: "Everything an agent needs to confirm on a call is visible in one frame. Nothing collapsed."         },
+            ].map((item) => (
+              <div key={item.label} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                <div style={{
+                  width: 18, height: 18, borderRadius: "50%",
+                  background: "#DCFCE7", border: "1.5px solid #86EFAC",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: "0.55rem", flexShrink: 0, marginTop: 1,
+                  color: "#16A34A", fontWeight: 800,
+                }}>✓</div>
+                <div>
+                  <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111827" }}>{item.label} — </span>
+                  <span style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.6 }}>{item.detail}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Impact ── */}
+      <div style={{
+        display: "flex", alignItems: "flex-start", gap: 10,
+        padding: "14px 16px",
+        background: "#F9FAFB", border: "1px solid #E5E7EB",
+        borderLeft: "3px solid #1E90FF", borderRadius: 10,
+      }}>
+        <div style={{
+          fontSize: "0.5rem", fontWeight: 800, letterSpacing: "0.16em",
+          textTransform: "uppercase", color: "#1E90FF", whiteSpace: "nowrap", marginTop: 1,
+        }}>IMPACT</div>
+        <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.65, margin: 0 }}>
+          Enabled quick understanding of the journey at a glance — agents could confirm route, dates, and stopovers with clients in seconds, reducing effort and improving task speed on every booking call.
+        </p>
+      </div>
+
+      {/* Divider */}
+      <div style={{
+        marginTop: 56, height: 1,
+        background: "linear-gradient(90deg, transparent, #E5E7EB 30%, #E5E7EB 70%, transparent)",
+      }} />
+    </div>
+  );
+}
+
 function CoreComponentsSection() {
   return (
     <CsSection id="insights">
@@ -1607,10 +1799,13 @@ function CoreComponentsSection() {
         </p>
       </div>
 
-      {/* Component 1 — rich Fare Listing block with real images */}
+      {/* Component 1 — Fare Listing Card */}
       <FareListingBlock />
 
-      {/* Components 2–4 — generic blocks (images to be added later) */}
+      {/* Component 2 — Itinerary Card */}
+      <ItineraryCardBlock />
+
+      {/* Components 3–4 — generic blocks (images to be added later) */}
       {CORE_COMPONENTS.map((comp, i) => (
         <CoreComponentBlock key={comp.num} comp={comp} isLast={i === CORE_COMPONENTS.length - 1} />
       ))}
