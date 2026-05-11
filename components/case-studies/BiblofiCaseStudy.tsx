@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { CaseStudyPage, CsSection, CsSectionHeader, CsImg } from "./CaseStudyLayout";
 import {
@@ -54,44 +53,11 @@ const META_ROWS = [
 /* ─────────────────────────────────────────────────────────────────────
    HERO PHONE MOCKUP
 ───────────────────────────────────────────────────────────────────── */
-function PhoneFrame({ src, alt, w, h, tilt, style = {} }: {
-  src: string; alt: string; w: number; h: number; tilt: string; style?: React.CSSProperties;
-}) {
-  const islandW = Math.round(w * 0.42);
-  const btnH    = Math.round(h * 0.14);
-  const volH    = Math.round(h * 0.1);
-  return (
-    <div style={{
-      position:"relative", width:w, height:h,
-      background:"#161616", borderRadius:42,
-      boxShadow:"0 0 0 1.5px rgba(255,255,255,0.07), 0 0 0 3px #222, 0 32px 64px rgba(0,0,0,0.5)",
-      transform:`rotate(${tilt})`,
-      flexShrink:0,
-      ...style,
-    }}>
-      {/* Dynamic island */}
-      <div style={{
-        position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
-        width:islandW, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
-      }} />
-      {/* Screen */}
-      <div style={{ position:"absolute", inset:0, borderRadius:42, overflow:"hidden" }}>
-        <Image src={src} alt={alt} width={w * 2} height={h * 2}
-          style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
-        <div style={{
-          position:"absolute", inset:0,
-          background:"linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%)",
-          borderRadius:42, pointerEvents:"none",
-        }} />
-      </div>
-      {/* Power button */}
-      <div style={{ position:"absolute", right:-4, top:Math.round(h*0.24), width:4, height:btnH, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
-      {/* Volume buttons */}
-      <div style={{ position:"absolute", left:-4, top:Math.round(h*0.2),  width:4, height:volH, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
-      <div style={{ position:"absolute", left:-4, top:Math.round(h*0.32), width:4, height:volH, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
-    </div>
-  );
-}
+const HERO_SCREENS = [
+  { src:"/Image/Biblofi/hero1.png",      alt:"BibloFi screen 1" },
+  { src:"/Image/Biblofi/smart-book.png", alt:"BibloFi screen 2" },
+  { src:"/Image/Biblofi/hero2.png",      alt:"BibloFi screen 3" },
+];
 
 function PhoneMockupScene() {
   return (
@@ -101,41 +67,50 @@ function PhoneMockupScene() {
     }}>
       {/* Ambient glow */}
       <div style={{
-        position:"absolute", width:320, height:320, borderRadius:"50%",
+        position:"absolute", width:300, height:300, borderRadius:"50%",
         background:"radial-gradient(circle, rgba(200,112,58,0.18) 0%, transparent 70%)",
         animation:"bibloGlowPulse 5s ease-in-out infinite",
         pointerEvents:"none",
       }} />
 
-      {/* Left phone — hero1 */}
-      <div style={{ position:"absolute", left:"4%", top:"50%", transform:"translateY(-40%)", zIndex:1, opacity:0.88 }}>
-        <PhoneFrame src="/Image/Biblofi/hero1.png" alt="BibloFi screen" w={148} h={320} tilt="-6deg" />
-      </div>
-
-      {/* Center phone — smart-book (main, floating) */}
-      <div className="biblo-phone-wrap" style={{ zIndex:3 }}>
+      {/* iPhone frame — single, fixed position */}
+      <div className="biblo-phone-wrap">
+        {/* Dynamic island */}
         <div style={{
           position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
           width:88, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
         }} />
+
+        {/* Cycling screens — all stacked, fade in/out in sequence */}
         <div style={{ position:"absolute", inset:0, borderRadius:42, overflow:"hidden" }}>
-          <Image src="/Image/Biblofi/smart-book.png" alt="BibloFi — Smart Book Discovery"
-            width={420} height={908}
-            style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+          {HERO_SCREENS.map((s, i) => (
+            <Image
+              key={s.src}
+              src={s.src}
+              alt={s.alt}
+              width={420}
+              height={908}
+              style={{
+                position:"absolute", inset:0,
+                width:"100%", height:"100%", objectFit:"cover", display:"block",
+                opacity:0,
+                animation:`bibloScreenCycle ${HERO_SCREENS.length * 3}s ease-in-out infinite`,
+                animationDelay:`${i * 3}s`,
+              }}
+            />
+          ))}
+          {/* Glass sheen always on top */}
           <div style={{
             position:"absolute", inset:0,
             background:"linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%)",
-            borderRadius:42, pointerEvents:"none",
+            borderRadius:42, pointerEvents:"none", zIndex:5,
           }} />
         </div>
-        <div style={{ position:"absolute", right:-4, top:110, width:4, height:64, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
-        <div style={{ position:"absolute", left:-4, top:88,  width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
-        <div style={{ position:"absolute", left:-4, top:142, width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
-      </div>
 
-      {/* Right phone — hero2 */}
-      <div style={{ position:"absolute", right:"4%", top:"50%", transform:"translateY(-55%)", zIndex:2, opacity:0.88 }}>
-        <PhoneFrame src="/Image/Biblofi/hero2.png" alt="BibloFi screen" w={148} h={320} tilt="5deg" />
+        {/* Side buttons */}
+        <div style={{ position:"absolute", right:-4, top:110, width:4, height:64, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
+        <div style={{ position:"absolute", left:-4,  top:88,  width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
+        <div style={{ position:"absolute", left:-4,  top:142, width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
       </div>
     </div>
   );
