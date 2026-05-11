@@ -460,13 +460,6 @@ function WireframesSection() {
    §05b  LO-FI WIREFRAMES
 ───────────────────────────────────────────────────────────────────── */
 function LoFiWireframesSection() {
-  const wfItems = [
-    { label: "Onboarding",      src: "/Image/Biblofi/wireframe1.png" },
-    { label: "Browse by Genre", src: "/Image/Biblofi/wireframe2.png" },
-    { label: "Scan & Search",   src: "/Image/Biblofi/wireframe3.png" },
-    { label: "Seat Booking",    src: "/Image/Biblofi/wireframe4.png" },
-  ];
-
   return (
     <CsSection id="lofi">
       <CsSectionHeader
@@ -475,37 +468,14 @@ function LoFiWireframesSection() {
         sub="Each flow was mapped out screen by screen — laying the foundation before moving into high-fidelity design."
       />
 
-      <div className="csl-img-2up csl-reveal">
-        {wfItems.slice(0, 2).map(({ label, src }) => (
-          <div key={label}>
-            <div style={{ borderRadius:14, overflow:"hidden" }}>
-              <Image
-                src={src}
-                alt={label}
-                width={600}
-                height={1067}
-                style={{ width:"100%", height:"auto", display:"block" }}
-              />
-            </div>
-            <p className="csl-img-caption">{label}</p>
-          </div>
-        ))}
-      </div>
-      <div className="csl-img-2up csl-reveal rd1" style={{ marginTop:14 }}>
-        {wfItems.slice(2).map(({ label, src }) => (
-          <div key={label}>
-            <div style={{ borderRadius:14, overflow:"hidden" }}>
-              <Image
-                src={src}
-                alt={label}
-                width={600}
-                height={1067}
-                style={{ width:"100%", height:"auto", display:"block" }}
-              />
-            </div>
-            <p className="csl-img-caption">{label}</p>
-          </div>
-        ))}
+      <div className="csl-reveal" style={{ borderRadius:16, overflow:"hidden" }}>
+        <Image
+          src="/Image/Biblofi/wireframe1.png"
+          alt="Lo-fi wireframes"
+          width={1400}
+          height={900}
+          style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
+        />
       </div>
     </CsSection>
   );
