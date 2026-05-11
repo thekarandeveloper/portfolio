@@ -1233,19 +1233,6 @@ function CompatibilityShowcase() {
   const [idx,  setIdx]  = useState(0);
   const [show, setShow] = useState(true);
 
-  /* auto-cycle: visible 3 s → exit → switch → enter */
-  useEffect(() => {
-    if (!show) {
-      const t = setTimeout(() => {
-        setIdx((i) => (i + 1) % FARE_COMPAT.length);
-        setShow(true);
-      }, 420);
-      return () => clearTimeout(t);
-    }
-    const t = setTimeout(() => setShow(false), 3000);
-    return () => clearTimeout(t);
-  }, [show, idx]);
-
   const manualGo = (i: number) => {
     if (i === idx) return;
     setShow(false);
@@ -1371,25 +1358,7 @@ function CompatibilityShowcase() {
    FARE LISTING BLOCK  (component 1 — rich version with real images)
 ───────────────────────────────────────────────────────────────────── */
 function FareListingBlock() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [opacity,   setOpacity]   = useState(1);
-  const busy = useRef(false);
-
-  const goTo = (next: number) => {
-    if (next === activeIdx || busy.current) return;
-    if (next < 0 || next >= FARE_APPROACHES.length) return;
-    busy.current = true;
-    setOpacity(0);
-    setTimeout(() => {
-      setActiveIdx(next);
-      setOpacity(1);
-      busy.current = false;
-    }, 210);
-  };
-
-  const cur = FARE_APPROACHES[activeIdx];
-
-  /* ── shared chrome bar ── */
+  /* shared chrome bar — used by old design + each timeline entry */
   const ChromeBar = ({ blue = false }: { blue?: boolean }) => (
     <div style={{
       height: 34,
@@ -1442,7 +1411,7 @@ function FareListingBlock() {
       </div>
 
       {/* ── Old Design ── */}
-      <div style={{ marginBottom: 32 }}>
+      <div style={{ marginBottom: 36 }}>
         <div style={{
           fontSize: "0.52rem", fontWeight: 800, letterSpacing: "0.18em",
           textTransform: "uppercase", color: "#9CA3AF", marginBottom: 10,
@@ -1470,120 +1439,103 @@ function FareListingBlock() {
         </div>
       </div>
 
-      {/* ── Approach Carousel ── */}
+      {/* ── What I Tried — vertical timeline ── */}
       <div>
-        {/* Carousel header: label + chevrons */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+        <div style={{
+          fontSize: "0.52rem", fontWeight: 800, letterSpacing: "0.18em",
+          textTransform: "uppercase", color: "#9CA3AF", marginBottom: 24,
+          fontFamily: "ui-monospace, monospace",
+        }}>What I Tried</div>
+
+        {/* Timeline container */}
+        <div style={{ position: "relative", paddingLeft: 44 }}>
+          {/* Vertical line — runs between first node and last node */}
           <div style={{
-            fontSize: "0.52rem", fontWeight: 800, letterSpacing: "0.18em",
-            textTransform: "uppercase", color: "#9CA3AF", fontFamily: "ui-monospace, monospace",
-          }}>What I Tried</div>
+            position: "absolute", left: 13, top: 14, bottom: 14,
+            width: 2,
+            background: "linear-gradient(to bottom, #E5E7EB 0%, #E5E7EB 88%, transparent 100%)",
+          }} />
 
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            {/* ← Prev */}
-            <button
-              onClick={() => goTo(activeIdx - 1)}
-              disabled={activeIdx === 0}
-              aria-label="Previous approach"
+          {FARE_APPROACHES.map((approach, i) => (
+            <div
+              key={approach.step}
               style={{
-                width: 38, height: 38, borderRadius: "50%",
-                border: `1.5px solid ${activeIdx === 0 ? "#E5E7EB" : "#D1D5DB"}`,
-                background: activeIdx === 0 ? "#F9FAFB" : "#fff",
-                color: activeIdx === 0 ? "#D1D5DB" : "#374151",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                cursor: activeIdx === 0 ? "not-allowed" : "pointer",
-                fontSize: "1.1rem", lineHeight: 1,
-                transition: "all 0.15s ease",
-                boxShadow: activeIdx === 0 ? "none" : "0 1px 5px rgba(0,0,0,0.09)",
+                position: "relative",
+                marginBottom: i < FARE_APPROACHES.length - 1 ? 40 : 0,
               }}
-            >‹</button>
-
-            {/* Dot indicators */}
-            <div style={{ display: "flex", gap: 5, alignItems: "center" }}>
-              {FARE_APPROACHES.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  aria-label={`Go to ${FARE_APPROACHES[i].step}`}
-                  style={{
-                    width: i === activeIdx ? 24 : 8, height: 8,
-                    borderRadius: 100, border: "none", padding: 0,
-                    background: i === activeIdx
-                      ? (FARE_APPROACHES[i].isFinal ? "#1E90FF" : "#111827")
-                      : "#D1D5DB",
-                    cursor: "pointer",
-                    transition: "all 0.25s ease",
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* → Next */}
-            <button
-              onClick={() => goTo(activeIdx + 1)}
-              disabled={activeIdx === FARE_APPROACHES.length - 1}
-              aria-label="Next approach"
-              style={{
-                width: 38, height: 38, borderRadius: "50%",
-                border: `1.5px solid ${activeIdx === FARE_APPROACHES.length - 1 ? "#E5E7EB" : "#D1D5DB"}`,
-                background: activeIdx === FARE_APPROACHES.length - 1 ? "#F9FAFB" : "#fff",
-                color: activeIdx === FARE_APPROACHES.length - 1 ? "#D1D5DB" : "#374151",
+            >
+              {/* Node circle */}
+              <div style={{
+                position: "absolute",
+                left: -44, top: 0,
+                width: 28, height: 28, borderRadius: "50%",
+                background: approach.statusBg,
+                border: `2px solid ${approach.statusBorder}`,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                cursor: activeIdx === FARE_APPROACHES.length - 1 ? "not-allowed" : "pointer",
-                fontSize: "1.1rem", lineHeight: 1,
-                transition: "all 0.15s ease",
-                boxShadow: activeIdx === FARE_APPROACHES.length - 1 ? "none" : "0 1px 5px rgba(0,0,0,0.09)",
-              }}
-            >›</button>
-          </div>
-        </div>
-
-        {/* Slide — fade transition */}
-        <div style={{ opacity, transition: "opacity 0.2s ease" }}>
-          {/* Image frame */}
-          <div style={{
-            borderRadius: 16, overflow: "hidden",
-            border: cur.isFinal ? "2px solid rgba(30,144,255,0.5)" : "1.5px solid #E5E7EB",
-            boxShadow: cur.isFinal
-              ? "0 6px 36px rgba(30,144,255,0.18)"
-              : "0 4px 22px rgba(0,0,0,0.08)",
-          }}>
-            <ChromeBar blue={cur.isFinal} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={cur.img}
-              alt={cur.heading}
-              style={{ width: "100%", height: "auto", display: "block" }}
-            />
-          </div>
-
-          {/* Annotation below */}
-          <div style={{ marginTop: 12, display: "flex", alignItems: "flex-start", gap: 12 }}>
-            <span style={{
-              fontSize: "0.56rem", fontWeight: 800, letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: cur.statusColor,
-              background: cur.statusBg,
-              border: `1px solid ${cur.statusBorder}`,
-              borderRadius: 100, padding: "5px 13px",
-              whiteSpace: "nowrap", flexShrink: 0, marginTop: 2,
-            }}>
-              {cur.step}
-            </span>
-            <div style={{
-              flex: 1, padding: "11px 14px",
-              background: cur.isFinal ? "#F0FDF4" : "#FAFAFA",
-              border: `1px solid ${cur.isFinal ? "#BBF7D0" : "#EBEBEB"}`,
-              borderRadius: 12,
-            }}>
-              <div style={{ fontSize: "0.76rem", fontWeight: 700, color: "#111827", marginBottom: 4 }}>
-                {cur.heading}
+                zIndex: 1,
+                boxShadow: approach.isFinal ? "0 0 0 4px rgba(30,144,255,0.12)" : "none",
+              }}>
+                <span style={{
+                  fontSize: approach.isFinal ? "0.75rem" : "0.62rem",
+                  fontWeight: 800,
+                  color: approach.statusColor,
+                  lineHeight: 1,
+                }}>
+                  {approach.isFinal ? "✓" : i + 1}
+                </span>
               </div>
-              <p style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.7, margin: 0 }}>
-                {cur.reason}
-              </p>
+
+              {/* Step label pill */}
+              <div style={{ marginBottom: 12 }}>
+                <span style={{
+                  fontSize: "0.54rem", fontWeight: 800, letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: approach.statusColor,
+                  background: approach.statusBg,
+                  border: `1px solid ${approach.statusBorder}`,
+                  borderRadius: 100, padding: "4px 12px",
+                  display: "inline-block",
+                }}>{approach.step}</span>
+              </div>
+
+              {/* Image */}
+              <div style={{
+                borderRadius: 14, overflow: "hidden",
+                border: approach.isFinal
+                  ? "2px solid rgba(30,144,255,0.48)"
+                  : "1.5px solid #E5E7EB",
+                boxShadow: approach.isFinal
+                  ? "0 6px 32px rgba(30,144,255,0.16)"
+                  : "0 3px 16px rgba(0,0,0,0.07)",
+                marginBottom: 12,
+              }}>
+                <ChromeBar blue={approach.isFinal} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={approach.img}
+                  alt={approach.heading}
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                />
+              </div>
+
+              {/* Annotation */}
+              <div style={{
+                padding: "12px 14px",
+                background: approach.isFinal ? "#F0FDF4" : "#FAFAFA",
+                border: `1px solid ${approach.isFinal ? "#BBF7D0" : "#EBEBEB"}`,
+                borderRadius: 10,
+              }}>
+                <div style={{
+                  fontSize: "0.74rem", fontWeight: 700, color: "#111827", marginBottom: 4,
+                }}>
+                  {approach.heading}
+                </div>
+                <p style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.65, margin: 0 }}>
+                  {approach.reason}
+                </p>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
 
