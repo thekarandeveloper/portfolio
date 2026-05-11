@@ -896,22 +896,6 @@ const CORE_COMPONENTS: CoreComponent[] = [
     impact: "Reduced navigation effort and made high-frequency tasks faster and easier to execute.",
     usedIn: ["Multi-Pax Booking", "Group Bookings", "Add-On Selection"],
   },
-  {
-    num: "4",
-    title: "Review Table View",
-    subtitle: "The 8% empty-cells problem, solved.",
-    where: "Final review screen. This is the last chance to catch errors before issuing a ticket.",
-    problem: "The previous table had excessive empty spaces and poor data density — making it feel incomplete and harder for agents to review critical information.",
-    approaches: [
-      { label: "Approach 1", caption: "Standard table — 8% cells blank, felt broken" },
-      { label: "Approach 2", caption: "Card rows per passenger — too much scrolling" },
-      { label: "Approach 3", caption: "Collapsed row groups — agents missed nested info" },
-      { label: "Approach 4 — Final", caption: "Optimized density, explicit empty states, grouped headers", isFinal: true },
-    ],
-    learned: "Redesigned the table to optimize data density, remove unnecessary empty spaces, and structure information with clear grouping and hierarchy.",
-    impact: "Improved scan efficiency and ensured agents could review all critical details quickly and confidently before submission.",
-    usedIn: ["Pre-Ticket Review", "Admin Override Screen", "Booking History"],
-  },
 ];
 
 /* Image placeholder specifically sized for core component screens */
@@ -1772,6 +1756,214 @@ function ItineraryCardBlock() {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────────────
+   REVIEW TABLE BLOCK  (component 3 — old vs new, two images)
+───────────────────────────────────────────────────────────────────── */
+function ReviewTableBlock() {
+  const Bar = ({ tint = false }: { tint?: boolean }) => (
+    <div style={{
+      height: 34,
+      background: tint ? "#DCE9F7" : "#F3F4F6",
+      borderBottom: `1px solid ${tint ? "rgba(30,144,255,0.18)" : "#E5E7EB"}`,
+      display: "flex", alignItems: "center", padding: "0 14px", gap: 6,
+    }}>
+      {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+        <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
+      ))}
+      <div style={{ flex: 1, height: 13, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
+      {tint && (
+        <span style={{
+          fontSize: "0.48rem", fontWeight: 800, letterSpacing: "0.1em",
+          textTransform: "uppercase", color: "#fff",
+          background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
+        }}>Redesigned</span>
+      )}
+    </div>
+  );
+
+  return (
+    <div className="csl-reveal" style={{ marginBottom: 64 }}>
+
+      {/* ── Header ── */}
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 18, marginBottom: 28 }}>
+        <div style={{
+          width: 52, height: 52, borderRadius: "50%", background: "#111827",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: "1.25rem", fontWeight: 900, color: "#fff", flexShrink: 0,
+          boxShadow: "0 4px 20px rgba(0,0,0,0.22)",
+        }}>3</div>
+        <div>
+          <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#111827", margin: "0 0 4px", lineHeight: 1.2 }}>
+            Review Table View
+          </h3>
+          <p style={{ fontSize: "0.72rem", color: "#9CA3AF", margin: "0 0 8px", fontStyle: "italic" }}>
+            The 80% empty problem — solved.
+          </p>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 6 }}>
+            <span style={{
+              fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.1em",
+              textTransform: "uppercase", color: "#9CA3AF", marginTop: 2, whiteSpace: "nowrap",
+            }}>WHERE</span>
+            <span style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.5 }}>
+              Final review screen — the last checkpoint before a ticket is issued.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── The Problem + Old Design ── */}
+      <div style={{ marginBottom: 28 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#EF4444", flexShrink: 0 }} />
+          <span style={{
+            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
+            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
+          }}>The Problem</span>
+        </div>
+        <div style={{
+          borderRadius: 16, overflow: "hidden",
+          border: "1.5px solid #FED7D7",
+          boxShadow: "0 4px 20px rgba(239,68,68,0.07)",
+        }}>
+          <Bar />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Image/Airiq/third%20core/old.png" alt="Old review table design" style={{ width: "100%", height: "auto", display: "block" }} />
+        </div>
+        <div style={{
+          marginTop: 10, padding: "12px 16px",
+          background: "#FFF5F5", border: "1px solid #FED7D7", borderRadius: 10,
+          fontSize: "0.72rem", color: "#742A2A", lineHeight: 1.65,
+        }}>
+          The previous table had excessive empty states and poor data density — making it feel incomplete and harder for agents to review critical information before submitting.
+        </div>
+      </div>
+
+      {/* ── Transition ── */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28 }}>
+        <div style={{ flex: 1, height: 1, background: "#F3F4F6" }} />
+        <div style={{
+          fontSize: "0.56rem", fontWeight: 700, color: "#9CA3AF",
+          letterSpacing: "0.1em", textTransform: "uppercase",
+          display: "flex", alignItems: "center", gap: 6,
+        }}>
+          <span>↓</span><span>Then I redesigned it</span><span>↓</span>
+        </div>
+        <div style={{ flex: 1, height: 1, background: "#F3F4F6" }} />
+      </div>
+
+      {/* ── What I Learned ── */}
+      <div style={{ marginBottom: 28 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#111827", flexShrink: 0 }} />
+          <span style={{
+            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
+            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
+          }}>What I Learned</span>
+        </div>
+        <div style={{
+          background: "#F8F9FA", border: "1px solid #E9ECEF",
+          borderRadius: 14, padding: "20px 20px 16px",
+        }}>
+          <div style={{
+            fontSize: "2rem", color: "#D1D5DB", fontFamily: "Georgia, serif",
+            lineHeight: 1, marginBottom: 6, marginTop: -6,
+          }}>&ldquo;</div>
+          <p style={{
+            fontSize: "0.82rem", color: "#374151", lineHeight: 1.75,
+            fontStyle: "italic", margin: "0 0 14px",
+          }}>
+            Empty cells aren&apos;t neutral — they signal broken data to anyone reading the table. Agents were second-guessing information that was actually correct, just poorly presented. The fix wasn&apos;t adding data, it was removing the visual noise around it.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
+            {["Density over emptiness", "Explicit empty states", "Grouped hierarchy"].map((tag) => (
+              <span key={tag} style={{
+                fontSize: "0.6rem", fontWeight: 600, color: "#374151",
+                background: "#fff", border: "1px solid #E5E7EB",
+                borderRadius: 100, padding: "3px 10px",
+              }}>{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── The New Design ── */}
+      <div style={{ marginBottom: 24 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#1E90FF", flexShrink: 0 }} />
+          <span style={{
+            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
+            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
+          }}>The New Design</span>
+        </div>
+        <div style={{
+          borderRadius: 16, overflow: "hidden",
+          border: "2px solid rgba(30,144,255,0.45)",
+          boxShadow: "0 6px 32px rgba(30,144,255,0.15)",
+          marginBottom: 14,
+        }}>
+          <Bar tint />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Image/Airiq/third%20core/new.png" alt="Redesigned review table" style={{ width: "100%", height: "auto", display: "block" }} />
+        </div>
+
+        {/* How it works */}
+        <div style={{
+          background: "#F0FDF4", border: "1px solid #BBF7D0",
+          borderRadius: 12, padding: "14px 16px",
+        }}>
+          <div style={{
+            fontSize: "0.54rem", fontWeight: 800, letterSpacing: "0.14em",
+            textTransform: "uppercase", color: "#16A34A", marginBottom: 12,
+          }}>How it works</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {[
+              { label: "Optimised data density",    detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility."      },
+              { label: "Explicit empty states",      detail: "No blank cells — missing data shows a clear dash or placeholder so agents know it&apos;s intentional, not broken." },
+              { label: "Grouped headers + hierarchy",detail: "Related fields cluster under shared headers — agents scan by section, not by hunting across the full row."  },
+            ].map((item) => (
+              <div key={item.label} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                <div style={{
+                  width: 18, height: 18, borderRadius: "50%",
+                  background: "#DCFCE7", border: "1.5px solid #86EFAC",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: "0.55rem", flexShrink: 0, marginTop: 1,
+                  color: "#16A34A", fontWeight: 800,
+                }}>✓</div>
+                <div>
+                  <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111827" }}>{item.label} — </span>
+                  <span style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: item.detail }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Impact ── */}
+      <div style={{
+        display: "flex", alignItems: "flex-start", gap: 10,
+        padding: "14px 16px",
+        background: "#F9FAFB", border: "1px solid #E5E7EB",
+        borderLeft: "3px solid #1E90FF", borderRadius: 10,
+      }}>
+        <div style={{
+          fontSize: "0.5rem", fontWeight: 800, letterSpacing: "0.16em",
+          textTransform: "uppercase", color: "#1E90FF", whiteSpace: "nowrap", marginTop: 1,
+        }}>IMPACT</div>
+        <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.65, margin: 0 }}>
+          Improved scan efficiency and ensured agents could review all critical details quickly and confidently before submission — zero ambiguity at the most important step in the booking flow.
+        </p>
+      </div>
+
+      {/* Divider */}
+      <div style={{
+        marginTop: 56, height: 1,
+        background: "linear-gradient(90deg, transparent, #E5E7EB 30%, #E5E7EB 70%, transparent)",
+      }} />
+    </div>
+  );
+}
+
 function CoreComponentsSection() {
   return (
     <CsSection id="insights">
@@ -1805,7 +1997,10 @@ function CoreComponentsSection() {
       {/* Component 2 — Itinerary Card */}
       <ItineraryCardBlock />
 
-      {/* Components 3–4 — generic blocks (images to be added later) */}
+      {/* Component 3 — Review Table */}
+      <ReviewTableBlock />
+
+      {/* Component 4 — generic block (images to be added later) */}
       {CORE_COMPONENTS.map((comp, i) => (
         <CoreComponentBlock key={comp.num} comp={comp} isLast={i === CORE_COMPONENTS.length - 1} />
       ))}
