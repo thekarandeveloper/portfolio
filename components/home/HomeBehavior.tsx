@@ -432,27 +432,31 @@ if(heroBlob) {
   function openBook(){
     if(opened)return;
     opened=true;
-    // Step 1: book rises into view
-    stage.classList.remove('book-closed');
-    // Step 2: 700ms later, cover starts flipping; lock grabs during flip
+    // Wait 400ms for scroll-snap to fully settle before starting
     window.setTimeout(function(){
-      stage.classList.add('cover-opening');
-      if(cover)cover.classList.add('is-opening');
-    },700);
-    // Step 3: 1500ms in, cover is 45% through flip and fading — reveal first spread
-    window.setTimeout(function(){
-      if(firstSpread)firstSpread.classList.add('active');
-      if(firstDot)firstDot.classList.add('active');
-    },1500);
-    // Step 4: 2600ms in, cover animation done — hide it and unlock grabs
-    window.setTimeout(function(){
-      if(cover){cover.style.display='none';}
-      stage.classList.remove('cover-opening');
-    },2600);
+      // Step 1: book rises into view
+      stage.classList.remove('book-closed');
+      // Step 2: 700ms later, cover starts flipping; lock grabs during flip
+      window.setTimeout(function(){
+        stage.classList.add('cover-opening');
+        if(cover)cover.classList.add('is-opening');
+      },700);
+      // Step 3: 1500ms in, cover is 45% through flip and fading — reveal first spread
+      window.setTimeout(function(){
+        if(firstSpread)firstSpread.classList.add('active');
+        if(firstDot)firstDot.classList.add('active');
+      },1500);
+      // Step 4: 2600ms in, cover animation done — hide it and unlock grabs
+      window.setTimeout(function(){
+        if(cover){cover.style.display='none';}
+        stage.classList.remove('cover-opening');
+      },2600);
+    },400);
   }
+  // Threshold 0.85 — only fires when section is nearly fully in view (scroll-snap settled)
   var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){if(e.isIntersecting)openBook();});
-  },{threshold:0.3});
+  },{threshold:0.85});
   obs.observe(stage);
 })();
 
