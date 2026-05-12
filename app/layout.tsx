@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { LinkedInFloat } from "@/components/LinkedInFloat";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -145,7 +146,7 @@ const personSchema = {
       url: siteUrl,
       image: `${siteUrl}/nikunj.png`,
       sameAs: [
-        "https://www.linkedin.com/in/nikunj-tyagi",
+        "https://www.linkedin.com/in/nikunj-tyagi26/",
         "https://dribbble.com/nikunjtyagi",
         "https://behance.net/nikunjtyagi"
       ],
@@ -204,6 +205,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         {children}
         <Footer />
         <ScrollToTop />
+        <LinkedInFloat />
       </body>
     </html>
   );

@@ -18,7 +18,7 @@ export function Footer() {
           <Link href="mailto:tyaginikunj26@gmail.com" className="hover:text-pink">
             Email
           </Link>
-          <Link href="https://linkedin.com/in/nikunj-tyagi" className="hover:text-pink">
+          <Link href="https://www.linkedin.com/in/nikunj-tyagi26/" className="hover:text-pink">
             LinkedIn
           </Link>
           <Link href="https://github.com/NikunjTyagi26" className="hover:text-pink">

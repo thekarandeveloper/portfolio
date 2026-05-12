@@ -195,7 +195,7 @@ export function PasswordGate({ children, slug }: { children: ReactNode; slug: st
         {/* LinkedIn entry point */}
         {!isSuccess && (
           <a
-            href="https://linkedin.com/in/nikunj-tyagi"
+            href="https://www.linkedin.com/in/nikunj-tyagi26/"
             target="_blank"
             rel="noopener noreferrer"
             className="pgx-linkedin"

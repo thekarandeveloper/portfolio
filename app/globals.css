@@ -6914,3 +6914,55 @@ body.csl-page-active footer { display: none !important; }
   to   { transform: translateX(-60px); }
 }
 
+/* ─────────────────────────────────────────────
+   LINKEDIN FLOAT  (li-float-*)
+───────────────────────────────────────────── */
+.li-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  max-width: 44px;
+  overflow: hidden;
+  padding: 0 13px 0 13px;
+  height: 44px;
+  border-radius: 99px;
+  background: #fff;
+  border: 1px solid rgba(30,144,255,0.18);
+  box-shadow: 0 4px 18px rgba(30,144,255,0.12), 0 1px 4px rgba(0,0,0,0.06);
+  color: #1E90FF;
+  text-decoration: none;
+  transition: max-width 0.32s cubic-bezier(0.34,1.1,0.64,1),
+              box-shadow 0.2s ease,
+              border-color 0.2s ease;
+  white-space: nowrap;
+}
+.li-float:hover {
+  max-width: 200px;
+  gap: 8px;
+  border-color: rgba(30,144,255,0.35);
+  box-shadow: 0 6px 24px rgba(30,144,255,0.18), 0 2px 6px rgba(0,0,0,0.07);
+}
+.li-float-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.li-float-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #1E90FF;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s ease 0.08s, transform 0.22s ease 0.08s;
+  pointer-events: none;
+}
+.li-float:hover .li-float-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
