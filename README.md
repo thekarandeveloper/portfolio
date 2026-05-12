@@ -66,3 +66,15 @@ npm run dev
 npm run build
 npm run typecheck
 ```
+
+## Git Practice
+
+Every code change — no matter how small — must be committed and pushed to `origin/main` immediately after the edit. No staging branches, no PRs, no waiting to be asked.
+
+```bash
+git add <specific files>   # never add tsconfig.tsbuildinfo or build artifacts
+git commit -m "clear message"
+git push origin main
+```
+
+This applies to all sessions and all files in this repo.
