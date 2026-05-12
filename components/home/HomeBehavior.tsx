@@ -421,6 +421,28 @@ if(heroBlob) {
   updateGrabs();
 })();
 
+// ── ABOUT BOOK OPEN SEQUENCE ──
+(function(){
+  var stage=document.querySelector('.about-book-stage');
+  var firstSpread=document.querySelector('[data-about-page="0"]');
+  var firstDot=document.querySelector('[data-about-target="0"]');
+  if(!stage)return;
+  var opened=false;
+  function openBook(){
+    if(opened)return;
+    opened=true;
+    stage.classList.remove('book-closed');
+    window.setTimeout(function(){
+      if(firstSpread)firstSpread.classList.add('active');
+      if(firstDot)firstDot.classList.add('active');
+    },700);
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)openBook();});
+  },{threshold:0.3});
+  obs.observe(stage);
+})();
+
 // ── ZOOM INTERLUDE ──
 (function(){
   var section=document.getElementById('zoom-interlude');

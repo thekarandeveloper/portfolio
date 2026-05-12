@@ -1,15 +1,15 @@
 const html = `<section class="about" id="about">
   <div class="about-inner reveal">
     <h2 class="about-title">Person behind <em>the pixels.</em></h2>
-    <div class="about-book-stage" aria-label="Open scrapbook about Nikunj">
+    <div class="about-book-stage book-closed" aria-label="Open scrapbook about Nikunj">
       <div class="about-book-shell" aria-hidden="true">
         <div class="about-book-page about-book-page-left"></div>
         <div class="about-book-page about-book-page-right"></div>
         <div class="about-book-spine"></div>
-        <div class="about-turn-page"></div>
       </div>
+      <div class="about-turn-page"></div>
       <div class="about-page-content">
-        <div class="about-page-spread active" data-about-page="0">
+        <div class="about-page-spread" data-about-page="0">
           <div class="about-left-page">
             <div class="about-photo-box large">
               <img src="/about/portrait.jpg" alt="Nikunj portrait" />

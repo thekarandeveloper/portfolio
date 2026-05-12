@@ -467,7 +467,7 @@ nav.scrolled{
 .about-inner{max-width:1120px;margin:0 auto;}
 .about-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--ink);line-height:1.1;margin:0 0 4.5rem;text-align:center;}
 .about-title em{font-style:italic;color:var(--pink);}
-.about-book-stage{position:relative;width:min(100%,1040px);margin:0 auto;aspect-ratio:1.78;perspective:1800px;}
+.about-book-stage{position:relative;width:min(100%,1040px);margin:0 auto;aspect-ratio:1.78;perspective:1800px;transition:opacity 0.9s ease,transform 0.9s cubic-bezier(0.34,1.2,0.64,1);}.about-book-stage.book-closed{opacity:0;transform:scale(0.93) translateY(24px);}
 .about-book-shell{position:absolute;inset:0;z-index:1;filter:drop-shadow(0 22px 32px rgba(17,24,39,0.12));}
 .about-book-page{position:absolute;top:2%;bottom:3%;width:49.7%;background:
   radial-gradient(circle at 18% 12%,rgba(255,255,255,0.98),transparent 30%),
@@ -511,7 +511,7 @@ nav.scrolled{
 .about-page-spread.active .about-lined-page p:nth-of-type(3){animation-delay:520ms;}
 .about-lined-page h3{font-family:var(--hand);font-size:clamp(1.3rem,2.35vw,2rem);line-height:1.05;color:#111827;margin:0 0 1rem;font-weight:700;}
 .about-lined-page p{font-family:var(--hand);font-size:clamp(0.9rem,1.45vw,1.16rem);line-height:1.72;color:#374151;margin:0 0 0.85rem;}
-.about-page-controls{position:absolute;left:50%;bottom:-44px;transform:translateX(-50%);z-index:5;display:none;align-items:center;gap:10px;}
+.about-page-controls{position:absolute;left:50%;bottom:-44px;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:10px;}
 .about-page-dot{width:9px;height:9px;border-radius:50%;border:1px solid rgba(17,24,39,0.24);background:#fff;box-shadow:0 2px 8px rgba(17,24,39,0.08);padding:0;cursor:pointer;transition:transform 0.2s ease,background 0.2s ease,border-color 0.2s ease;}
 .about-page-dot:hover,.about-page-dot.active{background:#111827;border-color:#111827;transform:scale(1.25);}
 .about-page-grab{position:absolute;top:9%;bottom:9%;z-index:6;width:12%;border:0;background:transparent;padding:0;cursor:grab;touch-action:pan-y;}
