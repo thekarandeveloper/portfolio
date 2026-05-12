@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 
 export function HomeLoader() {
   const [progress, setProgress] = useState(0);
-  const [phase, setPhase] = useState<"loading" | "exit" | "done">("loading");
+  const [phase, setPhase] = useState<"loading" | "exit" | "done">(() =>
+    typeof window !== "undefined" && sessionStorage.getItem("homeVisited")
+      ? "done"
+      : "loading"
+  );
 
   useEffect(() => {
-    // Skip loader on back-navigation — only show on first visit per session
-    if (sessionStorage.getItem("homeVisited")) {
-      setPhase("done");
-      return;
-    }
+    if (phase === "done") return;
 
     document.body.classList.add("home-loading");
 
