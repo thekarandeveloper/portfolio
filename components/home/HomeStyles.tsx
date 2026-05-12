@@ -715,7 +715,7 @@ nav.scrolled{
 .testimonial-role{font-size:0.72rem;color:var(--ink4);}
 
 /* ── CONTACT ── */
-.contact{background:var(--bg2);padding:7rem 250px 4rem;border-top:1px solid var(--border);overflow:hidden;position:relative;}
+.contact{background:var(--bg2);padding:3rem 250px 4rem;border-top:1px solid var(--border);overflow:hidden;position:relative;}
 .contact-glow{position:absolute;top:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(17,17,17,0.05) 0%,transparent 70%);pointer-events:none;}
 .contact-illustration{position:absolute;top:0;right:0;width:280px;height:300px;display:flex;align-items:flex-start;justify-content:flex-end;}
 .illus-placeholder{width:210px;height:250px;border:1px dashed var(--border2);border-radius:12px;margin:2rem 2rem 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;background:rgba(17,17,17,0.02);}
