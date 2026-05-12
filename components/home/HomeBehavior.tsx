@@ -495,61 +495,7 @@ window.addEventListener('scroll',function(){bgSections.forEach(function(section)
 initParallax();
 runParallax();
 
-// ── GRAVITY SHAPES ──
-(function(){
-  var section=document.getElementById('contact');
-  var canvas=document.getElementById('gravCanvas');
-  if(!section||!canvas)return;
-  var shapes=Array.from(canvas.querySelectorAll('.grav-shape'));
-  if(!shapes.length)return;
-
-  var homes=[];
-  function measureHomes(){
-    homes=shapes.map(function(s){
-      return{x:s.offsetLeft+s.offsetWidth/2,y:s.offsetTop+s.offsetHeight/2};
-    });
-  }
-  requestAnimationFrame(function(){requestAnimationFrame(measureHomes);});
-  window.addEventListener('resize',function(){requestAnimationFrame(measureHomes);},{passive:true});
-
-  var cx=[],cy=[],tx=[],ty=[];
-  shapes.forEach(function(){cx.push(0);cy.push(0);tx.push(0);ty.push(0);});
-
-  var mx=-9999,my=-9999,inSection=false;
-  var RADIUS=170,PULL=0.38,LERP=0.09;
-
-  section.addEventListener('mousemove',function(e){
-    var cr=canvas.getBoundingClientRect();
-    mx=e.clientX-cr.left;my=e.clientY-cr.top;inSection=true;
-  });
-  section.addEventListener('mouseleave',function(){inSection=false;mx=-9999;my=-9999;});
-
-  var running=false;
-  function animate(){
-    if(!running)return;
-    shapes.forEach(function(shape,i){
-      if(!homes[i])return;
-      var hx=homes[i].x,hy=homes[i].y,ox=0,oy=0;
-      if(inSection){
-        var dx=mx-hx,dy=my-hy,dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<RADIUS&&dist>1){var f=(1-dist/RADIUS)*PULL;ox=dx*f;oy=dy*f;}
-      }
-      tx[i]=ox;ty[i]=oy;
-      cx[i]+=(tx[i]-cx[i])*LERP;
-      cy[i]+=(ty[i]-cy[i])*LERP;
-      shape.style.transform='translate('+cx[i].toFixed(2)+'px,'+cy[i].toFixed(2)+'px)';
-    });
-    requestAnimationFrame(animate);
-  }
-
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){running=true;animate();}
-      else{running=false;}
-    });
-  },{threshold:0});
-  obs.observe(section);
-})();`;
+`;
 
 export function HomeBehavior() {
   useEffect(() => {
