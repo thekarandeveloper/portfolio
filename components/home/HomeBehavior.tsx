@@ -495,6 +495,31 @@ window.addEventListener('scroll',function(){bgSections.forEach(function(section)
 initParallax();
 runParallax();
 
+// ── RECEIPT PRINT ANIMATION ──
+(function(){
+  var wrap=document.getElementById('receiptPaper');
+  var scan=document.getElementById('receiptScan');
+  if(!wrap||!scan)return;
+  var fired=false;
+  var trigger=wrap.closest('.contact-left')||wrap.parentElement;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting&&!fired){
+        fired=true;
+        var h=wrap.scrollHeight;
+        wrap.style.setProperty('--paper-h',h+'px');
+        scan.style.setProperty('--paper-h',h+'px');
+        setTimeout(function(){
+          wrap.classList.add('printing');
+          scan.classList.add('scanning');
+        },300);
+        obs.disconnect();
+      }
+    });
+  },{threshold:0.15});
+  if(trigger)obs.observe(trigger);
+})();
+
 `;
 
 export function HomeBehavior() {

@@ -769,11 +769,27 @@ nav.scrolled{
 .contact-right .contact-link{text-align:left;}
 .contact-right .contact-footer{justify-content:flex-end;text-align:right;}
 
-/* ── RECEIPT ── */
-.receipt-scene{transform:rotate(-2deg);transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);}
-.contact-left:hover .receipt-scene{transform:rotate(0deg);}
-.receipt{background:#faf8f2;color:#1a1208;font-family:'Courier New',Courier,monospace;font-size:0.7rem;line-height:1.55;padding:1.4rem 1.6rem 1.2rem;border-radius:3px 3px 0 0;box-shadow:0 16px 48px rgba(0,0,0,0.24),0 2px 8px rgba(0,0,0,0.1),inset 0 1px 0 rgba(255,255,255,0.8);}
-.receipt-tear{height:12px;background:radial-gradient(circle at 7px 12px,transparent 6px,#faf8f2 6px);background-size:14px 12px;background-repeat:repeat-x;filter:drop-shadow(0 6px 8px rgba(0,0,0,0.15));}
+/* ── RECEIPT + PRINTER ── */
+.receipt-scene{filter:drop-shadow(0 20px 40px rgba(0,0,0,0.35));}
+.printer-body{background:linear-gradient(175deg,#2e2e32 0%,#1c1c1e 100%);border-radius:16px 16px 0 0;padding:14px 18px 0;position:relative;overflow:hidden;}
+.printer-body::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent);}
+.printer-face{display:flex;align-items:center;gap:10px;padding-bottom:14px;}
+.printer-led{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 2px rgba(34,197,94,0.25),0 0 8px #22c55e;animation:ledPulse 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes ledPulse{0%,100%{box-shadow:0 0 0 2px rgba(34,197,94,0.25),0 0 8px #22c55e;}50%{box-shadow:0 0 0 1px rgba(34,197,94,0.12),0 0 3px #22c55e;opacity:0.6;}}
+.printer-brand{font-family:'Courier New',Courier,monospace;font-size:0.5rem;letter-spacing:0.18em;color:rgba(255,255,255,0.22);flex:1;}
+.printer-vents{display:flex;gap:3px;}
+.printer-vents i{display:block;width:2px;height:12px;background:rgba(255,255,255,0.09);border-radius:1px;}
+.printer-slot{background:#050507;height:8px;margin:0 -18px;overflow:hidden;position:relative;}
+.printer-slot::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent);animation:slotShine 3s ease-in-out infinite;}
+@keyframes slotShine{0%,100%{transform:translateX(-200%);}60%{transform:translateX(200%);}}
+.receipt-paper-wrap{overflow:hidden;height:0;position:relative;}
+.receipt-paper-wrap.printing{animation:paperOut 3.2s linear forwards;}
+@keyframes paperOut{to{height:var(--paper-h,640px);}}
+.receipt-scanline{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 5%,rgba(255,200,55,0.95) 50%,transparent 95%);box-shadow:0 0 14px rgba(255,185,40,0.7),0 0 30px rgba(255,185,40,0.25);pointer-events:none;z-index:10;opacity:0;}
+.receipt-scanline.scanning{animation:scanDown 3.2s linear forwards;}
+@keyframes scanDown{0%{top:0;opacity:1;}97%{opacity:0.8;}100%{top:var(--paper-h,640px);opacity:0;}}
+.receipt{background:#faf8f2;color:#1a1208;font-family:'Courier New',Courier,monospace;font-size:0.7rem;line-height:1.55;padding:1.4rem 1.6rem 1.2rem;}
+.receipt-tear{height:12px;background:radial-gradient(circle at 7px 12px,transparent 6px,#faf8f2 6px);background-size:14px 12px;background-repeat:repeat-x;}
 .receipt-header{text-align:center;margin-bottom:0.75rem;}
 .receipt-logo{font-size:1.55rem;font-weight:700;letter-spacing:0.14em;line-height:1;}
 .receipt-name{font-size:0.88rem;font-weight:700;letter-spacing:0.2em;margin-top:0.25rem;}
@@ -812,7 +828,7 @@ nav.scrolled{
   .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8,.g9,.g10{grid-column:auto;grid-row:auto;}
   .hero-cards{gap:8px;}.hero-card{width:76px;height:60px;}.hero-card:hover{width:130px;height:100px;}
   .contact-flex{flex-direction:column;gap:2rem;}.contact-left{width:100%;}
-  .receipt-scene{transform:rotate(0deg);}
+  .printer-body{border-radius:12px 12px 0 0;}
   .bento-work-grid{grid-template-columns:1fr 1fr;}
   .bento-work-card.wide{grid-column:span 2;}
 }

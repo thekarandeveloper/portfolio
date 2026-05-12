@@ -2,10 +2,20 @@ const html = `<section class="contact" id="contact">
   <div class="contact-glow"></div>
   <div class="contact-flex">
 
-    <!-- LEFT: receipt -->
+    <!-- LEFT: receipt printer -->
     <div class="contact-left reveal from-left">
       <div class="receipt-scene">
-        <div class="receipt">
+        <div class="printer-body">
+          <div class="printer-face">
+            <div class="printer-led"></div>
+            <span class="printer-brand">NT-DESIGNER &middot; v3.0</span>
+            <div class="printer-vents"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="printer-slot"></div>
+        </div>
+        <div class="receipt-paper-wrap" id="receiptPaper">
+          <div class="receipt-scanline" id="receiptScan"></div>
+          <div class="receipt">
           <div class="receipt-header">
             <div class="receipt-logo">NT</div>
             <div class="receipt-name">NIKUNJ TYAGI</div>
@@ -34,7 +44,8 @@ const html = `<section class="contact" id="contact">
           <div class="receipt-barcode"></div>
           <div class="receipt-bc-num">2025 &middot; NT &middot; PRODUCT &middot; DESIGN</div>
         </div>
-        <div class="receipt-tear"></div>
+          <div class="receipt-tear"></div>
+        </div>
       </div>
     </div>
 
