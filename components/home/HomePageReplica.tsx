@@ -1,6 +1,6 @@
 import { AboutSection } from "./AboutSection";
 import { ContactSection } from "./ContactSection";
-import { EditorialWorkSection } from "./EditorialWorkSection";
+import { WorkRowSection } from "./WorkRowSection";
 import { HeroSection } from "./HeroSection";
 import { HomeBehavior } from "./HomeBehavior";
 import { HomeLoader } from "./HomeLoader";
@@ -24,7 +24,7 @@ export function HomePageReplica() {
         <HomeNav />
         <HeroSection />
         <WorkSection />
-        <EditorialWorkSection />
+        <WorkRowSection />
         <JourneySection />
         <AboutSection />
         <ContactSection />
