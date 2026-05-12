@@ -158,6 +158,31 @@ export function PasswordGate({ children, slug }: { children: ReactNode; slug: st
         Back to projects
       </Link>
 
+      {/* ── LinkedIn card — top right ── */}
+      {!isSuccess && (
+        <a
+          href="https://www.linkedin.com/in/nikunj-tyagi26/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pgx-li-card"
+        >
+          {/* Avatar */}
+          <span className="pgx-li-avatar" aria-hidden="true">N</span>
+
+          {/* Text block */}
+          <span className="pgx-li-text">
+            <span className="pgx-li-ask">Don&rsquo;t have the password?</span>
+            <span className="pgx-li-cta">
+              Message me
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </span>
+          </span>
+        </a>
+      )}
+
       {/* ── Center content ── */}
       <div className="pgx-body">
 
@@ -191,23 +216,6 @@ export function PasswordGate({ children, slug }: { children: ReactNode; slug: st
             ? "Opening case study…"
             : "This case study is shared under NDA — reach out if you need access."}
         </p>
-
-        {/* LinkedIn entry point */}
-        {!isSuccess && (
-          <a
-            href="https://www.linkedin.com/in/nikunj-tyagi26/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pgx-linkedin"
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-              <rect x="2" y="9" width="4" height="12" />
-              <circle cx="4" cy="4" r="2" />
-            </svg>
-            Connect on LinkedIn to request access
-          </a>
-        )}
 
         {/* OTP input */}
         {!isSuccess && (

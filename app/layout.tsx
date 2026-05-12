@@ -6,7 +6,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { LinkedInFloat } from "@/components/LinkedInFloat";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -205,7 +204,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         {children}
         <Footer />
         <ScrollToTop />
-        <LinkedInFloat />
       </body>
     </html>
   );
