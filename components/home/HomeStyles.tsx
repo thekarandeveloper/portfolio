@@ -543,6 +543,22 @@ nav.scrolled{
 .about-know-more-wrap{display:flex;justify-content:center;margin-top:4.5rem;}
 .about-know-more{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',ui-monospace,monospace;font-size:0.64rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:12px 28px;border:1px solid rgba(0,0,0,0.1);border-radius:4px;background:transparent;transition:color 0.25s ease,border-color 0.25s ease,background 0.25s ease;}
 .about-know-more:hover{color:var(--pink);border-color:var(--pink);background:rgba(30,144,255,0.04);}
+
+/* ── SPIRAL SECTION ── */
+.spiral-section{height:380vh;position:relative;background:#0C0C0C;scroll-snap-align:start;}
+.spiral-sticky{position:sticky;top:0;height:100vh;overflow:hidden;}
+.spiral-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 65% 65% at 50% 48%,transparent 28%,rgba(12,12,12,0.9) 100%);pointer-events:none;z-index:3;}
+.spiral-perspective{width:100%;height:100%;perspective:860px;perspective-origin:50% 48%;display:flex;align-items:center;justify-content:center;}
+.spiral-stage{position:relative;width:0;height:0;transform-style:preserve-3d;}
+.spiral-card{position:absolute;border-radius:10px;background-size:cover;background-position:center;background-color:#1c1c1c;box-shadow:0 14px 44px rgba(0,0,0,0.72),inset 0 0 0 1px rgba(255,255,255,0.055);will-change:transform,opacity;backface-visibility:hidden;opacity:0;overflow:hidden;transform:translate3d(0,0,-2200px);}
+.sc-sz-a{width:262px;height:176px;left:-131px;top:-88px;}
+.sc-sz-b{width:220px;height:148px;left:-110px;top:-74px;}
+.sc-sz-c{width:300px;height:200px;left:-150px;top:-100px;}
+.spiral-card-shine{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,transparent 52%);pointer-events:none;}
+.spiral-topbar,.spiral-bottombar{position:absolute;left:0;right:0;z-index:10;padding:28px clamp(22px,5vw,52px);display:flex;justify-content:space-between;align-items:center;pointer-events:none;}
+.spiral-topbar{top:0;}
+.spiral-bottombar{bottom:0;}
+.spiral-topbar-label,.spiral-topbar-mode,.spiral-hint,.spiral-counter{font-family:'DM Mono',ui-monospace,monospace;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.2);}
 .about-ribbon,.about-flower{position:absolute;display:block;pointer-events:none;user-select:none;z-index:2;will-change:transform;}
 .about-ribbon{width:15%;left:-2.5%;top:-10%;transform-origin:48% 12%;filter:drop-shadow(0 10px 16px rgba(17,24,39,0.10));}
 .about-flower-one{width:10%;right:0.5%;top:-7%;transform-origin:50% 92%;filter:drop-shadow(0 10px 18px rgba(17,24,39,0.12));}

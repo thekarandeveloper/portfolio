@@ -6,6 +6,7 @@ import { HomeLoader } from "./HomeLoader";
 import { HomeNav } from "./HomeNav";
 import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
+import { SpiralSection } from "./SpiralSection";
 import { WorkSection } from "./WorkSection";
 
 export function HomePageReplica() {
@@ -25,6 +26,7 @@ export function HomePageReplica() {
         <WorkSection />
         <JourneySection />
         <AboutSection />
+        <SpiralSection />
         <ContactSection />
       </main>
     </>

@@ -541,6 +541,74 @@ window.addEventListener('scroll',function(){bgSections.forEach(function(section)
 initParallax();
 runParallax();
 
+// ── SPIRAL TUNNEL ──
+(function(){
+  var section=document.getElementById('spiralSection');
+  var stage=document.getElementById('spiralStage');
+  if(!section||!stage)return;
+
+  var cards=Array.from(stage.querySelectorAll('.spiral-card'));
+  var N=cards.length;
+  var Z_GAP=520;
+  var TOTAL_Z=N*Z_GAP;   // total depth of one full cycle
+  var RADIUS=295;
+  var Y_SCALE=0.30;
+  var ROT_Z=[-7,5,-3,9,-5,4,-8,3,-6,6];
+
+  // Place cards along a 1.5-turn helix
+  var bases=cards.map(function(_,i){
+    var angle=(i/N)*Math.PI*3; // 3π = 1.5 full turns
+    return {
+      x:Math.cos(angle)*RADIUS,
+      y:Math.sin(angle)*RADIUS*Y_SCALE,
+      z:-i*Z_GAP,
+      rotY:Math.cos(angle)*22,
+      rotZ:ROT_Z[i%ROT_Z.length]
+    };
+  });
+
+  function update(){
+    var rect=section.getBoundingClientRect();
+    var scrollH=section.offsetHeight-window.innerHeight;
+    var progress=Math.max(0,Math.min(1,-rect.top/Math.max(scrollH,1)));
+    var camZ=progress*TOTAL_Z*1.65;
+
+    var closestAbs=Infinity;
+    var closestIdx=0;
+
+    cards.forEach(function(card,i){
+      var b=bases[i];
+      var ez=b.z+camZ;
+      // Infinite loop: wrap so ez stays in (200-TOTAL_Z, 200]
+      while(ez>200) ez-=TOTAL_Z;
+      while(ez<200-TOTAL_Z) ez+=TOTAL_Z;
+
+      // Track which card is closest to camera for counter
+      if(Math.abs(ez)<closestAbs){closestAbs=Math.abs(ez);closestIdx=i;}
+
+      // Opacity: fade in from depth, fade out near camera
+      var op=0;
+      if(ez>-2700&&ez<180){
+        op=Math.min(1,(ez+2700)/520);
+        if(ez>-80) op*=Math.max(0,(180-ez)/260);
+      }
+
+      card.style.transform='translate3d('+b.x+'px,'+b.y+'px,'+ez+'px) rotateY('+b.rotY+'deg) rotateZ('+b.rotZ+'deg)';
+      card.style.opacity=op;
+    });
+
+    var counter=document.getElementById('spiralCounter');
+    if(counter){
+      var n=String(closestIdx+1).padStart(2,'0');
+      counter.textContent=n+' / '+String(N).padStart(2,'0');
+    }
+  }
+
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update,{passive:true});
+  update();
+})();
+
 
 
 `;
