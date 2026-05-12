@@ -541,6 +541,111 @@ window.addEventListener('scroll',function(){bgSections.forEach(function(section)
 initParallax();
 runParallax();
 
+
+// ── PAINT CANVAS ──
+(function(){
+  var canvas=document.getElementById('paintCanvas');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  if(!ctx)return;
+  var W=0,H=0;
+  function resize(){
+    var dpr=window.devicePixelRatio||1;
+    var r=canvas.getBoundingClientRect();
+    W=r.width;H=r.height;
+    var idata=null;
+    try{idata=ctx.getImageData(0,0,canvas.width,canvas.height);}catch(e){}
+    canvas.width=Math.round(W*dpr);
+    canvas.height=Math.round(H*dpr);
+    ctx.scale(dpr,dpr);
+    initBg();
+    if(idata)ctx.putImageData(idata,0,0);
+  }
+  function initBg(){ctx.fillStyle='#f6f9ff';ctx.fillRect(0,0,W,H);}
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+
+  var painting=false,lastX=0,lastY=0;
+  var color='#1E90FF',shape='round',size=4;
+
+  function getPos(e){
+    var r=canvas.getBoundingClientRect();
+    var src=e.touches?e.touches[0]:e;
+    return{x:src.clientX-r.left,y:src.clientY-r.top};
+  }
+
+  function starPath(cx,cy,r){
+    ctx.beginPath();
+    for(var i=0;i<10;i++){
+      var a=(i*Math.PI/5)-Math.PI/2;
+      var rad=i%2===0?r:r*0.42;
+      i===0?ctx.moveTo(cx+rad*Math.cos(a),cy+rad*Math.sin(a)):ctx.lineTo(cx+rad*Math.cos(a),cy+rad*Math.sin(a));
+    }
+    ctx.closePath();
+  }
+
+  function stamp(x,y){
+    ctx.fillStyle=color;
+    if(shape==='round'){
+      ctx.beginPath();ctx.arc(x,y,size/2,0,Math.PI*2);ctx.fill();
+    } else if(shape==='square'){
+      ctx.fillRect(x-size/2,y-size/2,size,size);
+    } else {
+      starPath(x,y,size*0.65);ctx.fill();
+    }
+  }
+
+  function strokeTo(x,y){
+    var dx=x-lastX,dy=y-lastY;
+    var dist=Math.sqrt(dx*dx+dy*dy);
+    var step=Math.max(1,size*0.22);
+    var n=Math.ceil(dist/step);
+    for(var i=1;i<=n;i++){stamp(lastX+dx*(i/n),lastY+dy*(i/n));}
+    lastX=x;lastY=y;
+  }
+
+  function onDown(e){
+    e.preventDefault();
+    painting=true;
+    var p=getPos(e);lastX=p.x;lastY=p.y;stamp(p.x,p.y);
+  }
+  function onMove(e){
+    if(!painting)return;
+    e.preventDefault();
+    var p=getPos(e);strokeTo(p.x,p.y);
+  }
+  function onUp(){painting=false;}
+
+  canvas.addEventListener('mousedown',onDown);
+  canvas.addEventListener('mousemove',onMove);
+  canvas.addEventListener('mouseup',onUp);
+  canvas.addEventListener('mouseleave',onUp);
+  canvas.addEventListener('touchstart',onDown,{passive:false});
+  canvas.addEventListener('touchmove',onMove,{passive:false});
+  canvas.addEventListener('touchend',onUp);
+
+  document.querySelectorAll('.pc').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.pc').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');color=b.dataset.color;
+    });
+  });
+  document.querySelectorAll('.ps').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.ps').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');shape=b.dataset.shape;
+    });
+  });
+  document.querySelectorAll('.pz').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.pz').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');size=parseInt(b.dataset.size);
+    });
+  });
+  var clr=document.getElementById('paintClear');
+  if(clr)clr.addEventListener('click',function(){ctx.clearRect(0,0,W,H);initBg();});
+})();
+
 // ── SPIRAL TUNNEL ──
 (function(){
   var section=document.getElementById('spiralSection');

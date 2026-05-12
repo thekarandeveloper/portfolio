@@ -463,7 +463,7 @@ nav.scrolled{
 }
 
 /* ── ABOUT — SCRAPBOOK BOOK ── */
-.about{background:#fff;padding:10rem 250px 11rem;overflow:hidden;position:relative;}
+.about{background:#fff;padding:10rem 250px 4rem;overflow:hidden;position:relative;}
 .about-inner{max-width:1120px;margin:0 auto;}
 .about-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--ink);line-height:1.1;margin:0 0 4.5rem;text-align:center;}
 .about-title em{font-style:italic;color:var(--pink);}
@@ -793,7 +793,7 @@ nav.scrolled{
 
 
 /* contact flex layout */
-.contact-flex{display:flex;align-items:center;justify-content:center;gap:5rem;position:relative;z-index:1;}
+.contact-flex{display:flex;align-items:center;gap:5rem;position:relative;z-index:1;}
 .contact-left{flex-shrink:0;width:370px;}
 .contact-right{flex:1;max-width:480px;margin-left:auto;text-align:right;}
 .contact-right .contact-title{text-align:right;}
@@ -801,6 +801,25 @@ nav.scrolled{
 .contact-right .contact-links{margin-left:auto;}
 .contact-right .contact-link{text-align:left;}
 .contact-right .contact-footer{justify-content:flex-end;text-align:right;}
+/* ── PAINT CANVAS ── */
+.paint-wrap{background:rgba(255,255,255,0.64);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border:1px solid rgba(255,255,255,0.84);border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(30,100,200,0.09),0 2px 8px rgba(30,100,200,0.04),inset 0 1px 0 rgba(255,255,255,0.95);}
+.paint-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px 8px;border-bottom:1px solid rgba(30,144,255,0.08);}
+.paint-hint{font-family:var(--hand);font-size:0.8rem;color:rgba(30,80,180,0.35);}
+.paint-clear{width:28px;height:28px;border-radius:50%;background:rgba(30,144,255,0.07);border:1px solid rgba(30,144,255,0.14);color:rgba(30,80,180,0.5);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s,transform 0.18s;line-height:1;padding:0;}
+.paint-clear:hover{background:rgba(30,144,255,0.14);transform:rotate(-30deg);}
+.paint-canvas{display:block;width:100%;height:310px;cursor:crosshair;}
+.paint-toolbar{display:flex;align-items:center;gap:8px;padding:9px 14px;border-top:1px solid rgba(30,144,255,0.08);background:rgba(255,255,255,0.45);flex-wrap:wrap;}
+.paint-colors{display:flex;gap:6px;align-items:center;}
+.pc{width:18px;height:18px;border-radius:50%;background:var(--c);border:2px solid transparent;cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;flex-shrink:0;}
+.pc:hover{transform:scale(1.2);}
+.pc.active{box-shadow:0 0 0 2px rgba(255,255,255,0.9),0 0 0 4px var(--c);transform:scale(1.15);}
+.paint-sep{width:1px;height:20px;background:rgba(30,144,255,0.1);flex-shrink:0;}
+.paint-shapes{display:flex;gap:4px;}
+.ps{width:28px;height:28px;border-radius:8px;background:transparent;border:1px solid rgba(30,144,255,0.1);color:rgba(30,80,180,0.45);font-size:0.68rem;cursor:pointer;transition:background 0.15s,color 0.15s;display:flex;align-items:center;justify-content:center;padding:0;}
+.ps:hover,.ps.active{background:rgba(30,144,255,0.1);border-color:rgba(30,144,255,0.28);color:#1E90FF;}
+.paint-sizes{display:flex;gap:4px;}
+.pz{width:28px;height:28px;border-radius:8px;background:transparent;border:1px solid rgba(30,144,255,0.1);color:rgba(30,80,180,0.45);font-size:0.6rem;font-weight:700;letter-spacing:0.04em;cursor:pointer;transition:background 0.15s,color 0.15s;display:flex;align-items:center;justify-content:center;font-family:var(--sans);padding:0;}
+.pz:hover,.pz.active{background:rgba(30,144,255,0.1);border-color:rgba(30,144,255,0.28);color:#1E90FF;}
 
 
 
@@ -838,7 +857,7 @@ nav.scrolled{
 @media(max-width:580px){
   .bento-work-grid{grid-template-columns:1fr;}
   .bento-work-card.wide{grid-column:span 1;}
-  .about{padding-top:6.5rem;padding-bottom:8rem;}
+  .about{padding-top:6.5rem;padding-bottom:3rem;}
   .about-title{font-size:clamp(2rem,9vw,2.7rem);margin-bottom:2.25rem;}
   .about-book-stage{width:110%;margin-left:-5%;aspect-ratio:1.18;}
   .about-book-page{top:1%;bottom:2%;}
