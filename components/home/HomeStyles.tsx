@@ -787,48 +787,9 @@ nav.scrolled{
 .contact-right .contact-link{text-align:left;}
 .contact-right .contact-footer{justify-content:flex-end;text-align:right;}
 
-/* ── RECEIPT + PRINTER (glass morphism) ── */
-.receipt-scene{filter:drop-shadow(0 16px 32px rgba(30,100,200,0.13)) drop-shadow(0 4px 10px rgba(30,100,200,0.07));}
-.printer-body{background:rgba(210,230,255,0.52);backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);border-radius:20px 20px 0 0;border:1px solid rgba(255,255,255,0.82);border-bottom:1px solid rgba(180,210,255,0.3);padding:14px 18px 0;position:relative;overflow:hidden;}
-.printer-body::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.95),transparent);pointer-events:none;}
-.printer-face{display:flex;align-items:center;gap:10px;padding-bottom:14px;}
-.printer-led{width:7px;height:7px;border-radius:50%;background:#1E90FF;box-shadow:0 0 0 2px rgba(30,144,255,0.22),0 0 8px rgba(30,144,255,0.65);animation:ledPulse 2s ease-in-out infinite;flex-shrink:0;}
-@keyframes ledPulse{0%,100%{box-shadow:0 0 0 2px rgba(30,144,255,0.22),0 0 8px rgba(30,144,255,0.65);}50%{box-shadow:0 0 0 1px rgba(30,144,255,0.1),0 0 3px rgba(30,144,255,0.3);opacity:0.55;}}
-.printer-brand{font-family:'Courier New',Courier,monospace;font-size:0.5rem;letter-spacing:0.18em;color:rgba(30,60,140,0.4);flex:1;}
-.printer-vents{display:flex;gap:3px;}
-.printer-vents i{display:block;width:2px;height:12px;background:rgba(30,100,200,0.13);border-radius:1px;}
-.printer-slot{background:rgba(30,80,200,0.07);height:7px;margin:0 -18px;overflow:hidden;position:relative;border-top:1px solid rgba(180,210,255,0.35);}
-.printer-slot::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.6),transparent);animation:slotShine 3s ease-in-out infinite;}
-@keyframes slotShine{0%,100%{transform:translateX(-200%);}60%{transform:translateX(200%);}}
-.receipt-paper-wrap{overflow:hidden;height:0;position:relative;}
-.receipt-paper-wrap.printing{animation:paperOut 3.2s linear forwards;}
-@keyframes paperOut{to{height:var(--paper-h,640px);}}
-.receipt-scanline{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 5%,rgba(30,144,255,0.88) 50%,transparent 95%);box-shadow:0 0 12px rgba(30,144,255,0.55),0 0 28px rgba(30,144,255,0.18);pointer-events:none;z-index:10;opacity:0;}
-.receipt-scanline.scanning{animation:scanDown 3.2s linear forwards;}
-@keyframes scanDown{0%{top:0;opacity:1;}97%{opacity:0.8;}100%{top:var(--paper-h,640px);opacity:0;}}
-.receipt{background:rgba(255,255,255,0.8);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);color:#111;font-family:'Courier New',Courier,monospace;font-size:0.7rem;line-height:1.55;padding:1.4rem 1.6rem 1.2rem;}
-.receipt-tear{height:12px;background:radial-gradient(circle at 7px 12px,transparent 6px,rgba(248,251,255,0.85) 6px);background-size:14px 12px;background-repeat:repeat-x;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
-.receipt-header{text-align:center;margin-bottom:0.75rem;}
-.receipt-logo{font-size:1.55rem;font-weight:700;letter-spacing:0.14em;line-height:1;color:#1E90FF;}
-.receipt-name{font-size:0.88rem;font-weight:700;letter-spacing:0.2em;margin-top:0.25rem;color:#111;}
-.receipt-role{font-size:0.6rem;letter-spacing:0.22em;color:#999;margin-top:0.1rem;}
-.receipt-dash{border:none;border-top:1px dashed rgba(30,144,255,0.18);margin:0.55rem 0;}
-.receipt-equals{border:none;border-top:1px solid rgba(30,144,255,0.22);margin:0.6rem 0 0;}
-.receipt-equals+.receipt-quote{margin-top:0;padding-top:0.5rem;}
-.receipt-meta{display:flex;justify-content:space-between;font-size:0.6rem;color:#aaa;letter-spacing:0.08em;margin-bottom:0.1rem;}
-.receipt-items{display:flex;flex-direction:column;gap:0.28rem;margin:0.15rem 0;}
-.receipt-item{display:flex;align-items:baseline;gap:3px;}
-.ri-name{white-space:nowrap;flex-shrink:0;color:#555;}
-.ri-dots{flex:1;border-bottom:1px dotted rgba(30,144,255,0.18);margin-bottom:3px;min-width:6px;}
-.ri-val{white-space:nowrap;flex-shrink:0;color:#111;font-weight:600;}
-.receipt-total{display:flex;justify-content:space-between;align-items:baseline;font-size:0.65rem;letter-spacing:0.05em;margin:0.22rem 0;}
-.rt-label{font-size:0.58rem;letter-spacing:0.14em;color:#aaa;}
-.rt-val{font-weight:700;color:#111;}
-.rt-open{color:#1E90FF;letter-spacing:0.06em;}
-.receipt-quote{font-family:var(--serif);font-size:0.78rem;font-style:italic;text-align:center;line-height:1.65;padding:0.35rem 0.4rem 0.5rem;color:#555;}
-.receipt-thanks{text-align:center;letter-spacing:0.24em;font-size:0.62rem;margin:0.35rem 0 0.75rem;color:#aaa;}
-.receipt-barcode{height:34px;margin:0 0.5rem;border-radius:1px;background:repeating-linear-gradient(90deg,rgba(30,144,255,0.5) 0,rgba(30,144,255,0.5) 2px,transparent 2px,transparent 4px,rgba(30,144,255,0.5) 4px,rgba(30,144,255,0.5) 5px,transparent 5px,transparent 9px,rgba(30,144,255,0.5) 9px,rgba(30,144,255,0.5) 12px,transparent 12px,transparent 14px,rgba(30,144,255,0.5) 14px,rgba(30,144,255,0.5) 15px,transparent 15px,transparent 18px,rgba(30,144,255,0.5) 18px,rgba(30,144,255,0.5) 21px,transparent 21px,transparent 23px,rgba(30,144,255,0.5) 23px,rgba(30,144,255,0.5) 24px,transparent 24px,transparent 27px);}
-.receipt-bc-num{text-align:center;font-size:0.52rem;letter-spacing:0.12em;color:#bbb;margin-top:0.35rem;}
+/* ── PENDULUM WAVES ── */
+.pendulum-glass{background:rgba(255,255,255,0.62);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border:1px solid rgba(255,255,255,0.82);border-radius:24px;overflow:hidden;box-shadow:0 8px 32px rgba(30,100,200,0.09),0 2px 8px rgba(30,100,200,0.04),inset 0 1px 0 rgba(255,255,255,0.92);position:relative;}
+.pendulum-canvas{display:block;width:100%;height:440px;}
 
 @media(max-width:900px){
   nav{padding:0 1.5rem;grid-template-columns:1fr auto;}.nav-resume{display:none;}
@@ -846,7 +807,7 @@ nav.scrolled{
   .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8,.g9,.g10{grid-column:auto;grid-row:auto;}
   .hero-cards{gap:8px;}.hero-card{width:76px;height:60px;}.hero-card:hover{width:130px;height:100px;}
   .contact-flex{flex-direction:column;gap:2rem;}.contact-left{width:100%;}
-  .printer-body{border-radius:12px 12px 0 0;}
+  .pendulum-canvas{height:280px;}
   .bento-work-grid{grid-template-columns:1fr 1fr;}
   .bento-work-card.wide{grid-column:span 2;}
 }

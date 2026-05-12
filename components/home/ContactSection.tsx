@@ -2,50 +2,10 @@ const html = `<section class="contact" id="contact">
   <div class="contact-glow"></div>
   <div class="contact-flex">
 
-    <!-- LEFT: receipt printer -->
+    <!-- LEFT: pendulum waves -->
     <div class="contact-left reveal from-left">
-      <div class="receipt-scene">
-        <div class="printer-body">
-          <div class="printer-face">
-            <div class="printer-led"></div>
-            <span class="printer-brand">NT-DESIGNER &middot; v3.0</span>
-            <div class="printer-vents"><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="printer-slot"></div>
-        </div>
-        <div class="receipt-paper-wrap" id="receiptPaper">
-          <div class="receipt-scanline" id="receiptScan"></div>
-          <div class="receipt">
-          <div class="receipt-header">
-            <div class="receipt-logo">NT</div>
-            <div class="receipt-name">NIKUNJ TYAGI</div>
-            <div class="receipt-role">PRODUCT DESIGNER</div>
-          </div>
-          <div class="receipt-dash"></div>
-          <div class="receipt-meta">
-            <span>ORDER #004</span><span>12 MAY 2025</span>
-          </div>
-          <div class="receipt-dash"></div>
-          <div class="receipt-items">
-            <div class="receipt-item"><span class="ri-name">Systems thinking</span><span class="ri-dots"></span><span class="ri-val">&#10003; included</span></div>
-            <div class="receipt-item"><span class="ri-name">Obsessive detailing</span><span class="ri-dots"></span><span class="ri-val">&#8734;</span></div>
-            <div class="receipt-item"><span class="ri-name">Ships before deadline</span><span class="ri-dots"></span><span class="ri-val">usually</span></div>
-            <div class="receipt-item"><span class="ri-name">Engineers impressed</span><span class="ri-dots"></span><span class="ri-val">3&times;</span></div>
-            <div class="receipt-item"><span class="ri-name">Coffee dependency</span><span class="ri-dots"></span><span class="ri-val">critical</span></div>
-            <div class="receipt-item"><span class="ri-name">Dark mode opinions</span><span class="ri-dots"></span><span class="ri-val">strong</span></div>
-          </div>
-          <div class="receipt-dash"></div>
-          <div class="receipt-total"><span class="rt-label">AVAILABILITY</span><span class="rt-val rt-open">&#9679; OPEN</span></div>
-          <div class="receipt-total"><span class="rt-label">LOCATION</span><span class="rt-val">India &middot; UTC+5:30</span></div>
-          <div class="receipt-equals"></div>
-          <div class="receipt-quote">&ldquo;Simple is the hardest<br>thing to ship.&rdquo;</div>
-          <div class="receipt-equals"></div>
-          <div class="receipt-thanks">&#10022; &nbsp; THANK YOU &nbsp; &#10022;</div>
-          <div class="receipt-barcode"></div>
-          <div class="receipt-bc-num">2025 &middot; NT &middot; PRODUCT &middot; DESIGN</div>
-        </div>
-          <div class="receipt-tear"></div>
-        </div>
+      <div class="pendulum-glass">
+        <canvas id="pendulumCanvas" class="pendulum-canvas" aria-hidden="true"></canvas>
       </div>
     </div>
 
