@@ -2,12 +2,7 @@ const html = `<section class="contact" id="contact">
   <div class="contact-glow"></div>
   <div class="contact-flex">
 
-    <!-- LEFT: pendulum waves -->
-    <div class="contact-left reveal from-left">
-      <div class="pendulum-glass">
-        <canvas id="pendulumCanvas" class="pendulum-canvas" aria-hidden="true"></canvas>
-      </div>
-    </div>
+
 
     <!-- RIGHT: contact links -->
     <div class="contact-right">

@@ -778,7 +778,7 @@ nav.scrolled{
 
 
 /* contact flex layout */
-.contact-flex{display:flex;align-items:center;gap:5rem;position:relative;z-index:1;}
+.contact-flex{display:flex;align-items:center;justify-content:center;gap:5rem;position:relative;z-index:1;}
 .contact-left{flex-shrink:0;width:370px;}
 .contact-right{flex:1;max-width:480px;margin-left:auto;text-align:right;}
 .contact-right .contact-title{text-align:right;}
@@ -787,9 +787,7 @@ nav.scrolled{
 .contact-right .contact-link{text-align:left;}
 .contact-right .contact-footer{justify-content:flex-end;text-align:right;}
 
-/* ── PENDULUM WAVES ── */
-.pendulum-glass{background:rgba(255,255,255,0.62);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border:1px solid rgba(255,255,255,0.82);border-radius:24px;overflow:hidden;box-shadow:0 8px 32px rgba(30,100,200,0.09),0 2px 8px rgba(30,100,200,0.04),inset 0 1px 0 rgba(255,255,255,0.92);position:relative;}
-.pendulum-canvas{display:block;width:100%;height:440px;}
+
 
 @media(max-width:900px){
   nav{padding:0 1.5rem;grid-template-columns:1fr auto;}.nav-resume{display:none;}
