@@ -8,12 +8,14 @@ const html = `<section class="about" id="about">
         <div class="about-book-spine"></div>
       </div>
       <div class="about-turn-page"></div>
-      <div class="about-book-cover" aria-hidden="true">
+      <div class="about-book-back-cover" aria-hidden="true"></div>
+      <div class="about-book-cover">
         <div class="about-cover-inner">
           <span class="about-cover-label">about</span>
           <p class="about-cover-name">Nikunj<br>Tyagi</p>
           <div class="about-cover-rule"></div>
           <span class="about-cover-role">product designer</span>
+          <span class="about-cover-hint">tap to open</span>
         </div>
       </div>
       <div class="about-page-content">

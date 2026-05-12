@@ -425,39 +425,47 @@ if(heroBlob) {
 (function(){
   var stage=document.querySelector('.about-book-stage');
   var cover=document.querySelector('.about-book-cover');
+  var backCover=document.querySelector('.about-book-back-cover');
   var firstSpread=document.querySelector('[data-about-page="0"]');
   var firstDot=document.querySelector('[data-about-target="0"]');
-  if(!stage)return;
+  if(!stage||!cover)return;
+  var bookReady=false;
   var opened=false;
+
+  // Phase 1: show closed book when section scrolls into view
+  var revealObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting&&!bookReady){
+        bookReady=true;
+        window.setTimeout(function(){stage.classList.remove('book-closed');},200);
+        revealObs.disconnect();
+      }
+    });
+  },{threshold:0.5});
+  revealObs.observe(stage);
+
+  // Phase 2: user taps/clicks cover to open the book
   function openBook(){
-    if(opened)return;
+    if(opened||!bookReady)return;
     opened=true;
-    // Wait 400ms for scroll-snap to fully settle before starting
+    stage.classList.add('cover-opening');
+    cover.classList.add('is-opening');
+    if(backCover)backCover.classList.add('is-open');
+    // reveal first spread mid-flip
     window.setTimeout(function(){
-      // Step 1: book rises into view
-      stage.classList.remove('book-closed');
-      // Step 2: 700ms later, cover starts flipping; lock grabs during flip
-      window.setTimeout(function(){
-        stage.classList.add('cover-opening');
-        if(cover)cover.classList.add('is-opening');
-      },700);
-      // Step 3: 1500ms in, cover is 45% through flip and fading — reveal first spread
-      window.setTimeout(function(){
-        if(firstSpread)firstSpread.classList.add('active');
-        if(firstDot)firstDot.classList.add('active');
-      },1500);
-      // Step 4: 2600ms in, cover animation done — hide it and unlock grabs
-      window.setTimeout(function(){
-        if(cover){cover.style.display='none';}
-        stage.classList.remove('cover-opening');
-      },2600);
-    },400);
+      if(firstSpread)firstSpread.classList.add('active');
+      if(firstDot)firstDot.classList.add('active');
+    },800);
+    // clean up after animation
+    window.setTimeout(function(){
+      cover.style.display='none';
+      if(backCover)backCover.style.display='none';
+      stage.classList.remove('cover-opening');
+    },1900);
   }
-  // Threshold 0.85 — only fires when section is nearly fully in view (scroll-snap settled)
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting)openBook();});
-  },{threshold:0.85});
-  obs.observe(stage);
+
+  cover.addEventListener('click',openBook);
+  cover.addEventListener('touchend',function(e){e.preventDefault();openBook();});
 })();
 
 // ── ZOOM INTERLUDE ──

@@ -468,10 +468,13 @@ nav.scrolled{
 .about-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--ink);line-height:1.1;margin:0 0 4.5rem;text-align:center;}
 .about-title em{font-style:italic;color:var(--pink);}
 .about-book-stage{position:relative;width:min(100%,1040px);margin:0 auto;aspect-ratio:1.78;perspective:1800px;transition:opacity 0.9s ease,transform 0.9s cubic-bezier(0.34,1.2,0.64,1);}.about-book-stage.book-closed{opacity:0;transform:scale(0.93) translateY(24px);}
-.about-book-cover{position:absolute;top:2%;bottom:3%;right:0.5%;width:49.7%;z-index:5;transform-origin:left center;border-radius:6px 20px 24px 8px;background:radial-gradient(circle at 38% 38%,#2e251e 0%,#1a1209 65%),repeating-linear-gradient(135deg,rgba(255,255,255,0.02) 0 1px,transparent 1px 18px);box-shadow:inset 0 0 40px rgba(0,0,0,0.35),2px 0 12px rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:none;}
+.about-book-back-cover{position:absolute;top:2%;bottom:3%;left:0.5%;width:49.7%;z-index:4;border-radius:20px 6px 8px 24px;background:radial-gradient(circle at 62% 38%,#231c17 0%,#140d09 65%);box-shadow:inset -4px 0 14px rgba(0,0,0,0.3),inset 0 0 28px rgba(0,0,0,0.22);pointer-events:none;transition:opacity 0.5s ease;}
+.about-book-back-cover.is-open{opacity:0;}
+.about-book-cover{position:absolute;top:2%;bottom:3%;right:0.5%;width:49.7%;z-index:5;transform-origin:left center;border-radius:6px 20px 24px 8px;background:radial-gradient(circle at 38% 38%,#2e251e 0%,#1a1209 65%),repeating-linear-gradient(135deg,rgba(255,255,255,0.02) 0 1px,transparent 1px 18px);box-shadow:inset 0 0 40px rgba(0,0,0,0.35),2px 0 12px rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;transition:filter 0.25s ease;}
+.about-book-cover:hover{filter:brightness(1.12);}
 .about-book-cover::before{content:'';position:absolute;inset:12px;border:1px solid rgba(255,255,255,0.07);border-radius:4px 18px 22px 4px;pointer-events:none;}
 .about-book-cover::after{content:'';position:absolute;top:0;left:0;width:8px;height:100%;background:linear-gradient(90deg,rgba(0,0,0,0.35),transparent);border-radius:6px 0 0 6px;}
-.about-book-cover.is-opening{animation:aboutCoverOpen 1800ms cubic-bezier(.25,.46,.45,.94) forwards;}
+.about-book-cover.is-opening{animation:aboutCoverOpen 1800ms cubic-bezier(.25,.46,.45,.94) forwards;pointer-events:none;cursor:default;}
 @keyframes aboutCoverOpen{
   0%{opacity:1;transform:rotateY(0deg) translateZ(0);}
   18%{opacity:1;transform:rotateY(-25deg) translateX(12px) translateZ(55px) rotateZ(1.8deg);}
@@ -480,11 +483,13 @@ nav.scrolled{
   75%{opacity:0;transform:rotateY(-120deg) translateZ(80px) rotateZ(-0.6deg);}
   100%{opacity:0;transform:rotateY(-182deg) translateZ(0);}
 }
-.about-cover-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:2rem 1.5rem;gap:0.55rem;text-align:center;}
+.about-cover-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:2rem 1.5rem;gap:0.55rem;text-align:center;position:relative;}
 .about-cover-label{font-family:'DM Mono',ui-monospace,monospace;font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
 .about-cover-name{font-family:var(--font-serif, var(--serif));font-size:clamp(1.3rem,2.6vw,2.1rem);font-weight:300;font-style:italic;line-height:1.1;color:rgba(255,255,255,0.88);margin:0.2rem 0;}
 .about-cover-rule{width:28px;height:1px;background:rgba(255,255,255,0.18);margin:0.15rem 0;}
 .about-cover-role{font-family:var(--hand);font-size:clamp(0.65rem,1.1vw,0.88rem);color:rgba(255,255,255,0.38);letter-spacing:0.05em;}
+.about-cover-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-family:'DM Mono',ui-monospace,monospace;font-size:0.48rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.2);white-space:nowrap;transition:color 0.2s ease;}
+.about-book-cover:hover .about-cover-hint{color:rgba(255,255,255,0.5);}
 .about-book-stage.cover-opening .about-page-grab{opacity:0;pointer-events:none;}
 .about-book-shell{position:absolute;inset:0;z-index:1;filter:drop-shadow(0 22px 32px rgba(17,24,39,0.12));}
 .about-book-page{position:absolute;top:2%;bottom:3%;width:49.7%;background:
