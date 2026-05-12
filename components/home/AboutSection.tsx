@@ -106,9 +106,6 @@ const html = `<section class="about" id="about">
     </div>
     </div>
   </div>
-  <div class="about-know-more-wrap">
-    <a href="/about" class="about-know-more">Know More ↗</a>
-  </div>
 </section>`;
 
 export function AboutSection() {

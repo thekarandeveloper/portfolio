@@ -540,9 +540,6 @@ nav.scrolled{
 .about-page-grab:hover .about-turn-hint,.about-page-grab:focus-visible .about-turn-hint{opacity:1;}
 .about-page-grab-prev .about-turn-hint{right:auto;left:16px;}
 .about-page-grab.is-disabled{display:none;}
-.about-know-more-wrap{display:flex;justify-content:center;margin-top:4.5rem;}
-.about-know-more{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',ui-monospace,monospace;font-size:0.64rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:12px 28px;border:1px solid rgba(0,0,0,0.1);border-radius:4px;background:transparent;transition:color 0.25s ease,border-color 0.25s ease,background 0.25s ease;}
-.about-know-more:hover{color:var(--pink);border-color:var(--pink);background:rgba(30,144,255,0.04);}
 
 /* ── SPIRAL SECTION ── */
 .spiral-section{height:380vh;position:relative;background:#0C0C0C;scroll-snap-align:start;}
