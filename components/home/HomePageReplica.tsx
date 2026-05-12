@@ -1,12 +1,12 @@
 import { AboutSection } from "./AboutSection";
 import { ContactSection } from "./ContactSection";
-import { WorkRowSection } from "./WorkRowSection";
 import { HeroSection } from "./HeroSection";
 import { HomeBehavior } from "./HomeBehavior";
 import { HomeLoader } from "./HomeLoader";
 import { HomeNav } from "./HomeNav";
 import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
+import { WorkSection } from "./WorkSection";
 
 export function HomePageReplica() {
   return (
@@ -22,7 +22,7 @@ export function HomePageReplica() {
         </div>
         <HomeNav />
         <HeroSection />
-        <WorkRowSection />
+        <WorkSection />
         <JourneySection />
         <AboutSection />
         <ContactSection />
