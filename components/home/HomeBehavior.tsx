@@ -423,49 +423,48 @@ if(heroBlob) {
 
 // ── ABOUT BOOK OPEN SEQUENCE ──
 (function(){
+  var closedBook=document.querySelector('.about-closed-book');
   var stage=document.querySelector('.about-book-stage');
-  var cover=document.querySelector('.about-book-cover');
-  var backCover=document.querySelector('.about-book-back-cover');
   var firstSpread=document.querySelector('[data-about-page="0"]');
   var firstDot=document.querySelector('[data-about-target="0"]');
-  if(!stage||!cover)return;
+  if(!closedBook||!stage)return;
   var bookReady=false;
   var opened=false;
 
-  // Phase 1: show closed book when section scrolls into view
+  // Phase 1: when section scrolls into view, show the closed book
   var revealObs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting&&!bookReady){
         bookReady=true;
-        window.setTimeout(function(){stage.classList.remove('book-closed');},200);
         revealObs.disconnect();
       }
     });
-  },{threshold:0.5});
-  revealObs.observe(stage);
+  },{threshold:0.4});
+  revealObs.observe(closedBook);
 
-  // Phase 2: user taps/clicks cover to open the book
+  // Phase 2: user taps the closed book to open it
   function openBook(){
     if(opened||!bookReady)return;
     opened=true;
-    stage.classList.add('cover-opening');
-    cover.classList.add('is-opening');
-    if(backCover)backCover.classList.add('is-open');
-    // reveal first spread mid-flip
+    // fade out closed book
+    closedBook.classList.add('is-opening');
+    // after closed book fades (400ms), reveal open spread
     window.setTimeout(function(){
-      if(firstSpread)firstSpread.classList.add('active');
-      if(firstDot)firstDot.classList.add('active');
-    },800);
-    // clean up after animation
+      stage.classList.remove('book-hidden');
+      window.setTimeout(function(){
+        if(firstSpread)firstSpread.classList.add('active');
+        if(firstDot)firstDot.classList.add('active');
+      },320);
+    },400);
+    // remove closed book from DOM after transition completes
     window.setTimeout(function(){
-      cover.style.display='none';
-      if(backCover)backCover.style.display='none';
-      stage.classList.remove('cover-opening');
-    },1900);
+      closedBook.style.display='none';
+    },850);
   }
 
-  cover.addEventListener('click',openBook);
-  cover.addEventListener('touchend',function(e){e.preventDefault();openBook();});
+  closedBook.addEventListener('click',openBook);
+  closedBook.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')openBook();});
+  closedBook.addEventListener('touchend',function(e){e.preventDefault();openBook();});
 })();
 
 // ── ZOOM INTERLUDE ──

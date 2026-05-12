@@ -1,23 +1,25 @@
 const html = `<section class="about" id="about">
   <div class="about-inner reveal">
     <h2 class="about-title">Person behind <em>the pixels.</em></h2>
-    <div class="about-book-stage book-closed" aria-label="Open scrapbook about Nikunj">
-      <div class="about-book-shell" aria-hidden="true">
-        <div class="about-book-page about-book-page-left"></div>
-        <div class="about-book-page about-book-page-right"></div>
-        <div class="about-book-spine"></div>
-      </div>
-      <div class="about-turn-page"></div>
-      <div class="about-book-back-cover" aria-hidden="true"></div>
-      <div class="about-book-cover">
-        <div class="about-cover-inner">
+    <div class="about-book-wrapper">
+      <div class="about-closed-book" role="button" aria-label="Open scrapbook about Nikunj" tabindex="0">
+        <div class="about-cb-spine" aria-hidden="true"></div>
+        <div class="about-cb-cover">
           <span class="about-cover-label">about</span>
           <p class="about-cover-name">Nikunj<br>Tyagi</p>
           <div class="about-cover-rule"></div>
           <span class="about-cover-role">product designer</span>
           <span class="about-cover-hint">tap to open</span>
         </div>
+        <div class="about-cb-pages" aria-hidden="true"></div>
       </div>
+      <div class="about-book-stage book-hidden" aria-label="Open scrapbook about Nikunj">
+      <div class="about-book-shell" aria-hidden="true">
+        <div class="about-book-page about-book-page-left"></div>
+        <div class="about-book-page about-book-page-right"></div>
+        <div class="about-book-spine"></div>
+      </div>
+      <div class="about-turn-page"></div>
       <div class="about-page-content">
         <div class="about-page-spread" data-about-page="0">
           <div class="about-left-page">
@@ -101,6 +103,7 @@ const html = `<section class="about" id="about">
       <img class="about-flower about-flower-one about-float" src="/Image/hero/flower1.png" alt="" />
       <img class="about-flower about-flower-two about-float-reverse" src="/Image/hero/flower2.png" alt="" />
       <img class="about-flower about-flower-three about-float-soft" src="/Image/hero/flower3.png" alt="" />
+    </div>
     </div>
   </div>
 </section>`;
