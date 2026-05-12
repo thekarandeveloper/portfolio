@@ -1,4 +1,5 @@
 import { AboutSection } from "./AboutSection";
+import { AboutSectionNew } from "./AboutSectionNew";
 import { ContactSection } from "./ContactSection";
 import { HeroSection } from "./HeroSection";
 import { HomeBehavior } from "./HomeBehavior";
@@ -25,6 +26,7 @@ export function HomePageReplica() {
         <WorkSection />
         <JourneySection />
         <AboutSection />
+        <AboutSectionNew />
         <ContactSection />
       </main>
     </>
