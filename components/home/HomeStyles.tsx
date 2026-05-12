@@ -540,6 +540,9 @@ nav.scrolled{
 .about-page-grab:hover .about-turn-hint,.about-page-grab:focus-visible .about-turn-hint{opacity:1;}
 .about-page-grab-prev .about-turn-hint{right:auto;left:16px;}
 .about-page-grab.is-disabled{display:none;}
+.about-know-more-wrap{display:flex;justify-content:center;margin-top:4.5rem;}
+.about-know-more{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',ui-monospace,monospace;font-size:0.64rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:12px 28px;border:1px solid rgba(0,0,0,0.1);border-radius:4px;background:transparent;transition:color 0.25s ease,border-color 0.25s ease,background 0.25s ease;}
+.about-know-more:hover{color:var(--pink);border-color:var(--pink);background:rgba(30,144,255,0.04);}
 .about-ribbon,.about-flower{position:absolute;display:block;pointer-events:none;user-select:none;z-index:2;will-change:transform;}
 .about-ribbon{width:15%;left:-2.5%;top:-10%;transform-origin:48% 12%;filter:drop-shadow(0 10px 16px rgba(17,24,39,0.10));}
 .about-flower-one{width:10%;right:0.5%;top:-7%;transform-origin:50% 92%;filter:drop-shadow(0 10px 18px rgba(17,24,39,0.12));}

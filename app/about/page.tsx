@@ -1,567 +1,626 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
-function useReveal(threshold = 0.12) {
+function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [vis, setVis] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
       { threshold }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, [threshold]);
-  return { ref, visible };
+  return { ref, vis };
 }
 
-function useCounter(target: number, active: boolean, duration = 1800) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!active) return;
-    const start = Date.now();
-    const tick = () => {
-      const p = Math.min((Date.now() - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - p, 3);
-      setCount(Math.floor(ease * target));
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }, [active, target, duration]);
-  return count;
-}
-
-function Reveal({
-  children,
-  delay = 0,
-  from = "bottom",
-  className = "",
-}: {
-  children: ReactNode;
-  delay?: number;
-  from?: "bottom" | "left" | "right";
-  className?: string;
-}) {
-  const { ref, visible } = useReveal();
-  const offsets: Record<string, string> = {
-    bottom: "translateY(44px)",
-    left: "translateX(-44px)",
-    right: "translateX(44px)",
-  };
+function HeroLine({ children, delay = 0, active }: { children: ReactNode; delay?: number; active: boolean }) {
   return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "none" : offsets[from],
-        transition: `opacity 0.9s ease ${delay}ms, transform 0.9s ease ${delay}ms`,
-      }}
-    >
+    <span style={{ overflow: "hidden", display: "block", lineHeight: "inherit" }}>
+      <span style={{
+        display: "block",
+        transform: active ? "translateY(0)" : "translateY(108%)",
+        transition: `transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      }}>
+        {children}
+      </span>
+    </span>
+  );
+}
+
+function Appear({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
+  const { ref, vis } = useReveal();
+  return (
+    <div ref={ref} className={className} style={{
+      opacity: vis ? 1 : 0,
+      transform: vis ? "none" : "translateY(36px)",
+      transition: `opacity 1s ease ${delay}ms, transform 1s ease ${delay}ms`,
+    }}>
       {children}
     </div>
   );
 }
 
-function Photo({
-  src,
-  alt,
-  className = "",
-  sizes = "100vw",
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-  sizes?: string;
-}) {
-  const [err, setErr] = useState(false);
-  return (
-    <div className={`relative overflow-hidden ${className}`}>
-      {err ? (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-bg3">
-          <div className="flex h-10 w-10 items-center justify-center border border-ink4">
-            <span className="text-lg text-ink4">+</span>
-          </div>
-          <span className="px-4 text-center font-['Syne'] text-[0.56rem] uppercase tracking-[0.22em] text-ink4">
-            {alt}
-          </span>
-          <span className="font-['Syne'] text-[0.5rem] uppercase tracking-[0.15em] text-ink4/60">
-            add to public/about/
-          </span>
-        </div>
-      ) : (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={src}
-          alt={alt}
-          sizes={sizes}
-          className="absolute inset-0 h-full w-full object-cover"
-          onError={() => setErr(true)}
-        />
-      )}
-    </div>
-  );
-}
-
-function Polaroid({
-  src,
-  alt,
-  caption,
-  rotation,
-  delay,
-}: {
-  src: string;
-  alt: string;
-  caption: string;
-  rotation: number;
-  delay: number;
-}) {
-  const { ref, visible } = useReveal(0.05);
-  const [hovered, setHovered] = useState(false);
-  return (
-    <div
-      ref={ref}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible
-          ? hovered
-            ? "rotate(0deg) scale(1.08)"
-            : `rotate(${rotation}deg)`
-          : `rotate(${rotation}deg) translateY(70px)`,
-        transition: hovered
-          ? "opacity 0.5s ease, transform 0.38s cubic-bezier(0.34,1.56,0.64,1)"
-          : `opacity 0.85s cubic-bezier(0.34,1.56,0.64,1) ${delay}ms, transform 0.65s cubic-bezier(0.34,1.56,0.64,1) ${delay}ms`,
-        cursor: "grab",
-        zIndex: hovered ? 20 : 1,
-        position: "relative",
-      }}
-    >
-      <div
-        className="bg-white px-3 pb-12 pt-3"
-        style={{
-          boxShadow: hovered
-            ? "0 28px 72px rgba(26,18,16,0.25)"
-            : "0 8px 32px rgba(26,18,16,0.13)",
-        }}
-      >
-        <div className="relative h-[210px] w-[160px] overflow-hidden md:h-[255px] md:w-[195px]">
-          <Photo src={src} alt={alt} className="h-full w-full" sizes="200px" />
-        </div>
-        <p className="mt-3 text-center font-[family-name:var(--font-caveat)] text-[0.92rem] leading-snug text-ink3">
-          {caption}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function Brackets({ color = "border-ink3" }: { color?: string }) {
-  return (
-    <>
-      <span className={`absolute -left-3 -top-3 z-10 block h-7 w-7 border-l-2 border-t-2 ${color}`} />
-      <span className={`absolute -right-3 -top-3 z-10 block h-7 w-7 border-r-2 border-t-2 ${color}`} />
-      <span className={`absolute -bottom-3 -left-3 z-10 block h-7 w-7 border-b-2 border-l-2 ${color}`} />
-      <span className={`absolute -bottom-3 -right-3 z-10 block h-7 w-7 border-b-2 border-r-2 ${color}`} />
-    </>
-  );
-}
+const MARQUEE_TEXT = "Product Designer  ·  New Delhi  ·  Figma  ·  UX Research  ·  B2B SaaS  ·  Healthcare  ·  iOS Design  ·  3+ Years  ·  ";
 
 export default function AboutPage() {
-  const heroImgRef = useRef<HTMLDivElement>(null);
-  const workImgRef = useRef<HTMLDivElement>(null);
+  const [entered, setEntered] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      requestAnimationFrame(() => {
-        if (heroImgRef.current) {
-          heroImgRef.current.style.transform = `translateY(${window.scrollY * 0.13}px)`;
-        }
-        if (workImgRef.current) {
-          const section = workImgRef.current.closest("section") as HTMLElement | null;
-          if (section) {
-            const offset = (window.innerHeight - section.getBoundingClientRect().top) * 0.14;
-            workImgRef.current.style.transform = `translateY(${-Math.max(0, offset)}px)`;
-          }
-        }
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const t = setTimeout(() => setEntered(true), 80);
+    return () => clearTimeout(t);
   }, []);
-
-  const statsRef = useRef<HTMLDivElement>(null);
-  const [statsActive, setStatsActive] = useState(false);
-  useEffect(() => {
-    const el = statsRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setStatsActive(true); },
-      { threshold: 0.4 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  const count50 = useCounter(50, statsActive, 2000);
-  const count3 = useCounter(3, statsActive, 1400);
 
   return (
-    <main className="overflow-x-hidden bg-bg text-ink">
-      <style>{`.no-sb::-webkit-scrollbar{display:none}`}</style>
+    <main style={{ background: "#fff", color: "#111", overflowX: "hidden", minHeight: "100vh" }}>
+      <style>{`
+        @keyframes abt-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .abt-marq-track { display: flex; animation: abt-marq 26s linear infinite; white-space: nowrap; will-change: transform; }
+        .abt-approach-row { display: grid; grid-template-columns: 56px 1fr 1fr; gap: 2rem; padding: 2.5rem 0; border-top: 1px solid rgba(0,0,0,0.08); align-items: start; }
+        .abt-outside-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+        .abt-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+        .abt-bio-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; max-width: 860px; }
+        .abt-cta-btns { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .abt-nav-back { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: #111; text-decoration: none; padding: 8px 16px; background: rgba(255,255,255,0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(0,0,0,0.08); border-radius: 6px; transition: background 0.2s ease; }
+        .abt-nav-back:hover { background: rgba(245,245,245,0.98); }
+        .abt-cta-btn { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.18); padding: 14px 28px; border-radius: 4px; transition: background 0.25s ease, border-color 0.25s ease; cursor: pointer; display: inline-block; }
+        .abt-cta-btn-primary { color: #fff; }
+        .abt-cta-btn-primary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.36); }
+        .abt-cta-btn-secondary { color: rgba(255,255,255,0.45); border-color: rgba(255,255,255,0.08); }
+        .abt-cta-btn-secondary:hover { background: rgba(255,255,255,0.05); }
+        @media (max-width: 900px) {
+          .abt-approach-row { grid-template-columns: 48px 1fr !important; }
+          .abt-approach-body { grid-column: 1 / -1; padding-left: 48px; }
+          .abt-outside-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+          .abt-stats-grid { grid-template-columns: 1fr 1fr !important; }
+          .abt-bio-cols { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .abt-hero-name { font-size: clamp(3.5rem, 18vw, 6rem) !important; }
+          .abt-info-row { flex-direction: column !important; gap: 2rem !important; }
+          .abt-section-pad { padding-left: clamp(20px, 5vw, 48px) !important; padding-right: clamp(20px, 5vw, 48px) !important; }
+        }
+      `}</style>
 
-      {/* §1 HERO */}
-      <section className="relative flex min-h-screen flex-col">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(180,140,130,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(180,140,130,0.07) 1px,transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div className="relative z-10 flex flex-1 flex-col px-6 pb-10 pt-24 md:px-12 lg:px-16">
-          <div className="mb-10 flex items-center justify-between">
-            <span className="font-['Syne'] text-[0.58rem] uppercase tracking-[0.25em] text-ink4">
-              Creative Story · 2K25
+      {/* Curtain reveal */}
+      <div style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        background: "#111",
+        transformOrigin: "top center",
+        transform: entered ? "scaleY(0)" : "scaleY(1)",
+        transition: "transform 1.1s cubic-bezier(0.76, 0, 0.24, 1)",
+        pointerEvents: "none",
+      }} />
+
+      {/* Top nav */}
+      <nav style={{
+        position: "fixed",
+        top: 0, left: 0, right: 0,
+        zIndex: 200,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "clamp(16px, 3vw, 28px) clamp(20px, 5vw, 56px)",
+        pointerEvents: "none",
+      }}>
+        <div style={{ pointerEvents: "all", opacity: entered ? 1 : 0, transition: "opacity 0.7s ease 0.9s" }}>
+          <Link href="/" className="abt-nav-back">← Home</Link>
+        </div>
+        <span style={{
+          fontFamily: "'DM Mono', monospace",
+          fontSize: "0.6rem",
+          letterSpacing: "0.22em",
+          textTransform: "uppercase",
+          color: "#aaa",
+          opacity: entered ? 1 : 0,
+          transition: "opacity 0.7s ease 1.1s",
+          pointerEvents: "none",
+        }}>
+          About · 2025
+        </span>
+      </nav>
+
+      {/* ─── HERO ─── */}
+      <section
+        className="abt-section-pad"
+        style={{
+          minHeight: "100svh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          paddingTop: "clamp(80px, 14vh, 160px)",
+          paddingBottom: "clamp(60px, 10vh, 110px)",
+          paddingLeft: "clamp(20px, 5vw, 72px)",
+          paddingRight: "clamp(20px, 5vw, 72px)",
+          position: "relative",
+        }}
+      >
+        {/* Label */}
+        <div style={{
+          marginBottom: "2.5rem",
+          opacity: entered ? 1 : 0,
+          transition: "opacity 0.6s ease 1.3s",
+        }}>
+          <span style={{
+            fontFamily: "'DM Mono', monospace",
+            fontSize: "0.6rem",
+            letterSpacing: "0.26em",
+            textTransform: "uppercase",
+            color: "#bbb",
+          }}>
+            The person behind the pixels
+          </span>
+        </div>
+
+        {/* Name */}
+        <div style={{ lineHeight: 0.9, letterSpacing: "-0.03em", marginBottom: "3.5rem" }}>
+          <HeroLine delay={120} active={entered}>
+            <span className="abt-hero-name" style={{
+              fontFamily: "'DM Serif Display', Georgia, serif",
+              fontSize: "clamp(4.5rem, 14vw, 13rem)",
+              fontWeight: 400,
+              color: "#111",
+              display: "block",
+            }}>
+              Nikunj
             </span>
-            <Link href="/" className="font-['Syne'] text-[0.58rem] uppercase tracking-[0.25em] text-ink4 transition-colors hover:text-ink">
-              ← Home
-            </Link>
-          </div>
+          </HeroLine>
+          <HeroLine delay={280} active={entered}>
+            <span className="abt-hero-name" style={{
+              fontFamily: "'DM Serif Display', Georgia, serif",
+              fontSize: "clamp(4.5rem, 14vw, 13rem)",
+              fontWeight: 400,
+              fontStyle: "italic",
+              color: "#111",
+              display: "block",
+            }}>
+              Tyagi.
+            </span>
+          </HeroLine>
+        </div>
 
-          <div className="grid flex-1 grid-cols-12 gap-6">
-            <div className="col-span-12 flex flex-col justify-between lg:col-span-5">
+        {/* Info row */}
+        <div
+          className="abt-info-row"
+          style={{
+            display: "flex",
+            gap: "4rem",
+            flexWrap: "wrap",
+            opacity: entered ? 1 : 0,
+            transform: entered ? "none" : "translateY(18px)",
+            transition: "opacity 0.9s ease 0.75s, transform 0.9s ease 0.75s",
+          }}
+        >
+          {[
+            { label: "Role", value: "Product Designer" },
+            { label: "Based", value: "New Delhi, India" },
+            { label: "Focus", value: "B2B SaaS · iOS · Healthcare" },
+            { label: "Status", value: "Open to opportunities" },
+          ].map(({ label, value }) => (
+            <div key={label}>
+              <p style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: "0.55rem",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "#bbb",
+                marginBottom: "0.35rem",
+                margin: "0 0 0.35rem",
+              }}>
+                {label}
+              </p>
+              <p style={{
+                fontFamily: "var(--font-instrument), 'Instrument Sans', sans-serif",
+                fontSize: "0.9rem",
+                color: "#333",
+                letterSpacing: "0.01em",
+                margin: 0,
+              }}>
+                {value}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Scroll cue */}
+        <div style={{
+          position: "absolute",
+          bottom: "clamp(32px, 6vw, 64px)",
+          right: "clamp(20px, 5vw, 72px)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "10px",
+          opacity: entered ? 1 : 0,
+          transition: "opacity 0.8s ease 1.6s",
+        }}>
+          <span style={{
+            fontFamily: "'DM Mono', monospace",
+            fontSize: "0.5rem",
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "#ccc",
+            writingMode: "vertical-rl",
+          }}>
+            Scroll
+          </span>
+          <div style={{ width: "1px", height: "52px", background: "linear-gradient(to bottom, #ccc, transparent)" }} />
+        </div>
+      </section>
+
+      {/* ─── MARQUEE ─── */}
+      <div style={{
+        borderTop: "1px solid rgba(0,0,0,0.06)",
+        borderBottom: "1px solid rgba(0,0,0,0.06)",
+        padding: "16px 0",
+        overflow: "hidden",
+        background: "#fff",
+      }}>
+        <div className="abt-marq-track">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span key={i} style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: "0.68rem",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "#999",
+            }}>
+              {MARQUEE_TEXT}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── STATEMENT ─── */}
+      <section
+        className="abt-section-pad"
+        style={{
+          padding: "clamp(6rem, 12vh, 12rem) clamp(20px, 5vw, 72px)",
+          background: "#fff",
+        }}
+      >
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <Appear>
+            <p style={{
+              fontFamily: "'DM Serif Display', Georgia, serif",
+              fontSize: "clamp(1.9rem, 4.5vw, 4rem)",
+              fontStyle: "italic",
+              fontWeight: 400,
+              lineHeight: 1.22,
+              color: "#111",
+              maxWidth: "840px",
+              marginBottom: "5rem",
+              margin: "0 0 5rem",
+            }}>
+              "I design the way I explore — noticing what others walk past."
+            </p>
+          </Appear>
+          <div className="abt-bio-cols">
+            <Appear delay={80}>
+              <p style={{
+                fontFamily: "var(--font-instrument), 'Instrument Sans', sans-serif",
+                fontSize: "1.05rem",
+                lineHeight: 1.88,
+                color: "#444",
+                margin: 0,
+              }}>
+                I'm Nikunj — a product designer who turns complex workflows into calm, usable experiences. I listen closely, sketch quickly, and care about the tiny moments where a product starts feeling human.
+              </p>
+            </Appear>
+            <Appear delay={160}>
+              <p style={{
+                fontFamily: "var(--font-instrument), 'Instrument Sans', sans-serif",
+                fontSize: "1.05rem",
+                lineHeight: 1.88,
+                color: "#444",
+                margin: 0,
+              }}>
+                The same attention I bring to noticing flowers no one else sees — that's what I bring to every pixel, every flow, every interaction detail. Design is never decoration. It's a conversation.
+              </p>
+            </Appear>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── APPROACH ─── */}
+      <section
+        className="abt-section-pad"
+        style={{
+          padding: "clamp(5rem, 10vh, 10rem) clamp(20px, 5vw, 72px)",
+          background: "#FAFAFA",
+        }}
+      >
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <Appear>
+            <p style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: "0.6rem",
+              letterSpacing: "0.26em",
+              textTransform: "uppercase",
+              color: "#bbb",
+              marginBottom: "4rem",
+              margin: "0 0 4rem",
+            }}>
+              02 / Approach
+            </p>
+          </Appear>
+          <div>
+            {[
+              { num: "01", title: "Start with why", body: "I map user problems before touching Figma. Research isn't a phase — it's the foundation everything else is built on." },
+              { num: "02", title: "Calm over clever", body: "Good design doesn't demand attention. It quietly solves. I resist decorative complexity at every turn." },
+              { num: "03", title: "Details are the design", body: "The 4px spacing. The microcopy. The empty state. These aren't polish — they're the experience itself." },
+              { num: "04", title: "Collaborate, don't present", body: "The best work happens in conversations with engineers and PMs, not in polished decks with a one-way audience." },
+            ].map(({ num, title, body }, i) => (
+              <Appear key={num} delay={i * 60}>
+                <div className="abt-approach-row">
+                  <span style={{
+                    fontFamily: "'DM Mono', monospace",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.1em",
+                    color: "#ddd",
+                    paddingTop: "4px",
+                    display: "block",
+                  }}>
+                    {num}
+                  </span>
+                  <h3 style={{
+                    fontFamily: "'DM Serif Display', Georgia, serif",
+                    fontSize: "clamp(1.3rem, 2.5vw, 2rem)",
+                    fontWeight: 400,
+                    color: "#111",
+                    lineHeight: 1.18,
+                    margin: 0,
+                  }}>
+                    {title}
+                  </h3>
+                  <p className="abt-approach-body" style={{
+                    fontFamily: "var(--font-instrument), 'Instrument Sans', sans-serif",
+                    fontSize: "0.95rem",
+                    lineHeight: 1.78,
+                    color: "#666",
+                    margin: 0,
+                  }}>
+                    {body}
+                  </p>
+                </div>
+              </Appear>
+            ))}
+            <div style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }} />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── NUMBERS ─── */}
+      <section
+        className="abt-section-pad"
+        style={{
+          padding: "clamp(5rem, 10vh, 10rem) clamp(20px, 5vw, 72px)",
+          background: "#fff",
+        }}
+      >
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <Appear>
+            <p style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: "0.6rem",
+              letterSpacing: "0.26em",
+              textTransform: "uppercase",
+              color: "#bbb",
+              margin: "0 0 4rem",
+            }}>
+              03 / In numbers
+            </p>
+          </Appear>
+          <div className="abt-stats-grid">
+            {[
+              { num: "3+", label: "years of design", note: "still learning" },
+              { num: "50+", label: "cafes explored", note: "and counting" },
+              { num: "∞", label: "km on highways", note: "no real answer" },
+              { num: "01", label: "coffee to start", note: "always, no exceptions" },
+            ].map(({ num, label, note }, i) => (
+              <Appear key={label} delay={i * 70}>
+                <div style={{ borderTop: "2px solid #111", paddingTop: "1.5rem" }}>
+                  <p style={{
+                    fontFamily: "'DM Serif Display', Georgia, serif",
+                    fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                    fontWeight: 400,
+                    lineHeight: 1,
+                    color: "#111",
+                    margin: "0 0 0.5rem",
+                  }}>
+                    {num}
+                  </p>
+                  <p style={{
+                    fontFamily: "var(--font-instrument), 'Instrument Sans', sans-serif",
+                    fontSize: "0.76rem",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "#555",
+                    margin: "0 0 0.3rem",
+                  }}>
+                    {label}
+                  </p>
+                  <p style={{
+                    fontFamily: "var(--font-caveat), 'Caveat', cursive",
+                    fontSize: "0.95rem",
+                    color: "#bbb",
+                    margin: 0,
+                  }}>
+                    {note}
+                  </p>
+                </div>
+              </Appear>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── OUTSIDE THE SCREEN ─── */}
+      <section
+        className="abt-section-pad"
+        style={{
+          padding: "clamp(5rem, 10vh, 10rem) clamp(20px, 5vw, 72px)",
+          background: "#FAFAFA",
+        }}
+      >
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <Appear>
+            <p style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: "0.6rem",
+              letterSpacing: "0.26em",
+              textTransform: "uppercase",
+              color: "#bbb",
+              margin: "0 0 4rem",
+            }}>
+              04 / Outside the screen
+            </p>
+          </Appear>
+          <div className="abt-outside-grid">
+            <Appear>
               <div>
-                <Reveal delay={80}>
-                  <p className="mb-3 font-['Syne'] text-[0.57rem] uppercase tracking-[0.3em] text-ink4">01 · About</p>
-                  <h1
-                    className="leading-[0.92] tracking-[-0.025em] text-ink"
-                    style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(4rem, 10vw, 8rem)" }}
-                  >
-                    Nikunj<br /><em>Tyagi.</em>
-                  </h1>
-                </Reveal>
-                <Reveal delay={220}>
-                  <p className="mt-5 font-['Syne'] text-[0.6rem] uppercase tracking-[0.2em] text-ink3">
-                    Product Designer · New Delhi, India
-                  </p>
-                </Reveal>
+                <h3 style={{
+                  fontFamily: "'DM Serif Display', Georgia, serif",
+                  fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+                  fontWeight: 400,
+                  fontStyle: "italic",
+                  color: "#111",
+                  lineHeight: 1.18,
+                  margin: "0 0 1.5rem",
+                }}>
+                  Long roads &amp;<br />yellow flowers.
+                </h3>
+                <p style={{
+                  fontFamily: "var(--font-instrument), 'Instrument Sans', sans-serif",
+                  fontSize: "0.95rem",
+                  lineHeight: 1.85,
+                  color: "#555",
+                  margin: 0,
+                }}>
+                  I stop for things most people walk past. Yellow flowers on a highway. Typography on a cafe menu. The light at 5pm. That same curiosity powers every design decision I make.
+                </p>
               </div>
-              <div className="mt-auto pt-10">
-                <Reveal delay={380}>
-                  <blockquote className="text-[1.1rem] italic leading-[1.75] text-ink2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    "I design the way I explore —<br />noticing what others walk past."
-                  </blockquote>
-                </Reveal>
-                <Reveal delay={480} className="mt-8">
-                  <div className="flex items-center gap-2">
-                    <div className="h-5 w-5 bg-ink" />
-                    <div className="h-4 w-4 bg-[#6B6B3A]" />
-                    <div className="h-4 w-4 bg-[#8B8B4A]" />
-                    <div className="h-3 w-3 bg-[#A8A870]" />
-                    <span className="ml-2 font-['Syne'] text-[0.56rem] uppercase tracking-[0.18em] text-ink4">.Nature / Cafes / Roads</span>
-                  </div>
-                </Reveal>
+            </Appear>
+            <Appear delay={100}>
+              <div>
+                <h3 style={{
+                  fontFamily: "'DM Serif Display', Georgia, serif",
+                  fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+                  fontWeight: 400,
+                  fontStyle: "italic",
+                  color: "#111",
+                  lineHeight: 1.18,
+                  margin: "0 0 1.5rem",
+                }}>
+                  Cafes are my<br />second office.
+                </h3>
+                <p style={{
+                  fontFamily: "var(--font-instrument), 'Instrument Sans', sans-serif",
+                  fontSize: "0.95rem",
+                  lineHeight: 1.85,
+                  color: "#555",
+                  margin: 0,
+                }}>
+                  Good espresso, ambient noise, three focused hours. I've explored 50+ cafes across India and have strong opinions about which ones are for deep thinking versus client meetings.
+                </p>
               </div>
-            </div>
-
-            <div className="col-span-12 lg:col-span-7">
-              <Reveal delay={160} className="h-full">
-                <div className="relative h-[55vh] overflow-hidden lg:h-[78vh]">
-                  <Brackets />
-                  <div ref={heroImgRef} className="absolute" style={{ inset: "-12% 0 0 0", height: "125%", willChange: "transform" }}>
-                    <Photo src="/about/portrait.jpg" alt="Nikunj Tyagi" className="h-full w-full" sizes="(max-width: 1024px) 100vw, 58vw" />
-                  </div>
-                  <div className="absolute bottom-4 left-4 z-20 bg-bg/90 px-2 py-1 backdrop-blur-sm">
-                    <p className="font-['Syne'] text-[0.56rem] uppercase tracking-[0.15em] text-ink3">Nikunj · Product Designer</p>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-
-            <div className="col-span-12 grid grid-cols-2 gap-3 border-t border-[rgba(180,140,130,0.15)] pt-5 md:grid-cols-4">
-              {["Nature's Atmosphere", "Cafes & Coffee", "Long Highways", "Flowers & Quiet"].map((tag, i) => (
-                <Reveal key={tag} delay={620 + i * 60}>
-                  <span className="font-['Syne'] text-[0.56rem] uppercase tracking-[0.16em] text-ink4">{tag}</span>
-                </Reveal>
-              ))}
-            </div>
+            </Appear>
           </div>
         </div>
       </section>
 
-      {/* §2 STATEMENT */}
-      <section className="px-6 py-24 md:px-12 md:py-36 lg:px-16">
-        <div className="mx-auto max-w-5xl">
-          <Reveal>
-            <p className="mb-5 font-['Syne'] text-[0.58rem] uppercase tracking-[0.26em] text-ink4">14 · 08 → where my feet stand.</p>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="leading-[1.02] tracking-[-0.025em] text-ink" style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(2.6rem, 7vw, 5.5rem)" }}>
-              the silence<br /><em>that heals.</em>
+      {/* ─── SECOND MARQUEE (reversed) ─── */}
+      <div style={{
+        borderTop: "1px solid rgba(0,0,0,0.05)",
+        padding: "14px 0",
+        overflow: "hidden",
+        background: "#fff",
+      }}>
+        <style>{`@keyframes abt-marq-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+        .abt-marq-rev { display: flex; animation: abt-marq-rev 28s linear infinite; white-space: nowrap; }`}</style>
+        <div className="abt-marq-rev">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span key={i} style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: "0.65rem",
+              letterSpacing: "0.13em",
+              textTransform: "uppercase",
+              color: "#ccc",
+            }}>
+              Nature's Atmosphere&nbsp;&nbsp;·&nbsp;&nbsp;Long Highways&nbsp;&nbsp;·&nbsp;&nbsp;Flowers &amp; Quiet&nbsp;&nbsp;·&nbsp;&nbsp;Cafes &amp; Coffee&nbsp;&nbsp;·&nbsp;&nbsp;Samsung A10s&nbsp;&nbsp;·&nbsp;&nbsp;New Delhi&nbsp;&nbsp;·&nbsp;&nbsp;
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── CTA ─── */}
+      <section
+        className="abt-section-pad"
+        style={{
+          padding: "clamp(6rem, 12vh, 13rem) clamp(20px, 5vw, 72px)",
+          background: "#111",
+          color: "#fff",
+        }}
+      >
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <Appear>
+            <p style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: "0.6rem",
+              letterSpacing: "0.26em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.28)",
+              margin: "0 0 3rem",
+            }}>
+              Let's build something
+            </p>
+          </Appear>
+          <Appear delay={100}>
+            <h2 style={{
+              fontFamily: "'DM Serif Display', Georgia, serif",
+              fontSize: "clamp(3rem, 8vw, 7.5rem)",
+              fontWeight: 400,
+              fontStyle: "italic",
+              lineHeight: 1.02,
+              letterSpacing: "-0.02em",
+              color: "#fff",
+              margin: "0 0 4rem",
+            }}>
+              Worth<br />stopping for.
             </h2>
-          </Reveal>
-          <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
-            <Reveal delay={220}>
-              <p className="text-[1.15rem] italic leading-[1.9] text-ink2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                In the midst of the world's noise, beneath the shade of a tree, there lies a space without sound. The wind blows gently, leaves fall unhurriedly, and slowly my breath finds its calm.
-              </p>
-            </Reveal>
-            <Reveal delay={340} from="right">
-              <p className="text-[0.84rem] leading-[1.95] text-ink3" style={{ fontFamily: "var(--font-instrument)" }}>
-                I'm the kind of person who stops for flowers no one else notices. Who photographs the typography on a cafe menu before ordering. Who drives long highways not to get somewhere — but to think.
-                <br /><br />
-                That same attention is what I bring to every pixel, every flow, every decision. I'm a product designer working at the intersection of research and craft — building experiences for B2B SaaS, healthcare, and iOS.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* §3 ROAD */}
-      <section className="px-6 pb-24 md:px-12 lg:px-16">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-12 items-center gap-8">
-            <div className="col-span-12 lg:col-span-4">
-              <Reveal>
-                <div className="border-l-2 border-ink pl-5">
-                  <span className="block leading-none tracking-[-0.04em] text-ink opacity-10" style={{ fontFamily: "'DM Serif Display', serif", fontSize: "5rem" }}>01</span>
-                  <p className="mt-1 font-['Syne'] text-[0.56rem] uppercase tracking-[0.24em] text-ink4">The wanderer</p>
-                </div>
-              </Reveal>
-              <Reveal delay={180} className="mt-8">
-                <p className="text-[0.84rem] leading-[1.95] text-ink3" style={{ fontFamily: "var(--font-instrument)" }}>
-                  Long highways are where I do my best thinking. Windows down, something instrumental playing, golden hour light across the road. I stop for yellow flowers. I photograph what most people walk past. That attention ends up in every interface I build.
-                </p>
-              </Reveal>
-              <Reveal delay={320} className="mt-7">
-                <p className="font-[family-name:var(--font-caveat)] text-[1.18rem] text-ink3">"slow down enough to see it properly."</p>
-              </Reveal>
+          </Appear>
+          <Appear delay={200}>
+            <div className="abt-cta-btns">
+              <a
+                href="mailto:nikunj.tyagi.design@gmail.com"
+                className="abt-cta-btn abt-cta-btn-primary"
+              >
+                Say Hello ↗
+              </a>
+              <Link
+                href="/"
+                className="abt-cta-btn abt-cta-btn-secondary"
+              >
+                View Work ↗
+              </Link>
             </div>
-            <div className="col-span-12 lg:col-span-8">
-              <Reveal delay={140} from="right">
-                <div className="relative">
-                  <Brackets />
-                  <Photo src="/about/road.jpg" alt="on the road, chasing yellow flowers" className="h-[420px] w-full md:h-[520px]" sizes="(max-width: 1024px) 100vw, 66vw" />
-                  <div className="absolute bottom-4 right-4 z-20 bg-bg/90 px-3 py-1 backdrop-blur-sm">
-                    <p className="font-['Syne'] text-[0.56rem] uppercase tracking-[0.15em] text-ink3">somewhere on a highway ↗</p>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* §4 CAFE POLAROIDS */}
-      <section className="bg-bg2 px-6 py-24 md:px-12 lg:px-16">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-16 grid grid-cols-12 gap-6">
-            <div className="col-span-12 md:col-span-5">
-              <Reveal>
-                <p className="mb-3 font-['Syne'] text-[0.58rem] uppercase tracking-[0.26em] text-ink4">02 · My other office</p>
-                <h2 className="leading-[1.05] tracking-[-0.025em] text-ink" style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(2.2rem, 6vw, 4rem)" }}>
-                  you'll find me<br /><em>in a cafe.</em>
-                </h2>
-              </Reveal>
-            </div>
-            <div className="col-span-12 flex items-end md:col-span-6 md:col-start-7">
-              <Reveal delay={200} from="right">
-                <p className="text-[0.84rem] leading-[1.95] text-ink3" style={{ fontFamily: "var(--font-instrument)" }}>
-                  I treat cafes like second offices. I've collected enough to have strong opinions about which ones are for deep thinking and which are for meetings. Good espresso, ambient noise, three focused hours — no co-working space replicates it. You'll find me in a corner booth, laptop open, a latte cooling beside a Figma file.
-                </p>
-              </Reveal>
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center gap-8 py-8 md:flex-nowrap md:gap-2">
-            {[
-              { src: "/about/cafe-dark.jpg", alt: "industrial cafe", caption: "good espresso, better ideas", rotation: -7, delay: 0 },
-              { src: "/about/cafe-art.jpg", alt: "Shrng-e-Mohabbat cafe", caption: "this place had me speechless", rotation: 4, delay: 100 },
-              { src: "/about/cafe-green.jpg", alt: "green cafe with flowers", caption: "details I couldn't stop looking at", rotation: -3, delay: 200 },
-              { src: "/about/portrait.jpg", alt: "me with my latte", caption: "yes, that's my latte. jan '24", rotation: 8, delay: 300 },
-            ].map((p, i) => (
-              <div key={p.src} style={{ marginTop: i % 2 === 0 ? 0 : 48 }}>
-                <Polaroid {...p} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* §5 FULL-WIDTH WORK PHOTO */}
-      <section className="relative h-[70vh] overflow-hidden">
-        <div ref={workImgRef} className="absolute" style={{ inset: "-20% 0 0 0", willChange: "transform" }}>
-          <Photo src="/about/work.jpg" alt="working in a bookstore cafe" className="h-full w-full" sizes="100vw" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/65 via-ink/15 to-transparent" />
-        <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
-          <Reveal>
-            <h3 className="italic leading-[1.05] text-white" style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(2rem, 5vw, 4.2rem)" }}>
-              somewhere between<br />a latte and a figma file.
-            </h3>
-          </Reveal>
-          <Reveal delay={180}>
-            <p className="mt-4 font-['Syne'] text-[0.58rem] uppercase tracking-[0.2em] text-white/50">Camera · Samsung A10s · Archive by Nikunj</p>
-          </Reveal>
-        </div>
-        <div className="absolute left-5 top-5 h-6 w-6 border-l-2 border-t-2 border-white/30" />
-        <div className="absolute right-5 top-5 h-6 w-6 border-r-2 border-t-2 border-white/30" />
-      </section>
-
-      {/* §6 ME + COFFEE */}
-      <section className="px-6 py-24 md:px-12 md:py-32 lg:px-16">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-12 items-center gap-8 md:gap-12">
-            <div className="order-2 col-span-12 lg:order-1 lg:col-span-4">
-              <Reveal>
-                <p className="mb-4 font-['Syne'] text-[0.58rem] uppercase tracking-[0.26em] text-ink4">03 · The ritual</p>
-                <h2 className="leading-[1.08] tracking-[-0.025em] text-ink" style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(2rem, 5vw, 3rem)" }}>
-                  coffee is my<br /><em>opening act.</em>
-                </h2>
-              </Reveal>
-              <Reveal delay={180} className="mt-7">
-                <p className="text-[0.84rem] leading-[1.95] text-ink3" style={{ fontFamily: "var(--font-instrument)" }}>
-                  First cup = first frame. I don't start designing until I have coffee. It's not a habit — it's a ritual. The same way a blank canvas needs the right light. Every good design session I remember has had a latte somewhere in it.
-                </p>
-              </Reveal>
-              <Reveal delay={300} className="mt-7">
-                <p className="font-[family-name:var(--font-caveat)] text-[1.2rem] text-ink2">"17:10, Jan 31 — best kind of afternoon."</p>
-              </Reveal>
-            </div>
-
-            <div className="order-1 col-span-12 lg:order-2 lg:col-span-5">
-              <Reveal delay={100}>
-                <div className="relative mx-auto max-w-sm">
-                  <div className="absolute -left-3 bottom-0 top-0 flex w-[5px] flex-col justify-around opacity-15">
-                    {Array.from({ length: 14 }).map((_, i) => (
-                      <div key={i} className="h-2 w-full bg-ink" />
-                    ))}
-                  </div>
-                  <Photo src="/about/portrait.jpg" alt="Nikunj with coffee" className="h-[480px] w-full" sizes="(max-width: 1024px) 80vw, 40vw" />
-                  <div className="absolute bottom-3 left-3 bg-bg/92 px-2 py-1 backdrop-blur-sm">
-                    <p className="font-[family-name:var(--font-caveat)] text-sm text-ink3">Jan 31, 2024 · 17:10</p>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-
-            <div className="order-3 col-span-12 lg:col-span-3">
-              <Reveal delay={280} from="right">
-                <div className="space-y-7">
-                  {[
-                    { label: "currently sipping", value: "espresso" },
-                    { label: "working on", value: "B2B SaaS · Healthcare · iOS" },
-                    { label: "based in", value: "New Delhi, India" },
-                    { label: "open to", value: "Full-time roles" },
-                  ].map(({ label, value }) => (
-                    <div key={label} className="border-t border-[rgba(180,140,130,0.2)] pt-4">
-                      <p className="mb-1 font-['Syne'] text-[0.55rem] uppercase tracking-[0.24em] text-ink4">{label}</p>
-                      <p className="text-[0.84rem] text-ink2" style={{ fontFamily: "var(--font-instrument)" }}>{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* §7 EXPLORE STRIP */}
-      <section className="bg-bg2 px-6 py-20 md:px-12 lg:px-16">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-10 grid grid-cols-12">
-            <div className="col-span-12 md:col-span-7">
-              <Reveal>
-                <p className="mb-3 font-['Syne'] text-[0.58rem] uppercase tracking-[0.26em] text-ink4">04 · The explorer</p>
-                <h2 className="leading-[1.05] tracking-[-0.025em] text-ink" style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
-                  always looking for<br /><em>the next frame.</em>
-                </h2>
-              </Reveal>
-            </div>
-          </div>
-          <div className="no-sb flex gap-3 overflow-x-auto pb-4" style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}>
-            {[
-              { src: "/about/road.jpg", alt: "highway with yellow flowers", label: "highway moments" },
-              { src: "/about/cafe-green.jpg", alt: "cafe with flower vase", label: "small beautiful things" },
-              { src: "/about/cafe-art.jpg", alt: "artistic cafe", label: "spaces that inspire" },
-              { src: "/about/cafe-dark.jpg", alt: "moody dark cafe", label: "late night thinking" },
-              { src: "/about/work.jpg", alt: "working in bookstore", label: "where ideas happen" },
-            ].map(({ src, alt, label }) => (
-              <div key={src} className="flex-shrink-0" style={{ width: "clamp(210px, 28vw, 290px)" }}>
-                <Photo src={src} alt={alt} className="h-[340px] w-full" sizes="300px" />
-                <p className="mt-2 font-['Syne'] text-[0.58rem] uppercase tracking-[0.16em] text-ink4">{label}</p>
-              </div>
-            ))}
-          </div>
-          <Reveal delay={200} className="mt-3">
-            <p className="font-['Syne'] text-[0.56rem] uppercase tracking-[0.22em] text-ink4">← drag to explore →</p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* §8 STATS */}
-      <section className="px-6 py-24 md:px-12 lg:px-16">
-        <div ref={statsRef} className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
-            {[
-              { number: `${count50}+`, label: "cafes explored", note: "and counting" },
-              { number: `${count3}+`, label: "years designing", note: "still learning" },
-              { number: "∞", label: "km driven", note: "on long highways" },
-              { number: "01", label: "coffee to start", note: "always, no exceptions" },
-            ].map(({ number, label, note }, i) => (
-              <Reveal key={label} delay={i * 80}>
-                <div className="border-t-2 border-ink pt-5">
-                  <p className="leading-none tracking-[-0.04em] text-ink" style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(2.5rem, 6vw, 4.2rem)" }}>
-                    {number}
-                  </p>
-                  <p className="mt-2 font-['Syne'] text-[0.63rem] uppercase tracking-[0.16em] text-ink2">{label}</p>
-                  <p className="mt-1 font-[family-name:var(--font-caveat)] text-sm text-ink4">{note}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* §9 CLOSING CTA */}
-      <section className="bg-ink px-6 py-32 text-bg md:px-12 lg:px-16">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-12 items-end gap-10">
-            <div className="col-span-12 md:col-span-8">
-              <Reveal>
-                <p className="mb-6 font-['Syne'] text-[0.58rem] uppercase tracking-[0.26em] text-bg/35">
-                  that silence feels like an embrace —<br />healing the wounds unseen.
-                </p>
-              </Reveal>
-              <Reveal delay={140}>
-                <h2 className="leading-[1.0] tracking-[-0.025em] text-bg" style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}>
-                  Let's make something<br /><em>worth stopping for.</em>
-                </h2>
-              </Reveal>
-            </div>
-            <div className="col-span-12 flex flex-col items-start gap-4 md:col-span-4 md:items-end">
-              <Reveal delay={280} from="right">
-                <Link href="/projects" className="border border-bg/25 px-7 py-3 font-['Syne'] text-[0.63rem] uppercase tracking-[0.15em] text-bg transition hover:bg-bg/10">
-                  View Work ↗
-                </Link>
-              </Reveal>
-              <Reveal delay={380} from="right">
-                <a href="mailto:nikunj.tyagi.design@gmail.com" className="border border-bg/25 px-7 py-3 font-['Syne'] text-[0.63rem] uppercase tracking-[0.15em] text-bg transition hover:bg-bg/10">
-                  Say Hello ↗
-                </a>
-              </Reveal>
-            </div>
-          </div>
-          <div className="mt-20 flex items-center justify-between border-t border-bg/10 pt-8">
-            <p className="font-['Syne'] text-[0.55rem] uppercase tracking-[0.16em] text-bg/25">archive by nikunj</p>
-            <p className="font-['Syne'] text-[0.55rem] uppercase tracking-[0.16em] text-bg/25">camera · samsung a10s</p>
+          </Appear>
+          <div style={{
+            marginTop: "6rem",
+            paddingTop: "2rem",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "1rem",
+          }}>
+            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)" }}>archive by nikunj</span>
+            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)" }}>camera · samsung a10s</span>
           </div>
         </div>
       </section>
