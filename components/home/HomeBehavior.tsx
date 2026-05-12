@@ -136,17 +136,15 @@ function positionNavIndicator(activeLink){
   navIndicator.style.transform='translateX('+(linkRect.left-navRect.left)+'px)';
 }
 function updateNav(){
-  const about=document.getElementById('about');
-  const current=about&&about.getBoundingClientRect().top<=120?'about':'work';
-  let activeLink=null;
-  navLinks.forEach(a=>{const isActive=a.getAttribute('href').replace('#','')===current;a.classList.toggle('active',isActive);if(isActive)activeLink=a;});
+  let activeLink=navLinks[0]||null;
+  navLinks.forEach(a=>{const isActive=a.getAttribute('href')==='#work';a.classList.toggle('active',isActive);if(isActive)activeLink=a;});
   positionNavIndicator(activeLink);
 }
 
 // ── SCROLL REVEAL ──
 const reveals=document.querySelectorAll('.reveal');
 const tlItems=document.querySelectorAll('.timeline-item');
-const fadeSections=document.querySelectorAll('.hero,.work,.process-section,.journey,.about,.contact');
+const fadeSections=document.querySelectorAll('.hero,.work,.journey,.contact');
 
 const sectionFadeObserver=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
@@ -208,10 +206,6 @@ const parallaxMap = [
   { sel: '.work-title-script',  speed: -0.06 },
   { sel: '.bento-work-card:nth-child(odd)',  speed: -0.030 },
   { sel: '.bento-work-card:nth-child(even)', speed: -0.018 },
-
-  // About
-  { sel: '.about-title',      speed: -0.03 },
-  { sel: '.about-book-stage', speed: -0.02 },
 
   // Process
   { sel: '.process-main-title',  speed: -0.05 },
@@ -342,130 +336,6 @@ if(heroBlob) {
   if(stage)annoObs.observe(stage);
 })();
 
-// ── ABOUT BOOK PAGES ──
-(function(){
-  var spreads=Array.from(document.querySelectorAll('.about-page-spread'));
-  var dots=Array.from(document.querySelectorAll('.about-page-dot'));
-  var stage=document.querySelector('.about-book-stage');
-  var nextGrab=document.querySelector('.about-page-grab-next');
-  var prevGrab=document.querySelector('.about-page-grab-prev');
-  if(!spreads.length||!dots.length)return;
-  var current=0;
-  var flipTimer=null;
-  var swapTimer=null;
-  var isTurning=false;
-  var dragStartX=0;
-
-  function updateGrabs(){
-    if(prevGrab)prevGrab.classList.toggle('is-disabled',current===0);
-    if(nextGrab)nextGrab.classList.toggle('is-disabled',current===spreads.length-1);
-  }
-
-  function showPage(idx){
-    if(idx<0||idx>=spreads.length||isTurning)return;
-    if(idx===current)return;
-    var previous=current;
-    var next=idx;
-    isTurning=true;
-    if(stage){
-      window.clearTimeout(flipTimer);
-      window.clearTimeout(swapTimer);
-      stage.classList.remove('turning-forward','turning-back');
-      void stage.offsetWidth;
-      stage.classList.add(next>previous?'turning-forward':'turning-back');
-      swapTimer=window.setTimeout(function(){
-        spreads.forEach(function(spread,i){spread.classList.toggle('active',i===next);});
-        dots.forEach(function(dot,i){dot.classList.toggle('active',i===next);});
-        current=next;
-        updateGrabs();
-      },1200);
-      flipTimer=window.setTimeout(function(){
-        stage.classList.remove('turning-forward','turning-back');
-        isTurning=false;
-      },2500);
-    }else{
-      spreads.forEach(function(spread,i){spread.classList.toggle('active',i===next);});
-      dots.forEach(function(dot,i){dot.classList.toggle('active',i===next);});
-      current=next;
-      updateGrabs();
-      isTurning=false;
-    }
-  }
-
-  function bindGrab(el,dir){
-    if(!el)return;
-    el.addEventListener('pointerdown',function(e){
-      dragStartX=e.clientX;
-      el.setPointerCapture&&el.setPointerCapture(e.pointerId);
-    });
-    el.addEventListener('pointerup',function(e){
-      var dx=e.clientX-dragStartX;
-      var draggedForward=dir>0&&dx<-18;
-      var draggedBack=dir<0&&dx>18;
-      if(Math.abs(dx)<18||draggedForward||draggedBack)showPage(current+dir);
-    });
-    el.addEventListener('click',function(e){
-      e.preventDefault();
-    });
-  }
-
-  dots.forEach(function(dot){
-    dot.addEventListener('click',function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      showPage(parseInt(dot.getAttribute('data-about-target')||'0',10));
-    });
-  });
-  bindGrab(nextGrab,1);
-  bindGrab(prevGrab,-1);
-  updateGrabs();
-})();
-
-// ── ABOUT BOOK OPEN SEQUENCE ──
-(function(){
-  var closedBook=document.querySelector('.about-closed-book');
-  var stage=document.querySelector('.about-book-stage');
-  var firstSpread=document.querySelector('[data-about-page="0"]');
-  var firstDot=document.querySelector('[data-about-target="0"]');
-  if(!closedBook||!stage)return;
-  var bookReady=false;
-  var opened=false;
-
-  // Phase 1: when section scrolls into view, show the closed book
-  var revealObs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting&&!bookReady){
-        bookReady=true;
-        revealObs.disconnect();
-      }
-    });
-  },{threshold:0.4});
-  revealObs.observe(closedBook);
-
-  // Phase 2: user taps the closed book to open it
-  function openBook(){
-    if(opened||!bookReady)return;
-    opened=true;
-    // fade out closed book
-    closedBook.classList.add('is-opening');
-    // after closed book fades (400ms), reveal open spread
-    window.setTimeout(function(){
-      stage.classList.remove('book-hidden');
-      window.setTimeout(function(){
-        if(firstSpread)firstSpread.classList.add('active');
-        if(firstDot)firstDot.classList.add('active');
-      },320);
-    },400);
-    // remove closed book from DOM after transition completes
-    window.setTimeout(function(){
-      closedBook.style.display='none';
-    },850);
-  }
-
-  closedBook.addEventListener('click',openBook);
-  closedBook.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')openBook();});
-  closedBook.addEventListener('touchend',function(e){e.preventDefault();openBook();});
-})();
 
 // ── ZOOM INTERLUDE ──
 (function(){
@@ -535,7 +405,7 @@ if(heroBlob) {
   });
 })();
 
-var bgSections=Array.from(document.querySelectorAll('.work,.journey,.about,.gallery-section,.testimonials-section,.process-section,.contact,.scrapbook-section'));
+var bgSections=Array.from(document.querySelectorAll('.work,.journey,.contact'));
 window.addEventListener('scroll',function(){bgSections.forEach(function(section){var rect=section.getBoundingClientRect();section.style.backgroundPositionY=(rect.top/window.innerHeight*20)+'px';});},{passive:true});
 
 initParallax();
@@ -646,73 +516,6 @@ runParallax();
   if(clr)clr.addEventListener('click',function(){ctx.clearRect(0,0,W,H);initBg();});
 })();
 
-// ── SPIRAL TUNNEL ──
-(function(){
-  var section=document.getElementById('spiralSection');
-  var stage=document.getElementById('spiralStage');
-  if(!section||!stage)return;
-
-  var cards=Array.from(stage.querySelectorAll('.spiral-card'));
-  var N=cards.length;
-  var Z_GAP=520;
-  var TOTAL_Z=N*Z_GAP;   // total depth of one full cycle
-  var RADIUS=295;
-  var Y_SCALE=0.30;
-  var ROT_Z=[-7,5,-3,9,-5,4,-8,3,-6,6];
-
-  // Place cards along a 1.5-turn helix
-  var bases=cards.map(function(_,i){
-    var angle=(i/N)*Math.PI*3; // 3π = 1.5 full turns
-    return {
-      x:Math.cos(angle)*RADIUS,
-      y:Math.sin(angle)*RADIUS*Y_SCALE,
-      z:-i*Z_GAP,
-      rotY:Math.cos(angle)*22,
-      rotZ:ROT_Z[i%ROT_Z.length]
-    };
-  });
-
-  function update(){
-    var rect=section.getBoundingClientRect();
-    var scrollH=section.offsetHeight-window.innerHeight;
-    var progress=Math.max(0,Math.min(1,-rect.top/Math.max(scrollH,1)));
-    var camZ=progress*TOTAL_Z*1.65;
-
-    var closestAbs=Infinity;
-    var closestIdx=0;
-
-    cards.forEach(function(card,i){
-      var b=bases[i];
-      var ez=b.z+camZ;
-      // Infinite loop: wrap so ez stays in (200-TOTAL_Z, 200]
-      while(ez>200) ez-=TOTAL_Z;
-      while(ez<200-TOTAL_Z) ez+=TOTAL_Z;
-
-      // Track which card is closest to camera for counter
-      if(Math.abs(ez)<closestAbs){closestAbs=Math.abs(ez);closestIdx=i;}
-
-      // Opacity: fade in from depth, fade out near camera
-      var op=0;
-      if(ez>-2700&&ez<180){
-        op=Math.min(1,(ez+2700)/520);
-        if(ez>-80) op*=Math.max(0,(180-ez)/260);
-      }
-
-      card.style.transform='translate3d('+b.x+'px,'+b.y+'px,'+ez+'px) rotateY('+b.rotY+'deg) rotateZ('+b.rotZ+'deg)';
-      card.style.opacity=op;
-    });
-
-    var counter=document.getElementById('spiralCounter');
-    if(counter){
-      var n=String(closestIdx+1).padStart(2,'0');
-      counter.textContent=n+' / '+String(N).padStart(2,'0');
-    }
-  }
-
-  window.addEventListener('scroll',update,{passive:true});
-  window.addEventListener('resize',update,{passive:true});
-  update();
-})();
 
 
 

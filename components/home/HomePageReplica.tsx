@@ -1,4 +1,3 @@
-import { AboutSection } from "./AboutSection";
 import { ContactSection } from "./ContactSection";
 import { HeroSection } from "./HeroSection";
 import { HomeBehavior } from "./HomeBehavior";
@@ -6,7 +5,6 @@ import { HomeLoader } from "./HomeLoader";
 import { HomeNav } from "./HomeNav";
 import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
-import { SpiralSection } from "./SpiralSection";
 import { WorkSection } from "./WorkSection";
 
 export function HomePageReplica() {
@@ -25,8 +23,6 @@ export function HomePageReplica() {
         <HeroSection />
         <WorkSection />
         <JourneySection />
-        <AboutSection />
-        <SpiralSection />
         <ContactSection />
       </main>
     </>
