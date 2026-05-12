@@ -4,6 +4,7 @@ const css = `
     padding: 8rem 2rem 6rem;
     overflow: hidden;
     position: relative;
+    scroll-snap-align: start;
   }
 
   .about-v2-inner {
