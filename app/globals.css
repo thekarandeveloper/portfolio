@@ -6714,6 +6714,26 @@ body.csl-page-active footer { display: none !important; }
   color: rgba(0,0,0,0.22);
   margin-top: 2px;
 }
+.pgx-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 28px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  border: 1px solid rgba(30,144,255,0.18);
+  background: rgba(30,144,255,0.05);
+  color: rgba(0,0,0,0.45);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+.pgx-linkedin:hover {
+  color: #1E90FF;
+  border-color: rgba(30,144,255,0.4);
+  background: rgba(30,144,255,0.09);
+}
 .pgx-status {
   font-size: 0.78rem;
   margin-top: 2px;
