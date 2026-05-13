@@ -189,11 +189,23 @@ function CsHeader({
   return (
     <header className="csl-header">
       <div className="csl-header-inner">
-        <Link href="/" className="csl-back">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-          Back to Portfolio
+        <Link href="/" style={{
+          display: "inline-flex", alignItems: "center", gap: 9,
+          textDecoration: "none", padding: "5px 14px 5px 5px",
+          borderRadius: 100, transition: "opacity 0.18s ease",
+        }}>
+          <span style={{
+            width: 32, height: 32, borderRadius: "50%",
+            background: "rgba(30,144,255,0.08)",
+            border: "1px solid rgba(30,144,255,0.18)",
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            fontSize: "0.62rem", fontWeight: 800, color: "#1E90FF",
+            flexShrink: 0, letterSpacing: "-0.01em",
+          }}>NT</span>
+          <span style={{
+            fontSize: "0.82rem", fontWeight: 600, color: "#374151",
+            letterSpacing: "0.01em",
+          }}>Nikunj Tyagi</span>
         </Link>
         <span className="csl-header-brand">{title}</span>
         <span className="csl-header-tag">{tag}</span>

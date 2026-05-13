@@ -346,15 +346,8 @@ function AirHero() {
 function OverviewSection() {
   return (
     <CsSection id="overview">
-      <div className="csl-reveal" style={{
-        background: "#fff", borderRadius: 20, padding: "32px 36px",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
-        borderTop: "3px solid #1E90FF", marginBottom: 40,
-      }}>
-        <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.18em", color: "rgba(0,0,0,0.3)", fontFamily: "ui-monospace, monospace", marginBottom: 16 }}>
-          The Objective
-        </p>
-        <div style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.6rem)", fontWeight: 800, color: "#111827", lineHeight: 1.2, letterSpacing: "-0.025em", marginBottom: 20, minHeight: "1.4em" }}>
+      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+        <div style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.6rem)", fontWeight: 800, color: "#111827", lineHeight: 1.2, letterSpacing: "-0.025em", marginBottom: 24, minHeight: "1.4em" }}>
           <Typed text="One platform. Every flight. Every agent." delay={200} />
         </div>
         <p className="csl-text">
@@ -363,11 +356,6 @@ function OverviewSection() {
         <p className="csl-text">
           The goal: design a <Hi>single B2B portal</Hi> that gives travel agents and back-office admins everything they need — fast search, clean data, passenger management, and a confirmation flow that actually prevents errors.
         </p>
-        <div className="csl-tags" style={{ marginTop: 20 }}>
-          {["B2B SaaS", "Travel Technology", "0 → 1 Product", "25,000+ Agents"].map((t) => (
-            <span className="csl-tag" key={t}>{t}</span>
-          ))}
-        </div>
       </div>
 
     </CsSection>
@@ -537,50 +525,22 @@ function ProblemSection() {
   return (
     <CsSection id="problem">
       <CsSectionHeader
-        num="02"
         title="Booking a flight shouldn't feel like solving a puzzle."
         sub="Yet in the existing system, that was the reality. Agents were spending 12+ minutes per booking — not because the task was complex, but because the interface made it complex."
       />
 
-      <div style={{
-        display: "grid", gridTemplateColumns: "1fr 1fr",
-        gap: 14, alignItems: "start",
-      }} className="csl-reveal">
-        {PAIN_MOMENTS.map((m, i) => (
-          <div key={m.title} style={{ marginTop: i % 2 === 1 ? 22 : 0 }}>
-            <div style={{
-              background: "#fff", borderRadius: 16, padding: "22px 22px 18px",
-              boxShadow: "0 3px 16px rgba(0,0,0,0.05)",
-              border: "1px solid rgba(0,0,0,0.06)",
-              borderLeft: "3px solid #EF4444",
-            }}>
-              <div style={{ fontSize: "0.88rem", fontWeight: 800, color: "#111827", marginBottom: 10, lineHeight: 1.3 }}>
-                {m.title}
-              </div>
-              <p style={{ fontSize: "0.75rem", color: "#4B5563", lineHeight: 1.75, fontStyle: "italic", marginBottom: 14 }}>
-                {m.scene}
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                <div style={{
-                  display: "inline-flex", alignItems: "center", gap: 6,
-                  fontSize: "0.6rem", fontWeight: 700, color: "#EF4444",
-                  background: "#FEF2F2", border: "1px solid #FECACA",
-                  borderRadius: 100, padding: "3px 10px",
-                  fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em",
-                }}>
-                  {m.tag}
-                </div>
-                <div style={{
-                  display: "inline-flex", alignItems: "center", gap: 5,
-                  fontSize: "0.58rem", fontWeight: 700, color: "#1076BC",
-                  background: "#EBF5FF", border: "1px solid rgba(16,118,188,0.25)",
-                  borderRadius: 100, padding: "3px 10px",
-                  fontFamily: "ui-monospace, monospace", letterSpacing: "0.04em",
-                }}>
-                  ✓ {m.solvedBy}
-                </div>
-              </div>
+      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+        {PAIN_MOMENTS.map((m) => (
+          <div key={m.title}>
+            <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>
+              {m.title}
             </div>
+            <p style={{ fontSize: "1.05rem", color: "#4B5563", lineHeight: 1.8, fontStyle: "italic", margin: "0 0 8px" }}>
+              {m.scene}
+            </p>
+            <span style={{
+              fontSize: "0.7rem", color: "#1076BC", fontWeight: 600,
+            }}>→ Solved by: {m.solvedBy}</span>
           </div>
         ))}
       </div>
@@ -775,7 +735,6 @@ function ApproachSection() {
   return (
     <CsSection id="approach">
       <CsSectionHeader
-        num="03"
         title="Research & Approach"
         sub="Four competitor platforms studied before a single wireframe was drawn."
       />
@@ -786,14 +745,10 @@ function ApproachSection() {
 
       {/* Research → Design bridge */}
       <div className="csl-reveal" style={{ marginBottom: 8 }}>
-        <div style={{
-          fontSize: "0.56rem", fontWeight: 700, textTransform: "uppercase",
-          letterSpacing: "0.18em", color: "rgba(0,0,0,0.28)",
-          fontFamily: "ui-monospace, monospace", marginBottom: 12,
-        }}>
+        <p style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 20 }}>
           What research told us to design
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           {[
             {
               insight: "Price and refundability must land in the same scan — not one click apart",
@@ -808,30 +763,13 @@ function ApproachSection() {
               decision: "Review Table: dense, explicit, zero blank cells before the agent submits",
             },
           ].map((r, i) => (
-            <div key={i} style={{
-              display: "flex", gap: 14, alignItems: "flex-start",
-              padding: "14px 16px",
-              background: "#FAFAFA", border: "1px solid #E5E7EB",
-              borderRadius: 10,
-            }}>
-              <div style={{
-                width: 22, height: 22, borderRadius: "50%",
-                background: "#F3F4F6", border: "1px solid #E5E7EB",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "0.6rem", fontWeight: 800, color: "#374151",
-                flexShrink: 0, marginTop: 1,
-              }}>{i + 1}</div>
-              <div>
-                <div style={{ fontSize: "0.74rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>
-                  {r.insight}
-                </div>
-                <div style={{
-                  fontSize: "0.68rem", color: "#1076BC", fontWeight: 600,
-                  display: "flex", alignItems: "center", gap: 5,
-                }}>
-                  <span style={{ color: "#9CA3AF" }}>→</span> {r.decision}
-                </div>
-              </div>
+            <div key={i}>
+              <p style={{ fontSize: "1.05rem", color: "#111827", fontWeight: 600, margin: "0 0 6px", lineHeight: 1.5 }}>
+                {r.insight}
+              </p>
+              <p style={{ fontSize: "0.9rem", color: "#1076BC", margin: 0 }}>
+                → {r.decision}
+              </p>
             </div>
           ))}
         </div>
@@ -1048,30 +986,13 @@ function FareListingBlock() {
     <div className="csl-reveal" style={{ marginBottom: 64 }}>
 
       {/* ── Header ── */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 18, marginBottom: 28 }}>
-        <div style={{
-          width: 52, height: 52, borderRadius: "50%", background: "#111827",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: "1.25rem", fontWeight: 900, color: "#fff", flexShrink: 0,
-          boxShadow: "0 4px 20px rgba(0,0,0,0.22)",
-        }}>1</div>
-        <div>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#111827", margin: "0 0 4px", lineHeight: 1.2 }}>
-            Fare Listing Card
-          </h3>
-          <p style={{ fontSize: "0.72rem", color: "#9CA3AF", margin: "0 0 8px", fontStyle: "italic" }}>
-            The card agents see most often — every booking starts here.
-          </p>
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 6 }}>
-            <span style={{
-              fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.1em",
-              textTransform: "uppercase", color: "#9CA3AF", marginTop: 2, whiteSpace: "nowrap",
-            }}>WHERE</span>
-            <span style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.5 }}>
-              Search results page. Every agent lands here. Every booking starts here.
-            </span>
-          </div>
-        </div>
+      <div style={{ marginBottom: 28 }}>
+        <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#111827", margin: "0 0 6px", lineHeight: 1.2 }}>
+          Fare Listing Card
+        </h3>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.6 }}>
+          The card agents see most often — search results page, every booking starts here.
+        </p>
       </div>
 
       {/* ── Old Design ── */}
@@ -1232,11 +1153,6 @@ function FareListingBlock() {
       {/* ── Compatibility animated showcase ── */}
       <CompatibilityShowcase />
 
-      {/* Divider */}
-      <div style={{
-        marginTop: 56, height: 1,
-        background: "linear-gradient(90deg, transparent, #E5E7EB 30%, #E5E7EB 70%, transparent)",
-      }} />
     </div>
   );
 }
@@ -1270,30 +1186,13 @@ function ItineraryCardBlock() {
     <div className="csl-reveal" style={{ marginBottom: 64 }}>
 
       {/* ── Header ── */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 18, marginBottom: 28 }}>
-        <div style={{
-          width: 52, height: 52, borderRadius: "50%", background: "#111827",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: "1.25rem", fontWeight: 900, color: "#fff", flexShrink: 0,
-          boxShadow: "0 4px 20px rgba(0,0,0,0.22)",
-        }}>2</div>
-        <div>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#111827", margin: "0 0 4px", lineHeight: 1.2 }}>
-            Itinerary Card
-          </h3>
-          <p style={{ fontSize: "0.72rem", color: "#9CA3AF", margin: "0 0 8px", fontStyle: "italic" }}>
-            One card saves everyone 5 mins per conversation.
-          </p>
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 6 }}>
-            <span style={{
-              fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.1em",
-              textTransform: "uppercase", color: "#9CA3AF", marginTop: 2, whiteSpace: "nowrap",
-            }}>WHERE</span>
-            <span style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.5 }}>
-              Booking confirmation flow. Agents share this directly with clients on a call.
-            </span>
-          </div>
-        </div>
+      <div style={{ marginBottom: 28 }}>
+        <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#111827", margin: "0 0 6px", lineHeight: 1.2 }}>
+          Itinerary Card
+        </h3>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.6 }}>
+          One card saves everyone 5 mins per conversation — agents share this directly with clients on a call.
+        </p>
       </div>
 
       {/* ── The Problem + Old Design ── */}
@@ -1440,11 +1339,6 @@ function ItineraryCardBlock() {
         </p>
       </div>
 
-      {/* Divider */}
-      <div style={{
-        marginTop: 56, height: 1,
-        background: "linear-gradient(90deg, transparent, #E5E7EB 30%, #E5E7EB 70%, transparent)",
-      }} />
     </div>
   );
 }
@@ -1478,30 +1372,13 @@ function ReviewTableBlock() {
     <div className="csl-reveal" style={{ marginBottom: 64 }}>
 
       {/* ── Header ── */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 18, marginBottom: 28 }}>
-        <div style={{
-          width: 52, height: 52, borderRadius: "50%", background: "#111827",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: "1.25rem", fontWeight: 900, color: "#fff", flexShrink: 0,
-          boxShadow: "0 4px 20px rgba(0,0,0,0.22)",
-        }}>3</div>
-        <div>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#111827", margin: "0 0 4px", lineHeight: 1.2 }}>
-            Review Table View
-          </h3>
-          <p style={{ fontSize: "0.72rem", color: "#9CA3AF", margin: "0 0 8px", fontStyle: "italic" }}>
-            The 80% empty problem — solved.
-          </p>
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 6 }}>
-            <span style={{
-              fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.1em",
-              textTransform: "uppercase", color: "#9CA3AF", marginTop: 2, whiteSpace: "nowrap",
-            }}>WHERE</span>
-            <span style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.5 }}>
-              Final review screen — the last checkpoint before a ticket is issued.
-            </span>
-          </div>
-        </div>
+      <div style={{ marginBottom: 28 }}>
+        <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#111827", margin: "0 0 6px", lineHeight: 1.2 }}>
+          Review Table View
+        </h3>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.6 }}>
+          Final review screen — the last checkpoint before a ticket is issued.
+        </p>
       </div>
 
       {/* ── The Problem + Old Design ── */}
@@ -1648,11 +1525,6 @@ function ReviewTableBlock() {
         </p>
       </div>
 
-      {/* Divider */}
-      <div style={{
-        marginTop: 56, height: 1,
-        background: "linear-gradient(90deg, transparent, #E5E7EB 30%, #E5E7EB 70%, transparent)",
-      }} />
     </div>
   );
 }
@@ -1662,13 +1534,6 @@ function CoreComponentsSection() {
     <CsSection id="insights">
       {/* Section header */}
       <div className="csl-reveal" style={{ marginBottom: 40 }}>
-        <div style={{
-          fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.18em",
-          textTransform: "uppercase", color: "#1E90FF",
-          fontFamily: "ui-monospace, monospace", marginBottom: 10,
-        }}>
-          04
-        </div>
         <h2 style={{
           fontSize: "clamp(1.4rem, 3vw, 2rem)", fontWeight: 900,
           color: "#111827", margin: 0, lineHeight: 1.15,
@@ -1677,7 +1542,7 @@ function CoreComponentsSection() {
           3 Core Components<br />That Fixed The Flow
         </h2>
         <p style={{
-          fontSize: "0.82rem", color: "#6B7280", lineHeight: 1.7,
+          fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.7,
           maxWidth: 520, margin: 0,
         }}>
           Every design went through multiple directions before landing. Here&apos;s what I tried, what I scrapped, and the component that shipped.
@@ -1729,7 +1594,6 @@ function TheProductSection() {
   return (
     <CsSection id="product">
       <CsSectionHeader
-        num="05"
         title="The Product"
         sub="20+ screens shipped across 5 flows. One platform, every booking."
       />
@@ -1817,22 +1681,12 @@ function TheProductSection() {
         </div>
       </div>
 
-      {/* Flow grid — description cards */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+      {/* Flow list */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         {flows.map((f, i) => (
-          <div key={f.label} className={`csl-reveal rd${i}`} style={{
-            background: "#fff", borderRadius: 14,
-            border: "1px solid #E5E7EB",
-            padding: "18px 18px",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.04)",
-          }}>
-            <div style={{
-              fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.14em",
-              textTransform: "uppercase", color: "#1E90FF",
-              fontFamily: "ui-monospace, monospace", marginBottom: 6,
-            }}>{f.num}</div>
-            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{f.label}</div>
-            <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
+          <div key={f.label} className={`csl-reveal rd${i}`}>
+            <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{f.label}</div>
+            <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{f.desc}</p>
           </div>
         ))}
       </div>
@@ -1856,7 +1710,6 @@ function DesignSystemSection() {
   return (
     <CsSection id="design-system">
       <CsSectionHeader
-        num="06"
         title="Design System"
         sub="No library existed. Every token, component, icon, and spacing rule was built from zero in Figma."
       />
@@ -1905,19 +1758,13 @@ function DesignSystemSection() {
         </div>
       </div>
 
-      {/* Stat chips */}
-      <div className="csl-reveal" style={{
-        display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12,
-      }}>
+      {/* Stats */}
+      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         {stats.map((s) => (
-          <div key={s.val} style={{
-            background: "#fff", borderRadius: 14,
-            border: "1px solid #E5E7EB", padding: "16px 16px",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.04)",
-          }}>
-            <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#111827", marginBottom: 4 }}>{s.val}</div>
-            <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "#374151", marginBottom: 3 }}>{s.label}</div>
-            <div style={{ fontSize: "0.62rem", color: "#9CA3AF", lineHeight: 1.4 }}>{s.sub}</div>
+          <div key={s.val} style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
+            <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "#111827", flexShrink: 0 }}>{s.val}</span>
+            <span style={{ fontSize: "1.05rem", color: "#374151", fontWeight: 600 }}>{s.label}</span>
+            <span style={{ fontSize: "0.9rem", color: "#9CA3AF" }}>— {s.sub}</span>
           </div>
         ))}
       </div>
@@ -1931,7 +1778,7 @@ function DesignSystemSection() {
 function ResultsSection() {
   return (
     <CsSection id="results">
-      <CsSectionHeader num="07" title="The Impact" />
+      <CsSectionHeader title="The Impact" />
 
       {/* Big metric callout */}
       <div className="csl-reveal" style={{
@@ -2028,16 +1875,13 @@ function LearningsSection() {
 
   return (
     <CsSection id="learnings" last>
-      <CsSectionHeader num="08" title="Learnings" sub="What this project taught me about designing for real-world, complex B2B workflows." />
+      <CsSectionHeader title="Learnings" sub="What this project taught me about designing for real-world, complex B2B workflows." />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
         {items.map((item) => (
-          <div key={item.n} className="csl-reveal" style={{ display: "flex", gap: 20, background: "#fff", borderRadius: 18, padding: "22px 22px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
-            <span style={{ fontSize: "0.6rem", fontWeight: 700, color: "#1E90FF", fontFamily: "ui-monospace, monospace", marginTop: 2, flexShrink: 0 }}>{item.n}</span>
-            <div>
-              <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{item.title}</div>
-              <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.7 }}>{item.text}</p>
-            </div>
+          <div key={item.n} className="csl-reveal">
+            <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{item.title}</div>
+            <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
           </div>
         ))}
       </div>
