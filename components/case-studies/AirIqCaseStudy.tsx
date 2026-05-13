@@ -128,12 +128,10 @@ function LiveSearchDemo() {
   return (
     <div style={{ width: "100%", fontFamily: "inherit" }}>
       <div style={{
-        background: "rgba(16,118,188,0.07)",
-        border: "1px solid rgba(55,138,221,0.22)",
+        background: "#0D1B2E",
+        border: "1.5px solid rgba(30,144,255,0.28)",
         borderRadius: 20,
         padding: 16,
-        backdropFilter: "blur(24px)",
-        boxShadow: "0 0 70px rgba(16,118,188,0.18), inset 0 1px 0 rgba(255,255,255,0.07)",
       }}>
 
         {/* ── Search bar ── */}
@@ -317,6 +315,12 @@ function LiveSearchDemo() {
 function AirHero() {
   return (
     <div className="csl-hero csl-hero--light">
+      {/* Blue dot grid */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        backgroundImage: "radial-gradient(circle, rgba(30,144,255,0.13) 1.5px, transparent 1.5px)",
+        backgroundSize: "28px 28px",
+      }} />
       <div className="csl-hero-inner">
         {/* Left */}
         <div className="csl-hero-left">
