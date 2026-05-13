@@ -7,6 +7,7 @@ const html = `
   </div>
 
   <div class="dsz-sticky">
+    <div class="dsz-stage">
 
     <!-- floating annotations in the white space -->
     <div class="dsz-floats">
@@ -101,6 +102,7 @@ const html = `
       <a class="dsz-cta" href="/projects/project-5">View Case Study &rarr;</a>
     </div>
 
+    </div>
   </div>
 
 </section>

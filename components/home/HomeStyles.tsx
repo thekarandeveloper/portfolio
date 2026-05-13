@@ -472,45 +472,59 @@ nav.scrolled{
   padding:60px 0 80px;
   overflow:hidden;
 }
+/* ── stage: card + floats together ── */
+.dsz-stage{
+  position:relative;
+  width:min(1060px,96vw);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 /* ── floating annotations ── */
 .dsz-floats{
   position:absolute;inset:0;
   pointer-events:none;
-  z-index:0;
+  z-index:2;
+}
+@keyframes dszDrift{
+  0%,100%{transform:translateY(0px) rotate(var(--rot,0deg));}
+  50%{transform:translateY(-10px) rotate(var(--rot,0deg));}
 }
 .dsz-float{
   position:absolute;
   font-family:var(--hand);
-  font-size:14px;
-  line-height:1.5;
-  color:rgba(0,0,0,0.52);
-  max-width:160px;
+  font-size:15px;
+  line-height:1.55;
+  color:rgba(0,0,0,0.58);
+  max-width:148px;
+  animation:dszDrift var(--dur,6s) ease-in-out infinite;
+  animation-delay:var(--delay,0s);
 }
 .dsz-float-arrow{
   font-size:16px;
   display:inline-block;
   margin-right:2px;
 }
-/* left floats */
-.dsz-fl-1{top:20%;left:3%;transform:rotate(-3deg);}
-.dsz-fl-2{top:38%;left:5%;transform:rotate(2deg);}
-.dsz-fl-3{top:57%;left:2%;transform:rotate(-2deg);}
-.dsz-fl-4{top:74%;left:6%;transform:rotate(3deg);}
-/* right floats */
-.dsz-fr-1{top:18%;right:3%;transform:rotate(3deg);text-align:right;}
-.dsz-fr-2{top:36%;right:5%;transform:rotate(-2deg);text-align:right;}
-.dsz-fr-3{top:55%;right:2%;transform:rotate(2deg);text-align:right;}
-.dsz-fr-4{top:72%;right:6%;transform:rotate(-3deg);text-align:right;}
+/* left floats — just outside card's left edge */
+.dsz-fl-1{top:8%; left:0;   --rot:-3deg; --dur:6.5s; --delay:0s;}
+.dsz-fl-2{top:32%;left:1%;  --rot:2deg;  --dur:7.5s; --delay:-2.2s;}
+.dsz-fl-3{top:58%;left:0;   --rot:-2deg; --dur:5.8s; --delay:-1.1s;}
+.dsz-fl-4{top:78%;left:2%;  --rot:3deg;  --dur:8.2s; --delay:-3.4s;}
+/* right floats — just outside card's right edge */
+.dsz-fr-1{top:8%; right:0;  --rot:3deg;  --dur:7.2s; --delay:-1.6s; text-align:right;}
+.dsz-fr-2{top:34%;right:1%; --rot:-2deg; --dur:6.2s; --delay:-2.8s; text-align:right;}
+.dsz-fr-3{top:58%;right:0;  --rot:2deg;  --dur:5.4s; --delay:-0.6s; text-align:right;}
+.dsz-fr-4{top:76%;right:2%; --rot:-3deg; --dur:8.8s; --delay:-4.1s; text-align:right;}
 /* ── light card ── */
 .dsz-card{
   position:relative;z-index:1;
-  width:min(680px,72vw);
+  width:min(740px,74vw);
   background:#ffffff;
   border:1px solid rgba(0,0,0,0.07);
   border-radius:24px;
-  padding:36px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.04),0 12px 40px rgba(0,0,0,0.08);
-  display:flex;flex-direction:column;gap:18px;
+  padding:44px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04),0 16px 48px rgba(0,0,0,0.09);
+  display:flex;flex-direction:column;gap:20px;
 }
 .dsz-card-header{
   display:flex;align-items:flex-start;
