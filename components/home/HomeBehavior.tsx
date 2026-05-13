@@ -459,13 +459,13 @@ runParallax();
       {icon:'✦',text:'Problem Solver',tag:'trait'},
       {icon:'✦',text:'Systems Thinker',tag:'trait'}
     ]},
-    {q:'What does he love?',items:[
+    {q:'What does she love?',items:[
       {icon:'✦',text:'Obsessing over pixels',tag:'always'},
       {icon:'☕',text:'Cold coffee',tag:'fuel'},
       {icon:'✦',text:'Clean typography',tag:'passion'},
       {icon:'🎵',text:'Lo-fi while designing',tag:'vibe'}
     ]},
-    {q:'Where can you find him?',items:[
+    {q:'Where can you find her?',items:[
       {icon:'☕',text:'Corner seat at a café',tag:'usually'},
       {icon:'✦',text:'Deep in Figma',tag:'obviously'},
       {icon:'✦',text:'Late nights, building',tag:'always'},

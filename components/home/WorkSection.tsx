@@ -14,14 +14,14 @@ const html = `<section class="work" id="work">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">&#127807;</div>
-          <div class="bento-tags">
-            <span class="bento-tag" style="background:rgba(45,125,67,0.10);color:#14532D;">Mobile</span>
-            <span class="bento-tag" style="background:rgba(45,125,67,0.07);color:#14532D;">Sustainability</span>
-            <span class="bento-tag" style="background:rgba(45,125,67,0.07);color:#14532D;">Data Viz</span>
-          </div>
         </div>
         <h3 class="bento-proj-title">Making sustainability feel personal and achievable</h3>
         <p class="bento-proj-desc">A personal carbon footprint tracker that turns abstract environmental data into daily, actionable habits people can actually stick to.</p>
+        <div class="bento-tags">
+          <span class="bento-tag" style="color:#14532D;">Mobile</span>
+          <span class="bento-tag" style="color:#14532D;">Sustainability</span>
+          <span class="bento-tag" style="color:#14532D;">Data Viz</span>
+        </div>
         <div class="bento-proj-visual" style="justify-content:center;">
           <div class="bento-mock" style="width:90px;border-radius:14px;transform:rotate(-1deg);">
             <div class="bento-mock-bar" style="height:14px;background:rgba(45,125,67,0.06);justify-content:center;">
