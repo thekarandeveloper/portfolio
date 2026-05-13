@@ -239,7 +239,7 @@ nav.scrolled{
 .nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;align-items:center;padding:9rem 220px 5rem;gap:40px;position:relative;overflow:hidden;cursor:none;}
+.hero{min-height:100vh;display:grid;grid-template-columns:42% 58%;align-items:center;padding:9rem 80px 5rem;gap:40px;position:relative;overflow:hidden;cursor:none;}
 
 /* about-style intro hero */
 .hi-left{position:relative;z-index:2;text-align:left;}
@@ -251,7 +251,7 @@ nav.scrolled{
 .hi-bio-line:last-of-type{margin-bottom:0;}
 
 /* ── SCRAPBOOK COLLAGE (right side hero) ── */
-.hi-scrapbook{position:relative;width:560px;height:680px;flex-shrink:0;}
+.hi-scrapbook{position:relative;width:820px;height:780px;flex-shrink:0;}
 .hi-asset{position:absolute;display:block;}
 
 /* "One day at a time." — top right, natural tilt */
@@ -274,7 +274,7 @@ nav.scrolled{
   padding:10px 10px 90px;
   box-shadow:0 6px 28px rgba(0,0,0,0.10),0 1px 5px rgba(0,0,0,0.05);
   border-radius:2px;
-  width:500px;
+  width:800px;
   z-index:3;
 }
 .hi-mai{
