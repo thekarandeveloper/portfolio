@@ -49,40 +49,14 @@ document.querySelectorAll('a, button, .ab-love-card, .ab-frame, .ab-polaroid').f
   els.forEach(function(el) { obs.observe(el); });
 })();
 
-// DRAGGABLE FILM SCROLL
+// POLAROID RANDOM MINI-TILT on idle (subtle wobble)
 (function() {
-  var wrap = document.getElementById('ab-frames');
-  if (!wrap) return;
-  var isDragging = false, startX = 0, scrollLeft = 0;
-  wrap.addEventListener('mousedown', function(e) {
-    isDragging = true;
-    startX = e.pageX - wrap.offsetLeft;
-    scrollLeft = wrap.scrollLeft;
-    wrap.style.cursor = 'grabbing';
+  document.querySelectorAll('.ab-pol').forEach(function(card) {
+    card.addEventListener('mouseleave', function() {
+      var r = parseFloat(card.style.getPropertyValue('--r') || '0');
+      card.style.transform = 'rotate(' + r + 'deg)';
+    });
   });
-  document.addEventListener('mouseup', function() {
-    isDragging = false;
-    if (wrap) wrap.style.cursor = 'grab';
-  });
-  wrap.addEventListener('mouseleave', function() { isDragging = false; });
-  wrap.addEventListener('mousemove', function(e) {
-    if (!isDragging) return;
-    e.preventDefault();
-    var x = e.pageX - wrap.offsetLeft;
-    var walk = (x - startX) * 1.6;
-    wrap.scrollLeft = scrollLeft - walk;
-  });
-
-  // momentum on touch
-  var touchStartX = 0, touchScrollLeft = 0;
-  wrap.addEventListener('touchstart', function(e) {
-    touchStartX = e.touches[0].clientX;
-    touchScrollLeft = wrap.scrollLeft;
-  }, { passive: true });
-  wrap.addEventListener('touchmove', function(e) {
-    var dx = touchStartX - e.touches[0].clientX;
-    wrap.scrollLeft = touchScrollLeft + dx;
-  }, { passive: true });
 })();
 
 // POLAROID TILT ON MOVE

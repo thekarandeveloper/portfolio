@@ -313,101 +313,97 @@ const css = `
 }
 .ab-film { margin-top: 2.5rem; }
 
-/* sprocket strip */
-.ab-sprocket {
-  display: flex; gap: 13px; align-items: center;
-  padding: 7px 0;
-  border-top: 1.5px solid rgba(0,0,0,0.08);
-  border-bottom: 1.5px solid rgba(0,0,0,0.08);
-  overflow: hidden;
-}
-.ab-sprocket-hole {
-  width: 19px; height: 13px; flex-shrink: 0;
-  background: rgba(0,0,0,0.08); border-radius: 3px;
-}
-.ab-film-label {
-  font-family: 'DM Mono', 'Courier New', monospace;
-  font-size: 0.5rem; letter-spacing: 0.25em;
-  text-transform: uppercase; color: rgba(0,0,0,0.22);
-  white-space: nowrap; margin: 0 8px; flex-shrink: 0;
-}
-/* frames row */
-.ab-frames-wrap {
-  display: flex; gap: 16px;
-  overflow-x: auto; padding: 20px 2px 24px;
-  scrollbar-width: none;
-  cursor: grab;
-  margin-top: 14px;
-}
-.ab-frames-wrap::-webkit-scrollbar { display: none; }
-.ab-frames-wrap.is-dragging { cursor: grabbing; }
-.ab-frame {
-  flex-shrink: 0; width: 192px;
-  border-radius: 14px; overflow: hidden;
+/* ── POLAROID GRID ── */
+.ab-pol-wrap {
   position: relative;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
-  transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s ease;
+  padding: 20px 0 60px;
 }
-.ab-frame:hover {
-  transform: translateY(-12px) rotate(-1.5deg) scale(1.02);
-  box-shadow: 0 22px 56px rgba(0,0,0,0.16), 0 4px 16px rgba(0,0,0,0.08);
-  z-index: 5;
+.ab-pol-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 22px;
+  position: relative;
 }
-.ab-frame-inner {
-  height: 230px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 20px 16px 16px;
+/* individual polaroid */
+.ab-pol {
+  background: #fff;
+  padding: 10px 10px 46px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.10), 0 1px 5px rgba(0,0,0,0.06);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.44s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s ease;
+  transform: rotate(var(--r, 0deg));
+  z-index: 1;
+}
+.ab-pol:hover {
+  transform: rotate(0deg) scale(1.10) translateY(-12px) !important;
+  box-shadow: 0 28px 64px rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.09);
+  z-index: 20;
+}
+.ab-pol-photo {
+  width: 100%; aspect-ratio: 1 / 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.6rem;
+  border-radius: 1px;
+  position: relative; overflow: hidden;
+}
+.ab-pol-caption {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.92rem; color: #888;
+  padding: 0 8px; text-align: center; line-height: 1.3;
+}
+/* hover overlay */
+.ab-pol-over {
+  position: absolute; inset: 10px 10px 46px;
+  background: rgba(0,0,0,0.52);
+  backdrop-filter: blur(3px);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 4px;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  border-radius: 1px;
+  padding: 12px;
   text-align: center;
-  position: relative;
 }
-/* film grain overlay */
-.ab-frame-inner::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.18; pointer-events: none; border-radius: 14px;
-}
-.ab-frame-num {
-  position: absolute; top: 10px; left: 12px;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.5rem; letter-spacing: 0.14em;
-  color: rgba(255,255,255,0.35);
-}
-.ab-frame-emoji { font-size: 2.6rem; margin-bottom: 10px; display: block; position: relative; z-index: 1; }
-.ab-frame-city {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.15rem; font-weight: 400; color: #fff;
-  margin-bottom: 5px; position: relative; z-index: 1;
-}
-.ab-frame-memory {
+.ab-pol:hover .ab-pol-over { opacity: 1; }
+.ab-pol-mem {
   font-family: 'Caveat', cursive;
-  font-size: 0.88rem; color: rgba(255,255,255,0.72);
-  line-height: 1.4; position: relative; z-index: 1;
+  font-size: 1.0rem; color: #fff; line-height: 1.45;
 }
-.ab-frame-badge {
-  position: absolute; bottom: 12px; right: 12px;
-  background: rgba(255,255,255,0.14);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.22);
-  border-radius: 99px; padding: 2px 9px;
-  font-size: 0.58rem; letter-spacing: 0.07em; text-transform: uppercase;
-  color: rgba(255,255,255,0.65); z-index: 1;
+/* tape strips */
+.ab-tape-pol {
+  position: absolute;
+  height: 18px; border-radius: 2px; z-index: 3;
 }
-.ab-sprocket-bot { margin-top: 14px; }
-.ab-scroll-hint {
-  text-align: center; margin-top: 1.5rem;
+.ab-tape-pol::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg,rgba(0,0,0,0.06) 0,rgba(0,0,0,0.06) 2px,transparent 2px,transparent 6px);
+  border-radius: 2px;
+}
+.ab-tape-pol.tt { width: 54px; top: -9px; left: 50%; transform: translateX(-50%) rotate(-1.5deg); background: rgba(255,220,100,0.55); }
+.ab-tape-pol.tl { width: 44px; top: -8px; left: 8px; transform: rotate(-4deg); background: rgba(255,220,100,0.50); }
+.ab-tape-pol.tr { width: 44px; top: -8px; right: 8px; transform: rotate(5deg); background: rgba(160,200,255,0.58); }
+.ab-tape-pol.tb { width: 44px; top: -8px; right: 12px; transform: rotate(3deg); background: rgba(255,190,200,0.55); }
+.ab-tape-pol.tg { width: 50px; top: -9px; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(160,220,170,0.55); }
+
+/* doodle annotations */
+.ab-anno {
+  position: absolute;
+  pointer-events: none; z-index: 15;
+}
+.ab-anno-text {
   font-family: 'Caveat', cursive;
-  font-size: 0.95rem; color: #bbb;
+  font-size: 0.9rem; color: rgba(0,0,0,0.38); line-height: 1.35;
 }
-.ab-scroll-arrow {
-  display: inline-block;
-  animation: abArrow 1.5s ease-in-out infinite;
-  margin-left: 4px;
+@media (max-width: 1100px) {
+  .ab-pol-grid { grid-template-columns: repeat(3, 1fr); }
+  .ab-anno { display: none; }
 }
-@keyframes abArrow {
-  0%,100% { transform: translateX(0); }
-  50% { transform: translateX(6px); }
+@media (max-width: 700px) {
+  .ab-pol-grid { grid-template-columns: repeat(2, 1fr); gap: 22px 14px; }
 }
 
 /* ── REVEAL ANIMATION ── */
@@ -567,125 +563,161 @@ const lovesHtml = `
 const placesHtml = `
 <section class="ab-places" id="ab-places">
   <h2 class="ab-section-title ab-reveal">
-    Places that <em>made me.</em>
+    Good <em>experiences.</em>
   </h2>
 
-  <div class="ab-film ab-reveal ab-d2">
+  <div class="ab-pol-wrap">
 
-    <!-- top sprocket -->
-    <div class="ab-sprocket">
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <span class="ab-film-label">NIKUNJ TYAGI / PLACES VISITED / 35mm</span>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
+    <!-- doodle annotation 1 -->
+    <div class="ab-anno" style="top:-10px;right:18%;">
+      <span class="ab-anno-text">still living in my head rent-free 🧠</span>
+      <svg width="58" height="44" viewBox="0 0 58 44" fill="none" style="margin-top:2px;">
+        <path d="M 52 4 C 44 8, 28 18, 8 36" stroke="rgba(0,0,0,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M 8 36 L 14 30 M 8 36 L 16 38" stroke="rgba(0,0,0,0.28)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
     </div>
 
-    <!-- film frames -->
-    <div class="ab-frames-wrap" id="ab-frames">
+    <!-- doodle annotation 2 -->
+    <div class="ab-anno" style="top:42%;left:-20px;transform:translateY(-50%);">
+      <svg width="64" height="48" viewBox="0 0 64 48" fill="none" style="margin-bottom:4px;">
+        <path d="M 6 44 C 14 32, 38 20, 58 8" stroke="rgba(0,0,0,0.26)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M 58 8 L 50 12 M 58 8 L 54 16" stroke="rgba(0,0,0,0.26)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="ab-anno-text">would return in<br>2 seconds flat</span>
+    </div>
 
-      <div class="ab-frame" style="background:linear-gradient(145deg,#1a2a6c 0%,#b21f1f 60%,#fdbb2d 100%);">
-        <div class="ab-frame-inner">
-          <span class="ab-frame-num">01 ●</span>
-          <span class="ab-frame-emoji">🌊</span>
-          <p class="ab-frame-city">Mumbai</p>
-          <p class="ab-frame-memory">where the madness is the magic</p>
-          <span class="ab-frame-badge">home</span>
+    <!-- doodle annotation 3 -->
+    <div class="ab-anno" style="bottom:80px;right:-10px;">
+      <span class="ab-anno-text">10/10 no notes ✦</span>
+      <svg width="50" height="40" viewBox="0 0 50 40" fill="none" style="margin-top:3px;">
+        <path d="M 44 6 C 36 14, 20 22, 6 32" stroke="rgba(0,0,0,0.26)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M 6 32 L 12 26 M 6 32 L 14 34" stroke="rgba(0,0,0,0.26)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="ab-pol-grid">
+
+      <!-- 01 Mumbai -->
+      <div class="ab-pol ab-reveal" style="--r:-4deg;transition-delay:0s;">
+        <div class="ab-tape-pol tt"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#1a2a6c,#b21f1f,#fdbb2d);">🌊</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">where the madness<br>is the magic</p>
         </div>
+        <span class="ab-pol-caption">Mumbai</span>
       </div>
 
-      <div class="ab-frame" style="background:linear-gradient(145deg,#f7971e 0%,#ffd200 100%);">
-        <div class="ab-frame-inner">
-          <span class="ab-frame-num">02 ●</span>
-          <span class="ab-frame-emoji">🏖️</span>
-          <p class="ab-frame-city">Goa</p>
-          <p class="ab-frame-memory">best sunsets, worst wifi</p>
-          <span class="ab-frame-badge">fav</span>
+      <!-- 02 Goa -->
+      <div class="ab-pol ab-reveal" style="--r:3deg;transition-delay:0.06s;">
+        <div class="ab-tape-pol tl"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#f7971e,#ffd200);">🏖️</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">best sunsets,<br>worst wifi</p>
         </div>
+        <span class="ab-pol-caption">Goa</span>
       </div>
 
-      <div class="ab-frame" style="background:linear-gradient(145deg,#360033 0%,#0b8793 100%);">
-        <div class="ab-frame-inner">
-          <span class="ab-frame-num">03 ●</span>
-          <span class="ab-frame-emoji">🏙️</span>
-          <p class="ab-frame-city">Delhi</p>
-          <p class="ab-frame-memory">chaotic, beautiful, mine</p>
-          <span class="ab-frame-badge">chaos</span>
+      <!-- 03 Delhi -->
+      <div class="ab-pol ab-reveal" style="--r:-2deg;transition-delay:0.12s;">
+        <div class="ab-tape-pol tr"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#360033,#0b8793);">🏙️</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">chaotic,<br>beautiful, mine</p>
         </div>
+        <span class="ab-pol-caption">Delhi</span>
       </div>
 
-      <div class="ab-frame" style="background:linear-gradient(145deg,#4facfe 0%,#a8edfc 100%);">
-        <div class="ab-frame-inner">
-          <span class="ab-frame-num">04 ●</span>
-          <span class="ab-frame-emoji">❄️</span>
-          <p class="ab-frame-city">Shimla</p>
-          <p class="ab-frame-memory">first time touching snow 🤍</p>
-          <span class="ab-frame-badge">cold</span>
+      <!-- 04 Shimla -->
+      <div class="ab-pol ab-reveal" style="--r:5deg;transition-delay:0.18s;">
+        <div class="ab-tape-pol tt tg"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#4facfe,#a8edfc);">❄️</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">first time<br>touching snow 🤍</p>
         </div>
+        <span class="ab-pol-caption">Shimla</span>
       </div>
 
-      <div class="ab-frame" style="background:linear-gradient(145deg,#0f4c35 0%,#11998e 60%,#38ef7d 100%);">
-        <div class="ab-frame-inner">
-          <span class="ab-frame-num">05 ●</span>
-          <span class="ab-frame-emoji">☕</span>
-          <p class="ab-frame-city">Bangalore</p>
-          <p class="ab-frame-memory">filter coffee &amp; startup dreams</p>
-          <span class="ab-frame-badge">tech</span>
+      <!-- 05 Bangalore -->
+      <div class="ab-pol ab-reveal" style="--r:3deg;transition-delay:0.24s;">
+        <div class="ab-tape-pol tl tb"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#0f4c35,#38ef7d);">☕</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">filter coffee &amp;<br>startup dreams</p>
         </div>
+        <span class="ab-pol-caption">Bangalore</span>
       </div>
 
-      <div class="ab-frame" style="background:linear-gradient(145deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);">
-        <div class="ab-frame-inner">
-          <span class="ab-frame-num">06 ●</span>
-          <span class="ab-frame-emoji">🏔️</span>
-          <p class="ab-frame-city">Rishikesh</p>
-          <p class="ab-frame-memory">best decision: going offline</p>
-          <span class="ab-frame-badge">zen</span>
+      <!-- 06 Rishikesh -->
+      <div class="ab-pol ab-reveal" style="--r:-5deg;transition-delay:0.30s;">
+        <div class="ab-tape-pol tt"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);">🏔️</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">best decision:<br>going offline</p>
         </div>
+        <span class="ab-pol-caption">Rishikesh</span>
       </div>
 
-      <div class="ab-frame" style="background:linear-gradient(145deg,#f953c6 0%,#b91d73 100%);">
-        <div class="ab-frame-inner">
-          <span class="ab-frame-num">07 ●</span>
-          <span class="ab-frame-emoji">🎡</span>
-          <p class="ab-frame-city">Jaipur</p>
-          <p class="ab-frame-memory">pink city, pink heart</p>
-          <span class="ab-frame-badge">royal</span>
+      <!-- 07 Jaipur -->
+      <div class="ab-pol ab-reveal" style="--r:4deg;transition-delay:0.36s;">
+        <div class="ab-tape-pol tr"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#f953c6,#b91d73);">🎡</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">pink city,<br>pink heart</p>
         </div>
+        <span class="ab-pol-caption">Jaipur</span>
       </div>
 
-      <div class="ab-frame" style="background:linear-gradient(145deg,#2c3e50 0%,#3498db 100%);">
-        <div class="ab-frame-inner">
-          <span class="ab-frame-num">08 ●</span>
-          <span class="ab-frame-emoji">🌺</span>
-          <p class="ab-frame-city">Manali</p>
-          <p class="ab-frame-memory">no deadlines, just mountains</p>
-          <span class="ab-frame-badge">escape</span>
+      <!-- 08 Manali -->
+      <div class="ab-pol ab-reveal" style="--r:-3deg;transition-delay:0.42s;">
+        <div class="ab-tape-pol tl"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#2c3e50,#3498db);">🌺</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">no deadlines,<br>just mountains</p>
         </div>
+        <span class="ab-pol-caption">Manali</span>
+      </div>
+
+      <!-- 09 Udaipur -->
+      <div class="ab-pol ab-reveal" style="--r:-2deg;transition-delay:0.48s;">
+        <div class="ab-tape-pol tt tg"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#614385,#516395);">🏰</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">the most<br>romantic city</p>
+        </div>
+        <span class="ab-pol-caption">Udaipur</span>
+      </div>
+
+      <!-- 10 Lonavala -->
+      <div class="ab-pol ab-reveal" style="--r:6deg;transition-delay:0.54s;">
+        <div class="ab-tape-pol tr tb"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#56ccf2,#2f80ed);">🌧️</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">monsoon drives<br>and masala chai</p>
+        </div>
+        <span class="ab-pol-caption">Lonavala</span>
+      </div>
+
+      <!-- 11 Coorg -->
+      <div class="ab-pol ab-reveal" style="--r:-4deg;transition-delay:0.60s;">
+        <div class="ab-tape-pol tt"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#2d6a4f,#52b788);">🌿</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">coffee plantations<br>and fog mornings</p>
+        </div>
+        <span class="ab-pol-caption">Coorg</span>
+      </div>
+
+      <!-- 12 Pune -->
+      <div class="ab-pol ab-reveal" style="--r:3deg;transition-delay:0.66s;">
+        <div class="ab-tape-pol tl"></div>
+        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#8b5e3c,#e8a87c);">🌳</div>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">where design<br>first clicked</p>
+        </div>
+        <span class="ab-pol-caption">Pune</span>
       </div>
 
     </div>
-
-    <!-- bottom sprocket -->
-    <div class="ab-sprocket ab-sprocket-bot">
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-      <div class="ab-sprocket-hole"></div><div class="ab-sprocket-hole"></div>
-    </div>
-
-    <p class="ab-scroll-hint">drag to explore <span class="ab-scroll-arrow">→</span></p>
-
   </div>
 </section>
 `;
