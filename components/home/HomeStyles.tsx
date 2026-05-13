@@ -251,7 +251,7 @@ nav.scrolled{
 .hi-bio-line:last-of-type{margin-bottom:0;}
 
 /* ── SCRAPBOOK COLLAGE (right side hero) ── */
-.hi-scrapbook{position:relative;width:380px;height:580px;flex-shrink:0;}
+.hi-scrapbook{position:relative;width:420px;height:600px;flex-shrink:0;}
 .hi-asset{position:absolute;display:block;}
 
 /* "One day at a time." — top right, natural tilt */
@@ -274,7 +274,7 @@ nav.scrolled{
   padding:10px 10px 90px;
   box-shadow:0 6px 28px rgba(0,0,0,0.10),0 1px 5px rgba(0,0,0,0.05);
   border-radius:2px;
-  width:268px;
+  width:310px;
   z-index:2;
 }
 .hi-mai{
