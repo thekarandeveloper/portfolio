@@ -1562,10 +1562,10 @@ nav.scrolled{
   .wr-impact{font-size:15px;}
   .wr-desc{font-size:13px;}
 }
-/* ── WHITE BG + GRAY DOT PATTERN (all sections except hero) ── */
-.work,.zoom-sticky,.about,.gallery-section,.shelf-section,.scrapbook-section,.testimonials-section,.contact{
+/* ── WHITE BG + GRAY DOT PATTERN ── */
+.hero,.work,.zoom-sticky,.about,.gallery-section,.shelf-section,.scrapbook-section,.testimonials-section,.contact{
   background-color:#ffffff;
-  background-image:radial-gradient(circle,rgba(0,0,0,0.12) 1.5px,transparent 1.5px);
+  background-image:radial-gradient(circle,rgba(0,0,0,0.07) 1.5px,transparent 1.5px);
   background-size:28px 28px;
 }`;
 
