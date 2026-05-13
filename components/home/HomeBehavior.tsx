@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const script = `// ── WATER SURFACE HOVER EFFECT ──
 (function(){
-  var hoverSelector='a,button,.hero-card,.bento-work-card,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.q-chip,.conv-replay';
+  var hoverSelector='a,button,.hero-card,.pw-row,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.q-chip,.conv-replay';
   document.addEventListener('mousemove',function(e){
     var surface=e.target&&e.target.closest&&e.target.closest(hoverSelector);
     if(!surface)return;
@@ -115,7 +115,7 @@ document.addEventListener('mousemove',e=>{
   const hero=document.getElementById('home');
   if(hero&&cursorGlow){const rect=hero.getBoundingClientRect();if(e.clientY>=rect.top&&e.clientY<=rect.bottom){cursorGlow.style.left=(e.clientX-rect.left)+'px';cursorGlow.style.top=(e.clientY-rect.top)+'px';}}
 });
-document.querySelectorAll('a,button,.hero-card,.bento-work-card,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.q-chip,.conv-replay').forEach(el=>{el.addEventListener('mouseenter',()=>{if(cursor)cursor.classList.add('big');});el.addEventListener('mouseleave',()=>{if(cursor)cursor.classList.remove('big');});});
+document.querySelectorAll('a,button,.hero-card,.pw-row,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.q-chip,.conv-replay').forEach(el=>{el.addEventListener('mouseenter',()=>{if(cursor)cursor.classList.add('big');});el.addEventListener('mouseleave',()=>{if(cursor)cursor.classList.remove('big');});});
 
 // ── TYPING ANIMATION ──
 const ROLES=['product designer','ux researcher','storyteller'];
@@ -212,8 +212,8 @@ const parallaxMap = [
   // Work
   { sel: '.work-heading-wrap',  speed: -0.04 },
   { sel: '.work-title-script',  speed: -0.06 },
-  { sel: '.bento-work-card:nth-child(odd)',  speed: -0.030 },
-  { sel: '.bento-work-card:nth-child(even)', speed: -0.018 },
+  { sel: '.pw-row:nth-child(odd)',  speed: -0.030 },
+  { sel: '.pw-row:nth-child(even)', speed: -0.018 },
 
   // Process
   { sel: '.process-main-title',  speed: -0.05 },
