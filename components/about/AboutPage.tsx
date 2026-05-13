@@ -136,20 +136,6 @@ const css = `
 }
 .ab-bio strong { color: #111; font-weight: 600; }
 .ab-bio em { font-style: italic; color: #1E90FF; }
-.ab-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
-.ab-chip {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em;
-  color: #555;
-  background: rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.08);
-  padding: 5px 12px; border-radius: 99px;
-}
-.ab-chip-blue {
-  background: rgba(30,144,255,0.08);
-  border-color: rgba(30,144,255,0.2);
-  color: #1E90FF;
-}
 
 /* POLAROID */
 .ab-hero-right {
@@ -246,65 +232,170 @@ const css = `
   padding: 5rem 220px 4rem;
   position: relative;
 }
-.ab-section-label {
-  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: #1E90FF; margin-bottom: 0.85rem; display: block;
-}
 .ab-section-title {
   font-family: 'DM Serif Display', Georgia, serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 300; line-height: 1.1;
-  color: #111; margin-bottom: 3rem;
+  color: #111; margin-bottom: 0;
 }
 .ab-section-title em { font-style: italic; color: #1E90FF; }
-.ab-loves-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+
+/* marquee ticker */
+.ab-marquee-outer {
+  overflow: hidden;
+  margin: 1.8rem -220px 2.8rem;
+  padding: 11px 0;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
 }
-.ab-love-card {
-  background: #fff;
+.ab-marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em;
+  color: #999;
+  animation: abMarquee 38s linear infinite;
+}
+@keyframes abMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* vibe cards grid */
+.ab-vibes-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+.ab-vibe {
   border-radius: 20px;
-  padding: 36px 28px 32px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 22px rgba(0,0,0,0.05);
-  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s ease;
   overflow: hidden;
   position: relative;
+  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s;
 }
-.ab-love-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 2px 10px rgba(0,0,0,0.05);
+.ab-vibe:hover { transform: translateY(-5px); }
+.ab-vibe-label {
+  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+  font-weight: 700; display: block; margin-bottom: 0.65rem;
 }
-.ab-love-icon {
-  font-size: 2.8rem; margin-bottom: 1.2rem; display: block;
-  line-height: 1;
-  transition: transform 0.38s cubic-bezier(0.34,1.4,0.64,1);
+
+/* CAFÉ card */
+.ab-vibe-cafe {
+  grid-column: 1; min-height: 320px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
-.ab-love-card:hover .ab-love-icon { transform: scale(1.22) rotate(-8deg); }
-.ab-love-name {
+.ab-cafe-photo { width: 100%; height: 100%; position: relative; min-height: 320px; }
+.ab-cafe-photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ab-cafe-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(10,10,10,0.62) 0%, rgba(10,10,10,0.18) 100%);
+  padding: 32px 32px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.ab-cafe-overlay .ab-vibe-label { color: rgba(255,255,255,0.5); }
+.ab-cafe-headline {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.55rem; font-weight: 400; color: #111;
-  margin-bottom: 0.5rem; line-height: 1.2;
+  font-size: clamp(1.4rem, 2.2vw, 1.95rem);
+  color: #fff; font-weight: 400; line-height: 1.18;
+  margin-bottom: 1.4rem;
 }
-.ab-love-desc {
+.ab-receipt {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 0.65rem; color: rgba(255,255,255,0.55);
+  line-height: 2; letter-spacing: 0.015em;
+  border-top: 1px dashed rgba(255,255,255,0.2);
+  padding-top: 0.8rem;
+}
+
+/* COFFEE card */
+.ab-vibe-coffee {
+  grid-column: 2; min-height: 320px;
+  background: #111;
+  padding: 32px 26px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.ab-vibe-coffee .ab-vibe-label { color: rgba(255,255,255,0.35); }
+.ab-coffee-bg-word {
+  position: absolute; top: -8px; left: -6px;
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(4.5rem, 10vw, 8rem);
+  font-style: italic; font-weight: 400;
+  color: rgba(255,255,255,0.04);
+  line-height: 1; pointer-events: none; user-select: none;
+  letter-spacing: -0.05em;
+}
+.ab-coffee-claim {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  color: #fff; line-height: 1.1;
+  font-style: italic; margin-bottom: 1.1rem;
+}
+.ab-coffee-pill {
+  display: inline-flex; align-items: center;
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem; color: #1E90FF;
+  background: rgba(30,144,255,0.1);
+  border: 1px solid rgba(30,144,255,0.28);
+  border-radius: 99px; padding: 4px 14px;
+  width: fit-content;
+}
+
+/* TRAVEL card */
+.ab-vibe-travel {
+  grid-column: 1 / -1;
+  background: linear-gradient(120deg, #eef6ff 0%, #f5f9ff 50%, #eaf3ff 100%);
+  padding: 36px 40px;
+  min-height: 160px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 24px;
+  box-shadow: 0 2px 12px rgba(30,144,255,0.07);
+}
+.ab-vibe-travel .ab-vibe-label { color: #1E90FF; }
+.ab-travel-left { position: relative; z-index: 2; }
+.ab-travel-quote {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: #111; line-height: 1.05; font-style: italic;
+}
+.ab-travel-right { position: relative; z-index: 2; }
+.ab-travel-sub {
   font-size: 0.875rem; color: #555; line-height: 1.75;
 }
-.ab-love-whisper {
-  margin-top: 1.2rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  font-family: 'Caveat', cursive;
-  font-size: 0.95rem; color: #bbb;
+/* plane animation (same keyframes as bento) */
+.ab-tp-layer {
+  position: absolute; inset: 0;
+  pointer-events: none; overflow: hidden;
 }
-.ab-love-glow {
+.ab-tp-route {
+  position: absolute; left: 0; right: 0; height: 0;
+  border-top: 1.5px dashed rgba(30,144,255,0.12);
+}
+.ab-tp {
   position: absolute;
-  width: 130px; height: 130px; border-radius: 50%;
-  bottom: -35px; right: -35px;
-  opacity: 0.06;
-  transition: opacity 0.35s, transform 0.5s;
-  pointer-events: none;
+  font-size: 15px; color: rgba(30,144,255,0.22);
+  animation: abPlaneFly linear infinite;
 }
-.ab-love-card:hover .ab-love-glow { opacity: 0.11; transform: scale(1.15); }
+.ab-tp-1 { top: 38%; animation-duration: 9s; animation-delay: 0s; }
+.ab-tp-2 { top: 62%; font-size: 10px; color: rgba(30,144,255,0.14); animation-duration: 13s; animation-delay: -5s; }
+@keyframes abPlaneFly {
+  0%   { transform: translateX(-60px); opacity: 0; }
+  6%   { opacity: 1; }
+  94%  { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 60px)); opacity: 0; }
+}
+
+@media (max-width: 1100px) {
+  .ab-loves { padding: 5rem 80px 4rem; }
+  .ab-marquee-outer { margin-left: -80px; margin-right: -80px; }
+}
+@media (max-width: 820px) {
+  .ab-vibes-grid { grid-template-columns: 1fr; }
+  .ab-vibe-travel { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .ab-loves { padding: 4rem 20px; }
+  .ab-marquee-outer { margin-left: -20px; margin-right: -20px; }
+}
 
 /* ── PLACES SECTION ── */
 .ab-places {
@@ -490,12 +581,6 @@ const heroHtml = `
       Professionally, I turn messy problems into clean experiences.
       Personally, I turn cold coffee into design decisions. ☕
     </p>
-    <div class="ab-chips">
-      <span class="ab-chip">she / her</span>
-      <span class="ab-chip">India 🇮🇳</span>
-      <span class="ab-chip ab-chip-blue">3+ yrs designing</span>
-      <span class="ab-chip">3am designer 🌙</span>
-    </div>
   </div>
 
   <!-- ── RIGHT: polaroid ── -->
@@ -522,44 +607,62 @@ const heroHtml = `
 
 const lovesHtml = `
 <section class="ab-loves" id="ab-loves">
+
   <h2 class="ab-section-title ab-reveal">
-    Things I <em>love</em><br>a little too much.
+    very, <em>very</em> me.
   </h2>
-  <div class="ab-loves-grid">
 
-    <div class="ab-love-card ab-reveal ab-d1">
-      <span class="ab-love-icon">☕</span>
-      <h3 class="ab-love-name">Cafés</h3>
-      <p class="ab-love-desc">
-        Corner seat only. Lo-fi playlist. Cold drink. Zero eye contact.
-        That's my office. I do my best thinking with bad wifi and good ambiance.
-      </p>
-      <p class="ab-love-whisper">current ritual: 9am café, no exceptions</p>
-      <div class="ab-love-glow" style="background:#1E90FF;"></div>
+  <!-- slow marquee ticker -->
+  <div class="ab-marquee-outer ab-reveal ab-d1">
+    <span class="ab-marquee-track">
+      cafés &nbsp;✦&nbsp; cold coffee &nbsp;✦&nbsp; lo-fi music &nbsp;✦&nbsp; new cities &nbsp;✦&nbsp; figma frames &nbsp;✦&nbsp; good kerning &nbsp;✦&nbsp; airport lounges &nbsp;✦&nbsp; corner seats &nbsp;✦&nbsp; late nights &nbsp;✦&nbsp; design systems &nbsp;✦&nbsp; iced americano &nbsp;✦&nbsp; film cameras &nbsp;✦&nbsp; 3am ideas &nbsp;✦&nbsp; rainy days &nbsp;✦&nbsp; museums &nbsp;✦&nbsp; clean interfaces &nbsp;✦&nbsp; overpacked bags &nbsp;✦&nbsp; sunset colours &nbsp;✦&nbsp;
+      cafés &nbsp;✦&nbsp; cold coffee &nbsp;✦&nbsp; lo-fi music &nbsp;✦&nbsp; new cities &nbsp;✦&nbsp; figma frames &nbsp;✦&nbsp; good kerning &nbsp;✦&nbsp; airport lounges &nbsp;✦&nbsp; corner seats &nbsp;✦&nbsp; late nights &nbsp;✦&nbsp; design systems &nbsp;✦&nbsp; iced americano &nbsp;✦&nbsp; film cameras &nbsp;✦&nbsp; 3am ideas &nbsp;✦&nbsp; rainy days &nbsp;✦&nbsp; museums &nbsp;✦&nbsp; clean interfaces &nbsp;✦&nbsp; overpacked bags &nbsp;✦&nbsp; sunset colours &nbsp;✦&nbsp;
+    </span>
+  </div>
+
+  <!-- three creative cards -->
+  <div class="ab-vibes-grid ab-reveal ab-d2">
+
+    <!-- CAFÉ: photo + receipt overlay -->
+    <div class="ab-vibe ab-vibe-cafe">
+      <div class="ab-cafe-photo">
+        <img src="/Image/hero/Cafe.png" alt="café" />
+        <div class="ab-cafe-overlay">
+          <span class="ab-vibe-label">cafés</span>
+          <h3 class="ab-cafe-headline">corner seat.<br>lo-fi on.<br>do not disturb.</h3>
+          <div class="ab-receipt">
+            <div>cold brew .................. ✓</div>
+            <div>no eye contact ............. ✓</div>
+            <div>window view ................ ✓</div>
+            <div>wifi: exists (barely)</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="ab-love-card ab-reveal ab-d2">
-      <span class="ab-love-icon">🧊</span>
-      <h3 class="ab-love-name">Cold Coffee</h3>
-      <p class="ab-love-desc">
-        Hot coffee is a compromise. Iced americano is a way of life.
-        I take my coffee like I take my designs — cold, precise,
-        and completely non-negotiable.
-      </p>
-      <p class="ab-love-whisper">streak: same order, 47 days straight</p>
-      <div class="ab-love-glow" style="background:#00BFFF;"></div>
+    <!-- COFFEE: bold dark typographic -->
+    <div class="ab-vibe ab-vibe-coffee">
+      <div class="ab-coffee-bg-word">Iced</div>
+      <span class="ab-vibe-label">cold coffee</span>
+      <p class="ab-coffee-claim">hot coffee<br>is a<br>compromise.</p>
+      <span class="ab-coffee-pill">same order · 47 days straight</span>
     </div>
 
-    <div class="ab-love-card ab-reveal ab-d3">
-      <span class="ab-love-icon">✈️</span>
-      <h3 class="ab-love-name">Travel</h3>
-      <p class="ab-love-desc">
-        New cities rewire my brain. Every trip comes back as a design
-        reference, a rethought mental model, or at minimum — a really
-        good story for interviews.
-      </p>
-      <p class="ab-love-whisper">currently planning: everywhere</p>
-      <div class="ab-love-glow" style="background:#1E90FF;"></div>
+    <!-- TRAVEL: wide, planes flying, split copy -->
+    <div class="ab-vibe ab-vibe-travel">
+      <div class="ab-tp-layer">
+        <div class="ab-tp-route" style="top:38%"></div>
+        <div class="ab-tp-route" style="top:62%"></div>
+        <span class="ab-tp ab-tp-1">✈</span>
+        <span class="ab-tp ab-tp-2">✈</span>
+      </div>
+      <div class="ab-travel-left">
+        <span class="ab-vibe-label">travel</span>
+        <h3 class="ab-travel-quote">new city =<br>new brain.</h3>
+      </div>
+      <div class="ab-travel-right">
+        <p class="ab-travel-sub">Every trip rewires something. It comes back as a design reference, a rethought mental model, or at minimum — a really good story for interviews.</p>
+      </div>
     </div>
 
   </div>
