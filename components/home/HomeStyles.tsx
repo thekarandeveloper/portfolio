@@ -464,42 +464,51 @@ nav.scrolled{
   font-weight:700;color:#1E90FF;
   display:block;line-height:1.2;
 }
-/* ── smoky white background ── */
+/* ── sticky shell (dot bg applied via shared rule) ── */
 .dsz-sticky{
   position:sticky;top:0;height:100vh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   overflow:hidden;
-  background:
-    radial-gradient(ellipse at 18% 25%,rgba(210,215,225,0.32) 0%,transparent 46%),
-    radial-gradient(ellipse at 82% 72%,rgba(195,200,215,0.22) 0%,transparent 42%),
-    radial-gradient(ellipse at 52% 6%,rgba(220,225,235,0.28) 0%,transparent 38%),
-    radial-gradient(ellipse at 28% 85%,rgba(205,210,220,0.20) 0%,transparent 40%),
-    radial-gradient(ellipse at 74% 30%,rgba(215,218,228,0.18) 0%,transparent 35%),
-    #f8f9fb;
 }
-.dsz-sticky::before{
-  content:'';position:absolute;
-  width:640px;height:640px;border-radius:50%;
-  background:radial-gradient(circle,rgba(160,168,185,0.14) 0%,transparent 65%);
-  top:-220px;left:-160px;
-  filter:blur(64px);pointer-events:none;
+/* ── floating annotations ── */
+.dsz-floats{
+  position:absolute;inset:0;
+  pointer-events:none;
+  z-index:0;
 }
-.dsz-sticky::after{
-  content:'';position:absolute;
-  width:520px;height:520px;border-radius:50%;
-  background:radial-gradient(circle,rgba(145,155,175,0.10) 0%,transparent 65%);
-  bottom:-130px;right:-110px;
-  filter:blur(52px);pointer-events:none;
+.dsz-float{
+  position:absolute;
+  font-family:var(--hand);
+  font-size:13.5px;
+  line-height:1.5;
+  color:rgba(0,0,0,0.28);
+  max-width:160px;
 }
-/* ── dark slick card ── */
+.dsz-float-arrow{
+  font-size:16px;
+  display:inline-block;
+  margin-right:2px;
+}
+/* left floats */
+.dsz-fl-1{top:20%;left:3%;transform:rotate(-3deg);}
+.dsz-fl-2{top:38%;left:5%;transform:rotate(2deg);}
+.dsz-fl-3{top:57%;left:2%;transform:rotate(-2deg);}
+.dsz-fl-4{top:74%;left:6%;transform:rotate(3deg);}
+/* right floats */
+.dsz-fr-1{top:18%;right:3%;transform:rotate(3deg);text-align:right;}
+.dsz-fr-2{top:36%;right:5%;transform:rotate(-2deg);text-align:right;}
+.dsz-fr-3{top:55%;right:2%;transform:rotate(2deg);text-align:right;}
+.dsz-fr-4{top:72%;right:6%;transform:rotate(-3deg);text-align:right;}
+/* ── light card ── */
 .dsz-card{
-  width:min(720px,88vw);
-  background:#0d0d0f;
-  border:1px solid rgba(255,255,255,0.07);
+  position:relative;z-index:1;
+  width:min(680px,72vw);
+  background:#ffffff;
+  border:1px solid rgba(0,0,0,0.07);
   border-radius:24px;
   padding:36px;
-  box-shadow:0 0 0 1px rgba(255,255,255,0.03),0 24px 80px rgba(0,0,0,0.40),0 6px 20px rgba(0,0,0,0.25);
+  box-shadow:0 2px 8px rgba(0,0,0,0.04),0 12px 40px rgba(0,0,0,0.08);
   display:flex;flex-direction:column;gap:18px;
   transform:scale(0.48);
   opacity:0;
@@ -511,42 +520,42 @@ nav.scrolled{
   justify-content:space-between;
 }
 .dsz-wip-tag{
-  background:rgba(30,144,255,0.15);
-  color:rgba(110,180,255,0.90);
+  background:rgba(30,144,255,0.10);
+  color:#1565C0;
   display:inline-flex;align-items:center;gap:4px;
 }
 .dsz-title{
   font-family:var(--serif);
-  font-size:clamp(1.15rem,2vw,1.55rem);
-  font-weight:500;color:#f0f0f2;
+  font-size:clamp(1.1rem,2vw,1.5rem);
+  font-weight:500;color:var(--ink);
   line-height:1.25;margin:0;
 }
 .dsz-desc{
   font-family:var(--serif);font-style:italic;
-  font-size:13.5px;color:rgba(255,255,255,0.38);
+  font-size:13.5px;color:var(--ink3);
   line-height:1.8;margin:0;
 }
 .dsz-visual{
   display:grid;
   grid-template-columns:auto 1fr auto;
-  gap:22px;align-items:start;
+  gap:20px;align-items:start;
   margin-top:4px;
 }
 .dsz-tokens{
   display:grid;grid-template-columns:1fr 1fr;gap:6px;
 }
-.dsz-swatch{width:28px;height:28px;border-radius:7px;}
+.dsz-swatch{width:26px;height:26px;border-radius:7px;}
 .dsz-bars{
-  display:flex;flex-direction:column;gap:10px;
+  display:flex;flex-direction:column;gap:9px;
 }
-.dsz-bar-row{display:flex;flex-direction:column;gap:4px;}
+.dsz-bar-row{display:flex;flex-direction:column;gap:3px;}
 .dsz-bar-label{
   font-family:var(--sans);font-size:9.5px;
-  font-weight:600;letter-spacing:0.06em;
-  color:rgba(255,255,255,0.30);text-transform:uppercase;
+  font-weight:600;letter-spacing:0.05em;
+  color:var(--ink4);text-transform:uppercase;
 }
 .dsz-bar-track{
-  height:4px;background:rgba(255,255,255,0.08);
+  height:4px;background:rgba(0,0,0,0.06);
   border-radius:3px;overflow:hidden;
 }
 .dsz-bar-fill{height:100%;border-radius:3px;}
@@ -554,30 +563,34 @@ nav.scrolled{
   display:flex;flex-direction:column;gap:8px;
 }
 .dsz-mock-btn{
-  height:22px;width:100px;border-radius:6px;
+  height:22px;width:96px;border-radius:6px;
 }
 .dsz-mock-input{
-  height:22px;width:100px;border-radius:6px;
-  border:1px solid rgba(255,255,255,0.12);
+  height:22px;width:96px;border-radius:6px;
+  border:1px solid rgba(0,0,0,0.10);
   background:transparent;
 }
 .dsz-mock-card{
-  height:40px;width:100px;border-radius:8px;
-  border:0.5px solid rgba(255,255,255,0.08);
-  background:rgba(255,255,255,0.04);
+  height:38px;width:96px;border-radius:8px;
+  border:0.5px solid rgba(0,0,0,0.08);
+  background:rgba(0,0,0,0.03);
 }
 .dsz-cta{
   display:inline-flex;align-items:center;gap:6px;
   font-family:var(--serif);font-size:13px;font-weight:600;
-  color:#e8e8ea;padding:9px 18px;
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.10);
+  color:#111827;padding:9px 18px;
+  background:#ffffff;
   border-radius:99px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.10);
   text-decoration:none;width:fit-content;
   margin-top:4px;
-  transition:background 0.2s ease,transform 0.2s ease;
+  transition:box-shadow 0.2s ease,transform 0.2s ease;
 }
-.dsz-cta:hover{background:rgba(255,255,255,0.12);transform:translateY(-1px);}
+.dsz-cta:hover{box-shadow:0 4px 18px rgba(0,0,0,0.14);transform:translateY(-1px);}
+@media(max-width:1024px){
+  .dsz-float{display:none;}
+  .dsz-card{width:min(680px,88vw);}
+}
 @media(max-width:767px){
   .dsz-section{height:260vh;}
   .dsz-heading-wrap{padding:3rem 24px 2rem;}
@@ -1718,7 +1731,7 @@ nav.scrolled{
   .wr-desc{font-size:13px;}
 }
 /* ── WHITE BG + GRAY DOT PATTERN ── */
-.hero,.work,.zoom-sticky,.about,.gallery-section,.shelf-section,.scrapbook-section,.testimonials-section,.contact{
+.hero,.work,.zoom-sticky,.dsz-sticky,.about,.gallery-section,.shelf-section,.scrapbook-section,.testimonials-section,.contact{
   background-color:#ffffff;
   background-image:radial-gradient(circle,rgba(0,0,0,0.07) 1.5px,transparent 1.5px);
   background-size:28px 28px;

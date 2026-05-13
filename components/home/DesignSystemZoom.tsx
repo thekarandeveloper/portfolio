@@ -7,14 +7,48 @@ const html = `
   </div>
 
   <div class="dsz-sticky">
-    <div class="dsz-card">
 
+    <!-- floating annotations in the white space -->
+    <div class="dsz-floats">
+
+      <!-- LEFT side -->
+      <div class="dsz-float dsz-fl-1">
+        <span class="dsz-float-arrow">&#8594;</span>First component<br/>ever shipped
+      </div>
+      <div class="dsz-float dsz-fl-2">
+        &#128204; Token architecture<br/>defined from scratch
+      </div>
+      <div class="dsz-float dsz-fl-3">
+        <span class="dsz-float-arrow">&#8599;</span>~200 components<br/>documented
+      </div>
+      <div class="dsz-float dsz-fl-4">
+        Built while<br/>shipping product &#128640;
+      </div>
+
+      <!-- RIGHT side -->
+      <div class="dsz-float dsz-fr-1">
+        Used across<br/>4 products &#8592;
+      </div>
+      <div class="dsz-float dsz-fr-2">
+        Zero dedicated<br/>systems team &#128161;
+      </div>
+      <div class="dsz-float dsz-fr-3">
+        Design debt: 0<br/>after rollout &#10003;
+      </div>
+      <div class="dsz-float dsz-fr-4">
+        &#9992; 3-week sprint<br/>to v1
+      </div>
+
+    </div>
+
+    <!-- the card -->
+    <div class="dsz-card">
       <div class="dsz-card-header">
-        <div class="bento-icon-badge" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.10);font-size:18px;">&#127912;</div>
+        <div class="bento-icon-badge">&#127912;</div>
         <div class="bento-tags">
-          <span class="bento-tag" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.55);">Design Systems</span>
-          <span class="bento-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45);">Components</span>
-          <span class="bento-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.45);">Tokens</span>
+          <span class="bento-tag" style="background:rgba(0,0,0,0.05);color:var(--ink3);">Design Systems</span>
+          <span class="bento-tag" style="background:rgba(0,0,0,0.04);color:var(--ink3);">Components</span>
+          <span class="bento-tag" style="background:rgba(0,0,0,0.04);color:var(--ink3);">Tokens</span>
           <span class="bento-tag dsz-wip-tag">&#9679; In Progress</span>
         </div>
       </div>
@@ -24,40 +58,40 @@ const html = `
 
       <div class="dsz-visual">
 
-        <!-- monochrome token swatches -->
+        <!-- color token swatches -->
         <div class="dsz-tokens">
-          <div class="dsz-swatch" style="background:rgba(255,255,255,0.90);"></div>
-          <div class="dsz-swatch" style="background:rgba(255,255,255,0.40);"></div>
-          <div class="dsz-swatch" style="background:rgba(255,255,255,0.14);"></div>
-          <div class="dsz-swatch" style="background:rgba(255,255,255,0.06);"></div>
+          <div class="dsz-swatch" style="background:#111827;"></div>
+          <div class="dsz-swatch" style="background:#6B7280;"></div>
+          <div class="dsz-swatch" style="background:#D1D5DB;"></div>
+          <div class="dsz-swatch" style="background:#F9FAFB;border:1px solid rgba(0,0,0,0.08);"></div>
           <div class="dsz-swatch" style="background:#1E90FF;"></div>
-          <div class="dsz-swatch" style="background:rgba(30,144,255,0.28);"></div>
+          <div class="dsz-swatch" style="background:rgba(30,144,255,0.20);"></div>
         </div>
 
-        <!-- progress bars -->
+        <!-- completion bars -->
         <div class="dsz-bars">
           <div class="dsz-bar-row">
             <div class="dsz-bar-label">Typography</div>
-            <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:90%;background:rgba(255,255,255,0.55);"></div></div>
+            <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:90%;background:rgba(17,24,39,0.55);"></div></div>
           </div>
           <div class="dsz-bar-row">
             <div class="dsz-bar-label">Components</div>
-            <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:74%;background:rgba(30,144,255,0.70);"></div></div>
+            <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:74%;background:#1E90FF;"></div></div>
           </div>
           <div class="dsz-bar-row">
             <div class="dsz-bar-label">Tokens</div>
-            <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:62%;background:rgba(255,255,255,0.35);"></div></div>
+            <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:62%;background:rgba(17,24,39,0.35);"></div></div>
           </div>
           <div class="dsz-bar-row">
             <div class="dsz-bar-label">Documentation</div>
-            <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:38%;background:rgba(255,255,255,0.18);"></div></div>
+            <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:38%;background:rgba(30,144,255,0.40);"></div></div>
           </div>
         </div>
 
-        <!-- mock UI components -->
+        <!-- mock UI pieces -->
         <div class="dsz-mocks">
-          <div class="dsz-mock-btn" style="background:#1E90FF;opacity:0.85;"></div>
-          <div class="dsz-mock-btn" style="background:transparent;width:80px;"></div>
+          <div class="dsz-mock-btn" style="background:rgba(17,24,39,0.80);"></div>
+          <div class="dsz-mock-btn" style="background:transparent;border:1px solid rgba(0,0,0,0.14);"></div>
           <div class="dsz-mock-input"></div>
           <div class="dsz-mock-card"></div>
         </div>
@@ -66,6 +100,7 @@ const html = `
 
       <a class="dsz-cta" href="/projects/project-5">View Case Study &rarr;</a>
     </div>
+
   </div>
 
 </section>
