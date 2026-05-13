@@ -374,6 +374,10 @@ function OverviewSection() {
         </p>
       </div>
 
+      <div className="csl-reveal" style={{ marginBottom: 8 }}>
+        <JourneyTimeline />
+      </div>
+
     </CsSection>
   );
 }
@@ -545,27 +549,49 @@ function ProblemSection() {
         sub="Yet in the existing system, that was the reality. Agents were spending 12+ minutes per booking — not because the task was complex, but because the interface made it complex."
       />
 
-      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
         {PAIN_MOMENTS.map((m) => (
-          <div key={m.title}>
-            <p className="csl-h3" style={{ marginBottom: 8 }}>{m.title}</p>
-            <p style={{ fontSize: "1.05rem", color: "#4B5563", lineHeight: 1.8, margin: "0 0 8px" }}>
+          <div key={m.title} style={{
+            borderLeft: "3px solid #1E90FF",
+            paddingLeft: 18,
+          }}>
+            <p className="csl-h3" style={{ marginBottom: 6 }}>{m.title}</p>
+            <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.65, margin: "0 0 10px" }}>
               {m.scene}
             </p>
-            <span style={{ fontSize: "0.85rem", color: "#1076BC", fontWeight: 600 }}>
-              Solved by: <strong style={{ color: "#1076BC" }}>{m.solvedBy}</strong>
-            </span>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: "0.7rem", color: "#9CA3AF", fontWeight: 500 }}>Fixed by</span>
+              <span style={{
+                fontSize: "0.72rem", fontWeight: 700, color: "#1E90FF",
+                background: "#EFF6FF", borderRadius: 6, padding: "3px 10px",
+              }}>{m.solvedBy}</span>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Agent quote — plain */}
+      {/* Agent quote — pull quote */}
       <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
         <span className="csl-eyebrow">In their own words</span>
-        <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: "0 0 10px" }}>
-          &ldquo;I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.&rdquo;
-        </p>
-        <span style={{ fontSize: "0.82rem", color: "#9CA3AF" }}>Senior travel agent — pre-launch interview</span>
+        <div style={{
+          background: "#F8FAFF", borderRadius: 16, padding: "28px 28px 24px",
+          position: "relative", marginTop: 12,
+        }}>
+          <span style={{
+            position: "absolute", top: 8, left: 18,
+            fontSize: "4.5rem", color: "#BFDBFE", lineHeight: 1,
+            fontFamily: "Georgia, serif", userSelect: "none",
+          }}>&ldquo;</span>
+          <p style={{
+            fontSize: "1.15rem", fontWeight: 600, color: "#111827",
+            lineHeight: 1.7, margin: "20px 0 14px", paddingLeft: 4,
+          }}>
+            I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.
+          </p>
+          <span style={{ fontSize: "0.78rem", color: "#9CA3AF", fontWeight: 500 }}>
+            Senior travel agent — pre-launch interview
+          </span>
+        </div>
       </div>
     </CsSection>
   );
@@ -690,20 +716,31 @@ function CompetitiveCarousel() {
       {/* ── Key findings ── */}
       <div style={{ marginTop: 28 }}>
         <span className="csl-eyebrow">Key findings</span>
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          {KEY_FINDINGS.map((text, i) => (
-            <p
-              key={i}
-              onMouseEnter={() => setHoveredFinding(i)}
-              onMouseLeave={() => setHoveredFinding(null)}
-              style={{
-                fontSize: "1.05rem", color: "#374151", lineHeight: 1.75,
-                margin: 0, cursor: "default", transition: "color 0.2s ease",
-              }}
-            >
-              <HighlightLine text={text} active={hoveredFinding === i} />
-            </p>
-          ))}
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {KEY_FINDINGS.map((text, i) => {
+            const parts = text.split(/\*\*(.*?)\*\*/g);
+            return (
+              <div key={i} style={{
+                display: "grid", gridTemplateColumns: "28px 1fr",
+                gap: "0 14px", alignItems: "start",
+              }}>
+                <span style={{
+                  width: 28, height: 28, borderRadius: 8,
+                  background: "#EFF6FF", display: "flex",
+                  alignItems: "center", justifyContent: "center",
+                  fontSize: "0.68rem", fontWeight: 900, color: "#1E90FF",
+                  flexShrink: 0, marginTop: 1,
+                }}>0{i + 1}</span>
+                <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.65, margin: 0 }}>
+                  {parts.map((part, j) =>
+                    j % 2 === 1
+                      ? <strong key={j} style={{ color: "#111827", fontWeight: 700 }}>{part}</strong>
+                      : <span key={j}>{part}</span>
+                  )}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -727,10 +764,8 @@ function ApproachSection() {
 
       {/* Research → Design bridge */}
       <div className="csl-reveal" style={{ marginBottom: 8 }}>
-        <p style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 20 }}>
-          What research told us to design
-        </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+        <span className="csl-eyebrow">What research told us to design</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {[
             {
               insight: "Price and refundability must land in the same scan — not one click apart",
@@ -745,13 +780,25 @@ function ApproachSection() {
               decision: "Review Table: dense, explicit, zero blank cells before the agent submits",
             },
           ].map((r, i) => (
-            <div key={i}>
-              <p style={{ fontSize: "1.05rem", color: "#111827", fontWeight: 600, margin: "0 0 6px", lineHeight: 1.5 }}>
-                {r.insight}
-              </p>
-              <p style={{ fontSize: "0.9rem", color: "#1076BC", margin: 0 }}>
-                → {r.decision}
-              </p>
+            <div key={i} style={{
+              display: "grid", gridTemplateColumns: "28px 1fr",
+              gap: "0 14px", alignItems: "start",
+            }}>
+              <span style={{
+                width: 28, height: 28, borderRadius: 8,
+                background: "#EFF6FF", display: "flex",
+                alignItems: "center", justifyContent: "center",
+                fontSize: "0.68rem", fontWeight: 900, color: "#1E90FF",
+                flexShrink: 0, marginTop: 2,
+              }}>0{i + 1}</span>
+              <div>
+                <p style={{ fontSize: "0.95rem", fontWeight: 700, color: "#111827", margin: "0 0 4px", lineHeight: 1.5 }}>
+                  {r.insight}
+                </p>
+                <p style={{ fontSize: "0.85rem", color: "#1076BC", margin: 0 }}>
+                  → {r.decision}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -1611,11 +1658,23 @@ function LearningsSection() {
     <CsSection id="learnings" last>
       <CsSectionHeader title="Learnings" sub="What this project taught me about designing for real-world, complex B2B workflows." />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
         {items.map((item) => (
-          <div key={item.n} className="csl-reveal">
-            <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{item.title}</div>
-            <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
+          <div key={item.n} className="csl-reveal" style={{
+            display: "grid", gridTemplateColumns: "28px 1fr",
+            gap: "0 16px", alignItems: "start",
+          }}>
+            <span style={{
+              width: 28, height: 28, borderRadius: 8,
+              background: "#EFF6FF", display: "flex",
+              alignItems: "center", justifyContent: "center",
+              fontSize: "0.68rem", fontWeight: 900, color: "#1E90FF",
+              flexShrink: 0, marginTop: 2,
+            }}>{item.n}</span>
+            <div>
+              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{item.title}</div>
+              <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{item.text}</p>
+            </div>
           </div>
         ))}
       </div>
