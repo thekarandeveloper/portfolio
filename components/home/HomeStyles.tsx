@@ -760,7 +760,7 @@ nav.scrolled{
 
 /* ── JOURNEY ── */
 .journey{background:#ffffff;padding:7rem 250px;border-top:1px solid rgba(0,0,0,0.06);position:relative;}
-.journey::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(0,0,0,0.065) 1px,transparent 1px);background-size:22px 22px;pointer-events:none;}
+.journey::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,0.12) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;}
 .journey-inner{display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;position:relative;z-index:1;}
 .journey-left{position:sticky;top:8rem;}
 .journey-title{font-family:'Rethink Sans',var(--sans);font-size:clamp(22px,4vw,38px);font-weight:800;color:var(--ink);line-height:1.25;margin-bottom:1rem;}
@@ -1801,8 +1801,8 @@ nav.scrolled{
 /* ── WHITE BG + GRAY DOT PATTERN (all sections except hero) ── */
 .work,.zoom-sticky,.about,.gallery-section,.shelf-section,.scrapbook-section,.testimonials-section,.contact{
   background-color:#ffffff;
-  background-image:radial-gradient(circle,rgba(0,0,0,0.065) 1px,transparent 1px);
-  background-size:22px 22px;
+  background-image:radial-gradient(circle,rgba(0,0,0,0.12) 1.5px,transparent 1.5px);
+  background-size:28px 28px;
 }`;
 
 export function HomeStyles() {
