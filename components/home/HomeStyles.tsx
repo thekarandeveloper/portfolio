@@ -247,21 +247,19 @@ nav.scrolled{
 .hi-hello{font-family:var(--hand);font-size:clamp(1.5rem,2.5vw,2rem);color:var(--pink);display:block;margin-bottom:0.15rem;}
 .hi-headline{font-family:var(--serif);font-size:clamp(3.5rem,6.5vw,5.8rem);font-weight:400;color:var(--ink);line-height:1.0;letter-spacing:-0.025em;margin-bottom:1.8rem;}
 .hi-headline em{font-style:italic;background:linear-gradient(90deg,#1E90FF,#00BFFF,#0066FF,#1E90FF);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 4s ease infinite;}
-.hi-bio{font-size:clamp(0.9rem,1.3vw,1rem);color:var(--ink3);line-height:1.85;max-width:440px;margin-bottom:2rem;}
-.hi-bio strong{color:var(--ink);font-weight:600;}
-.hi-bio em{font-style:italic;-webkit-text-fill-color:var(--pink);color:var(--pink);}
-.hi-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.5rem;}
-.hi-chip{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-weight:600;letter-spacing:0.03em;color:var(--ink3);background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.08);padding:5px 12px;border-radius:99px;}
-.hi-chip-blue{background:rgba(30,144,255,0.08);border-color:rgba(30,144,255,0.2);color:var(--pink);}
-.hi-polaroid-wrap{position:relative;}
-.hi-polaroid{background:#fff;padding:14px 14px 60px;box-shadow:0 18px 60px rgba(0,0,0,0.14),0 4px 16px rgba(0,0,0,0.07);border-radius:3px;transform:rotate(3.5deg);transition:transform 0.5s cubic-bezier(0.34,1.4,0.64,1),box-shadow 0.4s ease;width:275px;position:relative;}
-.hi-polaroid:hover{transform:rotate(0deg) scale(1.04);box-shadow:0 28px 80px rgba(0,0,0,0.18);}
-.hi-photo{width:100%;aspect-ratio:1/1.1;object-fit:cover;object-position:top center;display:block;border-radius:1px;}
-.hi-caption{position:absolute;bottom:0;left:0;right:0;height:60px;display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-size:1.05rem;color:#777;}
-.hi-tape{position:absolute;width:68px;height:22px;background:rgba(255,220,100,0.55);border-radius:2px;top:-10px;left:50%;transform:translateX(-50%) rotate(-1.5deg);z-index:3;}
-.hi-tape::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,0.06) 0px,rgba(0,0,0,0.06) 2px,transparent 2px,transparent 6px);border-radius:2px;}
-.hi-tape2{position:absolute;width:46px;height:18px;background:rgba(180,210,255,0.55);border-radius:2px;bottom:38px;right:-16px;transform:rotate(10deg);z-index:3;}
-.hi-tape2::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,0.05) 0px,rgba(0,0,0,0.05) 2px,transparent 2px,transparent 6px);border-radius:2px;}
+.hi-bio-line{font-size:clamp(0.9rem,1.3vw,1rem);color:var(--ink3);line-height:1.8;max-width:440px;margin-bottom:0.55rem;}
+.hi-bio-line:last-of-type{margin-bottom:0;}
+
+/* 3-polaroid stack */
+.hi-stack{position:relative;width:300px;height:360px;margin:0 auto;}
+.hi-stack-pol{position:absolute;background:#fff;padding:12px 12px 52px;box-shadow:0 8px 32px rgba(0,0,0,0.12),0 2px 8px rgba(0,0,0,0.06);border-radius:3px;width:240px;transition:transform 0.45s cubic-bezier(0.34,1.4,0.64,1),box-shadow 0.35s ease;}
+.hi-stack-photo{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:1px;}
+.hi-sp1{transform:rotate(-6deg) translate(-20px, 60px);z-index:1;}
+.hi-sp2{transform:rotate(3deg) translate(10px, 30px);z-index:2;}
+.hi-sp3{transform:rotate(-1.5deg) translate(-5px, 0px);z-index:3;}
+.hi-stack:hover .hi-sp1{transform:rotate(-10deg) translate(-40px, 80px);}
+.hi-stack:hover .hi-sp2{transform:rotate(6deg) translate(20px, 40px);}
+.hi-stack:hover .hi-sp3{transform:rotate(-2deg) translate(-5px, -5px);}
 .hi-pill{position:absolute;background:rgba(255,255,255,0.78);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.07);border-radius:99px;padding:5px 14px;font-family:var(--hand);font-size:1rem;color:var(--ink3);box-shadow:0 2px 8px rgba(0,0,0,0.05);pointer-events:none;white-space:nowrap;z-index:1;}
 .hi-star{position:absolute;pointer-events:none;opacity:0.22;z-index:1;}
 @keyframes hiDrift{0%,100%{transform:translateY(0);}50%{transform:translateY(-11px);}}
@@ -1826,7 +1824,8 @@ nav.scrolled{
 @media(max-width:1100px){.home-xp-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:900px){
   .hero{padding:8rem 48px 4rem;gap:32px;}
-  .hi-polaroid{width:240px;}
+  .hi-stack{width:240px;height:290px;}
+  .hi-stack-pol{width:192px;}
   .home-loves{padding:4rem 48px;}
   .home-xp{padding:4rem 48px 5rem;}
 }
