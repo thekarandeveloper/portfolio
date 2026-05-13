@@ -9,8 +9,8 @@ const html = `<section class="work" id="work">
 
     <!-- ROW 1: small LEFT (EcoTrack) | big RIGHT (Air IQ) -->
 
-    <!-- EcoTrack — 1 col, left -->
-    <a class="bento-work-card reveal reveal-delay-2" href="/projects/ecotrack" style="background:linear-gradient(180deg,#edf8f1 0%,#ffffff 100%);">
+    <!-- EcoTrack — narrow (2/5), left -->
+    <a class="bento-work-card narrow reveal reveal-delay-2" href="/projects/ecotrack" style="background:linear-gradient(180deg,#edf8f1 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">&#127807;</div>
@@ -110,8 +110,8 @@ const html = `<section class="work" id="work">
       </div>
     </a>
 
-    <!-- BiblioFi — 1 col, right -->
-    <a class="bento-work-card reveal reveal-delay-3" href="/projects/biblofi" style="background:linear-gradient(180deg,#fef8f0 0%,#ffffff 100%);">
+    <!-- BiblioFi — narrow (2/5), right -->
+    <a class="bento-work-card narrow reveal reveal-delay-3" href="/projects/biblofi" style="background:linear-gradient(180deg,#fef8f0 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">&#128218;</div>

@@ -1,10 +1,14 @@
 const html = `
 <section class="dsz-section" id="ds-zoom">
 
+  <!-- heading — same cadence as the work section heading -->
+  <div class="dsz-heading-wrap reveal">
+    <h2 class="dsz-title-main">Currently working on</h2>
+    <span class="dsz-title-script">a design system.</span>
+  </div>
+
+  <!-- sticky scroll-zoom card -->
   <div class="dsz-sticky">
-
-    <span class="dsz-eyebrow">Currently building</span>
-
     <div class="dsz-card">
       <div class="dsz-card-header">
         <div class="bento-icon-badge" style="font-size:18px;">&#127912;</div>
@@ -20,7 +24,7 @@ const html = `
       <p class="dsz-desc">Built a modular component library and token system that scaled with the team&mdash;without slowing it down. No dedicated systems team. Built alongside shipping.</p>
 
       <div class="dsz-visual">
-        <!-- token grid -->
+        <!-- token swatches -->
         <div class="dsz-tokens">
           <div class="dsz-swatch" style="background:rgba(219,39,119,0.55);"></div>
           <div class="dsz-swatch" style="background:rgba(26,18,16,0.65);"></div>
@@ -29,7 +33,7 @@ const html = `
           <div class="dsz-swatch" style="background:rgba(30,144,255,0.55);"></div>
           <div class="dsz-swatch" style="background:rgba(45,125,67,0.45);"></div>
         </div>
-        <!-- component bars -->
+        <!-- progress bars -->
         <div class="dsz-bars">
           <div class="dsz-bar-row">
             <div class="dsz-bar-label">Typography</div>
@@ -48,7 +52,7 @@ const html = `
             <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:40%;background:rgba(219,39,119,0.12);"></div></div>
           </div>
         </div>
-        <!-- mock component blocks -->
+        <!-- mock UI pieces -->
         <div class="dsz-mocks">
           <div class="dsz-mock-btn" style="background:rgba(219,39,119,0.12);"></div>
           <div class="dsz-mock-btn" style="background:rgba(0,0,0,0.06);width:80px;"></div>
@@ -59,7 +63,6 @@ const html = `
 
       <a class="dsz-cta" href="/projects/project-5">View Case Study &rarr;</a>
     </div>
-
   </div>
 
 </section>

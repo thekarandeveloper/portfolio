@@ -380,7 +380,6 @@ if(heroBlob) {
 (function(){
   var section=document.getElementById('ds-zoom');
   if(!section)return;
-  var sticky=section.querySelector('.dsz-sticky');
   var card=section.querySelector('.dsz-card');
   if(!card)return;
   var ticking=false;
@@ -391,14 +390,9 @@ if(heroBlob) {
     var rect=section.getBoundingClientRect();
     var total=section.offsetHeight-window.innerHeight;
     var p=c(-rect.top/total);
-    // reveal eyebrow early
-    if(sticky){
-      if(p>0.05)sticky.classList.add('dsz-visible');
-      else sticky.classList.remove('dsz-visible');
-    }
-    // card: opacity 0→1 over first 25%, scale 0.48→1.0 over 0→80%
-    var op=mr(p,0.04,0.28);
-    var sc=0.48+0.52*eOut(mr(p,0,0.80));
+    // card starts animating after heading scrolls away (~first 8% of section travel)
+    var op=mr(p,0.07,0.28);
+    var sc=0.48+0.52*eOut(mr(p,0.06,0.78));
     card.style.opacity=op;
     card.style.transform='scale('+sc+')';
     ticking=false;
