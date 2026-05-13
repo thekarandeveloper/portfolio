@@ -9,17 +9,16 @@ const css = `:root {
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;scroll-snap-type:y proximity;scroll-padding-top:76px;}
-.hero,.work,.process-section,.about,.gallery-section,.scrapbook-section,.shelf-section,.testimonials-section,.journey,.signoff,.contact{scroll-snap-align:start;}
+.hero,.work,.dsz-section,.process-section,.about,.gallery-section,.scrapbook-section,.shelf-section,.testimonials-section,.journey,.signoff,.contact{scroll-snap-align:start;}
 body{
-  background:var(--bg);
+  background:#ffffff;
+  background-image:radial-gradient(circle,rgba(0,0,0,0.055) 1.5px,transparent 1.5px);
+  background-size:28px 28px;
   color:var(--ink);
   font-family:var(--sans);
   font-weight:300;
   line-height:1.6;
   overflow-x:hidden;
-  background-image:
-    radial-gradient(ellipse at 15% 10%, rgba(180,210,255,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 85%, rgba(200,185,255,0.05) 0%, transparent 50%);
 }
 .home-page-shell{
   opacity:0;
@@ -243,19 +242,18 @@ nav.scrolled{
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7rem 250px 5rem;position:relative;overflow:hidden;cursor:none;}
 .cursor-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.03) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left 0.08s ease,top 0.08s ease;z-index:0;}
 .custom-cursor{
-  position:fixed;width:10px;height:10px;border-radius:50%;
-  background:var(--pink);
+  position:fixed;width:30px;height:30px;
+  background:none;border-radius:0;box-shadow:none;
   pointer-events:none;
-  transform:translate(-50%,-50%);
+  transform:translate(-6px,-4px);
   z-index:9998;
-  box-shadow:0 0 0 5px rgba(30,144,255,0.10),0 0 20px rgba(30,144,255,0.28);
-  transition:width 0.22s ease,height 0.22s ease,opacity 0.22s ease,background 0.22s ease,box-shadow 0.22s ease,border-radius 0.6s ease;
+  font-size:22px;line-height:1;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.18));
+  transition:font-size 0.18s ease,opacity 0.22s ease,transform 0.18s ease;
 }
-.custom-cursor.big{
-  width:14px;height:14px;
-  background:var(--pink);
-  box-shadow:0 0 0 7px rgba(30,144,255,0.10),0 0 24px rgba(30,144,255,0.34);
-}
+.custom-cursor::before{content:'☝️';display:block;}
+.custom-cursor.big{font-size:26px;transform:translate(-7px,-5px);}
+.custom-cursor.big::before{content:'👆';}
 
 /* canvas wave injected by HomeBehavior — no static CSS needed */
 #heroWaveCanvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
@@ -294,16 +292,13 @@ nav.scrolled{
 @keyframes briefcase{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-3px) scale(1.1);}}
 /* scroll down arrow */
 .hero-scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:2;}
-.scroll-glass-orb{
-  width:38px;height:38px;border-radius:50%;
-  background:rgba(255,255,255,0.55);
-  backdrop-filter:blur(12px) saturate(1.5);
-  border:1px solid rgba(255,255,255,0.8);
-  box-shadow:0 4px 16px rgba(30,144,255,0.10),0 1px 4px rgba(0,0,0,0.06);
-  display:flex;align-items:center;justify-content:center;
-  animation:scrollBounce 2.2s ease-in-out infinite;
+.scroll-hand{
+  font-size:26px;line-height:1;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+  animation:scrollBounce 2s ease-in-out infinite;
+  display:block;
 }
-@keyframes scrollBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+@keyframes scrollBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 @keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
@@ -385,17 +380,17 @@ nav.scrolled{
 .section-label{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);margin-bottom:0.85rem;}
 .section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:3.5rem;}
 .section-title em{font-style:italic;color:var(--pink);}
-.reveal{opacity:0;transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1);}
-.reveal:not(.from-left):not(.from-right):not(.scale-up){transform:translateY(30px);}
-.reveal.from-left{transform:translateX(-40px);}
-.reveal.from-right{transform:translateX(40px);}
-.reveal.scale-up{transform:scale(0.92) translateY(16px);}
-.reveal.visible{opacity:1;transform:none;}
+.reveal{opacity:0;transition:opacity 0.9s cubic-bezier(0.22,1,0.36,1),transform 0.9s cubic-bezier(0.22,1,0.36,1),filter 0.9s ease;filter:blur(5px);}
+.reveal:not(.from-left):not(.from-right):not(.scale-up){transform:translateY(48px);}
+.reveal.from-left{transform:translateX(-52px);}
+.reveal.from-right{transform:translateX(52px);}
+.reveal.scale-up{transform:scale(0.90) translateY(22px);}
+.reveal.visible{opacity:1;transform:none;filter:blur(0);}
 .reveal-delay-1{transition-delay:0.08s;}.reveal-delay-2{transition-delay:0.16s;}.reveal-delay-3{transition-delay:0.25s;}.reveal-delay-4{transition-delay:0.35s;}.reveal-delay-5{transition-delay:0.46s;}.reveal-delay-6{transition-delay:0.58s;}
 
 /* ── WORK BENTO ── */
-.work{background:#F5F5F8;padding:4.5rem 250px 7rem;}
-.work-heading-wrap{margin-bottom:3rem;}
+.work{background:transparent;padding:5rem 250px;}
+.work-heading-wrap{margin-bottom:2rem;}
 .work-title-main{font-family:'Rethink Sans',var(--sans);font-size:clamp(24px,5vw,40px);font-weight:800;color:#1a1a1a;line-height:1.3;margin:0;}
 .work-title-script{font-family:var(--hand);font-size:calc(clamp(24px,5vw,40px) * 1.3);font-weight:700;color:#1E90FF;display:block;line-height:1.2;}
 .bento-work-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
@@ -450,7 +445,7 @@ nav.scrolled{
 /* ── DESIGN SYSTEM SECTION ── */
 .dsz-section{position:relative;}
 .dsz-heading-wrap{
-  padding:4.5rem 250px 3rem;
+  padding:3rem 250px 2rem;
 }
 .dsz-title-main{
   font-family:'Rethink Sans',var(--sans);
@@ -469,7 +464,7 @@ nav.scrolled{
   min-height:100vh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  padding:60px 0 80px;
+  padding:40px 0 60px;
   overflow:hidden;
 }
 /* ── stage: card + floats together ── */
@@ -612,7 +607,7 @@ nav.scrolled{
 
 /* ── ZOOM INTERLUDE ── */
 .zoom-section{position:relative;height:350vh;z-index:2;}
-.zoom-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#ffffff;}
+.zoom-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:transparent;}
 .zoom-sticky::before{content:'';position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(30,144,255,0.07) 0%,transparent 65%);top:-280px;right:-200px;pointer-events:none;}
 .zoom-sticky::after{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(110,80,220,0.05) 0%,transparent 65%);bottom:-180px;left:-140px;pointer-events:none;}
 .zoom-content{position:relative;z-index:1;text-align:center;padding:0 clamp(24px,6vw,100px);display:flex;flex-direction:column;align-items:center;gap:0.15em;}
@@ -663,7 +658,7 @@ nav.scrolled{
 }
 
 /* ── ABOUT — SCRAPBOOK BOOK ── */
-.about{background:#fff;padding:10rem 250px 4rem;overflow:hidden;position:relative;}
+.about{background:transparent;padding:5rem 250px;overflow:hidden;position:relative;}
 .about-inner{max-width:1120px;margin:0 auto;}
 .about-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--ink);line-height:1.1;margin:0 0 4.5rem;text-align:center;}
 .about-title em{font-style:italic;color:var(--pink);}
@@ -821,7 +816,7 @@ nav.scrolled{
 }
 
 /* ── PHOTO GALLERY ── */
-.gallery-section{padding:7rem 250px;background:var(--bg);}
+.gallery-section{padding:5rem 250px;background:transparent;}
 .gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:120px;gap:10px;margin-top:2rem;}
 .gallery-item{border-radius:12px;overflow:hidden;background:var(--bg3);border:1px solid var(--border);position:relative;display:flex;align-items:center;justify-content:center;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;}
 .gallery-item:hover{transform:scale(1.02);box-shadow:0 12px 36px rgba(17,17,17,0.1);z-index:2;}
@@ -835,7 +830,7 @@ nav.scrolled{
 .gallery-label{position:absolute;bottom:0.6rem;left:0.75rem;font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink4);background:rgba(253,250,248,0.85);padding:2px 8px;border-radius:99px;}
 
 /* ── OBSESSIONS SHELF ── */
-.shelf-section{padding:7rem 250px;background:var(--bg2);border-top:1px solid var(--border);}
+.shelf-section{padding:5rem 250px;background:transparent;}
 .shelf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem;}
 .obsession-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;cursor:default;}
 .obsession-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(17,17,17,0.08);border-color:rgba(17,17,17,0.2);}
@@ -873,7 +868,7 @@ nav.scrolled{
               translate 0.12s linear;
 }
 
-.scrapbook-section{padding:7rem 250px 9rem;background:var(--bg2);border-top:1px solid var(--border);overflow:hidden;}
+.scrapbook-section{padding:5rem 250px;background:transparent;overflow:hidden;}
 .scrapbook-title-line{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--ink);line-height:1.1;}
 .scrapbook-title-line em{font-style:italic;color:var(--pink);}
 .scrapbook-sub{font-size:0.9rem;color:var(--ink3);margin-top:0.5rem;margin-bottom:5rem;font-family:var(--serif);font-style:italic;}
@@ -896,7 +891,7 @@ nav.scrolled{
 
 
 /* ── TESTIMONIALS ── */
-.testimonials-section{padding:7rem 250px;background:linear-gradient(170deg,var(--bg) 0%,var(--bg2) 100%);}
+.testimonials-section{padding:5rem 250px;background:transparent;}
 .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-top:2rem;}
 .testimonial-card{
   background:rgba(255,255,255,0.78);
@@ -915,7 +910,7 @@ nav.scrolled{
 .testimonial-role{font-size:0.72rem;color:var(--ink4);}
 
 /* ── CONTACT ── */
-.contact{background:var(--bg2);padding:3rem 250px 4rem;border-top:1px solid var(--border);overflow:hidden;position:relative;}
+.contact{background:transparent;padding:5rem 250px;overflow:hidden;position:relative;}
 .contact-glow{position:absolute;top:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(17,17,17,0.05) 0%,transparent 70%);pointer-events:none;}
 .contact-illustration{position:absolute;top:0;right:0;width:280px;height:300px;display:flex;align-items:flex-start;justify-content:flex-end;}
 .illus-placeholder{width:210px;height:250px;border:1px dashed var(--border2);border-radius:12px;margin:2rem 2rem 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;background:rgba(17,17,17,0.02);}
@@ -943,8 +938,7 @@ nav.scrolled{
 .contact-footer-copy{font-size:0.7rem;letter-spacing:0.06em;color:var(--ink4);}
 
 /* ── JOURNEY ── */
-.journey{background:#ffffff;padding:7rem 250px;border-top:1px solid rgba(0,0,0,0.06);position:relative;}
-.journey::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,0.07) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;}
+.journey{background:transparent;padding:5rem 250px;position:relative;}
 .journey-inner{display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;position:relative;z-index:1;}
 .journey-left{position:sticky;top:8rem;}
 .journey-title{font-family:'Rethink Sans',var(--sans);font-size:clamp(22px,4vw,38px);font-weight:800;color:var(--ink);line-height:1.25;margin-bottom:1rem;}
@@ -1016,7 +1010,7 @@ nav.scrolled{
 
 @media(max-width:900px){
   nav{padding:4px;}.nav-clock{display:none;}.nav-brand{padding:0.4rem 0.7rem 0.4rem 0.5rem;}.nav-cta{display:none;}
-  .work,.journey,.about,.contact,.process-section,.gallery-section,.shelf-section,.testimonials-section{padding:5rem clamp(24px,4vw,50px);}
+  .work,.journey,.about,.contact,.process-section,.gallery-section,.shelf-section,.testimonials-section{padding:3rem clamp(24px,4vw,50px);}
   .spectrum-section{padding:4rem clamp(24px,4vw,50px);}
   .journey-inner{grid-template-columns:1fr;}.journey-left{position:static;}
   .float-el{display:none;}

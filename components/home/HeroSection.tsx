@@ -40,11 +40,9 @@ const html = `<section class="hero" id="home">
     <p class="hero-line3"><span class="work-icon">💼</span> Currently designing @ Air IQ</p>
   </div>
 
-  <!-- Scroll arrow with glass orb -->
+  <!-- Scroll hint hand gesture -->
   <div class="hero-scroll-hint">
-    <div class="scroll-glass-orb">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E90FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-    </div>
+    <div class="scroll-hand">👇</div>
   </div>
 
 </section>`;
