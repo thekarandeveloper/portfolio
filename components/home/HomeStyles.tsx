@@ -173,18 +173,18 @@ nav{
   z-index:100;
   display:flex;align-items:center;gap:4px;
   padding:5px 5px 5px 5px;
-  background:#fff;
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
-  border:1px solid rgba(0,0,0,0.06);
+  background:rgba(255,255,255,0.45);
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  border:1px solid rgba(255,255,255,0.55);
   border-radius:99px;
-  box-shadow:0 2px 18px rgba(0,0,0,0.07),0 1px 3px rgba(0,0,0,0.04),inset 0 1.5px 0 rgba(255,255,255,1),inset 0 -1px 0 rgba(255,255,255,0.5);
+  box-shadow:0 4px 24px rgba(0,0,0,0.06),0 1px 3px rgba(0,0,0,0.04),inset 0 1px 0 rgba(255,255,255,0.8);
   transition:background 0.3s,box-shadow 0.3s;
   white-space:nowrap;
 }
 nav.scrolled{
-  background:#fff;
-  box-shadow:0 4px 28px rgba(0,0,0,0.09),0 2px 6px rgba(0,0,0,0.04),inset 0 1.5px 0 rgba(255,255,255,1);
+  background:rgba(255,255,255,0.55);
+  box-shadow:0 6px 32px rgba(0,0,0,0.08),0 2px 6px rgba(0,0,0,0.04),inset 0 1px 0 rgba(255,255,255,0.9);
 }
 .nav-brand{
   display:flex;align-items:center;gap:8px;
