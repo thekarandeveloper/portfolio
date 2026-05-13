@@ -138,7 +138,6 @@ function CsSidebarNav({
 }) {
   return (
     <div className="csl-toc">
-      <p className="csl-toc-title">Contents</p>
       <ul className="csl-toc-list">
         {items.map((item, i) => (
           <li key={item.id}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { CaseStudyPage, CsSection, CsSectionHeader, CsImg } from "./CaseStudyLayout";
+import { CaseStudyPage, CsSection, CsSectionHeader } from "./CaseStudyLayout";
 import { airFigmaLinks } from "./airIqData";
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -529,42 +529,27 @@ function ProblemSection() {
         sub="Yet in the existing system, that was the reality. Agents were spending 12+ minutes per booking — not because the task was complex, but because the interface made it complex."
       />
 
-      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 32 }}>
         {PAIN_MOMENTS.map((m) => (
           <div key={m.title}>
-            <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>
-              {m.title}
-            </div>
-            <p style={{ fontSize: "1.05rem", color: "#4B5563", lineHeight: 1.8, fontStyle: "italic", margin: "0 0 8px" }}>
+            <p className="csl-h3" style={{ marginBottom: 8 }}>{m.title}</p>
+            <p style={{ fontSize: "1.05rem", color: "#4B5563", lineHeight: 1.8, margin: "0 0 8px" }}>
               {m.scene}
             </p>
-            <span style={{
-              fontSize: "0.7rem", color: "#1076BC", fontWeight: 600,
-            }}>→ Solved by: {m.solvedBy}</span>
+            <span style={{ fontSize: "0.85rem", color: "#1076BC", fontWeight: 600 }}>
+              Solved by: <strong style={{ color: "#1076BC" }}>{m.solvedBy}</strong>
+            </span>
           </div>
         ))}
       </div>
 
-      {/* Agent quote */}
-      <div className="csl-reveal" style={{
-        marginTop: 24,
-        background: "#FAFAFA", border: "1px solid #E5E7EB",
-        borderLeft: "3px solid #EF4444",
-        borderRadius: 12, padding: "18px 20px",
-      }}>
-        <div style={{
-          fontSize: "1.6rem", color: "#FCA5A5", fontFamily: "Georgia, serif",
-          lineHeight: 1, marginBottom: 6, marginTop: -4,
-        }}>&ldquo;</div>
-        <p style={{
-          fontSize: "0.82rem", color: "#374151", lineHeight: 1.75,
-          fontStyle: "italic", margin: "0 0 10px",
-        }}>
-          I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.
+      {/* Agent quote — plain */}
+      <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
+        <span className="csl-eyebrow">In their own words</span>
+        <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: "0 0 10px" }}>
+          &ldquo;I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.&rdquo;
         </p>
-        <div style={{ fontSize: "0.62rem", color: "#9CA3AF", fontWeight: 600 }}>
-          — Senior travel agent, pre-launch interview
-        </div>
+        <span style={{ fontSize: "0.82rem", color: "#9CA3AF" }}>Senior travel agent — pre-launch interview</span>
       </div>
     </CsSection>
   );
@@ -619,13 +604,7 @@ function CompetitiveCarousel() {
   return (
     <div>
       {/* ── Logo tabs ── */}
-      <div style={{
-        fontSize: "0.56rem", fontWeight: 700, textTransform: "uppercase",
-        letterSpacing: "0.18em", color: "rgba(0,0,0,0.28)",
-        fontFamily: "ui-monospace, monospace", marginBottom: 12,
-      }}>
-        Platforms studied
-      </div>
+      <span className="csl-eyebrow">Platforms studied</span>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 20 }}>
         {COMPETITORS.map((comp, i) => (
           <button
@@ -693,34 +672,21 @@ function CompetitiveCarousel() {
       </div>
 
       {/* ── Key findings ── */}
-      <div style={{ marginTop: 20 }}>
-        <div style={{
-          fontSize: "0.56rem", fontWeight: 700, textTransform: "uppercase",
-          letterSpacing: "0.18em", color: "rgba(0,0,0,0.25)",
-          fontFamily: "ui-monospace, monospace", marginBottom: 12,
-        }}>
-          Key findings
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      <div style={{ marginTop: 28 }}>
+        <span className="csl-eyebrow">Key findings</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {KEY_FINDINGS.map((text, i) => (
-            <div
+            <p
               key={i}
               onMouseEnter={() => setHoveredFinding(i)}
               onMouseLeave={() => setHoveredFinding(null)}
               style={{
-                padding: "13px 16px",
-                borderRadius: 10,
-                background: hoveredFinding === i ? "#FFF5F5" : "#FAFAFA",
-                border: hoveredFinding === i ? "1px solid rgba(239,68,68,0.2)" : "1px solid rgba(0,0,0,0.05)",
-                fontSize: "0.95rem",
-                color: "#374151",
-                lineHeight: 1.7,
-                cursor: "default",
-                transition: "background 0.22s ease, border-color 0.22s ease",
+                fontSize: "1.05rem", color: "#374151", lineHeight: 1.75,
+                margin: 0, cursor: "default", transition: "color 0.2s ease",
               }}
             >
               <HighlightLine text={text} active={hoveredFinding === i} />
-            </div>
+            </p>
           ))}
         </div>
       </div>
@@ -842,15 +808,7 @@ function CompatibilityShowcase() {
 
   return (
     <div style={{ marginTop: 28 }}>
-      {/* Label */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
-        <div style={{ width: 3, height: 16, borderRadius: 2, background: "#1E90FF", flexShrink: 0 }} />
-        <span style={{
-          fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
-          textTransform: "uppercase", color: "#374151",
-          fontFamily: "ui-monospace, monospace",
-        }}>Works across all search types</span>
-      </div>
+      <span className="csl-eyebrow">Works across all search types</span>
 
       {/* Stage */}
       <div style={{
@@ -997,18 +955,10 @@ function FareListingBlock() {
 
       {/* ── Old Design ── */}
       <div style={{ marginBottom: 36 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#EF4444", flexShrink: 0 }} />
-          <span style={{
-            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase", color: "#374151",
-            fontFamily: "ui-monospace, monospace",
-          }}>The outdated design</span>
-        </div>
+        <span className="csl-eyebrow">The outdated design</span>
         <div style={{
           borderRadius: 16, overflow: "hidden",
-          border: "1.5px solid #E5E7EB",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+          border: "1px solid #E5E7EB",
         }}>
           <ChromeBar />
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1018,25 +968,14 @@ function FareListingBlock() {
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>
-        <div style={{
-          marginTop: 10, padding: "11px 16px",
-          background: "#FFF5F5", border: "1px solid #FED7D7", borderRadius: 10,
-          fontSize: "0.72rem", color: "#742A2A", lineHeight: 1.65,
-        }}>
-          <strong>Problem:</strong> Multiple fare classes, baggage rules, airline policies — all competing for attention at equal visual weight. Nothing prioritised. Agents had to read everything before they could make a single comparison.
-        </div>
+        <p style={{ marginTop: 12, fontSize: "1.05rem", color: "#374151", lineHeight: 1.75 }}>
+          Multiple fare classes, baggage rules, airline policies — all competing at equal visual weight. Nothing prioritised. Agents had to read everything before making a single comparison.
+        </p>
       </div>
 
       {/* ── What I Tried — vertical timeline ── */}
       <div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 24 }}>
-          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#111827", flexShrink: 0 }} />
-          <span style={{
-            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase", color: "#374151",
-            fontFamily: "ui-monospace, monospace",
-          }}>What I Tried</span>
-        </div>
+        <span className="csl-eyebrow" style={{ marginBottom: 24 }}>What I tried</span>
 
         {/* Timeline container */}
         <div style={{ position: "relative", paddingLeft: 44 }}>
@@ -1055,49 +994,22 @@ function FareListingBlock() {
                 marginBottom: i < FARE_APPROACHES.length - 1 ? 40 : 0,
               }}
             >
-              {/* Node circle */}
+              {/* Node dot */}
               <div style={{
                 position: "absolute",
-                left: -44, top: 0,
-                width: 28, height: 28, borderRadius: "50%",
-                background: approach.statusBg,
-                border: `2px solid ${approach.statusBorder}`,
-                display: "flex", alignItems: "center", justifyContent: "center",
+                left: -44, top: 6,
+                width: 12, height: 12, borderRadius: "50%",
+                background: approach.isFinal ? "#1E90FF" : "#D1D5DB",
                 zIndex: 1,
-                boxShadow: approach.isFinal ? "0 0 0 4px rgba(30,144,255,0.12)" : "none",
-              }}>
-                <span style={{
-                  fontSize: approach.isFinal ? "0.75rem" : "0.62rem",
-                  fontWeight: 800,
-                  color: approach.statusColor,
-                  lineHeight: 1,
-                }}>
-                  {approach.isFinal ? "✓" : i + 1}
-                </span>
-              </div>
+              }} />
 
-              {/* Step label pill */}
-              <div style={{ marginBottom: 12 }}>
-                <span style={{
-                  fontSize: "0.54rem", fontWeight: 800, letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: approach.statusColor,
-                  background: approach.statusBg,
-                  border: `1px solid ${approach.statusBorder}`,
-                  borderRadius: 100, padding: "4px 12px",
-                  display: "inline-block",
-                }}>{approach.step}</span>
-              </div>
+              {/* Step label */}
+              <span className="csl-eyebrow" style={{ marginBottom: 8 }}>{approach.step}</span>
 
               {/* Image */}
               <div style={{
                 borderRadius: 14, overflow: "hidden",
-                border: approach.isFinal
-                  ? "2px solid rgba(30,144,255,0.48)"
-                  : "1.5px solid #E5E7EB",
-                boxShadow: approach.isFinal
-                  ? "0 6px 32px rgba(30,144,255,0.16)"
-                  : "0 3px 16px rgba(0,0,0,0.07)",
+                border: approach.isFinal ? "1.5px solid rgba(30,144,255,0.3)" : "1px solid #E5E7EB",
                 marginBottom: 12,
               }}>
                 <ChromeBar blue={approach.isFinal} />
@@ -1110,18 +1022,11 @@ function FareListingBlock() {
               </div>
 
               {/* Annotation */}
-              <div style={{
-                padding: "12px 14px",
-                background: approach.isFinal ? "#F0FDF4" : "#FAFAFA",
-                border: `1px solid ${approach.isFinal ? "#BBF7D0" : "#EBEBEB"}`,
-                borderRadius: 10,
-              }}>
-                <div style={{
-                  fontSize: "0.74rem", fontWeight: 700, color: "#111827", marginBottom: 4,
-                }}>
+              <div>
+                <p style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", margin: "0 0 6px" }}>
                   {approach.heading}
-                </div>
-                <p style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.65, margin: 0 }}>
+                </p>
+                <p style={{ fontSize: "1.05rem", color: "#4B5563", lineHeight: 1.75, margin: 0 }}>
                   {approach.reason}
                 </p>
               </div>
@@ -1131,21 +1036,9 @@ function FareListingBlock() {
       </div>
 
       {/* ── Impact ── */}
-      <div style={{
-        marginTop: 24,
-        display: "flex", alignItems: "flex-start", gap: 10,
-        padding: "14px 16px",
-        background: "#F9FAFB",
-        border: "1px solid #E5E7EB",
-        borderLeft: "3px solid #1E90FF",
-        borderRadius: 10,
-      }}>
-        <div style={{
-          fontSize: "0.5rem", fontWeight: 800, letterSpacing: "0.16em",
-          textTransform: "uppercase", color: "#1E90FF",
-          whiteSpace: "nowrap", marginTop: 1,
-        }}>IMPACT</div>
-        <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.65, margin: 0 }}>
+      <div style={{ marginTop: 28 }}>
+        <span className="csl-eyebrow">Impact</span>
+        <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
           This one card became the template for every fare listing in the platform — one pattern extended across one-way, international, and round-trip searches.
         </p>
       </div>
@@ -1197,144 +1090,55 @@ function ItineraryCardBlock() {
 
       {/* ── The Problem + Old Design ── */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#EF4444", flexShrink: 0 }} />
-          <span style={{
-            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
-          }}>The Problem</span>
-        </div>
-        <div style={{
-          borderRadius: 16, overflow: "hidden",
-          border: "1.5px solid #FED7D7",
-          boxShadow: "0 4px 20px rgba(239,68,68,0.07)",
-        }}>
+        <span className="csl-eyebrow">The outdated design</span>
+        <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #E5E7EB" }}>
           <Bar />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/Image/Airiq/Second%20core/old.png" alt="Old itinerary design" style={{ width: "100%", height: "auto", display: "block" }} />
         </div>
-        <div style={{
-          marginTop: 10, padding: "12px 16px",
-          background: "#FFF5F5", border: "1px solid #FED7D7", borderRadius: 10,
-          fontSize: "0.72rem", color: "#742A2A", lineHeight: 1.65,
-        }}>
+        <p style={{ marginTop: 12, fontSize: "1.05rem", color: "#374151", lineHeight: 1.75 }}>
           Agents had to scan multiple scattered sections to understand journey details — leading to confusion and slower decision-making on calls with clients.
-        </div>
-      </div>
-
-      {/* ── Transition ── */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28 }}>
-        <div style={{ flex: 1, height: 1, background: "#F3F4F6" }} />
-        <div style={{
-          fontSize: "0.56rem", fontWeight: 700, color: "#9CA3AF",
-          letterSpacing: "0.1em", textTransform: "uppercase",
-          display: "flex", alignItems: "center", gap: 6,
-        }}>
-          <span>↓</span><span>Then I redesigned it</span><span>↓</span>
-        </div>
-        <div style={{ flex: 1, height: 1, background: "#F3F4F6" }} />
+        </p>
       </div>
 
       {/* ── What I Learned ── */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#111827", flexShrink: 0 }} />
-          <span style={{
-            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
-          }}>What I Learned</span>
-        </div>
-        <div style={{
-          background: "#F8F9FA", border: "1px solid #E9ECEF",
-          borderRadius: 14, padding: "20px 20px 16px",
-        }}>
-          <div style={{
-            fontSize: "2rem", color: "#D1D5DB", fontFamily: "Georgia, serif",
-            lineHeight: 1, marginBottom: 6, marginTop: -6,
-          }}>&ldquo;</div>
-          <p style={{
-            fontSize: "0.82rem", color: "#374151", lineHeight: 1.75,
-            fontStyle: "italic", margin: "0 0 14px",
-          }}>
-            Agents read this card on a phone call with a client. They need to confirm route, dates, and time in under 5 seconds — not navigate through scattered sections. The card had to do one job, perfectly.
-          </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
-            {["Route at a glance", "Dates + times grouped", "Flat — nothing collapsed"].map((tag) => (
-              <span key={tag} style={{
-                fontSize: "0.6rem", fontWeight: 600, color: "#374151",
-                background: "#fff", border: "1px solid #E5E7EB",
-                borderRadius: 100, padding: "3px 10px",
-              }}>{tag}</span>
-            ))}
-          </div>
-        </div>
+        <span className="csl-eyebrow">What I learned</span>
+        <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: 0 }}>
+          Agents read this card on a phone call with a client. They need to confirm route, dates, and time in under 5 seconds — not navigate through scattered sections. The card had to do one job, perfectly.
+        </p>
       </div>
 
       {/* ── The New Design ── */}
-      <div style={{ marginBottom: 24 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#1E90FF", flexShrink: 0 }} />
-          <span style={{
-            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
-          }}>The New Design</span>
-        </div>
+      <div style={{ marginBottom: 28 }}>
+        <span className="csl-eyebrow">The redesign</span>
         <div style={{
           borderRadius: 16, overflow: "hidden",
-          border: "2px solid rgba(30,144,255,0.45)",
-          boxShadow: "0 6px 32px rgba(30,144,255,0.15)",
-          marginBottom: 14,
+          border: "1.5px solid rgba(30,144,255,0.3)",
+          marginBottom: 20,
         }}>
           <Bar tint />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/Image/Airiq/Second%20core/new.png" alt="Redesigned itinerary card" style={{ width: "100%", height: "auto", display: "block" }} />
         </div>
 
-        {/* How it works */}
-        <div style={{
-          background: "#F0FDF4", border: "1px solid #BBF7D0",
-          borderRadius: 12, padding: "14px 16px",
-        }}>
-          <div style={{
-            fontSize: "0.54rem", fontWeight: 800, letterSpacing: "0.14em",
-            textTransform: "uppercase", color: "#16A34A", marginBottom: 12,
-          }}>How it works</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {[
-              { label: "Segment at a glance",      detail: "Origin → destination in one clear row. No scrolling to find the route."                              },
-              { label: "Dates + times grouped",     detail: "Departure and arrival sit side-by-side — not buried across separate sections."                      },
-              { label: "Flat, single-card format",  detail: "Everything an agent needs to confirm on a call is visible in one frame. Nothing collapsed."         },
-            ].map((item) => (
-              <div key={item.label} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                <div style={{
-                  width: 18, height: 18, borderRadius: "50%",
-                  background: "#DCFCE7", border: "1.5px solid #86EFAC",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "0.55rem", flexShrink: 0, marginTop: 1,
-                  color: "#16A34A", fontWeight: 800,
-                }}>✓</div>
-                <div>
-                  <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111827" }}>{item.label} — </span>
-                  <span style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.6 }}>{item.detail}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {[
+            { label: "Segment at a glance",     detail: "Origin → destination in one clear row. No scrolling to find the route." },
+            { label: "Dates + times grouped",    detail: "Departure and arrival sit side-by-side — not buried across separate sections." },
+            { label: "Flat, single-card format", detail: "Everything an agent needs on a call is visible in one frame. Nothing collapsed." },
+          ].map((item) => (
+            <p key={item.label} style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
+              <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}</strong> — {item.detail}
+            </p>
+          ))}
         </div>
       </div>
 
       {/* ── Impact ── */}
-      <div style={{
-        display: "flex", alignItems: "flex-start", gap: 10,
-        padding: "14px 16px",
-        background: "#F9FAFB", border: "1px solid #E5E7EB",
-        borderLeft: "3px solid #1E90FF", borderRadius: 10,
-      }}>
-        <div style={{
-          fontSize: "0.5rem", fontWeight: 800, letterSpacing: "0.16em",
-          textTransform: "uppercase", color: "#1E90FF", whiteSpace: "nowrap", marginTop: 1,
-        }}>IMPACT</div>
-        <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.65, margin: 0 }}>
+      <div>
+        <span className="csl-eyebrow">Impact</span>
+        <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
           Agents stopped fumbling for details mid-call. Route, class, and times confirmed in under 5 seconds — down from navigating 3 scattered sections. The card became the single reference point on every client conversation, and was reused across all confirmation flows in the platform.
         </p>
       </div>
@@ -1382,145 +1186,57 @@ function ReviewTableBlock() {
       </div>
 
       {/* ── The Problem + Old Design ── */}
+      {/* ── The Problem + Old Design ── */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#EF4444", flexShrink: 0 }} />
-          <span style={{
-            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
-          }}>The Problem</span>
-        </div>
-        <div style={{
-          borderRadius: 16, overflow: "hidden",
-          border: "1.5px solid #FED7D7",
-          boxShadow: "0 4px 20px rgba(239,68,68,0.07)",
-        }}>
+        <span className="csl-eyebrow">The outdated design</span>
+        <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #E5E7EB" }}>
           <Bar />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/Image/Airiq/third%20core/old.png" alt="Old review table design" style={{ width: "100%", height: "auto", display: "block" }} />
         </div>
-        <div style={{
-          marginTop: 10, padding: "12px 16px",
-          background: "#FFF5F5", border: "1px solid #FED7D7", borderRadius: 10,
-          fontSize: "0.72rem", color: "#742A2A", lineHeight: 1.65,
-        }}>
+        <p style={{ marginTop: 12, fontSize: "1.05rem", color: "#374151", lineHeight: 1.75 }}>
           The previous table had excessive empty states and poor data density — making it feel incomplete and harder for agents to review critical information before submitting.
-        </div>
-      </div>
-
-      {/* ── Transition ── */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28 }}>
-        <div style={{ flex: 1, height: 1, background: "#F3F4F6" }} />
-        <div style={{
-          fontSize: "0.56rem", fontWeight: 700, color: "#9CA3AF",
-          letterSpacing: "0.1em", textTransform: "uppercase",
-          display: "flex", alignItems: "center", gap: 6,
-        }}>
-          <span>↓</span><span>Then I redesigned it</span><span>↓</span>
-        </div>
-        <div style={{ flex: 1, height: 1, background: "#F3F4F6" }} />
+        </p>
       </div>
 
       {/* ── What I Learned ── */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#111827", flexShrink: 0 }} />
-          <span style={{
-            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
-          }}>What I Learned</span>
-        </div>
-        <div style={{
-          background: "#F8F9FA", border: "1px solid #E9ECEF",
-          borderRadius: 14, padding: "20px 20px 16px",
-        }}>
-          <div style={{
-            fontSize: "2rem", color: "#D1D5DB", fontFamily: "Georgia, serif",
-            lineHeight: 1, marginBottom: 6, marginTop: -6,
-          }}>&ldquo;</div>
-          <p style={{
-            fontSize: "0.82rem", color: "#374151", lineHeight: 1.75,
-            fontStyle: "italic", margin: "0 0 14px",
-          }}>
-            Empty cells aren&apos;t neutral — they signal broken data to anyone reading the table. Agents were second-guessing information that was actually correct, just poorly presented. The fix wasn&apos;t adding data, it was removing the visual noise around it.
-          </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
-            {["Density over emptiness", "Explicit empty states", "Grouped hierarchy"].map((tag) => (
-              <span key={tag} style={{
-                fontSize: "0.6rem", fontWeight: 600, color: "#374151",
-                background: "#fff", border: "1px solid #E5E7EB",
-                borderRadius: 100, padding: "3px 10px",
-              }}>{tag}</span>
-            ))}
-          </div>
-        </div>
+        <span className="csl-eyebrow">What I learned</span>
+        <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: 0 }}>
+          Empty cells aren&apos;t neutral — they signal broken data to anyone reading the table. Agents were second-guessing information that was correct, just poorly presented. The fix wasn&apos;t adding data, it was removing the visual noise around it.
+        </p>
       </div>
 
       {/* ── The New Design ── */}
-      <div style={{ marginBottom: 24 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-          <div style={{ width: 3, height: 16, borderRadius: 2, background: "#1E90FF", flexShrink: 0 }} />
-          <span style={{
-            fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase", color: "#374151", fontFamily: "ui-monospace, monospace",
-          }}>The New Design</span>
-        </div>
+      <div style={{ marginBottom: 28 }}>
+        <span className="csl-eyebrow">The redesign</span>
         <div style={{
           borderRadius: 16, overflow: "hidden",
-          border: "2px solid rgba(30,144,255,0.45)",
-          boxShadow: "0 6px 32px rgba(30,144,255,0.15)",
-          marginBottom: 14,
+          border: "1.5px solid rgba(30,144,255,0.3)",
+          marginBottom: 20,
         }}>
           <Bar tint />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/Image/Airiq/third%20core/new.png" alt="Redesigned review table" style={{ width: "100%", height: "auto", display: "block" }} />
         </div>
 
-        {/* How it works */}
-        <div style={{
-          background: "#F0FDF4", border: "1px solid #BBF7D0",
-          borderRadius: 12, padding: "14px 16px",
-        }}>
-          <div style={{
-            fontSize: "0.54rem", fontWeight: 800, letterSpacing: "0.14em",
-            textTransform: "uppercase", color: "#16A34A", marginBottom: 12,
-          }}>How it works</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {[
-              { label: "Optimised data density",    detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility."      },
-              { label: "Explicit empty states",      detail: "No blank cells — missing data shows a clear dash or placeholder so agents know it&apos;s intentional, not broken." },
-              { label: "Grouped headers + hierarchy",detail: "Related fields cluster under shared headers — agents scan by section, not by hunting across the full row."  },
-            ].map((item) => (
-              <div key={item.label} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                <div style={{
-                  width: 18, height: 18, borderRadius: "50%",
-                  background: "#DCFCE7", border: "1.5px solid #86EFAC",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "0.55rem", flexShrink: 0, marginTop: 1,
-                  color: "#16A34A", fontWeight: 800,
-                }}>✓</div>
-                <div>
-                  <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111827" }}>{item.label} — </span>
-                  <span style={{ fontSize: "0.72rem", color: "#4B5563", lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: item.detail }} />
-                </div>
-              </div>
-            ))}
-          </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {[
+            { label: "Optimised data density",     detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility." },
+            { label: "Explicit empty states",       detail: "No blank cells — missing data shows a clear dash so agents know it's intentional, not broken." },
+            { label: "Grouped headers + hierarchy", detail: "Related fields cluster under shared headers — agents scan by section, not hunting across a full row." },
+          ].map((item) => (
+            <p key={item.label} style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
+              <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}</strong> — {item.detail}
+            </p>
+          ))}
         </div>
       </div>
 
       {/* ── Impact ── */}
-      <div style={{
-        display: "flex", alignItems: "flex-start", gap: 10,
-        padding: "14px 16px",
-        background: "#F9FAFB", border: "1px solid #E5E7EB",
-        borderLeft: "3px solid #1E90FF", borderRadius: 10,
-      }}>
-        <div style={{
-          fontSize: "0.5rem", fontWeight: 800, letterSpacing: "0.16em",
-          textTransform: "uppercase", color: "#1E90FF", whiteSpace: "nowrap", marginTop: 1,
-        }}>IMPACT</div>
-        <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.65, margin: 0 }}>
+      <div>
+        <span className="csl-eyebrow">Impact</span>
+        <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
           Agents stopped second-guessing the data. Pre-submission review went from triple-checking every row to a single confident scan. Operations reported a visible drop in error queries in the first weeks after launch — the table earned trust by looking trustworthy.
         </p>
       </div>
@@ -1656,12 +1372,7 @@ function TheProductSection() {
               <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
                 Air IQ — Mobile Design
               </span>
-              <span style={{
-                fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.1em",
-                textTransform: "uppercase", color: "#1076BC",
-                background: "#EBF5FF", border: "1px solid rgba(16,118,188,0.25)",
-                borderRadius: 100, padding: "2px 8px", marginLeft: 4,
-              }}>375px</span>
+              <span style={{ fontSize: "0.65rem", color: "#9CA3AF", marginLeft: 6 }}>375px</span>
             </div>
             <a
               href={airFigmaLinks.mobile}
@@ -1733,12 +1444,6 @@ function DesignSystemSection() {
               <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
                 Air IQ — Design System
               </span>
-              <span style={{
-                fontSize: "0.52rem", fontWeight: 700, letterSpacing: "0.1em",
-                textTransform: "uppercase", color: "#059669",
-                background: "#ECFDF5", border: "1px solid rgba(5,150,105,0.25)",
-                borderRadius: 100, padding: "2px 8px", marginLeft: 4,
-              }}>80+ Components</span>
             </div>
             <a
               href={airFigmaLinks.designSystem}
@@ -1792,7 +1497,7 @@ function ResultsSection() {
             ~7<span style={{ fontSize: "1.4rem" }}>min</span>
           </div>
           <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", marginTop: 4 }}>
-            Average booking time<br /><em>down from ~12 min</em>
+            Average booking time — down from ~12 min
           </div>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16, flex: 1, minWidth: 240 }}>
@@ -1812,31 +1517,33 @@ function ResultsSection() {
       </div>
 
       {/* Quote */}
-      <div className="csl-callout csl-reveal rd1">
-        &ldquo;Much faster and fewer mistakes than before.&rdquo;
-        <div className="csl-quote-credit">— Anonymized travel agent · Post-launch feedback</div>
+      <div className="csl-reveal rd1" style={{ marginBottom: 24 }}>
+        <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: "0 0 8px" }}>
+          &ldquo;Much faster and fewer mistakes than before.&rdquo;
+        </p>
+        <span style={{ fontSize: "0.82rem", color: "#9CA3AF" }}>Anonymized travel agent · Post-launch feedback</span>
       </div>
 
       {/* Before/After table */}
       <div className="csl-reveal rd2" style={{ marginTop: 24 }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1rem" }}>
           <thead>
-            <tr>
-              <th style={{ padding: "10px 16px", background: "#F3F4F6", borderRadius: "8px 0 0 0", textAlign: "left", color: "#6B7280", fontWeight: 600 }}>Before</th>
-              <th style={{ padding: "10px 16px", background: "#ECFDF5", borderRadius: "0 8px 0 0", textAlign: "left", color: "#059669", fontWeight: 600 }}>After</th>
+            <tr style={{ borderBottom: "2px solid #F3F4F6" }}>
+              <th style={{ padding: "10px 0", textAlign: "left", color: "#9CA3AF", fontWeight: 600, fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.1em" }}>Before</th>
+              <th style={{ padding: "10px 0", textAlign: "left", color: "#9CA3AF", fontWeight: 600, fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.1em" }}>After</th>
             </tr>
           </thead>
           <tbody>
             {[
-              ["Agents juggled 3+ tools",      "Single unified platform"],
-              ["Manual entry errors frequent", "Validation + inline warnings"],
-              ["No dashboard visibility",       "20+ screens, 5 core flows live"],
-              ["~12 min per booking",           "~7 min (agent feedback)"],
-              ["No design system",              "80+ token-driven components"],
+              ["Agents juggled 3+ tools",       "Single unified platform"],
+              ["Manual entry errors frequent",   "Validation + inline warnings"],
+              ["No dashboard visibility",        "20+ screens, 5 core flows live"],
+              ["~12 min per booking",            "~7 min (agent feedback)"],
+              ["No design system",               "80+ token-driven components"],
             ].map(([b, a], i) => (
               <tr key={i} style={{ borderBottom: "1px solid #F3F4F6" }}>
-                <td style={{ padding: "10px 16px", color: "#374151" }}>{b}</td>
-                <td style={{ padding: "10px 16px", color: "#059669", fontWeight: 500 }}>{a}</td>
+                <td style={{ padding: "12px 0", color: "#6B7280", lineHeight: 1.5 }}>{b}</td>
+                <td style={{ padding: "12px 0", color: "#111827", fontWeight: 600, lineHeight: 1.5 }}>{a}</td>
               </tr>
             ))}
           </tbody>
