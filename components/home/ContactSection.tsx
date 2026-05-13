@@ -6,19 +6,17 @@ const html = `<section class="contact" id="contact">
 
     <!-- LEFT: google search mock -->
     <div class="contact-left reveal from-left">
-      <div class="gsearch-wrap">
-        <div class="gsearch-logo"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></div>
-        <div class="gsearch-bar">
-          <svg class="gsearch-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#9aa0a6" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#9aa0a6" stroke-width="2" stroke-linecap="round"/></svg>
-          <span class="gsearch-query-text" id="gsearchQuery"></span><span class="gsearch-caret" id="gsearchCaret">|</span>
-        </div>
-        <div class="gsearch-results">
-          <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>Product Designer</span><span class="gsearch-item-tag">role</span></div>
-          <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>UX Researcher</span><span class="gsearch-item-tag">role</span></div>
-          <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>Problem Solver</span><span class="gsearch-item-tag">trait</span></div>
-          <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>Systems Thinker</span><span class="gsearch-item-tag">trait</span></div>
-          <div class="gsearch-item"><div class="gsearch-item-icon">☕</div><span>Coffee Enthusiast</span><span class="gsearch-item-tag">obviously</span></div>
-        </div>
+      <div class="gsearch-logo"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></div>
+      <div class="gsearch-bar">
+        <svg class="gsearch-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#9aa0a6" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#9aa0a6" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="gsearch-query-text" id="gsearchQuery"></span><span class="gsearch-caret" id="gsearchCaret">|</span>
+      </div>
+      <div class="gsearch-results">
+        <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>Product Designer</span><span class="gsearch-item-tag">role</span></div>
+        <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>UX Researcher</span><span class="gsearch-item-tag">role</span></div>
+        <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>Problem Solver</span><span class="gsearch-item-tag">trait</span></div>
+        <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>Systems Thinker</span><span class="gsearch-item-tag">trait</span></div>
+        <div class="gsearch-item"><div class="gsearch-item-icon">☕</div><span>Coffee Enthusiast</span><span class="gsearch-item-tag">obviously</span></div>
       </div>
     </div>
 
