@@ -240,7 +240,7 @@ nav.scrolled{
 .nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:36% 64%;align-items:center;padding:9rem 60px 5rem;gap:20px;position:relative;overflow:visible;cursor:none;}
+.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:center;padding:9rem 120px 5rem;gap:40px;position:relative;overflow:visible;cursor:none;}
 
 /* about-style intro hero */
 .hi-left{position:relative;z-index:2;text-align:left;}
@@ -252,7 +252,7 @@ nav.scrolled{
 .hi-bio-line:last-of-type{margin-bottom:0;}
 
 /* ── SCRAPBOOK COLLAGE (right side hero) ── */
-.hi-scrapbook{position:relative;width:860px;height:800px;flex-shrink:0;}
+.hi-scrapbook{position:relative;width:440px;height:620px;flex-shrink:0;}
 .hi-asset{position:absolute;display:block;}
 
 /* "One day at a time." — top right, natural tilt */
@@ -267,14 +267,15 @@ nav.scrolled{
 /* polaroid CSS frame — clean, straight, prominent */
 .hi-polaroid-css{
   position:absolute;
-  top:80px;
-  left:30px;
+  top:72px;
+  left:50%;
+  transform:translateX(-44%);
   background:#fff;
   border:1px solid #e0e0e0;
   padding:10px 10px 90px;
   box-shadow:0 6px 28px rgba(0,0,0,0.10),0 1px 5px rgba(0,0,0,0.05);
   border-radius:2px;
-  width:800px;
+  width:380px;
   z-index:3;
 }
 .hi-mai{
