@@ -448,8 +448,34 @@ nav.scrolled{
 
 /* ── DESIGN SYSTEM SECTION ── */
 .dsz-section{position:relative;}
+/* ── content shell ── */
+.dsz-sticky{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:5rem 0 5rem;
+  overflow:visible;
+}
+/* ── stage: card + floats together ── */
+.dsz-stage{
+  position:relative;
+  width:min(1060px,96vw);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+/* ── heading + card stacked wrapper ── */
+.dsz-card-wrap{
+  width:min(740px,74vw);
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
 .dsz-heading-wrap{
-  padding:5rem 250px 0.5rem;
+  padding:0 0 1.2rem 0;
 }
 .dsz-title-main{
   font-family:'Rethink Sans',var(--sans);
@@ -461,23 +487,6 @@ nav.scrolled{
   font-size:calc(clamp(24px,5vw,40px) * 1.3);
   font-weight:700;color:#1E90FF;
   display:block;line-height:1.2;
-}
-/* ── content shell ── */
-.dsz-sticky{
-  position:relative;
-  min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:16px 0 60px;
-  overflow:visible;
-}
-/* ── stage: card + floats together ── */
-.dsz-stage{
-  position:relative;
-  width:min(1060px,96vw);
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 /* ── floating annotations ── */
 .dsz-floats{
@@ -517,7 +526,7 @@ nav.scrolled{
 /* ── light card ── */
 .dsz-card{
   position:relative;z-index:1;
-  width:min(740px,74vw);
+  width:100%;
   background:#ffffff;
   border:1px solid rgba(0,0,0,0.07);
   border-radius:24px;
@@ -599,10 +608,11 @@ nav.scrolled{
 .dsz-cta:hover{box-shadow:0 4px 18px rgba(0,0,0,0.14);transform:translateY(-1px);}
 @media(max-width:1024px){
   .dsz-float{display:none;}
-  .dsz-card{width:min(680px,88vw);}
+  .dsz-card-wrap{width:min(680px,88vw);}
 }
 @media(max-width:767px){
-  .dsz-heading-wrap{padding:3rem 24px 2rem;}
+  .dsz-card-wrap{width:92vw;}
+  .dsz-heading-wrap{padding:0 0 1rem 0;}
   .dsz-visual{grid-template-columns:1fr;gap:14px;}
   .dsz-card{padding:24px;gap:14px;}
   .dsz-sticky{padding:40px 0 60px;}
