@@ -23,6 +23,7 @@ body{
 .home-page-shell{
   opacity:0;
   animation:homePageFadeIn 900ms ease 240ms forwards;
+  overflow-x:hidden;
 }
 body.home-loading .home-page-shell{
   opacity:0;
@@ -239,7 +240,7 @@ nav.scrolled{
 .nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:42% 58%;align-items:center;padding:9rem 80px 5rem;gap:40px;position:relative;overflow:hidden;cursor:none;}
+.hero{min-height:100vh;display:grid;grid-template-columns:36% 64%;align-items:center;padding:9rem 60px 5rem;gap:20px;position:relative;overflow:visible;cursor:none;}
 
 /* about-style intro hero */
 .hi-left{position:relative;z-index:2;text-align:left;}
@@ -251,13 +252,13 @@ nav.scrolled{
 .hi-bio-line:last-of-type{margin-bottom:0;}
 
 /* ── SCRAPBOOK COLLAGE (right side hero) ── */
-.hi-scrapbook{position:relative;width:820px;height:780px;flex-shrink:0;}
+.hi-scrapbook{position:relative;width:860px;height:800px;flex-shrink:0;}
 .hi-asset{position:absolute;display:block;}
 
 /* "One day at a time." — top right, natural tilt */
 .hi-caps{
-  width:200px;
-  top:0px;right:-10px;
+  width:220px;
+  top:0px;right:10px;
   z-index:5;
   transform:rotate(-1deg);
   filter:drop-shadow(0 1px 3px rgba(0,0,0,0.08));
@@ -266,9 +267,8 @@ nav.scrolled{
 /* polaroid CSS frame — clean, straight, prominent */
 .hi-polaroid-css{
   position:absolute;
-  top:72px;
-  left:50%;
-  transform:translateX(-44%);
+  top:80px;
+  left:30px;
   background:#fff;
   border:1px solid #e0e0e0;
   padding:10px 10px 90px;
@@ -288,9 +288,9 @@ nav.scrolled{
 
 /* butterfly CD — bottom left, large, overlaps polaroid, spins */
 .hi-cd{
-  width:210px;
-  bottom:-30px;
-  left:-68px;
+  width:240px;
+  bottom:-40px;
+  left:-50px;
   z-index:1;
   animation:cdSpin 10s linear infinite;
   filter:drop-shadow(0 8px 22px rgba(0,0,0,0.14));
