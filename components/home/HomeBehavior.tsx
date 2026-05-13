@@ -494,14 +494,16 @@ runParallax();
   function delQ(cb){(function step(){var t=queryEl.textContent;if(t.length){queryEl.textContent=t.slice(0,-1);setTimeout(step,28);}else{cb();}})();}
   function run(idx){
     var s=searches[idx];
+    var isLast=idx===searches.length-1;
     build(s.items);
     typeQ(s.q,function(){
       setTimeout(function(){
         showResults();
+        if(isLast)return;
         setTimeout(function(){
           hideResults(function(){
             delQ(function(){
-              setTimeout(function(){run((idx+1)%searches.length);},320);
+              setTimeout(function(){run(idx+1);},320);
             });
           });
         },2600);
