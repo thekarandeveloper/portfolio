@@ -202,6 +202,11 @@ body {
   50%       { opacity: 0; }
 }
 
+@keyframes cslPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
 .airiq-case-study {
   --airq-navy: #0B1E3D;
   --airq-blue: #1076BC;

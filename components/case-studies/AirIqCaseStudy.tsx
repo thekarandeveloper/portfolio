@@ -100,209 +100,192 @@ function CountUp({ to, duration = 1200 }: { to: number; duration?: number }) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   LIVE SEARCH DEMO (hero right panel)
+   FLIGHT SEARCH DEMO (hero right panel)
 ───────────────────────────────────────────────────────────────────── */
-type SearchPhase = "typing" | "loading" | "result";
+type FlightPhase = "typing" | "searching" | "result";
 
-function LiveSearchDemo() {
-  const QUERY = "Delhi  →  Mumbai";
-  const [chars, setChars]   = useState(0);
-  const [phase, setPhase]   = useState<SearchPhase>("typing");
+const AIRLINES = [
+  { code: "6E-241", name: "IndiGo",    abbr: "6E", logoColor: "#fff", logoBg: "#4B1FBF", dep: "06:15", arr: "08:20", dur: "2h 05m", price: "3,180", tag: "Cheapest",   tagColor: "#059669", tagBg: "#ECFDF5" },
+  { code: "AI-646", name: "Air India", abbr: "AI", logoColor: "#fff", logoBg: "#C41E3A", dep: "09:30", arr: "11:35", dur: "2h 05m", price: "4,210", tag: "",          tagColor: "",        tagBg: ""         },
+  { code: "SG-816", name: "SpiceJet",  abbr: "SG", logoColor: "#fff", logoBg: "#E05A00", dep: "12:45", arr: "14:55", dur: "2h 10m", price: "3,459", tag: "",          tagColor: "",        tagBg: ""         },
+  { code: "UK-917", name: "Vistara",   abbr: "UK", logoColor: "#fff", logoBg: "#5B21B6", dep: "17:00", arr: "19:10", dur: "2h 10m", price: "5,890", tag: "Top Rated", tagColor: "#7C3AED", tagBg: "#F5F3FF"  },
+];
+
+function FlightRow({ f, delay }: { f: typeof AIRLINES[0]; delay: number }) {
+  return (
+    <div style={{
+      display: "flex", alignItems: "center", gap: 10,
+      padding: "9px 14px", borderBottom: "1px solid #F3F4F6",
+      animation: `fadeUp 0.4s cubic-bezier(0.16,1,0.3,1) ${delay}ms both`,
+    }}>
+      {/* Logo */}
+      <div style={{
+        width: 32, height: 32, borderRadius: 8, flexShrink: 0,
+        background: f.logoBg, display: "flex", alignItems: "center",
+        justifyContent: "center", fontSize: "0.58rem", fontWeight: 900, color: f.logoColor,
+        letterSpacing: "-0.01em",
+      }}>{f.abbr}</div>
+
+      {/* Airline + code */}
+      <div style={{ minWidth: 72 }}>
+        <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#111827", lineHeight: 1.2 }}>{f.name}</div>
+        <div style={{ fontSize: "0.58rem", color: "#9CA3AF" }}>{f.code}</div>
+      </div>
+
+      {/* Times */}
+      <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 6 }}>
+        <span style={{ fontSize: "0.88rem", fontWeight: 800, color: "#111827", letterSpacing: "-0.02em" }}>{f.dep}</span>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+          <span style={{ fontSize: "0.52rem", color: "#9CA3AF" }}>{f.dur}</span>
+          <div style={{ width: "100%", height: 1, background: "#E5E7EB", position: "relative" }}>
+            <span style={{ position: "absolute", right: -4, top: "50%", transform: "translateY(-50%)", fontSize: "0.58rem", color: "#6B7280" }}>✈</span>
+          </div>
+          <span style={{ fontSize: "0.48rem", color: "#10B981", fontWeight: 600, letterSpacing: "0.05em" }}>NON-STOP</span>
+        </div>
+        <span style={{ fontSize: "0.88rem", fontWeight: 800, color: "#111827", letterSpacing: "-0.02em" }}>{f.arr}</span>
+      </div>
+
+      {/* Price + tag */}
+      <div style={{ textAlign: "right", flexShrink: 0 }}>
+        <div style={{ fontSize: "0.9rem", fontWeight: 800, color: "#111827", letterSpacing: "-0.02em" }}>₹{f.price}</div>
+        {f.tag ? (
+          <span style={{ fontSize: "0.5rem", fontWeight: 700, color: f.tagColor, background: f.tagBg, borderRadius: 4, padding: "1px 5px" }}>{f.tag}</span>
+        ) : (
+          <button style={{ fontSize: "0.55rem", fontWeight: 700, color: "#1E90FF", background: "#EFF6FF", border: "none", borderRadius: 4, padding: "2px 7px", cursor: "pointer" }}>Book</button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FlightSearchDemo() {
+  const ROUTE = "Delhi → Mumbai";
+  const [chars, setChars] = useState(0);
+  const [phase, setPhase] = useState<FlightPhase>("typing");
 
   useEffect(() => {
     let t: ReturnType<typeof setTimeout>;
     if (phase === "typing") {
-      if (chars < QUERY.length) {
-        t = setTimeout(() => setChars((c) => c + 1), 65);
+      if (chars < ROUTE.length) {
+        t = setTimeout(() => setChars((c) => c + 1), 60);
       } else {
-        t = setTimeout(() => setPhase("loading"), 700);
+        t = setTimeout(() => setPhase("searching"), 600);
       }
-    } else if (phase === "loading") {
-      t = setTimeout(() => setPhase("result"), 1500);
+    } else if (phase === "searching") {
+      t = setTimeout(() => setPhase("result"), 1600);
     } else {
-      t = setTimeout(() => { setChars(0); setPhase("typing"); }, 6000);
+      t = setTimeout(() => { setChars(0); setPhase("typing"); }, 7000);
     }
     return () => clearTimeout(t);
   }, [phase, chars]);
 
+  const isActive = phase !== "typing" || chars >= ROUTE.length;
+
   return (
     <div style={{ width: "100%", fontFamily: "inherit" }}>
       <div style={{
-        background: "#0D1B2E",
-        border: "1.5px solid rgba(30,144,255,0.28)",
-        borderRadius: 20,
-        padding: 16,
+        background: "#fff", border: "1.5px solid #E5E7EB",
+        borderRadius: 18, overflow: "hidden",
       }}>
 
-        {/* ── Search bar ── */}
-        <div style={{
-          background: "rgba(255,255,255,0.05)",
-          border: "1px solid rgba(255,255,255,0.09)",
-          borderRadius: 12, padding: "12px 14px", marginBottom: 12,
-        }}>
-          <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
+        {/* ── Header bar ── */}
+        <div style={{ padding: "14px 14px 10px", borderBottom: "1px solid #F3F4F6" }}>
+
+          {/* Route row */}
+          <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 10 }}>
             <div style={{
-              flex: 1, height: 44,
-              background: "rgba(255,255,255,0.07)",
-              border: `1px solid ${phase === "typing" ? "rgba(55,138,221,0.5)" : "rgba(255,255,255,0.1)"}`,
-              borderRadius: 8, display: "flex", alignItems: "center",
-              padding: "0 14px", fontSize: "0.95rem", fontWeight: 700, color: "#fff",
-              letterSpacing: "0.02em", transition: "border-color 0.3s",
+              flex: 1, height: 42,
+              background: "#F9FAFB",
+              border: `1.5px solid ${phase === "typing" ? "#1E90FF" : "#E5E7EB"}`,
+              borderRadius: 10, display: "flex", alignItems: "center",
+              padding: "0 14px", fontSize: "0.9rem", fontWeight: 700, color: "#111827",
+              letterSpacing: "-0.01em", transition: "border-color 0.3s",
             }}>
-              {QUERY.slice(0, chars)}
+              {ROUTE.slice(0, chars)}
               {phase === "typing" && (
                 <span style={{
                   display: "inline-block", width: 2, height: "1em",
-                  background: "#378ADD", marginLeft: 2, verticalAlign: "middle",
+                  background: "#1E90FF", marginLeft: 2, verticalAlign: "middle",
                   animation: "cslCursorBlink 0.9s ease infinite",
                 }} />
               )}
+              {phase !== "typing" && chars === 0 && (
+                <span style={{ color: "#9CA3AF", fontWeight: 500 }}>Where do you want to fly?</span>
+              )}
             </div>
             <button style={{
-              height: 44, padding: "0 18px", border: "none", borderRadius: 8,
-              background: chars >= QUERY.length ? "#1076BC" : "rgba(16,118,188,0.3)",
-              fontSize: "0.78rem", fontWeight: 700, color: "#fff",
-              cursor: "pointer", transition: "background 0.4s",
-              display: "flex", alignItems: "center", gap: 6, whiteSpace: "nowrap",
+              height: 42, padding: "0 16px", border: "none", borderRadius: 10,
+              background: isActive ? "#1E90FF" : "#BFDBFE",
+              fontSize: "0.75rem", fontWeight: 700, color: "#fff",
+              cursor: "pointer", transition: "background 0.4s", whiteSpace: "nowrap",
+              display: "flex", alignItems: "center", gap: 5,
             }}>
               ✈ Search
             </button>
           </div>
-          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-            {["31 Dec · 2026", "1 Adult", "Economy"].map((chip) => (
-              <span key={chip} style={{
-                fontSize: "0.63rem", fontWeight: 600, color: "rgba(255,255,255,0.42)",
-                background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
+
+          {/* Filter chips */}
+          <div style={{ display: "flex", gap: 6 }}>
+            {["31 Dec 2026", "1 Adult", "Economy"].map((c) => (
+              <span key={c} style={{
+                fontSize: "0.62rem", fontWeight: 600, color: "#374151",
+                background: "#F3F4F6", border: "1px solid #E5E7EB",
                 borderRadius: 6, padding: "3px 10px",
-              }}>{chip}</span>
+              }}>{c}</span>
             ))}
           </div>
         </div>
 
-        {/* ── Fixed-height result slot — no height jump ── */}
-        <div style={{ height: 192, overflow: "hidden" }}>
+        {/* ── Results area (fixed height) ── */}
+        <div style={{ height: 244, overflow: "hidden" }}>
 
-          {/* Idle placeholder */}
+          {/* Searching — skeleton */}
+          {phase === "searching" && (
+            <div style={{ padding: "10px 14px", display: "flex", flexDirection: "column", gap: 12 }}>
+              <div style={{ fontSize: "0.62rem", color: "#6B7280", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 4 }}>
+                Checking 3 GDS sources…
+              </div>
+              <div style={{ height: 3, background: "#F3F4F6", borderRadius: 2, overflow: "hidden" }}>
+                <div style={{ height: "100%", background: "linear-gradient(90deg,#1E90FF,#60B0FF)", animation: "cslLoadBar 1.5s ease-out forwards" }} />
+              </div>
+              {[1,2,3,4].map((i) => (
+                <div key={i} style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: "#F3F4F6", animation: "cslPulse 1.2s ease infinite", animationDelay: `${i * 0.1}s` }} />
+                  <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 5 }}>
+                    <div style={{ height: 10, borderRadius: 4, background: "#F3F4F6", width: "60%", animation: "cslPulse 1.2s ease infinite", animationDelay: `${i * 0.12}s` }} />
+                    <div style={{ height: 8, borderRadius: 4, background: "#F3F4F6", width: "35%", animation: "cslPulse 1.2s ease infinite", animationDelay: `${i * 0.14}s` }} />
+                  </div>
+                  <div style={{ width: 44, height: 18, borderRadius: 4, background: "#F3F4F6", animation: "cslPulse 1.2s ease infinite" }} />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Results */}
+          {phase === "result" && (
+            <div>
+              <div style={{ padding: "8px 14px 4px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span style={{ fontSize: "0.62rem", fontWeight: 700, color: "#6B7280", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                  4 flights found · DEL → BOM
+                </span>
+                <span style={{ fontSize: "0.58rem", color: "#1E90FF", fontWeight: 600 }}>Sort: Price ↑</span>
+              </div>
+              {AIRLINES.map((f, i) => <FlightRow key={f.code} f={f} delay={i * 80} />)}
+            </div>
+          )}
+
+          {/* Typing idle */}
           {phase === "typing" && (
             <div style={{
-              height: "100%", borderRadius: 12,
-              border: "1px dashed rgba(255,255,255,0.07)",
-              display: "flex", alignItems: "center", justifyContent: "center",
+              height: "100%", display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center", gap: 8,
             }}>
-              <span style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.16)", letterSpacing: "0.12em" }}>
-                results appear here
+              <span style={{ fontSize: "1.4rem" }}>✈</span>
+              <span style={{ fontSize: "0.68rem", color: "#9CA3AF", fontWeight: 500 }}>
+                Type a route to search flights
               </span>
             </div>
           )}
-
-          {/* Loading */}
-          {phase === "loading" && (
-            <div style={{
-              height: "100%", display: "flex", flexDirection: "column",
-              alignItems: "center", justifyContent: "center",
-              background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
-              borderRadius: 12, gap: 14,
-            }}>
-              <div style={{ fontSize: "0.63rem", fontWeight: 700, color: "rgba(255,255,255,0.35)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                Checking 3 GDS Systems…
-              </div>
-              <div style={{ width: "55%", height: 2, background: "rgba(255,255,255,0.08)", borderRadius: 2, overflow: "hidden" }}>
-                <div style={{ height: "100%", background: "linear-gradient(90deg,#1076BC,#378ADD)", animation: "cslLoadBar 1.4s ease-out forwards" }} />
-              </div>
-            </div>
-          )}
-
-          {/* Result — single fare card */}
-          {phase === "result" && (
-            <div style={{
-              background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: 12, overflow: "hidden", animation: "fadeUp 0.45s ease both",
-            }}>
-              {/* Flight header */}
-              <div style={{ padding: "12px 16px 10px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <div style={{
-                      width: 30, height: 30, borderRadius: 7,
-                      background: "linear-gradient(135deg,#C41E3A,#8B0000)",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: "0.52rem", fontWeight: 900, color: "#fff",
-                    }}>AI</div>
-                    <div>
-                      <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "#fff", lineHeight: 1.2 }}>Air India</div>
-                      <div style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.38)" }}>AI-646 · Airbus A320</div>
-                    </div>
-                  </div>
-                  <span style={{
-                    fontSize: "0.53rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-                    color: "#0D9E75", background: "rgba(13,158,117,0.12)", border: "1px solid rgba(13,158,117,0.22)",
-                    borderRadius: 100, padding: "3px 9px",
-                  }}>Non-stop</span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <div>
-                    <div style={{ fontSize: "1.15rem", fontWeight: 900, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1 }}>09:30</div>
-                    <div style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.38)", marginTop: 2 }}>DEL T1 · 31 Dec</div>
-                  </div>
-                  <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", padding: "0 14px" }}>
-                    <span style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.3)", marginBottom: 4 }}>1h 00m</span>
-                    <div style={{ width: "100%", height: 1, background: "rgba(255,255,255,0.12)", position: "relative" }}>
-                      <span style={{ position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)" }}>✈</span>
-                    </div>
-                  </div>
-                  <div style={{ textAlign: "right" }}>
-                    <div style={{ fontSize: "1.15rem", fontWeight: 900, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1 }}>13:30</div>
-                    <div style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.38)", marginTop: 2 }}>BOM T2 · 31 Dec</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Single fare row */}
-              <div style={{
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-                padding: "9px 16px", background: "rgba(16,118,188,0.15)",
-              }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <div style={{
-                    width: 13, height: 13, borderRadius: "50%", flexShrink: 0,
-                    border: "2px solid #378ADD", background: "#1076BC",
-                    boxShadow: "0 0 8px rgba(55,138,221,0.55)",
-                  }} />
-                  <div>
-                    <div style={{ fontSize: "0.85rem", fontWeight: 800, color: "#fff", letterSpacing: "-0.01em" }}>₹3,459</div>
-                    <div style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.38)" }}>SME · Economy</div>
-                  </div>
-                </div>
-                <div style={{ display: "flex", gap: 4 }}>
-                  {["Refundable", "Meal"].map((tag) => (
-                    <span key={tag} style={{
-                      fontSize: "0.5rem", fontWeight: 600,
-                      color: "rgba(255,255,255,0.45)", background: "rgba(255,255,255,0.06)",
-                      border: "1px solid rgba(255,255,255,0.08)", borderRadius: 4, padding: "2px 6px",
-                    }}>{tag}</span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Footer */}
-              <div style={{
-                padding: "9px 16px", display: "flex", alignItems: "center",
-                justifyContent: "space-between", background: "rgba(0,0,0,0.18)",
-              }}>
-                <span style={{ fontSize: "0.56rem", fontWeight: 700, color: "#FF6B35", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                  8 Seats Left
-                </span>
-                <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                  <span style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.35)", fontWeight: 600 }}>3 more fares ↓</span>
-                  <button style={{
-                    background: "#1076BC", color: "#fff", border: "none",
-                    borderRadius: 6, padding: "6px 14px", fontSize: "0.7rem", fontWeight: 700, cursor: "pointer",
-                  }}>Book Now ↗</button>
-                </div>
-              </div>
-            </div>
-          )}
-
         </div>
       </div>
     </div>
@@ -350,9 +333,9 @@ function AirHero() {
             </a>
           </div>
         </div>
-        {/* Right — live search demo */}
+        {/* Right — flight search demo */}
         <div className="csl-hero-right">
-          <LiveSearchDemo />
+          <FlightSearchDemo />
         </div>
       </div>
       {/* Meta strip */}
