@@ -343,11 +343,17 @@ const css = `
 }
 .ab-pol-photo {
   width: 100%; aspect-ratio: 1 / 1;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.6rem;
+  display: block;
   border-radius: 1px;
   position: relative; overflow: hidden;
 }
+.ab-pol-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.ab-pol:hover .ab-pol-photo img { transform: scale(1.06); }
 .ab-pol-caption {
   position: absolute; bottom: 0; left: 0; right: 0; height: 46px;
   display: flex; align-items: center; justify-content: center;
@@ -597,124 +603,100 @@ const placesHtml = `
 
     <div class="ab-pol-grid">
 
-      <!-- 01 Mumbai -->
+      <!-- 01 portrait -->
       <div class="ab-pol ab-reveal" style="--r:-4deg;transition-delay:0s;">
         <div class="ab-tape-pol tt"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#1a2a6c,#b21f1f,#fdbb2d);">🌊</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">where the madness<br>is the magic</p>
+        <div class="ab-pol-photo">
+          <img src="/about/portrait.jpg" alt="Nikunj" />
         </div>
-        <span class="ab-pol-caption">Mumbai</span>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">me, on a good<br>hair day 🌟</p>
+        </div>
+        <span class="ab-pol-caption">the designer herself</span>
       </div>
 
-      <!-- 02 Goa -->
-      <div class="ab-pol ab-reveal" style="--r:3deg;transition-delay:0.06s;">
-        <div class="ab-tape-pol tl"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#f7971e,#ffd200);">🏖️</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">best sunsets,<br>worst wifi</p>
-        </div>
-        <span class="ab-pol-caption">Goa</span>
-      </div>
-
-      <!-- 03 Delhi -->
-      <div class="ab-pol ab-reveal" style="--r:-2deg;transition-delay:0.12s;">
+      <!-- 02 sky -->
+      <div class="ab-pol ab-reveal" style="--r:3deg;transition-delay:0.07s;">
         <div class="ab-tape-pol tr"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#360033,#0b8793);">🏙️</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">chaotic,<br>beautiful, mine</p>
+        <div class="ab-pol-photo">
+          <img src="/about/sky.jpg" alt="sky" />
         </div>
-        <span class="ab-pol-caption">Delhi</span>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">headspace<br>loading... ☁️</p>
+        </div>
+        <span class="ab-pol-caption">somewhere up there</span>
       </div>
 
-      <!-- 04 Shimla -->
-      <div class="ab-pol ab-reveal" style="--r:5deg;transition-delay:0.18s;">
-        <div class="ab-tape-pol tt tg"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#4facfe,#a8edfc);">❄️</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">first time<br>touching snow 🤍</p>
+      <!-- 03 sky.png -->
+      <div class="ab-pol ab-reveal" style="--r:-2deg;transition-delay:0.14s;">
+        <div class="ab-tape-pol tl tg"></div>
+        <div class="ab-pol-photo">
+          <img src="/about/sky.png" alt="sky" />
         </div>
-        <span class="ab-pol-caption">Shimla</span>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">same sky,<br>different mood</p>
+        </div>
+        <span class="ab-pol-caption">blue hour</span>
       </div>
 
-      <!-- 05 Bangalore -->
-      <div class="ab-pol ab-reveal" style="--r:3deg;transition-delay:0.24s;">
-        <div class="ab-tape-pol tl tb"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#0f4c35,#38ef7d);">☕</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">filter coffee &amp;<br>startup dreams</p>
+      <!-- 04 stuff -->
+      <div class="ab-pol ab-reveal" style="--r:5deg;transition-delay:0.21s;">
+        <div class="ab-tape-pol tt tb"></div>
+        <div class="ab-pol-photo">
+          <img src="/about/stuff.png" alt="stuff" />
         </div>
-        <span class="ab-pol-caption">Bangalore</span>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">bits &amp; pieces<br>of my world</p>
+        </div>
+        <span class="ab-pol-caption">the good stuff</span>
       </div>
 
-      <!-- 06 Rishikesh -->
-      <div class="ab-pol ab-reveal" style="--r:-5deg;transition-delay:0.30s;">
+      <!-- 05 work -->
+      <div class="ab-pol ab-reveal" style="--r:-5deg;transition-delay:0.28s;">
         <div class="ab-tape-pol tt"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);">🏔️</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">best decision:<br>going offline</p>
+        <div class="ab-pol-photo">
+          <img src="/about/work.jpg" alt="work" />
         </div>
-        <span class="ab-pol-caption">Rishikesh</span>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">in the zone,<br>do not disturb ☕</p>
+        </div>
+        <span class="ab-pol-caption">deep work mode</span>
       </div>
 
-      <!-- 07 Jaipur -->
-      <div class="ab-pol ab-reveal" style="--r:4deg;transition-delay:0.36s;">
-        <div class="ab-tape-pol tr"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#f953c6,#b91d73);">🎡</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">pink city,<br>pink heart</p>
+      <!-- 06 Cafe -->
+      <div class="ab-pol ab-reveal" style="--r:4deg;transition-delay:0.35s;">
+        <div class="ab-tape-pol tl"></div>
+        <div class="ab-pol-photo">
+          <img src="/Image/hero/Cafe.png" alt="cafe" />
         </div>
-        <span class="ab-pol-caption">Jaipur</span>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">my unofficial<br>office ☕</p>
+        </div>
+        <span class="ab-pol-caption">corner seat, always</span>
       </div>
 
-      <!-- 08 Manali -->
+      <!-- 07 Book -->
       <div class="ab-pol ab-reveal" style="--r:-3deg;transition-delay:0.42s;">
-        <div class="ab-tape-pol tl"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#2c3e50,#3498db);">🌺</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">no deadlines,<br>just mountains</p>
+        <div class="ab-tape-pol tr"></div>
+        <div class="ab-pol-photo">
+          <img src="/Image/hero/Book.png" alt="book" />
         </div>
-        <span class="ab-pol-caption">Manali</span>
+        <div class="ab-pol-over">
+          <p class="ab-pol-mem">current obsession:<br>just one more chapter 📖</p>
+        </div>
+        <span class="ab-pol-caption">always reading</span>
       </div>
 
-      <!-- 09 Udaipur -->
-      <div class="ab-pol ab-reveal" style="--r:-2deg;transition-delay:0.48s;">
+      <!-- 08 flower -->
+      <div class="ab-pol ab-reveal" style="--r:6deg;transition-delay:0.49s;">
         <div class="ab-tape-pol tt tg"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#614385,#516395);">🏰</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">the most<br>romantic city</p>
+        <div class="ab-pol-photo">
+          <img src="/Image/hero/flower.png" alt="flower" />
         </div>
-        <span class="ab-pol-caption">Udaipur</span>
-      </div>
-
-      <!-- 10 Lonavala -->
-      <div class="ab-pol ab-reveal" style="--r:6deg;transition-delay:0.54s;">
-        <div class="ab-tape-pol tr tb"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#56ccf2,#2f80ed);">🌧️</div>
         <div class="ab-pol-over">
-          <p class="ab-pol-mem">monsoon drives<br>and masala chai</p>
+          <p class="ab-pol-mem">little joys &gt;<br>everything else 🌸</p>
         </div>
-        <span class="ab-pol-caption">Lonavala</span>
-      </div>
-
-      <!-- 11 Coorg -->
-      <div class="ab-pol ab-reveal" style="--r:-4deg;transition-delay:0.60s;">
-        <div class="ab-tape-pol tt"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#2d6a4f,#52b788);">🌿</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">coffee plantations<br>and fog mornings</p>
-        </div>
-        <span class="ab-pol-caption">Coorg</span>
-      </div>
-
-      <!-- 12 Pune -->
-      <div class="ab-pol ab-reveal" style="--r:3deg;transition-delay:0.66s;">
-        <div class="ab-tape-pol tl"></div>
-        <div class="ab-pol-photo" style="background:linear-gradient(135deg,#8b5e3c,#e8a87c);">🌳</div>
-        <div class="ab-pol-over">
-          <p class="ab-pol-mem">where design<br>first clicked</p>
-        </div>
-        <span class="ab-pol-caption">Pune</span>
+        <span class="ab-pol-caption">small things matter</span>
       </div>
 
     </div>
