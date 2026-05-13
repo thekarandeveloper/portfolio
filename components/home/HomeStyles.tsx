@@ -447,11 +447,10 @@ nav.scrolled{
 }
 .bento-waypoint{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(30,144,255,0.35);transform:translateX(-50%) translateY(-50%);animation:wayptPulse 3s ease-in-out infinite;}
 
-/* ── DESIGN SYSTEM SCROLL ZOOM ── */
-.dsz-section{position:relative;height:320vh;z-index:2;}
+/* ── DESIGN SYSTEM SECTION ── */
+.dsz-section{position:relative;}
 .dsz-heading-wrap{
   padding:4.5rem 250px 3rem;
-  background:#F5F5F8;
 }
 .dsz-title-main{
   font-family:'Rethink Sans',var(--sans);
@@ -464,11 +463,13 @@ nav.scrolled{
   font-weight:700;color:#1E90FF;
   display:block;line-height:1.2;
 }
-/* ── sticky shell (dot bg applied via shared rule) ── */
+/* ── content shell ── */
 .dsz-sticky{
-  position:sticky;top:0;height:100vh;
+  position:relative;
+  min-height:100vh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
+  padding:60px 0 80px;
   overflow:hidden;
 }
 /* ── floating annotations ── */
@@ -480,9 +481,9 @@ nav.scrolled{
 .dsz-float{
   position:absolute;
   font-family:var(--hand);
-  font-size:13.5px;
+  font-size:14px;
   line-height:1.5;
-  color:rgba(0,0,0,0.28);
+  color:rgba(0,0,0,0.52);
   max-width:160px;
 }
 .dsz-float-arrow{
@@ -510,10 +511,6 @@ nav.scrolled{
   padding:36px;
   box-shadow:0 2px 8px rgba(0,0,0,0.04),0 12px 40px rgba(0,0,0,0.08);
   display:flex;flex-direction:column;gap:18px;
-  transform:scale(0.48);
-  opacity:0;
-  will-change:transform,opacity;
-  transform-origin:center center;
 }
 .dsz-card-header{
   display:flex;align-items:flex-start;
@@ -592,10 +589,10 @@ nav.scrolled{
   .dsz-card{width:min(680px,88vw);}
 }
 @media(max-width:767px){
-  .dsz-section{height:260vh;}
   .dsz-heading-wrap{padding:3rem 24px 2rem;}
   .dsz-visual{grid-template-columns:1fr;gap:14px;}
   .dsz-card{padding:24px;gap:14px;}
+  .dsz-sticky{padding:40px 0 60px;}
 }
 
 

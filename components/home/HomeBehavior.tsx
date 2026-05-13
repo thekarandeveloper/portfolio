@@ -376,33 +376,6 @@ if(heroBlob) {
   update();
 })();
 
-// ── DESIGN SYSTEM SCROLL ZOOM ──
-(function(){
-  var section=document.getElementById('ds-zoom');
-  if(!section)return;
-  var card=section.querySelector('.dsz-card');
-  if(!card)return;
-  var ticking=false;
-  function c(v){return v<0?0:v>1?1:v;}
-  function mr(p,s,e){return c((p-s)/(e-s));}
-  function eOut(t){return 1-(1-t)*(1-t)*(1-t);}
-  function update(){
-    var rect=section.getBoundingClientRect();
-    var total=section.offsetHeight-window.innerHeight;
-    var p=c(-rect.top/total);
-    // card starts animating after heading scrolls away (~first 8% of section travel)
-    var op=mr(p,0.07,0.28);
-    var sc=0.48+0.52*eOut(mr(p,0.06,0.78));
-    card.style.opacity=op;
-    card.style.transform='scale('+sc+')';
-    ticking=false;
-  }
-  var inView=false;
-  new IntersectionObserver(function(es){es.forEach(function(e){inView=e.isIntersecting;});},{threshold:0}).observe(section);
-  window.addEventListener('scroll',function(){if(!inView||ticking)return;ticking=true;requestAnimationFrame(update);},{passive:true});
-  update();
-})();
-
 // ── SIGNOFF SECTION ──
 (function(){
   var section=document.getElementById('signoff');
