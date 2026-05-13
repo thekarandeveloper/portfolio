@@ -520,8 +520,7 @@ const heroHtml = `
 
 const lovesHtml = `
 <section class="ab-loves" id="ab-loves">
-  <span class="ab-section-label ab-reveal">obsessions</span>
-  <h2 class="ab-section-title ab-reveal ab-d1">
+  <h2 class="ab-section-title ab-reveal">
     Things I <em>love</em><br>a little too much.
   </h2>
   <div class="ab-loves-grid">
@@ -567,8 +566,7 @@ const lovesHtml = `
 
 const placesHtml = `
 <section class="ab-places" id="ab-places">
-  <span class="ab-section-label ab-reveal">wanderlust</span>
-  <h2 class="ab-section-title ab-reveal ab-d1">
+  <h2 class="ab-section-title ab-reveal">
     Places that <em>made me.</em>
   </h2>
 
