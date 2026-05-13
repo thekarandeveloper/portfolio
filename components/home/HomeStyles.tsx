@@ -759,8 +759,8 @@ nav.scrolled{
 .contact-footer-copy{font-size:0.7rem;letter-spacing:0.06em;color:var(--ink4);}
 
 /* ── JOURNEY ── */
-.journey{background:#f8fbff;padding:7rem 250px;border-top:1px solid rgba(30,144,255,0.1);position:relative;}
-.journey::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(30,144,255,0.05) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;}
+.journey{background:#ffffff;padding:7rem 250px;border-top:1px solid rgba(0,0,0,0.06);position:relative;}
+.journey::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(0,0,0,0.065) 1px,transparent 1px);background-size:22px 22px;pointer-events:none;}
 .journey-inner{display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;position:relative;z-index:1;}
 .journey-left{position:sticky;top:8rem;}
 .journey-title{font-family:'Rethink Sans',var(--sans);font-size:clamp(22px,4vw,38px);font-weight:800;color:var(--ink);line-height:1.25;margin-bottom:1rem;}
@@ -1561,6 +1561,248 @@ nav.scrolled{
   .wr-name{font-size:22px;}
   .wr-impact{font-size:15px;}
   .wr-desc{font-size:13px;}
+}
+
+/* ─── FEATURED WORK SECTION (phone + text rows) ─── */
+.fw-section{
+  padding:100px max(40px,8vw) 80px;
+}
+.fw-label{
+  display:block;
+  font-family:var(--sans);
+  font-size:0.65rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.16em;
+  color:var(--ink4);
+  margin-bottom:48px;
+}
+.fw-list{
+  display:flex;
+  flex-direction:column;
+}
+.fw-row{
+  display:grid;
+  grid-template-columns:55% 45%;
+  min-height:400px;
+  border-top:1px solid var(--border);
+  text-decoration:none;
+  color:inherit;
+  transition:background 0.3s ease;
+  position:relative;
+}
+.fw-list .fw-row:last-child{
+  border-bottom:1px solid var(--border);
+}
+.fw-row:hover{
+  background:var(--bg2);
+}
+/* ── phones column ── */
+.fw-phones{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 32px;
+  overflow:hidden;
+}
+.fw-phone{
+  position:absolute;
+  width:108px;
+  height:198px;
+  background:#111;
+  border-radius:18px;
+  border:1.5px solid rgba(255,255,255,0.10);
+  overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,0.30),0 2px 8px rgba(0,0,0,0.18);
+  transition:transform 0.4s ease,opacity 0.4s ease;
+}
+.fw-ph-center{
+  position:relative;
+  z-index:3;
+  width:122px;
+  height:222px;
+  border-radius:20px;
+}
+.fw-ph-left{
+  z-index:2;
+  transform:translateX(-108px) rotate(-8deg);
+  opacity:0.72;
+  width:96px;
+  height:176px;
+}
+.fw-ph-right{
+  z-index:2;
+  transform:translateX(108px) rotate(8deg);
+  opacity:0.72;
+  width:96px;
+  height:176px;
+}
+.fw-row:hover .fw-ph-left{
+  transform:translateX(-116px) rotate(-10deg);
+  opacity:0.82;
+}
+.fw-row:hover .fw-ph-right{
+  transform:translateX(116px) rotate(10deg);
+  opacity:0.82;
+}
+.fw-row:hover .fw-ph-center{
+  transform:translateY(-6px) scale(1.03);
+}
+.fw-ph-notch{
+  position:absolute;
+  top:9px;
+  left:50%;
+  transform:translateX(-50%);
+  width:32px;
+  height:5px;
+  background:rgba(0,0,0,0.55);
+  border-radius:3px;
+  z-index:10;
+}
+.fw-ph-screen{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.fw-ph-topbar{
+  height:36px;
+  flex-shrink:0;
+}
+.fw-ph-content{
+  padding:8px 10px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  flex:1;
+}
+.fw-ph-line{
+  height:5px;
+  background:rgba(255,255,255,0.11);
+  border-radius:3px;
+  flex-shrink:0;
+}
+.fw-ph-block{
+  border-radius:5px;
+  flex-shrink:0;
+}
+/* ── info column ── */
+.fw-info{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  padding:44px 0 44px 48px;
+  justify-content:center;
+}
+.fw-row.fw-row-flip .fw-phones{
+  order:1;
+}
+.fw-row.fw-row-flip .fw-info{
+  padding:44px 48px 44px 0;
+  order:-1;
+}
+.fw-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.fw-brand-icon{
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  flex-shrink:0;
+}
+.fw-brand-meta{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.fw-brand-name{
+  font-family:var(--sans);
+  font-size:15px;
+  font-weight:600;
+  color:var(--ink);
+  line-height:1.2;
+}
+.fw-brand-date{
+  font-family:var(--hand);
+  font-size:13px;
+  color:var(--ink4);
+}
+.fw-desc{
+  font-family:var(--serif);
+  font-size:14px;
+  font-style:italic;
+  color:var(--ink3);
+  line-height:1.82;
+  margin:0;
+}
+.fw-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:var(--hand);
+  font-size:12.5px;
+  border-radius:20px;
+  padding:4px 14px;
+  width:fit-content;
+}
+.fw-badge-blue{
+  background:rgba(30,144,255,0.10);
+  color:rgba(15,80,180,0.85);
+}
+.fw-badge-orange{
+  background:rgba(200,112,58,0.12);
+  color:rgba(140,72,20,0.85);
+}
+.fw-cta{
+  font-family:var(--serif);
+  font-size:13px;
+  color:var(--ink4);
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  position:relative;
+  transition:color 0.22s ease;
+  width:fit-content;
+}
+.fw-cta::after{
+  content:'';
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:0;
+  height:1px;
+  background:var(--pink);
+  transition:width 0.25s ease;
+}
+.fw-row:hover .fw-cta{
+  color:var(--pink);
+}
+.fw-row:hover .fw-cta::after{
+  width:100%;
+}
+@media(max-width:767px){
+  .fw-section{padding:80px 24px 64px;}
+  .fw-row{grid-template-columns:1fr;}
+  .fw-phones{min-height:260px;padding:36px 24px;}
+  .fw-ph-left{transform:translateX(-80px) rotate(-8deg);}
+  .fw-ph-right{transform:translateX(80px) rotate(8deg);}
+  .fw-info{padding:24px 0;}
+  .fw-row.fw-row-flip .fw-info{padding:24px 0;order:1;}
+  .fw-row.fw-row-flip .fw-phones{order:-1;}
+}
+/* ── WHITE BG + GRAY DOT PATTERN (all sections except hero) ── */
+.work,.zoom-sticky,.about,.gallery-section,.shelf-section,.scrapbook-section,.testimonials-section,.contact{
+  background-color:#ffffff;
+  background-image:radial-gradient(circle,rgba(0,0,0,0.065) 1px,transparent 1px);
+  background-size:22px 22px;
 }`;
 
 export function HomeStyles() {
