@@ -127,19 +127,27 @@ setTimeout(type,1000);
 
 // ── NAV ──
 const nav=document.getElementById('nav'),navLinks=document.querySelectorAll('.nav-link-item');
+const navLinksWrap=document.querySelector('.nav-links-wrap');
 const navIndicator=document.querySelector('.nav-active-indicator');
 function positionNavIndicator(activeLink){
-  if(!nav||!navIndicator||!activeLink)return;
-  const navRect=nav.getBoundingClientRect();
+  if(!navLinksWrap||!navIndicator||!activeLink)return;
+  const wrapRect=navLinksWrap.getBoundingClientRect();
   const linkRect=activeLink.getBoundingClientRect();
   navIndicator.style.width=linkRect.width+'px';
-  navIndicator.style.transform='translateX('+(linkRect.left-navRect.left)+'px)';
+  navIndicator.style.transform='translateX('+(linkRect.left-wrapRect.left)+'px)';
 }
 function updateNav(){
   let activeLink=navLinks[0]||null;
   navLinks.forEach(a=>{const isActive=a.getAttribute('href')==='#work';a.classList.toggle('active',isActive);if(isActive)activeLink=a;});
   positionNavIndicator(activeLink);
 }
+// ── NAV CLOCK ──
+(function(){
+  var clockEl=document.getElementById('navClock');
+  if(!clockEl)return;
+  function tick(){var n=new Date();clockEl.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');}
+  tick();setInterval(tick,1000);
+})();
 
 // ── SCROLL REVEAL ──
 const reveals=document.querySelectorAll('.reveal');

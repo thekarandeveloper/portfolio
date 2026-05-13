@@ -151,11 +151,11 @@ body.home-loading{overflow:hidden;}
 .water-surface:hover::after{animation:waterSurface 1.2s ease-out infinite;}
 .water-surface > *{position:relative;z-index:1;}
 .nav-link-item.water-surface,
-.nav-resume.water-surface{isolation:auto;}
+.nav-cta.water-surface{isolation:auto;}
 .nav-link-item.water-surface::before,
 .nav-link-item.water-surface::after,
-.nav-resume.water-surface::before,
-.nav-resume.water-surface::after{z-index:-1;}
+.nav-cta.water-surface::before,
+.nav-cta.water-surface::after{z-index:-1;}
 @keyframes waterRing{
   0%{opacity:0.55;transform:translate(-50%,-50%) scale(0.25);}
   72%{opacity:0.22;}
@@ -167,12 +167,12 @@ body.home-loading{overflow:hidden;}
 }
 
 
-/* ── NAV — floating centered pill ── */
+/* ── NAV — floating pill: brand | links | cta ── */
 nav{
-  position:fixed;top:28px;left:50%;transform:translateX(-50%);
+  position:fixed;top:20px;left:50%;transform:translateX(-50%);
   z-index:100;
-  display:flex;align-items:center;gap:3px;
-  padding:6px 8px;
+  display:flex;align-items:center;gap:4px;
+  padding:5px 5px 5px 5px;
   background:#fff;
   backdrop-filter:blur(24px);
   -webkit-backdrop-filter:blur(24px);
@@ -186,9 +186,29 @@ nav.scrolled{
   background:#fff;
   box-shadow:0 4px 28px rgba(0,0,0,0.09),0 2px 6px rgba(0,0,0,0.04),inset 0 1.5px 0 rgba(255,255,255,1);
 }
+.nav-brand{
+  display:flex;align-items:center;gap:8px;
+  padding:0.45rem 0.9rem 0.45rem 0.6rem;
+  border-right:1px solid rgba(0,0,0,0.07);
+  margin-right:2px;
+}
+.nav-initials{
+  font-size:0.72rem;font-weight:700;letter-spacing:0.06em;
+  color:#111;font-family:var(--sans);
+  background:rgba(0,0,0,0.06);
+  padding:2px 7px;border-radius:6px;
+}
+.nav-clock{
+  font-size:0.74rem;font-variant-numeric:tabular-nums;
+  color:rgba(30,30,40,0.45);font-family:var(--sans);font-weight:500;
+  letter-spacing:0.03em;
+}
+.nav-links-wrap{
+  position:relative;display:flex;align-items:center;gap:2px;
+}
 .nav-active-indicator{
-  position:absolute;top:6px;left:0;
-  width:0;height:calc(100% - 12px);
+  position:absolute;top:0;left:0;
+  width:0;height:100%;
   border-radius:99px;
   background:var(--pink);
   transform:translateX(0);
@@ -204,24 +224,20 @@ nav.scrolled{
   transition:color 0.18s;
   font-family:var(--sans);font-weight:500;
 }
-.nav-link-item svg{flex-shrink:0;opacity:0.55;transition:opacity 0.18s;}
 .nav-link-item:hover{background:rgba(0,0,0,0.06);color:#111;}
-.nav-link-item:hover svg{opacity:0.85;}
 .nav-link-item.active{color:#fff;}
 .nav-link-item.active:hover{background:transparent;color:#fff;}
-.nav-link-item.active svg{opacity:1;color:#fff;}
-.nav-divider{width:1px;height:16px;background:rgba(0,0,0,0.09);flex-shrink:0;margin:0 2px;}
-.nav-resume{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:0.76rem;letter-spacing:0.02em;
-  color:rgba(30,30,40,0.60);text-decoration:none;
-  padding:0.55rem 1.1rem;border-radius:99px;
-  transition:background 0.18s,color 0.18s;
-  font-family:var(--sans);font-weight:500;
+.nav-cta{
+  display:inline-flex;align-items:center;
+  font-size:0.76rem;letter-spacing:0.02em;font-weight:600;
+  color:#fff;text-decoration:none;
+  padding:0.55rem 1.2rem;border-radius:99px;
+  background:#111;
+  transition:background 0.18s;
+  font-family:var(--sans);
+  margin-left:2px;
 }
-.nav-resume svg{flex-shrink:0;opacity:0.55;transition:opacity 0.18s;}
-.nav-resume:hover{background:rgba(0,0,0,0.06);color:#111;}
-.nav-resume:hover svg{opacity:0.85;}
+.nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7rem 250px 5rem;position:relative;overflow:hidden;cursor:none;}
@@ -821,7 +837,7 @@ nav.scrolled{
 
 
 @media(max-width:900px){
-  nav{padding:0 1.5rem;grid-template-columns:1fr auto;}.nav-resume{display:none;}
+  nav{padding:4px;}.nav-clock{display:none;}.nav-brand{padding:0.4rem 0.7rem 0.4rem 0.5rem;}.nav-cta{display:none;}
   .work,.journey,.about,.contact,.process-section,.gallery-section,.shelf-section,.testimonials-section{padding:5rem clamp(24px,4vw,50px);}
   .spectrum-section{padding:4rem clamp(24px,4vw,50px);}
   .journey-inner{grid-template-columns:1fr;}.journey-left{position:static;}
