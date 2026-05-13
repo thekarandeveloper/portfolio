@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="43" shape-rendering="crispEdges">
+  <!-- Pink shadow (offset -5px left, +3px down from main cursor) -->
+  <g fill="#F9BDD8" opacity="0.8">
+    <rect x="1" y="3" width="4" height="4"/>
+    <rect x="1" y="7" width="8" height="4"/>
+    <rect x="1" y="11" width="12" height="4"/>
+    <rect x="1" y="15" width="16" height="4"/>
+    <rect x="1" y="19" width="20" height="4"/>
+    <rect x="1" y="23" width="24" height="4"/>
+    <rect x="1" y="27" width="20" height="4"/>
+    <rect x="1" y="31" width="16" height="4"/>
+    <rect x="21" y="31" width="12" height="4"/>
+    <rect x="1" y="35" width="12" height="4"/>
+    <rect x="25" y="35" width="12" height="4"/>
+    <rect x="1" y="39" width="8" height="4"/>
+    <rect x="29" y="39" width="4" height="4"/>
+  </g>
+  <!-- Main cursor black outline -->
+  <g fill="#1a1a2e">
+    <rect x="6" y="0" width="4" height="4"/>
+    <rect x="6" y="4" width="8" height="4"/>
+    <rect x="6" y="8" width="4" height="4"/>
+    <rect x="14" y="8" width="4" height="4"/>
+    <rect x="6" y="12" width="4" height="4"/>
+    <rect x="18" y="12" width="4" height="4"/>
+    <rect x="6" y="16" width="4" height="4"/>
+    <rect x="22" y="16" width="4" height="4"/>
+    <rect x="6" y="20" width="4" height="4"/>
+    <rect x="26" y="20" width="4" height="4"/>
+    <rect x="6" y="24" width="4" height="4"/>
+    <rect x="22" y="24" width="4" height="4"/>
+    <rect x="6" y="28" width="4" height="4"/>
+    <rect x="18" y="28" width="4" height="4"/>
+    <rect x="26" y="28" width="4" height="4"/>
+    <rect x="34" y="28" width="4" height="4"/>
+    <rect x="6" y="32" width="4" height="4"/>
+    <rect x="14" y="32" width="4" height="4"/>
+    <rect x="30" y="32" width="4" height="4"/>
+    <rect x="38" y="32" width="4" height="4"/>
+    <rect x="6" y="36" width="8" height="4"/>
+    <rect x="34" y="36" width="4" height="4"/>
+  </g>
+  <!-- Main cursor lavender fill -->
+  <g fill="#EDE9FF">
+    <rect x="10" y="8" width="4" height="4"/>
+    <rect x="10" y="12" width="8" height="4"/>
+    <rect x="10" y="16" width="12" height="4"/>
+    <rect x="10" y="20" width="16" height="4"/>
+    <rect x="10" y="24" width="12" height="4"/>
+    <rect x="10" y="28" width="8" height="4"/>
+    <rect x="30" y="28" width="4" height="4"/>
+    <rect x="10" y="32" width="4" height="4"/>
+  </g>
+  <!-- Gray accent on right tail prong -->
+  <rect x="34" y="32" width="4" height="4" fill="#9898B8"/>
+</svg>

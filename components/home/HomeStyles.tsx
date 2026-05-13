@@ -242,18 +242,21 @@ nav.scrolled{
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7rem 250px 5rem;position:relative;overflow:hidden;cursor:none;}
 .cursor-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.03) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left 0.08s ease,top 0.08s ease;z-index:0;}
 .custom-cursor{
-  position:fixed;width:30px;height:30px;
-  background:none;border-radius:0;box-shadow:none;
+  position:fixed;width:42px;height:43px;
+  background:url('/pixel-cursor.svg') no-repeat top left;
+  background-size:42px 43px;
+  border-radius:0;box-shadow:none;
   pointer-events:none;
-  transform:translate(-6px,-4px);
+  transform:translate(-6px,0px);
   z-index:9998;
-  font-size:22px;line-height:1;
-  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.18));
-  transition:font-size 0.18s ease,opacity 0.22s ease,transform 0.18s ease;
+  transition:opacity 0.22s ease,width 0.18s ease,height 0.18s ease;
 }
-.custom-cursor::before{content:'☝️';display:block;}
-.custom-cursor.big{font-size:26px;transform:translate(-7px,-5px);}
-.custom-cursor.big::before{content:'👆';}
+.custom-cursor::before{content:none;}
+.custom-cursor.big{
+  width:50px;height:51px;
+  background-size:50px 51px;
+  transform:translate(-7px,0px);
+}
 
 /* canvas wave injected by HomeBehavior — no static CSS needed */
 #heroWaveCanvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
