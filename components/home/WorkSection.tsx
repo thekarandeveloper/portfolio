@@ -81,14 +81,14 @@ const html = `<section class="work" id="work">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">&#127973;&#65039;</div>
-          <div class="bento-tags">
-            <span class="bento-tag" style="background:rgba(123,107,224,0.10);color:#5B48C0;">0&rarr;1 Design</span>
-            <span class="bento-tag" style="background:rgba(123,107,224,0.07);color:#5B48C0;">Healthcare</span>
-            <span class="bento-tag" style="background:rgba(123,107,224,0.07);color:#5B48C0;">Multi-platform</span>
-          </div>
         </div>
         <h3 class="bento-proj-title">One platform for three distinct care journeys</h3>
         <p class="bento-proj-desc">Unified Alzheimer&rsquo;s, Autism &amp; Fitness care into one calm, accessible interface for caregivers who are already overwhelmed.</p>
+        <div class="bento-tags">
+          <span class="bento-tag" style="color:#5B48C0;">0&rarr;1 Design</span>
+          <span class="bento-tag" style="color:#5B48C0;">Healthcare</span>
+          <span class="bento-tag" style="color:#5B48C0;">Multi-platform</span>
+        </div>
         <div class="bento-proj-visual">
           <div class="bento-mock" style="width:180px;border-radius:14px;transform:rotate(1.5deg);">
             <div class="bento-mock-bar" style="background:rgba(123,107,224,0.07);">
@@ -115,15 +115,15 @@ const html = `<section class="work" id="work">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">&#128218;</div>
-          <div class="bento-tags">
-            <span class="bento-tag" style="background:rgba(200,112,58,0.10);color:#92400E;">iOS</span>
-            <span class="bento-tag" style="background:rgba(200,112,58,0.07);color:#92400E;">0&rarr;1</span>
-            <span class="bento-tag" style="background:rgba(200,112,58,0.07);color:#92400E;">Solo</span>
-            <span class="bento-tag" style="background:rgba(200,112,58,0.07);color:#92400E;">6 Weeks</span>
-          </div>
         </div>
         <h3 class="bento-proj-title">Reimagining how readers discover &amp; borrow books</h3>
         <p class="bento-proj-desc">iOS library management shipped solo in 6 weeks, 0 to App Store&mdash;making the quiet joy of reading feel social without being loud about it.</p>
+        <div class="bento-tags">
+          <span class="bento-tag" style="color:#92400E;">iOS</span>
+          <span class="bento-tag" style="color:#92400E;">0&rarr;1</span>
+          <span class="bento-tag" style="color:#92400E;">Solo</span>
+          <span class="bento-tag" style="color:#92400E;">6 Weeks</span>
+        </div>
         <div class="bento-proj-visual" style="justify-content:center;">
           <div class="bento-image-frame bento-image-frame-phone">
             <img src="/thumbnails/biblofi.jpg" alt="BiblioFi iOS app preview" loading="lazy" />
