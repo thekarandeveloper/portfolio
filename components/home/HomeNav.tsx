@@ -6,7 +6,7 @@ const html = `<nav id="nav">
   <div class="nav-links-wrap">
     <span class="nav-active-indicator" aria-hidden="true"></span>
     <a href="#work" class="nav-link-item">Work</a>
-    <a href="#journey" class="nav-link-item">About</a>
+    <a href="/about" class="nav-link-item">About</a>
     <a href="#contact" class="nav-link-item">Contact</a>
   </div>
   <a href="#contact" class="nav-cta">Get in Touch</a>

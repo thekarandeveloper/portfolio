@@ -16,7 +16,7 @@ const defaultNavItems = [
 export function Navbar() {
   const pathname = usePathname();
 
-  if (pathname === "/") {
+  if (pathname === "/" || pathname === "/about") {
     return null;
   }
 
