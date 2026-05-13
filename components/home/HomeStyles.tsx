@@ -475,7 +475,7 @@ nav.scrolled{
   gap:0;
 }
 .dsz-heading-wrap{
-  padding:0 0 1.2rem 0;
+  padding:0 0 2.8rem 0;
 }
 .dsz-title-main{
   font-family:'Rethink Sans',var(--sans);
