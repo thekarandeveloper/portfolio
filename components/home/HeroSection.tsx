@@ -17,22 +17,16 @@ const html = `<section class="hero" id="home">
   <div class="hi-right reveal from-right reveal-delay-1">
     <div class="hi-scrapbook">
 
-      <!-- music is therapy sticker — top left -->
-      <img src="/Image/hero/music-tag.png" class="hi-asset hi-music" alt="music is therapy" />
+      <!-- "One day at a time." — top right -->
+      <img src="/Image/hero/caps.png" class="hi-asset hi-caps" alt="One day at a time." />
 
-      <!-- blue washi tape — top right corner -->
-      <img src="/Image/hero/tape.png" class="hi-asset hi-tape-img" alt="" aria-hidden="true" />
-
-      <!-- polaroid frame (CSS) with photo -->
+      <!-- polaroid (CSS frame) with B&W photo -->
       <div class="hi-polaroid-css">
-        <img src="/Image/hero/mai.png" class="hi-mai" alt="Nikunj Tyagi" />
+        <img src="/Image/hero/pic.png" class="hi-mai" alt="Nikunj Tyagi" />
       </div>
 
-      <!-- BTS CD — bottom left, spinning -->
-      <img src="/Image/hero/cd-tag.png" class="hi-asset hi-cd" alt="" aria-hidden="true" />
-
-      <!-- think outside the box sticker — bottom right -->
-      <img src="/Image/hero/caption.png" class="hi-asset hi-caption-sticker" alt="think outside the box" />
+      <!-- butterfly CD — bottom left, spinning -->
+      <img src="/Image/hero/cd2-tag.png" class="hi-asset hi-cd" alt="" aria-hidden="true" />
 
     </div>
   </div>
