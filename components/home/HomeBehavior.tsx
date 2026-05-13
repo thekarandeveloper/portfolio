@@ -447,30 +447,72 @@ initParallax();
 runParallax();
 
 
-// ── GOOGLE SEARCH ANIMATION ──
+// ── GOOGLE SEARCH CYCLING ANIMATION ──
 (function(){
   var queryEl=document.getElementById('gsearchQuery');
-  var caretEl=document.getElementById('gsearchCaret');
-  var items=Array.from(document.querySelectorAll('.gsearch-item'));
-  if(!queryEl||!items.length)return;
-  var query='Who is Nikunj Tyagi?';
-  var charIdx=0,started=false;
-  function typeChar(){
-    if(charIdx<query.length){
-      queryEl.textContent=query.slice(0,++charIdx);
-      setTimeout(typeChar,55+Math.random()*45);
-    } else {
+  var resultsEl=document.getElementById('gsearchResults');
+  if(!queryEl||!resultsEl)return;
+  var searches=[
+    {q:'Who is Nikunj?',items:[
+      {icon:'✦',text:'Product Designer',tag:'role'},
+      {icon:'✦',text:'UX Researcher',tag:'role'},
+      {icon:'✦',text:'Problem Solver',tag:'trait'},
+      {icon:'✦',text:'Systems Thinker',tag:'trait'}
+    ]},
+    {q:'What does he love?',items:[
+      {icon:'✦',text:'Obsessing over pixels',tag:'always'},
+      {icon:'☕',text:'Cold coffee',tag:'fuel'},
+      {icon:'✦',text:'Clean typography',tag:'passion'},
+      {icon:'🎵',text:'Lo-fi while designing',tag:'vibe'}
+    ]},
+    {q:'Where can you find him?',items:[
+      {icon:'☕',text:'Corner seat at a café',tag:'usually'},
+      {icon:'✦',text:'Deep in Figma',tag:'obviously'},
+      {icon:'✦',text:'Late nights, building',tag:'always'},
+      {icon:'✦',text:'tyaginikunj26@gmail.com',tag:'reach out'}
+    ]},
+    {q:'Which coffee?',items:[
+      {icon:'🧊',text:'Cold coffee',tag:'always'},
+      {icon:'☕',text:'Extra ice, every time',tag:'non-negotiable'},
+      {icon:'✦',text:'Never hot, ever',tag:'firm stance'},
+      {icon:'✦',text:'Iced americano > life',tag:'truth'}
+    ]}
+  ];
+  var cur=0,started=false;
+  function build(items){
+    resultsEl.innerHTML='';
+    items.forEach(function(it){
+      var d=document.createElement('div');
+      d.className='gsearch-item';
+      d.innerHTML='<div class="gsearch-item-icon">'+it.icon+'</div><span>'+it.text+'</span><span class="gsearch-item-tag">'+it.tag+'</span>';
+      resultsEl.appendChild(d);
+    });
+  }
+  function showResults(){Array.from(resultsEl.querySelectorAll('.gsearch-item')).forEach(function(el,i){setTimeout(function(){el.classList.add('gs-visible');},i*120);});}
+  function hideResults(cb){var els=Array.from(resultsEl.querySelectorAll('.gsearch-item')).reverse();els.forEach(function(el,i){setTimeout(function(){el.classList.remove('gs-visible');},i*70);});setTimeout(cb,els.length*70+180);}
+  function typeQ(q,cb){var i=0;(function step(){if(i<q.length){queryEl.textContent=q.slice(0,++i);setTimeout(step,55+Math.random()*35);}else{cb();}})();}
+  function delQ(cb){(function step(){var t=queryEl.textContent;if(t.length){queryEl.textContent=t.slice(0,-1);setTimeout(step,28);}else{cb();}})();}
+  function run(idx){
+    var s=searches[idx];
+    build(s.items);
+    typeQ(s.q,function(){
       setTimeout(function(){
-        if(caretEl)caretEl.style.opacity='0';
-        items.forEach(function(item,i){setTimeout(function(){item.classList.add('gs-visible');},i*180);});
-      },500);
-    }
+        showResults();
+        setTimeout(function(){
+          hideResults(function(){
+            delQ(function(){
+              setTimeout(function(){run((idx+1)%searches.length);},320);
+            });
+          });
+        },2600);
+      },380);
+    });
   }
   var contact=document.querySelector('.contact');
   if(!contact)return;
   var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting&&!started){started=true;setTimeout(typeChar,400);obs.disconnect();}
+      if(e.isIntersecting&&!started){started=true;setTimeout(function(){run(0);},400);obs.disconnect();}
     });
   },{threshold:0.3});
   obs.observe(contact);
