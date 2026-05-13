@@ -376,6 +376,39 @@ if(heroBlob) {
   update();
 })();
 
+// ── DESIGN SYSTEM SCROLL ZOOM ──
+(function(){
+  var section=document.getElementById('ds-zoom');
+  if(!section)return;
+  var sticky=section.querySelector('.dsz-sticky');
+  var card=section.querySelector('.dsz-card');
+  if(!card)return;
+  var ticking=false;
+  function c(v){return v<0?0:v>1?1:v;}
+  function mr(p,s,e){return c((p-s)/(e-s));}
+  function eOut(t){return 1-(1-t)*(1-t)*(1-t);}
+  function update(){
+    var rect=section.getBoundingClientRect();
+    var total=section.offsetHeight-window.innerHeight;
+    var p=c(-rect.top/total);
+    // reveal eyebrow early
+    if(sticky){
+      if(p>0.05)sticky.classList.add('dsz-visible');
+      else sticky.classList.remove('dsz-visible');
+    }
+    // card: opacity 0→1 over first 25%, scale 0.48→1.0 over 0→80%
+    var op=mr(p,0.04,0.28);
+    var sc=0.48+0.52*eOut(mr(p,0,0.80));
+    card.style.opacity=op;
+    card.style.transform='scale('+sc+')';
+    ticking=false;
+  }
+  var inView=false;
+  new IntersectionObserver(function(es){es.forEach(function(e){inView=e.isIntersecting;});},{threshold:0}).observe(section);
+  window.addEventListener('scroll',function(){if(!inView||ticking)return;ticking=true;requestAnimationFrame(update);},{passive:true});
+  update();
+})();
+
 // ── SIGNOFF SECTION ──
 (function(){
   var section=document.getElementById('signoff');
