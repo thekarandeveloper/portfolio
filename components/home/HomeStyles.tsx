@@ -12,7 +12,7 @@ html{scroll-behavior:smooth;scroll-snap-type:y proximity;scroll-padding-top:76px
 .hero,.work,.dsz-section,.process-section,.about,.gallery-section,.scrapbook-section,.shelf-section,.testimonials-section,.journey,.home-loves,.home-xp,.signoff,.contact{scroll-snap-align:start;}
 body{
   background:#ffffff;
-  background-image:radial-gradient(circle,rgba(0,0,0,0.055) 1.5px,transparent 1.5px);
+  background-image:linear-gradient(rgba(0,0,0,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.045) 1px,transparent 1px);
   background-size:28px 28px;
   color:var(--ink);
   font-family:var(--sans);
@@ -1814,7 +1814,7 @@ nav.scrolled{
 /* ── WHITE BG + GRAY DOT PATTERN ── */
 .hero,.work,.zoom-sticky,.dsz-sticky,.about,.gallery-section,.shelf-section,.scrapbook-section,.testimonials-section,.home-loves,.home-xp,.contact{
   background-color:#ffffff;
-  background-image:radial-gradient(circle,rgba(0,0,0,0.07) 1.5px,transparent 1.5px);
+  background-image:linear-gradient(rgba(0,0,0,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.05) 1px,transparent 1px);
   background-size:28px 28px;
 }
 
