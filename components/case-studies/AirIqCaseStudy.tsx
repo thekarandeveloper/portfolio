@@ -69,6 +69,37 @@ function Hi({ children }: { children: React.ReactNode }) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
+   COUNT-UP — viewport-triggered number animation
+───────────────────────────────────────────────────────────────────── */
+function CountUp({ to, duration = 1200 }: { to: number; duration?: number }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting || started.current) return;
+      started.current = true;
+      obs.disconnect();
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min((now - t0) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        setVal(Math.round(eased * to));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.6 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [to, duration]);
+
+  return <span ref={ref}>{val}</span>;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
    LIVE SEARCH DEMO (hero right panel)
 ───────────────────────────────────────────────────────────────────── */
 type SearchPhase = "typing" | "loading" | "result";
@@ -285,9 +316,7 @@ function LiveSearchDemo() {
 ───────────────────────────────────────────────────────────────────── */
 function AirHero() {
   return (
-    <div className="csl-hero">
-      <div className="csl-hero-grid" />
-      <div className="csl-hero-glow" />
+    <div className="csl-hero csl-hero--light">
       <div className="csl-hero-inner">
         {/* Left */}
         <div className="csl-hero-left">
@@ -296,8 +325,8 @@ function AirHero() {
             Live in Production &nbsp;·&nbsp; B2B SaaS &nbsp;·&nbsp; Travel
           </div>
           <h1 className="csl-hero-title">
-            <span style={{ color: "rgba(255,255,255,0.92)" }}>AIR</span>
-            <span style={{ color: "#378ADD" }}> iQ</span>
+            <span>AIR</span>
+            <span style={{ color: "#1E90FF" }}> iQ</span>
           </h1>
           <p className="csl-hero-desc">
             Simplifying complex flight booking for 25,000+ travel agents across India. A 0→1 B2B SaaS platform that cut booking time by 30–40%.
@@ -1485,34 +1514,45 @@ function ResultsSection() {
     <CsSection id="results">
       <CsSectionHeader title="The Impact" />
 
-      {/* Big metric callout */}
-      <div className="csl-reveal" style={{
-        background: "linear-gradient(135deg, #0B1E3D 0%, #1A3258 100%)",
-        borderRadius: 20, padding: "32px 36px",
-        display: "flex", gap: 32, alignItems: "center",
-        marginBottom: 28, flexWrap: "wrap",
-      }}>
-        <div>
-          <div style={{ fontSize: "3rem", fontWeight: 800, color: "#fff", lineHeight: 1 }}>
-            ~7<span style={{ fontSize: "1.4rem" }}>min</span>
+      {/* Big numbers grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, marginBottom: 40, background: "#F3F4F6", borderRadius: 20, overflow: "hidden" }}>
+        {/* ~7 min */}
+        <div className="csl-reveal" style={{ background: "#fff", padding: "36px 32px" }}>
+          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
+            ~<CountUp to={7} />
+            <span style={{ fontSize: "1.4rem", fontWeight: 700, color: "#6B7280", marginLeft: 4 }}>min</span>
           </div>
-          <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", marginTop: 4 }}>
-            Average booking time — down from ~12 min
-          </div>
+          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Average booking time</div>
+          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>down from ~12 min</div>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16, flex: 1, minWidth: 240 }}>
-          {[
-            { val: "30–40%", label: "Faster completion", ctx: "vs. pre-launch baseline" },
-            { val: "80+",    label: "Components built",  ctx: "from zero, token-driven" },
-            { val: "20+",    label: "Screens shipped",   ctx: "across 5 core flows"     },
-            { val: "2×",     label: "Data clarity",      ctx: "on fare cards vs. before" },
-          ].map((m) => (
-            <div key={m.label}>
-              <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#1E90FF" }}>{m.val}</div>
-              <div style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.55)", textTransform: "uppercase", letterSpacing: "0.06em" }}>{m.label}</div>
-              <div style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.3)", marginTop: 2 }}>{m.ctx}</div>
-            </div>
-          ))}
+
+        {/* 30–40% */}
+        <div className="csl-reveal rd1" style={{ background: "#fff", padding: "36px 32px" }}>
+          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
+            30–40%
+          </div>
+          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Faster completion</div>
+          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>vs. pre-launch baseline</div>
+        </div>
+
+        {/* 80+ */}
+        <div className="csl-reveal rd2" style={{ background: "#fff", padding: "36px 32px" }}>
+          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
+            <CountUp to={80} />
+            <span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span>
+          </div>
+          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Components built</div>
+          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>from zero, token-driven</div>
+        </div>
+
+        {/* 20+ */}
+        <div className="csl-reveal rd3" style={{ background: "#fff", padding: "36px 32px" }}>
+          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
+            <CountUp to={20} />
+            <span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span>
+          </div>
+          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Screens shipped</div>
+          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>across 5 core flows</div>
         </div>
       </div>
 

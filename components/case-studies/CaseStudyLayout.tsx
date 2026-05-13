@@ -13,7 +13,7 @@ const THEME_VARS: Record<CsTheme, CSSProperties> = {
   air: {
     "--csl-accent":        "#1E90FF",
     "--csl-accent-dim":    "rgba(30,144,255,0.1)",
-    "--csl-hero-bg":       "#0B1E3D",
+    "--csl-hero-bg":       "#ffffff",
     "--csl-tag-bg":        "#E8F2FB",
     "--csl-toc-active-bg": "#EAF3FF",
   } as CSSProperties,
@@ -179,11 +179,9 @@ function CsSidebarMeta({ rows }: { rows: { label: string; value: string }[] }) {
 function CsHeader({
   title,
   tag,
-  progressRef,
 }: {
   title: string;
   tag: string;
-  progressRef: React.RefObject<HTMLDivElement | null>;
 }) {
   return (
     <header className="csl-header">
@@ -208,9 +206,6 @@ function CsHeader({
         </Link>
         <span className="csl-header-brand">{title}</span>
         <span className="csl-header-tag">{tag}</span>
-      </div>
-      <div className="csl-progress-track">
-        <div className="csl-progress-fill" ref={progressRef} />
       </div>
     </header>
   );
@@ -239,7 +234,6 @@ export function CaseStudyPage({
   children: ReactNode;
 }) {
   const rootRef    = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(tocItems[0]?.id ?? "");
 
   useEffect(() => {
@@ -248,15 +242,8 @@ export function CaseStudyPage({
   }, []);
 
   useEffect(() => {
-    const root     = rootRef.current;
-    const progress = progressRef.current;
-    if (!root || !progress) return;
-
-    /* Reading progress */
-    const updateProgress = () => {
-      const d = document.documentElement;
-      progress.style.width = `${(d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100}%`;
-    };
+    const root = rootRef.current;
+    if (!root) return;
 
     /* Scroll-reveal */
     const revealObs = new IntersectionObserver(
@@ -268,7 +255,6 @@ export function CaseStudyPage({
     /* Active section tracking */
     const sections = Array.from(root.querySelectorAll<HTMLElement>("[data-s]"));
     const onScroll = () => {
-      updateProgress();
       const anchor = window.innerHeight * 0.3;
       const hit = sections
         .map((s) => ({ id: s.dataset.s ?? "", top: s.getBoundingClientRect().top - anchor }))
@@ -288,7 +274,7 @@ export function CaseStudyPage({
 
   return (
     <div className="csl-root" ref={rootRef} style={THEME_VARS[theme]}>
-      <CsHeader title={title} tag={tag} progressRef={progressRef} />
+      <CsHeader title={title} tag={tag} />
       {hero}
       <div className="csl-body">
         <aside className="csl-sidebar">

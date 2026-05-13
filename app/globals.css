@@ -6096,9 +6096,6 @@ body.csl-page-active footer { display: none !important; }
 .csl-back:hover { background: rgba(0,0,0,0.05); color: #111827; transform: translateX(-2px); }
 .csl-header-brand { font-size: 0.85rem; font-weight: 700; color: #111827; letter-spacing: 0.02em; }
 .csl-header-tag   { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: #9CA3AF; white-space: nowrap; }
-.csl-progress-track { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: rgba(0,0,0,0.06); }
-.csl-progress-fill  { height: 100%; width: 0%; background: var(--csl-accent); transition: width 0.1s linear; }
-
 /* ── Hero ── */
 .csl-hero {
   min-height: 440px;
@@ -6217,6 +6214,24 @@ body.csl-page-active footer { display: none !important; }
 .csl-hero-stat-val  { font-size: 1.9rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 4px; }
 .csl-hero-stat-label{ font-size: 0.68rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.1em; }
 
+/* ── Light hero variant (Air IQ) ── */
+.csl-hero--light { color: #111827; }
+.csl-hero--light .csl-hero-title { color: #111827; }
+.csl-hero--light .csl-hero-desc  { color: #374151; }
+.csl-hero--light .csl-hero-chip  {
+  background: #F3F4F6; border-color: #E5E7EB; color: #374151;
+}
+.csl-hero--light .csl-btn-ghost  {
+  color: #374151; border-color: #D1D5DB;
+}
+.csl-hero--light .csl-btn-ghost:hover { color: #111827; border-color: #9CA3AF; }
+.csl-hero--light .csl-hero-stats {
+  border-top-color: #E5E7EB;
+}
+.csl-hero--light .csl-hero-stat  { border-right-color: #E5E7EB; }
+.csl-hero--light .csl-hero-stat-val   { color: #111827; }
+.csl-hero--light .csl-hero-stat-label { color: #9CA3AF; }
+
 /* ── Body two-column layout ── */
 .csl-body {
   max-width: 1280px;
@@ -6314,16 +6329,16 @@ body.csl-page-active footer { display: none !important; }
 .csl-card-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .csl-card-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 
-/* ── Reveal animation ── */
+/* ── Reveal animation — Apple spring easing ── */
 .csl-reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .csl-reveal.in { opacity: 1; transform: translateY(0); }
-.csl-reveal.rd1 { transition-delay: 0.1s; }
-.csl-reveal.rd2 { transition-delay: 0.2s; }
-.csl-reveal.rd3 { transition-delay: 0.3s; }
+.csl-reveal.rd1 { transition-delay: 0.08s; }
+.csl-reveal.rd2 { transition-delay: 0.16s; }
+.csl-reveal.rd3 { transition-delay: 0.24s; }
 
 /* ── Sidebar — TOC only (left column) ── */
 .csl-sidebar { position: sticky; top: 88px; }
