@@ -56,15 +56,15 @@ const html = `<section class="work" id="work">
       <div class="bento-card-inner">
         <div class="bento-card-header">
           <div class="bento-icon-badge">&#9992;&#65039;</div>
-          <div class="bento-tags">
-            <span class="bento-tag" style="background:rgba(30,144,255,0.10);color:#1565C0;">0&rarr;1 Design</span>
-            <span class="bento-tag" style="background:rgba(30,144,255,0.07);color:#1565C0;">B2B</span>
-            <span class="bento-tag" style="background:rgba(30,144,255,0.07);color:#1565C0;">Web &amp; Mobile</span>
-            <span class="bento-tag" style="background:rgba(30,144,255,0.07);color:#1565C0;">Travel</span>
-          </div>
         </div>
         <h3 class="bento-proj-title">Simplifying complex flight booking systems</h3>
         <p class="bento-proj-desc">Designed a 0&rarr;1 booking experience across web and mobile for 25,000+ travel agents&mdash;improving speed, clarity, and decision-making in high-pressure workflows.</p>
+        <div class="bento-tags">
+          <span class="bento-tag" style="color:#1565C0;">0&rarr;1 Design</span>
+          <span class="bento-tag" style="color:#1565C0;">B2B</span>
+          <span class="bento-tag" style="color:#1565C0;">Web &amp; Mobile</span>
+          <span class="bento-tag" style="color:#1565C0;">Travel</span>
+        </div>
         <div class="bento-proj-visual">
           <div class="bento-image-frame bento-image-frame-wide">
             <img src="/thumbnails/airiq.jpg" alt="Air IQ booking interface preview" loading="lazy" />
