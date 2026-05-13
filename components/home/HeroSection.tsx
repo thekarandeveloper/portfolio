@@ -40,9 +40,12 @@ const html = `<section class="hero" id="home">
     <p class="hero-line3"><span class="work-icon">💼</span> Currently designing @ Air IQ</p>
   </div>
 
-  <!-- Scroll hint hand gesture -->
+  <!-- Scroll hint arrow -->
   <div class="hero-scroll-hint">
-    <div class="scroll-hand">👇</div>
+    <div class="scroll-arrow">
+      <div class="scroll-arrow-line"></div>
+      <div class="scroll-arrow-chevron"></div>
+    </div>
   </div>
 
 </section>`;

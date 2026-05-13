@@ -295,13 +295,14 @@ nav.scrolled{
 @keyframes briefcase{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-3px) scale(1.1);}}
 /* scroll down arrow */
 .hero-scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:2;}
-.scroll-hand{
-  font-size:26px;line-height:1;
-  filter:drop-shadow(0 2px 6px rgba(0,0,0,0.12));
-  animation:scrollBounce 2s ease-in-out infinite;
-  display:block;
+.scroll-arrow{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:rgba(0,0,0,0.28);
+  animation:scrollBounce 2.2s ease-in-out infinite;
 }
-@keyframes scrollBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+.scroll-arrow-line{width:1px;height:22px;background:rgba(0,0,0,0.22);border-radius:1px;}
+.scroll-arrow-chevron{width:10px;height:10px;border-right:1.5px solid rgba(0,0,0,0.28);border-bottom:1.5px solid rgba(0,0,0,0.28);transform:rotate(45deg);margin-top:-6px;}
+@keyframes scrollBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 @keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
@@ -448,7 +449,7 @@ nav.scrolled{
 /* ── DESIGN SYSTEM SECTION ── */
 .dsz-section{position:relative;}
 .dsz-heading-wrap{
-  padding:3rem 250px 2rem;
+  padding:5rem 250px 0.5rem;
 }
 .dsz-title-main{
   font-family:'Rethink Sans',var(--sans);
@@ -467,8 +468,8 @@ nav.scrolled{
   min-height:100vh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  padding:40px 0 60px;
-  overflow:hidden;
+  padding:16px 0 60px;
+  overflow:visible;
 }
 /* ── stage: card + floats together ── */
 .dsz-stage{
