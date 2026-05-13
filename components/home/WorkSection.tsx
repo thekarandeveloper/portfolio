@@ -9,12 +9,32 @@ const html = `<section class="work" id="work">
 
     <!-- Air IQ — wide (span 2), row 1 -->
     <a class="bento-work-card wide reveal reveal-delay-2" href="/projects/airiq" style="background:linear-gradient(180deg,#eef6fc 0%,#ffffff 100%);">
+
+      <!-- animated flight layer -->
+      <div class="bento-plane-layer">
+        <div class="bento-route-line" style="top:38%;"></div>
+        <div class="bento-route-line" style="top:64%;opacity:0.55;"></div>
+        <span class="bento-plane bento-plane-1">&#9992;</span>
+        <span class="bento-plane bento-plane-2">&#9992;</span>
+        <span class="bento-plane bento-plane-3">&#9992;</span>
+        <div class="bento-waypoint" style="top:38%;left:22%;animation-delay:0s;"></div>
+        <div class="bento-waypoint" style="top:38%;left:58%;animation-delay:-1.2s;"></div>
+        <div class="bento-waypoint" style="top:64%;left:38%;animation-delay:-2.4s;"></div>
+        <div class="bento-waypoint" style="top:64%;left:74%;animation-delay:-0.8s;"></div>
+      </div>
+
       <div class="bento-card-inner">
         <div class="bento-card-header">
-          <div class="bento-icon-badge">✈️</div>
+          <div class="bento-icon-badge">&#9992;&#65039;</div>
+          <div class="bento-tags">
+            <span class="bento-tag" style="background:rgba(30,144,255,0.10);color:#1565C0;">0&rarr;1 Design</span>
+            <span class="bento-tag" style="background:rgba(30,144,255,0.07);color:#1565C0;">B2B</span>
+            <span class="bento-tag" style="background:rgba(30,144,255,0.07);color:#1565C0;">Web &amp; Mobile</span>
+            <span class="bento-tag" style="background:rgba(30,144,255,0.07);color:#1565C0;">Travel</span>
+          </div>
         </div>
-        <h3 class="bento-proj-title">Air IQ</h3>
-        <p class="bento-proj-desc">Simplifying B2B flight booking for 25,000+ travel agents across India.</p>
+        <h3 class="bento-proj-title">Simplifying complex flight booking systems</h3>
+        <p class="bento-proj-desc">Designed a 0&rarr;1 booking experience across web and mobile for 25,000+ travel agents&mdash;improving speed, clarity, and decision-making in high-pressure workflows.</p>
         <div class="bento-proj-visual">
           <div class="bento-image-frame bento-image-frame-wide">
             <img src="/thumbnails/airiq.jpg" alt="Air IQ booking interface preview" loading="lazy" />
@@ -28,10 +48,15 @@ const html = `<section class="work" id="work">
     <a class="bento-work-card reveal reveal-delay-3" href="/projects/care-autor" style="background:linear-gradient(180deg,#f2eeff 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
-          <div class="bento-icon-badge">🏥</div>
+          <div class="bento-icon-badge">&#127973;&#65039;</div>
+          <div class="bento-tags">
+            <span class="bento-tag" style="background:rgba(123,107,224,0.10);color:#5B48C0;">0&rarr;1 Design</span>
+            <span class="bento-tag" style="background:rgba(123,107,224,0.07);color:#5B48C0;">Healthcare</span>
+            <span class="bento-tag" style="background:rgba(123,107,224,0.07);color:#5B48C0;">Multi-platform</span>
+          </div>
         </div>
-        <h3 class="bento-proj-title">Care Autor</h3>
-        <p class="bento-proj-desc">One platform for three care journeys: Alzheimer&rsquo;s, Autism &amp; Fitness.</p>
+        <h3 class="bento-proj-title">One platform for three distinct care journeys</h3>
+        <p class="bento-proj-desc">Unified Alzheimer&rsquo;s, Autism &amp; Fitness care into one calm, accessible interface for caregivers who are already overwhelmed.</p>
         <div class="bento-proj-visual" style="justify-content:center;">
           <div class="bento-mock" style="width:105px;border-radius:14px;transform:rotate(2deg);">
             <div class="bento-mock-bar" style="background:rgba(123,107,224,0.07);">
@@ -52,10 +77,15 @@ const html = `<section class="work" id="work">
     <a class="bento-work-card reveal reveal-delay-2" href="/projects/project-5" style="background:linear-gradient(180deg,#fef0f7 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
-          <div class="bento-icon-badge">🎨</div>
+          <div class="bento-icon-badge">&#127912;</div>
+          <div class="bento-tags">
+            <span class="bento-tag" style="background:rgba(219,39,119,0.09);color:#9D174D;">Design Systems</span>
+            <span class="bento-tag" style="background:rgba(219,39,119,0.07);color:#9D174D;">Components</span>
+            <span class="bento-tag" style="background:rgba(219,39,119,0.07);color:#9D174D;">Tokens</span>
+          </div>
         </div>
-        <h3 class="bento-proj-title">Design System</h3>
-        <p class="bento-proj-desc">A modular component library and token system for consistent product experiences.</p>
+        <h3 class="bento-proj-title">A single system powering four products</h3>
+        <p class="bento-proj-desc">Built a modular component library and token system that scaled with the team&mdash;without slowing it down.</p>
         <div class="bento-proj-visual" style="justify-content:center;">
           <div style="display:flex;flex-direction:column;gap:7px;width:112px;">
             <div style="display:flex;gap:5px;">
@@ -77,10 +107,16 @@ const html = `<section class="work" id="work">
     <a class="bento-work-card reveal reveal-delay-3" href="/projects/biblofi" style="background:linear-gradient(180deg,#fef8f0 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
-          <div class="bento-icon-badge">📚</div>
+          <div class="bento-icon-badge">&#128218;</div>
+          <div class="bento-tags">
+            <span class="bento-tag" style="background:rgba(200,112,58,0.10);color:#92400E;">iOS</span>
+            <span class="bento-tag" style="background:rgba(200,112,58,0.07);color:#92400E;">0&rarr;1</span>
+            <span class="bento-tag" style="background:rgba(200,112,58,0.07);color:#92400E;">Solo</span>
+            <span class="bento-tag" style="background:rgba(200,112,58,0.07);color:#92400E;">6 Weeks</span>
+          </div>
         </div>
-        <h3 class="bento-proj-title">BiblioFi</h3>
-        <p class="bento-proj-desc">iOS library management reimagining book discovery and borrowing.</p>
+        <h3 class="bento-proj-title">Reimagining how readers discover &amp; borrow books</h3>
+        <p class="bento-proj-desc">iOS library management shipped solo in 6 weeks, 0 to App Store&mdash;making the quiet joy of reading feel social without being loud about it.</p>
         <div class="bento-proj-visual" style="justify-content:center;">
           <div class="bento-image-frame bento-image-frame-phone">
             <img src="/thumbnails/biblofi.jpg" alt="BiblioFi iOS app preview" loading="lazy" />
@@ -94,10 +130,15 @@ const html = `<section class="work" id="work">
     <a class="bento-work-card reveal reveal-delay-4" href="/projects/ecotrack" style="background:linear-gradient(180deg,#edf8f1 0%,#ffffff 100%);">
       <div class="bento-card-inner">
         <div class="bento-card-header">
-          <div class="bento-icon-badge">🌱</div>
+          <div class="bento-icon-badge">&#127807;</div>
+          <div class="bento-tags">
+            <span class="bento-tag" style="background:rgba(45,125,67,0.10);color:#14532D;">Mobile</span>
+            <span class="bento-tag" style="background:rgba(45,125,67,0.07);color:#14532D;">Sustainability</span>
+            <span class="bento-tag" style="background:rgba(45,125,67,0.07);color:#14532D;">Data Viz</span>
+          </div>
         </div>
-        <h3 class="bento-proj-title">EcoTrack</h3>
-        <p class="bento-proj-desc">A personal carbon footprint tracker that makes sustainability feel achievable.</p>
+        <h3 class="bento-proj-title">Making sustainability feel personal and achievable</h3>
+        <p class="bento-proj-desc">A personal carbon footprint tracker that turns abstract environmental data into daily, actionable habits people can actually stick to.</p>
         <div class="bento-proj-visual" style="justify-content:center;">
           <div class="bento-mock" style="width:90px;border-radius:14px;transform:rotate(-1deg);">
             <div class="bento-mock-bar" style="height:14px;background:rgba(45,125,67,0.06);justify-content:center;">

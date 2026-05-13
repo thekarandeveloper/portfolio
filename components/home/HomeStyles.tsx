@@ -406,8 +406,8 @@ nav.scrolled{
 .bento-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.9rem;}
 .bento-icon-badge{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,1);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,0.08);}
 .bento-tag-pill{display:inline-flex;align-items:center;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600;width:fit-content;}
-.bento-proj-title{font-size:clamp(1.25rem,1.7vw,1.45rem);font-weight:700;color:#111827;line-height:1.2;margin-bottom:0.3rem;}
-.bento-proj-desc{font-size:13px;color:#6B7280;line-height:1.55;}
+.bento-proj-title{font-size:clamp(1.0rem,1.35vw,1.18rem);font-weight:700;color:#111827;line-height:1.25;margin-bottom:0.35rem;}
+.bento-proj-desc{font-size:12.5px;color:#6B7280;line-height:1.6;}
 .bento-proj-visual{margin-top:1rem;flex:1;display:flex;align-items:flex-end;justify-content:flex-end;position:relative;transition:transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94);}
 .bento-work-card:hover .bento-proj-visual{transform:scale(1.02);}
 .bento-image-frame{overflow:hidden;background:transparent;border:none;box-shadow:none;}
@@ -424,6 +424,27 @@ nav.scrolled{
 .bento-mock-row{height:6px;border-radius:2px;}
 .bento-mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
 .bento-mock-block{border-radius:3px;height:26px;}
+/* ── bento tags ── */
+.bento-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;align-items:flex-start;}
+.bento-tag{font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.02em;padding:3px 9px;border-radius:99px;white-space:nowrap;}
+/* ── air iq flight animation ── */
+.bento-plane-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.bento-route-line{position:absolute;left:0;right:0;height:0;border-top:1.5px dashed rgba(30,144,255,0.13);}
+@keyframes planeFly{
+  0%{transform:translateX(-48px);opacity:0;}
+  8%{opacity:1;}
+  92%{opacity:1;}
+  100%{transform:translateX(700px);opacity:0;}
+}
+.bento-plane{position:absolute;display:inline-block;animation:planeFly linear infinite;}
+.bento-plane-1{top:35%;font-size:17px;color:rgba(30,144,255,0.28);animation-duration:7s;animation-delay:0s;}
+.bento-plane-2{top:61%;font-size:11px;color:rgba(30,144,255,0.18);animation-duration:10.5s;animation-delay:-4s;}
+.bento-plane-3{top:20%;font-size:9px;color:rgba(30,144,255,0.13);animation-duration:14s;animation-delay:-8s;}
+@keyframes wayptPulse{
+  0%,100%{transform:scale(1);opacity:0.30;}
+  50%{transform:scale(2.2);opacity:0.08;}
+}
+.bento-waypoint{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(30,144,255,0.35);transform:translateX(-50%) translateY(-50%);animation:wayptPulse 3s ease-in-out infinite;}
 
 
 /* ── ZOOM INTERLUDE ── */
