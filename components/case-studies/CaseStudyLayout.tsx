@@ -91,7 +91,7 @@ export function CsSection({
 }) {
   return (
     <section
-      className={`csl-section${last ? " csl-section:last-child" : ""}`}
+      className={`csl-section csl-reveal${last ? " csl-section:last-child" : ""}`}
       id={id}
       data-s={id}
     >

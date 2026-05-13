@@ -2,45 +2,47 @@ const html = `<section class="hero" id="home">
 
   <div class="cursor-glow" id="cursorGlow"></div>
 
-  <!-- 4 Photo Cards above name -->
-  <div class="hero-cards" id="heroCards">
-    <div class="hero-card hc-1" id="hc1">
-      <div class="hc-photo">
-        <img src="/about/sky.jpg" alt="golden hour" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
-      </div>
-      <div class="hc-label">golden hour</div>
-    </div>
-    <div class="hero-card hc-2" id="hc2">
-      <div class="hc-photo">
-        <img src="/about/stuff.png" alt="café shot" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
-      </div>
-      <div class="hc-label">café shot</div>
-    </div>
-    <div class="hero-card hc-3" id="hc3">
-      <div class="hc-photo">
-        <img src="/about/portrait.jpg" alt="Nikunj" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
-      </div>
-      <div class="hc-label">that&rsquo;s me</div>
-    </div>
-    <div class="hero-card hc-4" id="hc4">
-      <div class="hc-photo">
-        <img src="/about/work.jpg" alt="at work" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
-      </div>
-      <div class="hc-label">at work</div>
-    </div>
-  </div>
-
-  <!-- Name block -->
-  <div class="hero-name-wrap hero-text" id="heroNameWrap">
-    <h1 class="hero-line1">
-      <span>👋 Hi, I&rsquo;m Nikunj Tyagi,</span>
-      <span>a&nbsp;<span class="typed-role" id="typed-role"></span><span class="hero-cursor" id="role-cursor"></span></span>
+  <!-- LEFT: intro text -->
+  <div class="hi-left reveal from-left">
+    <span class="hi-hello">hi there, i&rsquo;m 👋</span>
+    <h1 class="hi-headline">
+      Nikunj<br><em>Tyagi.</em>
     </h1>
-    <p class="hero-line2">who turns complex problems into clear, considered designs<br>one research insight at a time.</p>
-    <p class="hero-line3"><span class="work-icon">💼</span> Currently designing @ Air IQ</p>
+    <p class="hi-bio">
+      A <strong>product designer</strong> who makes things look intentional
+      even when they&rsquo;re 10 minutes before the deadline ✨<br><br>
+      I design B2B products, healthcare platforms, and occasionally
+      my own sleep schedule &mdash; <em>still in beta 🐛</em><br><br>
+      Professionally, I turn messy problems into clean experiences.
+      Personally, I turn cold coffee into design decisions. ☕
+    </p>
+    <div class="hi-chips">
+      <span class="hi-chip">she / her</span>
+      <span class="hi-chip">India 🇮🇳</span>
+      <span class="hi-chip hi-chip-blue">3+ yrs designing</span>
+      <span class="hi-chip">3am designer 🌙</span>
+    </div>
   </div>
 
-  <!-- Scroll hint arrow -->
+  <!-- RIGHT: polaroid -->
+  <div class="hi-right reveal from-right reveal-delay-1">
+    <div class="hi-polaroid-wrap">
+      <div class="hi-polaroid">
+        <div class="hi-tape"></div>
+        <div class="hi-tape2"></div>
+        <img src="/nikunj.png" alt="Nikunj Tyagi" class="hi-photo" />
+        <span class="hi-caption">caffeinated &amp; designing ☕</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- floating decoratives -->
+  <div class="hi-pill" style="top:22%;left:5%;animation:hiDrift 5s ease-in-out infinite;">coffee first ☕</div>
+  <div class="hi-pill" style="bottom:22%;right:7%;animation:hiDrift 6.2s ease-in-out infinite 1.6s;">pixels &gt; sleep ✦</div>
+  <span class="hi-star" style="top:17%;right:14%;font-size:1.5rem;animation:hiDrift 4.5s ease-in-out infinite 0.4s;">✦</span>
+  <span class="hi-star" style="bottom:38%;left:2%;font-size:1.1rem;animation:hiDrift 5.8s ease-in-out infinite 1s;">✦</span>
+
+  <!-- scroll hint -->
   <div class="hero-scroll-hint">
     <div class="scroll-arrow">
       <div class="scroll-arrow-line"></div>

@@ -117,13 +117,6 @@ document.addEventListener('mousemove',e=>{
 });
 document.querySelectorAll('a,button,.hero-card,.pw-row,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.q-chip,.conv-replay').forEach(el=>{el.addEventListener('mouseenter',()=>{if(cursor)cursor.classList.add('big');});el.addEventListener('mouseleave',()=>{if(cursor)cursor.classList.remove('big');});});
 
-// ── TYPING ANIMATION ──
-const ROLES=['product designer','ux researcher','storyteller'];
-const TYPE_SPEED=80,DELETE_SPEED=45,PAUSE_AFTER=2000,PAUSE_BEFORE=400;
-const typedEl=document.getElementById('typed-role');
-let roleIdx=0,charIdx=0,isDeleting=false;
-function type(){if(!typedEl)return;const word=ROLES[roleIdx];if(!isDeleting){typedEl.textContent=word.slice(0,charIdx+1);charIdx++;if(charIdx===word.length){isDeleting=true;setTimeout(type,PAUSE_AFTER);return;}setTimeout(type,TYPE_SPEED);}else{typedEl.textContent=word.slice(0,charIdx-1);charIdx--;if(charIdx===0){isDeleting=false;roleIdx=(roleIdx+1)%ROLES.length;setTimeout(type,PAUSE_BEFORE);return;}setTimeout(type,DELETE_SPEED);}}
-setTimeout(type,1000);
 
 // ── NAV ──
 const nav=document.getElementById('nav'),navLinks=document.querySelectorAll('.nav-link-item');
@@ -152,7 +145,7 @@ function updateNav(){
 // ── SCROLL REVEAL ──
 const reveals=document.querySelectorAll('.reveal');
 const tlItems=document.querySelectorAll('.timeline-item');
-const fadeSections=document.querySelectorAll('.hero,.work,.journey,.contact');
+const fadeSections=document.querySelectorAll('.hero,.work,.journey,.home-loves,.home-xp,.contact');
 
 const sectionFadeObserver=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{

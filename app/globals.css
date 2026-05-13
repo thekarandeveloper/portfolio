@@ -6263,8 +6263,7 @@ body.csl-page-active footer { display: none !important; }
   letter-spacing: 0.18em; color: var(--csl-accent); margin-bottom: 14px;
 }
 .csl-section-eyebrow::before {
-  content: ''; display: block; width: 22px; height: 2px;
-  background: currentColor; border-radius: 2px; flex-shrink: 0;
+  content: none;
 }
 .csl-section-num {
   display: block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
