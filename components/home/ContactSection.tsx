@@ -4,35 +4,20 @@ const html = `<section class="contact" id="contact">
 
 
 
-    <!-- LEFT: paint canvas -->
+    <!-- LEFT: google search mock -->
     <div class="contact-left reveal from-left">
-      <div class="paint-wrap">
-        <div class="paint-header">
-          <span class="paint-hint">— draw something —</span>
-          <button class="paint-clear" id="paintClear" title="Clear canvas">&#8635;</button>
+      <div class="gsearch-wrap">
+        <div class="gsearch-logo"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></div>
+        <div class="gsearch-bar">
+          <svg class="gsearch-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#9aa0a6" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#9aa0a6" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="gsearch-query-text" id="gsearchQuery"></span><span class="gsearch-caret" id="gsearchCaret">|</span>
         </div>
-        <canvas id="paintCanvas" class="paint-canvas"></canvas>
-        <div class="paint-toolbar">
-          <div class="paint-colors">
-            <button class="pc active" data-color="#1E90FF" style="--c:#1E90FF" title="Blue"></button>
-            <button class="pc" data-color="#A78BFA" style="--c:#A78BFA" title="Purple"></button>
-            <button class="pc" data-color="#F472B6" style="--c:#F472B6" title="Pink"></button>
-            <button class="pc" data-color="#34D399" style="--c:#34D399" title="Mint"></button>
-            <button class="pc" data-color="#FB923C" style="--c:#FB923C" title="Orange"></button>
-            <button class="pc" data-color="#1a1a2e" style="--c:#1a1a2e" title="Dark"></button>
-          </div>
-          <div class="paint-sep"></div>
-          <div class="paint-shapes">
-            <button class="ps active" data-shape="round" title="Round">&#9679;</button>
-            <button class="ps" data-shape="square" title="Square">&#9632;</button>
-            <button class="ps" data-shape="star" title="Star">&#10022;</button>
-          </div>
-          <div class="paint-sep"></div>
-          <div class="paint-sizes">
-            <button class="pz active" data-size="4" title="Small">S</button>
-            <button class="pz" data-size="12" title="Medium">M</button>
-            <button class="pz" data-size="24" title="Large">L</button>
-          </div>
+        <div class="gsearch-results">
+          <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>Product Designer</span><span class="gsearch-item-tag">role</span></div>
+          <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>UX Researcher</span><span class="gsearch-item-tag">role</span></div>
+          <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>Problem Solver</span><span class="gsearch-item-tag">trait</span></div>
+          <div class="gsearch-item"><div class="gsearch-item-icon">✦</div><span>Systems Thinker</span><span class="gsearch-item-tag">trait</span></div>
+          <div class="gsearch-item"><div class="gsearch-item-icon">☕</div><span>Coffee Enthusiast</span><span class="gsearch-item-tag">obviously</span></div>
         </div>
       </div>
     </div>
