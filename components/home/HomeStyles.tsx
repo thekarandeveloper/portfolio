@@ -250,16 +250,41 @@ nav.scrolled{
 .hi-bio-line{font-size:clamp(0.9rem,1.3vw,1rem);color:var(--ink3);line-height:1.8;max-width:440px;margin-bottom:0.55rem;}
 .hi-bio-line:last-of-type{margin-bottom:0;}
 
-/* 3-polaroid stack */
-.hi-stack{position:relative;width:300px;height:360px;margin:0 auto;}
-.hi-stack-pol{position:absolute;background:#fff;padding:12px 12px 52px;box-shadow:0 8px 32px rgba(0,0,0,0.12),0 2px 8px rgba(0,0,0,0.06);border-radius:3px;width:240px;transition:transform 0.45s cubic-bezier(0.34,1.4,0.64,1),box-shadow 0.35s ease;}
-.hi-stack-photo{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:1px;}
-.hi-sp1{transform:rotate(-6deg) translate(-20px, 60px);z-index:1;}
-.hi-sp2{transform:rotate(3deg) translate(10px, 30px);z-index:2;}
-.hi-sp3{transform:rotate(-1.5deg) translate(-5px, 0px);z-index:3;}
-.hi-stack:hover .hi-sp1{transform:rotate(-10deg) translate(-40px, 80px);}
-.hi-stack:hover .hi-sp2{transform:rotate(6deg) translate(20px, 40px);}
-.hi-stack:hover .hi-sp3{transform:rotate(-2deg) translate(-5px, -5px);}
+/* ── SCRAPBOOK COLLAGE (right side hero) ── */
+.hi-scrapbook{position:relative;width:360px;height:520px;flex-shrink:0;}
+.hi-asset{position:absolute;display:block;}
+
+/* music is therapy sticker — top left */
+.hi-music{width:170px;top:8px;left:10px;transform:rotate(-2deg);z-index:4;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.10));}
+
+/* blue washi tape — top right, angled */
+.hi-tape-img{width:130px;top:-18px;right:-10px;transform:rotate(22deg);z-index:5;opacity:0.92;}
+
+/* polaroid CSS frame */
+.hi-polaroid-css{
+  position:absolute;
+  top:50px;left:50%;transform:translateX(-48%);
+  background:#fff;
+  padding:11px 11px 64px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.14),0 2px 10px rgba(0,0,0,0.07);
+  border-radius:3px;
+  width:248px;
+  z-index:2;
+}
+.hi-mai{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;display:block;border-radius:1px;}
+
+/* BTS CD — bottom left, overlaps polaroid, spins */
+.hi-cd{
+  width:148px;
+  bottom:28px;left:-32px;
+  z-index:6;
+  animation:cdSpin 9s linear infinite;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,0.18));
+}
+@keyframes cdSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+/* think outside the box sticker — bottom right */
+.hi-caption-sticker{width:152px;bottom:32px;right:-14px;z-index:4;transform:rotate(2deg);filter:drop-shadow(0 2px 8px rgba(0,0,0,0.10));}
 .hi-pill{position:absolute;background:rgba(255,255,255,0.78);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.07);border-radius:99px;padding:5px 14px;font-family:var(--hand);font-size:1rem;color:var(--ink3);box-shadow:0 2px 8px rgba(0,0,0,0.05);pointer-events:none;white-space:nowrap;z-index:1;}
 .hi-star{position:absolute;pointer-events:none;opacity:0.22;z-index:1;}
 @keyframes hiDrift{0%,100%{transform:translateY(0);}50%{transform:translateY(-11px);}}
@@ -1824,8 +1849,11 @@ nav.scrolled{
 @media(max-width:1100px){.home-xp-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:900px){
   .hero{padding:8rem 48px 4rem;gap:32px;}
-  .hi-stack{width:240px;height:290px;}
-  .hi-stack-pol{width:192px;}
+  .hi-scrapbook{width:280px;height:420px;}
+  .hi-polaroid-css{width:200px;}
+  .hi-cd{width:118px;left:-20px;}
+  .hi-caption-sticker{width:120px;}
+  .hi-music{width:140px;}
   .home-loves{padding:4rem 48px;}
   .home-xp{padding:4rem 48px 5rem;}
 }

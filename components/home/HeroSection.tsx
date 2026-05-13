@@ -13,18 +13,27 @@ const html = `<section class="hero" id="home">
     <p class="hi-bio-line">Cold coffee. Late nights. Great design. ☕</p>
   </div>
 
-  <!-- RIGHT: 3-polaroid stack -->
+  <!-- RIGHT: scrapbook collage -->
   <div class="hi-right reveal from-right reveal-delay-1">
-    <div class="hi-stack">
-      <div class="hi-stack-pol hi-sp1">
-        <img src="/Image/hero/third.png" alt="" class="hi-stack-photo" />
+    <div class="hi-scrapbook">
+
+      <!-- music is therapy sticker — top left -->
+      <img src="/Image/hero/music-tag.png" class="hi-asset hi-music" alt="music is therapy" />
+
+      <!-- blue washi tape — top right corner -->
+      <img src="/Image/hero/tape.png" class="hi-asset hi-tape-img" alt="" aria-hidden="true" />
+
+      <!-- polaroid frame (CSS) with photo -->
+      <div class="hi-polaroid-css">
+        <img src="/Image/hero/mai.png" class="hi-mai" alt="Nikunj Tyagi" />
       </div>
-      <div class="hi-stack-pol hi-sp2">
-        <img src="/Image/hero/second.png" alt="" class="hi-stack-photo" />
-      </div>
-      <div class="hi-stack-pol hi-sp3">
-        <img src="/Image/hero/first.png" alt="" class="hi-stack-photo" />
-      </div>
+
+      <!-- BTS CD — bottom left, spinning -->
+      <img src="/Image/hero/cd-tag.png" class="hi-asset hi-cd" alt="" aria-hidden="true" />
+
+      <!-- think outside the box sticker — bottom right -->
+      <img src="/Image/hero/caption.png" class="hi-asset hi-caption-sticker" alt="think outside the box" />
+
     </div>
   </div>
 
