@@ -242,9 +242,9 @@ nav.scrolled{
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7rem 250px 5rem;position:relative;overflow:hidden;cursor:none;}
 .cursor-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.03) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left 0.08s ease,top 0.08s ease;z-index:0;}
 .custom-cursor{
-  position:fixed;width:42px;height:43px;
+  position:fixed;width:33px;height:33px;
   background:url('/pixel-cursor.svg') no-repeat top left;
-  background-size:42px 43px;
+  background-size:33px 33px;
   border-radius:0;box-shadow:none;
   pointer-events:none;
   transform:translate(-6px,0px);
@@ -253,8 +253,8 @@ nav.scrolled{
 }
 .custom-cursor::before{content:none;}
 .custom-cursor.big{
-  width:50px;height:51px;
-  background-size:50px 51px;
+  width:39px;height:39px;
+  background-size:39px 39px;
   transform:translate(-7px,0px);
 }
 
