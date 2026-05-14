@@ -741,11 +741,11 @@ nav.scrolled{
 }
 .dsz-cta:hover{box-shadow:0 4px 18px rgba(0,0,0,0.14);transform:translateY(-1px);}
 @media(max-width:1024px){
-  .dsz-float{display:none;}
-  .dsz-card-wrap{width:min(680px,88vw);}
+  .dsz-ann-col{display:none;}
+  .dsz-stage{grid-template-columns:min(680px,88vw);justify-content:center;}
 }
 @media(max-width:767px){
-  .dsz-card-wrap{width:92vw;}
+  .dsz-stage{grid-template-columns:92vw;}
   .dsz-heading-wrap{padding:0 0 1rem 0;}
   .dsz-visual{grid-template-columns:1fr;gap:14px;}
   .dsz-card{padding:24px;gap:14px;}
