@@ -8,24 +8,8 @@ const html = `<section class="hero" id="home">
     <h1 class="hi-headline">
       Nikunj<br><em>Tyagi.</em>
     </h1>
-    <p class="hi-bio-line">A <span class="hi-w-role">product designer</span> who turns</p>
-
-    <div class="hi-cycle-row">
-      <div class="hi-cycle-frame" id="hiCycleFrame">
-        <span class="hi-cycle-text" id="hiCycleText">chaos</span>
-      </div>
-      <div class="hi-cycle-annotation">
-        <svg class="hi-cycle-arrow-svg" viewBox="0 0 54 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 34 C10 20, 28 8, 48 6" stroke="#1E90FF" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-          <path d="M44 2 L50 8 L42 10" stroke="#1E90FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <span class="hi-cycle-hint">click to cycle</span>
-      </div>
-    </div>
-
-    <p class="hi-bio-line hi-bio-result">into things people <span class="hi-w-feel">actually want</span> to open.</p>
-    <p class="hi-bio-aside-line">(yes, even at 9am on a Monday ☕)</p>
-
+    <p class="hi-bio-line">A <span class="hi-w-role">product designer</span> turning <span class="hi-w-messy">messy</span> problems into <span class="hi-w-clean">clean</span>, human experiences.</p>
+    <p class="hi-bio-line">Currently designing <span class="hi-w-tag">🏢 B2B</span> &amp; <span class="hi-w-tag hi-w-tag-green">🩺 healthcare</span> products that actually <span class="hi-w-feel">feel good</span> to use.</p>
     <div class="hi-life-chips">
       <span class="hi-life-chip">☕ Cold coffee</span>
       <span class="hi-life-chip">🌙 Late nights</span>

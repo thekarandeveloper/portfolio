@@ -486,33 +486,6 @@ runParallax();
   obs.observe(contact);
 })();
 
-// ── BIO CYCLING WORD ──
-(function(){
-  var words = ['chaos','your Figma file','3am napkin ideas','complete spaghetti','vibes & prayers','your PM\'s sketch','pure confusion','a design doc no one read'];
-  var el = document.getElementById('hiCycleText');
-  var frame = document.getElementById('hiCycleFrame');
-  if(!el || !frame) return;
-  var idx = 0;
-  function cycle(){
-    el.classList.add('exit');
-    setTimeout(function(){
-      idx = (idx + 1) % words.length;
-      el.textContent = words[idx];
-      el.classList.remove('exit');
-      el.classList.add('enter');
-      requestAnimationFrame(function(){
-        requestAnimationFrame(function(){ el.classList.remove('enter'); });
-      });
-    }, 180);
-  }
-  var timer = setInterval(cycle, 2400);
-  frame.addEventListener('click', function(){
-    clearInterval(timer);
-    cycle();
-    timer = setInterval(cycle, 2400);
-  });
-})();
-
 
 
 
