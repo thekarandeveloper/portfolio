@@ -4,7 +4,6 @@ import { HeroSection } from "./HeroSection";
 import { HomeBehavior } from "./HomeBehavior";
 import { HomeExperiencesSection } from "./HomeExperiencesSection";
 import { HomeLoader } from "./HomeLoader";
-import { HomeLovesSection } from "./HomeLovesSection";
 import { HomeNav } from "./HomeNav";
 import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
@@ -27,7 +26,6 @@ export function HomePageReplica() {
         <WorkSection />
         <DesignSystemZoom />
         <JourneySection />
-        <HomeLovesSection />
         <HomeExperiencesSection />
         <ContactSection />
       </main>
