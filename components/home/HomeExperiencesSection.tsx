@@ -1,34 +1,83 @@
-const experiences = [
-  { role: "Product Design Intern", company: "Air IQ", location: "Gurgaon, India", period: "Nov 2025 – Present" },
-  { role: "Product Design Consultant", company: "Freelance", location: "Remote", period: "Mar – Sep 2025" },
-  { role: "UI/UX Design Intern", company: "Infosys", location: "Mysore, India", period: "Jun – Jul 2024" },
-  { role: "B.Tech CSE", company: "Galgotias University", location: "India", period: "2021 – 2025" },
-  { role: "Google UX Design Certificate", company: "Google", location: "Certification", period: "2024" },
-  { role: "ISDP – Apple & Infosys", company: "Infosys Springboard", location: "Design Program", period: "Feb – Jun 2024" },
-];
-
-const dot = `<span class="xp-dot">★</span>`;
-
-function buildItem(e: typeof experiences[0]) {
-  return `<span class="xp-item">
-    <span class="xp-role">${e.role}</span>
-    <span class="xp-company">${e.company}</span>
-    <span class="xp-period">${e.period}</span>
-  </span>${dot}`;
-}
-
-const track = [...experiences, ...experiences, ...experiences]
-  .map(buildItem)
-  .join("");
-
 const html = `<section class="home-xp" id="experiences">
   <div class="home-xp-inner">
     <h2 class="home-xp-title reveal">
       Good <em>experiences.</em>
     </h2>
-  </div>
-  <div class="xp-ticker-wrap">
-    <div class="xp-ticker-track">${track}</div>
+    <div class="home-xp-grid">
+
+      <div class="home-xp-pol reveal" style="--r:-4deg;transition-delay:0s;">
+        <div class="home-xp-tape hxt"></div>
+        <div class="home-xp-photo">
+          <img src="/about/portrait.jpg" alt="Nikunj" />
+          <div class="home-xp-over"><p class="home-xp-mem">me, on a good hair day 🌟</p></div>
+        </div>
+        <span class="home-xp-caption">the designer herself</span>
+      </div>
+
+      <div class="home-xp-pol reveal" style="--r:3deg;transition-delay:0.07s;">
+        <div class="home-xp-tape hxr"></div>
+        <div class="home-xp-photo">
+          <img src="/about/sky.jpg" alt="sky" />
+          <div class="home-xp-over"><p class="home-xp-mem">headspace loading... ☁️</p></div>
+        </div>
+        <span class="home-xp-caption">somewhere up there</span>
+      </div>
+
+      <div class="home-xp-pol reveal" style="--r:-2deg;transition-delay:0.14s;">
+        <div class="home-xp-tape hxt"></div>
+        <div class="home-xp-photo">
+          <img src="/about/sky.png" alt="sky" />
+          <div class="home-xp-over"><p class="home-xp-mem">same sky, different mood</p></div>
+        </div>
+        <span class="home-xp-caption">blue hour</span>
+      </div>
+
+      <div class="home-xp-pol reveal" style="--r:5deg;transition-delay:0.21s;">
+        <div class="home-xp-tape hxt"></div>
+        <div class="home-xp-photo">
+          <img src="/about/stuff.png" alt="stuff" />
+          <div class="home-xp-over"><p class="home-xp-mem">bits &amp; pieces of my world</p></div>
+        </div>
+        <span class="home-xp-caption">the good stuff</span>
+      </div>
+
+      <div class="home-xp-pol reveal" style="--r:-5deg;transition-delay:0.28s;">
+        <div class="home-xp-tape hxt"></div>
+        <div class="home-xp-photo">
+          <img src="/about/work.jpg" alt="work" />
+          <div class="home-xp-over"><p class="home-xp-mem">in the zone, do not disturb ☕</p></div>
+        </div>
+        <span class="home-xp-caption">deep work mode</span>
+      </div>
+
+      <div class="home-xp-pol reveal" style="--r:4deg;transition-delay:0.35s;">
+        <div class="home-xp-tape hxl"></div>
+        <div class="home-xp-photo">
+          <img src="/Image/hero/Cafe.png" alt="cafe" />
+          <div class="home-xp-over"><p class="home-xp-mem">my unofficial office ☕</p></div>
+        </div>
+        <span class="home-xp-caption">corner seat, always</span>
+      </div>
+
+      <div class="home-xp-pol reveal" style="--r:-3deg;transition-delay:0.42s;">
+        <div class="home-xp-tape hxr"></div>
+        <div class="home-xp-photo">
+          <img src="/Image/hero/Book.png" alt="book" />
+          <div class="home-xp-over"><p class="home-xp-mem">just one more chapter 📖</p></div>
+        </div>
+        <span class="home-xp-caption">always reading</span>
+      </div>
+
+      <div class="home-xp-pol reveal" style="--r:6deg;transition-delay:0.49s;">
+        <div class="home-xp-tape hxt"></div>
+        <div class="home-xp-photo">
+          <img src="/Image/hero/flower.png" alt="flower" />
+          <div class="home-xp-over"><p class="home-xp-mem">little joys &gt; everything else 🌸</p></div>
+        </div>
+        <span class="home-xp-caption">small things matter</span>
+      </div>
+
+    </div>
   </div>
 </section>`;
 
