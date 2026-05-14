@@ -252,12 +252,12 @@ nav.scrolled{
 .hi-bio-line:last-of-type{margin-bottom:0;}
 
 /* ── SCRAPBOOK COLLAGE (right side hero) ── */
-.hi-scrapbook{position:relative;width:370px;height:460px;flex-shrink:0;}
+.hi-scrapbook{position:relative;width:560px;height:680px;flex-shrink:0;}
 .hi-asset{position:absolute;display:block;}
 
 /* "One day at a time." — top right, natural tilt */
 .hi-caps{
-  width:145px;
+  width:220px;
   top:0px;right:10px;
   z-index:5;
   transform:rotate(-1deg);
@@ -267,15 +267,15 @@ nav.scrolled{
 /* polaroid CSS frame — clean, straight, prominent */
 .hi-polaroid-css{
   position:absolute;
-  top:48px;
+  top:72px;
   left:50%;
   transform:translateX(-44%);
   background:#fff;
   border:1px solid #e0e0e0;
-  padding:8px 8px 60px;
+  padding:10px 10px 90px;
   box-shadow:0 6px 28px rgba(0,0,0,0.10),0 1px 5px rgba(0,0,0,0.05);
   border-radius:2px;
-  width:325px;
+  width:500px;
   z-index:3;
 }
 .hi-mai{
@@ -289,9 +289,9 @@ nav.scrolled{
 
 /* butterfly CD — bottom left, large, overlaps polaroid, spins */
 .hi-cd{
-  width:160px;
-  bottom:-28px;
-  left:-36px;
+  width:240px;
+  bottom:-40px;
+  left:-50px;
   z-index:1;
   animation:cdSpin 10s linear infinite;
   filter:drop-shadow(0 8px 22px rgba(0,0,0,0.14));
