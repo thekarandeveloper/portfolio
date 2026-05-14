@@ -22,7 +22,7 @@ const html = `<section class="hero" id="home">
 
       <!-- polaroid (CSS frame) with B&W photo -->
       <div class="hi-polaroid-css">
-        <img src="/Image/hero/pic.png" class="hi-mai" alt="Nikunj Tyagi" />
+        <img src="/Image/hero/second.png" class="hi-mai" alt="Nikunj Tyagi" />
       </div>
 
       <!-- butterfly CD — bottom left, spinning -->
