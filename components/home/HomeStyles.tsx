@@ -311,11 +311,48 @@ nav.scrolled{
 }
 .hi-mai{
   width:100%;
-  height:280px;
+  height:248px;
   object-fit:cover;
   object-position:top center;
   display:block;
   border-radius:1px;
+}
+/* scrapbook personality note */
+.hi-scrapnote{
+  position:absolute;
+  bottom:16px;
+  left:14px;
+  transform:rotate(-3.5deg);
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  pointer-events:none;
+  opacity:0;
+  animation:hiScrapIn 1s ease 3.1s both;
+}
+@keyframes hiScrapIn{from{opacity:0;}to{opacity:0.9;}}
+.hi-scrapnote-text{
+  font-family:var(--hand);
+  font-size:13.5px;
+  font-style:italic;
+  line-height:1.52;
+  color:rgba(38,52,80,0.58);
+}
+.hi-scrapnote-ul{
+  text-decoration:underline;
+  text-decoration-style:wavy;
+  text-decoration-color:rgba(38,52,80,0.30);
+  text-underline-offset:2px;
+}
+.hi-scrapnote-star{
+  font-size:10px;
+  opacity:0.72;
+  margin-left:1px;
+}
+.hi-scrapnote-arrow{
+  margin-left:2px;
+  display:block;
 }
 .hi-pill{position:absolute;background:rgba(255,255,255,0.78);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.07);border-radius:99px;padding:5px 14px;font-family:var(--hand);font-size:1rem;color:var(--ink3);box-shadow:0 2px 8px rgba(0,0,0,0.05);pointer-events:none;white-space:nowrap;z-index:1;}
 .hi-star{position:absolute;pointer-events:none;opacity:0.22;z-index:1;}
@@ -1966,6 +2003,7 @@ nav.scrolled{
   .hi-bio{margin:0 auto 2rem;}
   .hi-chips{justify-content:center;}
   .hi-pill{display:none;}
+  .hi-scrapnote{display:none;}
   .home-loves{padding:4rem 20px;}
   .home-loves-grid{grid-template-columns:1fr;gap:14px;}
   .home-xp{padding:4rem 20px 6rem;}

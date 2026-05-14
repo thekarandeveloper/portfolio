@@ -26,6 +26,14 @@ const html = `<section class="hero" id="home">
       <div class="hi-polaroid-css">
         <img src="/Image/hero/second.png" class="hi-mai" alt="Nikunj Tyagi" />
       </div>
+      <div class="hi-scrapnote">
+        <svg class="hi-scrapnote-arrow" width="14" height="28" viewBox="0 0 14 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 26 C6 18 5 12 7 5" stroke="rgba(38,52,80,0.46)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+          <path d="M7 5 L4 10" stroke="rgba(38,52,80,0.46)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M7 5 L10 10" stroke="rgba(38,52,80,0.46)" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <span class="hi-scrapnote-text">catches <span class="hi-scrapnote-ul">skies</span>,<br>not selfies. <span class="hi-scrapnote-star">&#10022;</span></span>
+      </div>
     </div>
   </div>
 
