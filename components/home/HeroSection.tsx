@@ -20,28 +20,14 @@ const html = `<section class="hero" id="home">
     <p class="hi-bio-line" style="animation-delay:2.5s">probably redesigning something <span class="hi-footnote">nobody asked me to.</span></p>
   </div>
 
-  <!-- RIGHT: scrapbook collage -->
+  <!-- RIGHT: photo -->
   <div class="hi-right reveal from-right reveal-delay-1">
     <div class="hi-scrapbook">
-
-      <!-- "One day at a time." — top right -->
-      <img src="/Image/hero/caps.png" class="hi-asset hi-caps" alt="One day at a time." />
-
-      <!-- polaroid (CSS frame) with B&W photo -->
       <div class="hi-polaroid-css">
         <img src="/Image/hero/second.png" class="hi-mai" alt="Nikunj Tyagi" />
       </div>
-
-      <!-- butterfly CD — bottom left, spinning -->
-      <img src="/Image/hero/cd2-tag.png" class="hi-asset hi-cd" alt="" aria-hidden="true" />
-
     </div>
   </div>
-
-  <!-- floating decoratives -->
-  <div class="hi-pill" style="top:22%;left:5%;animation:hiDrift 5s ease-in-out infinite;">coffee first ☕</div>
-  <div class="hi-pill" style="bottom:22%;right:7%;animation:hiDrift 6.2s ease-in-out infinite 1.6s;">pixels &gt; sleep ✦</div>
-  <span class="hi-star" style="top:17%;right:14%;font-size:1.5rem;animation:hiDrift 4.5s ease-in-out infinite 0.4s;">✦</span>
 
   <!-- scroll hint -->
   <div class="hero-scroll-hint">

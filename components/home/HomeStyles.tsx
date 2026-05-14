@@ -240,15 +240,15 @@ nav.scrolled{
 .nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:center;padding:9rem 120px 5rem;gap:40px;position:relative;overflow:visible;cursor:none;}
+.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:center;padding:5.5rem 120px 4rem;gap:40px;position:relative;overflow:visible;cursor:none;}
 
 /* about-style intro hero */
 .hi-left{position:relative;z-index:2;text-align:left;}
 .hi-right{display:flex;align-items:center;justify-content:center;position:relative;z-index:2;}
 .hi-hello{font-family:var(--hand);font-size:clamp(1.9rem,2.9vw,2.5rem);color:var(--pink);display:block;margin-bottom:0.1rem;font-weight:700;}
-.hi-headline{font-family:var(--serif);font-size:clamp(3.5rem,6.5vw,5.8rem);font-weight:400;color:var(--ink);line-height:1.0;letter-spacing:-0.025em;margin-bottom:1.8rem;}
+.hi-headline{font-family:var(--serif);font-size:clamp(3.5rem,6.5vw,5.8rem);font-weight:400;color:var(--ink);line-height:1.0;letter-spacing:-0.025em;margin-bottom:1.2rem;}
 .hi-headline em{font-style:italic;background:linear-gradient(90deg,#1E90FF,#00BFFF,#0066FF,#1E90FF);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 4s ease infinite;}
-.hi-bio-line{font-size:clamp(1.02rem,1.55vw,1.14rem);color:var(--ink2);font-weight:500;line-height:1.75;max-width:440px;margin-bottom:0.65rem;opacity:0;animation:hiLineIn 0.55s cubic-bezier(0.22,1,0.36,1) both;}
+.hi-bio-line{font-size:clamp(1.02rem,1.55vw,1.14rem);color:var(--ink2);font-weight:500;line-height:1.75;max-width:520px;margin-bottom:0.65rem;opacity:0;animation:hiLineIn 0.55s cubic-bezier(0.22,1,0.36,1) both;}
 @keyframes hiLineIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 .hi-bio-line:last-of-type{margin-bottom:0;}
 
@@ -257,7 +257,7 @@ nav.scrolled{
 @keyframes twBlink{0%,100%{opacity:1;}50%{opacity:0;}}
 
 /* ── SUB-LINE (nik / good friends) ── */
-.hi-sub-line{font-size:clamp(0.95rem,1.35vw,1.05rem);color:var(--ink3);font-style:italic;max-width:440px;margin-bottom:1.1rem;opacity:0;animation:hiSubFadeIn 0.55s cubic-bezier(0.22,1,0.36,1) 1.4s forwards;}
+.hi-sub-line{font-size:clamp(0.95rem,1.35vw,1.05rem);color:var(--ink3);font-style:italic;max-width:520px;margin-bottom:1.1rem;opacity:0;animation:hiSubFadeIn 0.55s cubic-bezier(0.22,1,0.36,1) 1.4s forwards;}
 @keyframes hiSubFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 .hi-sub-line strong{font-style:normal;font-weight:700;color:var(--ink2);}
 .hi-aside{font-size:0.84em;color:var(--ink4);font-style:italic;}
@@ -292,52 +292,31 @@ nav.scrolled{
 /* ── FOOTNOTE (nobody asked me to) ── */
 .hi-footnote{font-size:0.84em;color:var(--ink4);font-style:italic;opacity:0.78;}
 
-/* ── SCRAPBOOK COLLAGE (right side hero) ── */
-.hi-scrapbook{position:relative;width:560px;height:680px;flex-shrink:0;}
-.hi-asset{position:absolute;display:block;}
+/* ── PHOTO (right side hero) ── */
+.hi-scrapbook{position:relative;width:340px;height:420px;flex-shrink:0;}
 
-/* "One day at a time." — top right, natural tilt */
-.hi-caps{
-  width:220px;
-  top:0px;right:10px;
-  z-index:5;
-  transform:rotate(-1deg);
-  filter:drop-shadow(0 1px 3px rgba(0,0,0,0.08));
-}
-
-/* polaroid CSS frame — clean, straight, prominent */
+/* polaroid CSS frame */
 .hi-polaroid-css{
   position:absolute;
-  top:72px;
+  top:0;
   left:50%;
-  transform:translateX(-44%);
+  transform:translateX(-50%);
   background:#fff;
   border:1px solid #e0e0e0;
-  padding:10px 10px 90px;
+  padding:10px 10px 56px;
   box-shadow:0 6px 28px rgba(0,0,0,0.10),0 1px 5px rgba(0,0,0,0.05);
   border-radius:2px;
-  width:400px;
+  width:300px;
   z-index:3;
 }
 .hi-mai{
   width:100%;
-  aspect-ratio:3/4;
+  height:280px;
   object-fit:cover;
   object-position:top center;
   display:block;
   border-radius:1px;
 }
-
-/* butterfly CD — bottom left, large, overlaps polaroid, spins */
-.hi-cd{
-  width:240px;
-  bottom:-40px;
-  left:-50px;
-  z-index:1;
-  animation:cdSpin 10s linear infinite;
-  filter:drop-shadow(0 8px 22px rgba(0,0,0,0.14));
-}
-@keyframes cdSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 .hi-pill{position:absolute;background:rgba(255,255,255,0.78);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.07);border-radius:99px;padding:5px 14px;font-family:var(--hand);font-size:1rem;color:var(--ink3);box-shadow:0 2px 8px rgba(0,0,0,0.05);pointer-events:none;white-space:nowrap;z-index:1;}
 .hi-star{position:absolute;pointer-events:none;opacity:0.22;z-index:1;}
 @keyframes hiDrift{0%,100%{transform:translateY(0);}50%{transform:translateY(-11px);}}
@@ -1960,10 +1939,9 @@ nav.scrolled{
 @media(max-width:1100px){.home-xp-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:900px){
   .hero{padding:8rem 48px 4rem;gap:32px;}
-  .hi-scrapbook{width:290px;height:460px;}
-  .hi-polaroid-css{width:210px;padding:8px 8px 70px;}
-  .hi-cd{width:160px;left:-44px;bottom:-20px;}
-  .hi-caps{width:155px;}
+  .hi-scrapbook{width:240px;height:340px;}
+  .hi-polaroid-css{width:220px;padding:8px 8px 48px;}
+  .hi-mai{height:220px;}
   .home-loves{padding:4rem 48px;}
   .home-xp{padding:4rem 48px 5rem;}
 }
