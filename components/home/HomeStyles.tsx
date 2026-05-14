@@ -275,7 +275,7 @@ nav.scrolled{
   padding:10px 10px 90px;
   box-shadow:0 6px 28px rgba(0,0,0,0.10),0 1px 5px rgba(0,0,0,0.05);
   border-radius:2px;
-  width:420px;
+  width:400px;
   z-index:3;
 }
 .hi-mai{
