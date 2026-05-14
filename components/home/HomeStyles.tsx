@@ -251,6 +251,42 @@ nav.scrolled{
 .hi-bio-line{font-size:clamp(0.9rem,1.3vw,1rem);color:var(--ink3);line-height:1.8;max-width:440px;margin-bottom:0.55rem;}
 .hi-bio-line:last-of-type{margin-bottom:0;}
 
+/* ── TYPEWRITER CURSOR ── */
+.hi-tw-cursor{display:inline-block;color:#1E90FF;animation:twBlink 0.65s step-end infinite;line-height:1;}
+@keyframes twBlink{50%{opacity:0;}}
+
+/* ── SUB-LINE (nik / good friends) ── */
+.hi-sub-line{font-size:clamp(0.82rem,1.1vw,0.9rem);color:var(--ink4);font-style:italic;max-width:440px;margin-bottom:1rem;opacity:0;animation:hiSubFadeIn 0.5s ease 1.4s forwards;}
+@keyframes hiSubFadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+.hi-aside{font-size:0.85em;color:var(--ink4);font-style:italic;}
+
+/* ── PASTEL PILL (chill girl) ── */
+.hi-pill-pastel{display:inline-flex;align-items:center;background:rgba(255,182,193,0.18);border:1px solid rgba(255,150,170,0.3);border-radius:99px;padding:1px 10px 2px;color:#b5466b;font-weight:500;font-size:0.97em;cursor:default;transition:background 0.2s;}
+.hi-pill-pastel:hover{background:rgba(255,182,193,0.32);}
+
+/* ── FIGMA INLINE CHIP ── */
+.hi-figma-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(162,89,255,0.07);border:1px solid rgba(162,89,255,0.18);border-radius:6px;padding:1px 8px 2px 6px;font-weight:600;color:#7c3fc0;vertical-align:middle;position:relative;top:-1px;font-size:0.9em;font-style:normal;cursor:default;transition:background 0.2s;}
+.hi-figma-chip:hover{background:rgba(162,89,255,0.14);}
+.hi-figma-logo{flex-shrink:0;display:block;}
+
+/* ── STRIKETHROUGH (delay) ── */
+.hi-strike-word{position:relative;display:inline-block;cursor:default;}
+.hi-strike-word::after{content:'';position:absolute;left:0;top:52%;width:100%;height:1.5px;background:var(--ink2);transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;}
+.hi-strike-word.strike-drawn::after{transform:scaleX(1);}
+.hi-strike-word.strike-drawn:hover::after{transform:scaleX(0);transform-origin:right;}
+
+/* ── UNDERLINE DRAW (good layout) ── */
+.hi-ul-draw{position:relative;display:inline-block;}
+.hi-ul-draw::after{content:'';position:absolute;left:0;bottom:-2px;width:100%;height:1.5px;background:#1E90FF;border-radius:99px;transform:scaleX(0);transform-origin:left;transition:transform 0.55s ease;}
+.hi-ul-draw.ul-active::after{transform:scaleX(1);}
+
+/* ── STICKY COFFEE NOTE ── */
+.hi-sticky-coffee{display:inline-block;background:#FFF9C4;border-radius:3px;padding:7px 14px 9px;box-shadow:2px 4px 14px rgba(0,0,0,0.10),0 1px 3px rgba(0,0,0,0.06);font-family:var(--hand);font-size:0.92rem;line-height:1.4;color:#5a4a00;transform:rotate(-1.5deg);margin:0.7rem 0 0.85rem;width:fit-content;animation:stickyFloat 5s ease-in-out infinite;}
+@keyframes stickyFloat{0%,100%{transform:rotate(-1.5deg) translateY(0);}50%{transform:rotate(-1.5deg) translateY(-3px);}}
+
+/* ── FOOTNOTE (nobody asked me to) ── */
+.hi-footnote{font-size:0.82em;color:var(--ink4);font-style:italic;opacity:0.72;}
+
 /* ── SCRAPBOOK COLLAGE (right side hero) ── */
 .hi-scrapbook{position:relative;width:560px;height:680px;flex-shrink:0;}
 .hi-asset{position:absolute;display:block;}

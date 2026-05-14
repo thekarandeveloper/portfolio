@@ -486,6 +486,51 @@ runParallax();
   obs.observe(contact);
 })();
 
+// ── HERO TYPEWRITER ──
+(function(){
+  var text='Nikunj';
+  var tw=document.getElementById('hiTypewriter');
+  var cursor=document.getElementById('hiTwCursor');
+  if(!tw||!cursor)return;
+  var i=0;
+  function type(){
+    tw.textContent=text.slice(0,i);
+    if(i<=text.length){i++;setTimeout(type,105);}
+    else{
+      setTimeout(function(){
+        cursor.style.animation='none';
+        cursor.style.opacity='0';
+      },1300);
+    }
+  }
+  setTimeout(type,320);
+})();
+
+// ── COFFEE NUMBER RANDOMISER ──
+(function(){
+  var nums=['second','third','fourth','fifth','sixth'];
+  var el=document.getElementById('hiCoffeeNum');
+  if(!el)return;
+  el.textContent=nums[Math.floor(Math.random()*nums.length)];
+})();
+
+// ── STRIKETHROUGH DRAW (delay) ──
+(function(){
+  var el=document.querySelector('.hi-strike-word');
+  if(!el)return;
+  setTimeout(function(){el.classList.add('strike-drawn');},1100);
+})();
+
+// ── UNDERLINE DRAW ON SCROLL (good layout) ──
+(function(){
+  var el=document.querySelector('.hi-ul-draw');
+  if(!el)return;
+  var obs=new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){el.classList.add('ul-active');obs.disconnect();}
+  },{threshold:0.8});
+  obs.observe(el);
+})();
+
 
 
 
