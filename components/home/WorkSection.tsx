@@ -26,7 +26,7 @@ const html = `<section class="cswk" id="work">
             <svg class="cswk-corner cswk-corner-tl" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16 L2 2 L16 2" stroke="rgba(45,125,67,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
             <svg class="cswk-corner cswk-corner-br" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M16 2 L16 16 L2 16" stroke="rgba(45,125,67,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
             <div class="cswk-frame-pad" style="background:linear-gradient(145deg,#e8f5ec 0%,#c6e8d1 100%);">
-              <svg width="148" height="248" viewBox="0 0 148 248" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="186" height="312" viewBox="0 0 148 248" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="4" y="0" width="140" height="247" rx="22" fill="rgba(255,255,255,0.92)" stroke="rgba(45,125,67,0.18)" stroke-width="1.2"/>
                 <rect x="52" y="8" width="44" height="9" rx="4.5" fill="rgba(45,125,67,0.12)"/>
                 <circle cx="74" cy="108" r="42" fill="none" stroke="rgba(45,125,67,0.1)" stroke-width="9"/>
@@ -131,7 +131,7 @@ const html = `<section class="cswk" id="work">
             <svg class="cswk-corner cswk-corner-tl" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16 L2 2 L16 2" stroke="rgba(123,107,224,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
             <svg class="cswk-corner cswk-corner-br" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M16 2 L16 16 L2 16" stroke="rgba(123,107,224,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
             <div class="cswk-frame-pad" style="background:linear-gradient(145deg,#ede8fb 0%,#d5cef5 100%);">
-              <svg width="188" height="228" viewBox="0 0 188 228" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="232" height="282" viewBox="0 0 188 228" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="4" y="0" width="180" height="227" rx="16" fill="rgba(255,255,255,0.92)" stroke="rgba(123,107,224,0.18)" stroke-width="1.2"/>
                 <rect x="4" y="0" width="180" height="38" rx="16" fill="rgba(123,107,224,0.07)"/>
                 <rect x="4" y="26" width="180" height="12" fill="rgba(123,107,224,0.07)"/>
