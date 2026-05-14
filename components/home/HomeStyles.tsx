@@ -1880,7 +1880,7 @@ nav.scrolled{
 .home-love-whisper{margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,0.06);font-family:var(--hand);font-size:0.95rem;color:#bbb;}
 
 /* ── GOOD EXPERIENCES (POLAROID GRID) ── */
-.home-xp{padding:4rem 220px 6rem;overflow:hidden;}
+.home-xp{padding:4rem 220px 1.5rem;overflow:hidden;}
 .home-xp-inner{}
 .home-xp-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:2.5rem;}
 .home-xp-title em{font-style:italic;color:var(--pink);}
@@ -1899,6 +1899,15 @@ nav.scrolled{
 .home-xp-tape.hxt{width:54px;top:-9px;left:50%;transform:translateX(-50%) rotate(-1.5deg);background:rgba(255,220,100,0.55);}
 .home-xp-tape.hxl{width:44px;top:-8px;left:8px;transform:rotate(-4deg);background:rgba(255,220,100,0.50);}
 .home-xp-tape.hxr{width:44px;top:-8px;right:8px;transform:rotate(5deg);background:rgba(160,200,255,0.58);}
+.xp-ticker-wrap{width:100%;overflow:hidden;padding:1.8rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:0.5rem;}
+.xp-ticker-track{display:flex;align-items:center;white-space:nowrap;animation:xpScroll 40s linear infinite;}
+.xp-ticker-track:hover{animation-play-state:paused;}
+@keyframes xpScroll{0%{transform:translateX(0);}100%{transform:translateX(-33.333%);}}
+.xp-item{display:inline-flex;align-items:center;gap:12px;padding:0 36px;cursor:default;}
+.xp-role{font-family:var(--serif);font-size:clamp(1rem,1.35vw,1.18rem);font-weight:400;color:var(--ink);}
+.xp-company{font-family:var(--sans);font-size:clamp(0.78rem,1.05vw,0.92rem);font-weight:600;color:var(--pink);letter-spacing:0.03em;}
+.xp-period{font-family:var(--sans);font-size:clamp(0.72rem,0.95vw,0.85rem);color:var(--ink4);letter-spacing:0.01em;}
+.xp-dot{color:var(--pink);font-size:0.45rem;opacity:0.35;flex-shrink:0;display:inline-block;vertical-align:middle;}
 
 /* ── RESPONSIVE NEW SECTIONS ── */
 @media(max-width:1200px){
