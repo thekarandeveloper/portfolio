@@ -249,7 +249,25 @@ nav.scrolled{
 .hi-headline{font-family:var(--serif);font-size:clamp(3.5rem,6.5vw,5.8rem);font-weight:400;color:var(--ink);line-height:1.0;letter-spacing:-0.025em;margin-bottom:1.8rem;}
 .hi-headline em{font-style:italic;background:linear-gradient(90deg,#1E90FF,#00BFFF,#0066FF,#1E90FF);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 4s ease infinite;}
 .hi-bio-line{font-size:clamp(0.9rem,1.3vw,1rem);color:var(--ink3);line-height:1.8;max-width:440px;margin-bottom:0.55rem;}
-.hi-bio-line:last-of-type{margin-bottom:0;}
+
+/* ── BIO INTERACTIVE WORDS ── */
+.hi-w-role{color:#1E90FF;font-weight:600;}
+.hi-w-messy{color:#d94f4f;text-decoration:line-through;text-decoration-color:rgba(217,79,79,0.4);text-decoration-thickness:2px;cursor:default;transition:text-decoration-color 0.2s;}
+.hi-w-messy:hover{text-decoration-color:rgba(217,79,79,0.9);}
+.hi-w-clean{color:#1E90FF;font-style:italic;font-weight:600;display:inline-block;transition:transform 0.2s;}
+.hi-w-clean:hover{transform:translateY(-1px);}
+.hi-w-tag{display:inline-flex;align-items:center;gap:3px;background:rgba(30,144,255,0.08);color:#1563c7;border:1px solid rgba(30,144,255,0.2);border-radius:99px;padding:1px 9px 2px;font-size:0.84em;font-weight:600;vertical-align:middle;position:relative;top:-1px;cursor:default;transition:background 0.2s,transform 0.2s;}
+.hi-w-tag:hover{background:rgba(30,144,255,0.15);transform:translateY(-1px);}
+.hi-w-tag-green{background:rgba(52,199,89,0.08);color:#1d7a38;border-color:rgba(52,199,89,0.22);}
+.hi-w-tag-green:hover{background:rgba(52,199,89,0.15);}
+.hi-w-feel{position:relative;display:inline-block;font-weight:600;color:#1E90FF;}
+.hi-w-feel::after{content:'';position:absolute;left:0;bottom:-2px;width:100%;height:2px;background:linear-gradient(90deg,#1E90FF,#9b6fff);border-radius:99px;animation:feelPulse 2.4s ease-in-out infinite;}
+@keyframes feelPulse{0%,100%{opacity:1;transform:scaleX(1);}50%{opacity:0.3;transform:scaleX(0.65);}}
+.hi-life-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem;}
+.hi-life-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.75);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.08);border-radius:99px;padding:5px 15px;font-family:var(--hand);font-size:1rem;color:var(--ink2);cursor:default;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s;}
+.hi-life-chip:hover{transform:translateY(-4px) rotate(-1.5deg);box-shadow:0 8px 22px rgba(0,0,0,0.10);}
+.hi-chip-star{background:rgba(30,144,255,0.07);border-color:rgba(30,144,255,0.2);color:#1E90FF;font-family:var(--sans);font-weight:700;font-size:0.88rem;}
+.hi-chip-star:hover{background:rgba(30,144,255,0.13);}
 
 /* ── SCRAPBOOK COLLAGE (right side hero) ── */
 .hi-scrapbook{position:relative;width:370px;height:460px;flex-shrink:0;}
@@ -1873,6 +1891,8 @@ nav.scrolled{
   .hi-right{order:-1;}
   .hi-bio{margin:0 auto 2rem;}
   .hi-chips{justify-content:center;}
+  .hi-life-chips{justify-content:center;}
+  .hi-bio-line{max-width:100%;}
   .hi-pill{display:none;}
   .home-loves{padding:4rem 20px;}
   .home-loves-grid{grid-template-columns:1fr;gap:14px;}

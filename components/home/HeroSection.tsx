@@ -8,9 +8,13 @@ const html = `<section class="hero" id="home">
     <h1 class="hi-headline">
       Nikunj<br><em>Tyagi.</em>
     </h1>
-    <p class="hi-bio-line">A product designer turning messy problems into clean, human experiences.</p>
-    <p class="hi-bio-line">Currently designing B2B &amp; healthcare products that actually feel good to use.</p>
-    <p class="hi-bio-line">Cold coffee. Late nights. Great design. ☕</p>
+    <p class="hi-bio-line">A <span class="hi-w-role">product designer</span> turning <span class="hi-w-messy">messy</span> problems into <span class="hi-w-clean">clean</span>, human experiences.</p>
+    <p class="hi-bio-line">Currently designing <span class="hi-w-tag">🏢 B2B</span> &amp; <span class="hi-w-tag hi-w-tag-green">🩺 healthcare</span> products that actually <span class="hi-w-feel">feel good</span> to use.</p>
+    <div class="hi-life-chips">
+      <span class="hi-life-chip">☕ Cold coffee</span>
+      <span class="hi-life-chip">🌙 Late nights</span>
+      <span class="hi-life-chip hi-chip-star">✦ Great design</span>
+    </div>
   </div>
 
   <!-- RIGHT: scrapbook collage -->
