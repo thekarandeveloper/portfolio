@@ -1,6 +1,5 @@
 import { ContactSection } from "./ContactSection";
 import { DesignSystemZoom } from "./DesignSystemZoom";
-import { GallerySection } from "./GallerySection";
 import { HeroSection } from "./HeroSection";
 import { HomeBehavior } from "./HomeBehavior";
 import { HomeExperiencesSection } from "./HomeExperiencesSection";
@@ -9,14 +8,7 @@ import { HomeLovesSection } from "./HomeLovesSection";
 import { HomeNav } from "./HomeNav";
 import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
-import { ProcessSection } from "./ProcessSection";
-import { ScrapbookSection } from "./ScrapbookSection";
-import { SignoffSection } from "./SignoffSection";
-import { SpiralSection } from "./SpiralSection";
-import { TestimonialsSection } from "./TestimonialsSection";
-import { ToolkitSection } from "./ToolkitSection";
 import { WorkSection } from "./WorkSection";
-import { ZoomSection } from "./ZoomSection";
 
 export function HomePageReplica() {
   return (
@@ -34,17 +26,9 @@ export function HomePageReplica() {
         <HeroSection />
         <WorkSection />
         <DesignSystemZoom />
-        <ZoomSection />
-        <ProcessSection />
         <JourneySection />
-        <ToolkitSection />
         <HomeLovesSection />
-        <TestimonialsSection />
         <HomeExperiencesSection />
-        <ScrapbookSection />
-        <GallerySection />
-        <SpiralSection />
-        <SignoffSection />
         <ContactSection />
       </main>
     </>
