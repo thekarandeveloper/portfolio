@@ -11,13 +11,13 @@ const html = `<section class="hero" id="home">
 
     <p class="hi-sub-line">and you can call me <strong>nik</strong> <span class="hi-aside">(if we become good friends)</span></p>
 
-    <p class="hi-bio-line"><span class="hi-pill-pastel">chill girl</span> in the streets, design enthusiast in the <span class="hi-figma-chip"><svg class="hi-figma-logo" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="5.5" height="5.5" rx="2.75" fill="#A259FF"/><rect x="5.5" y="0" width="5.5" height="5.5" rx="2.75" fill="#F24E1E"/><rect x="0" y="5.5" width="5.5" height="5.5" rx="2.75" fill="#A259FF"/><circle cx="8.25" cy="8.25" r="2.75" fill="#1ABCFE"/><rect x="0" y="11" width="5.5" height="5" rx="2.5" fill="#0ACF83"/></svg>figma</span>.</p>
+    <p class="hi-bio-line" style="animation-delay:1.65s"><span class="hi-pill-pastel">chill girl</span> in the streets, design enthusiast in the <span class="hi-figma-chip"><svg class="hi-figma-logo" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="5.5" height="5.5" rx="2.75" fill="#A259FF"/><rect x="5.5" y="0" width="5.5" height="5.5" rx="2.75" fill="#F24E1E"/><rect x="0" y="5.5" width="5.5" height="5.5" rx="2.75" fill="#A259FF"/><circle cx="8.25" cy="8.25" r="2.75" fill="#1ABCFE"/><rect x="0" y="11" width="5.5" height="5" rx="2.5" fill="#0ACF83"/></svg>figma</span>.</p>
 
-    <p class="hi-bio-line">i&rsquo;ll <span class="hi-strike-word">delay</span> everything except a <span class="hi-ul-draw">good layout</span>.</p>
+    <p class="hi-bio-line" style="animation-delay:1.9s">i&rsquo;ll <span class="hi-strike-word">delay</span> everything except a <span class="hi-ul-draw">good layout</span>.</p>
 
     <div class="hi-sticky-coffee">currently: on my <span id="hiCoffeeNum">third</span> coffee ☕</div>
 
-    <p class="hi-bio-line">probably redesigning something <span class="hi-footnote">nobody asked me to.</span></p>
+    <p class="hi-bio-line" style="animation-delay:2.5s">probably redesigning something <span class="hi-footnote">nobody asked me to.</span></p>
   </div>
 
   <!-- RIGHT: scrapbook collage -->

@@ -245,47 +245,52 @@ nav.scrolled{
 /* about-style intro hero */
 .hi-left{position:relative;z-index:2;text-align:left;}
 .hi-right{display:flex;align-items:center;justify-content:center;position:relative;z-index:2;}
-.hi-hello{font-family:var(--hand);font-size:clamp(1.5rem,2.5vw,2rem);color:var(--pink);display:block;margin-bottom:0.15rem;}
+.hi-hello{font-family:var(--hand);font-size:clamp(1.9rem,2.9vw,2.5rem);color:var(--pink);display:block;margin-bottom:0.1rem;font-weight:700;}
 .hi-headline{font-family:var(--serif);font-size:clamp(3.5rem,6.5vw,5.8rem);font-weight:400;color:var(--ink);line-height:1.0;letter-spacing:-0.025em;margin-bottom:1.8rem;}
 .hi-headline em{font-style:italic;background:linear-gradient(90deg,#1E90FF,#00BFFF,#0066FF,#1E90FF);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 4s ease infinite;}
-.hi-bio-line{font-size:clamp(0.9rem,1.3vw,1rem);color:var(--ink3);line-height:1.8;max-width:440px;margin-bottom:0.55rem;}
+.hi-bio-line{font-size:clamp(1.02rem,1.55vw,1.14rem);color:var(--ink2);font-weight:500;line-height:1.75;max-width:440px;margin-bottom:0.65rem;opacity:0;animation:hiLineIn 0.55s cubic-bezier(0.22,1,0.36,1) both;}
+@keyframes hiLineIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 .hi-bio-line:last-of-type{margin-bottom:0;}
 
 /* ── TYPEWRITER CURSOR ── */
-.hi-tw-cursor{display:inline-block;color:#1E90FF;animation:twBlink 0.65s step-end infinite;line-height:1;}
-@keyframes twBlink{50%{opacity:0;}}
+.hi-tw-cursor{display:inline-block;color:#1E90FF;font-weight:300;animation:twBlink 0.6s step-end infinite;line-height:1;margin-left:1px;}
+@keyframes twBlink{0%,100%{opacity:1;}50%{opacity:0;}}
 
 /* ── SUB-LINE (nik / good friends) ── */
-.hi-sub-line{font-size:clamp(0.82rem,1.1vw,0.9rem);color:var(--ink4);font-style:italic;max-width:440px;margin-bottom:1rem;opacity:0;animation:hiSubFadeIn 0.5s ease 1.4s forwards;}
-@keyframes hiSubFadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
-.hi-aside{font-size:0.85em;color:var(--ink4);font-style:italic;}
+.hi-sub-line{font-size:clamp(0.95rem,1.35vw,1.05rem);color:var(--ink3);font-style:italic;max-width:440px;margin-bottom:1.1rem;opacity:0;animation:hiSubFadeIn 0.55s cubic-bezier(0.22,1,0.36,1) 1.4s forwards;}
+@keyframes hiSubFadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.hi-sub-line strong{font-style:normal;font-weight:700;color:var(--ink2);}
+.hi-aside{font-size:0.84em;color:var(--ink4);font-style:italic;}
 
 /* ── PASTEL PILL (chill girl) ── */
-.hi-pill-pastel{display:inline-flex;align-items:center;background:rgba(255,182,193,0.18);border:1px solid rgba(255,150,170,0.3);border-radius:99px;padding:1px 10px 2px;color:#b5466b;font-weight:500;font-size:0.97em;cursor:default;transition:background 0.2s;}
-.hi-pill-pastel:hover{background:rgba(255,182,193,0.32);}
+.hi-pill-pastel{display:inline-flex;align-items:center;background:rgba(255,182,193,0.18);border:1px solid rgba(255,150,170,0.3);border-radius:99px;padding:2px 12px 3px;color:#b5466b;font-weight:600;font-size:0.97em;cursor:default;transition:background 0.2s,transform 0.25s cubic-bezier(0.34,1.56,0.64,1);}
+.hi-pill-pastel:hover{background:rgba(255,182,193,0.35);transform:translateY(-2px) rotate(-1.5deg);}
 
 /* ── FIGMA INLINE CHIP ── */
-.hi-figma-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(162,89,255,0.07);border:1px solid rgba(162,89,255,0.18);border-radius:6px;padding:1px 8px 2px 6px;font-weight:600;color:#7c3fc0;vertical-align:middle;position:relative;top:-1px;font-size:0.9em;font-style:normal;cursor:default;transition:background 0.2s;}
-.hi-figma-chip:hover{background:rgba(162,89,255,0.14);}
+.hi-figma-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(162,89,255,0.07);border:1px solid rgba(162,89,255,0.18);border-radius:6px;padding:2px 9px 3px 6px;font-weight:700;color:#7c3fc0;vertical-align:middle;position:relative;top:-1px;font-size:0.9em;font-style:normal;cursor:default;transition:background 0.2s,transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;}
+.hi-figma-chip:hover{background:rgba(162,89,255,0.14);transform:translateY(-2px) scale(1.05);box-shadow:0 4px 12px rgba(162,89,255,0.18);}
 .hi-figma-logo{flex-shrink:0;display:block;}
 
 /* ── STRIKETHROUGH (delay) ── */
 .hi-strike-word{position:relative;display:inline-block;cursor:default;}
-.hi-strike-word::after{content:'';position:absolute;left:0;top:52%;width:100%;height:1.5px;background:var(--ink2);transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;}
+.hi-strike-word::after{content:'';position:absolute;left:0;top:54%;width:100%;height:2px;background:#c94040;transform:scaleX(0);transform-origin:left;transition:transform 0.45s cubic-bezier(0.22,1,0.36,1);border-radius:2px;}
 .hi-strike-word.strike-drawn::after{transform:scaleX(1);}
-.hi-strike-word.strike-drawn:hover::after{transform:scaleX(0);transform-origin:right;}
+.hi-strike-word.strike-drawn:hover::after{transform:scaleX(0);transform-origin:right;transition:transform 0.3s ease;}
 
 /* ── UNDERLINE DRAW (good layout) ── */
 .hi-ul-draw{position:relative;display:inline-block;}
-.hi-ul-draw::after{content:'';position:absolute;left:0;bottom:-2px;width:100%;height:1.5px;background:#1E90FF;border-radius:99px;transform:scaleX(0);transform-origin:left;transition:transform 0.55s ease;}
-.hi-ul-draw.ul-active::after{transform:scaleX(1);}
+.hi-ul-draw::after{content:'';position:absolute;left:0;bottom:-3px;width:100%;height:2px;background:#1E90FF;border-radius:99px;transform:scaleX(0);transform-origin:left;transition:transform 0.6s cubic-bezier(0.22,1,0.36,1);}
+.hi-ul-draw.ul-active::after{transform:scaleX(1);animation:ulGlow 2.5s ease-in-out 0.65s infinite;}
+@keyframes ulGlow{0%,100%{box-shadow:none;opacity:1;}50%{box-shadow:0 0 10px rgba(30,144,255,0.55);opacity:0.8;}}
 
 /* ── STICKY COFFEE NOTE ── */
-.hi-sticky-coffee{display:inline-block;background:#FFF9C4;border-radius:3px;padding:7px 14px 9px;box-shadow:2px 4px 14px rgba(0,0,0,0.10),0 1px 3px rgba(0,0,0,0.06);font-family:var(--hand);font-size:0.92rem;line-height:1.4;color:#5a4a00;transform:rotate(-1.5deg);margin:0.7rem 0 0.85rem;width:fit-content;animation:stickyFloat 5s ease-in-out infinite;}
-@keyframes stickyFloat{0%,100%{transform:rotate(-1.5deg) translateY(0);}50%{transform:rotate(-1.5deg) translateY(-3px);}}
+.hi-sticky-coffee{display:inline-block;background:#FFF9C4;border-radius:3px;padding:8px 16px 10px;box-shadow:2px 4px 16px rgba(0,0,0,0.12),0 1px 3px rgba(0,0,0,0.06);font-family:var(--hand);font-size:1.05rem;line-height:1.4;color:#4a3a00;font-weight:600;opacity:0;margin:0.75rem 0 0.9rem;width:fit-content;animation:stickyPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 2.1s both;}
+.hi-sticky-coffee.float-on{opacity:1;animation:stickyFloat 5s ease-in-out infinite;}
+@keyframes stickyPop{0%{opacity:0;transform:rotate(-6deg) scale(0.78) translateY(16px);}65%{opacity:1;transform:rotate(-0.5deg) scale(1.08) translateY(-5px);}82%{transform:rotate(-2deg) scale(0.97) translateY(2px);}100%{opacity:1;transform:rotate(-1.5deg) scale(1) translateY(0);}}
+@keyframes stickyFloat{0%,100%{transform:rotate(-1.5deg) translateY(0);}50%{transform:rotate(-1.5deg) translateY(-5px);}}
 
 /* ── FOOTNOTE (nobody asked me to) ── */
-.hi-footnote{font-size:0.82em;color:var(--ink4);font-style:italic;opacity:0.72;}
+.hi-footnote{font-size:0.84em;color:var(--ink4);font-style:italic;opacity:0.78;}
 
 /* ── SCRAPBOOK COLLAGE (right side hero) ── */
 .hi-scrapbook{position:relative;width:560px;height:680px;flex-shrink:0;}

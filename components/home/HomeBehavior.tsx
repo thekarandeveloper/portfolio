@@ -518,7 +518,14 @@ runParallax();
 (function(){
   var el=document.querySelector('.hi-strike-word');
   if(!el)return;
-  setTimeout(function(){el.classList.add('strike-drawn');},1100);
+  setTimeout(function(){el.classList.add('strike-drawn');},2050);
+})();
+
+// ── STICKY NOTE: pop → float ──
+(function(){
+  var sc=document.querySelector('.hi-sticky-coffee');
+  if(!sc)return;
+  setTimeout(function(){sc.classList.add('float-on');},2850);
 })();
 
 // ── UNDERLINE DRAW ON SCROLL (good layout) ──
