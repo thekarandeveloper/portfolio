@@ -120,26 +120,15 @@ document.querySelectorAll('a,button,.hero-card,.pw-row,.gallery-item,.obsession-
 
 // ── NAV ──
 const nav=document.getElementById('nav'),navLinks=document.querySelectorAll('.nav-link-item');
-const navLinksWrap=document.querySelector('.nav-links-wrap');
-const navIndicator=document.querySelector('.nav-active-indicator');
-function positionNavIndicator(activeLink){
-  if(!navLinksWrap||!navIndicator||!activeLink)return;
-  const wrapRect=navLinksWrap.getBoundingClientRect();
-  const linkRect=activeLink.getBoundingClientRect();
-  navIndicator.style.width=linkRect.width+'px';
-  navIndicator.style.transform='translateX('+(linkRect.left-wrapRect.left)+'px)';
-}
 function updateNav(){
-  let activeLink=navLinks[0]||null;
-  navLinks.forEach(a=>{const isActive=a.getAttribute('href')==='#work';a.classList.toggle('active',isActive);if(isActive)activeLink=a;});
-  positionNavIndicator(activeLink);
+  navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#work');});
 }
-// ── NAV CLOCK ──
+// ── NAV CLOCK (IST) ──
 (function(){
-  var clockEl=document.getElementById('navClock');
+  var clockEl=document.getElementById('nav-clock');
   if(!clockEl)return;
-  function tick(){var n=new Date();clockEl.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');}
-  tick();setInterval(tick,1000);
+  function getIST(){var ist=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));var h=ist.getHours(),m=ist.getMinutes();var ap=h>=12?'PM':'AM';h=h%12||12;return h+':'+String(m).padStart(2,'0')+' '+ap;}
+  clockEl.textContent=getIST();setInterval(function(){clockEl.textContent=getIST();},1000);
 })();
 
 // ── SCROLL REVEAL ──
