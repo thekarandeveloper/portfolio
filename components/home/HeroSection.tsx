@@ -20,19 +20,38 @@ const html = `<section class="hero" id="home">
     <p class="hi-bio-line" style="animation-delay:2.5s">probably redesigning something <span class="hi-footnote">nobody asked me to.</span></p>
   </div>
 
-  <!-- RIGHT: photo -->
+  <!-- RIGHT: photo stack -->
   <div class="hi-right reveal from-right reveal-delay-1">
     <div class="hi-scrapbook">
-      <div class="hi-polaroid-css">
-        <img src="/Image/hero/second.png" class="hi-mai" alt="Nikunj Tyagi" />
-      </div>
-      <div class="hi-scrapnote">
-        <svg class="hi-scrapnote-arrow" width="14" height="28" viewBox="0 0 14 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 26 C6 18 5 12 7 5" stroke="rgba(38,52,80,0.46)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
-          <path d="M7 5 L4 10" stroke="rgba(38,52,80,0.46)" stroke-width="1.1" stroke-linecap="round"/>
-          <path d="M7 5 L10 10" stroke="rgba(38,52,80,0.46)" stroke-width="1.1" stroke-linecap="round"/>
-        </svg>
-        <span class="hi-scrapnote-text">catches <span class="hi-scrapnote-ul">skies</span>,<br>not selfies. <span class="hi-scrapnote-star">&#10022;</span></span>
+      <div class="hi-photo-stack" id="hiPhotoStack">
+
+        <!-- card 2: back — portrait.jpg — "coffee first, always" -->
+        <div class="hi-ps-card hi-ps-back" data-photo="2">
+          <div class="hi-ps-photo-area">
+            <img src="/about/portrait.jpg" class="hi-ps-img" alt="coffee first, always" />
+            <div class="hi-ps-hover-label">click to change</div>
+          </div>
+          <div class="hi-ps-caption">coffee first, always</div>
+        </div>
+
+        <!-- card 1: mid — third.png — "food > everything" -->
+        <div class="hi-ps-card hi-ps-mid" data-photo="1">
+          <div class="hi-ps-photo-area">
+            <img src="/Image/hero/third.png" class="hi-ps-img" alt="food > everything" />
+            <div class="hi-ps-hover-label">click to change</div>
+          </div>
+          <div class="hi-ps-caption">food &gt; everything</div>
+        </div>
+
+        <!-- card 0: front — second.png — "one day at a time" -->
+        <div class="hi-ps-card hi-ps-front" data-photo="0">
+          <div class="hi-ps-photo-area">
+            <img src="/Image/hero/second.png" class="hi-ps-img" alt="one day at a time" />
+            <div class="hi-ps-hover-label">click to change</div>
+          </div>
+          <div class="hi-ps-caption">one day at a time</div>
+        </div>
+
       </div>
     </div>
   </div>

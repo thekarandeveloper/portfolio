@@ -511,6 +511,67 @@ runParallax();
   obs.observe(el);
 })();
 
+// ── PHOTO STACK CYCLING ──
+(function(){
+  var stack=document.getElementById('hiPhotoStack');
+  if(!stack)return;
+  // Cards in DOM order: [back, mid, front] — so query them and set order by z-index class
+  var allCards=Array.from(stack.querySelectorAll('.hi-ps-card'));
+  // order[0]=front index, order[1]=mid index, order[2]=back index
+  var order=[2,1,0]; // card index 2 is front (has .hi-ps-front in HTML)
+  var busy=false;
+
+  function setTilt(card,deg){card.style.setProperty('--ps-tilt',deg+'deg');}
+
+  // Set initial tilt on front card
+  setTilt(allCards[order[0]],-2);
+
+  stack.addEventListener('click',function(){
+    if(busy)return;
+    busy=true;
+    var frontCard=allCards[order[0]];
+    var tilt=parseFloat(frontCard.style.getPropertyValue('--ps-tilt')||'-2');
+
+    // Animate front card off to the right
+    frontCard.style.transition='transform 0.26s ease-in,opacity 0.22s ease-in';
+    frontCard.style.transform='translateX(calc(-50% + 190px)) translateY(-35px) rotate('+(tilt+17)+'deg)';
+    frontCard.style.opacity='0';
+    frontCard.style.zIndex='10';
+    frontCard.style.pointerEvents='none';
+
+    // Cycle order: [front,mid,back] → [mid,back,front]
+    order.push(order.shift());
+
+    // Promote old mid → front
+    var newFront=allCards[order[0]];
+    newFront.classList.remove('hi-ps-mid');
+    newFront.classList.add('hi-ps-front');
+    setTilt(newFront,(Math.random()*6-3).toFixed(1));
+
+    // Promote old back → mid
+    allCards[order[1]].classList.remove('hi-ps-back');
+    allCards[order[1]].classList.add('hi-ps-mid');
+
+    // After exit animation: snap old front to back position silently
+    setTimeout(function(){
+      var exiting=allCards[order[2]];
+      exiting.style.transition='none';
+      exiting.style.opacity='0';
+      exiting.style.transform='';
+      exiting.style.zIndex='';
+      exiting.style.pointerEvents='';
+      exiting.classList.remove('hi-ps-front');
+      exiting.classList.add('hi-ps-back');
+      setTilt(exiting,(Math.random()*6-3).toFixed(1));
+      requestAnimationFrame(function(){
+        exiting.style.opacity='';
+        exiting.style.transition='';
+        busy=false;
+      });
+    },320);
+  });
+})();
+
 
 
 
