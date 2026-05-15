@@ -21,62 +21,79 @@ const html = `
 
         <!-- the card -->
         <div class="dsz-card">
+
+          <!-- Header row -->
           <div class="dsz-card-header">
-            <div class="bento-icon-badge">&#127912;</div>
-            <div class="bento-tags">
-              <span class="bento-tag" style="background:rgba(0,0,0,0.05);color:var(--ink3);">Design Systems</span>
-              <span class="bento-tag" style="background:rgba(0,0,0,0.04);color:var(--ink3);">Components</span>
-              <span class="bento-tag" style="background:rgba(0,0,0,0.04);color:var(--ink3);">Tokens</span>
-              <span class="bento-tag dsz-wip-tag">&#9679; In Progress</span>
+            <div class="dsz-logomark">
+              <div class="dsz-dot dsz-dot-blue"></div>
+              <div class="dsz-dot dsz-dot-coral"></div>
+              <div class="dsz-dot dsz-dot-blue-muted"></div>
+            </div>
+            <div class="dsz-tags-row">
+              <span class="dsz-pill">Design Systems</span>
+              <span class="dsz-pill">Components</span>
+              <span class="dsz-pill">Tokens</span>
+              <span class="dsz-pill dsz-wip-tag"><span class="dsz-pulse-dot"></span>In Progress</span>
             </div>
           </div>
 
+          <!-- Project label -->
+          <p class="dsz-project-label">04 &mdash; AirIQ &middot; Design System</p>
+
+          <!-- Title -->
           <h3 class="dsz-title">A single system powering four products</h3>
-          <p class="dsz-desc">A modular component library and token system built to scale with the team&mdash;without slowing it down. No dedicated systems team. Shipped alongside product.</p>
 
-          <div class="dsz-visual">
+          <!-- Subtitle -->
+          <p class="dsz-desc">A modular component library &amp; token system built to scale with the team &mdash; without slowing it down. No dedicated systems team. Shipped alongside product.</p>
 
-            <!-- color token swatches -->
-            <div class="dsz-tokens">
-              <div class="dsz-swatch" style="background:#111827;"></div>
-              <div class="dsz-swatch" style="background:#6B7280;"></div>
-              <div class="dsz-swatch" style="background:#D1D5DB;"></div>
-              <div class="dsz-swatch" style="background:#F9FAFB;border:1px solid rgba(0,0,0,0.08);"></div>
-              <div class="dsz-swatch" style="background:#1E90FF;"></div>
-              <div class="dsz-swatch" style="background:rgba(30,144,255,0.20);"></div>
-            </div>
-
-            <!-- completion bars -->
-            <div class="dsz-bars">
-              <div class="dsz-bar-row">
-                <div class="dsz-bar-label">Typography</div>
-                <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:90%;background:rgba(17,24,39,0.55);"></div></div>
-              </div>
-              <div class="dsz-bar-row">
-                <div class="dsz-bar-label">Components</div>
-                <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:74%;background:#1E90FF;"></div></div>
-              </div>
-              <div class="dsz-bar-row">
-                <div class="dsz-bar-label">Tokens</div>
-                <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:62%;background:rgba(17,24,39,0.35);"></div></div>
-              </div>
-              <div class="dsz-bar-row">
-                <div class="dsz-bar-label">Documentation</div>
-                <div class="dsz-bar-track"><div class="dsz-bar-fill" style="width:38%;background:rgba(30,144,255,0.40);"></div></div>
-              </div>
-            </div>
-
-            <!-- mock UI pieces -->
-            <div class="dsz-mocks">
-              <div class="dsz-mock-btn" style="background:rgba(17,24,39,0.80);"></div>
-              <div class="dsz-mock-btn" style="background:transparent;border:1px solid rgba(0,0,0,0.14);"></div>
-              <div class="dsz-mock-input"></div>
-              <div class="dsz-mock-card"></div>
-            </div>
-
+          <!-- Stats -->
+          <div class="dsz-stat-grid">
+            <div class="dsz-stat-chip"><div class="dsz-stat-number">150+</div><div class="dsz-stat-label">Icons</div></div>
+            <div class="dsz-stat-chip"><div class="dsz-stat-number">30+</div><div class="dsz-stat-label">Tokens</div></div>
+            <div class="dsz-stat-chip"><div class="dsz-stat-number">73%</div><div class="dsz-stat-label">Less drift</div></div>
+            <div class="dsz-stat-chip"><div class="dsz-stat-number">0&rarr;1</div><div class="dsz-stat-label">Full system</div></div>
           </div>
 
-          <a class="dsz-cta" href="/projects/project-5">View Case Study &rarr;</a>
+          <!-- Divider -->
+          <div class="dsz-inner-divider"></div>
+
+          <!-- Progress bars -->
+          <div class="dsz-progress-rows">
+            <div class="dsz-progress-row">
+              <div class="dsz-swatch-pair"><div class="dsz-sw" style="background:#1a1a1a;"></div><div class="dsz-sw" style="background:#e8e6e0;"></div></div>
+              <span class="dsz-bar-label">Typography</span>
+              <div class="dsz-bar-track"><div class="dsz-bar-fill dsz-bar-anim" data-width="90" style="background:#1076BC;"></div></div>
+              <span class="dsz-bar-pct">90%</span>
+            </div>
+            <div class="dsz-progress-row">
+              <div class="dsz-swatch-pair"><div class="dsz-sw" style="background:#1076BC;"></div><div class="dsz-sw" style="background:#e3f3ff;"></div></div>
+              <span class="dsz-bar-label">Components</span>
+              <div class="dsz-bar-track"><div class="dsz-bar-fill dsz-bar-anim" data-width="75" style="background:#1076BC;"></div></div>
+              <span class="dsz-bar-pct">75%</span>
+            </div>
+            <div class="dsz-progress-row">
+              <div class="dsz-swatch-pair"><div class="dsz-sw" style="background:#F2616E;"></div><div class="dsz-sw" style="background:#fff0f0;"></div></div>
+              <span class="dsz-bar-label">Tokens</span>
+              <div class="dsz-bar-track"><div class="dsz-bar-fill dsz-bar-anim" data-width="60" style="background:#F2616E;"></div></div>
+              <span class="dsz-bar-pct">60%</span>
+            </div>
+            <div class="dsz-progress-row">
+              <div class="dsz-swatch-pair"><div class="dsz-sw" style="background:#7a7570;"></div><div class="dsz-sw" style="background:#f0ede8;"></div></div>
+              <span class="dsz-bar-label">Docs</span>
+              <div class="dsz-bar-track"><div class="dsz-bar-fill dsz-bar-anim" data-width="45" style="background:#7a7570;"></div></div>
+              <span class="dsz-bar-pct">45%</span>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="dsz-card-footer">
+            <a class="dsz-cta" href="/projects/project-5">View Case Study &rarr;</a>
+            <div class="dsz-footer-chips">
+              <span class="dsz-footer-chip dsz-chip-blue">Lato &middot; Inter</span>
+              <span class="dsz-footer-chip dsz-chip-red">Jan&ndash;Aug 2023</span>
+            </div>
+          </div>
+
         </div>
 
       </div>

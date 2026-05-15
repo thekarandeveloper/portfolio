@@ -325,6 +325,29 @@ if(heroBlob) {
 })();
 
 
+// ── DESIGN SYSTEM PROGRESS BARS ──
+(function(){
+  var bars=Array.from(document.querySelectorAll('.dsz-bar-anim'));
+  if(!bars.length)return;
+  var section=document.getElementById('ds-zoom');
+  if(!section)return;
+  var fired=false;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting&&!fired){
+        fired=true;
+        bars.forEach(function(bar,i){
+          setTimeout(function(){
+            bar.style.width=(bar.dataset.width||'0')+'%';
+          },300+i*120);
+        });
+        obs.disconnect();
+      }
+    });
+  },{threshold:0.3});
+  obs.observe(section);
+})();
+
 // ── ZOOM INTERLUDE ──
 (function(){
   var section=document.getElementById('zoom-interlude');
