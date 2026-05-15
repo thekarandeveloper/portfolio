@@ -12,9 +12,9 @@ const html = `<section class="journey" id="journey">
         </div>
         <div class="timeline-content">
           <p class="timeline-date">Oct 2023 &ndash; Present</p>
-          <p class="timeline-role">UX / Product Designer</p>
+          <p class="timeline-role">UX Designer</p>
           <p class="timeline-company">Air IQ Online Pvt. Ltd.</p>
-          <p class="timeline-detail">Designed the complete B2B flight booking experience for 25,000+ travel agents. Currently leading hotel design. Converted from trainee to full-time after 4 months.</p>
+          <p class="timeline-detail">Created the end-to-end flight booking flow with responsive design across desktop and mobile. Currently leading hotel search and booking experience.</p>
         </div>
       </div>
       <div class="timeline-item" data-tl-delay="120">
@@ -23,10 +23,10 @@ const html = `<section class="journey" id="journey">
           <div class="tl-line"></div>
         </div>
         <div class="timeline-content">
-          <p class="timeline-date">Mar 2025 &ndash; Aug 2025</p>
+          <p class="timeline-date">2025 &ndash; Present</p>
           <p class="timeline-role">Freelance Product Designer</p>
-          <p class="timeline-company">Care Autor</p>
-          <p class="timeline-detail">Led UX research and design for a B2C healthcare platform combining Alzheimer&rsquo;s, Autism, and Fitness into one cohesive product.</p>
+          <p class="timeline-company">Care Avatar Pvt. Limited</p>
+          <p class="timeline-detail">Designed three distinct care experiences &mdash; an Alzheimer&rsquo;s support planner, an Autism companion with structured daily routines, and Memory Lane, a lessons platform for kids.</p>
         </div>
       </div>
       <div class="timeline-item" data-tl-delay="240">
@@ -38,7 +38,7 @@ const html = `<section class="journey" id="journey">
           <p class="timeline-date">Jun 2024 &ndash; Jul 2024</p>
           <p class="timeline-role">UX Design Intern</p>
           <p class="timeline-company">Infosys</p>
-          <p class="timeline-detail">Designed BibloFi &mdash; an iOS Library Management System. Led a team of 10 developers, translating SRS requirements into structured flows and interfaces.</p>
+          <p class="timeline-detail">Designed BiblioFi &mdash; a smart library management app that made discovering and borrowing books feel effortless. Led the end-to-end design from flows to final interface.</p>
         </div>
       </div>
       <div class="timeline-item" data-tl-delay="360">
@@ -47,9 +47,9 @@ const html = `<section class="journey" id="journey">
         </div>
         <div class="timeline-content">
           <p class="timeline-date">2023 &middot; College</p>
-          <p class="timeline-role">iOS Developer &rarr; Designer</p>
+          <p class="timeline-role">The moment it clicked.</p>
           <p class="timeline-company">ISDP &mdash; Apple &amp; Infosys Program</p>
-          <p class="timeline-detail">Selected for a 6-month Apple &amp; Infosys iOS Student Development Program. Built my first app &mdash; and discovered that design was my real calling.</p>
+          <p class="timeline-detail">Selected for a 6-month Apple &amp; Infosys iOS development program. Wrote my first lines of code, shipped my first app &mdash; and somewhere in that process, realised I cared more about how it felt than how it worked. That was the shift.</p>
         </div>
       </div>
     </div>
