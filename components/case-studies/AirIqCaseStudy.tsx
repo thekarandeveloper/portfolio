@@ -1049,12 +1049,12 @@ function FareListingBlock() {
             background: "linear-gradient(to bottom, #E5E7EB 0%, #E5E7EB 88%, transparent 100%)",
           }} />
 
-          {FARE_APPROACHES.map((approach, i) => (
+          {FARE_APPROACHES.slice(0, 2).map((approach, i) => (
             <div
               key={approach.step}
               style={{
                 position: "relative",
-                marginBottom: i < FARE_APPROACHES.length - 1 ? 40 : 0,
+                marginBottom: i < 1 ? 40 : 0,
               }}
             >
               {/* Node dot */}
@@ -1062,7 +1062,7 @@ function FareListingBlock() {
                 position: "absolute",
                 left: -44, top: 6,
                 width: 12, height: 12, borderRadius: "50%",
-                background: approach.isFinal ? "#1E90FF" : "#D1D5DB",
+                background: "#D1D5DB",
                 zIndex: 1,
               }} />
 
@@ -1072,10 +1072,10 @@ function FareListingBlock() {
               {/* Image */}
               <div style={{
                 borderRadius: 14, overflow: "hidden",
-                border: approach.isFinal ? "1.5px solid rgba(30,144,255,0.3)" : "1px solid #E5E7EB",
+                border: "1px solid #E5E7EB",
                 marginBottom: 12,
               }}>
-                <ChromeBar blue={approach.isFinal} />
+                <ChromeBar />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={approach.img}
@@ -1098,12 +1098,43 @@ function FareListingBlock() {
         </div>
       </div>
 
-      {/* ── Impact ── */}
-      <div style={{ marginTop: 28 }}>
-        <span className="csl-eyebrow">Impact</span>
-        <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
-          This one card became the template for every fare listing in the platform — one pattern extended across one-way, international, and round-trip searches.
-        </p>
+      {/* ── Final Design — home-page grid row (image 65% | content 35%) ── */}
+      <div style={{ marginTop: 32 }}>
+        <span className="csl-eyebrow">Final Design</span>
+        <div className="cs-imgrow">
+          {/* Visual (65%) */}
+          <div className="cs-imgrow__visual" style={{
+            borderRadius: 14, overflow: "hidden",
+            border: "1.5px solid rgba(30,144,255,0.3)",
+            boxShadow: "0 8px 32px rgba(30,144,255,0.12), 0 2px 8px rgba(0,0,0,0.06)",
+          }}>
+            <ChromeBar blue />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Image/Airiq/first%20core/final.png" alt="Final fare listing design" style={{ width: "100%", height: "auto", display: "block" }} />
+          </div>
+
+          {/* Content (35%) */}
+          <div className="cs-imgrow__content">
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em",
+              color: "#059669", background: "#ECFDF5", border: "1px solid #6EE7B7",
+              borderRadius: 100, padding: "4px 12px", marginBottom: 12,
+            }}>✦ Shipped</span>
+            <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", margin: "0 0 10px", lineHeight: 1.35 }}>
+              Price hierarchy first. Everything else at a glance.
+            </p>
+            <p style={{ fontSize: "0.94rem", color: "#4B5563", lineHeight: 1.75, margin: "0 0 20px" }}>
+              Price and time dominate the scan path. Refundability, baggage allowance, and seat count are visible without expanding or hovering. Fare class icons map to symbols agents already recognise. Scan once, compare, decide, book.
+            </p>
+            <div>
+              <span className="csl-eyebrow">Impact</span>
+              <p style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+                This one card became the template for every fare listing in the platform — one pattern extended across one-way, international, and round-trip searches.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ── Compatibility animated showcase ── */}
@@ -1172,38 +1203,46 @@ function ItineraryCardBlock() {
         </p>
       </div>
 
-      {/* ── The New Design ── */}
-      <div style={{ marginBottom: 28 }}>
-        <span className="csl-eyebrow">The redesign</span>
-        <div style={{
-          borderRadius: 16, overflow: "hidden",
-          border: "1.5px solid rgba(30,144,255,0.3)",
-          marginBottom: 20,
-        }}>
-          <Bar tint />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Image/Airiq/Second%20core/new.png" alt="Redesigned itinerary card" style={{ width: "100%", height: "auto", display: "block" }} />
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {[
-            { label: "Segment at a glance",     detail: "Origin → destination in one clear row. No scrolling to find the route." },
-            { label: "Dates + times grouped",    detail: "Departure and arrival sit side-by-side — not buried across separate sections." },
-            { label: "Flat, single-card format", detail: "Everything an agent needs on a call is visible in one frame. Nothing collapsed." },
-          ].map((item) => (
-            <p key={item.label} style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
-              <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}</strong> — {item.detail}
-            </p>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Impact ── */}
+      {/* ── The New Design — reversed grid (content 35% | image 65%) ── */}
       <div>
-        <span className="csl-eyebrow">Impact</span>
-        <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
-          Agents stopped fumbling for details mid-call. Route, class, and times confirmed in under 5 seconds — down from navigating 3 scattered sections. The card became the single reference point on every client conversation, and was reused across all confirmation flows in the platform.
-        </p>
+        <span className="csl-eyebrow">The redesign</span>
+        <div className="cs-imgrow cs-imgrow--rev">
+          {/* Content (35% — left because reversed) */}
+          <div className="cs-imgrow__content">
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em",
+              color: "#1076BC", background: "#E8F2FB", border: "1px solid #BFDBFE",
+              borderRadius: 100, padding: "4px 12px", marginBottom: 14,
+            }}>◉ Redesigned</span>
+            {[
+              { label: "Segment at a glance",     detail: "Origin → destination in one clear row. No scrolling to find the route." },
+              { label: "Dates + times grouped",    detail: "Departure and arrival sit side-by-side — not buried across separate sections." },
+              { label: "Flat, single-card format", detail: "Everything an agent needs on a call is visible in one frame. Nothing collapsed." },
+            ].map((item) => (
+              <p key={item.label} style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>
+                <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}</strong> — {item.detail}
+              </p>
+            ))}
+            <div style={{ marginTop: 8 }}>
+              <span className="csl-eyebrow">Impact</span>
+              <p style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+                Agents stopped fumbling for details mid-call. Route, class, and times confirmed in under 5 seconds — down from navigating 3 scattered sections.
+              </p>
+            </div>
+          </div>
+
+          {/* Visual (65% — right because reversed) */}
+          <div className="cs-imgrow__visual" style={{
+            borderRadius: 16, overflow: "hidden",
+            border: "1.5px solid rgba(30,144,255,0.3)",
+            boxShadow: "0 8px 32px rgba(30,144,255,0.12), 0 2px 8px rgba(0,0,0,0.06)",
+          }}>
+            <Bar tint />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Image/Airiq/Second%20core/new.png" alt="Redesigned itinerary card" style={{ width: "100%", height: "auto", display: "block" }} />
+          </div>
+        </div>
       </div>
 
     </div>
@@ -1270,38 +1309,46 @@ function ReviewTableBlock() {
         </p>
       </div>
 
-      {/* ── The New Design ── */}
-      <div style={{ marginBottom: 28 }}>
-        <span className="csl-eyebrow">The redesign</span>
-        <div style={{
-          borderRadius: 16, overflow: "hidden",
-          border: "1.5px solid rgba(30,144,255,0.3)",
-          marginBottom: 20,
-        }}>
-          <Bar tint />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Image/Airiq/third%20core/new.png" alt="Redesigned review table" style={{ width: "100%", height: "auto", display: "block" }} />
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {[
-            { label: "Optimised data density",     detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility." },
-            { label: "Explicit empty states",       detail: "No blank cells — missing data shows a clear dash so agents know it's intentional, not broken." },
-            { label: "Grouped headers + hierarchy", detail: "Related fields cluster under shared headers — agents scan by section, not hunting across a full row." },
-          ].map((item) => (
-            <p key={item.label} style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
-              <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}</strong> — {item.detail}
-            </p>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Impact ── */}
+      {/* ── The New Design — grid (image 65% | content 35%) ── */}
       <div>
-        <span className="csl-eyebrow">Impact</span>
-        <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
-          Agents stopped second-guessing the data. Pre-submission review went from triple-checking every row to a single confident scan. Operations reported a visible drop in error queries in the first weeks after launch — the table earned trust by looking trustworthy.
-        </p>
+        <span className="csl-eyebrow">The redesign</span>
+        <div className="cs-imgrow">
+          {/* Visual (65%) */}
+          <div className="cs-imgrow__visual" style={{
+            borderRadius: 16, overflow: "hidden",
+            border: "1.5px solid rgba(30,144,255,0.3)",
+            boxShadow: "0 8px 32px rgba(30,144,255,0.12), 0 2px 8px rgba(0,0,0,0.06)",
+          }}>
+            <Bar tint />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Image/Airiq/third%20core/new.png" alt="Redesigned review table" style={{ width: "100%", height: "auto", display: "block" }} />
+          </div>
+
+          {/* Content (35%) */}
+          <div className="cs-imgrow__content">
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em",
+              color: "#1076BC", background: "#E8F2FB", border: "1px solid #BFDBFE",
+              borderRadius: 100, padding: "4px 12px", marginBottom: 14,
+            }}>◉ Redesigned</span>
+            {[
+              { label: "Optimised data density",     detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility." },
+              { label: "Explicit empty states",       detail: "No blank cells — missing data shows a clear dash so agents know it's intentional, not broken." },
+              { label: "Grouped headers + hierarchy", detail: "Related fields cluster under shared headers — agents scan by section, not hunting across a full row." },
+            ].map((item) => (
+              <p key={item.label} style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>
+                <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}</strong> — {item.detail}
+              </p>
+            ))}
+            <div style={{ marginTop: 8 }}>
+              <span className="csl-eyebrow">Impact</span>
+              <p style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+                Agents stopped second-guessing the data. Pre-submission review went from triple-checking every row to a single confident scan. Operations reported a visible drop in error queries in the first weeks after launch.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>

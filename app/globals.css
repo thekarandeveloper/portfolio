@@ -6985,3 +6985,34 @@ body.csl-page-active footer { display: none !important; }
   to   { transform: translateX(-60px); }
 }
 
+/* ─────────────────────────────────────────────────────────────────────
+   CASE STUDY IMAGE-ROW GRID  ·  matches home page cswk-row layout
+──────────────────────────────────────────────────────────────────────*/
+.cs-imgrow {
+  display: grid;
+  grid-template-columns: 65fr 35fr;
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+  align-items: start;
+  margin-top: 16px;
+}
+.cs-imgrow--rev {
+  grid-template-columns: 35fr 65fr;
+}
+.cs-imgrow__visual {
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.cs-imgrow__visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.cs-imgrow:hover .cs-imgrow__visual img { transform: scale(1.02); }
+.cs-imgrow__content { display: flex; flex-direction: column; gap: 12px; }
+@media (max-width: 680px) {
+  .cs-imgrow, .cs-imgrow--rev {
+    grid-template-columns: 1fr;
+  }
+}
+
