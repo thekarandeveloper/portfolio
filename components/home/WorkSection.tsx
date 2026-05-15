@@ -2,8 +2,8 @@ const html = `<section class="cswk" id="work">
 
   <!-- ── SECTION HEADING ── -->
   <div class="cswk-head reveal">
-    <span class="cswk-eyebrow">Selected Work &middot; 2023&ndash;2025</span>
     <h2 class="cswk-headline">
+      Here&rsquo;s where ideas
       <span class="cswk-script">got real.</span>
     </h2>
     <p class="cswk-subhead">Four projects. Four different problems. One through-line: design that earns trust.</p>
