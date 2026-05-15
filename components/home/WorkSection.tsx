@@ -17,18 +17,17 @@ const html = `<section class="cswk" id="work">
     <a class="cswk-row reveal" href="/projects/airiq">
 
       <div class="cswk-visual">
-        <div class="cswk-frame" style="--frame-tilt:1.5deg;">
-          <div class="cswk-tape cswk-tape-tr" style="background:rgba(160,200,255,0.58);"></div>
-          <div class="cswk-frame-inner">
-            <svg class="cswk-corner cswk-corner-tl" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16 L2 2 L16 2" stroke="rgba(30,144,255,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-            <svg class="cswk-corner cswk-corner-br" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M16 2 L16 16 L2 16" stroke="rgba(30,144,255,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-            <div class="cswk-reel">
-              <img src="/Image/Airiq/thumnail/a1.png" alt="Air IQ screen 1" loading="eager"/>
-              <img src="/Image/Airiq/thumnail/a2.png" alt="Air IQ screen 2" loading="lazy"/>
-              <img src="/Image/Airiq/thumnail/a3.png" alt="Air IQ screen 3" loading="lazy"/>
-              <img src="/Image/Airiq/thumnail/a4.png" alt="Air IQ screen 4" loading="lazy"/>
-            </div>
-          </div>
+        <div class="cswk-reel">
+          <img src="/Image/Airiq/thumnail/a1.png" alt="Air IQ screen 1" loading="eager"/>
+          <img src="/Image/Airiq/thumnail/a2.png" alt="Air IQ screen 2" loading="lazy"/>
+          <img src="/Image/Airiq/thumnail/a3.png" alt="Air IQ screen 3" loading="lazy"/>
+          <img src="/Image/Airiq/thumnail/a4.png" alt="Air IQ screen 4" loading="lazy"/>
+        </div>
+        <div class="cswk-reel-dots">
+          <span class="cswk-reel-dot"></span>
+          <span class="cswk-reel-dot"></span>
+          <span class="cswk-reel-dot"></span>
+          <span class="cswk-reel-dot"></span>
         </div>
         <div class="cswk-annot">
           <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 3 Q6 9 13 15" stroke="#1E90FF" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M10 13 L13 15 L11 17" stroke="#1E90FF" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
