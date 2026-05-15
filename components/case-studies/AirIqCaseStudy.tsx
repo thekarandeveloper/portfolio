@@ -1341,6 +1341,37 @@ function CoreComponentsSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
+   THUMBNAIL GALLERY  — 4 full-width frames, 2×2 grid
+───────────────────────────────────────────────────────────────────── */
+function ThumbnailGallery() {
+  const imgs = [
+    { src: "/Image/Airiq/thumnail/a1.png", alt: "Air IQ screen 1" },
+    { src: "/Image/Airiq/thumnail/a2.png", alt: "Air IQ screen 2" },
+    { src: "/Image/Airiq/thumnail/a3.png", alt: "Air IQ screen 3" },
+    { src: "/Image/Airiq/thumnail/a4.png", alt: "Air IQ screen 4" },
+  ];
+  return (
+    <div className="csl-reveal" style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 16,
+      marginBottom: 40,
+    }}>
+      {imgs.map((img) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={img.src}
+          src={img.src}
+          alt={img.alt}
+          loading="lazy"
+          style={{ width: "100%", height: "auto", display: "block" }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
    §05  THE PRODUCT
 ───────────────────────────────────────────────────────────────────── */
 function TheProductSection() {
@@ -1376,6 +1407,9 @@ function TheProductSection() {
         title="The Product"
         sub="20+ screens shipped across 5 flows. One platform, every booking."
       />
+
+      {/* Thumbnail gallery */}
+      <ThumbnailGallery />
 
       {/* Figma embed — live product view */}
       <div className="csl-reveal" style={{ marginBottom: 28 }}>
