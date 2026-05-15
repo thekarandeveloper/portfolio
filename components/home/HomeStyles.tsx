@@ -162,7 +162,7 @@ nav{
 }
 .nav-pill{
   display:inline-flex;align-items:center;
-  height:44px;padding:0 6px;
+  height:48px;padding:0 10px;
   border-radius:99px;
   background:rgba(255,255,255,0.45);
   backdrop-filter:blur(14px) saturate(1.5);
@@ -182,13 +182,13 @@ nav.scrolled .nav-pill{
   font-size:11px;font-weight:500;letter-spacing:0.05em;
   display:flex;align-items:center;justify-content:center;
   font-family:var(--sans);flex-shrink:0;
-  margin-right:4px;
+  margin-right:8px;
 }
-.nav-divider{width:1px;height:18px;background:rgba(0,0,0,0.08);margin:0 6px;flex-shrink:0;}
+.nav-divider{width:1px;height:18px;background:rgba(0,0,0,0.08);margin:0 10px;flex-shrink:0;}
 .nav-link-item{
   display:inline-flex;align-items:center;gap:3px;
-  font-size:12px;color:rgba(0,0,0,0.45);text-decoration:none;
-  padding:4px 10px;border-radius:99px;
+  font-size:12.5px;color:rgba(0,0,0,0.45);text-decoration:none;
+  padding:6px 14px;border-radius:99px;
   transition:background 0.15s,color 0.15s;
   font-family:var(--sans);font-weight:400;
 }
@@ -196,7 +196,7 @@ nav.scrolled .nav-pill{
 .nav-link-item.active{background:rgba(0,0,0,0.05);color:rgba(0,0,0,0.85);}
 .nav-link-resume{font-weight:500;}
 .nav-resume-arrow{font-size:10px;}
-.nav-clock-group{display:flex;align-items:center;gap:4px;}
+.nav-clock-group{display:flex;align-items:center;gap:6px;margin-right:2px;}
 .nav-dot{
   width:5px;height:5px;border-radius:50%;
   background:#22c55e;flex-shrink:0;position:relative;
