@@ -5,7 +5,7 @@ const css = `:root {
   --pink:#1E90FF; --pink2:#0066FF; --pink3:rgba(30,144,255,0.08); --pink5:#EEF6FF;
   --serif:'DM Serif Display',Georgia,serif;
   --sans:'Instrument Sans',-apple-system,BlinkMacSystemFont,sans-serif;
-  --hand:'Caveat',cursive;
+  --hand:var(--font-caveat,'Caveat',cursive);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;scroll-snap-type:y proximity;scroll-padding-top:76px;}
@@ -315,22 +315,22 @@ nav.scrolled .nav-pill{
 @keyframes hiDrift{0%,100%{transform:translateY(0);}50%{transform:translateY(-11px);}}
 
 /* ── PAPER CLIP CARD STACK ── */
-.hi-cs-wrap{position:relative;width:400px;height:410px;cursor:pointer;flex-shrink:0;}
+.hi-cs-wrap{position:relative;width:400px;height:430px;cursor:pointer;flex-shrink:0;}
 
-/* Blue structural back cards */
-.hi-cs-back,.hi-cs-mid{position:absolute;width:320px;height:320px;left:40px;top:65px;border-radius:16px;}
-.hi-cs-back{background:#B8D8E8;z-index:1;transform:rotate(-8deg) translate(-14px,10px);}
-.hi-cs-mid{background:#A8CCE0;z-index:2;transform:rotate(5deg) translate(10px,6px);}
+/* Blue structural back cards — muted, peek only 12-16px beyond front card */
+.hi-cs-back,.hi-cs-mid{position:absolute;width:340px;height:340px;left:30px;top:65px;border-radius:16px;}
+.hi-cs-back{background:#D0DDE6;z-index:1;transform:rotate(-4deg) translate(-7px,6px);}
+.hi-cs-mid{background:#C4D4DF;z-index:2;transform:rotate(3deg) translate(7px,4px);}
 
 /* Photo cards — all anchored at same base position */
 .hi-cs-card{
   position:absolute;
-  width:320px;height:320px;
-  left:40px;top:65px;
+  width:340px;height:340px;
+  left:30px;top:65px;
   border-radius:12px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,0.15);
-  box-shadow:0 8px 36px rgba(0,0,0,0.18),0 2px 10px rgba(0,0,0,0.09);
+  box-shadow:0 10px 40px rgba(0,0,0,0.16),0 2px 10px rgba(0,0,0,0.08);
 }
 
 /* Card states */
@@ -340,7 +340,7 @@ nav.scrolled .nav-pill{
 /* Exit: slides bottom-left + rotates slightly + fades */
 @keyframes hiCsExit{
   from{opacity:1;transform:translate(0,0) scale(1) rotate(0deg);}
-  to  {opacity:0;transform:translate(-38px,38px) scale(0.9) rotate(-5deg);}
+  to  {opacity:0;transform:translate(-40px,40px) scale(0.9) rotate(-5deg);}
 }
 /* Enter: grows from behind + fades in */
 @keyframes hiCsEnter{
@@ -353,38 +353,38 @@ nav.scrolled .nav-pill{
 /* Photo fills entire card */
 .hi-cs-img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
 
-/* Bottom gradient for caption readability */
+/* Bottom gradient — 35% height, 50% black at very bottom edge */
 .hi-cs-grad{
-  position:absolute;bottom:0;left:0;right:0;height:42%;
-  background:linear-gradient(to top,rgba(0,0,0,0.42) 0%,transparent 100%);
+  position:absolute;bottom:0;left:0;right:0;height:35%;
+  background:linear-gradient(to top,rgba(0,0,0,0.50) 0%,transparent 100%);
   pointer-events:none;z-index:1;
 }
 
-/* Caption — handwritten, white, sits in gradient zone */
+/* Caption — Caveat, white, inside gradient zone, explicit weight */
 .hi-cs-cap{
   position:absolute;bottom:22px;left:0;right:0;
   text-align:center;
-  font-family:var(--hand);font-size:16px;color:#fff;
+  font-family:var(--hand);font-size:16px;font-weight:400;color:#fff;
   letter-spacing:0.01em;pointer-events:none;z-index:2;
 }
 
 /* Hover label — frosted pill, upper-middle of photo */
 .hi-cs-label{
-  position:absolute;top:38%;left:50%;
+  position:absolute;top:40%;left:50%;
   transform:translate(-50%,-50%);
   background:rgba(0,0,0,0.50);color:#fff;
   font-size:10px;font-weight:600;letter-spacing:0.05em;
   padding:4px 10px;border-radius:99px;
   pointer-events:none;opacity:0;
   transition:opacity 0.2s ease;
-  white-space:nowrap;font-family:var(--sans);z-index:3;
+  white-space:nowrap;font-family:var(--sans);z-index:5;
 }
 .hi-cs-wrap:hover .hi-cs-active .hi-cs-label{opacity:1;}
 
-/* Paper clip — centered, overlaps top edge of card, never animates */
+/* Paper clip — centered on front card top edge, smaller */
 .hi-cs-clip{
   position:absolute;
-  left:50%;top:20px;
+  left:50%;top:22px;
   transform:translateX(-50%);
   z-index:10;pointer-events:none;
 }
@@ -1992,8 +1992,8 @@ nav.scrolled .nav-pill{
 @media(max-width:900px){
   .hero{padding:8rem 48px 4rem;gap:32px;}
   .hi-scrapbook{width:240px;height:340px;}
-  .hi-cs-wrap{width:290px;height:310px;}
-  .hi-cs-back,.hi-cs-mid,.hi-cs-card{width:230px;height:230px;left:30px;top:50px;}
+  .hi-cs-wrap{width:300px;height:330px;}
+  .hi-cs-back,.hi-cs-mid,.hi-cs-card{width:245px;height:245px;left:28px;top:52px;}
   .hi-cs-cap{font-size:14px;bottom:18px;}
   .hi-polaroid-css{width:220px;padding:8px 8px 48px;}
   .hi-mai{height:220px;}

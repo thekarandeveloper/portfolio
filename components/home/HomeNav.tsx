@@ -1,5 +1,7 @@
 const html = `<nav id="nav">
   <div class="nav-pill">
+    <div class="nav-monogram">NT</div>
+    <div class="nav-divider"></div>
     <a href="#work" class="nav-link-item">Work</a>
     <a href="/about" class="nav-link-item">About</a>
     <a href="/Nikunj-Resume.pdf" class="nav-link-item nav-link-resume" target="_blank" rel="noopener noreferrer">Resume <span class="nav-resume-arrow">↗</span></a>
@@ -9,6 +11,8 @@ const html = `<nav id="nav">
       <span class="nav-time" id="nav-clock">--:-- --</span>
       <span class="nav-city">Gurugram</span>
     </div>
+    <div class="nav-divider"></div>
+    <a href="#contact" class="nav-cta">Say hi</a>
   </div>
 </nav>`;
 

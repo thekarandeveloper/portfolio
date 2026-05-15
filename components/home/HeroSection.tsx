@@ -54,7 +54,7 @@ const html = `<section class="hero" id="home">
 
       <!-- Paper clip — fixed on top of everything -->
       <div class="hi-cs-clip">
-        <svg width="36" height="70" viewBox="0 0 36 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="25" height="49" viewBox="0 0 36 70" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M24 6 C32 6 34 14 34 22 L34 52 C34 62 26 68 18 68 C10 68 2 62 2 52 L2 20 C2 10 10 4 18 4 C26 4 32 10 32 20 L32 52 C32 58 26 64 18 64 C12 64 8 58 8 52 L8 22 C8 14 12 10 18 10" stroke="#9AAAB8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
         </svg>
       </div>
