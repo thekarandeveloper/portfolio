@@ -17,18 +17,7 @@ const html = `<section class="cswk" id="work">
     <a class="cswk-row reveal" href="/projects/airiq">
 
       <div class="cswk-visual">
-        <div class="cswk-reel">
-          <img src="/Image/Airiq/thumnail/a1.png" alt="Air IQ screen 1" loading="eager"/>
-          <img src="/Image/Airiq/thumnail/a2.png" alt="Air IQ screen 2" loading="lazy"/>
-          <img src="/Image/Airiq/thumnail/a3.png" alt="Air IQ screen 3" loading="lazy"/>
-          <img src="/Image/Airiq/thumnail/a4.png" alt="Air IQ screen 4" loading="lazy"/>
-        </div>
-        <div class="cswk-reel-dots">
-          <span class="cswk-reel-dot"></span>
-          <span class="cswk-reel-dot"></span>
-          <span class="cswk-reel-dot"></span>
-          <span class="cswk-reel-dot"></span>
-        </div>
+        <img src="/Image/Airiq/thumnail/a1.png" alt="Air IQ screen 1" loading="eager" style="width:100%;height:auto;display:block;"/>
         <div class="cswk-annot">
           <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 3 Q6 9 13 15" stroke="#1E90FF" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M10 13 L13 15 L11 17" stroke="#1E90FF" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span class="cswk-handlabel">built for speed &amp; clarity</span>
