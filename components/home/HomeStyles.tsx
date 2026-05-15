@@ -636,6 +636,8 @@ nav.scrolled .nav-pill{
 .cswk-row:hover .cswk-cta{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,0.1);}
 .cswk-cta-arrow{display:inline-block;transition:transform 0.2s ease;}
 .cswk-row:hover .cswk-cta-arrow{transform:translateX(3px);}
+.cswk-visual img{transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);}
+.cswk-row:hover .cswk-visual img{transform:scale(1.03);}
 .cswk-flat .cswk-note{transform:none;}
 .cswk-flat:hover .cswk-note{transform:none;}
 .cswk-flat:hover .cswk-cta{transform:none;box-shadow:0 2px 12px rgba(0,0,0,0.07);}
