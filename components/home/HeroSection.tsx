@@ -29,27 +29,27 @@ const html = `<section class="hero" id="home">
         <div class="hi-ps-card hi-ps-back" data-photo="2">
           <div class="hi-ps-photo-area">
             <img src="/about/portrait.jpg" class="hi-ps-img" alt="coffee first, always" />
+            <div class="hi-ps-caption">coffee first, always</div>
             <div class="hi-ps-hover-label">click to change</div>
           </div>
-          <div class="hi-ps-caption">coffee first, always</div>
         </div>
 
         <!-- card 1: mid — third.png — "food > everything" -->
         <div class="hi-ps-card hi-ps-mid" data-photo="1">
           <div class="hi-ps-photo-area">
             <img src="/Image/hero/third.png" class="hi-ps-img" alt="food > everything" />
+            <div class="hi-ps-caption">food &gt; everything</div>
             <div class="hi-ps-hover-label">click to change</div>
           </div>
-          <div class="hi-ps-caption">food &gt; everything</div>
         </div>
 
         <!-- card 0: front — second.png — "one day at a time" -->
         <div class="hi-ps-card hi-ps-front" data-photo="0">
           <div class="hi-ps-photo-area">
             <img src="/Image/hero/second.png" class="hi-ps-img" alt="one day at a time" />
+            <div class="hi-ps-caption">one day at a time</div>
             <div class="hi-ps-hover-label">click to change</div>
           </div>
-          <div class="hi-ps-caption">one day at a time</div>
         </div>
 
       </div>
