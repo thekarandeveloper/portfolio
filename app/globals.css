@@ -90,6 +90,71 @@
   box-sizing: border-box;
 }
 
+/* ── Custom cursor (mouse devices only) ── */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+
+  .cursor-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    pointer-events: none;
+    will-change: transform;
+    transition: opacity 0.15s ease;
+  }
+
+  .cursor-arrow {
+    fill: #1A1210;
+    transition: fill 0.18s ease;
+  }
+
+  .cursor-ray {
+    stroke: #1E90FF;
+    opacity: 0.38;
+    transition: opacity 0.18s ease;
+  }
+
+  .cursor-root--hover .cursor-arrow {
+    fill: #1E90FF;
+  }
+
+  .cursor-root--hover .cursor-ray {
+    opacity: 0.9;
+  }
+
+  .cursor-root--click .cursor-arrow {
+    fill: #1E90FF;
+  }
+
+  .cursor-root--click .cursor-ray {
+    opacity: 1;
+  }
+
+  .cursor-root--click svg {
+    transform-origin: 16px 16px;
+    animation: cursor-press 0.28s ease;
+  }
+
+  .cursor-root--click .cursor-ray {
+    animation: ray-flash 0.28s ease;
+  }
+
+  @keyframes cursor-press {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(0.84); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes ray-flash {
+    0%   { opacity: 0.38; }
+    35%  { opacity: 1; }
+    100% { opacity: 1; }
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
