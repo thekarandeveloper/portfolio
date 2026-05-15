@@ -164,17 +164,17 @@ nav{
   display:inline-flex;align-items:center;
   height:44px;padding:0 6px;
   border-radius:99px;
-  background:rgba(0,0,0,0.03);
-  backdrop-filter:blur(12px) saturate(1.4);
-  -webkit-backdrop-filter:blur(12px) saturate(1.4);
-  border:0.5px solid rgba(0,0,0,0.09);
+  background:rgba(255,255,255,0.45);
+  backdrop-filter:blur(14px) saturate(1.5);
+  -webkit-backdrop-filter:blur(14px) saturate(1.5);
+  border:0.5px solid rgba(255,255,255,0.55);
   transition:background 0.25s ease,border-color 0.25s ease;
   pointer-events:all;
   white-space:nowrap;
 }
 nav.scrolled .nav-pill{
-  background:rgba(0,0,0,0.06);
-  border-color:rgba(0,0,0,0.12);
+  background:rgba(255,255,255,0.62);
+  border-color:rgba(255,255,255,0.7);
 }
 .nav-monogram{
   width:32px;height:32px;border-radius:50%;
