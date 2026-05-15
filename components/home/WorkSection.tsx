@@ -6,7 +6,6 @@ const html = `<section class="cswk" id="work">
       Here&rsquo;s where ideas
       <span class="cswk-script">got real.</span>
     </h2>
-    <p class="cswk-subhead">Four projects. Four different problems. One through-line: design that earns trust.</p>
   </div>
 
   <div class="cswk-rows">
