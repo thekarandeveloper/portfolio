@@ -22,11 +22,11 @@ const html = `<section class="cswk" id="work">
           <div class="cswk-frame-inner">
             <svg class="cswk-corner cswk-corner-tl" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16 L2 2 L16 2" stroke="rgba(30,144,255,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
             <svg class="cswk-corner cswk-corner-br" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M16 2 L16 16 L2 16" stroke="rgba(30,144,255,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;">
-              <img src="/Image/Airiq/thumnail/a1.png" alt="Air IQ screen 1" loading="lazy" style="width:100%;height:auto;display:block;"/>
-              <img src="/Image/Airiq/thumnail/a2.png" alt="Air IQ screen 2" loading="lazy" style="width:100%;height:auto;display:block;"/>
-              <img src="/Image/Airiq/thumnail/a3.png" alt="Air IQ screen 3" loading="lazy" style="width:100%;height:auto;display:block;"/>
-              <img src="/Image/Airiq/thumnail/a4.png" alt="Air IQ screen 4" loading="lazy" style="width:100%;height:auto;display:block;"/>
+            <div class="cswk-reel">
+              <img src="/Image/Airiq/thumnail/a1.png" alt="Air IQ screen 1" loading="eager"/>
+              <img src="/Image/Airiq/thumnail/a2.png" alt="Air IQ screen 2" loading="lazy"/>
+              <img src="/Image/Airiq/thumnail/a3.png" alt="Air IQ screen 3" loading="lazy"/>
+              <img src="/Image/Airiq/thumnail/a4.png" alt="Air IQ screen 4" loading="lazy"/>
             </div>
           </div>
         </div>

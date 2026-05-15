@@ -594,6 +594,13 @@ nav.scrolled .nav-pill{
 .cswk-frame-inner{border-radius:20px;overflow:hidden;border:1px solid rgba(0,0,0,0.06);box-shadow:0 6px 28px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.04);position:relative;}
 .cswk-frame-pad{display:flex;align-items:center;justify-content:center;padding:1rem;min-height:390px;}
 .cswk-thumb{width:100%;display:block;object-fit:cover;}
+.cswk-reel{position:relative;width:100%;aspect-ratio:2544/1996;overflow:hidden;}
+.cswk-reel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:cswkCycle 16s infinite;}
+.cswk-reel img:nth-child(1){animation-delay:0s;}
+.cswk-reel img:nth-child(2){animation-delay:4s;}
+.cswk-reel img:nth-child(3){animation-delay:8s;}
+.cswk-reel img:nth-child(4){animation-delay:12s;}
+@keyframes cswkCycle{0%,22%{opacity:1;}27%,100%{opacity:0;}}
 .cswk-tape{position:absolute;width:46px;height:17px;border-radius:2px;z-index:5;pointer-events:none;}
 .cswk-tape-tl{top:-8px;left:22px;transform:rotate(-4deg);}
 .cswk-tape-tr{top:-8px;right:22px;transform:rotate(4deg);}
