@@ -1,7 +1,6 @@
 const html = `<section class="journey" id="journey">
   <div class="journey-inner">
     <div class="journey-left">
-      <p class="section-label reveal">Journey so far</p>
       <h2 class="journey-title reveal reveal-delay-1">From building<br>to <em>designing</em><br>the thing.</h2>
       <p class="journey-sub reveal reveal-delay-2">A path that started with code, found its heart in design, and lives at the intersection of both.</p>
     </div>

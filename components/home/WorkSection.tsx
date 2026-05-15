@@ -4,7 +4,6 @@ const html = `<section class="cswk" id="work">
   <div class="cswk-head reveal">
     <span class="cswk-eyebrow">Selected Work &middot; 2023&ndash;2025</span>
     <h2 class="cswk-headline">
-      Here&rsquo;s where ideas
       <span class="cswk-script">got real.</span>
     </h2>
     <p class="cswk-subhead">Four projects. Four different problems. One through-line: design that earns trust.</p>
@@ -57,8 +56,6 @@ const html = `<section class="cswk" id="work">
 
       <div class="cswk-content">
         <div class="cswk-meta">
-          <span class="cswk-num">01</span>
-          <span class="cswk-sep">&mdash;</span>
           <span class="cswk-category" style="color:#2D7D43;">EcoTrack &middot; Mobile</span>
         </div>
         <h3 class="cswk-title">Making sustainability feel <em class="cswk-title-em" style="color:#2D7D43;">personal</em> and achievable</h3>
@@ -98,8 +95,6 @@ const html = `<section class="cswk" id="work">
 
       <div class="cswk-content">
         <div class="cswk-meta">
-          <span class="cswk-num">02</span>
-          <span class="cswk-sep">&mdash;</span>
           <span class="cswk-category" style="color:#1565C0;">Air IQ &middot; B2B SaaS</span>
         </div>
         <h3 class="cswk-title">Simplifying <em class="cswk-title-em" style="color:#1E90FF;">complex</em> flight booking systems</h3>
@@ -119,71 +114,7 @@ const html = `<section class="cswk" id="work">
     <div class="cswk-divider reveal"></div>
 
     <!-- ═══════════════════════════════════════════════
-         03 · Care Autor — Visual Left | Content Right
-    ═══════════════════════════════════════════════ -->
-    <a class="cswk-row reveal reveal-delay-2" href="/projects/care-autor">
-
-      <div class="cswk-visual">
-        <div class="cswk-frame" style="--frame-tilt:-1.5deg;">
-          <div class="cswk-tape cswk-tape-tl" style="background:rgba(210,190,255,0.55);"></div>
-          <div class="cswk-tape cswk-tape-br" style="background:rgba(210,190,255,0.38);"></div>
-          <div class="cswk-frame-inner">
-            <svg class="cswk-corner cswk-corner-tl" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16 L2 2 L16 2" stroke="rgba(123,107,224,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-            <svg class="cswk-corner cswk-corner-br" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M16 2 L16 16 L2 16" stroke="rgba(123,107,224,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-            <div class="cswk-frame-pad" style="background:linear-gradient(145deg,#ede8fb 0%,#d5cef5 100%);">
-              <svg width="232" height="282" viewBox="0 0 188 228" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4" y="0" width="180" height="227" rx="16" fill="rgba(255,255,255,0.92)" stroke="rgba(123,107,224,0.18)" stroke-width="1.2"/>
-                <rect x="4" y="0" width="180" height="38" rx="16" fill="rgba(123,107,224,0.07)"/>
-                <rect x="4" y="26" width="180" height="12" fill="rgba(123,107,224,0.07)"/>
-                <text x="94" y="23" text-anchor="middle" font-size="9" font-weight="600" fill="#5B48C0">Care Autor</text>
-                <rect x="16" y="50" width="156" height="44" rx="10" fill="rgba(123,107,224,0.06)" stroke="rgba(123,107,224,0.14)" stroke-width="1"/>
-                <text x="32" y="71" font-size="13">&#129504;</text>
-                <text x="52" y="67" font-size="8.5" font-weight="600" fill="#5B48C0">Alzheimer&apos;s Care</text>
-                <text x="52" y="80" font-size="7" fill="#8a80c0">3 active reminders today</text>
-                <rect x="16" y="104" width="156" height="44" rx="10" fill="rgba(123,107,224,0.06)" stroke="rgba(123,107,224,0.14)" stroke-width="1"/>
-                <text x="32" y="125" font-size="13">&#11088;</text>
-                <text x="52" y="121" font-size="8.5" font-weight="600" fill="#5B48C0">Autism Support</text>
-                <text x="52" y="134" font-size="7" fill="#8a80c0">Sensory check in 30 min</text>
-                <rect x="16" y="158" width="156" height="44" rx="10" fill="rgba(123,107,224,0.06)" stroke="rgba(123,107,224,0.14)" stroke-width="1"/>
-                <text x="32" y="179" font-size="13">&#128170;</text>
-                <text x="52" y="175" font-size="8.5" font-weight="600" fill="#5B48C0">Fitness Tracking</text>
-                <text x="52" y="188" font-size="7" fill="#8a80c0">Goal: 7,500 steps today</text>
-                <circle cx="78" cy="212" r="3.5" fill="rgba(123,107,224,0.35)"/>
-                <circle cx="94" cy="212" r="3.5" fill="#5B48C0"/>
-                <circle cx="110" cy="212" r="3.5" fill="rgba(123,107,224,0.2)"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="cswk-annot">
-          <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 3 Q6 9 13 15" stroke="#7B6BE0" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M10 13 L13 15 L11 17" stroke="#7B6BE0" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="cswk-handlabel">calm by design</span>
-        </div>
-      </div>
-
-      <div class="cswk-content">
-        <div class="cswk-meta">
-          <span class="cswk-num">03</span>
-          <span class="cswk-sep">&mdash;</span>
-          <span class="cswk-category" style="color:#5B48C0;">Care Autor &middot; Healthcare</span>
-        </div>
-        <h3 class="cswk-title">One platform for three <em class="cswk-title-em" style="color:#7B6BE0;">distinct</em> care journeys</h3>
-        <p class="cswk-desc">Unified Alzheimer&rsquo;s, Autism &amp; Fitness care into one calm, accessible interface for caregivers who are already overwhelmed.</p>
-        <div class="cswk-tags">
-          <span class="cswk-tag" style="color:#5B48C0;background:#ede9f8;">0&rarr;1 Design</span>
-          <span class="cswk-tag" style="color:#5B48C0;background:#ede9f8;">Healthcare</span>
-          <span class="cswk-tag" style="color:#5B48C0;background:#ede9f8;">Multi-platform</span>
-        </div>
-        <div class="cswk-note" style="background:#ede9f8;color:#3d2f7a;">&#128156; 3 care journeys, 1 calm interface</div>
-        <span class="cswk-cta">View Case Study <span class="cswk-cta-arrow">&rarr;</span></span>
-      </div>
-
-    </a>
-
-    <div class="cswk-divider reveal"></div>
-
-    <!-- ═══════════════════════════════════════════════
-         04 · BiblioFi — Visual Right | Content Left
+         03 · BiblioFi — Visual Right | Content Left
     ═══════════════════════════════════════════════ -->
     <a class="cswk-row cswk-reversed reveal reveal-delay-3" href="/projects/biblofi">
 
@@ -205,8 +136,6 @@ const html = `<section class="cswk" id="work">
 
       <div class="cswk-content">
         <div class="cswk-meta">
-          <span class="cswk-num">04</span>
-          <span class="cswk-sep">&mdash;</span>
           <span class="cswk-category" style="color:#C8703A;">BiblioFi &middot; iOS App</span>
         </div>
         <h3 class="cswk-title">Reimagining how readers <em class="cswk-title-em" style="color:#C8703A;">discover</em> &amp; borrow books</h3>

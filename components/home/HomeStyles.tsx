@@ -1055,7 +1055,7 @@ nav.scrolled{
 .testimonial-role{font-size:0.72rem;color:var(--ink4);}
 
 /* ── CONTACT ── */
-.contact{background:transparent;padding:5rem 250px;overflow:hidden;position:relative;}
+.contact{background:transparent;padding:5rem 250px 5rem 270px;overflow:visible;position:relative;}
 .contact-glow{position:absolute;top:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(17,17,17,0.05) 0%,transparent 70%);pointer-events:none;}
 .contact-illustration{position:absolute;top:0;right:0;width:280px;height:300px;display:flex;align-items:flex-start;justify-content:flex-end;}
 .illus-placeholder{width:210px;height:250px;border:1px dashed var(--border2);border-radius:12px;margin:2rem 2rem 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;background:rgba(17,17,17,0.02);}
@@ -1912,11 +1912,11 @@ nav.scrolled{
 /* ── GOOD EXPERIENCES (POLAROID GRID) ── */
 .home-xp{padding:4rem 220px 6rem;overflow:hidden;}
 .home-xp-inner{}
-.home-xp-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:2.5rem;}
+.home-xp-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:3.5rem;}
 .home-xp-title em{font-style:italic;color:var(--pink);}
 .home-xp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 22px;position:relative;}
 .home-xp-pol{background:#fff;padding:10px 10px 46px;box-shadow:0 4px 20px rgba(0,0,0,0.10),0 1px 5px rgba(0,0,0,0.06);border-radius:2px;cursor:pointer;position:relative;transition:transform 0.44s cubic-bezier(0.34,1.4,0.64,1),box-shadow 0.35s ease;transform:rotate(var(--r,0deg));z-index:1;}
-.home-xp-pol:hover{transform:rotate(0deg) scale(1.10) translateY(-12px)!important;box-shadow:0 28px 64px rgba(0,0,0,0.18),0 6px 20px rgba(0,0,0,0.09);z-index:20;}
+.home-xp-pol:hover{transform:rotate(0deg) scale(1.10)!important;box-shadow:0 28px 64px rgba(0,0,0,0.18),0 6px 20px rgba(0,0,0,0.09);z-index:20;}
 .home-xp-photo{width:100%;aspect-ratio:1/1;display:block;border-radius:1px;position:relative;overflow:hidden;}
 .home-xp-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s ease;}
 .home-xp-pol:hover .home-xp-photo img{transform:scale(1.06);}

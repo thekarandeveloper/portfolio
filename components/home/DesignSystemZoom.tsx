@@ -6,7 +6,6 @@ const html = `
 
       <!-- LEFT annotation column — flush to left edge of card -->
       <div class="dsz-ann-col dsz-ann-left">
-        <div class="dsz-float dsz-fl-1">First component<br/>ever shipped <span class="dsz-float-arrow">&#8594;</span></div>
         <div class="dsz-float dsz-fl-2">&#128204; Token architecture<br/>from scratch <span class="dsz-float-arrow">&#8594;</span></div>
         <div class="dsz-float dsz-fl-3">~200 components<br/>documented <span class="dsz-float-arrow">&#8594;</span></div>
         <div class="dsz-float dsz-fl-4">Built while<br/>shipping product &#128640; <span class="dsz-float-arrow">&#8594;</span></div>
@@ -84,7 +83,6 @@ const html = `
 
       <!-- RIGHT annotation column — flush to right edge of card -->
       <div class="dsz-ann-col dsz-ann-right">
-        <div class="dsz-float dsz-fr-1"><span class="dsz-float-arrow">&#8592;</span> Used across<br/>4 products</div>
         <div class="dsz-float dsz-fr-2"><span class="dsz-float-arrow">&#8592;</span> Zero dedicated<br/>systems team &#128161;</div>
         <div class="dsz-float dsz-fr-3"><span class="dsz-float-arrow">&#8592;</span> Design debt: 0<br/>after rollout &#10003;</div>
         <div class="dsz-float dsz-fr-4"><span class="dsz-float-arrow">&#8592;</span> &#9992; 3-week sprint<br/>to v1</div>
