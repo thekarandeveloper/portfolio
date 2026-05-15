@@ -154,8 +154,7 @@ body.home-loading{overflow:hidden;}
 
 /* ── NAV — compact floating pill ── */
 nav{
-  position:sticky;top:0;z-index:100;
-  width:100%;
+  position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;justify-content:center;
   padding:16px 24px;
   box-sizing:border-box;
@@ -165,16 +164,17 @@ nav{
   display:inline-flex;align-items:center;
   height:44px;padding:0 6px;
   border-radius:99px;
-  background:transparent;
-  backdrop-filter:blur(14px) saturate(1.6);
-  -webkit-backdrop-filter:blur(14px) saturate(1.6);
-  border:0.5px solid rgba(0,0,0,0.08);
-  transition:background 0.25s ease;
+  background:rgba(0,0,0,0.03);
+  backdrop-filter:blur(12px) saturate(1.4);
+  -webkit-backdrop-filter:blur(12px) saturate(1.4);
+  border:0.5px solid rgba(0,0,0,0.09);
+  transition:background 0.25s ease,border-color 0.25s ease;
   pointer-events:all;
   white-space:nowrap;
 }
 nav.scrolled .nav-pill{
-  background:rgba(255,255,255,0.14);
+  background:rgba(0,0,0,0.06);
+  border-color:rgba(0,0,0,0.12);
 }
 .nav-monogram{
   width:32px;height:32px;border-radius:50%;
