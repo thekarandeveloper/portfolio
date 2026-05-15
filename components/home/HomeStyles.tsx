@@ -1890,14 +1890,14 @@ nav.scrolled .nav-pill{
 /* ── GOOD EXPERIENCES (POLAROID GRID) ── */
 .home-xp{padding:4rem 220px 6rem;overflow:hidden;}
 .home-xp-inner{}
-.home-xp-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:3.5rem;}
+.home-xp-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:48px;}
 .home-xp-title em{font-style:italic;color:var(--pink);}
 .home-xp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 22px;position:relative;}
-.home-xp-pol{background:#fff;padding:10px 10px 46px;box-shadow:0 4px 20px rgba(0,0,0,0.10),0 1px 5px rgba(0,0,0,0.06);border-radius:2px;cursor:pointer;position:relative;transition:transform 0.44s cubic-bezier(0.34,1.4,0.64,1),box-shadow 0.35s ease;transform:rotate(var(--r,0deg));z-index:1;}
-.home-xp-pol:hover{transform:rotate(0deg) scale(1.10)!important;box-shadow:0 28px 64px rgba(0,0,0,0.18),0 6px 20px rgba(0,0,0,0.09);z-index:20;}
+.home-xp-pol{background:#fff;padding:10px 10px 46px;box-shadow:0 4px 20px rgba(0,0,0,0.10),0 1px 5px rgba(0,0,0,0.06);border-radius:2px;overflow:hidden;cursor:pointer;position:relative;transform-origin:center center;transition:transform 0.3s ease,box-shadow 0.3s ease;transform:rotate(var(--r,0deg));z-index:1;}
+.home-xp-pol:hover{transform:scale(1.04);box-shadow:0 28px 64px rgba(0,0,0,0.18),0 6px 20px rgba(0,0,0,0.09);z-index:10;}
 .home-xp-photo{width:100%;aspect-ratio:1/1;display:block;border-radius:1px;position:relative;overflow:hidden;}
-.home-xp-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.5s ease;}
-.home-xp-pol:hover .home-xp-photo img{transform:scale(1.06);}
+.home-xp-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+.home-xp-pol:hover .home-xp-photo img{transform:none;}
 .home-xp-over{position:absolute;inset:0;background:rgba(0,0,0,0.52);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.28s ease;border-radius:1px;padding:12px;text-align:center;}
 .home-xp-pol:hover .home-xp-over{opacity:1;}
 .home-xp-mem{font-family:var(--hand);font-size:1rem;color:#fff;line-height:1.45;}
