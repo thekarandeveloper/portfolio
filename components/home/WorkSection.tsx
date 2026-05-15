@@ -110,26 +110,8 @@ const html = `<section class="cswk" id="work">
             <!-- corner brackets -->
             <svg class="cswk-corner cswk-corner-tl" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16 L2 2 L16 2" stroke="rgba(45,125,67,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
             <svg class="cswk-corner cswk-corner-br" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M16 2 L16 16 L2 16" stroke="rgba(45,125,67,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-            <div class="cswk-frame-pad" style="background:linear-gradient(145deg,#e8f5ec 0%,#c6e8d1 100%);">
-              <svg width="186" height="312" viewBox="0 0 148 248" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4" y="0" width="140" height="247" rx="22" fill="rgba(255,255,255,0.92)" stroke="rgba(45,125,67,0.18)" stroke-width="1.2"/>
-                <rect x="52" y="8" width="44" height="9" rx="4.5" fill="rgba(45,125,67,0.12)"/>
-                <circle cx="74" cy="108" r="42" fill="none" stroke="rgba(45,125,67,0.1)" stroke-width="9"/>
-                <circle cx="74" cy="108" r="42" fill="none" stroke="#2D7D43" stroke-width="9" stroke-dasharray="158 106" stroke-dashoffset="26" stroke-linecap="round"/>
-                <text x="74" y="91" text-anchor="middle" font-size="13">&#127807;</text>
-                <text x="74" y="110" text-anchor="middle" font-size="19" font-weight="700" fill="#1a4d2a">62%</text>
-                <text x="74" y="123" text-anchor="middle" font-size="7" fill="#4a7a5a">saved this week</text>
-                <rect x="16" y="165" width="50" height="36" rx="8" fill="rgba(45,125,67,0.07)"/>
-                <text x="41" y="181" text-anchor="middle" font-size="6.5" fill="#2D7D43">Travel</text>
-                <text x="41" y="195" text-anchor="middle" font-size="11" font-weight="700" fill="#1a4d2a">2.1kg</text>
-                <rect x="76" y="165" width="50" height="36" rx="8" fill="rgba(45,125,67,0.07)"/>
-                <text x="101" y="181" text-anchor="middle" font-size="6.5" fill="#2D7D43">Food</text>
-                <text x="101" y="195" text-anchor="middle" font-size="11" font-weight="700" fill="#1a4d2a">1.4kg</text>
-                <rect x="16" y="214" width="116" height="5" rx="2.5" fill="rgba(45,125,67,0.1)"/>
-                <rect x="16" y="214" width="86" height="5" rx="2.5" fill="#2D7D43"/>
-                <text x="16" y="228" font-size="6.5" fill="#4a7a5a">Daily goal: 72%</text>
-                <rect x="58" y="238" width="28" height="3" rx="1.5" fill="rgba(45,125,67,0.2)"/>
-              </svg>
+            <div class="cswk-frame-pad" style="background:none;padding:0;display:flex;align-items:center;justify-content:center;">
+              <img src="/Image/Ecotrack/ecotrack/thumnail.png" alt="EcoTrack" style="width:100%;height:100%;object-fit:contain;display:block;" />
             </div>
           </div>
         </div>
