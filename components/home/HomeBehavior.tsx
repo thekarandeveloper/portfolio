@@ -162,7 +162,7 @@ function updateScrollTube(){
 updateScrollTube();
 updateNav();
 
-window.addEventListener('scroll',()=>{if(nav)nav.classList.toggle('scrolled',window.scrollY>40);updateNav();checkInView();runParallax();updateScrollTube();},{passive:true});
+window.addEventListener('scroll',()=>{if(nav)nav.classList.toggle('scrolled',window.scrollY>20);updateNav();checkInView();runParallax();updateScrollTube();},{passive:true});
 window.addEventListener('resize',updateNav);
 
 // ── SCROLL SHAPES ──

@@ -1132,7 +1132,7 @@ nav.scrolled .nav-pill{
 
 
 @media(max-width:900px){
-  nav{padding:0 12px;}.nav-clock-group,.nav-city,.nav-divider{display:none;}.nav-link-item{padding:5px 8px;font-size:12px;}
+  nav{padding:8px 12px;}.nav-clock-group,.nav-divider:not(:first-of-type){display:none;}.nav-link-item{padding:4px 7px;font-size:11px;}.nav-pill{height:40px;}
   .work,.journey,.about,.contact,.process-section,.gallery-section,.shelf-section,.testimonials-section{padding:3rem clamp(24px,4vw,50px);}
   .spectrum-section{padding:4rem clamp(24px,4vw,50px);}
   .journey-inner{grid-template-columns:1fr;}.journey-left{position:static;}
