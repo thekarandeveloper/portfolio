@@ -109,9 +109,7 @@ const html = `<section class="cswk" id="work">
             <!-- corner brackets -->
             <svg class="cswk-corner cswk-corner-tl" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16 L2 2 L16 2" stroke="rgba(45,125,67,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
             <svg class="cswk-corner cswk-corner-br" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M16 2 L16 16 L2 16" stroke="rgba(45,125,67,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
-            <div class="cswk-frame-pad" style="background:none;padding:0;display:flex;align-items:center;justify-content:center;">
-              <img src="/Image/Ecotrack/ecotrack/thumnail.png" alt="EcoTrack" style="width:100%;height:100%;object-fit:contain;display:block;" />
-            </div>
+            <img src="/Image/Ecotrack/ecotrack/thumnail.png" alt="EcoTrack" loading="lazy" style="width:100%;height:390px;object-fit:contain;object-position:center;display:block;background:none;" />
           </div>
         </div>
         <!-- hand-drawn annotation -->
