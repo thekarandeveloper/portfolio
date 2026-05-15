@@ -184,7 +184,7 @@ nav.scrolled .nav-pill{
   font-family:var(--sans);flex-shrink:0;
   margin-right:8px;
 }
-.nav-divider{width:1px;height:18px;background:rgba(0,0,0,0.08);margin:0 10px;flex-shrink:0;}
+.nav-divider{width:1px;height:18px;background:rgba(0,0,0,0.08);margin:0 18px;flex-shrink:0;}
 .nav-link-item{
   display:inline-flex;align-items:center;gap:3px;
   font-size:12.5px;color:rgba(0,0,0,0.45);text-decoration:none;

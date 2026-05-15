@@ -7,7 +7,6 @@ const html = `<nav id="nav">
     </div>
     <div class="nav-divider"></div>
     <a href="#work" class="nav-link-item">Work</a>
-    <a href="/about" class="nav-link-item">About</a>
     <a href="/Nikunj-Resume.pdf" class="nav-link-item nav-link-resume" target="_blank" rel="noopener noreferrer">Resume <span class="nav-resume-arrow">↗</span></a>
   </div>
 </nav>`;
