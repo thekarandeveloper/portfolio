@@ -638,6 +638,11 @@ nav.scrolled .nav-pill{
 .cswk-row:hover .cswk-cta-arrow{transform:translateX(3px);}
 .cswk-divider{width:100%;height:1px;background:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.065) 25%,rgba(0,0,0,0.065) 75%,transparent 100%);}
 
+/* BiblioFi — clean image, no frame */
+.bib-clean{border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 18px rgba(0,0,0,0.05);background:none;transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94),box-shadow 0.35s ease;}
+.bib-clean img{width:100%;display:block;object-fit:contain;}
+.cswk-row:hover .bib-clean{transform:scale(1.024);box-shadow:0 2px 8px rgba(0,0,0,0.05),0 14px 36px rgba(0,0,0,0.09);}
+
 /* ── kept for DesignSystemZoom ── */
 .bento-icon-badge{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,1);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,0.08);}
 .bento-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-start;align-items:flex-start;margin-top:0.75rem;}
