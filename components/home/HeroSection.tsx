@@ -20,39 +20,13 @@ const html = `<section class="hero" id="home">
     <p class="hi-bio-line" style="animation-delay:2.5s">probably redesigning something <span class="hi-footnote">nobody asked me to.</span></p>
   </div>
 
-  <!-- RIGHT: photo stack -->
+  <!-- RIGHT: pin frame photo -->
   <div class="hi-right reveal from-right reveal-delay-1">
-    <div class="hi-scrapbook">
-      <div class="hi-photo-stack" id="hiPhotoStack">
-
-        <!-- card 2: back — portrait.jpg — "coffee first, always" -->
-        <div class="hi-ps-card hi-ps-back" data-photo="2">
-          <div class="hi-ps-photo-area">
-            <img src="/about/portrait.jpg" class="hi-ps-img" alt="coffee first, always" />
-            <div class="hi-ps-caption">coffee first, always</div>
-            <div class="hi-ps-hover-label">click to change</div>
-          </div>
-        </div>
-
-        <!-- card 1: mid — third.png — "food > everything" -->
-        <div class="hi-ps-card hi-ps-mid" data-photo="1">
-          <div class="hi-ps-photo-area">
-            <img src="/Image/hero/third.png" class="hi-ps-img" alt="food > everything" />
-            <div class="hi-ps-caption">food &gt; everything</div>
-            <div class="hi-ps-hover-label">click to change</div>
-          </div>
-        </div>
-
-        <!-- card 0: front — second.png — "one day at a time" -->
-        <div class="hi-ps-card hi-ps-front" data-photo="0">
-          <div class="hi-ps-photo-area">
-            <img src="/Image/hero/second.png" class="hi-ps-img" alt="one day at a time" />
-            <div class="hi-ps-caption">one day at a time</div>
-            <div class="hi-ps-hover-label">click to change</div>
-          </div>
-        </div>
-
-      </div>
+    <div class="hi-pin-wrap" id="hiPinWrap">
+      <img class="hi-pin-photo" id="hiPinPhoto" src="/Image/hero/second.png" alt="one day at a time" />
+      <img class="hi-pin-frame" src="/Image/hero/pin.png" alt="" />
+      <div class="hi-pin-hover-label">click to change</div>
+      <p class="hi-pin-caption" id="hiPinCaption">one day at a time</p>
     </div>
   </div>
 
