@@ -156,7 +156,7 @@ body.home-loading{overflow:hidden;}
 nav{
   position:sticky;top:0;z-index:100;
   width:100%;
-  display:flex;justify-content:flex-start;
+  display:flex;justify-content:center;
   padding:16px 24px;
   box-sizing:border-box;
   pointer-events:none;
@@ -165,17 +165,16 @@ nav{
   display:inline-flex;align-items:center;
   height:44px;padding:0 6px;
   border-radius:99px;
-  background:rgba(255,255,255,0.45);
-  backdrop-filter:blur(14px) saturate(1.5);
-  -webkit-backdrop-filter:blur(14px) saturate(1.5);
+  background:transparent;
+  backdrop-filter:blur(14px) saturate(1.6);
+  -webkit-backdrop-filter:blur(14px) saturate(1.6);
   border:0.5px solid rgba(0,0,0,0.08);
-  transition:background 0.25s ease,border-color 0.25s ease;
+  transition:background 0.25s ease;
   pointer-events:all;
   white-space:nowrap;
 }
 nav.scrolled .nav-pill{
-  background:rgba(255,255,255,0.65);
-  border-color:rgba(0,0,0,0.10);
+  background:rgba(255,255,255,0.14);
 }
 .nav-monogram{
   width:32px;height:32px;border-radius:50%;
