@@ -636,6 +636,11 @@ nav.scrolled .nav-pill{
 .cswk-row:hover .cswk-cta{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,0.1);}
 .cswk-cta-arrow{display:inline-block;transition:transform 0.2s ease;}
 .cswk-row:hover .cswk-cta-arrow{transform:translateX(3px);}
+.cswk-flat .cswk-note{transform:none;}
+.cswk-flat:hover .cswk-note{transform:none;}
+.cswk-flat:hover .cswk-cta{transform:none;box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+.cswk-flat:hover .cswk-cta-arrow{transform:none;}
+.cswk-flat:hover .cswk-annot{opacity:0.58;}
 .cswk-divider{width:100%;height:1px;background:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.065) 25%,rgba(0,0,0,0.065) 75%,transparent 100%);}
 
 /* ── kept for DesignSystemZoom ── */
