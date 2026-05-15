@@ -58,11 +58,17 @@ const html = `<section class="cswk" id="work">
     <!-- ═══════════════════════════════════════════════
          02 · BiblioFi — Visual Right | Content Left
     ═══════════════════════════════════════════════ -->
-    <a class="cswk-row cswk-reversed reveal reveal-delay-1" href="/projects/biblofi" style="grid-template-columns:1fr 1fr;">
+    <a class="cswk-row cswk-reversed reveal reveal-delay-1" href="/projects/biblofi">
 
       <div class="cswk-visual">
-        <div class="bib-clean">
-          <img src="/Image/Biblofi/use-thum.png" alt="BiblioFi iOS app" loading="lazy" />
+        <div class="cswk-frame" style="--frame-tilt:-2deg;">
+          <div class="cswk-tape cswk-tape-tl" style="background:rgba(255,200,140,0.52);"></div>
+          <div class="cswk-tape cswk-tape-tr" style="background:rgba(255,200,140,0.35);"></div>
+          <div class="cswk-frame-inner">
+            <svg class="cswk-corner cswk-corner-tl" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16 L2 2 L16 2" stroke="rgba(200,112,58,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+            <svg class="cswk-corner cswk-corner-br" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M16 2 L16 16 L2 16" stroke="rgba(200,112,58,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+            <img src="/Image/Biblofi/use-thum.png" alt="BiblioFi iOS app" loading="lazy" style="width:100%;height:390px;object-fit:contain;object-position:center;display:block;background:none;" />
+          </div>
         </div>
         <div class="cswk-annot" style="justify-content:flex-end;">
           <span class="cswk-handlabel">shipped alone, felt lived-in</span>
