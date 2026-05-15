@@ -314,40 +314,79 @@ nav.scrolled .nav-pill{
 .hi-star{position:absolute;pointer-events:none;opacity:0.22;z-index:1;}
 @keyframes hiDrift{0%,100%{transform:translateY(0);}50%{transform:translateY(-11px);}}
 
-/* ── PIN FRAME PHOTO ── */
-.hi-pin-wrap{position:relative;width:300px;height:340px;cursor:pointer;flex-shrink:0;}
-.hi-pin-photo{
-  position:absolute;top:0;left:0;
-  width:100%;height:300px;
-  object-fit:cover;object-position:top center;
-  z-index:1;
-  transition:opacity 0.28s ease;
-  display:block;
+/* ── PAPER CLIP CARD STACK ── */
+.hi-cs-wrap{position:relative;width:400px;height:410px;cursor:pointer;flex-shrink:0;}
+
+/* Blue structural back cards */
+.hi-cs-back,.hi-cs-mid{position:absolute;width:320px;height:320px;left:40px;top:65px;border-radius:16px;}
+.hi-cs-back{background:#B8D8E8;z-index:1;transform:rotate(-8deg) translate(-14px,10px);}
+.hi-cs-mid{background:#A8CCE0;z-index:2;transform:rotate(5deg) translate(10px,6px);}
+
+/* Photo cards — all anchored at same base position */
+.hi-cs-card{
+  position:absolute;
+  width:320px;height:320px;
+  left:40px;top:65px;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:0 8px 36px rgba(0,0,0,0.18),0 2px 10px rgba(0,0,0,0.09);
 }
-.hi-pin-frame{
-  position:absolute;top:0;left:0;
-  width:100%;height:300px;
-  z-index:2;pointer-events:none;
-  mix-blend-mode:multiply;
-  display:block;
+
+/* Card states */
+.hi-cs-active{z-index:4;opacity:1;transform:translate(0,0) scale(1);}
+.hi-cs-behind{z-index:2;opacity:0;transform:scale(0.93);pointer-events:none;}
+
+/* Exit: slides bottom-left + rotates slightly + fades */
+@keyframes hiCsExit{
+  from{opacity:1;transform:translate(0,0) scale(1) rotate(0deg);}
+  to  {opacity:0;transform:translate(-38px,38px) scale(0.9) rotate(-5deg);}
 }
-.hi-pin-hover-label{
-  position:absolute;top:42%;left:50%;
-  transform:translate(-50%,-50%);
-  background:rgba(0,0,0,0.55);color:#fff;
-  font-size:0.66rem;font-weight:600;letter-spacing:0.06em;
-  padding:5px 14px;border-radius:99px;
-  pointer-events:none;opacity:0;
-  transition:opacity 0.22s ease;
-  white-space:nowrap;font-family:var(--sans);
-  z-index:4;
+/* Enter: grows from behind + fades in */
+@keyframes hiCsEnter{
+  from{opacity:0;transform:scale(0.90);}
+  to  {opacity:1;transform:scale(1);}
 }
-.hi-pin-wrap:hover .hi-pin-hover-label{opacity:1;}
-.hi-pin-caption{
-  position:absolute;bottom:0;left:0;right:0;
+.hi-cs-exiting{animation:hiCsExit 0.28s ease-in forwards;z-index:5;pointer-events:none;}
+.hi-cs-entering{animation:hiCsEnter 0.28s ease-out forwards;z-index:4;}
+
+/* Photo fills entire card */
+.hi-cs-img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+
+/* Bottom gradient for caption readability */
+.hi-cs-grad{
+  position:absolute;bottom:0;left:0;right:0;height:42%;
+  background:linear-gradient(to top,rgba(0,0,0,0.42) 0%,transparent 100%);
+  pointer-events:none;z-index:1;
+}
+
+/* Caption — handwritten, white, sits in gradient zone */
+.hi-cs-cap{
+  position:absolute;bottom:22px;left:0;right:0;
   text-align:center;
-  font-family:var(--hand);font-size:0.92rem;color:var(--ink3);
-  margin:0;letter-spacing:0.01em;
+  font-family:var(--hand);font-size:16px;color:#fff;
+  letter-spacing:0.01em;pointer-events:none;z-index:2;
+}
+
+/* Hover label — frosted pill, upper-middle of photo */
+.hi-cs-label{
+  position:absolute;top:38%;left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.50);color:#fff;
+  font-size:10px;font-weight:600;letter-spacing:0.05em;
+  padding:4px 10px;border-radius:99px;
+  pointer-events:none;opacity:0;
+  transition:opacity 0.2s ease;
+  white-space:nowrap;font-family:var(--sans);z-index:3;
+}
+.hi-cs-wrap:hover .hi-cs-active .hi-cs-label{opacity:1;}
+
+/* Paper clip — centered, overlaps top edge of card, never animates */
+.hi-cs-clip{
+  position:absolute;
+  left:50%;top:20px;
+  transform:translateX(-50%);
+  z-index:10;pointer-events:none;
 }
 
 .cursor-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.03) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left 0.08s ease,top 0.08s ease;z-index:0;}
@@ -1953,8 +1992,9 @@ nav.scrolled .nav-pill{
 @media(max-width:900px){
   .hero{padding:8rem 48px 4rem;gap:32px;}
   .hi-scrapbook{width:240px;height:340px;}
-  .hi-pin-wrap{width:220px;height:256px;}
-  .hi-pin-photo,.hi-pin-frame{height:218px;}
+  .hi-cs-wrap{width:290px;height:310px;}
+  .hi-cs-back,.hi-cs-mid,.hi-cs-card{width:230px;height:230px;left:30px;top:50px;}
+  .hi-cs-cap{font-size:14px;bottom:18px;}
   .hi-polaroid-css{width:220px;padding:8px 8px 48px;}
   .hi-mai{height:220px;}
   .home-loves{padding:4rem 48px;}

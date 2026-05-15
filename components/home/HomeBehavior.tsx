@@ -511,28 +511,35 @@ runParallax();
   obs.observe(el);
 })();
 
-// ── PIN FRAME PHOTO CYCLE ──
+// ── PAPER CLIP CARD STACK ──
 (function(){
-  var wrap=document.getElementById('hiPinWrap');
+  var wrap=document.getElementById('hiCsWrap');
   if(!wrap)return;
-  var photo=document.getElementById('hiPinPhoto');
-  var caption=document.getElementById('hiPinCaption');
-  var data=[
-    {src:'/Image/hero/second.png',cap:'one day at a time'},
-    {src:'/Image/hero/third.png',cap:'food > everything'},
-    {src:'/about/portrait.jpg',cap:'coffee first, always'}
-  ];
+  var cards=Array.from(wrap.querySelectorAll('.hi-cs-card'));
   var cur=0,busy=false;
+
   wrap.addEventListener('click',function(){
     if(busy)return;busy=true;
-    photo.style.opacity='0';
+    var exitCard=cards[cur];
+    var next=(cur+1)%cards.length;
+    var enterCard=cards[next];
+
+    // Kick off exit
+    exitCard.classList.remove('hi-cs-active');
+    exitCard.classList.add('hi-cs-exiting');
+
+    // Kick off enter simultaneously
+    enterCard.classList.remove('hi-cs-behind');
+    enterCard.classList.add('hi-cs-entering');
+
     setTimeout(function(){
-      cur=(cur+1)%data.length;
-      photo.src=data[cur].src;
-      if(caption)caption.textContent=data[cur].cap;
-      photo.style.opacity='1';
-      setTimeout(function(){busy=false;},300);
-    },230);
+      exitCard.classList.remove('hi-cs-exiting');
+      exitCard.classList.add('hi-cs-behind');
+      enterCard.classList.remove('hi-cs-entering');
+      enterCard.classList.add('hi-cs-active');
+      cur=next;
+      busy=false;
+    },295);
   });
 })();
 
