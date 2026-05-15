@@ -50,11 +50,7 @@ const html = `<section class="cswk" id="work">
     <a class="cswk-row cswk-reversed reveal reveal-delay-1" href="/projects/biblofi">
 
       <div class="cswk-visual">
-        <div class="cswk-frame" style="--frame-tilt:-2deg;">
-          <div class="cswk-tape cswk-tape-tl" style="background:rgba(255,200,140,0.52);"></div>
-          <div class="cswk-tape cswk-tape-tr" style="background:rgba(255,200,140,0.35);"></div>
-          <img src="/Image/Biblofi/use-thum.png" alt="BiblioFi iOS app" loading="lazy" style="width:100%;height:auto;display:block;"/>
-        </div>
+        <img src="/Image/Biblofi/use-thum.png" alt="BiblioFi iOS app" loading="lazy" style="width:100%;height:auto;display:block;"/>
         <div class="cswk-annot" style="justify-content:flex-end;">
           <span class="cswk-handlabel">shipped alone, felt lived-in</span>
           <svg width="14" height="22" viewBox="0 0 14 22" fill="none"><path d="M7 2 Q7 11 7 20" stroke="#C8703A" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-dasharray="3 2"/><path d="M4 17 L7 20 L10 17" stroke="#C8703A" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -87,12 +83,7 @@ const html = `<section class="cswk" id="work">
     <a class="cswk-row reveal reveal-delay-3" href="/projects/ecotrack">
 
       <div class="cswk-visual">
-        <div class="cswk-frame" style="--frame-tilt:-2deg;">
-          <div class="cswk-tape cswk-tape-tl" style="background:rgba(255,218,70,0.52);"></div>
-          <div class="cswk-tape cswk-tape-br" style="background:rgba(255,218,70,0.38);"></div>
-          <img src="/Image/Ecotrack/ecotrack/thumnail.png" alt="EcoTrack" loading="lazy" style="width:100%;height:auto;display:block;"/>
-        </div>
-        <!-- hand-drawn annotation -->
+        <img src="/Image/Ecotrack/ecotrack/thumnail.png" alt="EcoTrack" loading="lazy" style="width:100%;height:auto;display:block;"/>
         <div class="cswk-annot">
           <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 3 Q6 9 13 15" stroke="#2D7D43" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M10 13 L13 15 L11 17" stroke="#2D7D43" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span class="cswk-handlabel">habits made human</span>
