@@ -826,7 +826,7 @@ nav.scrolled .nav-pill{
 }
 .dsz-cta:hover{background:#1076BC;color:#ffffff;border-color:#1076BC;}
 /* annotation columns */
-.dsz-ann-col{position:absolute;display:flex;flex-direction:column;pointer-events:none;z-index:2;}
+.dsz-ann-col{position:absolute;top:0;bottom:0;width:160px;pointer-events:none;z-index:2;}
 .dsz-ann-left{left:0;}
 .dsz-ann-right{right:0;}
 @media(max-width:1024px){
