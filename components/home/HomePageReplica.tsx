@@ -16,7 +16,6 @@ export function HomePageReplica() {
       <HomeLoader />
       <main className="home-page-shell">
         <HomeBehavior />
-        <div className="custom-cursor" id="cursor"></div>
         <div className="glass-orb" id="glassOrb"></div>
         <div className="scroll-tube" id="scrollTube">
           <div className="scroll-tube-fill" id="scrollTubeFill"></div>

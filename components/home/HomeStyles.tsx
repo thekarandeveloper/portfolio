@@ -97,21 +97,6 @@ body.home-loading{overflow:hidden;}
   0%,28%{opacity:1;background:#fff;}
   100%{opacity:0;visibility:hidden;}
 }
-@media (hover:hover) and (pointer:fine){
-  body,
-  body a,
-  body button,
-  .hero-card,
-  .pw-row,
-  .gallery-item,
-  .obsession-card,
-  .sc-card,
-  .testimonial-card,
-  .contact-link,
-  .q-chip,
-  .conv-replay,
-  .signoff{cursor:none;}
-}
 .water-surface{
   position:relative;
   overflow:hidden;
@@ -242,7 +227,7 @@ nav.scrolled{
 .nav-cta:hover{background:rgba(0,0,0,0.04);}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:center;padding:5.5rem 120px 4rem;gap:40px;position:relative;overflow:visible;cursor:none;}
+.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:center;padding:5.5rem 120px 4rem;gap:40px;position:relative;overflow:visible;}
 
 /* about-style intro hero */
 .hi-left{position:relative;z-index:2;text-align:left;}
@@ -324,22 +309,6 @@ nav.scrolled{
 @keyframes hiDrift{0%,100%{transform:translateY(0);}50%{transform:translateY(-11px);}}
 
 .cursor-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.03) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left 0.08s ease,top 0.08s ease;z-index:0;}
-.custom-cursor{
-  position:fixed;width:33px;height:33px;
-  background:url('/pixel-cursor.svg') no-repeat top left;
-  background-size:33px 33px;
-  border-radius:0;box-shadow:none;
-  pointer-events:none;
-  transform:translate(-6px,0px);
-  z-index:9998;
-  transition:opacity 0.22s ease,width 0.18s ease,height 0.18s ease;
-}
-.custom-cursor::before{content:none;}
-.custom-cursor.big{
-  width:39px;height:39px;
-  background-size:39px 39px;
-  transform:translate(-7px,0px);
-}
 
 /* canvas wave injected by HomeBehavior — no static CSS needed */
 #heroWaveCanvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}

@@ -80,7 +80,7 @@ const script = `// ── WATER SURFACE HOVER EFFECT ──
 
 
 // ── CURSOR GLOW + GLASS ORB ──
-const cursorGlow=document.getElementById('cursorGlow'),cursor=document.getElementById('cursor');
+const cursorGlow=document.getElementById('cursorGlow');
 const glassOrb=document.getElementById('glassOrb');
 let glassVisible=false,orbOverText=false;
 function checkOrbOverText(el){
@@ -106,7 +106,6 @@ document.addEventListener('mouseover',e=>{
   if(orbOverText!==over){orbOverText=over;if(glassVisible)glassOrb.style.opacity=over?'0':'1';}
 });
 document.addEventListener('mousemove',e=>{
-  if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';}
   if(glassOrb){
     glassOrb.style.left=e.clientX+'px';
     glassOrb.style.top=e.clientY+'px';
@@ -115,7 +114,6 @@ document.addEventListener('mousemove',e=>{
   const hero=document.getElementById('home');
   if(hero&&cursorGlow){const rect=hero.getBoundingClientRect();if(e.clientY>=rect.top&&e.clientY<=rect.bottom){cursorGlow.style.left=(e.clientX-rect.left)+'px';cursorGlow.style.top=(e.clientY-rect.top)+'px';}}
 });
-document.querySelectorAll('a,button,.hero-card,.pw-row,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.q-chip,.conv-replay').forEach(el=>{el.addEventListener('mouseenter',()=>{if(cursor)cursor.classList.add('big');});el.addEventListener('mouseleave',()=>{if(cursor)cursor.classList.remove('big');});});
 
 
 // ── NAV ──
@@ -379,20 +377,6 @@ if(heroBlob) {
     section.classList.add('stage-fixed');
   });
 
-  /* Custom cursor: big on hover (communicates clickability) */
-  section.addEventListener('mouseenter',function(){
-    var cur=document.getElementById('cursor');
-    if(cur)cur.classList.add('big');
-  });
-  section.addEventListener('mouseleave',function(){
-    var cur=document.getElementById('cursor');
-    if(cur)cur.classList.remove('big');
-  });
-  /* After fix, restore normal cursor size */
-  section.addEventListener('click',function(){
-    var cur=document.getElementById('cursor');
-    if(cur)cur.classList.remove('big');
-  });
 })();
 
 var bgSections=Array.from(document.querySelectorAll('.work,.journey,.contact'));
