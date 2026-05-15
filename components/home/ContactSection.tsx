@@ -2,22 +2,15 @@ const html = `<section class="contact" id="contact">
   <div class="contact-glow"></div>
   <div class="contact-flex">
 
-    <!-- LEFT: interactive search bar -->
+
+
+    <!-- LEFT: google search mock -->
     <div class="contact-left reveal from-left">
-      <div class="sb-wrap">
-        <div class="sb-input-row">
-          <svg class="sb-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-          <input class="sb-input" id="sbInput" type="text" placeholder="What do I work on?" autocomplete="off" spellcheck="false" />
-        </div>
-        <p class="sb-filter-label">What do you want to know?</p>
-        <div class="sb-pills" id="sbPills">
-          <button class="sb-pill active" data-cat="work" data-color="blue">Work &amp; design</button>
-          <button class="sb-pill" data-cat="personal" data-color="coral">Personal</button>
-          <button class="sb-pill" data-cat="likes" data-color="amber">Likes &amp; dislikes</button>
-          <button class="sb-pill" data-cat="funny" data-color="green">Funny things</button>
-        </div>
-        <div id="sbResults"></div>
+      <div class="gsearch-bar">
+        <svg class="gsearch-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#9aa0a6" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#9aa0a6" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="gsearch-query-text" id="gsearchQuery"></span><span class="gsearch-caret" id="gsearchCaret">|</span>
       </div>
+      <div class="gsearch-results" id="gsearchResults"></div>
     </div>
 
     <!-- RIGHT: contact links -->

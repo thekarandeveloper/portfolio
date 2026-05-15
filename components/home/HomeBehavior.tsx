@@ -409,131 +409,77 @@ initParallax();
 runParallax();
 
 
-// ── INTERACTIVE SEARCH BAR ──
+// ── GOOGLE SEARCH CYCLING ANIMATION ──
 (function(){
-  var sbInput=document.getElementById('sbInput');
-  var sbResultsEl=document.getElementById('sbResults');
-  var allPills=document.querySelectorAll('.sb-pill');
-  if(!sbInput||!sbResultsEl)return;
-
-  var ICONS={
-    'briefcase':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M2 13h20"/></svg>',
-    'layout-grid':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
-    'device-mobile':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="6" x2="13" y2="6"/></svg>',
-    'apple':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7c-3 0-4 3-4 5.5 0 3 2 7.5 4 7.5 1 .005 1.5-.468 3-.468 1.5 0 2 .463 3 .468 2 0 4-4.5 4-7.5 0-2.5-1-5.5-4-5.5-1.5 0-2 .5-3 .5-1 0-1.5-.5-3-.5z"/><path d="M12 4a2 2 0 1 0 2-2 4 4 0 0 1-2 2z"/></svg>',
-    'coffee':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h14v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/><path d="M17 12h1a2 2 0 0 0 0-4h-1"/><path d="M6.5 4l.5 2M9.5 4l.5 2M12.5 4l.5 2"/></svg>',
-    'map-pin':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="3"/><path d="M17.657 16.657L13.414 20.9a2 2 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/></svg>',
-    'plane':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2-7h-4l-2 2H2l2-4-2-4h3l2 2h4l-2-7h3z"/></svg>',
-    'book':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19a9 9 0 0 1 9 0 9 9 0 0 1 9 0"/><path d="M3 6a9 9 0 0 1 9 0 9 9 0 0 1 9 0"/><line x1="3" y1="6" x2="3" y2="19"/><line x1="12" y1="6" x2="12" y2="19"/><line x1="21" y1="6" x2="21" y2="19"/></svg>',
-    'heart':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 13.572l-7.5 7.428-7.5-7.428A5 5 0 1 1 12 6.006a5 5 0 1 1 7.5 7.566z"/></svg>',
-    'x':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
-    'star':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.75L5.828 20.995l1.179-6.873-5-4.867 6.9-1L12 1.5l3.086 6.25 6.9 1-5 4.867 1.179 6.873z"/></svg>',
-    'mood-sad':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="9" y1="10" x2="9.01" y2="10" stroke-width="2.5"/><line x1="15" y1="10" x2="15.01" y2="10" stroke-width="2.5"/><path d="M9.5 15.5a3.5 3.5 0 0 1 5 0"/></svg>',
-    'clock':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>',
-    'mood-smile':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="9" y1="10" x2="9.01" y2="10" stroke-width="2.5"/><line x1="15" y1="10" x2="15.01" y2="10" stroke-width="2.5"/><path d="M9.5 15a3.5 3.5 0 0 0 5 0"/></svg>',
-    'device-laptop':'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="19" x2="21" y2="19"/><rect x="3" y="4" width="18" height="12" rx="1"/></svg>'
-  };
-
-  var SB_DATA={
-    work:{color:'blue',placeholder:'What do I work on?',items:[
-      {icon:'briefcase',label:'Lead Product Designer @ AirIQ',desc:'Designing B2B flight booking for 25,000+ travel agents. 0→1. Web & mobile.',tag:'CURRENT'},
-      {icon:'layout-grid',label:'Built a design system from scratch',desc:'150+ icons, 30+ tokens, 0 inconsistency debt. One Figma library. Four products.',tag:'2023'},
-      {icon:'device-mobile',label:'Designed Sakhi & Care Autor',desc:'Healthcare + period tracking. Research-heavy. Shipped with care.',tag:'FREELANCE'},
-      {icon:'apple',label:'iOS dev → product designer',desc:'Started coding at Infosys × Apple program. Then found my real calling.',tag:'ORIGIN STORY'}
+  var queryEl=document.getElementById('gsearchQuery');
+  var resultsEl=document.getElementById('gsearchResults');
+  if(!queryEl||!resultsEl)return;
+  var searches=[
+    {q:'Who is Nikunj?',items:[
+      {icon:'✦',text:'Product Designer',tag:'role'},
+      {icon:'✦',text:'UX Researcher',tag:'role'},
+      {icon:'✦',text:'Problem Solver',tag:'trait'},
+      {icon:'✦',text:'Systems Thinker',tag:'trait'}
     ]},
-    personal:{color:'coral',placeholder:'Who is Nikunj really?',items:[
-      {icon:'coffee',label:'Cold coffee is non-negotiable',desc:'Iced americano. Same order, 47 days straight. Hot coffee is a compromise.',tag:'ALWAYS'},
-      {icon:'map-pin',label:'Based in Gurugram, designing everywhere',desc:'Currently at AirIQ. Previously freelancing across healthcare & iOS.',tag:'LOCATION'},
-      {icon:'plane',label:'Travel rewires my brain',desc:'Every trip comes back as a design reference or a mental model. No exceptions.',tag:'LIFESTYLE'},
-      {icon:'book',label:'Corner seat, lo-fi, zero eye contact',desc:'Cafés are my real office. Bad wifi, good ambiance. Maximum productivity.',tag:'RITUAL'}
+    {q:'What does she love?',items:[
+      {icon:'✦',text:'Obsessing over pixels',tag:'always'},
+      {icon:'☕',text:'Cold coffee',tag:'fuel'},
+      {icon:'✦',text:'Clean typography',tag:'passion'},
+      {icon:'🎵',text:'Lo-fi while designing',tag:'vibe'}
     ]},
-    likes:{color:'amber',placeholder:'What do I love or hate?',items:[
-      {icon:'heart',label:'Likes: Cold coffee, late nights, good kerning',desc:'And pixel-perfect spacing. And when dev actually implements the design correctly.',tag:'LOVES'},
-      {icon:'x',label:'Dislikes: Hot coffee, inconsistency, no design system',desc:'Also: when "just make it pop" is the only feedback. Every. Single. Time.',tag:'HATES'},
-      {icon:'star',label:'Obsessed with travel & new cities',desc:'Plans: everywhere. Current status: actively plotting the next trip.',tag:'PASSION'},
-      {icon:'mood-sad',label:'Cannot function without music',desc:'Lo-fi while designing. Loud while thinking. Silence is suspicious.',tag:'DEPENDENCY'}
+    {q:'Where can you find her?',items:[
+      {icon:'☕',text:'Corner seat at a café',tag:'usually'},
+      {icon:'✦',text:'Deep in Figma',tag:'obviously'},
+      {icon:'✦',text:'Late nights, building',tag:'always'},
+      {icon:'✦',text:'tyaginikunj26@gmail.com',tag:'reach out'}
     ]},
-    funny:{color:'green',placeholder:'Okay but actually though...',items:[
-      {icon:'clock',label:'Converts from trainee to full-time in 4 months',desc:'Technically started as a trainee. Technically left as Lead Designer. Speed run.',tag:'SPEEDRUN'},
-      {icon:'coffee',label:'Streak: same coffee order, 47 days',desc:"At this point it's not preference, it's identity. The barista knows.",tag:'OBSESSED'},
-      {icon:'mood-smile',label:'"Pixels > sleep" is not a joke',desc:'Has genuinely chosen to fix spacing at 2am. Multiple times. Zero regrets.',tag:'TRUE STORY'},
-      {icon:'device-laptop',label:'Mentored 10 devs as a design intern',desc:'Was supposed to just design BibloFi. Ended up leading a dev team. Somehow.',tag:'HOW??'}
+    {q:'Which coffee?',items:[
+      {icon:'🧊',text:'Cold coffee',tag:'always'},
+      {icon:'☕',text:'Extra ice, every time',tag:'non-negotiable'},
+      {icon:'✦',text:'Never hot, ever',tag:'firm stance'},
+      {icon:'✦',text:'Iced americano > life',tag:'truth'}
     ]}
-  };
-
-  var activeCat='work';
-
-  function renderRows(items,color){
-    sbResultsEl.innerHTML='';
-    if(!items.length){
-      sbResultsEl.innerHTML='<p class="sb-empty">Nothing found — try “coffee” or “design”</p>';
-      return;
-    }
-    items.forEach(function(item,i){
-      var row=document.createElement('div');
-      row.className='sb-row';
-      row.style.animationDelay=(i*50)+'ms';
-      row.innerHTML=
-        '<div class="sb-row-left">'+
-          '<div class="sb-icon-block '+color+'">'+(ICONS[item.icon]||'')+'</div>'+
-          '<div class="sb-text-stack">'+
-            '<span class="sb-label">'+item.label+'</span>'+
-            '<span class="sb-desc">'+item.desc+'</span>'+
-          '</div>'+
-        '</div>'+
-        '<span class="sb-tag">'+item.tag+'</span>';
-      sbResultsEl.appendChild(row);
+  ];
+  var cur=0,started=false;
+  function build(items){
+    resultsEl.innerHTML='';
+    items.forEach(function(it){
+      var d=document.createElement('div');
+      d.className='gsearch-item';
+      d.innerHTML='<div class="gsearch-item-icon">'+it.icon+'</div><span>'+it.text+'</span><span class="gsearch-item-tag">'+it.tag+'</span>';
+      resultsEl.appendChild(d);
     });
   }
-
-  function selectCat(cat){
-    activeCat=cat;
-    sbInput.value='';
-    var d=SB_DATA[cat];
-    sbInput.placeholder=d.placeholder;
-    allPills.forEach(function(p){p.classList.toggle('active',p.dataset.cat===cat);});
-    renderRows(d.items,d.color);
-  }
-
-  function doSearch(q){
-    if(!q){selectCat(activeCat);return;}
-    q=q.toLowerCase();
-    var matched=[];
-    Object.keys(SB_DATA).forEach(function(cat){
-      var d=SB_DATA[cat];
-      d.items.forEach(function(item){
-        if(item.label.toLowerCase().indexOf(q)!==-1||item.desc.toLowerCase().indexOf(q)!==-1){
-          matched.push({item:item,color:d.color});
-        }
-      });
-    });
-    sbResultsEl.innerHTML='';
-    if(!matched.length){
-      sbResultsEl.innerHTML='<p class="sb-empty">Nothing found — try “coffee” or “design”</p>';
-      return;
-    }
-    matched.forEach(function(m,i){
-      var row=document.createElement('div');
-      row.className='sb-row';
-      row.style.animationDelay=(i*50)+'ms';
-      row.innerHTML=
-        '<div class="sb-row-left">'+
-          '<div class="sb-icon-block '+m.color+'">'+(ICONS[m.item.icon]||'')+'</div>'+
-          '<div class="sb-text-stack">'+
-            '<span class="sb-label">'+m.item.label+'</span>'+
-            '<span class="sb-desc">'+m.item.desc+'</span>'+
-          '</div>'+
-        '</div>'+
-        '<span class="sb-tag">'+m.item.tag+'</span>';
-      sbResultsEl.appendChild(row);
+  function showResults(){Array.from(resultsEl.querySelectorAll('.gsearch-item')).forEach(function(el,i){setTimeout(function(){el.classList.add('gs-visible');},i*120);});}
+  function hideResults(cb){var els=Array.from(resultsEl.querySelectorAll('.gsearch-item')).reverse();els.forEach(function(el,i){setTimeout(function(){el.classList.remove('gs-visible');},i*70);});setTimeout(cb,els.length*70+180);}
+  function typeQ(q,cb){var i=0;(function step(){if(i<q.length){queryEl.textContent=q.slice(0,++i);setTimeout(step,55+Math.random()*35);}else{cb();}})();}
+  function delQ(cb){(function step(){var t=queryEl.textContent;if(t.length){queryEl.textContent=t.slice(0,-1);setTimeout(step,28);}else{cb();}})();}
+  function run(idx){
+    var s=searches[idx];
+    var isLast=idx===searches.length-1;
+    build(s.items);
+    typeQ(s.q,function(){
+      setTimeout(function(){
+        showResults();
+        if(isLast)return;
+        setTimeout(function(){
+          hideResults(function(){
+            delQ(function(){
+              setTimeout(function(){run(idx+1);},320);
+            });
+          });
+        },2600);
+      },380);
     });
   }
-
-  allPills.forEach(function(pill){
-    pill.addEventListener('click',function(){selectCat(pill.dataset.cat);});
-  });
-  sbInput.addEventListener('input',function(){doSearch(sbInput.value.trim());});
-  selectCat('work');
+  var contact=document.querySelector('.contact');
+  if(!contact)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting&&!started){started=true;setTimeout(function(){run(0);},400);obs.disconnect();}
+    });
+  },{threshold:0.3});
+  obs.observe(contact);
 })();
 
 // ── HERO TYPEWRITER ──
