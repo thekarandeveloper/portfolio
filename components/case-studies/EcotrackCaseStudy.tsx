@@ -229,9 +229,9 @@ function OverviewSection() {
       {/* Feature cards */}
       <div className="csl-card-grid csl-reveal rd1">
         {ecoFeatures.map((f) => (
-          <div key={f.title} style={{ background: "#fff", borderRadius: 18, padding: "22px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+          <div key={f.title} style={{ background: "#fff", borderRadius: 16, padding: "22px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
             <div style={{ fontSize: "1.5rem", marginBottom: 10 }}>{f.icon}</div>
-            <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{f.title}</p>
+            <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{f.title}</p>
             <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>{f.desc}</p>
           </div>
         ))}
@@ -248,7 +248,7 @@ function ProblemSection() {
     <CsSection id="problem">
       <CsSectionHeader label="The Problem" title="Why sustainable living feels out of reach." />
 
-      <div className="csl-callout csl-reveal" style={{ fontSize: "1rem", marginBottom: 28 }}>
+      <div className="csl-callout csl-reveal" style={{ marginBottom: 28 }}>
         People want to reduce their environmental impact but struggle to understand how daily actions affect their carbon footprint —{" "}
         <strong>most tools are too complex or unengaging, making sustainable living feel out of reach.</strong>
       </div>
@@ -259,7 +259,7 @@ function ProblemSection() {
       </div>
 
       {/* Potential solution */}
-      <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em", color: "#2D7D43", marginBottom: 12 }} className="csl-reveal rd2">
+      <p className="csl-section-eyebrow csl-reveal rd2">
         Potential Solution
       </p>
       <div className="csl-callout csl-reveal rd2" style={{ borderLeftColor: "#2D7D43", background: "#E8F7EC" }}>
@@ -332,20 +332,18 @@ function ResearchSection() {
       {/* Animated stats */}
       <div
         ref={rootRef as React.RefObject<HTMLDivElement>}
-        style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 14 }}
-        className="csl-reveal rd2"
+        className="csl-metrics csl-reveal rd2"
       >
         {ecoResearchStats.map((stat, i) => (
-          <div key={stat.label} style={{ background: "#fff", borderRadius: 16, padding: "22px 16px", textAlign: "center", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+          <div key={stat.label} className="csl-metric">
             <p
-              className="eco-count"
+              className="eco-count csl-metric-val"
               data-target={stat.value}
               data-suffix={stat.suffix}
-              style={{ fontSize: "1.8rem", fontWeight: 800, color: "#2D7D43", lineHeight: 1, marginBottom: 6 }}
             >
               0{stat.suffix}
             </p>
-            <p style={{ fontSize: "0.68rem", color: "#6B7280", textTransform: "uppercase", letterSpacing: "0.06em" }}>{stat.label}</p>
+            <p className="csl-metric-label">{stat.label}</p>
           </div>
         ))}
       </div>
@@ -366,24 +364,24 @@ function CompetitiveSection() {
 
       <div className="csl-card-grid csl-reveal">
         {ecoCompetitors.map((comp) => (
-          <div key={comp.name} style={{ background: "#fff", borderRadius: 18, padding: "22px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
-            <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>{comp.name}</p>
+          <div key={comp.name} style={{ background: "#fff", borderRadius: 16, padding: "22px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+            <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>{comp.name}</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
               <div>
-                <p style={{ fontSize: "0.62rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>Pros</p>
+                <p style={{ fontSize: "0.64rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>Pros</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {comp.pros.map((p) => (
-                    <li key={p} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.5, marginBottom: 4, display: "flex", gap: 6 }}>
+                    <li key={p} style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6, marginBottom: 4, display: "flex", gap: 6 }}>
                       <span style={{ color: "#10B981", flexShrink: 0 }}>+</span>{p}
                     </li>
                   ))}
                 </ul>
               </div>
               <div>
-                <p style={{ fontSize: "0.62rem", fontWeight: 700, color: "#EF4444", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>Cons</p>
+                <p style={{ fontSize: "0.64rem", fontWeight: 700, color: "#EF4444", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>Cons</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {comp.cons.map((c) => (
-                    <li key={c} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.5, marginBottom: 4, display: "flex", gap: 6 }}>
+                    <li key={c} style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6, marginBottom: 4, display: "flex", gap: 6 }}>
                       <span style={{ color: "#EF4444", flexShrink: 0 }}>–</span>{c}
                     </li>
                   ))}
@@ -394,7 +392,7 @@ function CompetitiveSection() {
         ))}
       </div>
 
-      <div className="csl-callout csl-reveal rd1" style={{ marginTop: 20, borderLeftColor: "#2D7D43", background: "#E8F7EC" }}>
+      <div className="csl-callout csl-reveal rd1" style={{ borderLeftColor: "#2D7D43", background: "#E8F7EC" }}>
         <span style={{ fontSize: "1.2rem", marginRight: 8 }}>💡</span>
         While these apps offer great features individually, most lack <strong>simplicity</strong>, <strong>daily usability</strong>, or <strong>engagement</strong>. EcoTrack combines the best of all — making sustainability simple, interactive, and personally rewarding.
       </div>
@@ -421,7 +419,7 @@ function EmpathySection() {
 
       <div className="csl-card-2col csl-reveal rd1">
         {/* Priya */}
-        <div style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
+        <div style={{ background: "#fff", borderRadius: 16, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
           <div style={{ background: "#E8F7EC", padding: "18px 20px", display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ fontSize: "1.8rem" }}>👩</div>
             <div>
@@ -432,14 +430,14 @@ function EmpathySection() {
           <div style={{ padding: "16px 20px" }}>
             {ecoEmpathy1.map((row) => (
               <div key={row.cat} style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 10, marginBottom: 10 }}>
-                <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
+                <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
                 <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.55 }}>{row.insight}</p>
               </div>
             ))}
           </div>
         </div>
         {/* Arjun */}
-        <div style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
+        <div style={{ background: "#fff", borderRadius: 16, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
           <div style={{ background: "#D0EAD4", padding: "18px 20px", display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ fontSize: "1.8rem" }}>👨</div>
             <div>
@@ -450,7 +448,7 @@ function EmpathySection() {
           <div style={{ padding: "16px 20px" }}>
             {ecoEmpathy2.map((row) => (
               <div key={row.cat} style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 10, marginBottom: 10 }}>
-                <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
+                <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
                 <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.55 }}>{row.insight}</p>
               </div>
             ))}
@@ -505,7 +503,7 @@ function PersonasSection() {
       </div>
 
       {/* Full persona documents image */}
-      <div className="csl-reveal rd1" style={{ marginTop: 24 }}>
+      <div className="csl-reveal rd1" style={{ marginTop: 28 }}>
         <CsImg label="Full persona documents — detailed sheets from Figma" height={240} icon="👤" sub="Goals · Pain points · Motivations · Behaviours" />
       </div>
     </CsSection>
@@ -530,10 +528,10 @@ function WireframesSection() {
       </div>
 
       {/* High-fi header */}
-      <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em", color: "#2D7D43", marginBottom: 12 }} className="csl-reveal rd1">
+      <p className="csl-section-eyebrow csl-reveal rd1">
         High-Fidelity Wireframes
       </p>
-      <h3 style={{ fontSize: "1.3rem", fontWeight: 800, color: "#111827", marginBottom: 12, letterSpacing: "-0.02em" }} className="csl-reveal rd1">
+      <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", marginBottom: 16, letterSpacing: "-0.01em" }} className="csl-reveal rd1">
         Bringing the app to life with colour, depth, and detail.
       </h3>
 
@@ -542,13 +540,13 @@ function WireframesSection() {
         <CsImg label="Carbon Details Screen" aspect="9/16" icon="📊" sub="Impact breakdown · Charts" />
         <CsImg label="Learning Hub Screen" aspect="9/16" icon="💡" sub="Tips · Eco habits" />
       </div>
-      <div className="csl-img-3up csl-reveal rd3" style={{ marginTop: 14 }}>
+      <div className="csl-img-3up csl-reveal rd3" style={{ marginTop: 16 }}>
         <CsImg label="Add Activity Screen" aspect="9/16" icon="➕" sub="Log transport · Food · Energy" />
         <CsImg label="Progress Screen" aspect="9/16" icon="📈" sub="Weekly · Monthly charts" />
         <CsImg label="Profile Screen" aspect="9/16" icon="👤" sub="Achievements · Goals" />
       </div>
 
-      <div className="csl-reveal" style={{ marginTop: 16 }}>
+      <div className="csl-reveal" style={{ marginTop: 24 }}>
         <CsImg label="Full app flow — all screens connected" height={260} icon="🔗" sub="Prototype connections · Complete user flow" />
       </div>
     </CsSection>
@@ -611,21 +609,21 @@ function TestingSection() {
       </div>
 
       <div className="csl-card-2col csl-reveal rd1">
-        <div style={{ background: "#fff", borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
-          <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>Key Insights Gained</p>
+        <div style={{ background: "#fff", borderRadius: 16, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+          <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>Key Insights Gained</p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             {ecoTestInsights.map((insight) => (
-              <li key={insight} style={{ display: "flex", gap: 8, marginBottom: 10, fontSize: "0.78rem", color: "#374151", lineHeight: 1.55 }}>
+              <li key={insight} style={{ display: "flex", gap: 8, marginBottom: 10, fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>
                 <span style={{ color: "#2D7D43", flexShrink: 0 }}>→</span>{insight}
               </li>
             ))}
           </ul>
         </div>
-        <div style={{ background: "#fff", borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
-          <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>How It Helped</p>
+        <div style={{ background: "#fff", borderRadius: 16, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+          <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>How It Helped</p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             {ecoTestHelped.map((item) => (
-              <li key={item} style={{ display: "flex", gap: 8, marginBottom: 10, fontSize: "0.78rem", color: "#374151", lineHeight: 1.55 }}>
+              <li key={item} style={{ display: "flex", gap: 8, marginBottom: 10, fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>
                 <span style={{ color: "#10B981", flexShrink: 0 }}>✓</span>{item}
               </li>
             ))}
@@ -667,7 +665,7 @@ function IterationsSection() {
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
             <span style={{ fontSize: "0.62rem", fontWeight: 700, background: "#E8F7EC", color: "#2D7D43", padding: "4px 12px", borderRadius: 100 }}>{iter.label}</span>
           </div>
-          <h3 style={{ fontSize: "0.96rem", fontWeight: 700, color: "#111827", marginBottom: 16 }}>{iter.title}</h3>
+          <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", marginBottom: 16 }}>{iter.title}</h3>
           <div className="csl-ba-grid">
             <div>
               <p className="csl-ba-label before">✕ Before</p>
@@ -700,9 +698,9 @@ function LearningsSection() {
 
       <div className="csl-card-grid csl-reveal">
         {ecoLearnings.map((l, i) => (
-          <div key={l.title} style={{ background: "#fff", borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+          <div key={l.title} style={{ background: "#fff", borderRadius: 16, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
             <span style={{ fontSize: "1.5rem", display: "block", marginBottom: 12 }}>{l.icon}</span>
-            <p style={{ fontSize: "0.86rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{l.title}</p>
+            <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{l.title}</p>
             <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>{l.desc}</p>
           </div>
         ))}
