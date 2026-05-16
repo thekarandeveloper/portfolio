@@ -373,26 +373,17 @@ function OverviewSection() {
   return (
     <CsSection id="overview">
       <div className="air-overview csl-reveal">
-        <p className="air-overview-kicker">
-          <Typed text="Overview" delay={200} />
-        </p>
-
-        <div className="air-overview-head">
-          <h2 className="air-overview-title">
-            <span>Unified </span>
-            <span>B2B flight booking </span>
-            <span className="muted">
-              <Typed text="platform for " delay={400} />
-            </span>
-            <span>travel agents </span>
-            <span className="muted">
-              <Typed text="and back-office admins" delay={1100} />
-            </span>
-          </h2>
-          <span className="air-float air-float-ticket" aria-hidden="true">🎫</span>
-          <span className="air-float air-float-plane" aria-hidden="true">✈️</span>
-          <span className="air-float air-float-bag" aria-hidden="true">🧳</span>
-        </div>
+        <h2 className="air-overview-title">
+          <span>Unified </span>
+          <span>B2B flight booking </span>
+          <span className="muted">
+            <Typed text="platform for " delay={200} />
+          </span>
+          <span>travel agents </span>
+          <span className="muted">
+            <Typed text="and back-office admins" delay={900} />
+          </span>
+        </h2>
 
         <div className="air-overview-copy">
           <p>
