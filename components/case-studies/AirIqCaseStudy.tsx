@@ -373,15 +373,21 @@ function OverviewSection() {
   return (
     <CsSection id="overview">
       <div className="air-overview csl-reveal">
-        <p className="air-overview-kicker">Overview</p>
+        <p className="air-overview-kicker">
+          <Typed text="Overview" delay={200} />
+        </p>
 
         <div className="air-overview-head">
           <h2 className="air-overview-title">
             <span>Unified </span>
             <span>B2B flight booking </span>
-            <span className="muted">platform for </span>
+            <span className="muted">
+              <Typed text="platform for " delay={400} />
+            </span>
             <span>travel agents </span>
-            <span className="muted">and back-office admins</span>
+            <span className="muted">
+              <Typed text="and back-office admins" delay={1100} />
+            </span>
           </h2>
           <span className="air-float air-float-ticket" aria-hidden="true">🎫</span>
           <span className="air-float air-float-plane" aria-hidden="true">✈️</span>
@@ -403,7 +409,7 @@ function OverviewSection() {
               Travel agencies across India were booking flights on <strong>3+ disconnected tools</strong>, with no unified view, no error prevention, and no system backing them up. Each booking took <strong>12+ minutes</strong> on average, full of manual re-entry and guesswork.
             </p>
             <p>
-              The goal: design a <strong>single B2B portal</strong> that gives travel agents and back-office admins everything they need: fast search, clean data, passenger management, and a confirmation flow that actually prevents errors.
+              The goal: design a <strong>single B2B portal</strong> that gives travel agents and back-office admins everything they need — fast search, clean data, passenger management, and a confirmation flow that actually prevents errors.
             </p>
           </div>
         </div>

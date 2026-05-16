@@ -6505,6 +6505,104 @@ body.csl-page-active footer { display: none !important; }
 }
 
 /* ════════════════════════════════════════════════════════════════
+   BIBLOFI VISUAL STORYTELLING  (biblo-*)
+════════════════════════════════════════════════════════════════ */
+
+/* Persona split panels */
+.biblo-persona-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-top: 32px;
+}
+.biblo-persona-panel { padding: 48px 40px; }
+
+/* Feature sticky scroll layout */
+.biblo-feature-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 56px;
+  align-items: start;
+  margin-top: 40px;
+}
+.biblo-feature-phone {
+  position: sticky;
+  top: 104px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Sprint timeline */
+.biblo-sprint-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #F3F4F6;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 28px 0;
+}
+.biblo-sprint-week {
+  padding: 20px 18px;
+  border-right: 1px solid #F3F4F6;
+  background: #fff;
+}
+.biblo-sprint-week:last-child { border-right: none; }
+
+/* Decision comparison */
+.biblo-decision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+/* Test result strip */
+.biblo-result-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  margin-bottom: 20px;
+}
+.biblo-result-col {
+  padding: 22px 16px;
+  border-right: 1px solid #F3F4F6;
+  text-align: center;
+}
+.biblo-result-col:last-child { border-right: none; }
+
+/* Learnings — typographic list, no cards */
+.biblo-learning-item {
+  display: flex;
+  gap: 28px;
+  padding: 28px 0;
+  border-bottom: 1px solid #F3F4F6;
+  align-items: flex-start;
+}
+.biblo-learning-item:last-child { border-bottom: none; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .biblo-feature-layout  { grid-template-columns: 1fr; }
+  .biblo-feature-phone   { display: none; }
+}
+@media (max-width: 768px) {
+  .biblo-persona-split   { grid-template-columns: 1fr; }
+  .biblo-persona-panel   { padding: 32px 24px; }
+  .biblo-sprint-timeline { grid-template-columns: 1fr 1fr; }
+  .biblo-result-strip    { grid-template-columns: 1fr 1fr; }
+  .biblo-decision-grid   { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .biblo-sprint-timeline { grid-template-columns: 1fr; }
+  .biblo-result-strip    { grid-template-columns: 1fr 1fr; }
+}
+
+/* ════════════════════════════════════════════════════════════════
    PASSWORD GATE  (pgx-*)
 ════════════════════════════════════════════════════════════════ */
 
@@ -7016,3 +7114,189 @@ body.csl-page-active footer { display: none !important; }
   }
 }
 
+/* ════════════════════════════════════════════════════════════════
+   AIR IQ OVERVIEW  (air-overview-*)
+════════════════════════════════════════════════════════════════ */
+.air-overview {
+  background: #F5F8FF;
+  padding: 52px 0 8px;
+  color: #050505;
+}
+.air-overview-kicker {
+  font-size: clamp(0.78rem, 1.1vw, 0.95rem);
+  line-height: 1.2;
+  color: #1E90FF;
+  margin: 0 0 36px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.air-overview-head {
+  position: relative;
+  margin-bottom: clamp(96px, 16vw, 190px);
+}
+.air-overview-title {
+  position: relative;
+  z-index: 1;
+  max-width: 980px;
+  margin: 0;
+  font-size: clamp(3.1rem, 7.15vw, 7.75rem);
+  line-height: 1.06;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #060606;
+}
+.air-overview-title .muted {
+  color: #9A9A9D;
+  font-weight: 800;
+}
+.air-float {
+  position: absolute;
+  z-index: 2;
+  width: clamp(52px, 7vw, 86px);
+  height: clamp(52px, 7vw, 86px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.45rem, 2.8vw, 2.35rem);
+  line-height: 1;
+  border: 1px solid rgba(30,144,255,0.12);
+  box-shadow: 0 8px 24px rgba(30,144,255,0.1), 0 2px 6px rgba(0,0,0,0.06);
+}
+.air-float-ticket {
+  top: -24px;
+  left: 31%;
+  background: #DDF6DF;
+  border-color: #BEEBC5;
+}
+.air-float-plane {
+  top: 14%;
+  right: 6%;
+  background: #E8F3FF;
+  border-color: #B9D9FA;
+}
+.air-float-bag {
+  left: 56%;
+  bottom: -42px;
+  background: #FFF1D8;
+  border-color: #F2D29A;
+}
+.air-overview-bottom {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  gap: clamp(40px, 9vw, 120px);
+  align-items: start;
+}
+.air-overview-meta {
+  margin: 0;
+  display: grid;
+  gap: 17px;
+}
+.air-overview-meta-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.air-overview-meta dt,
+.air-overview-meta dd {
+  font-size: clamp(0.94rem, 1.4vw, 1.14rem);
+  line-height: 1.35;
+  margin: 0;
+}
+.air-overview-meta dt {
+  color: #888892;
+  font-weight: 500;
+  white-space: nowrap;
+  font-size: clamp(0.82rem, 1.15vw, 0.98rem);
+}
+.air-overview-meta dt::after {
+  content: "/";
+  color: #1E90FF;
+  margin-left: 8px;
+  font-weight: 400;
+}
+.air-overview-meta dd {
+  color: #111111;
+  font-weight: 700;
+  font-size: clamp(0.82rem, 1.15vw, 0.98rem);
+}
+.air-overview-copy {
+  max-width: 610px;
+  justify-self: end;
+}
+.air-overview-copy p {
+  margin: 0 0 20px;
+  font-size: clamp(0.97rem, 1.35vw, 1.18rem);
+  line-height: 1.75;
+  color: #555560;
+  font-weight: 400;
+}
+.air-overview-copy p:last-child {
+  margin-bottom: 0;
+}
+.air-overview-copy strong {
+  color: #111111;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .air-overview-head {
+    margin-bottom: 104px;
+  }
+  .air-overview-title {
+    font-size: clamp(3.4rem, 9.5vw, 6rem);
+  }
+  .air-float-plane {
+    right: 0;
+  }
+  .air-overview-bottom {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .air-overview-copy {
+    max-width: 720px;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .air-overview {
+    padding-top: 20px;
+  }
+  .air-overview-kicker {
+    margin-bottom: 30px;
+  }
+  .air-overview-head {
+    margin-bottom: 72px;
+  }
+  .air-overview-title {
+    font-size: clamp(2.55rem, 13vw, 4.2rem);
+    line-height: 1.1;
+  }
+  .air-float {
+    width: 46px;
+    height: 46px;
+    font-size: 1.35rem;
+  }
+  .air-float-ticket {
+    top: -18px;
+    left: 58%;
+  }
+  .air-float-plane {
+    top: 48%;
+    right: 2%;
+  }
+  .air-float-bag {
+    left: 48%;
+    bottom: -40px;
+  }
+  .air-overview-meta {
+    gap: 13px;
+  }
+  .air-overview-meta-row {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+}
