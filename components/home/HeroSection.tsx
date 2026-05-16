@@ -15,9 +15,6 @@ const html = `<section class="hero" id="home">
 
     <p class="hi-bio-line" style="animation-delay:1.9s">i&rsquo;ll <span class="hi-strike-word">delay</span> everything except a <span class="hi-ul-draw">good layout</span>.</p>
 
-    <div class="hi-sticky-coffee">currently: on my <span id="hiCoffeeNum">third</span> coffee ☕</div>
-
-    <p class="hi-bio-line" style="animation-delay:2.5s">probably redesigning something <span class="hi-footnote">nobody asked me to.</span></p>
   </div>
 
   <!-- RIGHT: paper clip card stack -->

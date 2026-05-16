@@ -118,9 +118,7 @@ document.addEventListener('mousemove',e=>{
 
 // ── NAV ──
 const nav=document.getElementById('nav'),navLinks=document.querySelectorAll('.nav-link-item');
-function updateNav(){
-  navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#work');});
-}
+function updateNav(){}
 // ── NAV CLOCK (IST) ──
 (function(){
   var clockEl=document.getElementById('nav-clock');

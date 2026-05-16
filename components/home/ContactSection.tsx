@@ -25,7 +25,7 @@ const html = `<section class="contact" id="contact">
       <div class="contact-footer reveal reveal-delay-3">
         <span class="contact-footer-name">Nikunj Tyagi · Product Designer</span>
         <span class="contact-footer-hand">made with ☕ &amp; obsession</span>
-        <span class="contact-footer-copy">© 2025</span>
+        <span class="contact-footer-copy">© 2026</span>
       </div>
     </div>
 
