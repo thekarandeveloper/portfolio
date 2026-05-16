@@ -1,20 +1,28 @@
 "use client";
 
 import { CaseStudyPage, CsSection, CsSectionHeader } from "./CaseStudyLayout";
-import { airFigmaLinks } from "./airIqData";
+import {
+  airFigmaLinks,
+  airStoryCards,
+  airProcessSteps,
+  airDecisionBlocks,
+  airJourneyBlocks,
+  airEdgeCases,
+} from "./airIqData";
 
 /* ─────────────────────────────────────────────────────────────────────
    TOC
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",       label: "Overview"          },
-  { id: "problem",        label: "The Problem"        },
-  { id: "approach",       label: "Research & Approach"},
-  { id: "insights",       label: "Core Components"    },
-  { id: "product",        label: "The Product"        },
-  { id: "design-system",  label: "Design System"      },
-  { id: "results",        label: "Results"            },
-  { id: "learnings",      label: "Learnings"          },
+  { id: "overview",       label: "Overview"           },
+  { id: "problem",        label: "The Problem"         },
+  { id: "approach",       label: "Research"            },
+  { id: "process",        label: "How I Worked"        },
+  { id: "insights",       label: "Core Components"     },
+  { id: "product",        label: "The Product"         },
+  { id: "design-system",  label: "Design System"       },
+  { id: "results",        label: "Results"             },
+  { id: "learnings",      label: "Learnings"           },
 ];
 
 const META_ROWS = [
@@ -312,16 +320,18 @@ function AirHero() {
             Live in Production &nbsp;·&nbsp; B2B SaaS &nbsp;·&nbsp; Travel
           </div>
           <h1 className="csl-hero-title">
-            <span>AIR</span>
-            <span style={{ color: "#1E90FF" }}> iQ</span>
+            <span>Designing a B2B flight platform from&nbsp;zero</span>
           </h1>
           <p className="csl-hero-desc">
             Simplifying complex flight booking for 25,000+ travel agents across India. A 0→1 B2B SaaS platform that cut booking time by 30–40%.
           </p>
+          <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, maxWidth: 460, margin: "0 0 32px", fontStyle: "italic" }}>
+            No design system. No prior product. One designer. Six months.
+          </p>
           <div className="csl-hero-chips">
             <span className="csl-hero-chip">Lead UX Designer</span>
             <span className="csl-hero-chip">6 Months</span>
-            <span className="csl-hero-chip">Figma · v0 · AI</span>
+            <span className="csl-hero-chip">Systems Design · B2B</span>
             <span className="csl-hero-chip">0 → 1 Product</span>
           </div>
           <div className="csl-hero-ctas">
@@ -343,7 +353,7 @@ function AirHero() {
         {[
           { label: "Platform", val: "Desktop & Mobile Web"                    },
           { label: "Screens",  val: "40+ Screens · 4 Core Flows"              },
-          { label: "Role",     val: "UI/UX Designer"                          },
+          { label: "Role",     val: "Lead UX Designer"                        },
           { label: "Team",     val: "3 Product Manager · 2 Engineering Manager" },
         ].map((s) => (
           <div className="csl-hero-stat" key={s.label}>
@@ -374,9 +384,13 @@ function OverviewSection() {
         </p>
       </div>
 
+      <StoryCardsGrid />
+
       <div className="csl-reveal" style={{ marginBottom: 8 }}>
         <JourneyTimeline />
       </div>
+
+      <ConstraintsBlock />
 
     </CsSection>
   );
@@ -570,6 +584,13 @@ function ProblemSection() {
         ))}
       </div>
 
+      <div className="csl-reveal" style={{ marginTop: 28, padding: "16px 20px", background: "#F9FAFB", borderRadius: 12, border: "1px solid #F3F4F6" }}>
+        <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.12em" }}>How I know this</span>
+        <p style={{ fontSize: "0.9rem", color: "#374151", lineHeight: 1.7, margin: "6px 0 0" }}>
+          Four agents were interviewed before the first wireframe. Sessions were semi-structured: I asked agents to walk me through a booking start to finish while narrating what they were checking and why. The patterns above appeared in every session.
+        </p>
+      </div>
+
       {/* Agent quote — pull quote */}
       <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
         <span className="csl-eyebrow">In their own words</span>
@@ -593,6 +614,8 @@ function ProblemSection() {
           </span>
         </div>
       </div>
+
+      <PivotalMomentBlock />
     </CsSection>
   );
 }
@@ -1371,6 +1394,9 @@ function CoreComponentsSection() {
 
       {/* Component 3 — Review Table */}
       <ReviewTableBlock />
+
+      {/* Broader design decisions */}
+      <DesignDecisionsBlock />
     </CsSection>
   );
 }
@@ -1379,29 +1405,6 @@ function CoreComponentsSection() {
    §05  THE PRODUCT
 ───────────────────────────────────────────────────────────────────── */
 function TheProductSection() {
-  const flows = [
-    {
-      num: "Flow 01",
-      label: "Search & Results",
-      desc: "Real-time fare grid with 15+ filters. Price is the visual anchor. Refundability, baggage, and seat count visible without a single click.",
-    },
-    {
-      num: "Flow 02",
-      label: "Itinerary Builder",
-      desc: "Multi-leg itinerary with per-passenger rules, date locks, and cabin class — all in one condensed, scannable card.",
-    },
-    {
-      num: "Flow 03",
-      label: "Review & Confirm",
-      desc: "Inline mismatch warnings surface before payment. Name errors, expired passports, fare class conflicts — caught here, not at the airline.",
-    },
-    {
-      num: "Flow 04",
-      label: "Booking Dashboard",
-      desc: "Status, agent performance, and booking history in a single pane. No more jumping between three tools to answer one client question.",
-    },
-  ];
-
   const desktopEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.desktop)}`;
   const mobileEmbedUrl  = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.mobile)}`;
 
@@ -1490,24 +1493,9 @@ function TheProductSection() {
         </div>
       </div>
 
-      {/* Flow list */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-        {flows.map((f, i) => (
-          <div key={f.label} className={`csl-reveal rd${i}`} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: "0 14px", alignItems: "start" }}>
-            <span style={{
-              width: 28, height: 28, borderRadius: 8,
-              background: "#EFF6FF", display: "flex",
-              alignItems: "center", justifyContent: "center",
-              fontSize: "0.68rem", fontWeight: 900, color: "#1E90FF",
-              flexShrink: 0, marginTop: 2,
-            }}>0{i + 1}</span>
-            <div>
-              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{f.label}</div>
-              <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: 0 }}>{f.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <JourneySection />
+
+      <EdgeCasesSection />
     </CsSection>
   );
 }
@@ -1613,6 +1601,15 @@ function ResultsSection() {
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>vs. pre-launch baseline</div>
         </div>
 
+        {/* 25–35% support tickets */}
+        <div className="csl-reveal rd1" style={{ background: "#fff", padding: "36px 32px" }}>
+          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
+            25–35%
+          </div>
+          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Fewer support tickets</div>
+          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>about UI confusion — post-launch</div>
+        </div>
+
         {/* 80+ */}
         <div className="csl-reveal rd2" style={{ background: "#fff", padding: "36px 32px" }}>
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
@@ -1632,6 +1629,13 @@ function ResultsSection() {
           <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Screens shipped</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>across 5 core flows</div>
         </div>
+      </div>
+
+      {/* Business impact bridge */}
+      <div className="csl-reveal" style={{ marginBottom: 24, padding: "16px 20px", background: "#F9FAFB", borderRadius: 12, border: "1px solid #F3F4F6" }}>
+        <p style={{ fontSize: "0.9rem", color: "#374151", lineHeight: 1.7, margin: 0 }}>
+          <strong style={{ color: "#111827" }}>Why this matters commercially:</strong> Faster booking = more bookings per agent per day = more revenue per seat. At 25,000+ agents, a 30–40% reduction in per-booking time compounds at scale. The engineering manager noted a visible drop in error-related support queries in the first weeks after launch.
+        </p>
       </div>
 
       {/* Quote */}
@@ -1679,6 +1683,15 @@ function ResultsSection() {
           </tbody>
         </table>
       </div>
+
+      {/* Hotel module signal */}
+      <div className="csl-reveal rd3" style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 16, padding: "16px 20px", background: "#ECFDF5", borderRadius: 12 }}>
+        <span style={{ fontSize: "1.5rem" }}>🏨</span>
+        <div>
+          <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 2 }}>Hotel module trusted to the same designer</div>
+          <p style={{ fontSize: "0.85rem", color: "#374151", lineHeight: 1.6, margin: 0 }}>After AIR iQ shipped, the team extended trust — the next product module (hotel booking) was handed to the same designer without a new brief process. That&apos;s a stakeholder signal.</p>
+        </div>
+      </div>
     </CsSection>
   );
 }
@@ -1690,23 +1703,28 @@ function LearningsSection() {
   const items = [
     {
       n: "01",
-      title: "Prototype before you design",
-      text: "Using v0 to validate the filter concept in 48 hours saved weeks of high-fidelity rework. The fastest way to kill a bad idea is to make it real.",
+      title: "The design system paid for itself",
+      text: "Building 80+ components upfront felt slow. Screens 10–20 were built 4× faster than screens 1–5. When requirements changed, updating a single token updated every screen simultaneously.",
     },
     {
       n: "02",
-      title: "Business context shapes every decision",
-      text: "Sitting in stakeholder discussions early meant I understood the commercial reality. Design decisions that ignored business constraints never survived review.",
+      title: "B2B is not B2C with a logo",
+      text: "Professionals tolerate complexity — but only organised complexity. The goal was never simplicity. It was the right kind of density: data that's always there when you need it, invisible when you don't.",
     },
     {
       n: "03",
-      title: "Edge cases are features, not bugs",
-      text: "Multi-pax editing, infant seats, fare mismatches — explicitly designing for these earned trust with agents who had been burned by systems that ignored them.",
+      title: "Working solo made every decision independently defensible",
+      text: "No senior to ask meant no shortcuts. I had to understand the reason behind every choice well enough to explain it in a standup, a stakeholder review, or a dev handoff meeting. That muscle is permanent.",
     },
     {
       n: "04",
-      title: "A design system is a force multiplier",
-      text: "Building 80+ components upfront felt slow. But when requirements changed, updating a single token updated every screen simultaneously.",
+      title: "AI saved synthesis time — not design time",
+      text: "Using ChatGPT to extract user stories from meeting notes and v0 to validate layouts saved roughly 11 days across the project. But every actual design decision — hierarchy, colour, interaction — was made by hand. AI accelerated process, not judgment.",
+    },
+    {
+      n: "05",
+      title: "What I'd do differently: more agent time upfront",
+      text: "Four interviews before the first wireframe was not enough for a domain this specialized. GDS fare logic, airline code-share rules, and multi-pax edge cases all surfaced during design — not before. Earlier and more structured research would have caught them sooner.",
     },
   ];
 
@@ -1747,6 +1765,322 @@ function LearningsSection() {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────────────
+   STORY CARDS GRID
+───────────────────────────────────────────────────────────────────── */
+function StoryCardsGrid() {
+  const toneColors: Record<string, { bg: string; accent: string }> = {
+    "sc-blue":   { bg: "#EFF6FF", accent: "#1E90FF" },
+    "sc-green":  { bg: "#ECFDF5", accent: "#059669" },
+    "sc-accent": { bg: "#EFF6FF", accent: "#1076BC" },
+    "sc-amber":  { bg: "#FFFBEB", accent: "#D97706" },
+  };
+  return (
+    <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 40 }}>
+      {airStoryCards.map((card) => {
+        const col = toneColors[card.tone] ?? toneColors["sc-blue"];
+        return (
+          <div key={card.kicker} style={{
+            background: "#fff", borderRadius: 14, padding: "20px 20px 18px",
+            border: "1px solid rgba(0,0,0,0.06)",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.04)",
+          }}>
+            <span style={{
+              display: "inline-block", fontSize: "0.58rem", fontWeight: 700,
+              textTransform: "uppercase", letterSpacing: "0.14em",
+              color: col.accent, background: col.bg,
+              borderRadius: 100, padding: "3px 10px", marginBottom: 10,
+            }}>{card.kicker}</span>
+            <p style={{ fontSize: "0.95rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3 }}>{card.title}</p>
+            <p style={{ fontSize: "0.88rem", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{card.text}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   CONSTRAINTS BLOCK
+───────────────────────────────────────────────────────────────────── */
+function ConstraintsBlock() {
+  const items = [
+    {
+      icon: "⚡",
+      label: "GDS API complexity",
+      text: "Live airline data from GDS systems has latency, unpredictable availability, and format inconsistencies per carrier. Every data density decision had to account for fields that might simply not exist.",
+    },
+    {
+      icon: "📋",
+      label: "Regulatory surface area",
+      text: "GST breakdowns, RAF levies, and PAN verification are mandatory in India's B2B travel context. Every fare summary and booking confirmation had to surface regulatory data — not just price.",
+    },
+    {
+      icon: "🧠",
+      label: "Legacy mental models",
+      text: "Agents trained on command-line GDS interfaces for years. Modernising meant respecting what they already knew — speed of adoption depended on how little had to be relearned.",
+    },
+    {
+      icon: "🏗",
+      label: "Solo designer, live sprint",
+      text: "No design system existed. No previous UI to reference. Every component, token, icon, and pattern was built from scratch alongside an active engineering sprint.",
+    },
+  ];
+  return (
+    <div className="csl-reveal" style={{ marginTop: 32 }}>
+      <span className="csl-eyebrow">What made this hard</span>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+        {items.map((item) => (
+          <div key={item.label} style={{
+            background: "#F9FAFB", borderRadius: 12, padding: "16px 18px",
+            border: "1px solid #F3F4F6",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+              <span style={{ fontSize: "1rem" }}>{item.icon}</span>
+              <span style={{ fontSize: "0.78rem", fontWeight: 700, color: "#111827" }}>{item.label}</span>
+            </div>
+            <p style={{ fontSize: "0.88rem", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   PIVOTAL MOMENT BLOCK
+───────────────────────────────────────────────────────────────────── */
+function PivotalMomentBlock() {
+  return (
+    <div className="csl-reveal" style={{
+      marginTop: 40, padding: "24px 28px",
+      background: "linear-gradient(135deg, #EFF6FF 0%, #F0F9FF 100%)",
+      borderRadius: 16, border: "1.5px solid rgba(30,144,255,0.2)",
+      position: "relative", overflow: "hidden",
+    }}>
+      <div style={{
+        position: "absolute", top: -20, right: -20,
+        width: 120, height: 120, borderRadius: "50%",
+        background: "rgba(30,144,255,0.07)",
+      }} />
+      <span className="csl-eyebrow" style={{ color: "#1E90FF" }}>The moment that changed the direction</span>
+      <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", lineHeight: 1.5, margin: "0 0 12px" }}>
+        Nobody had flagged the data table problem. I did.
+      </p>
+      <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: "0 0 12px" }}>
+        About three weeks into hi-fi, I was reviewing the existing flight card design with the engineering manager when I noticed something: agents scanning the table were consistently missing two fields — refundability status and seat count. These are the first two things a travel agent checks before recommending a fare to a client. They weren&apos;t hidden. They just had identical visual weight to everything else.
+      </p>
+      <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
+        I flagged it in the next standup. Showed a quick annotation of what agents&apos; eyes were tracking vs. what the card was emphasising. The engineering manager said it was the first time anyone had put that on paper. We restructured the hierarchy the same week — price and status primary, everything else secondary. That card went straight to production.
+      </p>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   PROCESS SECTION
+───────────────────────────────────────────────────────────────────── */
+function ProcessSection() {
+  return (
+    <CsSection id="process">
+      <CsSectionHeader
+        title="How I Worked"
+        sub="AI-assisted process — not AI-generated design. Every tool saved time on synthesis so I could spend it on craft."
+      />
+      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+        {airProcessSteps.map((step, i) => (
+          <div key={step.num} style={{
+            display: "grid",
+            gridTemplateColumns: "80px 1fr",
+            gap: "0 20px",
+            paddingBottom: i < airProcessSteps.length - 1 ? 28 : 0,
+            paddingTop: i === 0 ? 0 : 28,
+            borderTop: i === 0 ? "none" : "1px solid #F3F4F6",
+            position: "relative",
+          }}>
+            {/* Left: step + saved */}
+            <div style={{ textAlign: "right", paddingTop: 2 }}>
+              <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 4 }}>{step.num}</div>
+              {step.save && (
+                <div style={{
+                  display: "inline-block", fontSize: "0.62rem", fontWeight: 800,
+                  color: "#059669", background: "#ECFDF5",
+                  borderRadius: 6, padding: "2px 8px",
+                }}>{step.save}</div>
+              )}
+            </div>
+            {/* Right: content */}
+            <div>
+              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{step.title}</div>
+              <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>{step.text}</p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {step.old && (
+                  <span style={{
+                    fontSize: "0.68rem", color: "#9CA3AF",
+                    background: "#F9FAFB", border: "1px solid #E5E7EB",
+                    borderRadius: 6, padding: "3px 10px",
+                    textDecoration: "line-through",
+                  }}>{step.old}</span>
+                )}
+                <span style={{
+                  fontSize: "0.68rem", fontWeight: 700, color: "#1E90FF",
+                  background: "#EFF6FF", border: "1px solid rgba(30,144,255,0.2)",
+                  borderRadius: 6, padding: "3px 10px",
+                }}>{step.ai}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   DESIGN DECISIONS BLOCK
+───────────────────────────────────────────────────────────────────── */
+function DesignDecisionsBlock() {
+  return (
+    <div className="csl-reveal" style={{ marginTop: 16 }}>
+      <span className="csl-eyebrow">Broader design decisions</span>
+      <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 24px" }}>
+        Beyond the three core components, these were the decisions that shaped the whole platform.
+      </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+        {airDecisionBlocks.map((d, i) => (
+          <div key={d.num} style={{
+            display: "grid", gridTemplateColumns: "40px 1fr",
+            gap: "0 16px", alignItems: "start",
+            paddingTop: i === 0 ? 0 : 24,
+            paddingBottom: 24,
+            borderBottom: i < airDecisionBlocks.length - 1 ? "1px solid #F3F4F6" : "none",
+          }}>
+            <span style={{
+              width: 36, height: 36, borderRadius: 10,
+              background: "#EFF6FF", display: "flex",
+              alignItems: "center", justifyContent: "center",
+              fontSize: "0.72rem", fontWeight: 900, color: "#1E90FF",
+              flexShrink: 0, marginTop: 2,
+            }}>{d.num}</span>
+            <div>
+              <div style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF", marginBottom: 4 }}>{d.label}</div>
+              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{d.title}</div>
+              <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>{d.text}</p>
+              <div style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                fontSize: "0.78rem", fontWeight: 600, color: "#059669",
+                background: "#ECFDF5", borderRadius: 8, padding: "4px 12px",
+              }}>✓ {d.outcome}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   JOURNEY SECTION
+───────────────────────────────────────────────────────────────────── */
+function JourneySection() {
+  return (
+    <div className="csl-reveal" style={{ marginTop: 32 }}>
+      <span className="csl-eyebrow">Screen-by-screen decisions</span>
+      <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+        {airJourneyBlocks.map((block, i) => (
+          <div key={block.step} style={{
+            paddingTop: i === 0 ? 0 : 28,
+            paddingBottom: 28,
+            borderBottom: i < airJourneyBlocks.length - 1 ? "1px solid #F3F4F6" : "none",
+            display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "center",
+          }}>
+            {/* Left: content */}
+            <div style={{ order: i % 2 === 0 ? 0 : 1 }}>
+              <div style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{block.step}</div>
+              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 4, lineHeight: 1.3 }}>{block.title}</div>
+              <div style={{ fontSize: "0.72rem", color: "#1E90FF", marginBottom: 14, fontFamily: "ui-monospace, monospace" }}>{block.url}</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                {block.decisions.map((dec, j) => (
+                  <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+                    <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#1E90FF", flexShrink: 0, marginTop: 7 }} />
+                    <span style={{ fontSize: "0.88rem", color: "#374151", lineHeight: 1.6 }}>{dec}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Right: image placeholder */}
+            <div style={{ order: i % 2 === 0 ? 1 : 0 }}>
+              <div style={{
+                background: "linear-gradient(145deg, #EAF4FF, #F0F8FF)",
+                border: "1.5px solid rgba(30,144,255,0.18)",
+                borderRadius: 14, overflow: "hidden",
+                aspectRatio: "16/10",
+                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center",
+                gap: 8,
+              }}>
+                <span style={{ fontSize: "1.6rem", opacity: 0.4 }}>✈</span>
+                <span style={{ fontSize: "0.7rem", fontWeight: 600, color: "#1076BC", textAlign: "center", padding: "0 16px", lineHeight: 1.4 }}>{block.step} · {block.title}</span>
+                <span style={{ fontSize: "0.6rem", color: "#9CA3AF" }}>Screen placeholder</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   EDGE CASES SECTION
+───────────────────────────────────────────────────────────────────── */
+function EdgeCasesSection() {
+  const badgeColors: Record<string, { bg: string; color: string }> = {
+    "Edge case":     { bg: "#F3F4F6",  color: "#374151" },
+    "Critical path": { bg: "#FEF2F2",  color: "#EF4444" },
+    "My initiative": { bg: "#ECFDF5",  color: "#059669" },
+  };
+  return (
+    <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
+      <span className="csl-eyebrow">Edge cases designed for</span>
+      <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 20px" }}>
+        Happy-path screens ship fast. What earns agent trust is designing for when things go wrong.
+        Cases marked <strong style={{ color: "#059669" }}>My initiative</strong> were not in the original brief — I proposed them and they were adopted.
+      </p>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+        {airEdgeCases.map((ec) => {
+          const badge = badgeColors[ec.badge] ?? badgeColors["Edge case"];
+          return (
+            <div key={ec.title} style={{
+              background: "#fff", borderRadius: 12, padding: "16px 18px",
+              border: "1px solid rgba(0,0,0,0.06)",
+              boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
+            }}>
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{
+                    width: 32, height: 32, borderRadius: 8,
+                    background: "#F3F4F6", display: "flex",
+                    alignItems: "center", justifyContent: "center",
+                    fontSize: "0.9rem", flexShrink: 0,
+                  }}>{ec.icon}</span>
+                  <span style={{ fontSize: "0.9rem", fontWeight: 700, color: "#111827" }}>{ec.title}</span>
+                </div>
+                <span style={{
+                  fontSize: "0.58rem", fontWeight: 700,
+                  background: badge.bg, color: badge.color,
+                  borderRadius: 100, padding: "2px 8px", whiteSpace: "nowrap", flexShrink: 0,
+                }}>{ec.badge}</span>
+              </div>
+              <p style={{ fontSize: "0.85rem", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{ec.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════════════════
    MAIN EXPORT
 ════════════════════════════════════════════════════════════════════════ */
@@ -1763,6 +2097,7 @@ export function AirIqCaseStudy() {
       <OverviewSection />
       <ProblemSection />
       <ApproachSection />
+      <ProcessSection />
       <CoreComponentsSection />
       <TheProductSection />
       <DesignSystemSection />
