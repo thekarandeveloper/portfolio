@@ -60,7 +60,7 @@ function DSHero() {
       </div>
       <div className="csl-hero-stats">
         {[
-          { val: "150+", label: "Icons designed"    },
+          { val: "62",   label: "Custom icons"       },
           { val: "30+",  label: "Color tokens"      },
           { val: "3",    label: "Grid systems"      },
           { val: "0 → 1",label: "Complete system"   },
@@ -145,7 +145,7 @@ function OverviewSection() {
           { label: "Role",             value: "Lead Product Designer"                    },
           { label: "Duration",         value: "Jan – August 2023"                        },
           { label: "Team",             value: "1 Developer"                              },
-          { label: "Responsibilities", value: "Architecture · Components · Consistency"  },
+          { label: "Responsibilities", value: "Architecture · Components"               },
         ].map((item) => (
           <div key={item.label} style={{ background: "#fff", padding: "18px 22px" }}>
             <p style={{ fontSize: "0.58rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{item.label}</p>
@@ -176,11 +176,8 @@ function OverviewSection() {
       </div>
 
       {/* NDA note */}
-      <div className="csl-reveal rd3" style={{ display: "flex", gap: 12, background: "#FFFBEB", border: "1px solid #FDE68A", borderRadius: 12, padding: "14px 18px", marginTop: 8 }}>
-        <span style={{ fontSize: "1.1rem", flexShrink: 0, marginTop: 1 }}>💡</span>
-        <p style={{ fontSize: "0.72rem", color: "#92400E", lineHeight: 1.7 }}>
-          This design system was designed and built from scratch for a production organization and later scaled across products. To comply with NDA, certain components and visuals have been edited or replaced.
-        </p>
+      <div className="csl-callout csl-reveal rd3" style={{ marginTop: 8, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
+        <strong>NDA Note —</strong> This design system was designed and built from scratch for a production organization and later scaled across products. To comply with NDA, certain components and visuals have been edited or replaced.
       </div>
 
     </CsSection>
@@ -204,7 +201,7 @@ function DiscoverySection() {
       </div>
 
       <p style={{ fontSize: "0.8rem", fontWeight: 700, color: "#111827", marginBottom: 14 }} className="csl-reveal rd1">What I found:</p>
-      <div className="csl-card-grid csl-reveal rd2">
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }} className="csl-reveal rd2">
         {[
           { title: "Multiple component versions",   body: "Buttons, tables, and form fields had 2–3 different versions each. No shared base component, no shared rules."               },
           { title: "3 shades of the same blue",     body: "Tech Blue had three different hex values in production — all intended to be 'the primary blue'."                              },
@@ -218,7 +215,7 @@ function DiscoverySection() {
         ))}
       </div>
 
-      <div className="csl-process-grid csl-reveal rd3">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, margin: "28px 0" }} className="csl-reveal rd3">
         {[
           { n: "40+",  t: "Screens audited",            d: "Every page of every product mapped before a single new component was drawn." },
           { n: "3×",   t: "Same components built",      d: "The average component existed in 3 slightly different versions across the product." },
@@ -496,7 +493,7 @@ function IconographySection() {
     <CsSection id="iconography">
       <CsSectionHeader
         label="Iconography"
-        title={<>150+ icons. <em style={{ fontStyle: "italic" }}>One grid. Three sizes.</em></>}
+        title={<>62 custom icons. <em style={{ fontStyle: "italic" }}>One grid. Three sizes.</em></>}
         sub="Every icon is drawn on a 24×24px keyline grid with a consistent 2px stroke weight and 2px corner radius. Each ships in three sizes — 24px, 20px, and 16px — with identical proportions and optical centre across all three."
       />
 
@@ -563,7 +560,7 @@ function IconographySection() {
       <div className="csl-reveal rd2" style={{ marginTop: 20, borderRadius: 16, overflow: "hidden" }}>
         <img
           src="/Design System/icons.png"
-          alt="Full icon library — all 150+ icons across 12 categories at 3 sizes"
+          alt="Full icon library — all 62 custom icons across 12 categories at 3 sizes"
           style={{ width: "100%", display: "block", borderRadius: 16 }}
         />
       </div>
@@ -589,16 +586,25 @@ function ComponentsSection() {
     { label: "Disabled", bgs: ["#B0B8C0","#B0B8C0","transparent","transparent"], disabled: true, focused: false },
   ];
 
+  const fieldStates = [
+    { label: "Empty",    border: "#E0E6EC", labelCol: "#9CA3AF", value: "",                  bg: "#fff",    hint: "Placeholder text"  },
+    { label: "Focus",    border: "#1076BC", labelCol: "#1076BC", value: "",                  bg: "#fff",    hint: "User is typing..."  },
+    { label: "Filled",   border: "#E0E6EC", labelCol: "#6B7280", value: "New Delhi",         bg: "#fff",    hint: ""                  },
+    { label: "Error",    border: "#EC1A2E", labelCol: "#EC1A2E", value: "invalid@",          bg: "#FFF5F5", hint: "Enter a valid email"},
+    { label: "Disabled", border: "#E0E6EC", labelCol: "#B0B8C0", value: "Read-only",         bg: "#F9FAFC", hint: ""                  },
+  ];
+
   return (
     <CsSection id="components">
       <CsSectionHeader
         label="Components"
-        title="Buttons — four types, four states."
-        sub="The button system is the backbone of all user interactions. Four types handle every context — from primary CTAs to borderless inline links — with all states documented so developers never have to guess."
+        title="Built from scratch. Every state documented."
+        sub="Every component in the library was designed from first principles — buttons, text fields, cards, and more. Each ships with all interactive states so developers never have to guess what a focused input or a disabled button should look like."
       />
 
+      {/* ── Button system ── */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Main Buttons — 4 types · 4 states</p>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Button System — 4 types · 4 states</p>
         <div style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 12, alignItems: "end" }}>
           <div />
           {buttonTypes.map((b) => (
@@ -632,7 +638,7 @@ function ComponentsSection() {
           </div>
         ))}
         <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid #F3F4F6" }}>
-          <p style={{ fontSize: "0.65rem", fontWeight: 700, color: "#6B7280", marginBottom: 12 }}>Miscellaneous — Icon Button</p>
+          <p style={{ fontSize: "0.65rem", fontWeight: 700, color: "#6B7280", marginBottom: 12 }}>Icon Button</p>
           <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
             <div style={{ background: "#1076BC", borderRadius: 8, padding: "9px 18px", display: "inline-flex", alignItems: "center", gap: 8 }}>
               <span style={{ fontSize: "0.72rem", color: "#fff", fontWeight: 600 }}>Find Flights</span>
@@ -643,7 +649,7 @@ function ComponentsSection() {
         </div>
       </div>
 
-      <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 20 }}>
+      <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 32 }}>
         <div className="csl-card">
           <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Desktop specs</p>
           {[
@@ -675,6 +681,142 @@ function ComponentsSection() {
               <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* ── Text field system ── */}
+      <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Text Field System — 5 states</p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, marginBottom: 20 }}>
+          {fieldStates.map((f) => (
+            <div key={f.label}>
+              <p style={{ fontSize: "0.6rem", fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>{f.label}</p>
+              <div style={{
+                border: `1.5px solid ${f.border}`,
+                borderRadius: 8,
+                background: f.bg,
+                padding: "10px 12px",
+                position: "relative",
+                opacity: f.label === "Disabled" ? 0.6 : 1,
+              }}>
+                <p style={{ fontSize: "0.54rem", color: f.labelCol, marginBottom: 3, fontWeight: 600 }}>From</p>
+                <p style={{ fontSize: "0.72rem", color: f.value ? "#1C1C1C" : "#B0B8C0", fontWeight: f.value ? 500 : 400, minHeight: 18 }}>
+                  {f.value || "City or airport"}
+                </p>
+                {f.hint && (
+                  <p style={{ fontSize: "0.52rem", color: f.border === "#EC1A2E" ? "#EC1A2E" : "#9CA3AF", marginTop: 6 }}>{f.hint}</p>
+                )}
+                {f.label === "Focus" && (
+                  <div style={{ position: "absolute", inset: -3, border: "2px solid rgba(16,118,188,0.25)", borderRadius: 10, pointerEvents: "none" }} />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, paddingTop: 16, borderTop: "1px solid #F3F4F6" }}>
+          {[
+            { k: "Height",        v: "48 px (desktop) · 52 px (mobile)" },
+            { k: "Corner radius", v: "8 px" },
+            { k: "Label",         v: "Lato · 11pt · 600 · uppercase" },
+            { k: "Input text",    v: "Lato · 13pt · 500" },
+            { k: "Border",        v: "1.5 px — changes per state" },
+            { k: "Error text",    v: "Lato · 11pt · 400 · Coral" },
+          ].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              <span style={{ fontSize: "0.58rem", color: "#9CA3AF" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Itinerary card ── */}
+      <div className="csl-card csl-reveal rd1" style={{ marginBottom: 20 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Itinerary Card — The most complex component</p>
+        <div className="csl-card-2col" style={{ alignItems: "start" }}>
+          {/* Card mockup */}
+          <div style={{ border: "1.5px solid #E0E6EC", borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}>
+            {/* Card header */}
+            <div style={{ background: "#F9FAFC", borderBottom: "1px solid #E0E6EC", padding: "10px 16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                <div style={{ width: 22, height: 22, borderRadius: 6, background: "#1076BC", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <span style={{ fontSize: "0.55rem", color: "#fff", fontWeight: 700 }}>6E</span>
+                </div>
+                <span style={{ fontSize: "0.72rem", fontWeight: 600, color: "#374151" }}>IndiGo</span>
+                <span style={{ fontSize: "0.6rem", color: "#9CA3AF" }}>6E-234</span>
+              </div>
+              <div style={{ display: "flex", gap: 6 }}>
+                <span style={{ fontSize: "0.58rem", fontWeight: 600, background: "#E3F3FF", color: "#1076BC", borderRadius: 20, padding: "2px 8px" }}>Economy</span>
+                <span style={{ fontSize: "0.58rem", fontWeight: 600, background: "#DCFFEA", color: "#059669", borderRadius: 20, padding: "2px 8px" }}>Direct</span>
+              </div>
+            </div>
+            {/* Flight route */}
+            <div style={{ padding: "16px", display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ textAlign: "center", minWidth: 60 }}>
+                <p style={{ fontSize: "1.3rem", fontWeight: 800, color: "#111827", lineHeight: 1, marginBottom: 2 }}>06:00</p>
+                <p style={{ fontSize: "0.68rem", fontWeight: 700, color: "#1076BC" }}>DEL</p>
+                <p style={{ fontSize: "0.56rem", color: "#9CA3AF" }}>Terminal 3</p>
+              </div>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+                <p style={{ fontSize: "0.58rem", color: "#6B7280" }}>2h 15m</p>
+                <div style={{ width: "100%", display: "flex", alignItems: "center", gap: 0 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", border: "1.5px solid #1076BC", background: "#fff", flexShrink: 0 }} />
+                  <div style={{ flex: 1, height: 1.5, background: "#E0E6EC" }} />
+                  <span style={{ fontSize: "0.8rem", color: "#1076BC" }}>✈</span>
+                  <div style={{ flex: 1, height: 1.5, background: "#E0E6EC" }} />
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#1076BC", flexShrink: 0 }} />
+                </div>
+              </div>
+              <div style={{ textAlign: "center", minWidth: 60 }}>
+                <p style={{ fontSize: "1.3rem", fontWeight: 800, color: "#111827", lineHeight: 1, marginBottom: 2 }}>08:15</p>
+                <p style={{ fontSize: "0.68rem", fontWeight: 700, color: "#1076BC" }}>BOM</p>
+                <p style={{ fontSize: "0.56rem", color: "#9CA3AF" }}>Terminal 1</p>
+              </div>
+            </div>
+            {/* Footer */}
+            <div style={{ borderTop: "1px solid #E0E6EC", padding: "10px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "#F9FAFC" }}>
+              <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                <span style={{ fontSize: "0.6rem", color: "#6B7280" }}>🧳 23 kg</span>
+                <span style={{ fontSize: "0.6rem", color: "#6B7280" }}>🍽 Meal</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div>
+                  <p style={{ fontSize: "0.56rem", color: "#9CA3AF", textAlign: "right" }}>from</p>
+                  <p style={{ fontSize: "1rem", fontWeight: 800, color: "#111827", lineHeight: 1 }}>₹3,450</p>
+                </div>
+                <div style={{ background: "#1076BC", borderRadius: 8, padding: "8px 14px", cursor: "pointer" }}>
+                  <span style={{ fontSize: "0.68rem", color: "#fff", fontWeight: 600 }}>Book →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Anatomy breakdown */}
+          <div>
+            <p style={{ fontSize: "0.74rem", fontWeight: 700, color: "#111827", marginBottom: 16 }}>Component anatomy</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+              {[
+                { zone: "Header bar",    desc: "Airline identity · flight number · class + stop badges",   color: "#1076BC" },
+                { zone: "Route block",   desc: "Departure/arrival times · airport codes · duration line",   color: "#059669" },
+                { zone: "Route line",    desc: "SVG connector with stop indicators — scales for layovers",  color: "#606EF2" },
+                { zone: "Amenity strip", desc: "Baggage allowance · meal · seat type — token-sized icons",  color: "#F2616E" },
+                { zone: "Price + CTA",   desc: "Starting fare always visible · primary Book button right-aligned", color: "#EDD916" },
+              ].map((a, i, arr) => (
+                <div key={a.zone} style={{ display: "flex", gap: 12, padding: "12px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none", alignItems: "flex-start" }}>
+                  <div style={{ width: 10, height: 10, borderRadius: "50%", background: a.color, flexShrink: 0, marginTop: 4 }} />
+                  <div>
+                    <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111827", marginBottom: 2 }}>{a.zone}</p>
+                    <p style={{ fontSize: "0.66rem", color: "#6B7280", lineHeight: 1.5 }}>{a.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 16, background: "#E3F3FF", borderRadius: 10, padding: "10px 14px" }}>
+              <p style={{ fontSize: "0.68rem", color: "#1076BC", lineHeight: 1.6 }}>
+                The itinerary card was the most-used component across all products. Getting its structure right — especially the route line scaling for layovers — unlocked consistency across all search result views.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -746,10 +888,10 @@ function ResultsSection() {
 
       <div className="csl-metrics csl-reveal">
         {[
-          { val: "150+", label: "Icons in the library"        },
-          { val: "↓",    label: "Design–dev back-and-forth"   },
-          { val: "↑",    label: "Consistency across products" },
-          { val: "↑",    label: "Onboarding speed for designers" },
+          { val: "62",      label: "Custom icons drawn"          },
+          { val: "1 file",  label: "Replaces 12+ Figma files"    },
+          { val: "0 → 1",   label: "Component library built"     },
+          { val: "3 grids", label: "Layout systems documented"   },
         ].map((m) => (
           <div className="csl-metric" key={m.label}>
             <div className="csl-metric-val">{m.val}</div>
@@ -769,7 +911,7 @@ function ResultsSection() {
           <tbody>
             {[
               ["3 different 'primary blue' hex values in production",   "One Tech Blue token — #1076BC — used everywhere"],
-              ["Icon style mixed outlined and filled in the same flow",  "150+ outlined icons, one grid, consistent stroke weight"],
+              ["Icon style mixed outlined and filled in the same flow",  "62 custom icons — one grid, one stroke weight, one style"],
               ["Designers rebuilding components from scratch every sprint", "New screens assembled from the library in hours"],
               ["Developers reverse-engineering spacing from screenshots",  "Token names match exactly between Figma and code"],
               ["Difficult Figma files, hard to navigate and reuse",       "One organized library file, accessible and well-documented"],
