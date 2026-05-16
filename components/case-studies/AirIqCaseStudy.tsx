@@ -803,32 +803,44 @@ function ResearchScopePills({ items }: { items: string[] }) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   RESEARCH INSIGHT CARDS  (2×2 dark grid)
+   RESEARCH INSIGHT CARDS  (2×2 dark grid — exact screenshot match)
 ───────────────────────────────────────────────────────────────────── */
 const AGENT_INSIGHTS = [
   {
     label: "Insight 1:",
-    text: "Fare refundability was buried in legal text — agents guessed, and clients received incorrect information",
-    stat: "4",
-    statSuffix: "of 4 competitors hid it",
+    heading: "Friction in the Booking Workflow",
+    text: "Agents described starting every booking with the same ritual — GDS terminal, airline site, and a spreadsheet open simultaneously before a single fare could be confirmed.",
+    dataLabel: "Data Point:",
+    dataText: "All 4 agents reported 3+ open browser windows or apps per booking, mentioning 'no option to see everything in one place.'",
+    stat: "3+",
+    statUnit: "tools per booking",
   },
   {
     label: "Insight 2:",
-    text: "Filters and search results couldn't be viewed simultaneously on any competing B2B platform",
-    stat: "0",
-    statSuffix: "had persistent filter panels",
+    heading: "The Hidden Cost of Fare Rules",
+    text: "Refundability lived in a wall of legal text — no summary, no highlights, no visual indicator. Agents guessed what fares meant. Sometimes they guessed wrong and the client got incorrect information.",
+    dataLabel: "Data Point:",
+    dataText: "4 of 4 competitor platforms studied buried refundability behind extra clicks — never shown inline alongside price.",
+    stat: "100%",
+    statUnit: "of competitors hid it",
   },
   {
     label: "Insight 3:",
-    text: "Agents couldn't complete one booking without jumping between multiple tools and browser tabs",
-    stat: "3+",
-    statSuffix: "tools used per booking",
+    heading: "Agents Receive No Booking Alerts",
+    text: "Fares change and seats fill mid-session. Agents had no feedback mechanism — nothing alerted them when the fare they'd verbally confirmed to a client was no longer available.",
+    dataLabel: "Data Point:",
+    dataText: "Errors caught at payment — not during entry. Re-booking fees applied by the time agents discovered mismatches.",
+    stat: "0",
+    statUnit: "of platforms had live alerts",
   },
   {
     label: "Insight 4:",
-    text: "No platform had a built-in share flow — sending a fare to a client required manual copy-paste steps",
+    heading: "Agents Want to Share Fares Instantly",
+    text: "Sending a fare to a client required copy-pasting price, opening email, writing context, attaching a PDF, and sending — before the client even confirmed intent.",
+    dataLabel: "Data Point:",
+    dataText: "A 30-second task became a 5-minute one. All 4 agents cited this as a daily friction point in client communication.",
     stat: "4–5",
-    statSuffix: "steps to share a single fare",
+    statUnit: "steps to share one fare",
   },
 ];
 
@@ -836,54 +848,88 @@ function ResearchInsightCards() {
   return (
     <div className="csl-reveal" style={{ marginBottom: 32 }}>
       <div style={{ borderRadius: 16, overflow: "hidden" }}>
+        {/* 2×2 dark grid */}
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1fr",
-          background: "#0F172A", gap: 1,
+          background: "#141414", gap: "1px",
         }}>
           {AGENT_INSIGHTS.map((ins) => (
             <div key={ins.label} style={{
-              background: "#111827", padding: "28px 24px 24px",
+              background: "#1A1A1A", padding: "28px 24px 28px",
             }}>
+              {/* "Insight N:" label */}
               <div style={{
-                fontSize: "0.58rem", fontWeight: 700,
-                textTransform: "uppercase", letterSpacing: "0.16em",
-                color: "rgba(255,255,255,0.35)", marginBottom: 12,
+                fontSize: "0.55rem", fontWeight: 400,
+                letterSpacing: "0.1em",
+                color: "rgba(255,255,255,0.3)", marginBottom: 14,
               }}>
                 {ins.label}
               </div>
+
+              {/* Bullet + heading */}
+              <div style={{ display: "flex", gap: 7, marginBottom: 10, alignItems: "flex-start" }}>
+                <span style={{ color: "#1E90FF", fontSize: "0.55rem", marginTop: "0.35em", flexShrink: 0 }}>•</span>
+                <span style={{
+                  fontSize: "0.82rem", fontWeight: 700,
+                  color: "rgba(255,255,255,0.88)", lineHeight: 1.35,
+                }}>{ins.heading}</span>
+              </div>
+
+              {/* Description */}
               <p style={{
-                fontSize: "0.9rem", color: "rgba(255,255,255,0.65)",
-                lineHeight: 1.65, margin: "0 0 20px",
+                fontSize: "0.8rem", color: "rgba(255,255,255,0.5)",
+                lineHeight: 1.7, margin: "0 0 12px",
               }}>
                 {ins.text}
               </p>
+
+              {/* Data point */}
+              <p style={{
+                fontSize: "0.76rem", color: "rgba(255,255,255,0.38)",
+                lineHeight: 1.6, margin: "0 0 24px",
+              }}>
+                <strong style={{ color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>{ins.dataLabel}</strong>
+                {" "}{ins.dataText}
+              </p>
+
+              {/* Large stat */}
               <div style={{
-                fontSize: "3rem", fontWeight: 800,
-                color: "#1E90FF", lineHeight: 1,
-                letterSpacing: "-0.03em",
-              }}>{ins.stat}</div>
+                fontSize: "clamp(2.8rem, 5vw, 3.6rem)", fontWeight: 800,
+                color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em",
+              }}>
+                {ins.stat}
+              </div>
               <div style={{
-                fontSize: "0.65rem", color: "rgba(255,255,255,0.3)",
-                fontWeight: 500, marginTop: 4, textTransform: "uppercase",
-                letterSpacing: "0.08em",
-              }}>{ins.statSuffix}</div>
+                fontSize: "0.58rem", color: "rgba(255,255,255,0.22)",
+                fontWeight: 500, marginTop: 6,
+                textTransform: "uppercase", letterSpacing: "0.1em",
+              }}>
+                {ins.statUnit}
+              </div>
             </div>
           ))}
         </div>
+
+        {/* Footer attribution */}
         <div style={{
-          background: "#0F172A", padding: "14px 24px",
-          display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+          background: "#111111", padding: "14px 24px",
+          textAlign: "center",
           borderTop: "1px solid rgba(255,255,255,0.04)",
         }}>
           <span style={{
-            fontSize: "0.58rem", fontWeight: 600,
-            color: "rgba(255,255,255,0.3)",
-            textTransform: "uppercase", letterSpacing: "0.14em",
-          }}>A collection of findings from:</span>
+            fontSize: "0.58rem", fontWeight: 500,
+            color: "rgba(255,255,255,0.22)",
+            textTransform: "uppercase", letterSpacing: "0.16em",
+          }}>
+            A COLLECTION OF INSIGHT GATHERED FROM:{" "}
+          </span>
           <span style={{
-            fontSize: "0.6rem", fontWeight: 700,
-            color: "rgba(255,255,255,0.55)",
-          }}>4 Agent Interviews · Competitive Analysis</span>
+            fontSize: "0.58rem", fontWeight: 700,
+            color: "rgba(255,255,255,0.45)",
+            textTransform: "uppercase", letterSpacing: "0.16em",
+          }}>
+            Agent Interviews
+          </span>
         </div>
       </div>
     </div>
@@ -891,30 +937,127 @@ function ResearchInsightCards() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   STANDALONE METRIC CALLOUT
+   STANDALONE METRIC CALLOUT  (big number + progress bar + source)
 ───────────────────────────────────────────────────────────────────── */
-function MetricCallout({ stat, text, source, last = false }: {
-  stat: string; text: React.ReactNode; source: string; last?: boolean;
+function MetricCallout({ stat, text, source, pct, last = false }: {
+  stat: string; text: React.ReactNode; source: string;
+  pct: number; last?: boolean;
 }) {
   return (
     <div style={{
-      padding: "28px 0",
+      padding: "32px 0",
       borderBottom: last ? "none" : "1px solid #F3F4F6",
     }}>
+      {/* Big number */}
       <div style={{
-        fontSize: "clamp(3rem, 6vw, 4.5rem)", fontWeight: 800,
-        color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em",
+        fontSize: "clamp(3rem, 7vw, 4.8rem)", fontWeight: 800,
+        color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.04em",
         marginBottom: 14,
       }}>{stat}</div>
+
+      {/* Progress bar */}
+      <div style={{
+        height: 5, background: "#F3F4F6",
+        borderRadius: 100, overflow: "hidden",
+        marginBottom: 18, maxWidth: 500,
+      }}>
+        <div style={{
+          height: "100%", width: `${pct}%`,
+          background: "linear-gradient(90deg, #1E90FF 0%, #60B4FF 100%)",
+          borderRadius: 100,
+          transition: "width 1s ease",
+        }} />
+      </div>
+
+      {/* Finding text */}
       <p style={{
         fontSize: "1rem", color: "#374151", lineHeight: 1.75,
-        margin: "0 0 10px", maxWidth: 500,
+        margin: "0 0 12px", maxWidth: 500,
       }}>{text}</p>
+
+      {/* Source */}
       <div style={{
-        fontSize: "0.65rem", fontWeight: 700,
+        fontSize: "0.63rem", fontWeight: 700,
         color: "#9CA3AF",
         textTransform: "uppercase", letterSpacing: "0.12em",
       }}>Source: {source}</div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   3-COLUMN RESULT METRICS  (bottom of Results — exact screenshot match)
+───────────────────────────────────────────────────────────────────── */
+const RESULT_METRICS = [
+  {
+    stat: "30–40",
+    unit: "%",
+    pct: 35,
+    label: "Faster booking completion vs previous system",
+    desc: <>Agents complete bookings significantly faster with Air IQ's <strong>unified platform</strong> replacing 3+ disconnected tools.</>,
+    source: "Operations Data",
+  },
+  {
+    stat: "25–35",
+    unit: "%",
+    pct: 30,
+    label: "Fewer support tickets about UI confusion",
+    desc: <>Post-launch support queries about <strong>interface confusion dropped</strong> in the first weeks after launch.</>,
+    source: "Support Team · Post-launch",
+  },
+  {
+    stat: "42",
+    unit: "%",
+    pct: 42,
+    label: "Reduction in time per booking",
+    desc: <>Average booking time fell from <strong>12 min to ~7 min</strong> — validated by agent feedback post-launch.</>,
+    source: "Agent Feedback",
+  },
+];
+
+function ResultMetricRow() {
+  return (
+    <div className="csl-reveal" style={{
+      display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
+      gap: 28, marginBottom: 48,
+    }}>
+      {RESULT_METRICS.map((m) => (
+        <div key={m.label}>
+          {/* Stat */}
+          <div style={{
+            fontSize: "clamp(2.4rem, 4vw, 3.2rem)", fontWeight: 800,
+            color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em",
+            marginBottom: 12,
+          }}>
+            {m.stat}<span style={{ fontSize: "1.4rem", fontWeight: 800 }}>{m.unit}</span>
+          </div>
+
+          {/* Progress bar */}
+          <div style={{
+            height: 5, background: "#F3F4F6",
+            borderRadius: 100, overflow: "hidden", marginBottom: 14,
+          }}>
+            <div style={{
+              height: "100%", width: `${m.pct}%`,
+              background: "linear-gradient(90deg, #1E90FF, #60B4FF)",
+              borderRadius: 100,
+            }} />
+          </div>
+
+          {/* Description */}
+          <p style={{
+            fontSize: "0.88rem", color: "#374151",
+            lineHeight: 1.65, margin: "0 0 10px",
+          }}>{m.desc}</p>
+
+          {/* Source */}
+          <div style={{
+            fontSize: "0.62rem", fontWeight: 700,
+            color: "#9CA3AF",
+            textTransform: "uppercase", letterSpacing: "0.1em",
+          }}>Source: {m.source}</div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -946,16 +1089,19 @@ function ApproachSection() {
         <span className="csl-eyebrow">By the numbers</span>
         <MetricCallout
           stat="12+"
+          pct={60}
           text={<>Agents spent <strong>over 12 minutes per booking</strong> on legacy workflows — most of it context-switching between tools, not actually booking.</>}
           source="Agent Interviews · Pre-launch"
         />
         <MetricCallout
           stat="3+"
+          pct={75}
           text={<>Every single agent interviewed juggled <strong>at least 3 separate tools</strong> for one booking — GDS terminal, airline website, and a tracking spreadsheet.</>}
           source="User Interviews · 4 Sessions"
         />
         <MetricCallout
           stat="4 of 4"
+          pct={100}
           text={<>Competitor platforms analyzed before the first wireframe. <strong>None showed fare refundability inline</strong> — it was always one extra click away.</>}
           source="Competitive Analysis · 4 Platforms"
           last
@@ -1756,6 +1902,9 @@ function ResultsSection() {
   return (
     <CsSection id="results">
       <CsSectionHeader title="The Impact" />
+
+      {/* 3-column progress-bar metrics */}
+      <ResultMetricRow />
 
       {/* Big numbers grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, marginBottom: 40, background: "#F3F4F6", borderRadius: 20, overflow: "hidden" }}>
