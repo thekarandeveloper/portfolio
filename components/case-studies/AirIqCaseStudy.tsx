@@ -14,15 +14,16 @@ import {
    TOC
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",       label: "Overview"           },
-  { id: "problem",        label: "The Problem"         },
-  { id: "approach",       label: "Research"            },
-  { id: "process",        label: "How I Worked"        },
-  { id: "insights",       label: "Core Components"     },
-  { id: "product",        label: "The Product"         },
-  { id: "design-system",  label: "Design System"       },
-  { id: "results",        label: "Results"             },
-  { id: "learnings",      label: "Learnings"           },
+  { id: "overview",       label: "Overview"        },
+  { id: "problem",        label: "The Problem"     },
+  { id: "approach",       label: "Research"        },
+  { id: "process",        label: "How I Worked"    },
+  { id: "insights",       label: "Core Flow Fixes" },
+  { id: "mobile",         label: "Mobile"          },
+  { id: "product",        label: "The Product"     },
+  { id: "design-system",  label: "Design System"   },
+  { id: "results",        label: "Results"         },
+  { id: "learnings",      label: "Learnings"       },
 ];
 
 const META_ROWS = [
@@ -334,14 +335,6 @@ function AirHero() {
             <span className="csl-hero-chip">Systems Design · B2B</span>
             <span className="csl-hero-chip">0 → 1 Product</span>
           </div>
-          <div className="csl-hero-ctas">
-            <a className="csl-btn-primary" href={airFigmaLinks.desktop} target="_blank" rel="noreferrer">
-              Desktop Design ↗
-            </a>
-            <a className="csl-btn-ghost" href={airFigmaLinks.mobile} target="_blank" rel="noreferrer">
-              Mobile Design ↗
-            </a>
-          </div>
         </div>
         {/* Right — flight search demo */}
         <div className="csl-hero-right">
@@ -374,26 +367,47 @@ function OverviewSection() {
     <CsSection id="overview">
       <div className="air-overview csl-reveal">
         <h2 className="air-overview-title">
-          <span>Unified </span>
-          <span>B2B flight booking </span>
+          <span>A live B2B flight portal </span>
           <span className="muted">
-            <Typed text="platform for " delay={200} />
+            <Typed text="used by 25,000+ agents" delay={200} />
           </span>
-          <span>travel agents </span>
+          <span> — was losing </span>
           <span className="muted">
-            <Typed text="and back-office admins" delay={900} />
+            <Typed text="ground to the market." delay={900} />
           </span>
         </h2>
 
         <div className="air-overview-copy">
           <p>
-            Travel agencies across India were booking flights on <strong>3+ disconnected tools</strong>, with no unified view, no error prevention, and no system backing them up. Each booking took <strong>12+ minutes</strong> on average, full of manual re-entry and guesswork.
+            Air IQ was not a concept. It was a <strong>live B2B flight booking portal</strong> actively used by travel agencies across India. Over <strong>25,000 agents</strong> depended on it daily to search fares, manage passenger details, and confirm bookings on behalf of their clients.
           </p>
           <p>
-            The goal: design a <strong>single B2B portal</strong> that gives travel agents and back-office admins everything they need — fast search, clean data, passenger management, and a confirmation flow that actually prevents errors.
+            But the product was aging. Feedback from agents was consistent and growing — the system was slowing them down. Competitors were catching up. The business risk was real: a platform that agents find frustrating gets replaced by one they don't.
+          </p>
+          <p>
+            The mandate was not a visual refresh. It was a <strong>complete redesign of the booking experience</strong> — from search to confirmation — with new features introduced alongside it. This was a business problem that needed to be solved at the design level.
           </p>
         </div>
       </div>
+
+      {/* Stakes at a glance */}
+      <div className="csl-reveal" style={{ marginTop: 32, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, background: "#F3F4F6", borderRadius: 16, overflow: "hidden" }}>
+        {[
+          { num: "25,000+", label: "Active agents in India",  sub: "Real users, real stakes"          },
+          { num: "12+ min", label: "Average booking time",    sub: "Agents were leaking hours"         },
+          { num: "0",       label: "Unified portal existed",  sub: "3 disconnected tools per booking" },
+        ].map((s) => (
+          <div key={s.num} style={{ background: "#fff", padding: "28px 24px" }}>
+            <div style={{ fontSize: "1.9rem", fontWeight: 800, color: "#1E90FF", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.num}</div>
+            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginTop: 8, lineHeight: 1.4 }}>{s.label}</div>
+            <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>{s.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      <StoryCardsGrid />
+      <ConstraintsBlock />
+      <JourneyTimeline />
     </CsSection>
   );
 }
@@ -532,28 +546,28 @@ function JourneyTimeline() {
 ───────────────────────────────────────────────────────────────────── */
 const PAIN_MOMENTS = [
   {
-    title: "3 tools for 1 booking",
-    scene: "Every booking started with the same ritual — GDS terminal open, airline website in another tab, spreadsheet in a third. Three windows. One fare. Before anything was booked, the agent had already context-switched twice.",
-    tag: "~3 min wasted before typing starts",
-    solvedBy: "Unified platform",
-  },
-  {
-    title: "Fare rules you couldn't trust",
-    scene: "Refundability lived in a wall of legal text — no summary, no highlights, no visual indicator. Agents guessed. Sometimes they guessed wrong and the client got incorrect information.",
-    tag: "High error risk on every booking",
+    title: "Fare listings that drown agents in data",
+    scene: "Each airline offered 3 to 5+ fare tiers — Economy Saver, Economy Flex, Business Light, Business Full — each with a different combination of refund policy, meal inclusion, hand baggage, and check-in baggage allowance. The listing showed all of it at equal visual weight. Agents had to stop, read every row, and re-read before they could answer a client's most basic question: which fare is right for them?",
+    tag: "Visual overload on every single search",
     solvedBy: "Fare Listing Card",
   },
   {
-    title: "Sharing a fare: 4 steps minimum",
-    scene: "Copy the price. Open email. Write the passenger's name. Attach a PDF. Send. Then answer the follow-up call because the client didn't understand the format. A 30-second task became a 5-minute one.",
-    tag: "No quick share flow existed",
-    solvedBy: "Itinerary Card",
+    title: "Fare changes disappeared into the noise",
+    scene: "Flight prices in this market move in real time. A fare that was ₹3,180 when the agent started the conversation could be ₹3,890 by the time the client said yes. The old system showed no alert, no highlight, no indication. Agents discovered the change only when the booking failed — after the client had already committed.",
+    tag: "No change alerts → booking failures",
+    solvedBy: "Live fare change highlight",
   },
   {
-    title: "Errors surfaced at payment",
-    scene: "Name mismatch, wrong fare class, expired passport — none of it was caught until the final step. By then, re-booking fees applied and the agent had to start over with a frustrated client on hold.",
-    tag: "Zero validation before confirmation",
-    solvedBy: "Review Table View",
+    title: "The interface worked against how agents work",
+    scene: "Travel agents are keyboard-first professionals. They navigate by shortcut, switch screens by habit, and type without looking. The portal required mouse clicks for actions that should have been reachable in one keystroke. Every forced click broke flow and slowed a booking that should have taken seconds.",
+    tag: "Mouse-dependent UI in a keyboard-native job",
+    solvedBy: "Keyboard-adaptive design",
+  },
+  {
+    title: "The feedback kept pointing to the same problems",
+    scene: "It wasn't one complaint. It was a pattern — agents, operations teams, and support all flagging the same friction week after week. The company reached a threshold: this wasn't a feature gap, it was a product-level problem. A full redesign, with new features built in, was the only path to staying competitive.",
+    tag: "Business mandate, not just UX cleanup",
+    solvedBy: "End-to-end redesign",
   },
 ];
 
@@ -561,8 +575,8 @@ function ProblemSection() {
   return (
     <CsSection id="problem">
       <CsSectionHeader
-        title="Booking a flight shouldn't feel like solving a puzzle."
-        sub="Yet in the existing system, that was the reality. Agents were spending 12+ minutes per booking — not because the task was complex, but because the interface made it complex."
+        title="The portal was slowing agents down — and the business knew it."
+        sub="25,000 agents. Consistent feedback. Growing competitive pressure. This wasn't a UI problem. It was a business problem that showed up in the interface."
       />
 
       <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
@@ -647,11 +661,11 @@ const COMPETITORS = [
 ];
 
 const KEY_FINDINGS = [
-  "Price dominates every scan — but **fare rules are never inline**. Refundability is always one extra click away.",
+  "Fare listing is a constant problem across every portal — some handle it partially, none handle it well. **All decisions start here.**",
+  "Price dominates every scan — but **fare rules are never inline**. Refundability is always one extra click away across all 4 platforms.",
   "Open filters, lose results. Agents need **both visible at once** — sequencing compare and filter breaks the workflow.",
   "TripJack had the right data, wrong **visual hierarchy** — refundability and seat count were buried every time.",
-  "TBO set the **industry floor**: no design system, no consistency, horizontal scroll on every screen.",
-  "Yatra: polished **consumer side**, neglected **agent portal** — same company, two completely different standards.",
+  "**80% of B2B bookings** leave add-ons and SSR empty — but every portal shows those empty rows anyway, creating confusion at review.",
 ];
 
 function HighlightLine({ text, active }: { text: string; active: boolean }) {
@@ -1179,15 +1193,27 @@ function ApproachSection() {
             },
             {
               num: "02",
-              insight: "Journey details confirmed verbally, on the spot",
-              component: "Itinerary Card",
-              detail: "Single-glance route, dates, times — nothing collapsed",
+              insight: "Fare listing is a universal unsolved problem",
+              component: "Fare Listing Card",
+              detail: "All 4 platforms studied struggled with it — some partially, none completely. This was the clearest opportunity.",
             },
             {
               num: "03",
+              insight: "80% of B2B bookings have empty SSR/add-on tables",
+              component: "Review Table",
+              detail: "Showing empty rows for meals and special requests created confusion on the review page. The solution: hide empty SSR fields until they're filled.",
+            },
+            {
+              num: "04",
+              insight: "Itinerary clarity is the agent's most-used output",
+              component: "Itinerary Card",
+              detail: "Agents read itinerary details verbally to clients on a call. If the card isn't scannable in 3 seconds, the call drags and trust erodes.",
+            },
+            {
+              num: "05",
               insight: "Late errors cost money, not just time",
               component: "Review Table",
-              detail: "Explicit, zero blank cells before the agent submits",
+              detail: "Errors caught at payment meant re-booking fees and a frustrated client on hold. Validation needed to move earlier in the flow.",
             },
           ].map((r) => (
             <div key={r.num}>
@@ -1773,8 +1799,8 @@ function CoreComponentsSection() {
   return (
     <CsSection id="insights">
       <CsSectionHeader
-        title="3 Core Components That Fixed The Flow"
-        sub="Every design went through multiple directions before landing. Here's what I tried, what I scrapped, and the component that shipped."
+        title="3 Core Flow Fixes"
+        sub="Fixing the listing, the share card, and the review table unblocked every other screen. Here's what I tried, what I scrapped, and what shipped."
       />
 
       {/* Component 1 — Fare Listing Card */}
@@ -1796,9 +1822,6 @@ function CoreComponentsSection() {
    §05  THE PRODUCT
 ───────────────────────────────────────────────────────────────────── */
 function TheProductSection() {
-  const desktopEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.desktop)}`;
-  const mobileEmbedUrl  = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.mobile)}`;
-
   return (
     <CsSection id="product">
       <CsSectionHeader
@@ -1806,85 +1829,69 @@ function TheProductSection() {
         sub="20+ screens shipped across 5 flows. One platform, every booking."
       />
 
-      {/* Figma embed — live product view */}
-      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+      {/* Desktop — video placeholder + Figma link */}
+      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+        <span className="csl-eyebrow">Desktop Platform</span>
         <div style={{
           borderRadius: 18, overflow: "hidden",
           border: "1px solid rgba(0,0,0,0.08)",
           boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
+          background: "linear-gradient(145deg, #EAF4FF 0%, #F0F8FF 100%)",
+          aspectRatio: "16/9",
+          display: "flex", flexDirection: "column",
+          alignItems: "center", justifyContent: "center",
+          gap: 12,
         }}>
-          {/* Chrome bar */}
           <div style={{
-            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            padding: "0 16px",
+            width: 56, height: 56, borderRadius: "50%",
+            background: "rgba(30,144,255,0.12)",
+            border: "2px solid rgba(30,144,255,0.25)",
+            display: "flex", alignItems: "center", justifyContent: "center",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
-                <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
-              ))}
-              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
-                Air IQ — Full Platform
-              </span>
-            </div>
-            <a
-              href={airFigmaLinks.desktop}
-              target="_blank"
-              rel="noreferrer"
-              style={{ fontSize: "0.62rem", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}
-            >
-              Open in Figma ↗
-            </a>
+            <span style={{ fontSize: "1.4rem", marginLeft: 4 }}>▶</span>
           </div>
-          <iframe
-            src={desktopEmbedUrl}
-            allowFullScreen
-            style={{ width: "100%", height: 520, border: "none", display: "block" }}
-            loading="lazy"
-          />
+          <div style={{ textAlign: "center" }}>
+            <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827" }}>Platform walkthrough</div>
+            <div style={{ fontSize: "0.72rem", color: "#6B7280", marginTop: 4 }}>Video coming soon</div>
+          </div>
+        </div>
+        <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 6 }}>
+          <span style={{ fontSize: "0.85rem", color: "#6B7280" }}>Explore the full platform in Figma —</span>
+          <a href={airFigmaLinks.desktop} target="_blank" rel="noreferrer" style={{ fontSize: "0.85rem", fontWeight: 700, color: "#1E90FF", textDecoration: "none" }}>Desktop Design ↗</a>
         </div>
       </div>
 
-      {/* Mobile design embed */}
-      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+      {/* Mobile — video placeholder + Figma link */}
+      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+        <span className="csl-eyebrow">Mobile Platform · 375px</span>
         <div style={{
           borderRadius: 18, overflow: "hidden",
           border: "1px solid rgba(0,0,0,0.08)",
           boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
+          background: "linear-gradient(145deg, #EAF4FF 0%, #F0F8FF 100%)",
+          aspectRatio: "16/9",
+          display: "flex", flexDirection: "column",
+          alignItems: "center", justifyContent: "center",
+          gap: 12,
         }}>
           <div style={{
-            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            padding: "0 16px",
+            width: 56, height: 56, borderRadius: "50%",
+            background: "rgba(30,144,255,0.12)",
+            border: "2px solid rgba(30,144,255,0.25)",
+            display: "flex", alignItems: "center", justifyContent: "center",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
-                <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
-              ))}
-              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
-                Air IQ — Mobile Design
-              </span>
-              <span style={{ fontSize: "0.65rem", color: "#9CA3AF", marginLeft: 6 }}>375px</span>
-            </div>
-            <a
-              href={airFigmaLinks.mobile}
-              target="_blank"
-              rel="noreferrer"
-              style={{ fontSize: "0.62rem", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}
-            >
-              Open in Figma ↗
-            </a>
+            <span style={{ fontSize: "1.4rem", marginLeft: 4 }}>▶</span>
           </div>
-          <iframe
-            src={mobileEmbedUrl}
-            allowFullScreen
-            style={{ width: "100%", height: 520, border: "none", display: "block" }}
-            loading="lazy"
-          />
+          <div style={{ textAlign: "center" }}>
+            <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827" }}>Mobile walkthrough</div>
+            <div style={{ fontSize: "0.72rem", color: "#6B7280", marginTop: 4 }}>Video coming soon</div>
+          </div>
+        </div>
+        <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 6 }}>
+          <span style={{ fontSize: "0.85rem", color: "#6B7280" }}>Explore the mobile design in Figma —</span>
+          <a href={airFigmaLinks.mobile} target="_blank" rel="noreferrer" style={{ fontSize: "0.85rem", fontWeight: 700, color: "#1E90FF", textDecoration: "none" }}>Mobile Design ↗</a>
         </div>
       </div>
-
-      <JourneySection />
 
       <EdgeCasesSection />
     </CsSection>
@@ -1971,8 +1978,9 @@ function ResultsSection() {
     <CsSection id="results">
       <CsSectionHeader title="The Impact" />
 
-      {/* Big numbers grid */}
+      {/* Big numbers grid — 4 genuine outcomes */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, marginBottom: 40, background: "#F3F4F6", borderRadius: 20, overflow: "hidden" }}>
+
         {/* ~7 min */}
         <div className="csl-reveal" style={{ background: "#fff", padding: "36px 32px" }}>
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
@@ -1980,51 +1988,40 @@ function ResultsSection() {
             <span style={{ fontSize: "1.4rem", fontWeight: 700, color: "#6B7280", marginLeft: 4 }}>min</span>
           </div>
           <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Average booking time</div>
-          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>down from ~12 min</div>
+          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>down from ~12 min per booking</div>
           <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Agent Feedback</div>
         </div>
 
-        {/* 30–40% */}
+        {/* 30–40% faster */}
         <div className="csl-reveal rd1" style={{ background: "#fff", padding: "36px 32px" }}>
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
             30–40%
           </div>
-          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Faster completion</div>
+          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Faster booking completion</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>vs. pre-launch baseline</div>
           <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Operations Data</div>
         </div>
 
-        {/* 25–35% support tickets */}
+        {/* 25–35% fewer support tickets */}
         <div className="csl-reveal rd1" style={{ background: "#fff", padding: "36px 32px" }}>
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
             25–35%
           </div>
-          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Fewer support tickets</div>
-          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>about UI confusion — post-launch</div>
+          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Fewer UI confusion tickets</div>
+          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>support drop post-launch</div>
           <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Support Team · Post-launch</div>
         </div>
 
-        {/* 80+ */}
+        {/* 25,000+ agents */}
         <div className="csl-reveal rd2" style={{ background: "#fff", padding: "36px 32px" }}>
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
-            <CountUp to={80} />
-            <span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span>
+            <CountUp to={25} />K<span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span>
           </div>
-          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Components built</div>
-          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>from zero, token-driven</div>
-          <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Figma Design System</div>
+          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Active agents onboarded</div>
+          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>live across India post-launch</div>
+          <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Product Analytics</div>
         </div>
 
-        {/* 20+ */}
-        <div className="csl-reveal rd3" style={{ background: "#fff", padding: "36px 32px" }}>
-          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
-            <CountUp to={20} />
-            <span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span>
-          </div>
-          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Screens shipped</div>
-          <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>across 5 core flows</div>
-          <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Figma · Desktop & Mobile</div>
-        </div>
       </div>
 
       {/* Business impact bridge */}
@@ -2272,6 +2269,11 @@ function ProcessSection() {
         title="How I Worked"
         sub="AI-assisted process — not AI-generated design. Every tool saved time on synthesis so I could spend it on craft."
       />
+      <div className="csl-reveal" style={{ marginBottom: 40, padding: "24px 28px", background: "#F9FAFB", borderRadius: 16, border: "1px solid #F3F4F6" }}>
+        <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+          After completing research, I aligned with product managers on both user needs and business constraints. I used AI tools to prototype and validate layout directions fast — testing many approaches in the time it would normally take to build one. The saved time went into craft: the actual design decisions, hierarchy, and component system that shipped.
+        </p>
+      </div>
       <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 0 }}>
         {airProcessSteps.map((step, i) => (
           <div key={step.num} style={{
@@ -2466,6 +2468,91 @@ function EdgeCasesSection() {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────────────
+   MOBILE SECTION
+───────────────────────────────────────────────────────────────────── */
+function MobileSection() {
+  const mobileEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.mobile)}`;
+
+  const items = [
+    {
+      num: "01",
+      title: "Sidebar → Bottom sheet",
+      text: "The persistent 274px filter sidebar on desktop consumes the full viewport on 375px. On mobile, filters become a sticky button that opens a full-screen bottom sheet. The last selection persists when it closes — same mental model, adapted form factor.",
+    },
+    {
+      num: "02",
+      title: "Same fare card, compressed density",
+      text: "The fare listing card reflows to single column. Price and refund status stay primary. Baggage and meal details move to a tap-to-expand row — present when needed, not competing for the first scan.",
+    },
+    {
+      num: "03",
+      title: "Touch targets and keyboard parity",
+      text: "Inputs, date pickers, and passenger forms were re-evaluated for touch. 44px minimum hit areas throughout. No information was removed for mobile — only reorganised to respect the smaller viewport.",
+    },
+    {
+      num: "04",
+      title: "Full journey, login to confirmation",
+      text: "Every flow — search, select, passenger details, review, confirm — works end-to-end at 375px. Agents in the field needed the same capability as agents at a desk. Nothing was cut.",
+    },
+  ];
+
+  return (
+    <CsSection id="mobile">
+      <CsSectionHeader
+        title="Mobile Adaptivity"
+        sub="Same platform, same data, different form factor. Nothing was simplified for mobile — everything was adapted."
+      />
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+        {items.map((item, i) => (
+          <div key={item.num} className="csl-reveal" style={{
+            display: "grid", gridTemplateColumns: "40px 1fr",
+            gap: "0 16px",
+            paddingTop: i === 0 ? 0 : 24,
+            paddingBottom: 24,
+            borderBottom: i < items.length - 1 ? "1px solid #F3F4F6" : "none",
+          }}>
+            <span style={{
+              width: 36, height: 36, borderRadius: 10,
+              background: "#EFF6FF", display: "flex",
+              alignItems: "center", justifyContent: "center",
+              fontSize: "0.72rem", fontWeight: 900, color: "#1E90FF",
+              flexShrink: 0, marginTop: 2,
+            }}>{item.num}</span>
+            <div>
+              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 6, lineHeight: 1.3 }}>{item.title}</div>
+              <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="csl-reveal" style={{ marginTop: 32 }}>
+        <div style={{ borderRadius: 18, overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 8px 32px rgba(0,0,0,0.07)" }}>
+          <div style={{ height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+                <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
+              ))}
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#374151", marginLeft: 6 }}>Air IQ — Mobile · 375px</span>
+            </div>
+            <a href={airFigmaLinks.mobile} target="_blank" rel="noreferrer" style={{ fontSize: "0.62rem", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}>
+              Open in Figma ↗
+            </a>
+          </div>
+          <iframe
+            src={mobileEmbedUrl}
+            allowFullScreen
+            style={{ width: "100%", height: 520, border: "none", display: "block" }}
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </CsSection>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════════════════
    MAIN EXPORT
 ════════════════════════════════════════════════════════════════════════ */
@@ -2484,6 +2571,7 @@ export function AirIqCaseStudy() {
       <ApproachSection />
       <ProcessSection />
       <CoreComponentsSection />
+      <MobileSection />
       <TheProductSection />
       <DesignSystemSection />
       <ResultsSection />
