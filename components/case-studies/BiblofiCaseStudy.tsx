@@ -236,9 +236,9 @@ function OverviewSection() {
             ))}
           </div>
           {/* Goal box */}
-          <div style={{ background:A5, borderRadius:14, padding:"16px 18px" }}>
+          <div className="csl-callout" style={{ margin:0 }}>
             <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Project Goal</p>
-            <p style={{ fontSize:"0.78rem", color:ADrk, lineHeight:1.65 }}>
+            <p style={{ fontSize:"0.78rem", color:"#374151", lineHeight:1.65 }}>
               &quot;Create a seamless, feature-rich library app that empowers members to discover, reserve, and borrow books efficiently while reducing friction.&quot;
             </p>
           </div>
@@ -319,7 +319,7 @@ function ResearchSection() {
       <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))", gap:14 }} className="csl-reveal rd2">
         {researchStats.map((stat) => (
           <div key={stat.label} style={{ background:"#fff", borderRadius:16, padding:"22px 16px", textAlign:"center", boxShadow:"0 4px 14px rgba(0,0,0,0.04)" }}>
-            <p style={{ fontSize:"1.6rem", fontWeight:800, color:A, lineHeight:1, marginBottom:6 }}>{stat.value}</p>
+            <p style={{ fontSize:"2rem", fontWeight:800, color:A, lineHeight:1, marginBottom:6 }}>{stat.value}</p>
             <p style={{ fontSize:"0.7rem", color:"#6B7280", textTransform:"uppercase", letterSpacing:"0.06em" }}>{stat.label}</p>
           </div>
         ))}
@@ -449,11 +449,11 @@ function ScreensSection() {
           <div style={{ order: feature.reverse ? 2 : 1 }}>
             <p style={{ fontSize:"0.62rem", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", marginBottom:6 }}>{feature.num}</p>
             <p style={{ fontSize:"0.68rem", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.1em", color:AMut, marginBottom:10 }}>{feature.tag}</p>
-            <h3 style={{ fontSize:"1.05rem", fontWeight:800, color:"#111827", marginBottom:12 }}>{feature.title}</h3>
+            <h3 style={{ fontSize:"1.15rem", fontWeight:700, color:"#111827", marginBottom:12 }}>{feature.title}</h3>
             {feature.desc.map((line) => (
               <p key={line} className="csl-text">{line}</p>
             ))}
-            <span style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:"0.72rem", fontWeight:600, color:A, background:A5, padding:"5px 12px", borderRadius:100, marginTop:10 }}>
+            <span style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:"0.68rem", fontWeight:600, color:A, background:A5, padding:"4px 13px", borderRadius:100, marginTop:10 }}>
               {feature.impact}
             </span>
           </div>
@@ -507,7 +507,7 @@ function FinalScreensSection() {
           style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16, marginBottom:16 }}>
           {row.map(({ src, label }) => (
             <div key={src} style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10 }}>
-              <div style={{ width:"100%", borderRadius:20, overflow:"hidden", boxShadow:"0 8px 28px rgba(0,0,0,0.1)" }}>
+              <div style={{ width:"100%", borderRadius:20, overflow:"hidden", boxShadow:"0 8px 32px rgba(0,0,0,0.12)" }}>
                 <CsImg label={label} aspect="9/16" icon="📱" sub="Upload final screen here" />
               </div>
               <p style={{ fontSize:"0.72rem", color:"#9CA3AF", textAlign:"center" }}>{label}</p>
@@ -535,9 +535,9 @@ function AccessibilitySection() {
         {accessibilityCards.map((card) => (
           <div key={card.title} style={{ background:"#fff", borderRadius:18, padding:"22px 20px", boxShadow:"0 4px 14px rgba(0,0,0,0.04)" }}>
             <div style={{ fontSize:"1.5rem", marginBottom:12 }}>{card.icon}</div>
-            <h3 style={{ fontSize:"0.86rem", fontWeight:700, color:"#111827", marginBottom:8 }}>{card.title}</h3>
+            <h3 style={{ fontSize:"0.92rem", fontWeight:700, color:"#111827", marginBottom:8 }}>{card.title}</h3>
             <p style={{ fontSize:"0.76rem", color:"#6B7280", lineHeight:1.6, marginBottom:12 }}>{card.desc}</p>
-            <span style={{ fontSize:"0.62rem", fontWeight:700, background:A5, color:A, padding:"3px 10px", borderRadius:100 }}>{card.badge}</span>
+            <span style={{ fontSize:"0.68rem", fontWeight:600, background:A5, color:A, padding:"4px 13px", borderRadius:100 }}>{card.badge}</span>
           </div>
         ))}
       </div>
@@ -619,7 +619,7 @@ function LearningsSection() {
           }}>
             <p style={{ fontSize:"0.6rem", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", flexShrink:0, marginTop:2 }}>{learning.num}</p>
             <div>
-              <h3 style={{ fontSize:"0.88rem", fontWeight:700, color:"#111827", marginBottom:6 }}>{learning.title}</h3>
+              <h3 style={{ fontSize:"0.92rem", fontWeight:700, color:"#111827", marginBottom:6 }}>{learning.title}</h3>
               <p style={{ fontSize:"0.78rem", color:"#6B7280", lineHeight:1.7 }}>{learning.text}</p>
             </div>
           </div>
