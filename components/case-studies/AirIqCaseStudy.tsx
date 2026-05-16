@@ -804,41 +804,37 @@ function ResearchScopePills({ items }: { items: string[] }) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   RESEARCH INSIGHT CARDS  (2×2 dark grid — exact screenshot match)
+   RESEARCH INSIGHT CARDS  (warm 2×2 light grid)
 ───────────────────────────────────────────────────────────────────── */
 const AGENT_INSIGHTS = [
   {
-    label: "Insight 1:",
-    heading: "Friction in the Booking Workflow",
-    text: "Agents described starting every booking with the same ritual — GDS terminal, airline site, and a spreadsheet open simultaneously before a single fare could be confirmed.",
-    dataLabel: "Data Point:",
-    dataText: "All 4 agents reported 3+ open browser windows or apps per booking, mentioning 'no option to see everything in one place.'",
+    label: "Insight 01",
+    heading: "Friction in the booking workflow",
+    text: "Agents described starting every booking with the same ritual — GDS terminal, airline site, spreadsheet — before a single fare could be confirmed.",
+    dataText: "All 4 agents reported 3+ open browser windows per booking — no option to see everything in one place.",
     stat: "3+",
     statUnit: "tools per booking",
   },
   {
-    label: "Insight 2:",
-    heading: "The Hidden Cost of Fare Rules",
+    label: "Insight 02",
+    heading: "The hidden cost of fare rules",
     text: "Refundability lived in a wall of legal text — no summary, no highlights, no visual indicator. Agents guessed what fares meant. Sometimes they guessed wrong and the client got incorrect information.",
-    dataLabel: "Data Point:",
-    dataText: "4 of 4 competitor platforms studied buried refundability behind extra clicks — never shown inline alongside price.",
+    dataText: "4 of 4 competitor platforms studied buried refundability behind extra clicks — never shown inline.",
     stat: "100%",
-    statUnit: "of competitors hid it",
+    statUnit: "of competitors did it",
   },
   {
-    label: "Insight 3:",
-    heading: "Agents Receive No Booking Alerts",
+    label: "Insight 03",
+    heading: "Agents receive no booking alerts",
     text: "Fares change and seats fill mid-session. Agents had no feedback mechanism — nothing alerted them when the fare they'd verbally confirmed to a client was no longer available.",
-    dataLabel: "Data Point:",
     dataText: "Errors caught at payment — not during entry. Re-booking fees applied by the time agents discovered mismatches.",
     stat: "0",
-    statUnit: "of platforms had live alerts",
+    statUnit: "platforms had live alerts",
   },
   {
-    label: "Insight 4:",
-    heading: "Agents Want to Share Fares Instantly",
-    text: "Sending a fare to a client required copy-pasting price, opening email, writing context, attaching a PDF, and sending — before the client even confirmed intent.",
-    dataLabel: "Data Point:",
+    label: "Insight 04",
+    heading: "Agents want to share fares instantly",
+    text: "Sending a fare to a client required copy-pasting price, opening email, writing context, attaching a PDF — before the client even confirmed intent.",
     dataText: "A 30-second task became a 5-minute one. All 4 agents cited this as a daily friction point in client communication.",
     stat: "4–5",
     statUnit: "steps to share one fare",
@@ -848,90 +844,98 @@ const AGENT_INSIGHTS = [
 function ResearchInsightCards() {
   return (
     <div className="csl-reveal" style={{ marginBottom: 32 }}>
-      <div style={{ borderRadius: 16, overflow: "hidden" }}>
-        {/* 2×2 dark grid */}
-        <div style={{
-          display: "grid", gridTemplateColumns: "1fr 1fr",
-          background: "#141414", gap: "1px",
-        }}>
-          {AGENT_INSIGHTS.map((ins) => (
-            <div key={ins.label} style={{
-              background: "#1A1A1A", padding: "28px 24px 28px",
+      {/* 2×2 light grid */}
+      <div style={{
+        display: "grid", gridTemplateColumns: "1fr 1fr",
+        gap: 16,
+      }}>
+        {AGENT_INSIGHTS.map((ins) => (
+          <div key={ins.label} style={{
+            background: "#ffffff",
+            border: "0.5px solid #e8e5e0",
+            borderRadius: 16,
+            padding: "24px",
+            display: "flex",
+            flexDirection: "column",
+          }}>
+            {/* Label */}
+            <div style={{
+              fontSize: "0.68rem", fontWeight: 400,
+              letterSpacing: "0.08em",
+              color: "#9a9793", marginBottom: 10,
             }}>
-              {/* "Insight N:" label */}
+              {ins.label}
+            </div>
+
+            {/* Title */}
+            <div style={{
+              fontSize: "0.94rem", fontWeight: 500,
+              color: "#0f0e0d", lineHeight: 1.4, marginBottom: 10,
+            }}>
+              {ins.heading}
+            </div>
+
+            {/* Body */}
+            <p style={{
+              fontSize: "0.81rem", color: "#4a4845",
+              lineHeight: 1.65, margin: "0 0 14px",
+            }}>
+              {ins.text}
+            </p>
+
+            {/* Data point */}
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
               <div style={{
-                fontSize: "0.55rem", fontWeight: 400,
-                letterSpacing: "0.1em",
-                color: "rgba(255,255,255,0.3)", marginBottom: 14,
-              }}>
-                {ins.label}
-              </div>
-
-              {/* Bullet + heading */}
-              <div style={{ display: "flex", gap: 7, marginBottom: 10, alignItems: "flex-start" }}>
-                <span style={{ color: "#1E90FF", fontSize: "0.55rem", marginTop: "0.35em", flexShrink: 0 }}>•</span>
-                <span style={{
-                  fontSize: "0.82rem", fontWeight: 700,
-                  color: "rgba(255,255,255,0.88)", lineHeight: 1.35,
-                }}>{ins.heading}</span>
-              </div>
-
-              {/* Description */}
+                flexShrink: 0, width: 16, height: 1,
+                background: "#c94a28", marginTop: 8,
+              }} />
               <p style={{
-                fontSize: "0.8rem", color: "rgba(255,255,255,0.5)",
-                lineHeight: 1.7, margin: "0 0 12px",
+                fontSize: "0.81rem", fontStyle: "italic",
+                color: "#c94a28", lineHeight: 1.55, margin: 0,
               }}>
-                {ins.text}
+                {ins.dataText}
               </p>
+            </div>
 
-              {/* Data point */}
-              <p style={{
-                fontSize: "0.76rem", color: "rgba(255,255,255,0.38)",
-                lineHeight: 1.6, margin: "0 0 24px",
-              }}>
-                <strong style={{ color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>{ins.dataLabel}</strong>
-                {" "}{ins.dataText}
-              </p>
-
-              {/* Large stat */}
+            {/* Stat — pushed to bottom */}
+            <div style={{
+              marginTop: "auto",
+              paddingTop: 20,
+              borderTop: "0.5px solid #e8e5e0",
+            }}>
               <div style={{
-                fontSize: "clamp(2.8rem, 5vw, 3.6rem)", fontWeight: 800,
-                color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em",
+                fontFamily: "'Instrument Serif', serif",
+                fontSize: "clamp(2.4rem, 4vw, 3.2rem)",
+                fontWeight: 400,
+                color: "#0f0e0d",
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
               }}>
                 {ins.stat}
               </div>
               <div style={{
-                fontSize: "0.58rem", color: "rgba(255,255,255,0.22)",
-                fontWeight: 500, marginTop: 6,
-                textTransform: "uppercase", letterSpacing: "0.1em",
+                fontSize: "0.68rem", fontWeight: 400,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "#9a9793", marginTop: 4,
               }}>
                 {ins.statUnit}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
 
-        {/* Footer attribution */}
+      {/* Attribution */}
+      <div style={{ marginTop: 28, textAlign: "center" }}>
         <div style={{
-          background: "#111111", padding: "14px 24px",
-          textAlign: "center",
-          borderTop: "1px solid rgba(255,255,255,0.04)",
-        }}>
-          <span style={{
-            fontSize: "0.58rem", fontWeight: 500,
-            color: "rgba(255,255,255,0.22)",
-            textTransform: "uppercase", letterSpacing: "0.16em",
-          }}>
-            A COLLECTION OF INSIGHT GATHERED FROM:{" "}
-          </span>
-          <span style={{
-            fontSize: "0.58rem", fontWeight: 700,
-            color: "rgba(255,255,255,0.45)",
-            textTransform: "uppercase", letterSpacing: "0.16em",
-          }}>
-            Agent Interviews
-          </span>
-        </div>
+          width: 40, height: 1,
+          background: "#9a9793", opacity: 0.5,
+          margin: "0 auto 10px",
+        }} />
+        <span style={{ fontSize: "0.75rem", color: "#9a9793" }}>
+          A collection of insight gathered from: Agent Interviews
+        </span>
       </div>
     </div>
   );
@@ -989,94 +993,143 @@ function MetricCallout({ stat, text, source, pct, last = false }: {
 
 
 /* ─────────────────────────────────────────────────────────────────────
-   DOT-GRID METRIC  (exact screenshot: 10×10 dots + % + left border)
+   WAFFLE CHART METRIC  (10×10 terracotta dots + count-up + left border)
 ───────────────────────────────────────────────────────────────────── */
-function DotGrid({ pct, dotColor, emptyColor }: {
-  pct: number; dotColor: string; emptyColor: string;
-}) {
-  const filled = Math.round(pct);
-  return (
-    <div style={{
-      display: "grid", gridTemplateColumns: "repeat(10, 1fr)",
-      gap: "5px", marginBottom: 24,
-    }}>
-      {Array.from({ length: 100 }).map((_, i) => (
-        <div key={i} style={{
-          aspectRatio: "1", borderRadius: "50%",
-          background: i < filled ? dotColor : emptyColor,
-        }} />
-      ))}
-    </div>
-  );
-}
-
-const DOT_METRICS = [
+const WAFFLE_METRICS = [
   {
-    pct: 75,
-    label: "75%",
-    dotColor: "#1E90FF",
-    emptyColor: "#DBEAFE",
-    accentColor: "#1E90FF",
-    desc: "Of agents interviewed used 3+ separate tools per booking — spending most of their time context-switching rather than booking.",
+    filled: 72,
+    target: 72,
+    suffix: "%",
+    desc: "Of booking time was spent context-switching between tools, not on the actual booking task.",
+    source: "Agent Interviews · Pre-launch",
+  },
+  {
+    filled: 75,
+    target: 75,
+    suffix: "%",
+    desc: "Of agents interviewed juggled 3+ separate tools for every single booking session.",
     source: "User Interviews · 4 Sessions",
   },
   {
-    pct: 100,
-    label: "100%",
-    dotColor: "#EAB308",
-    emptyColor: "#FEF9C3",
-    accentColor: "#EAB308",
-    desc: "Of competitor platforms buried fare refundability behind extra clicks — never shown inline alongside price.",
-    source: "Competitive Analysis · 4 Platforms",
-  },
-  {
-    pct: 0,
-    label: "0 of 4",
-    dotColor: "#1A1A1A",
-    emptyColor: "#E5E7EB",
-    accentColor: "#1A1A1A",
-    desc: "Competitor platforms had a built-in share flow. Sending a fare to a client required 4–5 manual steps on every platform studied.",
+    filled: 100,
+    target: 100,
+    suffix: "%",
+    desc: "Of competitor platforms analyzed buried fare refundability behind extra clicks — never inline.",
     source: "Competitive Analysis · 4 Platforms",
   },
 ];
+
+function WaffleCol({ filled, target, suffix, desc, source }: typeof WAFFLE_METRICS[0]) {
+  const [dots, setDots]   = useState<boolean[]>(Array(100).fill(false));
+  const [count, setCount] = useState(0);
+  const ref   = useRef<HTMLDivElement>(null);
+  const fired = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting || fired.current) return;
+      fired.current = true;
+      io.disconnect();
+
+      /* dot fill — one dot every 12 ms */
+      for (let i = 0; i < filled; i++) {
+        setTimeout(() => {
+          setDots(prev => {
+            const next = [...prev];
+            next[i] = true;
+            return next;
+          });
+        }, i * 12);
+      }
+
+      /* count-up over 800 ms ease-out */
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min((now - t0) / 800, 1);
+        const eased = 1 - Math.pow(1 - p, 2);
+        setCount(Math.floor(eased * target));
+        if (p < 1) requestAnimationFrame(tick);
+        else setCount(target);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.2 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [filled, target]);
+
+  return (
+    <div ref={ref} style={{ display: "flex", flexDirection: "column" }}>
+      {/* 10×10 waffle */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(10, 8px)",
+        gap: 4,
+        width: 116,
+      }}>
+        {Array.from({ length: 100 }).map((_, i) => (
+          <div key={i} style={{
+            width: 8, height: 8, borderRadius: "50%",
+            background: i < filled
+              ? (dots[i] ? "#c94a28" : "#f5d5cc")
+              : "#f5d5cc",
+            transition: dots[i] ? "background 80ms ease" : "none",
+          }} />
+        ))}
+      </div>
+
+      {/* Stat number */}
+      <div style={{
+        fontFamily: "'Instrument Serif', serif",
+        fontSize: "clamp(2.4rem, 4vw, 3rem)",
+        fontWeight: 400,
+        color: "#0f0e0d",
+        lineHeight: 1,
+        letterSpacing: "-0.02em",
+        marginTop: 20,
+        marginBottom: 14,
+      }}>
+        {count}{suffix}
+      </div>
+
+      {/* Description with left border */}
+      <p style={{
+        fontSize: "0.875rem",
+        color: "#4a4845",
+        lineHeight: 1.6,
+        borderLeft: "2px solid #c94a28",
+        paddingLeft: 12,
+        margin: "0 0 10px",
+      }}>
+        {desc}
+      </p>
+
+      {/* Source */}
+      <p style={{
+        fontSize: "0.69rem",
+        color: "#9a9793",
+        paddingLeft: 14,
+        margin: 0,
+      }}>
+        <strong style={{ fontWeight: 500 }}>Source:</strong> {source}
+      </p>
+    </div>
+  );
+}
 
 function DotMetricRow() {
   return (
     <div className="csl-reveal">
       <p style={{
-        fontSize: "0.95rem", color: "#6B7280",
-        lineHeight: 1.75, margin: "0 0 40px", maxWidth: 520,
+        fontSize: "0.94rem", color: "#4a4845",
+        lineHeight: 1.7, margin: "0 0 40px", maxWidth: 520,
       }}>
         This research helped us understand agent behaviors, identify booking friction, and uncover opportunities to design a more efficient B2B travel platform.
       </p>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32 }}>
-        {DOT_METRICS.map((m) => (
-          <div key={m.label}>
-            <DotGrid pct={m.pct} dotColor={m.dotColor} emptyColor={m.emptyColor} />
-            <div style={{
-              fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 400,
-              color: "#1C1C1E", lineHeight: 1,
-              letterSpacing: "-0.02em", marginBottom: 20,
-            }}>{m.label}</div>
-            <div style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 16 }}>
-              <div style={{
-                width: 3, minHeight: 54, borderRadius: 100,
-                background: m.accentColor, flexShrink: 0,
-              }} />
-              <p style={{
-                fontSize: "0.88rem", color: "#374151",
-                lineHeight: 1.65, margin: 0,
-              }}>{m.desc}</p>
-            </div>
-            <div>
-              <div style={{ fontSize: "0.7rem", color: "#9CA3AF", fontWeight: 400, marginBottom: 3 }}>
-                Source:
-              </div>
-              <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#374151" }}>
-                {m.source}
-              </div>
-            </div>
-          </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 40 }}>
+        {WAFFLE_METRICS.map((m) => (
+          <WaffleCol key={m.target + m.source} {...m} />
         ))}
       </div>
     </div>
@@ -1114,32 +1167,45 @@ function ApproachSection() {
       {/* Research → Design bridge */}
       <div className="csl-reveal" style={{ marginBottom: 8 }}>
         <span className="csl-eyebrow">What research told us to design</span>
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 28, marginTop: 20 }}>
           {[
             {
-              insight: "Agents confirm journey details verbally while the client waits on the other line",
-              decision: "Itinerary Card: single-glance route, dates, and times — nothing collapsed or hidden",
+              num: "01",
+              insight: "Price and refundability must land in the same scan — not one click apart",
+              component: "Fare Listing Card",
+              detail: "price hierarchy first, refund badge always visible inline",
             },
-          ].map((r, i) => (
-            <div key={i} style={{
-              display: "grid", gridTemplateColumns: "28px 1fr",
-              gap: "0 14px", alignItems: "start",
-            }}>
-              <span style={{
-                width: 28, height: 28, borderRadius: 8,
-                background: "#EFF6FF", display: "flex",
-                alignItems: "center", justifyContent: "center",
-                fontSize: "0.68rem", fontWeight: 900, color: "#1E90FF",
-                flexShrink: 0, marginTop: 2,
-              }}>0{i + 1}</span>
-              <div>
-                <p style={{ fontSize: "0.95rem", fontWeight: 700, color: "#111827", margin: "0 0 4px", lineHeight: 1.5 }}>
+            {
+              num: "02",
+              insight: "Agents confirm journey details verbally while the client waits on the other line",
+              component: "Itinerary Card",
+              detail: "single-glance route, dates, and times — nothing collapsed or hidden",
+            },
+            {
+              num: "03",
+              insight: "Errors found late cause re-booking fees and client trust — not just time",
+              component: "Review Table",
+              detail: "dense, explicit, zero blank cells before the agent submits",
+            },
+          ].map((r) => (
+            <div key={r.num}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 6 }}>
+                <span style={{
+                  fontFamily: "'Instrument Serif', serif",
+                  fontSize: "1.2rem", fontWeight: 400,
+                  color: "#c94a28", lineHeight: 1, flexShrink: 0,
+                }}>{r.num}</span>
+                <span style={{ fontSize: "1rem", fontWeight: 500, color: "#0f0e0d", lineHeight: 1.4 }}>
                   {r.insight}
-                </p>
-                <p style={{ fontSize: "0.9rem", color: "#1076BC", margin: 0, lineHeight: 1.6 }}>
-                  → {r.decision}
-                </p>
+                </span>
               </div>
+              <p style={{
+                fontSize: "0.81rem", color: "#4a4845",
+                margin: 0, lineHeight: 1.6, paddingLeft: 36,
+              }}>
+                <span style={{ color: "#c94a28" }}>→ {r.component}:</span>{" "}
+                {r.detail}
+              </p>
             </div>
           ))}
         </div>
