@@ -318,7 +318,7 @@ export const airDecisionBlocks = [
     num: "02",
     label: "Flight card hierarchy",
     title: "The gap no one had flagged",
-    text: "Previous card: equal weight on all 15+ data points. Agents were missing refundability and seat count before anything else. Restructured hierarchy — price + airline primary, status tags colour-coded.",
+    text: "About three weeks into hi-fi, I noticed agents scanning the table were consistently missing two fields — refundability status and seat count. I flagged it in the next standup with a quick annotation showing what agents' eyes were tracking vs. what the card was emphasising. The engineering manager said it was the first time anyone had put that on paper. We restructured the hierarchy the same week — price and status primary, everything else secondary.",
     outcome: "Reduced missed information — shipped to production",
     img: "card-v3.png"
   },

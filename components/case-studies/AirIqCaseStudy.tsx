@@ -372,26 +372,42 @@ function AirHero() {
 function OverviewSection() {
   return (
     <CsSection id="overview">
-      <div className="csl-reveal" style={{ marginBottom: 40 }}>
-        <div style={{ fontSize: "clamp(1.7rem, 3vw, 2.5rem)", fontWeight: 800, color: "#111827", lineHeight: 1.1, letterSpacing: "-0.025em", marginBottom: 24, minHeight: "1.4em" }}>
-          <Typed text="One platform. Every flight. Every agent." delay={200} />
+      <div className="air-overview csl-reveal">
+        <p className="air-overview-kicker">Overview</p>
+
+        <div className="air-overview-head">
+          <h2 className="air-overview-title">
+            <span>Unified </span>
+            <span>B2B flight booking </span>
+            <span className="muted">platform for </span>
+            <span>travel agents </span>
+            <span className="muted">and back-office admins</span>
+          </h2>
+          <span className="air-float air-float-ticket" aria-hidden="true">🎫</span>
+          <span className="air-float air-float-plane" aria-hidden="true">✈️</span>
+          <span className="air-float air-float-bag" aria-hidden="true">🧳</span>
         </div>
-        <p className="csl-text">
-          Travel agencies across India were booking flights on <Hi>3+ disconnected tools</Hi>, with no unified view, no error prevention, and no system backing them up. Each booking took <Hi>12+ minutes</Hi> on average — full of manual re-entry and guesswork.
-        </p>
-        <p className="csl-text">
-          The goal: design a <Hi>single B2B portal</Hi> that gives travel agents and back-office admins everything they need — fast search, clean data, passenger management, and a confirmation flow that actually prevents errors.
-        </p>
+
+        <div className="air-overview-bottom">
+          <dl className="air-overview-meta">
+            {META_ROWS.map((row) => (
+              <div className="air-overview-meta-row" key={row.label}>
+                <dt>{row.label}</dt>
+                <dd>{row.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="air-overview-copy">
+            <p>
+              Travel agencies across India were booking flights on <strong>3+ disconnected tools</strong>, with no unified view, no error prevention, and no system backing them up. Each booking took <strong>12+ minutes</strong> on average, full of manual re-entry and guesswork.
+            </p>
+            <p>
+              The goal: design a <strong>single B2B portal</strong> that gives travel agents and back-office admins everything they need: fast search, clean data, passenger management, and a confirmation flow that actually prevents errors.
+            </p>
+          </div>
+        </div>
       </div>
-
-      <StoryCardsGrid />
-
-      <div className="csl-reveal" style={{ marginBottom: 8 }}>
-        <JourneyTimeline />
-      </div>
-
-      <ConstraintsBlock />
-
     </CsSection>
   );
 }
@@ -630,7 +646,6 @@ function ProblemSection() {
         </div>
       </div>
 
-      <PivotalMomentBlock />
     </CsSection>
   );
 }
@@ -936,6 +951,7 @@ function ResearchInsightCards() {
   );
 }
 
+
 /* ─────────────────────────────────────────────────────────────────────
    STANDALONE METRIC CALLOUT  (big number + progress bar + source)
 ───────────────────────────────────────────────────────────────────── */
@@ -985,82 +1001,6 @@ function MetricCallout({ stat, text, source, pct, last = false }: {
   );
 }
 
-/* ─────────────────────────────────────────────────────────────────────
-   3-COLUMN RESULT METRICS  (bottom of Results — exact screenshot match)
-───────────────────────────────────────────────────────────────────── */
-const RESULT_METRICS = [
-  {
-    stat: "30–40",
-    unit: "%",
-    pct: 35,
-    label: "Faster booking completion vs previous system",
-    desc: <>Agents complete bookings significantly faster with Air IQ's <strong>unified platform</strong> replacing 3+ disconnected tools.</>,
-    source: "Operations Data",
-  },
-  {
-    stat: "25–35",
-    unit: "%",
-    pct: 30,
-    label: "Fewer support tickets about UI confusion",
-    desc: <>Post-launch support queries about <strong>interface confusion dropped</strong> in the first weeks after launch.</>,
-    source: "Support Team · Post-launch",
-  },
-  {
-    stat: "42",
-    unit: "%",
-    pct: 42,
-    label: "Reduction in time per booking",
-    desc: <>Average booking time fell from <strong>12 min to ~7 min</strong> — validated by agent feedback post-launch.</>,
-    source: "Agent Feedback",
-  },
-];
-
-function ResultMetricRow() {
-  return (
-    <div className="csl-reveal" style={{
-      display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 28, marginBottom: 48,
-    }}>
-      {RESULT_METRICS.map((m) => (
-        <div key={m.label}>
-          {/* Stat */}
-          <div style={{
-            fontSize: "clamp(2.4rem, 4vw, 3.2rem)", fontWeight: 800,
-            color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em",
-            marginBottom: 12,
-          }}>
-            {m.stat}<span style={{ fontSize: "1.4rem", fontWeight: 800 }}>{m.unit}</span>
-          </div>
-
-          {/* Progress bar */}
-          <div style={{
-            height: 5, background: "#F3F4F6",
-            borderRadius: 100, overflow: "hidden", marginBottom: 14,
-          }}>
-            <div style={{
-              height: "100%", width: `${m.pct}%`,
-              background: "linear-gradient(90deg, #1E90FF, #60B4FF)",
-              borderRadius: 100,
-            }} />
-          </div>
-
-          {/* Description */}
-          <p style={{
-            fontSize: "0.88rem", color: "#374151",
-            lineHeight: 1.65, margin: "0 0 10px",
-          }}>{m.desc}</p>
-
-          {/* Source */}
-          <div style={{
-            fontSize: "0.62rem", fontWeight: 700,
-            color: "#9CA3AF",
-            textTransform: "uppercase", letterSpacing: "0.1em",
-          }}>Source: {m.source}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────────────────────────────────
    DOT-GRID METRIC  (exact screenshot: 10×10 dots + % + left border)
@@ -1086,30 +1026,30 @@ function DotGrid({ pct, dotColor, emptyColor }: {
 
 const DOT_METRICS = [
   {
-    pct: 72,
-    label: "72%",
+    pct: 75,
+    label: "75%",
     dotColor: "#1E90FF",
     emptyColor: "#DBEAFE",
     accentColor: "#1E90FF",
-    desc: "Of booking time was spent context-switching between tools, not on the actual booking task.",
-    source: "Agent Interviews · Pre-launch",
-  },
-  {
-    pct: 75,
-    label: "75%",
-    dotColor: "#EAB308",
-    emptyColor: "#FEF9C3",
-    accentColor: "#EAB308",
-    desc: "Of agents interviewed juggled 3+ separate tools for every single booking session.",
+    desc: "Of agents interviewed used 3+ separate tools per booking — spending most of their time context-switching rather than booking.",
     source: "User Interviews · 4 Sessions",
   },
   {
     pct: 100,
     label: "100%",
+    dotColor: "#EAB308",
+    emptyColor: "#FEF9C3",
+    accentColor: "#EAB308",
+    desc: "Of competitor platforms buried fare refundability behind extra clicks — never shown inline alongside price.",
+    source: "Competitive Analysis · 4 Platforms",
+  },
+  {
+    pct: 0,
+    label: "0 of 4",
     dotColor: "#1A1A1A",
     emptyColor: "#E5E7EB",
     accentColor: "#1A1A1A",
-    desc: "Of competitor platforms analyzed buried fare refundability behind extra clicks — never inline.",
+    desc: "Competitor platforms had a built-in share flow. Sending a fare to a client required 4–5 manual steps on every platform studied.",
     source: "Competitive Analysis · 4 Platforms",
   },
 ];
@@ -1191,16 +1131,8 @@ function ApproachSection() {
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {[
             {
-              insight: "Price and refundability must land in the same scan — not one click apart",
-              decision: "Fare Listing Card: price hierarchy first, refund badge always visible inline",
-            },
-            {
               insight: "Agents confirm journey details verbally while the client waits on the other line",
               decision: "Itinerary Card: single-glance route, dates, and times — nothing collapsed or hidden",
-            },
-            {
-              insight: "Errors found late cost re-booking fees and client trust — not just time",
-              decision: "Review Table: dense, explicit, zero blank cells before the agent submits",
             },
           ].map((r, i) => (
             <div key={i} style={{
@@ -1980,9 +1912,6 @@ function ResultsSection() {
     <CsSection id="results">
       <CsSectionHeader title="The Impact" />
 
-      {/* 3-column progress-bar metrics */}
-      <ResultMetricRow />
-
       {/* Big numbers grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, marginBottom: 40, background: "#F3F4F6", borderRadius: 20, overflow: "hidden" }}>
         {/* ~7 min */}
@@ -2273,35 +2202,6 @@ function ConstraintsBlock() {
   );
 }
 
-/* ─────────────────────────────────────────────────────────────────────
-   PIVOTAL MOMENT BLOCK
-───────────────────────────────────────────────────────────────────── */
-function PivotalMomentBlock() {
-  return (
-    <div className="csl-reveal" style={{
-      marginTop: 40, padding: "24px 28px",
-      background: "linear-gradient(135deg, #EFF6FF 0%, #F0F9FF 100%)",
-      borderRadius: 16, border: "1.5px solid rgba(30,144,255,0.2)",
-      position: "relative", overflow: "hidden",
-    }}>
-      <div style={{
-        position: "absolute", top: -20, right: -20,
-        width: 120, height: 120, borderRadius: "50%",
-        background: "rgba(30,144,255,0.07)",
-      }} />
-      <span className="csl-eyebrow" style={{ color: "#1E90FF" }}>The moment that changed the direction</span>
-      <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", lineHeight: 1.5, margin: "0 0 12px" }}>
-        Nobody had flagged the data table problem. I did.
-      </p>
-      <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: "0 0 12px" }}>
-        About three weeks into hi-fi, I was reviewing the existing flight card design with the engineering manager when I noticed something: agents scanning the table were consistently missing two fields — refundability status and seat count. These are the first two things a travel agent checks before recommending a fare to a client. They weren&apos;t hidden. They just had identical visual weight to everything else.
-      </p>
-      <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
-        I flagged it in the next standup. Showed a quick annotation of what agents&apos; eyes were tracking vs. what the card was emphasising. The engineering manager said it was the first time anyone had put that on paper. We restructured the hierarchy the same week — price and status primary, everything else secondary. That card went straight to production.
-      </p>
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────────────────────────────────
    PROCESS SECTION
