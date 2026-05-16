@@ -810,32 +810,32 @@ const AGENT_INSIGHTS = [
   {
     label: "Insight 01",
     heading: "Friction in the booking workflow",
-    text: "Agents described starting every booking with the same ritual — GDS terminal, airline site, spreadsheet — before a single fare could be confirmed.",
-    dataText: "All 4 agents reported 3+ open browser windows per booking — no option to see everything in one place.",
+    text: "GDS terminal, airline site, spreadsheet — three windows before a single fare was confirmed.",
+    dataText: "All 4 agents reported 3+ open windows per booking.",
     stat: "3+",
     statUnit: "tools per booking",
   },
   {
     label: "Insight 02",
     heading: "The hidden cost of fare rules",
-    text: "Refundability lived in a wall of legal text — no summary, no highlights, no visual indicator. Agents guessed what fares meant. Sometimes they guessed wrong and the client got incorrect information.",
-    dataText: "4 of 4 competitor platforms studied buried refundability behind extra clicks — never shown inline.",
+    text: "No summary, no visual indicator. Agents guessed refundability — and sometimes got it wrong.",
+    dataText: "All 4 competitor platforms hid refundability behind extra clicks.",
     stat: "100%",
     statUnit: "of competitors did it",
   },
   {
     label: "Insight 03",
-    heading: "Agents receive no booking alerts",
-    text: "Fares change and seats fill mid-session. Agents had no feedback mechanism — nothing alerted them when the fare they'd verbally confirmed to a client was no longer available.",
-    dataText: "Errors caught at payment — not during entry. Re-booking fees applied by the time agents discovered mismatches.",
+    heading: "No alerts during booking",
+    text: "Nothing told agents when a verbally confirmed fare became unavailable mid-session.",
+    dataText: "Errors only surfaced at payment — re-booking fees already applied.",
     stat: "0",
     statUnit: "platforms had live alerts",
   },
   {
     label: "Insight 04",
-    heading: "Agents want to share fares instantly",
-    text: "Sending a fare to a client required copy-pasting price, opening email, writing context, attaching a PDF — before the client even confirmed intent.",
-    dataText: "A 30-second task became a 5-minute one. All 4 agents cited this as a daily friction point in client communication.",
+    heading: "Sharing a fare took 5 steps",
+    text: "Copy price, open email, write context, attach PDF — before the client even confirmed.",
+    dataText: "All 4 agents called this their biggest daily friction point.",
     stat: "4–5",
     statUnit: "steps to share one fare",
   },
@@ -843,42 +843,41 @@ const AGENT_INSIGHTS = [
 
 function ResearchInsightCards() {
   return (
-    <div className="csl-reveal" style={{ marginBottom: 32 }}>
-      {/* 2×2 light grid */}
-      <div style={{
-        display: "grid", gridTemplateColumns: "1fr 1fr",
-        gap: 16,
-      }}>
+    <div className="csl-reveal" style={{ marginBottom: 40 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
         {AGENT_INSIGHTS.map((ins) => (
           <div key={ins.label} style={{
             background: "#ffffff",
-            border: "0.5px solid #e8e5e0",
+            border: "0.5px solid #E5E7EB",
             borderRadius: 16,
-            padding: "24px",
+            padding: "28px 28px 24px",
             display: "flex",
             flexDirection: "column",
           }}>
             {/* Label */}
             <div style={{
-              fontSize: "0.68rem", fontWeight: 400,
-              letterSpacing: "0.08em",
-              color: "#9a9793", marginBottom: 10,
+              fontFamily: "var(--font-lato), sans-serif",
+              fontSize: "0.65rem", fontWeight: 400,
+              letterSpacing: "0.12em", textTransform: "uppercase",
+              color: "#9CA3AF", marginBottom: 12,
             }}>
               {ins.label}
             </div>
 
             {/* Title */}
             <div style={{
-              fontSize: "0.94rem", fontWeight: 500,
-              color: "#0f0e0d", lineHeight: 1.4, marginBottom: 10,
+              fontFamily: "var(--font-lato), sans-serif",
+              fontSize: "0.9rem", fontWeight: 700,
+              color: "#111827", lineHeight: 1.4, marginBottom: 10,
             }}>
               {ins.heading}
             </div>
 
             {/* Body */}
             <p style={{
-              fontSize: "0.81rem", color: "#4a4845",
-              lineHeight: 1.65, margin: "0 0 14px",
+              fontFamily: "var(--font-lato), sans-serif",
+              fontSize: "0.82rem", color: "#6B7280",
+              lineHeight: 1.65, margin: "0 0 16px",
             }}>
               {ins.text}
             </p>
@@ -886,38 +885,39 @@ function ResearchInsightCards() {
             {/* Data point */}
             <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
               <div style={{
-                flexShrink: 0, width: 16, height: 1,
+                flexShrink: 0, width: 14, height: 1,
                 background: "#c94a28", marginTop: 8,
               }} />
               <p style={{
-                fontSize: "0.81rem", fontStyle: "italic",
+                fontFamily: "var(--font-lato), sans-serif",
+                fontSize: "0.78rem", fontStyle: "italic",
                 color: "#c94a28", lineHeight: 1.55, margin: 0,
               }}>
                 {ins.dataText}
               </p>
             </div>
 
-            {/* Stat — pushed to bottom */}
+            {/* Stat */}
             <div style={{
               marginTop: "auto",
               paddingTop: 20,
-              borderTop: "0.5px solid #e8e5e0",
+              borderTop: "1px solid #F3F4F6",
             }}>
               <div style={{
                 fontFamily: "'Instrument Serif', serif",
-                fontSize: "clamp(2.4rem, 4vw, 3.2rem)",
+                fontSize: "clamp(2.2rem, 3.5vw, 2.8rem)",
                 fontWeight: 400,
-                color: "#0f0e0d",
+                color: "#111827",
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
               }}>
                 {ins.stat}
               </div>
               <div style={{
-                fontSize: "0.68rem", fontWeight: 400,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "#9a9793", marginTop: 4,
+                fontFamily: "var(--font-lato), sans-serif",
+                fontSize: "0.64rem", fontWeight: 400,
+                letterSpacing: "0.1em", textTransform: "uppercase",
+                color: "#9CA3AF", marginTop: 5,
               }}>
                 {ins.statUnit}
               </div>
@@ -927,14 +927,13 @@ function ResearchInsightCards() {
       </div>
 
       {/* Attribution */}
-      <div style={{ marginTop: 28, textAlign: "center" }}>
-        <div style={{
-          width: 40, height: 1,
-          background: "#9a9793", opacity: 0.5,
-          margin: "0 auto 10px",
-        }} />
-        <span style={{ fontSize: "0.75rem", color: "#9a9793" }}>
-          A collection of insight gathered from: Agent Interviews
+      <div style={{ marginTop: 24, textAlign: "center" }}>
+        <div style={{ width: 32, height: 1, background: "#E5E7EB", margin: "0 auto 10px" }} />
+        <span style={{
+          fontFamily: "var(--font-lato), sans-serif",
+          fontSize: "0.72rem", color: "#9CA3AF",
+        }}>
+          Source: Agent Interviews
         </span>
       </div>
     </div>
@@ -1000,21 +999,21 @@ const WAFFLE_METRICS = [
     filled: 72,
     target: 72,
     suffix: "%",
-    desc: "Of booking time was spent context-switching between tools, not on the actual booking task.",
+    desc: "Booking time lost to context-switching — not the booking itself.",
     source: "Agent Interviews · Pre-launch",
   },
   {
     filled: 75,
     target: 75,
     suffix: "%",
-    desc: "Of agents interviewed juggled 3+ separate tools for every single booking session.",
+    desc: "Agents juggling 3+ tools every session.",
     source: "User Interviews · 4 Sessions",
   },
   {
     filled: 100,
     target: 100,
     suffix: "%",
-    desc: "Of competitor platforms analyzed buried fare refundability behind extra clicks — never inline.",
+    desc: "Competitors buried refundability — never shown inline.",
     source: "Competitive Analysis · 4 Platforms",
   },
 ];
@@ -1082,12 +1081,12 @@ function WaffleCol({ filled, target, suffix, desc, source }: typeof WAFFLE_METRI
       {/* Stat number */}
       <div style={{
         fontFamily: "'Instrument Serif', serif",
-        fontSize: "clamp(2.4rem, 4vw, 3rem)",
+        fontSize: "clamp(2.2rem, 3.5vw, 2.8rem)",
         fontWeight: 400,
-        color: "#0f0e0d",
+        color: "#111827",
         lineHeight: 1,
         letterSpacing: "-0.02em",
-        marginTop: 20,
+        marginTop: 18,
         marginBottom: 14,
       }}>
         {count}{suffix}
@@ -1095,9 +1094,10 @@ function WaffleCol({ filled, target, suffix, desc, source }: typeof WAFFLE_METRI
 
       {/* Description with left border */}
       <p style={{
-        fontSize: "0.875rem",
-        color: "#4a4845",
-        lineHeight: 1.6,
+        fontFamily: "var(--font-lato), sans-serif",
+        fontSize: "0.84rem",
+        color: "#374151",
+        lineHeight: 1.65,
         borderLeft: "2px solid #c94a28",
         paddingLeft: 12,
         margin: "0 0 10px",
@@ -1107,12 +1107,13 @@ function WaffleCol({ filled, target, suffix, desc, source }: typeof WAFFLE_METRI
 
       {/* Source */}
       <p style={{
-        fontSize: "0.69rem",
-        color: "#9a9793",
+        fontFamily: "var(--font-lato), sans-serif",
+        fontSize: "0.68rem",
+        color: "#9CA3AF",
         paddingLeft: 14,
         margin: 0,
       }}>
-        <strong style={{ fontWeight: 500 }}>Source:</strong> {source}
+        <strong style={{ fontWeight: 600 }}>Source:</strong> {source}
       </p>
     </div>
   );
@@ -1122,10 +1123,11 @@ function DotMetricRow() {
   return (
     <div className="csl-reveal">
       <p style={{
-        fontSize: "0.94rem", color: "#4a4845",
-        lineHeight: 1.7, margin: "0 0 40px", maxWidth: 520,
+        fontFamily: "var(--font-lato), sans-serif",
+        fontSize: "0.9rem", color: "#6B7280",
+        lineHeight: 1.7, margin: "0 0 36px", maxWidth: 480,
       }}>
-        This research helped us understand agent behaviors, identify booking friction, and uncover opportunities to design a more efficient B2B travel platform.
+        Numbers that shaped the design direction.
       </p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 40 }}>
         {WAFFLE_METRICS.map((m) => (
@@ -1167,43 +1169,48 @@ function ApproachSection() {
       {/* Research → Design bridge */}
       <div className="csl-reveal" style={{ marginBottom: 8 }}>
         <span className="csl-eyebrow">What research told us to design</span>
-        <div style={{ display: "flex", flexDirection: "column", gap: 28, marginTop: 20 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 32, marginTop: 24 }}>
           {[
             {
               num: "01",
-              insight: "Price and refundability must land in the same scan — not one click apart",
+              insight: "Price and refundability in the same scan",
               component: "Fare Listing Card",
-              detail: "price hierarchy first, refund badge always visible inline",
+              detail: "Refund badge always visible inline, never one click away",
             },
             {
               num: "02",
-              insight: "Agents confirm journey details verbally while the client waits on the other line",
+              insight: "Journey details confirmed verbally, on the spot",
               component: "Itinerary Card",
-              detail: "single-glance route, dates, and times — nothing collapsed or hidden",
+              detail: "Single-glance route, dates, times — nothing collapsed",
             },
             {
               num: "03",
-              insight: "Errors found late cause re-booking fees and client trust — not just time",
+              insight: "Late errors cost money, not just time",
               component: "Review Table",
-              detail: "dense, explicit, zero blank cells before the agent submits",
+              detail: "Explicit, zero blank cells before the agent submits",
             },
           ].map((r) => (
             <div key={r.num}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 6 }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
                 <span style={{
                   fontFamily: "'Instrument Serif', serif",
-                  fontSize: "1.2rem", fontWeight: 400,
+                  fontSize: "1.1rem", fontWeight: 400,
                   color: "#c94a28", lineHeight: 1, flexShrink: 0,
                 }}>{r.num}</span>
-                <span style={{ fontSize: "1rem", fontWeight: 500, color: "#0f0e0d", lineHeight: 1.4 }}>
+                <span style={{
+                  fontFamily: "var(--font-lato), sans-serif",
+                  fontSize: "0.95rem", fontWeight: 700,
+                  color: "#111827", lineHeight: 1.4,
+                }}>
                   {r.insight}
                 </span>
               </div>
               <p style={{
-                fontSize: "0.81rem", color: "#4a4845",
+                fontFamily: "var(--font-lato), sans-serif",
+                fontSize: "0.82rem", color: "#6B7280",
                 margin: 0, lineHeight: 1.6, paddingLeft: 36,
               }}>
-                <span style={{ color: "#c94a28" }}>→ {r.component}:</span>{" "}
+                <span style={{ color: "#c94a28", fontWeight: 600 }}>→ {r.component}: </span>
                 {r.detail}
               </p>
             </div>
