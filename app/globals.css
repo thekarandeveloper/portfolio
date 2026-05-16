@@ -7118,8 +7118,7 @@ body.csl-page-active footer { display: none !important; }
    AIR IQ OVERVIEW  (air-overview-*)
 ════════════════════════════════════════════════════════════════ */
 .air-overview {
-  background: #F5F8FF;
-  padding: 52px 0 8px;
+  padding: 16px 0 8px;
   color: #050505;
 }
 .air-overview-kicker {
@@ -7133,15 +7132,15 @@ body.csl-page-active footer { display: none !important; }
 }
 .air-overview-head {
   position: relative;
-  margin-bottom: clamp(96px, 16vw, 190px);
+  margin-bottom: clamp(56px, 8vw, 96px);
 }
 .air-overview-title {
   position: relative;
   z-index: 1;
-  max-width: 980px;
+  max-width: 820px;
   margin: 0;
-  font-size: clamp(3.1rem, 7.15vw, 7.75rem);
-  line-height: 1.06;
+  font-size: clamp(1.9rem, 3.5vw, 3rem);
+  line-height: 1.15;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #060606;
@@ -7243,37 +7242,29 @@ body.csl-page-active footer { display: none !important; }
 
 @media (max-width: 1024px) {
   .air-overview-head {
-    margin-bottom: 104px;
+    margin-bottom: 64px;
   }
   .air-overview-title {
-    font-size: clamp(3.4rem, 9.5vw, 6rem);
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
   }
   .air-float-plane {
     right: 0;
-  }
-  .air-overview-bottom {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-  .air-overview-copy {
-    max-width: 720px;
-    justify-self: start;
   }
 }
 
 @media (max-width: 640px) {
   .air-overview {
-    padding-top: 20px;
+    padding-top: 8px;
   }
   .air-overview-kicker {
-    margin-bottom: 30px;
+    margin-bottom: 24px;
   }
   .air-overview-head {
-    margin-bottom: 72px;
+    margin-bottom: 52px;
   }
   .air-overview-title {
-    font-size: clamp(2.55rem, 13vw, 4.2rem);
-    line-height: 1.1;
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+    line-height: 1.18;
   }
   .air-float {
     width: 46px;

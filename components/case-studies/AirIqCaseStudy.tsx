@@ -394,24 +394,13 @@ function OverviewSection() {
           <span className="air-float air-float-bag" aria-hidden="true">🧳</span>
         </div>
 
-        <div className="air-overview-bottom">
-          <dl className="air-overview-meta">
-            {META_ROWS.map((row) => (
-              <div className="air-overview-meta-row" key={row.label}>
-                <dt>{row.label}</dt>
-                <dd>{row.value}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <div className="air-overview-copy">
-            <p>
-              Travel agencies across India were booking flights on <strong>3+ disconnected tools</strong>, with no unified view, no error prevention, and no system backing them up. Each booking took <strong>12+ minutes</strong> on average, full of manual re-entry and guesswork.
-            </p>
-            <p>
-              The goal: design a <strong>single B2B portal</strong> that gives travel agents and back-office admins everything they need — fast search, clean data, passenger management, and a confirmation flow that actually prevents errors.
-            </p>
-          </div>
+        <div className="air-overview-copy">
+          <p>
+            Travel agencies across India were booking flights on <strong>3+ disconnected tools</strong>, with no unified view, no error prevention, and no system backing them up. Each booking took <strong>12+ minutes</strong> on average, full of manual re-entry and guesswork.
+          </p>
+          <p>
+            The goal: design a <strong>single B2B portal</strong> that gives travel agents and back-office admins everything they need — fast search, clean data, passenger management, and a confirmation flow that actually prevents errors.
+          </p>
         </div>
       </div>
     </CsSection>
