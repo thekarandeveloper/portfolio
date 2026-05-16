@@ -4,15 +4,13 @@ import { useEffect, useState } from "react";
 
 export function HomeLoader() {
   const [progress, setProgress] = useState(0);
-  const [phase, setPhase] = useState<"loading" | "exit" | "done">(() =>
-    typeof window !== "undefined" && sessionStorage.getItem("homeVisited")
-      ? "done"
-      : "loading"
-  );
+  const [phase, setPhase] = useState<"loading" | "exit" | "done" | null>(null);
 
   useEffect(() => {
-    if (phase === "done") return;
+    // Skip loader for return visits within the same session
+    if (sessionStorage.getItem("homeVisited")) return;
 
+    setPhase("loading");
     document.body.classList.add("home-loading");
 
     let value = 0;
@@ -41,7 +39,7 @@ export function HomeLoader() {
     };
   }, []);
 
-  if (phase === "done") return null;
+  if (phase === null || phase === "done") return null;
 
   return (
     <div className={`home-loader ${phase === "exit" ? "is-exit" : ""}`} aria-live="polite" aria-label="Loading portfolio">
