@@ -1063,6 +1063,101 @@ function ResultMetricRow() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
+   DOT-GRID METRIC  (exact screenshot: 10×10 dots + % + left border)
+───────────────────────────────────────────────────────────────────── */
+function DotGrid({ pct, dotColor, emptyColor }: {
+  pct: number; dotColor: string; emptyColor: string;
+}) {
+  const filled = Math.round(pct);
+  return (
+    <div style={{
+      display: "grid", gridTemplateColumns: "repeat(10, 1fr)",
+      gap: "5px", marginBottom: 24,
+    }}>
+      {Array.from({ length: 100 }).map((_, i) => (
+        <div key={i} style={{
+          aspectRatio: "1", borderRadius: "50%",
+          background: i < filled ? dotColor : emptyColor,
+        }} />
+      ))}
+    </div>
+  );
+}
+
+const DOT_METRICS = [
+  {
+    pct: 72,
+    label: "72%",
+    dotColor: "#1E90FF",
+    emptyColor: "#DBEAFE",
+    accentColor: "#1E90FF",
+    desc: "Of booking time was spent context-switching between tools, not on the actual booking task.",
+    source: "Agent Interviews · Pre-launch",
+  },
+  {
+    pct: 75,
+    label: "75%",
+    dotColor: "#EAB308",
+    emptyColor: "#FEF9C3",
+    accentColor: "#EAB308",
+    desc: "Of agents interviewed juggled 3+ separate tools for every single booking session.",
+    source: "User Interviews · 4 Sessions",
+  },
+  {
+    pct: 100,
+    label: "100%",
+    dotColor: "#1A1A1A",
+    emptyColor: "#E5E7EB",
+    accentColor: "#1A1A1A",
+    desc: "Of competitor platforms analyzed buried fare refundability behind extra clicks — never inline.",
+    source: "Competitive Analysis · 4 Platforms",
+  },
+];
+
+function DotMetricRow() {
+  return (
+    <div className="csl-reveal">
+      <p style={{
+        fontSize: "0.95rem", color: "#6B7280",
+        lineHeight: 1.75, margin: "0 0 40px", maxWidth: 520,
+      }}>
+        This research helped us understand agent behaviors, identify booking friction, and uncover opportunities to design a more efficient B2B travel platform.
+      </p>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32 }}>
+        {DOT_METRICS.map((m) => (
+          <div key={m.label}>
+            <DotGrid pct={m.pct} dotColor={m.dotColor} emptyColor={m.emptyColor} />
+            <div style={{
+              fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 400,
+              color: "#1C1C1E", lineHeight: 1,
+              letterSpacing: "-0.02em", marginBottom: 20,
+            }}>{m.label}</div>
+            <div style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 16 }}>
+              <div style={{
+                width: 3, minHeight: 54, borderRadius: 100,
+                background: m.accentColor, flexShrink: 0,
+              }} />
+              <p style={{
+                fontSize: "0.88rem", color: "#374151",
+                lineHeight: 1.65, margin: 0,
+              }}>{m.desc}</p>
+            </div>
+            <div>
+              <div style={{ fontSize: "0.7rem", color: "#9CA3AF", fontWeight: 400, marginBottom: 3 }}>
+                Source:
+              </div>
+              <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#374151" }}>
+                {m.source}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
    §03  RESEARCH & APPROACH
 ───────────────────────────────────────────────────────────────────── */
 function ApproachSection() {
@@ -1084,28 +1179,10 @@ function ApproachSection() {
         <ResearchInsightCards />
       </div>
 
-      {/* Metric callouts */}
-      <div className="csl-reveal" style={{ marginBottom: 32 }}>
+      {/* Dot-grid metrics — exact screenshot UI */}
+      <div style={{ marginBottom: 32 }}>
         <span className="csl-eyebrow">By the numbers</span>
-        <MetricCallout
-          stat="12+"
-          pct={60}
-          text={<>Agents spent <strong>over 12 minutes per booking</strong> on legacy workflows — most of it context-switching between tools, not actually booking.</>}
-          source="Agent Interviews · Pre-launch"
-        />
-        <MetricCallout
-          stat="3+"
-          pct={75}
-          text={<>Every single agent interviewed juggled <strong>at least 3 separate tools</strong> for one booking — GDS terminal, airline website, and a tracking spreadsheet.</>}
-          source="User Interviews · 4 Sessions"
-        />
-        <MetricCallout
-          stat="4 of 4"
-          pct={100}
-          text={<>Competitor platforms analyzed before the first wireframe. <strong>None showed fare refundability inline</strong> — it was always one extra click away.</>}
-          source="Competitive Analysis · 4 Platforms"
-          last
-        />
+        <DotMetricRow />
       </div>
 
       {/* Research → Design bridge */}
