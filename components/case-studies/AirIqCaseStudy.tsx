@@ -591,27 +591,42 @@ function ProblemSection() {
         </p>
       </div>
 
-      {/* Agent quote — pull quote */}
+      {/* Agent quote — dark pull quote */}
       <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
         <span className="csl-eyebrow">In their own words</span>
         <div style={{
-          background: "#F8FAFF", borderRadius: 16, padding: "28px 28px 24px",
-          position: "relative", marginTop: 12,
+          background: "#111827", borderRadius: 16, padding: "32px 32px 28px",
+          position: "relative", marginTop: 12, overflow: "hidden",
         }}>
+          {/* ambient glow */}
+          <div style={{
+            position: "absolute", top: -40, right: -40,
+            width: 180, height: 180, borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(30,144,255,0.12) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }} />
           <span style={{
-            position: "absolute", top: 8, left: 18,
-            fontSize: "4.5rem", color: "#BFDBFE", lineHeight: 1,
-            fontFamily: "Georgia, serif", userSelect: "none",
+            position: "absolute", top: 4, left: 20,
+            fontSize: "6rem", color: "#1E90FF", lineHeight: 1,
+            fontFamily: "Georgia, serif", userSelect: "none", opacity: 0.6,
           }}>&ldquo;</span>
           <p style={{
-            fontSize: "1.15rem", fontWeight: 600, color: "#111827",
-            lineHeight: 1.7, margin: "20px 0 14px", paddingLeft: 4,
+            fontSize: "1.2rem", fontWeight: 600, color: "rgba(255,255,255,0.9)",
+            lineHeight: 1.75, margin: "28px 0 20px", paddingLeft: 4,
           }}>
             I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.
           </p>
-          <span style={{ fontSize: "0.78rem", color: "#9CA3AF", fontWeight: 500 }}>
-            Senior travel agent — pre-launch interview
-          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{
+              width: 32, height: 32, borderRadius: "50%",
+              background: "rgba(30,144,255,0.2)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: "0.7rem", fontWeight: 700, color: "#1E90FF",
+            }}>SA</div>
+            <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.4)", fontWeight: 500 }}>
+              Senior travel agent · Pre-launch interview
+            </span>
+          </div>
         </div>
       </div>
 
@@ -771,6 +786,140 @@ function CompetitiveCarousel() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
+   RESEARCH SCOPE PILLS
+───────────────────────────────────────────────────────────────────── */
+function ResearchScopePills({ items }: { items: string[] }) {
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>
+      {items.map((item) => (
+        <span key={item} style={{
+          fontSize: "0.68rem", fontWeight: 600, color: "#374151",
+          background: "#F3F4F6", border: "1px solid #E5E7EB",
+          borderRadius: 100, padding: "5px 14px",
+        }}>{item}</span>
+      ))}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   RESEARCH INSIGHT CARDS  (2×2 dark grid)
+───────────────────────────────────────────────────────────────────── */
+const AGENT_INSIGHTS = [
+  {
+    label: "Insight 1:",
+    text: "Fare refundability was buried in legal text — agents guessed, and clients received incorrect information",
+    stat: "4",
+    statSuffix: "of 4 competitors hid it",
+  },
+  {
+    label: "Insight 2:",
+    text: "Filters and search results couldn't be viewed simultaneously on any competing B2B platform",
+    stat: "0",
+    statSuffix: "had persistent filter panels",
+  },
+  {
+    label: "Insight 3:",
+    text: "Agents couldn't complete one booking without jumping between multiple tools and browser tabs",
+    stat: "3+",
+    statSuffix: "tools used per booking",
+  },
+  {
+    label: "Insight 4:",
+    text: "No platform had a built-in share flow — sending a fare to a client required manual copy-paste steps",
+    stat: "4–5",
+    statSuffix: "steps to share a single fare",
+  },
+];
+
+function ResearchInsightCards() {
+  return (
+    <div className="csl-reveal" style={{ marginBottom: 32 }}>
+      <div style={{ borderRadius: 16, overflow: "hidden" }}>
+        <div style={{
+          display: "grid", gridTemplateColumns: "1fr 1fr",
+          background: "#0F172A", gap: 1,
+        }}>
+          {AGENT_INSIGHTS.map((ins) => (
+            <div key={ins.label} style={{
+              background: "#111827", padding: "28px 24px 24px",
+            }}>
+              <div style={{
+                fontSize: "0.58rem", fontWeight: 700,
+                textTransform: "uppercase", letterSpacing: "0.16em",
+                color: "rgba(255,255,255,0.35)", marginBottom: 12,
+              }}>
+                {ins.label}
+              </div>
+              <p style={{
+                fontSize: "0.9rem", color: "rgba(255,255,255,0.65)",
+                lineHeight: 1.65, margin: "0 0 20px",
+              }}>
+                {ins.text}
+              </p>
+              <div style={{
+                fontSize: "3rem", fontWeight: 800,
+                color: "#1E90FF", lineHeight: 1,
+                letterSpacing: "-0.03em",
+              }}>{ins.stat}</div>
+              <div style={{
+                fontSize: "0.65rem", color: "rgba(255,255,255,0.3)",
+                fontWeight: 500, marginTop: 4, textTransform: "uppercase",
+                letterSpacing: "0.08em",
+              }}>{ins.statSuffix}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{
+          background: "#0F172A", padding: "14px 24px",
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+          borderTop: "1px solid rgba(255,255,255,0.04)",
+        }}>
+          <span style={{
+            fontSize: "0.58rem", fontWeight: 600,
+            color: "rgba(255,255,255,0.3)",
+            textTransform: "uppercase", letterSpacing: "0.14em",
+          }}>A collection of findings from:</span>
+          <span style={{
+            fontSize: "0.6rem", fontWeight: 700,
+            color: "rgba(255,255,255,0.55)",
+          }}>4 Agent Interviews · Competitive Analysis</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   STANDALONE METRIC CALLOUT
+───────────────────────────────────────────────────────────────────── */
+function MetricCallout({ stat, text, source, last = false }: {
+  stat: string; text: React.ReactNode; source: string; last?: boolean;
+}) {
+  return (
+    <div style={{
+      padding: "28px 0",
+      borderBottom: last ? "none" : "1px solid #F3F4F6",
+    }}>
+      <div style={{
+        fontSize: "clamp(3rem, 6vw, 4.5rem)", fontWeight: 800,
+        color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em",
+        marginBottom: 14,
+      }}>{stat}</div>
+      <p style={{
+        fontSize: "1rem", color: "#374151", lineHeight: 1.75,
+        margin: "0 0 10px", maxWidth: 500,
+      }}>{text}</p>
+      <div style={{
+        fontSize: "0.65rem", fontWeight: 700,
+        color: "#9CA3AF",
+        textTransform: "uppercase", letterSpacing: "0.12em",
+      }}>Source: {source}</div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
    §03  RESEARCH & APPROACH
 ───────────────────────────────────────────────────────────────────── */
 function ApproachSection() {
@@ -783,6 +932,34 @@ function ApproachSection() {
 
       <div className="csl-reveal" style={{ marginBottom: 28 }}>
         <CompetitiveCarousel />
+      </div>
+
+      {/* Research scope + insight cards */}
+      <div className="csl-reveal" style={{ marginBottom: 8 }}>
+        <span className="csl-eyebrow" style={{ marginBottom: 16, display: "block" }}>Research scope</span>
+        <ResearchScopePills items={["4 Travel Agents", "Semi-structured Interviews", "4 Competitor Platforms", "3 GDS Systems", "5 Key Patterns"]} />
+        <ResearchInsightCards />
+      </div>
+
+      {/* Metric callouts */}
+      <div className="csl-reveal" style={{ marginBottom: 32 }}>
+        <span className="csl-eyebrow">By the numbers</span>
+        <MetricCallout
+          stat="12+"
+          text={<>Agents spent <strong>over 12 minutes per booking</strong> on legacy workflows — most of it context-switching between tools, not actually booking.</>}
+          source="Agent Interviews · Pre-launch"
+        />
+        <MetricCallout
+          stat="3+"
+          text={<>Every single agent interviewed juggled <strong>at least 3 separate tools</strong> for one booking — GDS terminal, airline website, and a tracking spreadsheet.</>}
+          source="User Interviews · 4 Sessions"
+        />
+        <MetricCallout
+          stat="4 of 4"
+          text={<>Competitor platforms analyzed before the first wireframe. <strong>None showed fare refundability inline</strong> — it was always one extra click away.</>}
+          source="Competitive Analysis · 4 Platforms"
+          last
+        />
       </div>
 
       {/* Research → Design bridge */}
@@ -1590,6 +1767,7 @@ function ResultsSection() {
           </div>
           <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Average booking time</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>down from ~12 min</div>
+          <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Agent Feedback</div>
         </div>
 
         {/* 30–40% */}
@@ -1599,6 +1777,7 @@ function ResultsSection() {
           </div>
           <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Faster completion</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>vs. pre-launch baseline</div>
+          <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Operations Data</div>
         </div>
 
         {/* 25–35% support tickets */}
@@ -1608,6 +1787,7 @@ function ResultsSection() {
           </div>
           <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Fewer support tickets</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>about UI confusion — post-launch</div>
+          <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Support Team · Post-launch</div>
         </div>
 
         {/* 80+ */}
@@ -1618,6 +1798,7 @@ function ResultsSection() {
           </div>
           <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Components built</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>from zero, token-driven</div>
+          <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Figma Design System</div>
         </div>
 
         {/* 20+ */}
@@ -1628,6 +1809,7 @@ function ResultsSection() {
           </div>
           <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Screens shipped</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>across 5 core flows</div>
+          <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Figma · Desktop & Mobile</div>
         </div>
       </div>
 
@@ -1638,23 +1820,41 @@ function ResultsSection() {
         </p>
       </div>
 
-      {/* Quote */}
+      {/* Quote — dark pull quote */}
       <div className="csl-reveal rd1" style={{ marginBottom: 24 }}>
         <div style={{
-          background: "#F8FAFF", borderRadius: 16, padding: "28px 28px 24px",
-          position: "relative",
+          background: "#111827", borderRadius: 16, padding: "32px 32px 28px",
+          position: "relative", overflow: "hidden",
         }}>
+          <div style={{
+            position: "absolute", top: -30, right: -30,
+            width: 160, height: 160, borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(30,144,255,0.1) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }} />
           <span style={{
-            position: "absolute", top: 8, left: 18,
-            fontSize: "4.5rem", color: "#BFDBFE", lineHeight: 1,
-            fontFamily: "Georgia, serif", userSelect: "none",
+            position: "absolute", top: 4, left: 20,
+            fontSize: "6rem", color: "#1E90FF", lineHeight: 1,
+            fontFamily: "Georgia, serif", userSelect: "none", opacity: 0.5,
           }}>&ldquo;</span>
-          <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: "20px 0 14px", paddingLeft: 4 }}>
+          <p style={{
+            fontSize: "1.2rem", fontWeight: 600, color: "rgba(255,255,255,0.9)",
+            lineHeight: 1.75, margin: "28px 0 20px", paddingLeft: 4,
+          }}>
             Much faster and fewer mistakes than before.
           </p>
-          <span style={{ fontSize: "0.78rem", color: "#9CA3AF", fontWeight: 500 }}>
-            Anonymized travel agent · Post-launch feedback
-          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{
+              width: 32, height: 32, borderRadius: "50%",
+              background: "rgba(30,144,255,0.15)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: "0.7rem", fontWeight: 700, color: "#1E90FF",
+            }}>TA</div>
+            <div>
+              <div style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.65)", fontWeight: 600 }}>Anonymized travel agent</div>
+              <div style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.3)", fontWeight: 500, marginTop: 2 }}>Post-launch feedback</div>
+            </div>
+          </div>
         </div>
       </div>
 
