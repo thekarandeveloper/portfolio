@@ -140,12 +140,12 @@ function OverviewSection() {
       />
 
       {/* Meta block */}
-      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: "#E0E6EC", borderRadius: 14, overflow: "hidden", marginBottom: 32 }}>
+      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: "#E0E6EC", borderRadius: 14, overflow: "hidden", marginBottom: 36 }}>
         {[
-          { label: "Role",             value: "Lead Product Designer"                    },
-          { label: "Duration",         value: "Jan – August 2023"                        },
-          { label: "Team",             value: "1 Developer"                              },
-          { label: "Responsibilities", value: "Architecture · Components"               },
+          { label: "Role",             value: "Lead Product Designer" },
+          { label: "Duration",         value: "Jan – August 2023" },
+          { label: "Team",             value: "1 Developer" },
+          { label: "Responsibilities", value: "Architecture · Components" },
         ].map((item) => (
           <div key={item.label} style={{ background: "#fff", padding: "18px 22px" }}>
             <p style={{ fontSize: "0.58rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{item.label}</p>
@@ -154,32 +154,13 @@ function OverviewSection() {
         ))}
       </div>
 
-      <p className="csl-text csl-reveal">
-        Design systems at my previous two organizations were among my first and most foundational projects as a designer. As Lead Product Designer, I planned, designed, and scaled a unified design system across multiple products within the organization&rsquo;s ecosystem.
-      </p>
-      <p className="csl-text csl-reveal rd1">
-        At the time, the organization had several products — each evolving independently. This resulted in visual inconsistency, fragmented user experiences, and mounting inefficiencies across both design and development. The goal was clear: create a single source of truth that aligned the brand, streamlined workflows, and scaled with the platform.
+      <p className="csl-text csl-reveal" style={{ maxWidth: 620 }}>
+        Multiple products. Each evolving independently. The result: three shades of the same blue, buttons rebuilt every sprint, and Figma files no one could navigate. The goal was one system — one source of truth for design and engineering.
       </p>
 
-      <div className="csl-role-strip csl-reveal rd2">
-        {[
-          { icon: "🎯", head: "Single source of truth",  body: "One Figma library, one token set, one icon grid. Design and engineering finally speaking the same visual language across every product."  },
-          { icon: "⚡", head: "Speed at scale",          body: "New features assembled from the library in hours, not days. Designers stopped rebuilding the same buttons every sprint."               },
-          { icon: "🔄", head: "Living system",           body: "Not a locked spec doc — every color, icon, and component is documented and versioned so the system evolves with the product."         },
-        ].map((r) => (
-          <div className="csl-role-chip" key={r.head}>
-            <div className="csl-role-icon">{r.icon}</div>
-            <div className="csl-role-head">{r.head}</div>
-            <p className="csl-role-body">{r.body}</p>
-          </div>
-        ))}
+      <div className="csl-callout csl-reveal rd1" style={{ marginTop: 28, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
+        <strong>NDA Note —</strong> Built from scratch for a production organization, later scaled across products. Certain components and visuals have been edited to comply with NDA.
       </div>
-
-      {/* NDA note */}
-      <div className="csl-callout csl-reveal rd3" style={{ marginTop: 8, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
-        <strong>NDA Note —</strong> This design system was designed and built from scratch for a production organization and later scaled across products. To comply with NDA, certain components and visuals have been edited or replaced.
-      </div>
-
     </CsSection>
   );
 }
@@ -196,11 +177,14 @@ function DiscoverySection() {
         sub="Before designing anything new, I conducted a full audit of every existing product across the organization. The goal was to understand what already existed — and where things were breaking down."
       />
 
-      <div className="csl-callout csl-reveal" style={{ borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
-        The product looked different on every page. Not dramatically — subtly. Different border radii, slightly different shades of the same blue, icons that mixed outlined and filled styles in the same flow. Small things that compound into a product that never feels fully finished.
+      {/* Pull quote — the most human moment, shown large */}
+      <div className="csl-reveal" style={{ textAlign: "center", padding: "44px 0 52px", borderBottom: "1px solid #F3F4F6", marginBottom: 48 }}>
+        <p style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.5rem)", fontStyle: "italic", color: "#374151", lineHeight: 1.65, maxWidth: 640, margin: "0 auto", fontWeight: 400 }}>
+          &ldquo;The product looked different on every page. Not dramatically &mdash; subtly. Small inconsistencies that compound into something that never feels fully finished.&rdquo;
+        </p>
       </div>
 
-      <p style={{ fontSize: "0.8rem", fontWeight: 700, color: "#111827", marginBottom: 14 }} className="csl-reveal rd1">What I found:</p>
+      <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 16 }} className="csl-reveal rd1">What the audit found:</p>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }} className="csl-reveal rd2">
         {[
           { title: "Multiple component versions",   body: "Buttons, tables, and form fields had 2–3 different versions each. No shared base component, no shared rules."               },
@@ -237,49 +221,45 @@ function DiscoverySection() {
    §03  APPROACH
 ───────────────────────────────────────────────────────────────────── */
 function ApproachSection() {
+  const steps = [
+    { num: "01", label: "Audit first",     detail: "40+ screens mapped before a single component was drawn. Understand what exists before building anything new." },
+    { num: "02", label: "Top-down",        detail: "High-impact, high-frequency components first. Deliver value fast — don't spend weeks on atoms no one uses." },
+    { num: "03", label: "Dev from day 1",  detail: "Partnered with engineering before opening Figma. Named properties and constraints agreed upfront." },
+    { num: "04", label: "Track in Figma",  detail: "Kanban board inside the library file. Status, feedback, and iteration visible to every team member." },
+  ];
+
   return (
     <CsSection id="approach">
       <CsSectionHeader
         label="Approach & Strategy"
         title="Structure first. Components second."
-        sub="Rather than immediately designing components, I focused on process. How would work be tracked? How would developers be involved? What principles would guide every decision? These were answered before Figma was opened."
+        sub="Before opening Figma, the process was defined — how work gets tracked, how developers stay involved, what principles guide every decision."
       />
 
-      <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Key decisions made at the start</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-          {[
-            { icon: "⬇", decision: "Top-down approach",       reason: "Start with high-impact, high-frequency components. Deliver value to teams fast — don't get lost building atoms for weeks."              },
-            { icon: "⚛", decision: "Atomic Design principles", reason: "Every component is composed of tokens → atoms → molecules → organisms. Scalability is structural, not cosmetic."                        },
-            { icon: "🤝", decision: "Dev partnership from day 1",reason: "Partnered with the frontend developer before designing components. Named properties, constraints, and behaviors aligned from the start." },
-            { icon: "📋", decision: "Kanban board in Figma",   reason: "Built a component tracking board directly inside the Figma file — status, feedback, and iteration all in one place, accessible to all."  },
-          ].map((item, i, arr) => (
-            <div key={item.decision} style={{ display: "flex", gap: 16, padding: "18px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none", alignItems: "flex-start" }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: "#E3F3FF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "1rem" }}>{item.icon}</div>
-              <div>
-                <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 4 }}>{item.decision}</p>
-                <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>{item.reason}</p>
-              </div>
+      {/* 4-step horizontal process */}
+      <div className="csl-reveal" style={{ position: "relative", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, marginBottom: 40 }}>
+        {/* connecting line behind the steps */}
+        <div style={{ position: "absolute", top: 27, left: "calc(12.5% + 4px)", right: "calc(12.5% + 4px)", height: 1.5, background: "#E0E6EC", zIndex: 0 }} />
+        {steps.map((s, i) => (
+          <div key={s.num} style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "0 20px", position: "relative", zIndex: 1 }}>
+            <div style={{
+              width: 56, height: 56, borderRadius: "50%", marginBottom: 18,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              background: i === 0 ? "#1076BC" : "#fff",
+              border: i === 0 ? "none" : "1.5px solid #E0E6EC",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+            }}>
+              <span style={{ fontSize: "0.68rem", fontWeight: 800, color: i === 0 ? "#fff" : "#1076BC", fontFamily: "ui-monospace,monospace" }}>{s.num}</span>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Figma foundations */}
-      <div className="csl-card-3col csl-reveal rd1" style={{ marginBottom: 20 }}>
-        {[
-          { icon: "⚙", title: "Auto Layout",        desc: "Every component uses auto layout — so it stretches, wraps, and adapts to content without ever needing manual resizing."    },
-          { icon: "🔀", title: "Variants",           desc: "Component variants encode all states (default, hover, focus, disabled) in one master component. No duplicate files."        },
-          { icon: "🪆", title: "Nested components",  desc: "Icons, badges, and labels are nested inside cards and inputs. Change the nested atom — every organism that uses it updates." },
-        ].map((item) => (
-          <div key={item.title} style={{ background: "#fff", borderRadius: 16, padding: "20px 18px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: "#E3F3FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem", marginBottom: 14 }}>{item.icon}</div>
-            <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{item.title}</p>
-            <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>{item.desc}</p>
+            <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{s.label}</p>
+            <p style={{ fontSize: "0.68rem", color: "#6B7280", lineHeight: 1.65 }}>{s.detail}</p>
           </div>
         ))}
       </div>
 
+      <div className="csl-callout csl-reveal rd1" style={{ borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
+        Built on <strong>Atomic Design</strong> — tokens → atoms → molecules → organisms. Change a token, every component that uses it updates automatically. Scalability is structural, not cosmetic.
+      </div>
     </CsSection>
   );
 }
@@ -329,45 +309,53 @@ function ColorSection() {
         sub="Three tiers: brand primaries that define the product's identity, a nine-step neutral scale for hierarchy and structure, and a ten-color semantic signal palette for status and feedback. Every value documented as a token."
       />
 
-      <div className="csl-card csl-reveal" style={{ marginBottom: 14 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Main Colors — Brand Primaries</p>
-        <div style={{ display: "flex", gap: 14 }}>
-          {mainColors.map((c) => (
-            <div key={c.hex} style={{ flex: 1 }}>
-              <div style={{ height: 72, borderRadius: 10, background: c.hex, border: c.border ? "1px solid #E0E6EC" : "none", marginBottom: 10 }} />
-              <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#111827", marginBottom: 3, lineHeight: 1.3 }}>{c.name}</p>
-              <p style={{ fontSize: "0.6rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{c.hex}</p>
+      {/* Brand primaries — large and dominant */}
+      <div className="csl-reveal" style={{ marginBottom: 8 }}>
+        <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 12 }}>Brand Primaries</p>
+        <div style={{ display: "flex", gap: 8 }}>
+          {mainColors.map((c, i) => (
+            <div key={c.hex} style={{ flex: i < 2 ? 2 : 1 }}>
+              <div style={{ height: i < 2 ? 110 : 72, borderRadius: 12, background: c.hex, border: c.border ? "1px solid #E0E6EC" : "none", marginBottom: 10 }} />
+              <p style={{ fontSize: "0.7rem", fontWeight: 600, color: "#111827", marginBottom: 2, lineHeight: 1.3 }}>{c.name}</p>
+              <p style={{ fontSize: "0.58rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{c.hex}</p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="csl-card csl-reveal rd1" style={{ marginBottom: 14 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Neutral Scale — Background to Dark Text</p>
-        <div style={{ display: "flex", gap: 8 }}>
-          {neutrals.map((c, i) => (
+      {/* Neutral scale — continuous strip */}
+      <div className="csl-reveal rd1" style={{ marginBottom: 8 }}>
+        <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 12 }}>Neutral Scale</p>
+        <div style={{ display: "flex", gap: 3, marginBottom: 10 }}>
+          {neutrals.map((c) => (
+            <div key={c.hex} style={{ flex: 1, height: 48, borderRadius: 6, background: c.hex, border: "1px solid #E0E6EC" }} />
+          ))}
+        </div>
+        <div style={{ display: "flex", gap: 3 }}>
+          {neutrals.map((c) => (
             <div key={c.hex} style={{ flex: 1 }}>
-              <div style={{ height: 52, borderRadius: 8, background: c.hex, border: "1px solid #E0E6EC", marginBottom: 7 }} />
-              <p style={{ fontSize: "0.56rem", fontWeight: 600, color: "#374151", marginBottom: 2, lineHeight: 1.2 }}>{c.name}</p>
-              <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{c.hex}</p>
+              <p style={{ fontSize: "0.48rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", lineHeight: 1.4 }}>{c.hex}</p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="csl-card csl-reveal rd2" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Signal Colors — Status & Feedback</p>
-        <div style={{ display: "flex", gap: 8 }}>
+      {/* Signal colors — compact row */}
+      <div className="csl-reveal rd2" style={{ marginBottom: 0 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+          <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>Signal Colors — Status & Feedback</p>
+          <span style={{ fontSize: "0.6rem", fontWeight: 600, background: "#DCFFEA", color: "#059669", borderRadius: 20, padding: "2px 10px" }}>WCAG AA verified</span>
+        </div>
+        <div style={{ display: "flex", gap: 6 }}>
           {signals.map((c) => (
             <div key={c.hex} style={{ flex: 1 }}>
-              <div style={{ height: 44, borderRadius: 8, background: c.hex, marginBottom: 7 }} />
-              <p style={{ fontSize: "0.58rem", fontWeight: 600, color: "#111827", marginBottom: 2, lineHeight: 1.2 }}>{c.name}</p>
-              <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{c.hex}</p>
+              <div style={{ height: 36, borderRadius: 8, background: c.hex, marginBottom: 6 }} />
+              <p style={{ fontSize: "0.54rem", fontWeight: 600, color: "#374151", lineHeight: 1.3 }}>{c.name}</p>
             </div>
           ))}
         </div>
-        <p style={{ fontSize: "0.68rem", color: "#6B7280", marginTop: 14, lineHeight: 1.6 }}>
-          Each signal color ships with a light tint variant used for alert and badge backgrounds. Hover states are defined for the three primary interactive colors. All text-on-color combinations were verified for WCAG AA contrast.
+        <p style={{ fontSize: "0.66rem", color: "#6B7280", marginTop: 14, lineHeight: 1.6 }}>
+          Each signal ships with a light tint for alert backgrounds. Change the token — every component that uses it updates.
         </p>
       </div>
 
@@ -392,75 +380,61 @@ function TypographySection() {
       <CsSectionHeader
         label="Typography"
         title={<>Lato. Clean, <em style={{ fontStyle: "italic" }}>human, readable.</em></>}
-        sub="Lato was chosen for its humanist warmth, geometric precision, and excellent legibility at all sizes. A consistent 140% line height and −0.5% letter spacing run across every size — giving the type scale a calm, unified rhythm."
+        sub="One typeface, five weights, five sizes — with 140% line height and −0.5% letter spacing throughout. Readable at 11pt in a legal footnote, impactful at 28pt in a page heading."
       />
 
-      <div className="csl-card csl-reveal" style={{ marginBottom: 14, display: "flex", gap: 40, flexWrap: "wrap", alignItems: "flex-start" }}>
-        <div>
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Typeface</p>
-          <p style={{ fontSize: "2.6rem", fontWeight: 700, color: "#111827", lineHeight: 1, marginBottom: 4 }}>Lato</p>
-          <p style={{ fontSize: "0.72rem", color: "#6B7280" }}>Google Fonts · Open Source · Humanist sans-serif</p>
-        </div>
-        <div style={{ borderLeft: "1px solid #F3F4F6", paddingLeft: 40 }}>
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Weights in use</p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {[
-              { w: 400, n: "Regular" },
-              { w: 500, n: "Medium" },
-              { w: 600, n: "Semi-Bold" },
-              { w: 700, n: "Bold" },
-              { w: 900, n: "Black" },
-            ].map(({ w, n }) => (
-              <div key={w} style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
-                <span style={{ fontWeight: w, fontSize: "0.88rem", color: "#111827", minWidth: 110 }}>Lato {n}</span>
-                <span style={{ fontSize: "0.6rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{w}</span>
-              </div>
-            ))}
+      {/* Live type hierarchy — show it working, not specced */}
+      <div className="csl-card csl-reveal" style={{ marginBottom: 20, padding: "32px 36px" }}>
+        <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 28 }}>Type hierarchy — shown at scale</p>
+        <div style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 20, marginBottom: 20 }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 4 }}>
+            <p style={{ fontSize: "1.75rem", fontWeight: 700, color: "#111827", lineHeight: 1.2, flex: 1 }}>Book your next flight</p>
+            <span style={{ fontSize: "0.58rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", flexShrink: 0 }}>H1 · 28pt · 700</span>
           </div>
         </div>
-        <div style={{ borderLeft: "1px solid #F3F4F6", paddingLeft: 40 }}>
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Global settings</p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {[
-              { k: "Line height",    v: "140%"  },
-              { k: "Letter spacing", v: "−0.5%" },
-            ].map(({ k, v }) => (
-              <div key={k}>
-                <p style={{ fontSize: "0.6rem", color: "#9CA3AF", marginBottom: 2 }}>{k}</p>
-                <p style={{ fontSize: "0.92rem", fontWeight: 700, color: "#1076BC", fontFamily: "ui-monospace,monospace" }}>{v}</p>
-              </div>
-            ))}
+        <div style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 16, marginBottom: 16 }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 4 }}>
+            <p style={{ fontSize: "1.35rem", fontWeight: 700, color: "#111827", lineHeight: 1.3, flex: 1 }}>Search results for New Delhi → Mumbai</p>
+            <span style={{ fontSize: "0.58rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", flexShrink: 0 }}>H2 · 25pt · 700</span>
+          </div>
+        </div>
+        <div style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 14, marginBottom: 14 }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
+            <p style={{ fontSize: "1.0rem", fontWeight: 400, color: "#374151", lineHeight: 1.6, flex: 1 }}>247 flights found. Sorted by best value. Prices shown include all taxes and fees.</p>
+            <span style={{ fontSize: "0.58rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", flexShrink: 0 }}>Body · 17pt · 400</span>
+          </div>
+        </div>
+        <div style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 12, marginBottom: 12 }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
+            <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "#6B7280", lineHeight: 1.5, flex: 1 }}>Departure · Terminal 3 · IndiGo 6E-234</p>
+            <span style={{ fontSize: "0.58rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", flexShrink: 0 }}>Label · 13pt · 600</span>
+          </div>
+        </div>
+        <div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
+            <p style={{ fontSize: "0.69rem", fontWeight: 400, color: "#9CA3AF", lineHeight: 1.5, flex: 1 }}>*Fare includes base price only. Baggage and seat fees may apply at check-in.</p>
+            <span style={{ fontSize: "0.58rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", flexShrink: 0 }}>Legal · 11pt · 400</span>
           </div>
         </div>
       </div>
 
+      {/* Compact specs */}
       <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 14 }}>
         <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Heading Scale</p>
-          {[
-            { label: "Heading 1", desktop: "28pt", mobile: "20pt", w: 700 },
-            { label: "Heading 2", desktop: "25pt", mobile: "16pt", w: 700 },
-          ].map((h, i, arr) => (
-            <div key={h.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none" }}>
-              <span style={{ fontSize: `${i === 0 ? 1.7 : 1.35}rem`, fontWeight: h.w, color: "#111827" }}>{h.label}</span>
-              <div style={{ display: "flex", gap: 20, flexShrink: 0 }}>
-                {[{ k: "Desktop", v: h.desktop }, { k: "Mobile", v: h.mobile }, { k: "LH", v: "140%" }].map(({ k, v }) => (
-                  <div key={k} style={{ textAlign: "right" }}>
-                    <p style={{ fontSize: "0.55rem", color: "#9CA3AF" }}>{k}</p>
-                    <p style={{ fontSize: "0.74rem", fontWeight: 700, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</p>
-                  </div>
-                ))}
-              </div>
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Weights in use</p>
+          {[{ w: 400, n: "Regular" }, { w: 500, n: "Medium" }, { w: 600, n: "Semi-Bold" }, { w: 700, n: "Bold" }, { w: 900, n: "Black" }].map(({ w, n }, i, arr) => (
+            <div key={w} style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", padding: "8px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none" }}>
+              <span style={{ fontWeight: w, fontSize: "0.88rem", color: "#111827" }}>Lato {n}</span>
+              <span style={{ fontSize: "0.6rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{w}</span>
             </div>
           ))}
         </div>
         <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Body Scale — 5 sizes · 5 weights</p>
-          {bodyRows.map((row, i) => (
-            <div key={row.size} style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 0", borderBottom: i < bodyRows.length - 1 ? "1px solid #F3F4F6" : "none" }}>
-              <span style={{ fontSize: `${row.px * 0.7}px`, color: "#111827", minWidth: 60, flexShrink: 0 }}>Body</span>
-              <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111827", fontFamily: "ui-monospace,monospace", minWidth: 32 }}>{row.size}</span>
-              <span style={{ fontSize: "0.58rem", color: "#9CA3AF", flex: 1 }}>{row.use}</span>
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Global settings</p>
+          {[{ k: "Line height", v: "140%" }, { k: "Letter spacing", v: "−0.5%" }, { k: "H1 desktop", v: "28pt" }, { k: "H1 mobile", v: "20pt" }, { k: "H2 desktop", v: "25pt" }, { k: "H2 mobile", v: "16pt" }].map(({ k, v }, i, arr) => (
+            <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none" }}>
+              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#1076BC", fontFamily: "ui-monospace,monospace" }}>{v}</span>
             </div>
           ))}
         </div>
@@ -474,49 +448,55 @@ function TypographySection() {
    §06  ICONOGRAPHY
 ───────────────────────────────────────────────────────────────────── */
 function IconographySection() {
-  const categories = [
-    { icon: "✉",  name: "Communication",   count: "Mail · Chat · Alert · Notification · 12 icons"  },
-    { icon: "✕",  name: "Actions",          count: "Close · Add · Delete · Edit · Filter · 18 icons" },
-    { icon: "⌕",  name: "Search & Nav",     count: "Search · Sort · Navigate · Expand · 14 icons"   },
-    { icon: "⊞",  name: "Layout",           count: "Grid · Split · Columns · Stack · 10 icons"      },
-    { icon: "👤", name: "User & Identity",  count: "User · Group · Lock · Settings · 12 icons"      },
-    { icon: "📅", name: "Time & Date",      count: "Calendar · Clock · Timer · History · 10 icons"  },
-    { icon: "🏠", name: "Travel",            count: "Home · Luggage · Restaurant · Star · 16 icons" },
-    { icon: "📊", name: "Data",              count: "Filter · Hash · Table · Badge · 12 icons"      },
-    { icon: "↕",  name: "Direction",        count: "Up · Down · Left · Right · Diagonal · 10 icons" },
-    { icon: "⚠",  name: "Status",           count: "Warning · Error · Success · Info · 8 icons"     },
-    { icon: "☀",  name: "Modes",            count: "Light · Dark · Dawn · Moon · Refresh · 10 icons"},
-    { icon: "✏",  name: "Editing",          count: "Pen · Pencil · Sliders · Write · Tune · 8 icons"},
-  ];
-
   return (
     <CsSection id="iconography">
       <CsSectionHeader
         label="Iconography"
         title={<>62 custom icons. <em style={{ fontStyle: "italic" }}>One grid. Three sizes.</em></>}
-        sub="Every icon is drawn on a 24×24px keyline grid with a consistent 2px stroke weight and 2px corner radius. Each ships in three sizes — 24px, 20px, and 16px — with identical proportions and optical centre across all three."
       />
 
-      <div className="csl-card-2col csl-reveal" style={{ marginBottom: 20 }}>
+      {/* Image first — full-width in dark panel */}
+      <div className="csl-reveal" style={{ borderRadius: 20, overflow: "hidden", background: "#071E35", marginBottom: 28 }}>
+        <img
+          src="/Design System/icons.png"
+          alt="Full icon library — all 62 custom icons across 12 categories at 3 sizes"
+          style={{ width: "100%", display: "block" }}
+        />
+        <div style={{ padding: "14px 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <p style={{ fontSize: "0.66rem", color: "rgba(255,255,255,0.45)", fontFamily: "ui-monospace,monospace" }}>62 icons · 12 categories · 3 export sizes</p>
+          <div style={{ display: "flex", gap: 8 }}>
+            {["Outlined", "2px stroke", "SVG export", "Optical centre"].map((tag) => (
+              <span key={tag} style={{ fontSize: "0.58rem", fontWeight: 600, background: "rgba(16,118,188,0.22)", color: "#60BDFF", borderRadius: 20, padding: "3px 10px" }}>{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.7, maxWidth: 640, marginBottom: 28 }} className="csl-reveal rd1">
+        Every icon is drawn on a 24×24px keyline grid — consistent 2px stroke, 2px corner radius. Each ships in three sizes with identical proportions and optical centre, so they look right whether they're in a nav bar or inside a table cell.
+      </p>
+
+      {/* Compact keyline spec — 2-col */}
+      <div className="csl-card-2col csl-reveal rd2">
         <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Keyline construction grid</p>
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Keyline construction</p>
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
-            <div style={{ position: "relative", width: 88, height: 88, border: "2px solid #1076BC", borderRadius: 14 }}>
-              <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.2 }} viewBox="0 0 88 88">
-                {[22,44,66].map(x => <line key={`v${x}`} x1={x} y1="0" x2={x} y2="88" stroke="#1076BC" strokeWidth="0.5"/>)}
-                {[22,44,66].map(y => <line key={`h${y}`} x1="0" y1={y} x2="88" y2={y} stroke="#1076BC" strokeWidth="0.5"/>)}
+            <div style={{ position: "relative", width: 80, height: 80, border: "2px solid #1076BC", borderRadius: 12 }}>
+              <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.18 }} viewBox="0 0 80 80">
+                {[20,40,60].map(x => <line key={`v${x}`} x1={x} y1="0" x2={x} y2="80" stroke="#1076BC" strokeWidth="0.5"/>)}
+                {[20,40,60].map(y => <line key={`h${y}`} x1="0" y1={y} x2="80" y2={y} stroke="#1076BC" strokeWidth="0.5"/>)}
               </svg>
-              <div style={{ position: "absolute", inset: 10, border: "1.5px solid #1076BC", borderRadius: "50%", opacity: 0.4 }} />
+              <div style={{ position: "absolute", inset: 8, border: "1.5px solid #1076BC", borderRadius: "50%", opacity: 0.4 }} />
               <div style={{ position: "absolute", top: "50%", left: "50%", width: 6, height: 6, background: "#1076BC", borderRadius: "50%", transform: "translate(-50%,-50%)" }} />
             </div>
           </div>
           {[
-            { k: "Canvas",        v: "24 × 24 px" },
-            { k: "Live area",     v: "20 × 20 px" },
-            { k: "Stroke weight", v: "2 px"        },
-            { k: "Corner radius", v: "2 px"        },
+            { k: "Canvas",        v: "24 × 24 px"   },
+            { k: "Live area",     v: "20 × 20 px"   },
+            { k: "Stroke weight", v: "2 px"          },
+            { k: "Corner radius", v: "2 px"          },
             { k: "Sizes",         v: "24 · 20 · 16 px" },
-            { k: "Export",        v: "SVG"         },
+            { k: "Export format", v: "SVG"           },
           ].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
               <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
@@ -526,7 +506,7 @@ function IconographySection() {
         </div>
         <div className="csl-card">
           <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Three sizes · same proportions</p>
-          <div style={{ display: "flex", gap: 20, alignItems: "flex-end", justifyContent: "center", marginBottom: 24 }}>
+          <div style={{ display: "flex", gap: 20, alignItems: "flex-end", justifyContent: "center", marginBottom: 28 }}>
             {[{ size: 56, px: "24px" }, { size: 46, px: "20px" }, { size: 36, px: "16px" }].map(({ size, px }) => (
               <div key={px} style={{ textAlign: "center" }}>
                 <div style={{ width: size, height: size, border: "2px solid #1076BC", borderRadius: Math.round(size * 0.33), margin: "0 auto 10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -537,32 +517,9 @@ function IconographySection() {
             ))}
           </div>
           <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.7 }}>
-            Icons are exported as SVG for production. All three sizes share the same stroke weight and optical centre — they look consistent whether used in a top navigation or as a small inline indicator inside a table cell.
+            All three sizes share the same stroke weight and optical centre — they look consistent whether used in a top nav or as a small inline indicator inside a table cell.
           </p>
-          <div style={{ marginTop: 14, display: "flex", gap: 8, flexWrap: "wrap" }}>
-            {["Outlined style", "2px stroke", "SVG export", "Optical centre"].map((tag) => (
-              <span key={tag} style={{ fontSize: "0.6rem", fontWeight: 600, background: "#E3F3FF", color: "#1076BC", borderRadius: 20, padding: "3px 10px" }}>{tag}</span>
-            ))}
-          </div>
         </div>
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }} className="csl-reveal rd1">
-        {categories.map((cat) => (
-          <div key={cat.name} style={{ background: "#fff", borderRadius: 14, padding: "16px 14px", boxShadow: "0 4px 12px rgba(0,0,0,0.04)", borderTop: "3px solid #E3F3FF" }}>
-            <div style={{ fontSize: "1.2rem", marginBottom: 8 }}>{cat.icon}</div>
-            <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{cat.name}</div>
-            <div style={{ fontSize: "0.62rem", color: "#9CA3AF", lineHeight: 1.5 }}>{cat.count}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="csl-reveal rd2" style={{ marginTop: 20, borderRadius: 16, overflow: "hidden" }}>
-        <img
-          src="/Design System/icons.png"
-          alt="Full icon library — all 62 custom icons across 12 categories at 3 sizes"
-          style={{ width: "100%", display: "block", borderRadius: 16 }}
-        />
       </div>
     </CsSection>
   );
@@ -598,140 +555,12 @@ function ComponentsSection() {
     <CsSection id="components">
       <CsSectionHeader
         label="Components"
-        title="Built from scratch. Every state documented."
-        sub="Every component in the library was designed from first principles — buttons, text fields, cards, and more. Each ships with all interactive states so developers never have to guess what a focused input or a disabled button should look like."
+        title={<>The itinerary card. <em style={{ fontStyle: "italic" }}>And everything around it.</em></>}
+        sub="The most-used and most complex component in the system — and the one that made everything else click. Once its structure was right, every other component fell into place."
       />
 
-      {/* ── Button system ── */}
-      <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Button System — 4 types · 4 states</p>
-        <div style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 12, alignItems: "end" }}>
-          <div />
-          {buttonTypes.map((b) => (
-            <div key={b.type}>
-              <p style={{ fontSize: "0.68rem", fontWeight: 700, color: "#111827", marginBottom: 3 }}>{b.type}</p>
-              <p style={{ fontSize: "0.58rem", color: "#9CA3AF", lineHeight: 1.4 }}>{b.note}</p>
-            </div>
-          ))}
-        </div>
-        {states.map(({ label, bgs, disabled, focused }) => (
-          <div key={label} style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 10, alignItems: "center" }}>
-            <p style={{ fontSize: "0.65rem", color: "#6B7280", fontWeight: 500 }}>{label}</p>
-            {buttonTypes.map((b, i) => (
-              <div key={b.type}>
-                <div style={{
-                  background: disabled ? "#B0B8C0" : bgs[i],
-                  color: disabled ? "#F9FAFC" : b.color,
-                  border: b.border,
-                  outline: focused ? "2px solid #1076BC" : "none",
-                  outlineOffset: 2,
-                  borderRadius: 8, padding: "8px 14px",
-                  fontSize: "0.68rem", fontWeight: 600,
-                  opacity: disabled ? 0.7 : 1,
-                  display: "inline-flex", alignItems: "center", gap: 4,
-                  whiteSpace: "nowrap",
-                }}>
-                  {b.type === "Primary" ? "Button ↗" : "Button"}
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
-        <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid #F3F4F6" }}>
-          <p style={{ fontSize: "0.65rem", fontWeight: 700, color: "#6B7280", marginBottom: 12 }}>Icon Button</p>
-          <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
-            <div style={{ background: "#1076BC", borderRadius: 8, padding: "9px 18px", display: "inline-flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: "0.72rem", color: "#fff", fontWeight: 600 }}>Find Flights</span>
-              <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.8)" }}>⌕</span>
-            </div>
-            <p style={{ fontSize: "0.7rem", color: "#6B7280", maxWidth: 280, lineHeight: 1.6 }}>Icon buttons pair a label with a trailing icon. Used for primary search CTAs and key conversion actions.</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 32 }}>
-        <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Desktop specs</p>
-          {[
-            { k: "Height",        v: "36 px" },
-            { k: "Padding H",     v: "16 px" },
-            { k: "Corner radius", v: "8 px"  },
-            { k: "Font",          v: "Lato · 13pt · 600" },
-            { k: "Icon gap",      v: "6 px"  },
-            { k: "Focus ring",    v: "2px offset, accent" },
-          ].map(({ k, v }) => (
-            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
-              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
-            </div>
-          ))}
-        </div>
-        <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Mobile specs</p>
-          {[
-            { k: "Height",       v: "44 px (min touch)" },
-            { k: "Padding H",    v: "20 px" },
-            { k: "Corner radius",v: "8 px"  },
-            { k: "Font",         v: "Lato · 15pt · 600" },
-            { k: "Full-width",   v: "Yes — fills container" },
-            { k: "Focus ring",   v: "2px offset, accent" },
-          ].map(({ k, v }) => (
-            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
-              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Text field system ── */}
-      <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Text Field System — 5 states</p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, marginBottom: 20 }}>
-          {fieldStates.map((f) => (
-            <div key={f.label}>
-              <p style={{ fontSize: "0.6rem", fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>{f.label}</p>
-              <div style={{
-                border: `1.5px solid ${f.border}`,
-                borderRadius: 8,
-                background: f.bg,
-                padding: "10px 12px",
-                position: "relative",
-                opacity: f.label === "Disabled" ? 0.6 : 1,
-              }}>
-                <p style={{ fontSize: "0.54rem", color: f.labelCol, marginBottom: 3, fontWeight: 600 }}>From</p>
-                <p style={{ fontSize: "0.72rem", color: f.value ? "#1C1C1C" : "#B0B8C0", fontWeight: f.value ? 500 : 400, minHeight: 18 }}>
-                  {f.value || "City or airport"}
-                </p>
-                {f.hint && (
-                  <p style={{ fontSize: "0.52rem", color: f.border === "#EC1A2E" ? "#EC1A2E" : "#9CA3AF", marginTop: 6 }}>{f.hint}</p>
-                )}
-                {f.label === "Focus" && (
-                  <div style={{ position: "absolute", inset: -3, border: "2px solid rgba(16,118,188,0.25)", borderRadius: 10, pointerEvents: "none" }} />
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, paddingTop: 16, borderTop: "1px solid #F3F4F6" }}>
-          {[
-            { k: "Height",        v: "48 px (desktop) · 52 px (mobile)" },
-            { k: "Corner radius", v: "8 px" },
-            { k: "Label",         v: "Lato · 11pt · 600 · uppercase" },
-            { k: "Input text",    v: "Lato · 13pt · 500" },
-            { k: "Border",        v: "1.5 px — changes per state" },
-            { k: "Error text",    v: "Lato · 11pt · 400 · Coral" },
-          ].map(({ k, v }) => (
-            <div key={k} style={{ display: "flex", flexDirection: "column", gap: 3 }}>
-              <span style={{ fontSize: "0.58rem", color: "#9CA3AF" }}>{k}</span>
-              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Itinerary card ── */}
-      <div className="csl-card csl-reveal rd1" style={{ marginBottom: 20 }}>
+      {/* ── Itinerary card — LEADS ── */}
+      <div className="csl-card csl-reveal" style={{ marginBottom: 28 }}>
         <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Itinerary Card — The most complex component</p>
         <div className="csl-card-2col" style={{ alignItems: "start" }}>
           {/* Card mockup */}
@@ -820,6 +649,134 @@ function ComponentsSection() {
         </div>
       </div>
 
+      {/* ── Button system ── */}
+      <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Button System — 4 types · 4 states</p>
+        <div style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 12, alignItems: "end" }}>
+          <div />
+          {buttonTypes.map((b) => (
+            <div key={b.type}>
+              <p style={{ fontSize: "0.68rem", fontWeight: 700, color: "#111827", marginBottom: 3 }}>{b.type}</p>
+              <p style={{ fontSize: "0.58rem", color: "#9CA3AF", lineHeight: 1.4 }}>{b.note}</p>
+            </div>
+          ))}
+        </div>
+        {states.map(({ label, bgs, disabled, focused }) => (
+          <div key={label} style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 10, alignItems: "center" }}>
+            <p style={{ fontSize: "0.65rem", color: "#6B7280", fontWeight: 500 }}>{label}</p>
+            {buttonTypes.map((b, i) => (
+              <div key={b.type}>
+                <div style={{
+                  background: disabled ? "#B0B8C0" : bgs[i],
+                  color: disabled ? "#F9FAFC" : b.color,
+                  border: b.border,
+                  outline: focused ? "2px solid #1076BC" : "none",
+                  outlineOffset: 2,
+                  borderRadius: 8, padding: "8px 14px",
+                  fontSize: "0.68rem", fontWeight: 600,
+                  opacity: disabled ? 0.7 : 1,
+                  display: "inline-flex", alignItems: "center", gap: 4,
+                  whiteSpace: "nowrap",
+                }}>
+                  {b.type === "Primary" ? "Button ↗" : "Button"}
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+        <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid #F3F4F6" }}>
+          <p style={{ fontSize: "0.65rem", fontWeight: 700, color: "#6B7280", marginBottom: 12 }}>Icon Button</p>
+          <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
+            <div style={{ background: "#1076BC", borderRadius: 8, padding: "9px 18px", display: "inline-flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: "0.72rem", color: "#fff", fontWeight: 600 }}>Find Flights</span>
+              <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.8)" }}>⌕</span>
+            </div>
+            <p style={{ fontSize: "0.7rem", color: "#6B7280", maxWidth: 280, lineHeight: 1.6 }}>Icon buttons pair a label with a trailing icon. Used for primary search CTAs and key conversion actions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 28 }}>
+        <div className="csl-card">
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Desktop specs</p>
+          {[
+            { k: "Height",        v: "36 px" },
+            { k: "Padding H",     v: "16 px" },
+            { k: "Corner radius", v: "8 px"  },
+            { k: "Font",          v: "Lato · 13pt · 600" },
+            { k: "Icon gap",      v: "6 px"  },
+            { k: "Focus ring",    v: "2px offset, accent" },
+          ].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
+              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+        </div>
+        <div className="csl-card">
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 14 }}>Mobile specs</p>
+          {[
+            { k: "Height",       v: "44 px (min touch)" },
+            { k: "Padding H",    v: "20 px" },
+            { k: "Corner radius",v: "8 px"  },
+            { k: "Font",         v: "Lato · 15pt · 600" },
+            { k: "Full-width",   v: "Yes — fills container" },
+            { k: "Focus ring",   v: "2px offset, accent" },
+          ].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
+              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Text field system ── */}
+      <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Text Field System — 5 states</p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, marginBottom: 20 }}>
+          {fieldStates.map((f) => (
+            <div key={f.label}>
+              <p style={{ fontSize: "0.6rem", fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>{f.label}</p>
+              <div style={{
+                border: `1.5px solid ${f.border}`,
+                borderRadius: 8,
+                background: f.bg,
+                padding: "10px 12px",
+                position: "relative",
+                opacity: f.label === "Disabled" ? 0.6 : 1,
+              }}>
+                <p style={{ fontSize: "0.54rem", color: f.labelCol, marginBottom: 3, fontWeight: 600 }}>From</p>
+                <p style={{ fontSize: "0.72rem", color: f.value ? "#1C1C1C" : "#B0B8C0", fontWeight: f.value ? 500 : 400, minHeight: 18 }}>
+                  {f.value || "City or airport"}
+                </p>
+                {f.hint && (
+                  <p style={{ fontSize: "0.52rem", color: f.border === "#EC1A2E" ? "#EC1A2E" : "#9CA3AF", marginTop: 6 }}>{f.hint}</p>
+                )}
+                {f.label === "Focus" && (
+                  <div style={{ position: "absolute", inset: -3, border: "2px solid rgba(16,118,188,0.25)", borderRadius: 10, pointerEvents: "none" }} />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, paddingTop: 16, borderTop: "1px solid #F3F4F6" }}>
+          {[
+            { k: "Height",        v: "48 px (desktop) · 52 px (mobile)" },
+            { k: "Corner radius", v: "8 px" },
+            { k: "Label",         v: "Lato · 11pt · 600 · uppercase" },
+            { k: "Input text",    v: "Lato · 13pt · 500" },
+            { k: "Border",        v: "1.5 px — changes per state" },
+            { k: "Error text",    v: "Lato · 11pt · 400 · Coral" },
+          ].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              <span style={{ fontSize: "0.58rem", color: "#9CA3AF" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 600, color: "#111827", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </CsSection>
   );
 }
@@ -843,28 +800,79 @@ function GridSection() {
       />
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }} className="csl-reveal">
-        {grids.map((g) => (
-          <div key={g.name} style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 12px rgba(0,0,0,0.04)", display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", gap: 3, marginBottom: 16, height: 44 }}>
-              {Array(g.cols).fill(0).map((_, i) => (
-                <div key={i} style={{ flex: 1, background: "#E3F3FF", borderRadius: 2 }} />
-              ))}
-            </div>
-            <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>{g.name}</p>
-            {[
-              { k: "Columns", v: String(g.cols) },
-              { k: "Margin",  v: g.margin },
-              { k: "Gutter",  v: g.gutter },
-            ].map(({ k, v }) => (
-              <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 7, marginBottom: 7, borderBottom: "1px solid #F3F4F6" }}>
-                <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
-                <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#1076BC", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+        {/* 12-col General Grid */}
+        <div style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 12px rgba(0,0,0,0.04)", display: "flex", flexDirection: "column" }}>
+          {/* Wireframe: nav bar + content area */}
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ height: 10, borderRadius: 4, background: "#E3F3FF", marginBottom: 5 }} />
+            <div style={{ display: "flex", gap: 3, height: 48 }}>
+              <div style={{ flex: 3, borderRadius: 3, background: "#E3F3FF" }} />
+              <div style={{ flex: 9, display: "flex", gap: 3 }}>
+                {[2,2,1,1,1,1,1].map((w, i) => <div key={i} style={{ flex: w, borderRadius: 3, background: i === 0 ? "rgba(16,118,188,0.15)" : "#F3F4F6" }} />)}
               </div>
-            ))}
-            <p style={{ fontSize: "0.62rem", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>{g.context}</p>
-            <p style={{ fontSize: "0.68rem", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>{g.note}</p>
+            </div>
           </div>
-        ))}
+          <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>General Grid</p>
+          {[{ k: "Columns", v: "12" }, { k: "Margin", v: "12 px" }, { k: "Gutter", v: "12 px" }].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 7, marginBottom: 7, borderBottom: "1px solid #F3F4F6" }}>
+              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#1076BC", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+          <p style={{ fontSize: "0.62rem", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>Desktop — all standard pages</p>
+          <p style={{ fontSize: "0.68rem", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Homepage, listing, profile, settings — every general layout uses this grid.</p>
+        </div>
+
+        {/* 5-col Search Grid */}
+        <div style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 12px rgba(0,0,0,0.04)", display: "flex", flexDirection: "column" }}>
+          {/* Wireframe: sidebar + result cards */}
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ height: 10, borderRadius: 4, background: "#E3F3FF", marginBottom: 5 }} />
+            <div style={{ display: "flex", gap: 3, height: 48 }}>
+              <div style={{ flex: 1, borderRadius: 3, background: "rgba(16,118,188,0.15)", display: "flex", flexDirection: "column", gap: 3, padding: 4 }}>
+                {[1,1,1].map((_, i) => <div key={i} style={{ flex: 1, borderRadius: 2, background: "rgba(16,118,188,0.2)" }} />)}
+              </div>
+              <div style={{ flex: 4, display: "flex", flexDirection: "column", gap: 3 }}>
+                {[1,1,1].map((_, i) => <div key={i} style={{ flex: 1, borderRadius: 3, background: "#F3F4F6" }} />)}
+              </div>
+            </div>
+          </div>
+          <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>Search Grid</p>
+          {[{ k: "Columns", v: "5" }, { k: "Margin", v: "12 px" }, { k: "Gutter", v: "12 px" }].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 7, marginBottom: 7, borderBottom: "1px solid #F3F4F6" }}>
+              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#1076BC", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+          <p style={{ fontSize: "0.62rem", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>Desktop — search results</p>
+          <p style={{ fontSize: "0.68rem", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Sidebar takes 1 column; results take 4. No arbitrary pixel overrides needed.</p>
+        </div>
+
+        {/* 4-col Mobile Grid */}
+        <div style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 12px rgba(0,0,0,0.04)", display: "flex", flexDirection: "column" }}>
+          {/* Wireframe: stacked mobile blocks */}
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ height: 10, borderRadius: 4, background: "#E3F3FF", marginBottom: 5 }} />
+            <div style={{ display: "flex", gap: 3, height: 48 }}>
+              <div style={{ flex: 4, display: "flex", flexDirection: "column", gap: 3 }}>
+                <div style={{ flex: 2, borderRadius: 3, background: "rgba(16,118,188,0.15)" }} />
+                <div style={{ display: "flex", gap: 3, flex: 3 }}>
+                  <div style={{ flex: 2, borderRadius: 3, background: "#F3F4F6" }} />
+                  <div style={{ flex: 2, borderRadius: 3, background: "#F3F4F6" }} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>Mobile Grid</p>
+          {[{ k: "Columns", v: "4" }, { k: "Margin", v: "12 px" }, { k: "Gutter", v: "8 px" }].map(({ k, v }) => (
+            <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 7, marginBottom: 7, borderBottom: "1px solid #F3F4F6" }}>
+              <span style={{ fontSize: "0.68rem", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#1076BC", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            </div>
+          ))}
+          <p style={{ fontSize: "0.62rem", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>All mobile screens</p>
+          <p style={{ fontSize: "0.68rem", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Tighter 8px gutter maximises usable width on small screens while keeping breathing room between elements.</p>
+        </div>
       </div>
 
       <div className="csl-callout csl-reveal rd2" style={{ marginTop: 20, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
@@ -886,7 +894,39 @@ function ResultsSection() {
         sub="By the end of the project, a complete, scalable design system was in place — all core components documented, all tokens defined, and the system actively adopted across products."
       />
 
-      <div className="csl-metrics csl-reveal">
+      {/* Before / After — hero visual */}
+      <div className="csl-reveal" style={{ borderRadius: 20, overflow: "hidden", border: "1px solid #E0E6EC", marginBottom: 28 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+          <div style={{ background: "#F9FAFC", padding: "18px 24px 10px", borderBottom: "1px solid #E0E6EC" }}>
+            <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF" }}>Before</p>
+          </div>
+          <div style={{ background: "#E3F3FF", padding: "18px 24px 10px", borderBottom: "1px solid #D0E6F5", borderLeft: "1px solid #D0E6F5" }}>
+            <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#1076BC" }}>After</p>
+          </div>
+        </div>
+        {[
+          ["3 different 'primary blue' hex values in production",          "One Tech Blue token — #1076BC — everywhere"],
+          ["Icon styles mixed outlined and filled in the same flow",        "62 custom icons — one grid, one stroke weight, one style"],
+          ["Designers rebuilding components from scratch every sprint",     "New screens assembled from the library in hours"],
+          ["Developers reverse-engineering spacing from screenshots",       "Token names match exactly between Figma and code"],
+          ["12+ Figma files — impossible to navigate or reuse",            "One organised library file, well-documented and shared"],
+          ["Slow onboarding — new designers needed to learn every file",   "Shared system means new designers are productive in days"],
+        ].map(([b, a], i) => (
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid #F3F4F6" }}>
+            <div style={{ padding: "14px 24px", background: "#fff", display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#E0E6EC", flexShrink: 0 }} />
+              <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.5 }}>{b}</p>
+            </div>
+            <div style={{ padding: "14px 24px", background: "rgba(227,243,255,0.3)", borderLeft: "1px solid #D0E6F5", display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#1076BC", flexShrink: 0 }} />
+              <p style={{ fontSize: "0.78rem", color: "#1076BC", fontWeight: 500, lineHeight: 1.5 }}>{a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Metrics — secondary */}
+      <div className="csl-metrics csl-reveal rd1">
         {[
           { val: "62",      label: "Custom icons drawn"          },
           { val: "1 file",  label: "Replaces 12+ Figma files"    },
@@ -898,32 +938,6 @@ function ResultsSection() {
             <div className="csl-metric-label">{m.label}</div>
           </div>
         ))}
-      </div>
-
-      <div style={{ marginTop: 24 }} className="csl-reveal rd1">
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
-          <thead>
-            <tr>
-              <th style={{ padding: "10px 16px", background: "#F3F4F6", borderRadius: "8px 0 0 0", textAlign: "left", color: "#6B7280", fontWeight: 600 }}>Before</th>
-              <th style={{ padding: "10px 16px", background: "#E3F3FF", borderRadius: "0 8px 0 0", textAlign: "left", color: "#1076BC", fontWeight: 600 }}>After</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              ["3 different 'primary blue' hex values in production",   "One Tech Blue token — #1076BC — used everywhere"],
-              ["Icon style mixed outlined and filled in the same flow",  "62 custom icons — one grid, one stroke weight, one style"],
-              ["Designers rebuilding components from scratch every sprint", "New screens assembled from the library in hours"],
-              ["Developers reverse-engineering spacing from screenshots",  "Token names match exactly between Figma and code"],
-              ["Difficult Figma files, hard to navigate and reuse",       "One organized library file, accessible and well-documented"],
-              ["Slow onboarding for new designers",                       "Shared system means new designers are productive faster"],
-            ].map(([b, a], i) => (
-              <tr key={i} style={{ borderBottom: "1px solid #F3F4F6" }}>
-                <td style={{ padding: "10px 16px", color: "#374151" }}>{b}</td>
-                <td style={{ padding: "10px 16px", color: "#1076BC", fontWeight: 500 }}>{a}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
     </CsSection>
   );
@@ -972,26 +986,48 @@ function LearningsSection() {
         sub="The most valuable lessons from this project weren't about design craft. They were about process, systems thinking, and working cross-functionally at scale."
       />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        {learnings.map((item, i) => (
+      {/* First two — side by side */}
+      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+        {learnings.slice(0, 2).map((item) => (
           <div
             key={item.category}
-            className="csl-reveal"
             style={{ background: "#fff", borderRadius: 18, padding: "28px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)", borderLeft: `4px solid ${item.color}` }}
           >
             <span style={{ fontSize: "0.58rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: item.color, background: item.bg, borderRadius: 20, padding: "3px 10px", display: "inline-block", marginBottom: 16 }}>
               {item.category}
             </span>
-            <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#9CA3AF", marginBottom: 12, lineHeight: 1.6 }}>
+            <p style={{ fontSize: "0.78rem", fontStyle: "italic", color: "#9CA3AF", marginBottom: 12, lineHeight: 1.6 }}>
               &ldquo;{item.assumption}&rdquo;
             </p>
             <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
               <span style={{ color: item.color, fontWeight: 700, fontSize: "1.1rem", flexShrink: 0, lineHeight: 1.4 }}>→</span>
-              <p style={{ fontSize: "0.84rem", fontWeight: 600, color: "#111827", lineHeight: 1.65 }}>{item.reality}</p>
+              <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "#111827", lineHeight: 1.65 }}>{item.reality}</p>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Last two — full-width, different visual rhythm */}
+      {learnings.slice(2).map((item) => (
+        <div
+          key={item.category}
+          className="csl-reveal"
+          style={{ background: item.bg, borderRadius: 18, padding: "32px", marginBottom: 16, display: "grid", gridTemplateColumns: "1fr 2fr", gap: 32, alignItems: "center" }}
+        >
+          <div>
+            <span style={{ fontSize: "0.58rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: item.color, display: "inline-block", marginBottom: 14 }}>
+              {item.category}
+            </span>
+            <p style={{ fontSize: "0.78rem", fontStyle: "italic", color: "#6B7280", lineHeight: 1.6 }}>
+              &ldquo;{item.assumption}&rdquo;
+            </p>
+          </div>
+          <div style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingLeft: 32, borderLeft: `2px solid ${item.color}` }}>
+            <span style={{ color: item.color, fontWeight: 700, fontSize: "1.2rem", flexShrink: 0, lineHeight: 1.3 }}>→</span>
+            <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#111827", lineHeight: 1.65 }}>{item.reality}</p>
+          </div>
+        </div>
+      ))}
 
       {/* Mentorship note */}
       <div className="csl-callout csl-reveal" style={{ marginTop: 32, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
