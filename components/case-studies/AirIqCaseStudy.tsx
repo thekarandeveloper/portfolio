@@ -348,7 +348,7 @@ function AirHero() {
         ].map((s) => (
           <div className="csl-hero-stat" key={s.label}>
             <div className="csl-hero-stat-label" style={{ marginBottom: 7 }}>{s.label}</div>
-            <div className="csl-hero-stat-val" style={{ fontSize: "0.88rem", fontWeight: 700, lineHeight: 1.35 }}>{s.val}</div>
+            <div className="csl-hero-stat-val" style={{ fontSize: "1rem", fontWeight: 700, lineHeight: 1.35 }}>{s.val}</div>
           </div>
         ))}
       </div>
@@ -363,7 +363,7 @@ function OverviewSection() {
   return (
     <CsSection id="overview">
       <div className="csl-reveal" style={{ marginBottom: 40 }}>
-        <div style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.6rem)", fontWeight: 800, color: "#111827", lineHeight: 1.2, letterSpacing: "-0.025em", marginBottom: 24, minHeight: "1.4em" }}>
+        <div style={{ fontSize: "clamp(1.7rem, 3vw, 2.5rem)", fontWeight: 800, color: "#111827", lineHeight: 1.1, letterSpacing: "-0.025em", marginBottom: 24, minHeight: "1.4em" }}>
           <Typed text="One platform. Every flight. Every agent." delay={200} />
         </div>
         <p className="csl-text">
@@ -556,7 +556,7 @@ function ProblemSection() {
             paddingLeft: 18,
           }}>
             <p className="csl-h3" style={{ marginBottom: 6 }}>{m.title}</p>
-            <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.65, margin: "0 0 10px" }}>
+            <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 10px" }}>
               {m.scene}
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -731,7 +731,7 @@ function CompetitiveCarousel() {
                   fontSize: "0.68rem", fontWeight: 900, color: "#1E90FF",
                   flexShrink: 0, marginTop: 1,
                 }}>0{i + 1}</span>
-                <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.65, margin: 0 }}>
+                <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
                   {parts.map((part, j) =>
                     j % 2 === 1
                       ? <strong key={j} style={{ color: "#111827", fontWeight: 700 }}>{part}</strong>
@@ -795,7 +795,7 @@ function ApproachSection() {
                 <p style={{ fontSize: "0.95rem", fontWeight: 700, color: "#111827", margin: "0 0 4px", lineHeight: 1.5 }}>
                   {r.insight}
                 </p>
-                <p style={{ fontSize: "0.85rem", color: "#1076BC", margin: 0 }}>
+                <p style={{ fontSize: "0.9rem", color: "#1076BC", margin: 0, lineHeight: 1.6 }}>
                   → {r.decision}
                 </p>
               </div>
@@ -1008,16 +1008,16 @@ function FareListingBlock() {
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 28 }}>
-        <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#111827", margin: "0 0 6px", lineHeight: 1.2 }}>
+        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
           Fare Listing Card
         </h3>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.6 }}>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.75 }}>
           The card agents see most often — search results page, every booking starts here.
         </p>
       </div>
 
       {/* ── Old Design ── */}
-      <div style={{ marginBottom: 36 }}>
+      <div style={{ marginBottom: 28 }}>
         <span className="csl-eyebrow">The outdated design</span>
         <div style={{
           borderRadius: 16, overflow: "hidden",
@@ -1174,10 +1174,10 @@ function ItineraryCardBlock() {
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 28 }}>
-        <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#111827", margin: "0 0 6px", lineHeight: 1.2 }}>
+        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
           Itinerary Card
         </h3>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.6 }}>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.75 }}>
           One card saves everyone 5 mins per conversation — agents share this directly with clients on a call.
         </p>
       </div>
@@ -1279,10 +1279,10 @@ function ReviewTableBlock() {
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 28 }}>
-        <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#111827", margin: "0 0 6px", lineHeight: 1.2 }}>
+        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
           Review Table View
         </h3>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.6 }}>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.75 }}>
           Final review screen — the last checkpoint before a ticket is issued.
         </p>
       </div>
@@ -1358,22 +1358,10 @@ function ReviewTableBlock() {
 function CoreComponentsSection() {
   return (
     <CsSection id="insights">
-      {/* Section header */}
-      <div className="csl-reveal" style={{ marginBottom: 40 }}>
-        <h2 style={{
-          fontSize: "clamp(1.4rem, 3vw, 2rem)", fontWeight: 900,
-          color: "#111827", margin: 0, lineHeight: 1.15,
-          letterSpacing: "-0.03em", marginBottom: 12,
-        }}>
-          3 Core Components<br />That Fixed The Flow
-        </h2>
-        <p style={{
-          fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.7,
-          maxWidth: 520, margin: 0,
-        }}>
-          Every design went through multiple directions before landing. Here&apos;s what I tried, what I scrapped, and the component that shipped.
-        </p>
-      </div>
+      <CsSectionHeader
+        title="3 Core Components That Fixed The Flow"
+        sub="Every design went through multiple directions before landing. Here's what I tried, what I scrapped, and the component that shipped."
+      />
 
       {/* Component 1 — Fare Listing Card */}
       <FareListingBlock />
@@ -1503,11 +1491,20 @@ function TheProductSection() {
       </div>
 
       {/* Flow list */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
         {flows.map((f, i) => (
-          <div key={f.label} className={`csl-reveal rd${i}`}>
-            <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{f.label}</div>
-            <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{f.desc}</p>
+          <div key={f.label} className={`csl-reveal rd${i}`} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: "0 14px", alignItems: "start" }}>
+            <span style={{
+              width: 28, height: 28, borderRadius: 8,
+              background: "#EFF6FF", display: "flex",
+              alignItems: "center", justifyContent: "center",
+              fontSize: "0.68rem", fontWeight: 900, color: "#1E90FF",
+              flexShrink: 0, marginTop: 2,
+            }}>0{i + 1}</span>
+            <div>
+              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{f.label}</div>
+              <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: 0 }}>{f.desc}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -1639,10 +1636,22 @@ function ResultsSection() {
 
       {/* Quote */}
       <div className="csl-reveal rd1" style={{ marginBottom: 24 }}>
-        <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: "0 0 8px" }}>
-          &ldquo;Much faster and fewer mistakes than before.&rdquo;
-        </p>
-        <span style={{ fontSize: "0.82rem", color: "#9CA3AF" }}>Anonymized travel agent · Post-launch feedback</span>
+        <div style={{
+          background: "#F8FAFF", borderRadius: 16, padding: "28px 28px 24px",
+          position: "relative",
+        }}>
+          <span style={{
+            position: "absolute", top: 8, left: 18,
+            fontSize: "4.5rem", color: "#BFDBFE", lineHeight: 1,
+            fontFamily: "Georgia, serif", userSelect: "none",
+          }}>&ldquo;</span>
+          <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: "20px 0 14px", paddingLeft: 4 }}>
+            Much faster and fewer mistakes than before.
+          </p>
+          <span style={{ fontSize: "0.78rem", color: "#9CA3AF", fontWeight: 500 }}>
+            Anonymized travel agent · Post-launch feedback
+          </span>
+        </div>
       </div>
 
       {/* Before/After table */}
@@ -1720,7 +1729,7 @@ function LearningsSection() {
             }}>{item.n}</span>
             <div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{item.title}</div>
-              <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{item.text}</p>
+              <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
             </div>
           </div>
         ))}
