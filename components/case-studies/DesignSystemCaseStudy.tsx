@@ -265,6 +265,80 @@ function ApproachSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
+   COLOR EDITORIAL BANNER (before color section)
+───────────────────────────────────────────────────────────────────── */
+function ColorEditorialBanner() {
+  const swatches: { hex: string; blobColor: string; top?: string; bottom?: string; left?: string; right?: string }[] = [
+    { hex: "#1076BC", blobColor: "#1076BC", top: "8%",    right: "3%"  },
+    { hex: "#F2616E", blobColor: "#F2616E", top: "6%",    left: "2%"   },
+    { hex: "#059669", blobColor: "#059669", bottom: "8%", left: "2%"   },
+    { hex: "#1C1C1C", blobColor: "#444",    bottom: "7%", right: "2%"  },
+  ];
+
+  return (
+    <div className="csl-reveal" style={{
+      position: "relative",
+      padding: "88px 48px",
+      background: "#fff",
+      borderRadius: 24,
+      border: "1px solid #F3F4F6",
+      minHeight: 420,
+      marginBottom: 0,
+    }}>
+      {swatches.map((s) => (
+        <div
+          key={s.hex}
+          style={{
+            position: "absolute",
+            top: s.top,
+            bottom: s.bottom,
+            left: s.left,
+            right: s.right,
+            background: "#fff",
+            borderRadius: 18,
+            padding: "16px 16px 12px",
+            boxShadow: "0 8px 28px rgba(0,0,0,0.07)",
+            width: 130,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 10,
+          }}
+        >
+          <div style={{
+            width: 74,
+            height: 74,
+            borderRadius: "50%",
+            background: `radial-gradient(circle at 38% 35%, ${s.blobColor}cc 0%, ${s.blobColor}44 52%, transparent 78%)`,
+            filter: "blur(7px)",
+          }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 5, width: "100%" }}>
+            <span style={{ fontSize: "0.76rem" }}>🎨</span>
+            <span style={{ fontSize: "0.58rem", fontFamily: "ui-monospace,monospace", color: "#374151", fontWeight: 600 }}>{s.hex}</span>
+          </div>
+        </div>
+      ))}
+
+      <div style={{
+        textAlign: "center",
+        maxWidth: 540,
+        margin: "0 auto",
+        position: "relative",
+        zIndex: 1,
+      }}>
+        <p style={{ fontSize: "clamp(1.05rem, 2.4vw, 1.5rem)", color: "#374151", lineHeight: 1.7, fontWeight: 400 }}>
+          When choosing{" "}
+          <strong style={{ fontWeight: 800, color: "#111827" }}>a color system</strong>
+          {" "}for AirIQ, we focused on trust and clarity — calm blues that build{" "}
+          <strong style={{ fontWeight: 800, color: "#111827" }}>confidence</strong>
+          {" "}and coral that drives action.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
    §04  COLOR SYSTEM
 ───────────────────────────────────────────────────────────────────── */
 function ColorSection() {
@@ -782,6 +856,92 @@ function ComponentsSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
+   GRID EDITORIAL BANNER (before grid section)
+───────────────────────────────────────────────────────────────────── */
+function GridEditorialBanner() {
+  const desktopCols = 12;
+  const mobileCols  = 4;
+
+  return (
+    <div className="csl-reveal" style={{
+      background: "#0D1117",
+      borderRadius: 24,
+      padding: "40px 40px 36px",
+      marginBottom: 0,
+    }}>
+      {/* Title */}
+      <p style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 300, color: "rgba(255,255,255,0.35)", marginBottom: 32, letterSpacing: "-0.02em" }}>
+        Grid{" "}
+        <span style={{ fontWeight: 800, color: "#fff" }}>System</span>
+      </p>
+
+      {/* Frames row */}
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-end" }}>
+
+        {/* Desktop frame */}
+        <div style={{ flex: "0 0 62%" }}>
+          {/* Ruler */}
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+            {["0", "12", "24", "", "", "", "", "", "", "", "1416", "1440"].map((v, i) => (
+              <span key={i} style={{ fontSize: "0.5rem", color: "rgba(255,255,255,0.28)", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            ))}
+          </div>
+          {/* Frame */}
+          <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 200 }}>
+            {/* Column grid overlay */}
+            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: `repeat(${desktopCols}, 1fr)`, gap: 12, padding: "0 12px", pointerEvents: "none" }}>
+              {Array(desktopCols).fill(0).map((_, i) => (
+                <div key={i} style={{ background: "rgba(96,189,255,0.06)", borderRadius: 2 }} />
+              ))}
+            </div>
+            {/* Content */}
+            <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: 24 }}>
+              <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "rgba(255,255,255,0.55)", textAlign: "center", lineHeight: 1.3, marginBottom: 8 }}>AirIQ Travel<br />Platform</p>
+              <p style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.28)", textAlign: "center", maxWidth: 240, lineHeight: 1.5 }}>Find top low-cost flights, book appointments, and manage your travel with personalised AI insights.</p>
+              <div style={{ marginTop: 14, background: "#1076BC", borderRadius: 6, padding: "7px 18px" }}>
+                <span style={{ fontSize: "0.6rem", color: "#fff", fontWeight: 600 }}>Book a Flight</span>
+              </div>
+            </div>
+          </div>
+          {/* Spec */}
+          <p style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.35)", marginTop: 10, fontFamily: "ui-monospace,monospace" }}>
+            1440 Desktop &nbsp;·&nbsp; 12 Count &nbsp;·&nbsp; 12 Gutter &nbsp;·&nbsp; 12 Margin
+          </p>
+        </div>
+
+        {/* Mobile frame */}
+        <div style={{ flex: "0 0 calc(38% - 16px)" }}>
+          {/* Ruler */}
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+            {["16", "", "", "359", "375"].map((v, i) => (
+              <span key={i} style={{ fontSize: "0.5rem", color: "rgba(255,255,255,0.28)", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            ))}
+          </div>
+          {/* Frame */}
+          <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 200 }}>
+            {/* Column grid overlay */}
+            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: `repeat(${mobileCols}, 1fr)`, gap: 8, padding: "0 12px", pointerEvents: "none" }}>
+              {Array(mobileCols).fill(0).map((_, i) => (
+                <div key={i} style={{ background: "rgba(96,189,255,0.06)", borderRadius: 2 }} />
+              ))}
+            </div>
+            {/* Content */}
+            <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: 20 }}>
+              <p style={{ fontSize: "0.9rem", fontWeight: 700, color: "rgba(255,255,255,0.55)", textAlign: "center", lineHeight: 1.35, marginBottom: 6 }}>AirIQ<br />Mobile App</p>
+              <p style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.28)", textAlign: "center", lineHeight: 1.5 }}>Book flights and manage travel on mobile.</p>
+            </div>
+          </div>
+          {/* Spec */}
+          <p style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.35)", marginTop: 10, fontFamily: "ui-monospace,monospace" }}>
+            375 Mobile &nbsp;·&nbsp; 4 Count &nbsp;·&nbsp; 8 Gutter &nbsp;·&nbsp; 12 Margin
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
    §08  GRID
 ───────────────────────────────────────────────────────────────────── */
 function GridSection() {
@@ -1060,10 +1220,12 @@ export function DesignSystemCaseStudy() {
       <OverviewSection />
       <DiscoverySection />
       <ApproachSection />
+      <ColorEditorialBanner />
       <ColorSection />
       <TypographySection />
       <IconographySection />
       <ComponentsSection />
+      <GridEditorialBanner />
       <GridSection />
       <ResultsSection />
       <LearningsSection />
