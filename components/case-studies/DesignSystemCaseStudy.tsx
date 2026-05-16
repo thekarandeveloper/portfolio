@@ -42,17 +42,14 @@ function DSHero() {
             <span className="csl-hero-chip">Figma · Lato</span>
             <span className="csl-hero-chip">0 → 1 System</span>
           </div>
-          <a
-            href="#"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: "#1076BC", color: "#fff", borderRadius: 8,
-              padding: "10px 20px", fontSize: "0.76rem", fontWeight: 600,
-              textDecoration: "none", marginTop: 8, width: "fit-content",
-            }}
-          >
-            View on Figma ↗
-          </a>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            background: "rgba(16,118,188,0.12)", color: "#60BDFF", borderRadius: 8,
+            padding: "10px 20px", fontSize: "0.76rem", fontWeight: 600,
+            marginTop: 8, width: "fit-content", border: "1px solid rgba(16,118,188,0.25)",
+          }}>
+            <span style={{ fontSize: "0.68rem" }}>◈</span> Figma file available on request
+          </div>
         </div>
         <div className="csl-hero-right">
           <DSHeroVisual />
@@ -76,53 +73,75 @@ function DSHero() {
 }
 
 function DSHeroVisual() {
+  const pages = ["00 – Cover","01 – Tokens","02 – Colors","03 – Typography","04 – Icons","05 – Components","06 – Patterns","07 – Kanban"];
   return (
     <div style={{
-      background: "#0D1829", borderRadius: 16, padding: "20px",
-      border: "1.5px solid rgba(16,118,188,0.35)",
-      boxShadow: "0 24px 60px rgba(16,118,188,0.2)",
-      width: "100%", maxWidth: 400,
+      background: "#111827", borderRadius: 16, overflow: "hidden",
+      border: "1px solid rgba(255,255,255,0.08)",
+      boxShadow: "0 24px 60px rgba(0,0,0,0.4)",
+      width: "100%", maxWidth: 420,
     }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#FF5F57" }} />
-        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#FFBD2E" }} />
-        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28CA41" }} />
-        <div style={{ flex: 1, height: 18, background: "rgba(255,255,255,0.06)", borderRadius: 4, marginLeft: 6 }} />
+      {/* Figma title bar */}
+      <div style={{ background: "#1F2937", padding: "9px 14px", display: "flex", alignItems: "center", gap: 6, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57" }} />
+        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFBD2E" }} />
+        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#28CA41" }} />
+        <span style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.35)", marginLeft: 8, fontFamily: "ui-monospace,monospace" }}>AirIQ Design System.fig</span>
       </div>
-      <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
-        {[
-          { c: "#1076BC", label: "Tech Blue" },
-          { c: "#F2616E", label: "Coral" },
-          { c: "#E3F3FF", label: "Lt Blue" },
-          { c: "#F9FAFC", label: "BG" },
-        ].map(({ c, label }, i) => (
-          <div key={label} style={{ flex: 1 }}>
-            <div style={{ height: 32, borderRadius: 6, background: c, border: i > 1 ? "1px solid rgba(255,255,255,0.12)" : "none", marginBottom: 4 }} />
-            <p style={{ fontSize: "0.44rem", color: "rgba(255,255,255,0.3)", textAlign: "center", fontFamily: "ui-monospace,monospace" }}>{label}</p>
+      <div style={{ display: "grid", gridTemplateColumns: "130px 1fr" }}>
+        {/* Pages sidebar */}
+        <div style={{ background: "#1A2333", borderRight: "1px solid rgba(255,255,255,0.06)", padding: "10px 0" }}>
+          <p style={{ fontSize: "0.44rem", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.12em", padding: "0 10px", marginBottom: 6 }}>Pages</p>
+          {pages.map((pg, i) => (
+            <div key={pg} style={{ padding: "4px 10px", background: i === 5 ? "rgba(16,118,188,0.2)" : "transparent", display: "flex", alignItems: "center", gap: 5 }}>
+              <div style={{ width: 3, height: 3, borderRadius: "50%", background: i === 5 ? "#1076BC" : "rgba(255,255,255,0.18)", flexShrink: 0 }} />
+              <p style={{ fontSize: "0.5rem", color: i === 5 ? "#60BDFF" : "rgba(255,255,255,0.38)", fontWeight: i === 5 ? 600 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{pg}</p>
+            </div>
+          ))}
+        </div>
+        {/* Component canvas preview */}
+        <div style={{ padding: "12px", background: "#0F172A" }}>
+          <p style={{ fontSize: "0.44rem", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>05 – Components</p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5, marginBottom: 5 }}>
+            {/* Color tokens row */}
+            <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <p style={{ fontSize: "0.42rem", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Colors</p>
+              <div style={{ display: "flex", gap: 3 }}>
+                {["#1076BC","#F2616E","#E3F3FF","#1C1C1C"].map(c => (
+                  <div key={c} style={{ flex: 1, height: 14, borderRadius: 3, background: c, border: c === "#E3F3FF" ? "0.5px solid rgba(255,255,255,0.12)" : "none" }} />
+                ))}
+              </div>
+            </div>
+            <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <p style={{ fontSize: "0.42rem", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Buttons</p>
+              <div style={{ display: "flex", gap: 3, alignItems: "center" }}>
+                <div style={{ background: "#1076BC", borderRadius: 3, padding: "3px 6px" }}><span style={{ fontSize: "0.4rem", color: "#fff", fontWeight: 700 }}>Primary</span></div>
+                <div style={{ background: "#F2616E", borderRadius: 3, padding: "3px 6px" }}><span style={{ fontSize: "0.4rem", color: "#fff", fontWeight: 700 }}>Secondary</span></div>
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
-      <div style={{ display: "flex", gap: 7, marginBottom: 14, alignItems: "center" }}>
-        <div style={{ background: "#1076BC", borderRadius: 6, padding: "7px 14px" }}>
-          <span style={{ fontSize: "0.58rem", color: "#fff", fontWeight: 600 }}>Button ↗</span>
-        </div>
-        <div style={{ background: "#F2616E", borderRadius: 6, padding: "7px 14px" }}>
-          <span style={{ fontSize: "0.58rem", color: "#fff", fontWeight: 600 }}>Button</span>
-        </div>
-        <div style={{ border: "1.5px solid rgba(255,255,255,0.2)", borderRadius: 6, padding: "7px 14px" }}>
-          <span style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.5)", fontWeight: 500 }}>Button</span>
-        </div>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", gap: 5, marginBottom: 14 }}>
-        {["✉","✕","⌕","⊞","≡","⬇","⚠","⊙","✓","+","—","!","⊗","⌃","↕","⊖"].map((icon, i) => (
-          <div key={i} style={{ background: "rgba(255,255,255,0.05)", borderRadius: 5, padding: "5px", textAlign: "center" }}>
-            <span style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.4)" }}>{icon}</span>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5, marginBottom: 5 }}>
+            <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <p style={{ fontSize: "0.42rem", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Icons</p>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 2 }}>
+                {["✉","⌕","≡","⬇","✓","⊞","⚠","⊙","✕","+","⌃","↕"].map((ic, i) => (
+                  <span key={i} style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.35)", textAlign: "center" }}>{ic}</span>
+                ))}
+              </div>
+            </div>
+            <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
+              <p style={{ fontSize: "0.42rem", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Text Field</p>
+              <div style={{ border: "1px solid rgba(16,118,188,0.5)", borderRadius: 3, padding: "3px 5px" }}>
+                <p style={{ fontSize: "0.38rem", color: "rgba(255,255,255,0.2)", marginBottom: 1 }}>From</p>
+                <p style={{ fontSize: "0.44rem", color: "rgba(255,255,255,0.5)" }}>New Delhi</p>
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
-      <div style={{ background: "rgba(16,118,188,0.18)", borderRadius: 8, padding: "7px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: "0.62rem", color: "#60BDFF" }}>AirIQ Design System</span>
-        <span style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.35)" }}>v1.0</span>
+          <div style={{ background: "rgba(16,118,188,0.12)", borderRadius: 4, padding: "4px 8px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: "0.44rem", color: "#60BDFF" }}>AirIQ Design System</span>
+            <span style={{ fontSize: "0.44rem", color: "rgba(255,255,255,0.25)", fontFamily: "ui-monospace,monospace" }}>v1.0</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -184,7 +203,36 @@ function DiscoverySection() {
         </p>
       </div>
 
-      <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 16 }} className="csl-reveal rd1">What the audit found:</p>
+      {/* Before-state — visual proof */}
+      <div className="csl-reveal rd1" style={{ borderRadius: 18, overflow: "hidden", border: "1px solid #FEE2E2", marginBottom: 36 }}>
+        <div style={{ background: "#FEF2F2", padding: "11px 20px", borderBottom: "1px solid #FEE2E2", display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#DC2626", flexShrink: 0 }} />
+          <p style={{ fontSize: "0.58rem", fontWeight: 700, color: "#7F1D1D", textTransform: "uppercase", letterSpacing: "0.12em" }}>Audit finding — "the same blue" across three products</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", background: "#fff" }}>
+          {[
+            { product: "AirIQ Web",    hex: "#0F6FB4", radius: 4  },
+            { product: "AirIQ Mobile", hex: "#1585CC", radius: 10 },
+            { product: "AirIQ Admin",  hex: "#147ABF", radius: 2  },
+          ].map(({ product, hex, radius }, i) => (
+            <div key={product} style={{ padding: "20px 22px", borderRight: i < 2 ? "1px solid #F3F4F6" : "none" }}>
+              <p style={{ fontSize: "0.55rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 14 }}>{product}</p>
+              <div style={{ height: 44, borderRadius: 8, background: hex, marginBottom: 8 }} />
+              <p style={{ fontSize: "0.56rem", fontFamily: "ui-monospace,monospace", color: "#6B7280", fontWeight: 600, marginBottom: 16 }}>{hex}</p>
+              <div style={{ background: hex, borderRadius: radius, padding: "8px 16px", display: "inline-flex" }}>
+                <span style={{ fontSize: "0.62rem", color: "#fff", fontWeight: 600 }}>Book Now</span>
+              </div>
+              <p style={{ fontSize: "0.5rem", color: "#B0B8C0", marginTop: 6, fontFamily: "ui-monospace,monospace" }}>border-radius: {radius}px</p>
+            </div>
+          ))}
+        </div>
+        <div style={{ background: "#FEF2F2", padding: "10px 20px", borderTop: "1px solid #FEE2E2", display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: "0.8rem", color: "#DC2626", flexShrink: 0 }}>⚠</span>
+          <p style={{ fontSize: "0.62rem", color: "#991B1B", lineHeight: 1.5 }}>Three hex values for the same "primary blue." All three in production simultaneously — no one realised they had diverged.</p>
+        </div>
+      </div>
+
+      <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 16 }} className="csl-reveal rd2">What the audit found:</p>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }} className="csl-reveal rd2">
         {[
           { title: "Multiple component versions",   body: "Buttons, tables, and form fields had 2–3 different versions each. No shared base component, no shared rules."               },
@@ -257,8 +305,61 @@ function ApproachSection() {
         ))}
       </div>
 
-      <div className="csl-callout csl-reveal rd1" style={{ borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
+      <div className="csl-callout csl-reveal rd1" style={{ borderLeftColor: "#1076BC", background: "#E3F3FF", marginBottom: 28 }}>
         Built on <strong>Atomic Design</strong> — tokens → atoms → molecules → organisms. Change a token, every component that uses it updates automatically. Scalability is structural, not cosmetic.
+      </div>
+
+      {/* Figma library — how the file was organized */}
+      <div className="csl-reveal rd2" style={{ background: "#111827", borderRadius: 18, overflow: "hidden", border: "1px solid rgba(255,255,255,0.07)" }}>
+        <div style={{ background: "#1F2937", padding: "10px 16px", borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 6 }}>
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57" }} />
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFBD2E" }} />
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#28CA41" }} />
+          <span style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.3)", marginLeft: 8, fontFamily: "ui-monospace,monospace" }}>AirIQ Design System.fig — how the library was organized</span>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "200px 1fr" }}>
+          {/* Pages sidebar */}
+          <div style={{ background: "#1A2333", borderRight: "1px solid rgba(255,255,255,0.06)", padding: "14px 0" }}>
+            <p style={{ fontSize: "0.5rem", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.12em", padding: "0 14px", marginBottom: 8 }}>Pages</p>
+            {[
+              { name: "00 – Cover",      active: false, note: "Library overview" },
+              { name: "01 – Tokens",     active: false, note: "Color · Spacing · Shadow" },
+              { name: "02 – Typography", active: false, note: "Scale · Weights" },
+              { name: "03 – Colors",     active: false, note: "Primary · Neutrals · Signals" },
+              { name: "04 – Icons",      active: false, note: "62 icons · 3 sizes" },
+              { name: "05 – Components", active: true,  note: "20+ components" },
+              { name: "06 – Patterns",   active: false, note: "Page-level layouts" },
+              { name: "07 – 📋 Kanban",  active: false, note: "Status tracking" },
+            ].map((pg) => (
+              <div key={pg.name} style={{ padding: "7px 14px", background: pg.active ? "rgba(16,118,188,0.18)" : "transparent" }}>
+                <p style={{ fontSize: "0.58rem", color: pg.active ? "#60BDFF" : "rgba(255,255,255,0.45)", fontWeight: pg.active ? 600 : 400, marginBottom: 1 }}>{pg.name}</p>
+                <p style={{ fontSize: "0.48rem", color: "rgba(255,255,255,0.2)" }}>{pg.note}</p>
+              </div>
+            ))}
+          </div>
+          {/* Canvas area */}
+          <div style={{ padding: "20px 24px", background: "#0D1117" }}>
+            <p style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>05 – Components — Section overview</p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
+              {[
+                { label: "Buttons",    count: "4 variants" },
+                { label: "Text Fields",count: "5 states" },
+                { label: "Dropdowns", count: "3 types" },
+                { label: "Date Picker",count: "2 variants" },
+                { label: "Alerts",     count: "4 types" },
+                { label: "Badges",     count: "8 variants" },
+                { label: "Nav Bar",    count: "Desktop + Mobile" },
+                { label: "Cards",      count: "Itinerary + Info" },
+              ].map((c) => (
+                <div key={c.label} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 8, padding: "10px 12px", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div style={{ height: 20, borderRadius: 4, background: "rgba(16,118,188,0.2)", marginBottom: 8 }} />
+                  <p style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.55)", fontWeight: 600, marginBottom: 2 }}>{c.label}</p>
+                  <p style={{ fontSize: "0.48rem", color: "rgba(255,255,255,0.22)", fontFamily: "ui-monospace,monospace" }}>{c.count}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </CsSection>
   );
@@ -268,23 +369,27 @@ function ApproachSection() {
    COLOR EDITORIAL BANNER (before color section)
 ───────────────────────────────────────────────────────────────────── */
 function ColorEditorialBanner() {
-  const swatches: { hex: string; blobColor: string; top?: string; bottom?: string; left?: string; right?: string }[] = [
-    { hex: "#1076BC", blobColor: "#1076BC", top: "8%",    right: "3%"  },
-    { hex: "#F2616E", blobColor: "#F2616E", top: "6%",    left: "2%"   },
-    { hex: "#059669", blobColor: "#059669", bottom: "8%", left: "2%"   },
-    { hex: "#1C1C1C", blobColor: "#444",    bottom: "7%", right: "2%"  },
+  const swatches: { hex: string; name: string; blobColor: string; top?: string; bottom?: string; left?: string; right?: string }[] = [
+    { hex: "#1076BC", name: "Tech Blue",  blobColor: "#1076BC", top: "7%",    right: "2%"   },
+    { hex: "#F2616E", name: "Coral",      blobColor: "#F2616E", top: "5%",    left: "1%"    },
+    { hex: "#059669", name: "Success",    blobColor: "#059669", bottom: "7%", left: "1%"    },
+    { hex: "#1C1C1C", name: "Dark",       blobColor: "#555",    bottom: "6%", right: "1.5%" },
   ];
 
   return (
     <div className="csl-reveal" style={{
       position: "relative",
-      padding: "88px 48px",
-      background: "#fff",
+      padding: "96px 56px",
+      background: "#FAFAFA",
       borderRadius: 24,
-      border: "1px solid #F3F4F6",
-      minHeight: 420,
+      border: "1px solid #F0F0F0",
+      minHeight: 460,
       marginBottom: 0,
+      overflow: "hidden",
     }}>
+      {/* Subtle background noise texture */}
+      <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(#e5e7eb 1px, transparent 1px)", backgroundSize: "28px 28px", opacity: 0.25, pointerEvents: "none" }} />
+
       {swatches.map((s) => (
         <div
           key={s.hex}
@@ -295,44 +400,46 @@ function ColorEditorialBanner() {
             left: s.left,
             right: s.right,
             background: "#fff",
-            borderRadius: 18,
-            padding: "16px 16px 12px",
-            boxShadow: "0 8px 28px rgba(0,0,0,0.07)",
-            width: 130,
+            borderRadius: 20,
+            padding: "18px 18px 14px",
+            boxShadow: "0 12px 36px rgba(0,0,0,0.09)",
+            width: 148,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             gap: 10,
+            zIndex: 2,
           }}
         >
+          {/* Color blob */}
           <div style={{
-            width: 74,
-            height: 74,
+            width: 86,
+            height: 86,
             borderRadius: "50%",
-            background: `radial-gradient(circle at 38% 35%, ${s.blobColor}cc 0%, ${s.blobColor}44 52%, transparent 78%)`,
-            filter: "blur(7px)",
+            background: `radial-gradient(circle at 38% 35%, ${s.blobColor}d0 0%, ${s.blobColor}55 48%, ${s.blobColor}18 70%, transparent 88%)`,
+            filter: "blur(8px)",
           }} />
-          <div style={{ display: "flex", alignItems: "center", gap: 5, width: "100%" }}>
-            <span style={{ fontSize: "0.76rem" }}>🎨</span>
-            <span style={{ fontSize: "0.58rem", fontFamily: "ui-monospace,monospace", color: "#374151", fontWeight: 600 }}>{s.hex}</span>
+          <div style={{ width: "100%" }}>
+            <p style={{ fontSize: "0.62rem", fontWeight: 700, color: "#374151", marginBottom: 2 }}>{s.name}</p>
+            <p style={{ fontSize: "0.56rem", fontFamily: "ui-monospace,monospace", color: "#9CA3AF" }}>{s.hex}</p>
           </div>
         </div>
       ))}
 
-      <div style={{
-        textAlign: "center",
-        maxWidth: 540,
-        margin: "0 auto",
-        position: "relative",
-        zIndex: 1,
-      }}>
-        <p style={{ fontSize: "clamp(1.05rem, 2.4vw, 1.5rem)", color: "#374151", lineHeight: 1.7, fontWeight: 400 }}>
+      {/* Editorial text */}
+      <div style={{ textAlign: "center", maxWidth: 520, margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)", color: "#4B5563", lineHeight: 1.7, fontWeight: 400, letterSpacing: "-0.01em" }}>
           When choosing{" "}
           <strong style={{ fontWeight: 800, color: "#111827" }}>a color system</strong>
-          {" "}for AirIQ, we focused on trust and clarity — calm blues that build{" "}
-          <strong style={{ fontWeight: 800, color: "#111827" }}>confidence</strong>
-          {" "}and coral that drives action.
+          {" "}for AirIQ, we prioritised trust — calm blues that signal{" "}
+          <strong style={{ fontWeight: 800, color: "#111827" }}>reliability</strong>
+          {" "}and coral that drives urgency where it counts.
         </p>
+        <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 24 }}>
+          {["Trust", "Clarity", "Action", "Hierarchy"].map(tag => (
+            <span key={tag} style={{ fontSize: "0.6rem", fontWeight: 600, color: "#6B7280", background: "#fff", border: "1px solid #E5E7EB", borderRadius: 20, padding: "4px 12px" }}>{tag}</span>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -633,6 +740,147 @@ function ComponentsSection() {
         sub="The most-used and most complex component in the system — and the one that made everything else click. Once its structure was right, every other component fell into place."
       />
 
+      {/* ── Component library — at a glance ── */}
+      <div className="csl-reveal" style={{ marginBottom: 32 }}>
+        <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Component library — 20+ components, 8 categories</p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
+
+          {/* Search Field */}
+          <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
+            <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Search Field</p>
+            <div style={{ border: "1.5px solid #E0E6EC", borderRadius: 7, padding: "7px 10px", display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ fontSize: "0.7rem", color: "#B0B8C0" }}>⌕</span>
+              <p style={{ fontSize: "0.58rem", color: "#B0B8C0" }}>From city...</p>
+            </div>
+          </div>
+
+          {/* Dropdown */}
+          <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
+            <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Dropdown</p>
+            <div style={{ border: "1.5px solid #1076BC", borderRadius: 7, padding: "7px 10px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+              <p style={{ fontSize: "0.6rem", color: "#111827" }}>Economy</p>
+              <span style={{ fontSize: "0.52rem", color: "#9CA3AF" }}>▾</span>
+            </div>
+            <div style={{ border: "1px solid #E0E6EC", borderRadius: 6, overflow: "hidden", boxShadow: "0 3px 10px rgba(0,0,0,0.06)" }}>
+              {["Economy", "Business", "First"].map((opt, i) => (
+                <div key={opt} style={{ padding: "5px 10px", background: i === 0 ? "#E3F3FF" : "#fff", borderBottom: i < 2 ? "1px solid #F3F4F6" : "none" }}>
+                  <span style={{ fontSize: "0.56rem", color: i === 0 ? "#1076BC" : "#374151", fontWeight: i === 0 ? 600 : 400 }}>{opt}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Date Picker */}
+          <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
+            <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Date Picker</p>
+            <div style={{ border: "1px solid #E0E6EC", borderRadius: 7, overflow: "hidden" }}>
+              <div style={{ background: "#F9FAFC", padding: "5px 8px", display: "flex", justifyContent: "space-between", borderBottom: "1px solid #E0E6EC" }}>
+                <span style={{ fontSize: "0.52rem", fontWeight: 700, color: "#374151" }}>May 2025</span>
+                <div style={{ display: "flex", gap: 6 }}>
+                  <span style={{ fontSize: "0.52rem", color: "#9CA3AF" }}>‹</span>
+                  <span style={{ fontSize: "0.52rem", color: "#9CA3AF" }}>›</span>
+                </div>
+              </div>
+              <div style={{ padding: "6px 8px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", marginBottom: 4 }}>
+                  {["S","M","T","W","T","F","S"].map((d, i) => (
+                    <p key={i} style={{ fontSize: "0.42rem", color: "#9CA3AF", textAlign: "center" }}>{d}</p>
+                  ))}
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 1 }}>
+                  {[12,13,14,15,16,17,18,19,20,21,22,23,24,25].map((d) => (
+                    <div key={d} style={{ width: 14, height: 14, borderRadius: "50%", background: d === 17 ? "#1076BC" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto" }}>
+                      <p style={{ fontSize: "0.42rem", color: d === 17 ? "#fff" : "#374151", fontWeight: d === 17 ? 700 : 400 }}>{d}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Badges */}
+          <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
+            <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Badges & Tags</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+              {[
+                { t: "Direct",   bg: "#DCFFEA", c: "#059669" },
+                { t: "Economy",  bg: "#E3F3FF", c: "#1076BC" },
+                { t: "Delayed",  bg: "#FFF5F5", c: "#EC1A2E" },
+                { t: "On Time",  bg: "#E0FFF8", c: "#0FBCAC" },
+                { t: "₹3,450",   bg: "#F3F4F6", c: "#374151" },
+              ].map(b => (
+                <span key={b.t} style={{ fontSize: "0.52rem", fontWeight: 600, background: b.bg, color: b.c, borderRadius: 20, padding: "3px 8px" }}>{b.t}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Alert */}
+          <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
+            <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Alerts</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+              {[
+                { c: "#059669", bg: "#DCFFEA", msg: "Booking confirmed" },
+                { c: "#EC1A2E", bg: "#FFF0F0", msg: "Payment failed" },
+                { c: "#EDD916", bg: "#FFFBE0", msg: "Flight delayed" },
+              ].map(a => (
+                <div key={a.msg} style={{ borderLeft: `3px solid ${a.c}`, background: a.bg, borderRadius: "0 6px 6px 0", padding: "5px 8px" }}>
+                  <p style={{ fontSize: "0.54rem", color: a.c, fontWeight: 600 }}>{a.msg}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Tab Bar */}
+          <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
+            <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Tab Bar</p>
+            <div style={{ borderBottom: "1px solid #E0E6EC" }}>
+              <div style={{ display: "flex", gap: 0 }}>
+                {["Flights", "Hotels", "Packages"].map((tab, i) => (
+                  <div key={tab} style={{ padding: "6px 10px", borderBottom: i === 0 ? "2px solid #1076BC" : "2px solid transparent", marginBottom: -1 }}>
+                    <p style={{ fontSize: "0.58rem", fontWeight: i === 0 ? 700 : 400, color: i === 0 ? "#1076BC" : "#9CA3AF" }}>{tab}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{ padding: "8px 0", display: "flex", gap: 6, alignItems: "center" }}>
+              <div style={{ flex: 1, height: 8, borderRadius: 4, background: "#F3F4F6" }} />
+              <div style={{ flex: 2, height: 8, borderRadius: 4, background: "#E3F3FF" }} />
+              <div style={{ flex: 1, height: 8, borderRadius: 4, background: "#F3F4F6" }} />
+            </div>
+          </div>
+
+          {/* Toggle */}
+          <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
+            <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Toggle</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {[
+                { label: "Price alerts", on: true  },
+                { label: "SMS updates",  on: false },
+              ].map(t => (
+                <div key={t.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <p style={{ fontSize: "0.58rem", color: "#374151" }}>{t.label}</p>
+                  <div style={{ width: 30, height: 16, borderRadius: 8, background: t.on ? "#1076BC" : "#E0E6EC", position: "relative" }}>
+                    <div style={{ position: "absolute", top: 2, left: t.on ? 16 : 2, width: 12, height: 12, borderRadius: "50%", background: "#fff", boxShadow: "0 1px 3px rgba(0,0,0,0.2)", transition: "left 0.2s" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pagination */}
+          <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
+            <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 10 }}>Pagination</p>
+            <div style={{ display: "flex", gap: 4, alignItems: "center", flexWrap: "wrap" }}>
+              {["‹", "1", "2", "3", "4", "5", "›"].map((p, i) => (
+                <div key={i} style={{ width: 22, height: 22, borderRadius: 5, display: "flex", alignItems: "center", justifyContent: "center", background: p === "3" ? "#1076BC" : p === "‹" || p === "›" ? "transparent" : "#F9FAFC", border: p === "3" ? "none" : p === "‹" || p === "›" ? "none" : "1px solid #E0E6EC" }}>
+                  <span style={{ fontSize: "0.56rem", fontWeight: p === "3" ? 700 : 400, color: p === "3" ? "#fff" : p === "‹" || p === "›" ? "#9CA3AF" : "#374151" }}>{p}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* ── Itinerary card — LEADS ── */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 28 }}>
         <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 20 }}>Itinerary Card — The most complex component</p>
@@ -876,64 +1124,85 @@ function GridEditorialBanner() {
       </p>
 
       {/* Frames row */}
-      <div style={{ display: "flex", gap: 16, alignItems: "flex-end" }}>
+      <div style={{ display: "flex", gap: 14, alignItems: "flex-end" }}>
 
         {/* Desktop frame */}
-        <div style={{ flex: "0 0 62%" }}>
-          {/* Ruler */}
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-            {["0", "12", "24", "", "", "", "", "", "", "", "1416", "1440"].map((v, i) => (
-              <span key={i} style={{ fontSize: "0.5rem", color: "rgba(255,255,255,0.28)", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+        <div style={{ flex: "0 0 56%" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
+            {["0", "12", "", "", "", "", "", "", "", "", "1428", "1440"].map((v, i) => (
+              <span key={i} style={{ fontSize: "0.46rem", color: "rgba(255,255,255,0.22)", fontFamily: "ui-monospace,monospace" }}>{v}</span>
             ))}
           </div>
-          {/* Frame */}
-          <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 200 }}>
-            {/* Column grid overlay */}
-            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: `repeat(${desktopCols}, 1fr)`, gap: 12, padding: "0 12px", pointerEvents: "none" }}>
+          <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 220 }}>
+            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: `repeat(${desktopCols}, 1fr)`, gap: 10, padding: "0 12px", pointerEvents: "none" }}>
               {Array(desktopCols).fill(0).map((_, i) => (
-                <div key={i} style={{ background: "rgba(96,189,255,0.06)", borderRadius: 2 }} />
+                <div key={i} style={{ background: "rgba(96,189,255,0.07)", borderRadius: 2 }} />
               ))}
             </div>
-            {/* Content */}
-            <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: 24 }}>
-              <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "rgba(255,255,255,0.55)", textAlign: "center", lineHeight: 1.3, marginBottom: 8 }}>AirIQ Travel<br />Platform</p>
-              <p style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.28)", textAlign: "center", maxWidth: 240, lineHeight: 1.5 }}>Find top low-cost flights, book appointments, and manage your travel with personalised AI insights.</p>
-              <div style={{ marginTop: 14, background: "#1076BC", borderRadius: 6, padding: "7px 18px" }}>
-                <span style={{ fontSize: "0.6rem", color: "#fff", fontWeight: 600 }}>Book a Flight</span>
+            {/* Nav bar */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 32, background: "rgba(16,118,188,0.12)", borderBottom: "1px solid rgba(16,118,188,0.15)", display: "flex", alignItems: "center", padding: "0 20px", gap: 12, zIndex: 2 }}>
+              <div style={{ width: 36, height: 10, borderRadius: 3, background: "rgba(255,255,255,0.2)" }} />
+              <div style={{ flex: 1 }} />
+              {["Flights","Hotels","Packages","Help"].map(t => (
+                <p key={t} style={{ fontSize: "0.42rem", color: "rgba(255,255,255,0.3)" }}>{t}</p>
+              ))}
+            </div>
+            <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: "40px 24px 16px" }}>
+              <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.3, marginBottom: 6 }}>AirIQ Travel Platform</p>
+              <p style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.24)", textAlign: "center", maxWidth: 220, lineHeight: 1.5, marginBottom: 12 }}>Find low-cost flights, manage bookings, and personalised travel AI.</p>
+              <div style={{ background: "#1076BC", borderRadius: 6, padding: "6px 16px" }}>
+                <span style={{ fontSize: "0.56rem", color: "#fff", fontWeight: 600 }}>Book a Flight</span>
               </div>
             </div>
           </div>
-          {/* Spec */}
-          <p style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.35)", marginTop: 10, fontFamily: "ui-monospace,monospace" }}>
+          <p style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.3)", marginTop: 8, fontFamily: "ui-monospace,monospace" }}>
             1440 Desktop &nbsp;·&nbsp; 12 Count &nbsp;·&nbsp; 12 Gutter &nbsp;·&nbsp; 12 Margin
           </p>
         </div>
 
-        {/* Mobile frame */}
-        <div style={{ flex: "0 0 calc(38% - 16px)" }}>
-          {/* Ruler */}
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-            {["16", "", "", "359", "375"].map((v, i) => (
-              <span key={i} style={{ fontSize: "0.5rem", color: "rgba(255,255,255,0.28)", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+        {/* Tablet frame */}
+        <div style={{ flex: "0 0 25%" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
+            {["0", "", "744", ""].map((v, i) => (
+              <span key={i} style={{ fontSize: "0.46rem", color: "rgba(255,255,255,0.22)", fontFamily: "ui-monospace,monospace" }}>{v}</span>
             ))}
           </div>
-          {/* Frame */}
-          <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 200 }}>
-            {/* Column grid overlay */}
-            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: `repeat(${mobileCols}, 1fr)`, gap: 8, padding: "0 12px", pointerEvents: "none" }}>
-              {Array(mobileCols).fill(0).map((_, i) => (
-                <div key={i} style={{ background: "rgba(96,189,255,0.06)", borderRadius: 2 }} />
+          <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 220 }}>
+            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: "repeat(8, 1fr)", gap: 8, padding: "0 10px", pointerEvents: "none" }}>
+              {Array(8).fill(0).map((_, i) => (
+                <div key={i} style={{ background: "rgba(96,189,255,0.07)", borderRadius: 2 }} />
               ))}
             </div>
-            {/* Content */}
-            <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: 20 }}>
-              <p style={{ fontSize: "0.9rem", fontWeight: 700, color: "rgba(255,255,255,0.55)", textAlign: "center", lineHeight: 1.35, marginBottom: 6 }}>AirIQ<br />Mobile App</p>
-              <p style={{ fontSize: "0.58rem", color: "rgba(255,255,255,0.28)", textAlign: "center", lineHeight: 1.5 }}>Book flights and manage travel on mobile.</p>
+            <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: 16 }}>
+              <p style={{ fontSize: "0.78rem", fontWeight: 700, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.3, marginBottom: 6 }}>AirIQ<br />Tablet</p>
+              <p style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.22)", textAlign: "center", lineHeight: 1.5 }}>Optimised for iPad &amp; tablet views.</p>
             </div>
           </div>
-          {/* Spec */}
-          <p style={{ fontSize: "0.56rem", color: "rgba(255,255,255,0.35)", marginTop: 10, fontFamily: "ui-monospace,monospace" }}>
-            375 Mobile &nbsp;·&nbsp; 4 Count &nbsp;·&nbsp; 8 Gutter &nbsp;·&nbsp; 12 Margin
+          <p style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.3)", marginTop: 8, fontFamily: "ui-monospace,monospace" }}>
+            744 Tablet &nbsp;·&nbsp; 8 Count &nbsp;·&nbsp; 10 Gutter
+          </p>
+        </div>
+
+        {/* Mobile frame */}
+        <div style={{ flex: "0 0 calc(19% - 28px)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
+            {["16", "359", "375"].map((v, i) => (
+              <span key={i} style={{ fontSize: "0.46rem", color: "rgba(255,255,255,0.22)", fontFamily: "ui-monospace,monospace" }}>{v}</span>
+            ))}
+          </div>
+          <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 220 }}>
+            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: `repeat(${mobileCols}, 1fr)`, gap: 6, padding: "0 12px", pointerEvents: "none" }}>
+              {Array(mobileCols).fill(0).map((_, i) => (
+                <div key={i} style={{ background: "rgba(96,189,255,0.07)", borderRadius: 2 }} />
+              ))}
+            </div>
+            <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: 14 }}>
+              <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.35, marginBottom: 4 }}>AirIQ<br />Mobile</p>
+              <p style={{ fontSize: "0.48rem", color: "rgba(255,255,255,0.22)", textAlign: "center", lineHeight: 1.5 }}>4-col mobile grid.</p>
+            </div>
+          </div>
+          <p style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.3)", marginTop: 8, fontFamily: "ui-monospace,monospace" }}>
+            375 Mobile &nbsp;·&nbsp; 4 Count &nbsp;·&nbsp; 8 Gutter
           </p>
         </div>
       </div>
