@@ -321,19 +321,19 @@ function AirHero() {
             Live in Production &nbsp;·&nbsp; B2B SaaS &nbsp;·&nbsp; Travel
           </div>
           <h1 className="csl-hero-title">
-            <span>Designing a B2B flight platform from&nbsp;zero</span>
+            <span>Redesigning a live B2B flight portal for&nbsp;25,000+ agents</span>
           </h1>
           <p className="csl-hero-desc">
-            Simplifying complex flight booking for 25,000+ travel agents across India. A 0→1 B2B SaaS platform that cut booking time by 30–40%.
+            A live product losing market share. A business mandate to redesign. One designer, six months, and a full redesign that cut booking time by 30–40%.
           </p>
           <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, maxWidth: 460, margin: "0 0 32px", fontStyle: "italic" }}>
-            No design system. No prior product. One designer. Six months.
+            No design system. No prior UI. One designer. Six months.
           </p>
           <div className="csl-hero-chips">
             <span className="csl-hero-chip">Lead UX Designer</span>
             <span className="csl-hero-chip">6 Months</span>
             <span className="csl-hero-chip">Systems Design · B2B</span>
-            <span className="csl-hero-chip">0 → 1 Product</span>
+            <span className="csl-hero-chip">Full Redesign</span>
           </div>
         </div>
         {/* Right — flight search demo */}
@@ -405,9 +405,6 @@ function OverviewSection() {
         ))}
       </div>
 
-      <StoryCardsGrid />
-      <ConstraintsBlock />
-      <JourneyTimeline />
     </CsSection>
   );
 }
@@ -555,13 +552,13 @@ const PAIN_MOMENTS = [
     title: "Fare changes disappeared into the noise",
     scene: "Flight prices in this market move in real time. A fare that was ₹3,180 when the agent started the conversation could be ₹3,890 by the time the client said yes. The old system showed no alert, no highlight, no indication. Agents discovered the change only when the booking failed — after the client had already committed.",
     tag: "No change alerts → booking failures",
-    solvedBy: "Live fare change highlight",
+    solvedBy: "Fare Listing Card",
   },
   {
     title: "The interface worked against how agents work",
     scene: "Travel agents are keyboard-first professionals. They navigate by shortcut, switch screens by habit, and type without looking. The portal required mouse clicks for actions that should have been reachable in one keystroke. Every forced click broke flow and slowed a booking that should have taken seconds.",
     tag: "Mouse-dependent UI in a keyboard-native job",
-    solvedBy: "Keyboard-adaptive design",
+    solvedBy: "Broader Design Decisions",
   },
   {
     title: "The feedback kept pointing to the same problems",
@@ -643,6 +640,15 @@ function ProblemSection() {
               Senior travel agent · Pre-launch interview
             </span>
           </div>
+        </div>
+      </div>
+
+      <ConstraintsBlock />
+
+      <div className="csl-reveal" style={{ marginTop: 40 }}>
+        <span className="csl-eyebrow">The booking journey — before and after</span>
+        <div style={{ marginTop: 16 }}>
+          <JourneyTimeline />
         </div>
       </div>
 
@@ -823,35 +829,35 @@ function ResearchScopePills({ items }: { items: string[] }) {
 const AGENT_INSIGHTS = [
   {
     label: "Insight 01",
-    heading: "Friction in the booking workflow",
-    text: "GDS terminal, airline site, spreadsheet — three windows before a single fare was confirmed.",
-    dataText: "All 4 agents reported 3+ open windows per booking.",
-    stat: "3+",
-    statUnit: "tools per booking",
+    heading: "Fare data overload on every search",
+    text: "3 to 5+ fare tiers per airline — each with different refund policy, meal, and baggage rules — all shown at equal visual weight.",
+    dataText: "Agents had to re-read every row before answering a client's simplest question.",
+    stat: "5+",
+    statUnit: "fare tiers per airline",
   },
   {
     label: "Insight 02",
     heading: "The hidden cost of fare rules",
-    text: "No summary, no visual indicator. Agents guessed refundability — and sometimes got it wrong.",
+    text: "No inline summary. Agents guessed refundability from fine print — and sometimes got it wrong in front of a client.",
     dataText: "All 4 competitor platforms hid refundability behind extra clicks.",
     stat: "100%",
     statUnit: "of competitors did it",
   },
   {
     label: "Insight 03",
-    heading: "No alerts during booking",
-    text: "Nothing told agents when a verbally confirmed fare became unavailable mid-session.",
-    dataText: "Errors only surfaced at payment — re-booking fees already applied.",
+    heading: "Keyboard-first agents, mouse-dependent portal",
+    text: "Agents navigate by shortcut and muscle memory. Every forced mouse click added seconds — at scale across 25,000 agents, it compounds.",
+    dataText: "The portal required clicks for actions agents expected to do with a single keystroke.",
     stat: "0",
-    statUnit: "platforms had live alerts",
+    statUnit: "keyboard shortcuts designed for",
   },
   {
     label: "Insight 04",
-    heading: "Sharing a fare took 5 steps",
-    text: "Copy price, open email, write context, attach PDF — before the client even confirmed.",
-    dataText: "All 4 agents called this their biggest daily friction point.",
-    stat: "4–5",
-    statUnit: "steps to share one fare",
+    heading: "80% of bookings have empty SSR tables",
+    text: "Add-ons and special requests are blank in most B2B bookings — but the review page showed every empty row, creating confusion before confirmation.",
+    dataText: "Agents assumed empty rows meant missing data, not just unapplied options.",
+    stat: "80%",
+    statUnit: "of bookings with empty SSR",
   },
 ];
 
@@ -1187,30 +1193,24 @@ function ApproachSection() {
           {[
             {
               num: "01",
-              insight: "Price and refundability in the same scan",
+              insight: "Price and refundability need to be in the same scan",
               component: "Fare Listing Card",
-              detail: "Refund badge always visible inline, never one click away",
+              detail: "Refund badge always visible inline — never one click away. Fare tiers readable without expanding.",
             },
             {
               num: "02",
-              insight: "Fare listing is a universal unsolved problem",
-              component: "Fare Listing Card",
-              detail: "All 4 platforms studied struggled with it — some partially, none completely. This was the clearest opportunity.",
+              insight: "80% of B2B bookings have empty SSR/add-on tables",
+              component: "Review Table",
+              detail: "Empty rows created confusion at review. Solution: hide empty SSR fields until filled — don't show absence as data.",
             },
             {
               num: "03",
-              insight: "80% of B2B bookings have empty SSR/add-on tables",
-              component: "Review Table",
-              detail: "Showing empty rows for meals and special requests created confusion on the review page. The solution: hide empty SSR fields until they're filled.",
-            },
-            {
-              num: "04",
               insight: "Itinerary clarity is the agent's most-used output",
               component: "Itinerary Card",
               detail: "Agents read itinerary details verbally to clients on a call. If the card isn't scannable in 3 seconds, the call drags and trust erodes.",
             },
             {
-              num: "05",
+              num: "04",
               insight: "Late errors cost money, not just time",
               component: "Review Table",
               detail: "Errors caught at payment meant re-booking fees and a frustrated client on hold. Validation needed to move earlier in the flow.",
@@ -1861,37 +1861,7 @@ function TheProductSection() {
         </div>
       </div>
 
-      {/* Mobile — video placeholder + Figma link */}
-      <div className="csl-reveal" style={{ marginBottom: 40 }}>
-        <span className="csl-eyebrow">Mobile Platform · 375px</span>
-        <div style={{
-          borderRadius: 18, overflow: "hidden",
-          border: "1px solid rgba(0,0,0,0.08)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
-          background: "linear-gradient(145deg, #EAF4FF 0%, #F0F8FF 100%)",
-          aspectRatio: "16/9",
-          display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "center",
-          gap: 12,
-        }}>
-          <div style={{
-            width: 56, height: 56, borderRadius: "50%",
-            background: "rgba(30,144,255,0.12)",
-            border: "2px solid rgba(30,144,255,0.25)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <span style={{ fontSize: "1.4rem", marginLeft: 4 }}>▶</span>
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827" }}>Mobile walkthrough</div>
-            <div style={{ fontSize: "0.72rem", color: "#6B7280", marginTop: 4 }}>Video coming soon</div>
-          </div>
-        </div>
-        <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ fontSize: "0.85rem", color: "#6B7280" }}>Explore the mobile design in Figma —</span>
-          <a href={airFigmaLinks.mobile} target="_blank" rel="noreferrer" style={{ fontSize: "0.85rem", fontWeight: 700, color: "#1E90FF", textDecoration: "none" }}>Mobile Design ↗</a>
-        </div>
-      </div>
+      <JourneySection />
 
       <EdgeCasesSection />
     </CsSection>
@@ -2269,6 +2239,8 @@ function ProcessSection() {
         title="How I Worked"
         sub="AI-assisted process — not AI-generated design. Every tool saved time on synthesis so I could spend it on craft."
       />
+      <StoryCardsGrid />
+
       <div className="csl-reveal" style={{ marginBottom: 40, padding: "24px 28px", background: "#F9FAFB", borderRadius: 16, border: "1px solid #F3F4F6" }}>
         <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
           After completing research, I aligned with product managers on both user needs and business constraints. I used AI tools to prototype and validate layout directions fast — testing many approaches in the time it would normally take to build one. The saved time went into craft: the actual design decisions, hierarchy, and component system that shipped.

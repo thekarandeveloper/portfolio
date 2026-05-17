@@ -329,14 +329,6 @@ export const airDecisionBlocks = [
     text: "Most booking interfaces use white headers. Dark navy creates a strong visual anchor — separates navigation from content. Signals professional tool. Agents use this all day.",
     outcome: "Stakeholder: 'feels enterprise-grade immediately'",
     img: null
-  },
-  {
-    num: "04",
-    label: "Mobile adaptation",
-    title: "Sidebar → bottom sheet",
-    text: "On 375px, a persistent sidebar consumes the full viewport. Adapted: sticky filter button → full-screen bottom sheet. Last selection persists when closed. Same mental model, different form.",
-    outcome: "Consistent behaviour across both platforms",
-    img: "mobile-filter.png"
   }
 ];
 
