@@ -6297,7 +6297,7 @@ body.csl-page-active footer { display: none !important; }
 
 /* ── Body text ── */
 .csl-text {
-  font-size: 1.05rem; line-height: 1.85; color: #374151; margin-bottom: 18px;
+  font-size: 1.1rem; font-weight: 450; line-height: 1.9; color: #374151; margin-bottom: 20px;
 }
 .csl-text:last-child { margin-bottom: 0; }
 .csl-text strong { color: #111827; font-weight: 700; }
@@ -6401,7 +6401,7 @@ body.csl-page-active footer { display: none !important; }
   border-left: 3px solid var(--csl-accent);
   padding: 20px 24px; background: #F9FAFB;
   border-radius: 0 14px 14px 0;
-  font-size: 0.96rem; color: #374151; line-height: 1.75; margin: 28px 0;
+  font-size: 1.05rem; font-weight: 450; color: #374151; line-height: 1.85; margin: 28px 0;
 }
 .csl-callout strong { color: #111827; }
 .csl-quote-credit { margin-top: 10px; font-size: 0.72rem; color: #9CA3AF; font-style: normal; }
@@ -6447,7 +6447,7 @@ body.csl-page-active footer { display: none !important; }
 }
 .csl-process-num   { font-size: 0.6rem; font-weight: 700; color: var(--csl-accent); letter-spacing: 0.18em; margin-bottom: 8px; font-family: ui-monospace, monospace; }
 .csl-process-title { font-size: 0.84rem; font-weight: 700; color: #111827; margin-bottom: 6px; }
-.csl-process-text  { font-size: 0.76rem; color: #6B7280; line-height: 1.6; }
+.csl-process-text  { font-size: 1rem; color: #6B7280; line-height: 1.65; }
 
 /* ── Persona cards ── */
 .csl-persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 28px 0; }
@@ -6464,8 +6464,8 @@ body.csl-page-active footer { display: none !important; }
 .csl-persona-img-label { font-size: 0.7rem; color: #9CA3AF; text-align: center; }
 .csl-persona-body { padding: 20px; }
 .csl-persona-name { font-size: 0.96rem; font-weight: 700; color: #111827; margin-bottom: 3px; }
-.csl-persona-tag  { font-size: 0.72rem; color: #9CA3AF; margin-bottom: 12px; }
-.csl-persona-detail { font-size: 0.78rem; color: #374151; line-height: 1.6; }
+.csl-persona-tag  { font-size: 0.82rem; color: #9CA3AF; margin-bottom: 12px; }
+.csl-persona-detail { font-size: 0.94rem; color: #374151; line-height: 1.65; }
 
 /* ── Problem cards ── */
 .csl-problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
