@@ -471,20 +471,20 @@ function EcoPhone({ src, alt, w, tilt }: { src: string; alt: string; w: number; 
 
 function EcoHeroPhoneScene() {
   return (
-    <div style={{ position: "relative", width: "100%", height: 460, display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div style={{ position: "absolute", width: 300, height: 300, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(45,125,67,0.13) 0%, transparent 70%)", pointerEvents: "none" }} />
+    <div style={{ position: "relative", width: "100%", height: 540, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      {/* Pulsing green glow */}
+      <div className="eco-hero-scene-glow" />
       {/* Left — onboarding2.png */}
-      <div style={{ position: "absolute", left: "4%", top: "50%", transform: "translateY(-40%)", zIndex: 1, opacity: 0.9 }}>
-        <EcoPhone src="/Image/Ecotrack/onboarding2.png" alt="EcoTrack onboarding step 2" w={148} tilt="-7deg" />
+      <div className="eco-hero-phone-left">
+        <EcoPhone src="/Image/Ecotrack/onboarding2.png" alt="EcoTrack onboarding step 2" w={175} tilt="-7deg" />
       </div>
       {/* Center — onboarding1.png */}
-      <div style={{ position: "relative", zIndex: 3 }}>
-        <EcoPhone src="/Image/Ecotrack/onboarding1.png" alt="EcoTrack splash screen" w={200} tilt="0deg" />
+      <div className="eco-hero-phone-center">
+        <EcoPhone src="/Image/Ecotrack/onboarding1.png" alt="EcoTrack splash screen" w={230} tilt="0deg" />
       </div>
       {/* Right — onboarding5.png */}
-      <div style={{ position: "absolute", right: "4%", top: "50%", transform: "translateY(-50%)", zIndex: 2, opacity: 0.9 }}>
-        <EcoPhone src="/Image/Ecotrack/onboarding5.png" alt="EcoTrack welcome screen" w={148} tilt="7deg" />
+      <div className="eco-hero-phone-right">
+        <EcoPhone src="/Image/Ecotrack/onboarding5.png" alt="EcoTrack welcome screen" w={175} tilt="7deg" />
       </div>
     </div>
   );

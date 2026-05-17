@@ -4338,6 +4338,56 @@ body {
   left: 18%;
   pointer-events: none;
 }
+
+/* ── Hero phone scene animations ── */
+.eco-hero-phone-center {
+  position: relative;
+  z-index: 3;
+  animation: ecoPhoneFloat 5s ease-in-out infinite;
+}
+.eco-hero-phone-left {
+  position: absolute;
+  left: 4%;
+  top: 50%;
+  transform: translateY(-40%);
+  z-index: 1;
+  opacity: 0.88;
+  animation: ecoPhoneSideFloat1 6s ease-in-out infinite 0.6s;
+}
+.eco-hero-phone-right {
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  opacity: 0.88;
+  animation: ecoPhoneSideFloat2 5.5s ease-in-out infinite 1.2s;
+}
+.eco-hero-scene-glow {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,125,67,0.22) 0%, rgba(45,125,67,0.06) 45%, transparent 70%);
+  animation: ecoGlowPulse 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes ecoPhoneFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+@keyframes ecoPhoneSideFloat1 {
+  0%, 100% { transform: translateY(-40%); }
+  50%       { transform: translateY(calc(-40% - 10px)); }
+}
+@keyframes ecoPhoneSideFloat2 {
+  0%, 100% { transform: translateY(-50%); }
+  50%       { transform: translateY(calc(-50% - 10px)); }
+}
+@keyframes ecoGlowPulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50%       { opacity: 1;   transform: scale(1.12); }
+}
 .ecotrack-case-study .eco-hero {
   max-width: 1080px;
   margin: 0 auto;
