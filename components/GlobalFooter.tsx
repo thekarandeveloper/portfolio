@@ -13,7 +13,7 @@ const THEME_FOOTER: Record<string, { bg: string; grid: string }> = {
 
 const footerCSS = `
 .gf-root{
-  padding:5rem clamp(24px,8vw,250px) 5rem clamp(24px,8vw,270px);
+  padding:5rem 200px;
   overflow:visible;
   position:relative;
 }

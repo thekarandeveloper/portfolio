@@ -5416,7 +5416,7 @@ body.iq2-active > footer { display: none; }
   background: #080B12;
   position: relative;
   overflow: hidden;
-  padding: 64px 250px 0;
+  padding: 64px 200px 0;
 }
 .iq2-hero-grid {
   position: absolute; inset: 0;
@@ -5529,7 +5529,7 @@ body.iq2-active > footer { display: none; }
 .iq2-hero-stat-label { font-size: 15px; color: rgba(255,255,255,0.35); font-weight: 600; }
 
 /* ── LAYOUT ── */
-.iq2-layout { display: flex; align-items: flex-start; padding: 0 250px; }
+.iq2-layout { display: flex; align-items: flex-start; padding: 0 200px; }
 
 /* ── LEFT TOC ── */
 .iq2-toc {
@@ -6168,7 +6168,7 @@ p.iq2-frame-caption,
 /* ── Hero ── */
 .csl-hero {
   min-height: 440px;
-  padding: 80px 6% 0;
+  padding: 80px 200px 0;
   background: var(--csl-hero-bg);
   position: relative;
   overflow: hidden;
@@ -6346,9 +6346,7 @@ p.iq2-frame-caption,
 
 /* ── Body two-column layout ── */
 .csl-body {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 72px 6% 120px;
+  padding: 72px 200px 120px;
   display: grid;
   grid-template-columns: 224px 1fr;
   gap: 48px;

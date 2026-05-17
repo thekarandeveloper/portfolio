@@ -538,7 +538,7 @@ nav.scrolled .nav-pill{
 .reveal-delay-1{transition-delay:0.08s;}.reveal-delay-2{transition-delay:0.16s;}.reveal-delay-3{transition-delay:0.25s;}.reveal-delay-4{transition-delay:0.35s;}.reveal-delay-5{transition-delay:0.46s;}.reveal-delay-6{transition-delay:0.58s;}
 
 /* ── WORK ROWS ── */
-.work{background:transparent;padding:5rem 250px;}
+.work{background:transparent;padding:5rem 200px;}
 .work-heading-wrap{margin-bottom:3rem;}
 .work-title-main{font-family:'Rethink Sans',var(--sans);font-size:clamp(24px,5vw,40px);font-weight:800;color:#1a1a1a;line-height:1.3;margin:0;}
 .work-title-script{font-family:var(--hand);font-size:calc(clamp(24px,5vw,40px) * 1.3);font-weight:700;color:#1E90FF;display:block;line-height:1.2;}
@@ -591,7 +591,7 @@ nav.scrolled .nav-pill{
 /* ═══════════════════════════════════════════════════════════════
    CSWK — Editorial Case Study Showcase Section
    ═══════════════════════════════════════════════════════════════ */
-.cswk{padding:5rem 250px;}
+.cswk{padding:5rem 200px;}
 .cswk-head{margin-bottom:4rem;}
 .cswk-eyebrow{display:block;font-family: Lato, sans-serif;font-size: 15px;font-weight: 600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink4);margin-bottom:1rem;}
 .cswk-headline{font-family:var(--serif);font-size:clamp(2rem,4.2vw,3.2rem);font-weight:400;color:#111827;line-height:1.1;margin:0;letter-spacing:-0.01em;}
@@ -872,7 +872,7 @@ nav.scrolled .nav-pill{
 .zoom-sub{font-family:var(--sans);font-size:clamp(13px,1.25vw,16px);color:rgba(0,0,0,0.36);line-height:1.8;opacity:0;will-change:opacity;margin-top:1.4rem;letter-spacing:0.01em;}
 
 /* ── PROCESS — HOW I WORK ── */
-.process-section{padding:5.5rem 250px 5.5rem;background:#0c0e14;position:relative;overflow:hidden;}
+.process-section{padding:5.5rem 200px 5.5rem;background:#0c0e14;position:relative;overflow:hidden;}
 .process-section::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(30,144,255,0.14) 0%,transparent 65%);top:-180px;right:-120px;pointer-events:none;}
 .process-section::after{content:'';position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(110,80,220,0.08) 0%,transparent 65%);bottom:-80px;left:-60px;pointer-events:none;}
 .process-heading{margin-bottom:3.5rem;text-align:center;position:relative;z-index:1;}
@@ -913,7 +913,7 @@ nav.scrolled .nav-pill{
 }
 
 /* ── ABOUT — SCRAPBOOK BOOK ── */
-.about{background:transparent;padding:5rem 250px;overflow:hidden;position:relative;}
+.about{background:transparent;padding:5rem 200px;overflow:hidden;position:relative;}
 .about-inner{max-width:1120px;margin:0 auto;}
 .about-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--ink);line-height:1.1;margin:0 0 4.5rem;text-align:center;}
 .about-title em{font-style:italic;color:var(--pink);}
@@ -1071,7 +1071,7 @@ nav.scrolled .nav-pill{
 }
 
 /* ── PHOTO GALLERY ── */
-.gallery-section{padding:5rem 250px;background:transparent;}
+.gallery-section{padding:5rem 200px;background:transparent;}
 .gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:120px;gap:10px;margin-top:2rem;}
 .gallery-item{border-radius:12px;overflow:hidden;background:var(--bg3);border:1px solid var(--border);position:relative;display:flex;align-items:center;justify-content:center;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;}
 .gallery-item:hover{transform:scale(1.02);box-shadow:0 12px 36px rgba(17,17,17,0.1);z-index:2;}
@@ -1085,7 +1085,7 @@ nav.scrolled .nav-pill{
 .gallery-label{position:absolute;bottom:0.6rem;left:0.75rem;font-size: 15px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink4);background:rgba(253,250,248,0.85);padding:2px 8px;border-radius:99px;}
 
 /* ── OBSESSIONS SHELF ── */
-.shelf-section{padding:5rem 250px;background:transparent;}
+.shelf-section{padding:5rem 200px;background:transparent;}
 .shelf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem;}
 .obsession-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;cursor:default;}
 .obsession-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(17,17,17,0.08);border-color:rgba(17,17,17,0.2);}
@@ -1123,7 +1123,7 @@ nav.scrolled .nav-pill{
               translate 0.12s linear;
 }
 
-.scrapbook-section{padding:5rem 250px;background:transparent;overflow:hidden;}
+.scrapbook-section{padding:5rem 200px;background:transparent;overflow:hidden;}
 .scrapbook-title-line{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--ink);line-height:1.1;}
 .scrapbook-title-line em{font-style:italic;color:var(--pink);}
 .scrapbook-sub{font-size: 15px;color:var(--ink3);margin-top:0.5rem;margin-bottom:5rem;font-family: Lato, sans-serif;font-style:italic;}
@@ -1146,7 +1146,7 @@ nav.scrolled .nav-pill{
 
 
 /* ── TESTIMONIALS ── */
-.testimonials-section{padding:5rem 250px;background:transparent;}
+.testimonials-section{padding:5rem 200px;background:transparent;}
 .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-top:2rem;}
 .testimonial-card{
   background:rgba(255,255,255,0.78);
@@ -1165,7 +1165,7 @@ nav.scrolled .nav-pill{
 .testimonial-role{font-size: 15px;color:var(--ink4);}
 
 /* ── CONTACT ── */
-.contact{background:transparent;padding:5rem 250px 5rem 270px;overflow:visible;position:relative;}
+.contact{background:transparent;padding:5rem 200px;overflow:visible;position:relative;}
 .contact-glow{position:absolute;top:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(17,17,17,0.05) 0%,transparent 70%);pointer-events:none;}
 .contact-illustration{position:absolute;top:0;right:0;width:280px;height:300px;display:flex;align-items:flex-start;justify-content:flex-end;}
 .illus-placeholder{width:210px;height:250px;border:1px dashed var(--border2);border-radius:12px;margin:2rem 2rem 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;background:rgba(17,17,17,0.02);}
@@ -1193,7 +1193,7 @@ nav.scrolled .nav-pill{
 .contact-footer-copy{font-size: 15px;letter-spacing:0.06em;color:var(--ink4);}
 
 /* ── JOURNEY ── */
-.journey{background:transparent;padding:5rem 250px;position:relative;}
+.journey{background:transparent;padding:5rem 200px;position:relative;}
 .journey-inner{display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;position:relative;z-index:1;}
 .journey-left{position:sticky;top:8rem;}
 .journey-title{font-family:'Rethink Sans',var(--sans);font-size:clamp(24px,4.5vw,40px);font-weight:800;color:var(--ink);line-height:1.25;margin-bottom:1rem;}
@@ -1339,7 +1339,7 @@ nav.scrolled .nav-pill{
   min-height:100vh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  padding:6rem 250px 7rem;
+  padding:6rem 200px 7rem;
   position:relative;overflow:hidden;
   cursor:pointer;
   border-top:1px solid rgba(30,144,255,0.07);
@@ -2007,7 +2007,7 @@ nav.scrolled .nav-pill{
 }
 
 /* ── THINGS I LOVE SECTION ── */
-.home-loves{padding:6rem 250px 5rem;}
+.home-loves{padding:6rem 200px 5rem;}
 .home-loves-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:4rem;}
 .home-loves-title em{font-style:italic;color:var(--pink);}
 .home-loves-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
@@ -2020,7 +2020,7 @@ nav.scrolled .nav-pill{
 .home-love-whisper{margin-top:1.2rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,0.06);font-family:var(--hand);font-size:0.95rem;color:#bbb;}
 
 /* ── GOOD EXPERIENCES (POLAROID GRID) ── */
-.home-xp{padding:4rem 250px 6rem;overflow:hidden;}
+.home-xp{padding:4rem 200px 6rem;overflow:hidden;}
 .home-xp-inner{}
 .home-xp-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:4rem;}
 .home-xp-title em{font-style:italic;color:var(--pink);}
