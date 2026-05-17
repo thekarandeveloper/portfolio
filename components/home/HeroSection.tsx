@@ -58,15 +58,15 @@ const html = `<section class="hero" id="home">
         </div>
       </div>
 
-    </div>
-
-    <!-- ripped paper note below polaroids -->
-    <div class="hi-ripped-note" aria-hidden="true">
-      <svg class="hi-ripped-edge hi-ripped-edge--top" viewBox="0 0 400 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 C18,8 35,22 58,14 C78,7 96,20 118,15 C140,10 155,22 178,16 C200,10 220,22 242,14 C262,7 282,19 305,13 C326,8 344,21 368,15 C385,10 395,18 400,16 L400,24 L0,24 Z" fill="#f7f3ee"/></svg>
-      <div class="hi-ripped-body">
-        <p class="hi-ripped-text">collecting moments faster than I can organize them.</p>
+      <!-- ripped paper note — pinned below the polaroid cluster -->
+      <div class="hi-ripped-note" aria-hidden="true">
+        <svg class="hi-ripped-edge hi-ripped-edge--top" viewBox="0 0 400 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 C18,8 35,22 58,14 C78,7 96,20 118,15 C140,10 155,22 178,16 C200,10 220,22 242,14 C262,7 282,19 305,13 C326,8 344,21 368,15 C385,10 395,18 400,16 L400,24 L0,24 Z" fill="#f7f3ee"/></svg>
+        <div class="hi-ripped-body">
+          <p class="hi-ripped-text">collecting moments faster than I can organize them.</p>
+        </div>
+        <svg class="hi-ripped-edge hi-ripped-edge--bottom" viewBox="0 0 400 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 L400,0 L400,6 C380,14 360,4 338,10 C318,15 298,5 275,12 C254,18 234,6 210,11 C188,16 168,5 144,10 C122,15 102,4 78,9 C58,14 38,4 14,8 C8,9 3,6 0,5 Z" fill="#f7f3ee"/></svg>
       </div>
-      <svg class="hi-ripped-edge hi-ripped-edge--bottom" viewBox="0 0 400 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 L400,0 L400,6 C380,14 360,4 338,10 C318,15 298,5 275,12 C254,18 234,6 210,11 C188,16 168,5 144,10 C122,15 102,4 78,9 C58,14 38,4 14,8 C8,9 3,6 0,5 Z" fill="#f7f3ee"/></svg>
+
     </div>
 
   </div>

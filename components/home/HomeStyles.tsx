@@ -245,11 +245,11 @@ nav.scrolled .nav-pill{
 .nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:5.5rem 250px 4rem 270px;gap:20px;position:relative;overflow:visible;}
+.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:5.5rem 180px 4rem 340px;gap:20px;position:relative;overflow:visible;}
 
 /* about-style intro hero */
-.hi-left{position:relative;z-index:2;text-align:left;}
-.hi-right{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;z-index:2;gap:0;}
+.hi-left{position:relative;z-index:2;text-align:left;padding-top:3rem;}
+.hi-right{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;position:relative;z-index:2;}
 .hi-hello{font-family:var(--hand);font-size:clamp(1.9rem,2.9vw,2.5rem);color:var(--pink);display:block;margin-bottom:0.1rem;font-weight:700;}
 .hi-headline{font-family:var(--serif);font-size:clamp(3.5rem,6.5vw,5.8rem);font-weight:400;color:var(--ink);line-height:1.0;letter-spacing:-0.025em;margin-bottom:1.2rem;}
 .hi-headline em{font-style:italic;background:linear-gradient(90deg,#1E90FF,#00BFFF,#0066FF,#1E90FF);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 4s ease infinite;}
@@ -2048,7 +2048,7 @@ nav.scrolled .nav-pill{
 }
 @media(max-width:1100px){.home-xp-grid{grid-template-columns:repeat(3,1fr);}}
 /* ── POLAROID MEMORY COLLAGE (home hero right) ── */
-.hi-pm-collage{position:relative;width:460px;height:580px;flex-shrink:0;}
+.hi-pm-collage{position:relative;width:460px;height:640px;flex-shrink:0;}
 .hi-pm-note{position:absolute;font-family:var(--hand);font-size:16px;color:rgba(60,40,20,0.44);pointer-events:none;line-height:1.55;z-index:0;}
 .hi-pm-note--tl{top:16px;left:6px;transform:rotate(-6deg);}
 .hi-pm-wrap{position:absolute;cursor:pointer;}
@@ -2077,18 +2077,18 @@ nav.scrolled .nav-pill{
 }
 /* ── RIPPED PAPER NOTE ── */
 .hi-ripped-note{
-  position:relative;
-  margin-top:18px;
-  width:90%;
-  max-width:370px;
-  transform:rotate(-1.8deg);
-  filter:drop-shadow(0 4px 14px rgba(0,0,0,0.12));
+  position:absolute;
+  top:426px;
+  left:28px;
+  right:14px;
+  transform:rotate(-1.6deg);
+  filter:drop-shadow(0 4px 14px rgba(0,0,0,0.13));
   animation:rippedFloat 6s ease-in-out 1.2s infinite;
-  z-index:10;
+  z-index:8;
 }
 @keyframes rippedFloat{
-  0%,100%{transform:rotate(-1.8deg) translateY(0);}
-  50%{transform:rotate(-1.8deg) translateY(-4px);}
+  0%,100%{transform:rotate(-1.6deg) translateY(0);}
+  50%{transform:rotate(-1.6deg) translateY(-4px);}
 }
 .hi-ripped-edge--top,.hi-ripped-edge--bottom{display:block;width:100%;height:24px;}
 .hi-ripped-edge--bottom{height:20px;}
@@ -2114,15 +2114,15 @@ nav.scrolled .nav-pill{
   font-weight:600;
   margin:0;
 }
-/* tape strip on the ripped note */
+/* tape strip on the ripped note — slightly off-center for a casual hand-pinned look */
 .hi-ripped-note::before{
   content:'';
   position:absolute;
   top:-7px;
-  left:50%;
-  transform:translateX(-50%) rotate(-1deg);
-  width:52px;height:14px;
-  background:rgba(255,235,160,0.72);
+  left:38%;
+  transform:translateX(-50%) rotate(1.5deg);
+  width:56px;height:15px;
+  background:rgba(255,235,160,0.75);
   border-radius:2px;
   box-shadow:0 1px 4px rgba(0,0,0,0.10);
   z-index:5;
@@ -2137,12 +2137,12 @@ nav.scrolled .nav-pill{
   .hi-mai{height:220px;}
   .home-loves{padding:4rem 48px;}
   .home-xp{padding:4rem 48px 5rem;}
-  .hi-pm-collage{width:360px;height:480px;transform:scale(0.88);transform-origin:center top;margin-bottom:-56px;}
+  .hi-pm-collage{width:360px;height:520px;transform:scale(0.88);transform-origin:center top;margin-bottom:-56px;}
 }
 @media(max-width:700px){
   .hero{grid-template-columns:1fr;padding:7rem 24px 4rem;text-align:center;}
   .hi-right{order:-1;}
-  .hi-pm-collage{transform:scale(0.76);transform-origin:center top;width:320px;height:400px;margin-bottom:-104px;}
+  .hi-pm-collage{transform:scale(0.76);transform-origin:center top;width:320px;height:440px;margin-bottom:-104px;}
   .hi-bio{margin:0 auto 2rem;}
   .hi-chips{justify-content:center;}
   .hi-pill{display:none;}
