@@ -597,13 +597,6 @@ function ProblemSection() {
         ))}
       </div>
 
-      <div className="csl-reveal" style={{ marginTop: 28, padding: "16px 20px", background: "#F9FAFB", borderRadius: 12, border: "1px solid #F3F4F6" }}>
-        <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.12em" }}>How I know this</span>
-        <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.7, margin: "6px 0 0" }}>
-          Four agents interviewed before the first wireframe. Semi-structured sessions: walk me through a booking, narrate what you&apos;re checking. Every pattern above appeared in every session.
-        </p>
-      </div>
-
       {/* Agent quote — dark pull quote */}
       <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
         <span className="csl-eyebrow">In their own words</span>
@@ -893,30 +886,6 @@ function ResearchInsightCards() {
               {ins.heading}
             </div>
 
-            {/* Body */}
-            <p style={{
-              fontFamily: "var(--font-lato), sans-serif",
-              fontSize: "0.92rem", color: "#6B7280",
-              lineHeight: 1.65, margin: "0 0 16px",
-            }}>
-              {ins.text}
-            </p>
-
-            {/* Data point */}
-            <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-              <div style={{
-                flexShrink: 0, width: 14, height: 1,
-                background: "#c94a28", marginTop: 8,
-              }} />
-              <p style={{
-                fontFamily: "var(--font-lato), sans-serif",
-                fontSize: "0.78rem", fontStyle: "italic",
-                color: "#c94a28", lineHeight: 1.55, margin: 0,
-              }}>
-                {ins.dataText}
-              </p>
-            </div>
-
             {/* Stat */}
             <div style={{
               marginTop: "auto",
@@ -1186,63 +1155,6 @@ function ApproachSection() {
         <DotMetricRow />
       </div>
 
-      {/* Research → Design bridge */}
-      <div className="csl-reveal" style={{ marginBottom: 8 }}>
-        <span className="csl-eyebrow">What research told us to design</span>
-        <div style={{ display: "flex", flexDirection: "column", gap: 32, marginTop: 24 }}>
-          {[
-            {
-              num: "01",
-              insight: "Price and refundability must be in the same scan",
-              component: "Fare Listing Card",
-              detail: "Refund badge always visible inline. Fare tiers readable without expanding.",
-            },
-            {
-              num: "02",
-              insight: "80% of B2B bookings have empty SSR tables",
-              component: "Review Table",
-              detail: "Empty rows created confusion. Hide SSR fields until filled. Don't show absence as data.",
-            },
-            {
-              num: "03",
-              insight: "Itinerary clarity is the agent's most-used output",
-              component: "Itinerary Card",
-              detail: "Agents read this aloud to clients on a call. Not scannable in 3 seconds means the call drags and trust erodes.",
-            },
-            {
-              num: "04",
-              insight: "Late errors cost money, not just time",
-              component: "Review Table",
-              detail: "Errors at payment meant re-booking fees with a client on hold. Validation needed to move earlier.",
-            },
-          ].map((r) => (
-            <div key={r.num}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
-                <span style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: "1.1rem", fontWeight: 400,
-                  color: "#c94a28", lineHeight: 1, flexShrink: 0,
-                }}>{r.num}</span>
-                <span style={{
-                  fontFamily: "var(--font-lato), sans-serif",
-                  fontSize: "1.05rem", fontWeight: 700,
-                  color: "#111827", lineHeight: 1.4,
-                }}>
-                  {r.insight}
-                </span>
-              </div>
-              <p style={{
-                fontFamily: "var(--font-lato), sans-serif",
-                fontSize: "0.92rem", color: "#6B7280",
-                margin: 0, lineHeight: 1.6, paddingLeft: 36,
-              }}>
-                <span style={{ color: "#c94a28", fontWeight: 600 }}>→ {r.component}: </span>
-                {r.detail}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
     </CsSection>
   );
 }
@@ -2085,27 +1997,17 @@ function LearningsSection() {
     {
       n: "01",
       title: "The design system paid for itself",
-      text: "Building 80+ components upfront felt slow. Screens 10–20 were built 4× faster than screens 1–5. When requirements changed, updating a single token updated every screen simultaneously.",
+      text: "Screens 10–20 were built 4× faster than screens 1–5. One token change updated every screen simultaneously.",
     },
     {
       n: "02",
       title: "B2B is not B2C with a logo",
-      text: "Professionals tolerate complexity, but only organised complexity. The goal was never simplicity. It was the right kind of density: always present when needed, invisible when not.",
+      text: "The goal wasn't simplicity. It was the right kind of density: always present when needed, invisible when not.",
     },
     {
       n: "03",
-      title: "Working solo made every decision independently defensible",
-      text: "No senior to ask meant no shortcuts. I had to understand the reason behind every choice well enough to explain it in a standup, a stakeholder review, or a dev handoff meeting. That muscle is permanent.",
-    },
-    {
-      n: "04",
-      title: "AI saved synthesis time, not design time",
-      text: "Using ChatGPT and v0 saved roughly 11 days across the project. Every actual design decision, hierarchy, colour, and interaction, was made by hand. AI accelerated process, not judgment.",
-    },
-    {
-      n: "05",
-      title: "What I'd do differently: more agent time upfront",
-      text: "Four interviews wasn't enough for a domain this specialised. GDS fare logic and multi-pax edge cases surfaced during design, not before. More structured research upfront would have caught them sooner.",
+      title: "More agent time upfront would have changed the brief",
+      text: "Four interviews wasn't enough. GDS fare logic and multi-pax edge cases surfaced during design, not before.",
     },
   ];
 
@@ -2189,22 +2091,22 @@ function ConstraintsBlock() {
     {
       icon: "⚡",
       label: "GDS API complexity",
-      text: "Live airline data from GDS systems has latency, unpredictable availability, and format inconsistencies per carrier. Every data density decision had to account for fields that might simply not exist.",
+      text: "Live data with latency and inconsistent formats per carrier. Every design decision had to account for fields that might not exist.",
     },
     {
       icon: "📋",
       label: "Regulatory surface area",
-      text: "GST breakdowns, RAF levies, and PAN verification are mandatory in India's B2B travel context. Every fare summary and booking confirmation had to surface regulatory data, not just price.",
+      text: "GST, RAF levies, and PAN verification are mandatory. Fare summaries had to surface regulatory data, not just price.",
     },
     {
       icon: "🧠",
       label: "Legacy mental models",
-      text: "Agents trained on command-line GDS interfaces for years. Modernising meant respecting what they already knew. Speed of adoption depended on how little had to be relearned.",
+      text: "Agents trained on command-line GDS for years. Adoption depended on how little had to be relearned.",
     },
     {
       icon: "🏗",
       label: "Solo designer, live sprint",
-      text: "No design system existed. No previous UI to reference. Every component, token, icon, and pattern was built from scratch alongside an active engineering sprint.",
+      text: "No design system, no prior UI. Every component built from scratch alongside an active engineering sprint.",
     },
   ];
   return (
@@ -2240,57 +2142,6 @@ function ProcessSection() {
         sub="AI-assisted process, not AI-generated design. Every tool saved synthesis time so I could spend it on craft."
       />
       <StoryCardsGrid />
-
-      <div className="csl-reveal" style={{ marginBottom: 40, padding: "24px 28px", background: "#F9FAFB", borderRadius: 16, border: "1px solid #F3F4F6" }}>
-        <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
-          After research, I aligned with PMs on user needs and business constraints. AI tools let me test many layout directions quickly. The saved time went into craft: design decisions, hierarchy, and the component system that shipped.
-        </p>
-      </div>
-      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-        {airProcessSteps.map((step, i) => (
-          <div key={step.num} style={{
-            display: "grid",
-            gridTemplateColumns: "80px 1fr",
-            gap: "0 20px",
-            paddingBottom: i < airProcessSteps.length - 1 ? 28 : 0,
-            paddingTop: i === 0 ? 0 : 28,
-            borderTop: i === 0 ? "none" : "1px solid #F3F4F6",
-            position: "relative",
-          }}>
-            {/* Left: step + saved */}
-            <div style={{ textAlign: "right", paddingTop: 2 }}>
-              <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 4 }}>{step.num}</div>
-              {step.save && (
-                <div style={{
-                  display: "inline-block", fontSize: "0.62rem", fontWeight: 800,
-                  color: "#059669", background: "#ECFDF5",
-                  borderRadius: 6, padding: "2px 8px",
-                }}>{step.save}</div>
-              )}
-            </div>
-            {/* Right: content */}
-            <div>
-              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{step.title}</div>
-              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>{step.text}</p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                {step.old && (
-                  <span style={{
-                    fontSize: "0.68rem", color: "#9CA3AF",
-                    background: "#F9FAFB", border: "1px solid #E5E7EB",
-                    borderRadius: 6, padding: "3px 10px",
-                    textDecoration: "line-through",
-                  }}>{step.old}</span>
-                )}
-                <span style={{
-                  fontSize: "0.68rem", fontWeight: 700, color: "#1E90FF",
-                  background: "#EFF6FF", border: "1px solid rgba(30,144,255,0.2)",
-                  borderRadius: 6, padding: "3px 10px",
-                }}>{step.ai}</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
     </CsSection>
   );
 }
