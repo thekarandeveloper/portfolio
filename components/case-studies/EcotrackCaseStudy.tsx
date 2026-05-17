@@ -431,7 +431,7 @@ function EcoHero() {
           </div>
         </div>
         <div className="csl-hero-right">
-          <EcoPhoneMockupLight />
+          <EcoHeroPhoneScene />
         </div>
       </div>
 
@@ -447,6 +447,44 @@ function EcoHero() {
             <div className="csl-hero-stat-label">{s.label}</div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   HERO PHONE — no overflow clipping, drop-shadow preserves PNG corners
+───────────────────────────────────────────────────────────────────── */
+function EcoPhone({ src, alt, w, tilt }: { src: string; alt: string; w: number; tilt: string }) {
+  return (
+    <div style={{
+      width: w,
+      flexShrink: 0,
+      transform: `rotate(${tilt})`,
+      filter: "drop-shadow(0 20px 44px rgba(0,0,0,0.13)) drop-shadow(0 4px 10px rgba(0,0,0,0.07))",
+    }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} style={{ width: "100%", height: "auto", display: "block" }} />
+    </div>
+  );
+}
+
+function EcoHeroPhoneScene() {
+  return (
+    <div style={{ position: "relative", width: "100%", height: 460, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ position: "absolute", width: 300, height: 300, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(45,125,67,0.13) 0%, transparent 70%)", pointerEvents: "none" }} />
+      {/* Left — onboarding2.png */}
+      <div style={{ position: "absolute", left: "4%", top: "50%", transform: "translateY(-40%)", zIndex: 1, opacity: 0.9 }}>
+        <EcoPhone src="/Image/Ecotrack/onboarding2.png" alt="EcoTrack onboarding step 2" w={148} tilt="-7deg" />
+      </div>
+      {/* Center — onboarding1.png */}
+      <div style={{ position: "relative", zIndex: 3 }}>
+        <EcoPhone src="/Image/Ecotrack/onboarding1.png" alt="EcoTrack splash screen" w={200} tilt="0deg" />
+      </div>
+      {/* Right — onboarding5.png */}
+      <div style={{ position: "absolute", right: "4%", top: "50%", transform: "translateY(-50%)", zIndex: 2, opacity: 0.9 }}>
+        <EcoPhone src="/Image/Ecotrack/onboarding5.png" alt="EcoTrack welcome screen" w={148} tilt="7deg" />
       </div>
     </div>
   );
