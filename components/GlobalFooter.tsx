@@ -1,15 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+
+const THEME_FOOTER: Record<string, { bg: string; grid: string }> = {
+  "/projects/airiq":    { bg: "#f6f8fb", grid: "rgba(30,144,255,0.07)" },
+  "/projects/biblofi":  { bg: "#FFFDF8", grid: "rgba(0,0,0,0.045)" },
+  "/projects/ecotrack": { bg: "#F2FAF3", grid: "rgba(45,125,67,0.07)" },
+  "/projects/care-autor":{ bg: "#f4f8ff", grid: "rgba(0,119,182,0.07)" },
+  "/projects/project-5":{ bg: "#f4f8ff", grid: "rgba(16,118,188,0.07)" },
+};
 
 const footerCSS = `
 .gf-root{
-  background:transparent;
   padding:5rem clamp(24px,8vw,250px) 5rem clamp(24px,8vw,270px);
   overflow:visible;
   position:relative;
-  background-image:linear-gradient(rgba(0,0,0,0.038) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.038) 1px,transparent 1px);
-  background-size:28px 28px;
 }
 .gf-glow{position:absolute;top:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(30,144,255,0.06) 0%,transparent 70%);pointer-events:none;}
 .gf-flex{display:flex;align-items:center;gap:5rem;position:relative;z-index:1;overflow:visible;}
@@ -99,6 +105,9 @@ const footerHTML = `
 `;
 
 export function GlobalFooter() {
+  const pathname = usePathname();
+  const theme = THEME_FOOTER[pathname] ?? { bg: "#ffffff", grid: "rgba(0,0,0,0.038)" };
+
   useEffect(() => {
     const queryEl = document.getElementById("gfSearchQuery");
     const resultsEl = document.getElementById("gfSearchResults");
@@ -239,7 +248,14 @@ export function GlobalFooter() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: footerCSS }} />
-      <footer dangerouslySetInnerHTML={{ __html: footerHTML }} />
+      <footer
+        dangerouslySetInnerHTML={{ __html: footerHTML }}
+        style={{
+          backgroundColor: theme.bg,
+          backgroundImage: `linear-gradient(${theme.grid} 1px,transparent 1px),linear-gradient(90deg,${theme.grid} 1px,transparent 1px)`,
+          backgroundSize: "28px 28px",
+        }}
+      />
     </>
   );
 }

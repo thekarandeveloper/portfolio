@@ -58,9 +58,6 @@ const html = `<section class="hero" id="home">
         </div>
       </div>
 
-      <!-- handwritten note — bottom right -->
-      <span class="hi-pm-note hi-pm-note--br">caffeinated &amp; designing ☕</span>
-
     </div>
 
     <!-- ripped paper note below polaroids -->
