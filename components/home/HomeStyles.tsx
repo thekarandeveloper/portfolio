@@ -2078,7 +2078,7 @@ nav.scrolled .nav-pill{
 /* ── RIPPED PAPER NOTE ── */
 .hi-ripped-note{
   position:absolute;
-  top:426px;
+  top:462px;
   left:38px;
   right:38px;
   transform:rotate(-1.6deg);
