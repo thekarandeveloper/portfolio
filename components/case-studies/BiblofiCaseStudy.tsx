@@ -26,6 +26,8 @@ const AMut = "#AA7845";
 const ADrk = "#3D2010";
 const AMed = "#8B5A35";
 
+const FINAL = "/Image/Biblofi/final%20screens%20-%20biblofi";
+
 /* ─────────────────────────────────────────────────────────────────────
    TOC + META
 ───────────────────────────────────────────────────────────────────── */
@@ -628,24 +630,6 @@ function ScreensSection() {
    §08  FINAL SCREENS
 ───────────────────────────────────────────────────────────────────── */
 function FinalScreensSection() {
-  const rows = [
-    [
-      { src:"/Image/Biblofi/final1.png", label:"Onboarding"   },
-      { src:"/Image/Biblofi/final2.png", label:"Home"         },
-      { src:"/Image/Biblofi/final3.png", label:"Browse"       },
-    ],
-    [
-      { src:"/Image/Biblofi/final4.png", label:"Book Detail"  },
-      { src:"/Image/Biblofi/final5.png", label:"Search"       },
-      { src:"/Image/Biblofi/final6.png", label:"Scan"         },
-    ],
-    [
-      { src:"/Image/Biblofi/final7.png", label:"Seat Booking" },
-      { src:"/Image/Biblofi/final8.png", label:"My Books"     },
-      { src:"/Image/Biblofi/final9.png", label:"Profile"      },
-    ],
-  ];
-
   return (
     <CsSection id="final">
       <CsSectionHeader
@@ -654,19 +638,193 @@ function FinalScreensSection() {
         sub="From onboarding to book discovery, seat booking to fine tracking — final high-fidelity screens delivered to the Infosys engineering team."
       />
 
-      {rows.map((row, ri) => (
-        <div key={ri} className={`csl-reveal${ri > 0 ? ` rd${ri}` : ""}`}
-          style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16, marginBottom:16 }}>
-          {row.map(({ src, label }) => (
-            <div key={src} style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10 }}>
-              <div style={{ width:"100%", borderRadius:20, overflow:"hidden", boxShadow:"0 8px 32px rgba(0,0,0,0.12)" }}>
-                <CsImg label={label} aspect="9/16" icon="📱" sub="Upload final screen here" />
-              </div>
-              <p style={{ fontSize:"0.72rem", color:"#9CA3AF", textAlign:"center" }}>{label}</p>
+      {/* ── INTRO CARD (inspired by "final one.png") ── */}
+      <div className="csl-reveal" style={{
+        border:"2px dashed #D4B896", borderRadius:20, background:"#FFFDF8",
+        padding:"36px", marginBottom:56,
+        display:"grid", gridTemplateColumns:"1.1fr 0.9fr", gap:40, alignItems:"center",
+      }}>
+        <div>
+          <p style={{
+            fontFamily:"var(--font-caveat), cursive",
+            fontSize:"1.9rem", fontWeight:700, color:A, lineHeight:1.2, marginBottom:20,
+          }}>
+            BibloFi — A Complete Library Experience.
+          </p>
+          <p style={{ fontSize:"0.8rem", color:"#374151", lineHeight:1.8, marginBottom:16 }}>
+            BibloFi is inspired by the word <strong style={{ color:A }}>Bibliophile</strong> — a person who loves books. We wanted to create an app that feels like home for every reader.
+          </p>
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:20 }}>
+            <span style={{ fontSize:"1rem", fontWeight:700, color:"#111827" }}>Biblio</span>
+            <span style={{ fontSize:"1.1rem", opacity:0.35 }}>⊕</span>
+            <span style={{ fontSize:"1rem", fontWeight:700, color:"#111827" }}>Fi</span>
+            <span style={{ fontSize:"1.1rem", color:"#D1D5DB", margin:"0 4px" }}>→</span>
+            <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"1.4rem", fontWeight:700, color:A }}>BibloFi</span>
+          </div>
+          <p style={{ fontSize:"0.76rem", color:"#9CA3AF", fontStyle:"italic" }}>
+            After all the hustle of research, user pain points, and design exploration, BibloFi was born.
+          </p>
+        </div>
+        <div style={{ background:A, borderRadius:16, padding:"28px 24px" }}>
+          <p style={{ fontSize:"0.96rem", fontWeight:600, color:"#fff", lineHeight:1.75 }}>
+            Our onboarding screens are designed to highlight the most important features of the app in a simple and engaging flow.
+          </p>
+        </div>
+      </div>
+
+      {/* ── ONBOARDING SCREENS ── */}
+      <div style={{ marginBottom:64 }}>
+        {/* Annotations above */}
+        <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginBottom:28 }}>
+          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+            Each screen introduces a core feature step by step, keeping the focus on clarity and user engagement.
+          </p>
+          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+            We used minimal text with strong visuals to ensure quick comprehension and smooth navigation.
+          </p>
+        </div>
+
+        {/* 4 phones with stagger */}
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:14 }}>
+          {([1,2,3,4] as const).map((n, i) => (
+            <div key={n} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`} style={{
+              borderRadius:28, overflow:"hidden",
+              boxShadow:"0 16px 48px rgba(0,0,0,0.13)",
+              transform: i % 2 === 1 ? "translateY(12px)" : "translateY(0)",
+            }}>
+              <Image
+                src={`${FINAL}/ob${n}.png`}
+                alt={`Onboarding screen ${n}`}
+                width={320} height={693}
+                style={{ width:"100%", height:"auto", display:"block" }}
+              />
             </div>
           ))}
         </div>
-      ))}
+
+        {/* Annotations below */}
+        <div className="csl-reveal rd2" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginTop:28 }}>
+          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+            We balanced typography, icons, and illustrations to make the journey visually appealing without overwhelming the user.
+          </p>
+          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+            The design ensures that new users can quickly understand the value of the app and feel motivated to explore further.
+          </p>
+        </div>
+
+        {/* Handwriting label */}
+        <div className="csl-reveal rd3" style={{ textAlign:"right", marginTop:16 }}>
+          <span style={{
+            fontFamily:"var(--font-caveat), cursive",
+            fontSize:"3.2rem", fontWeight:700, color:A, lineHeight:1,
+          }}>
+            Onboarding Screens
+          </span>
+        </div>
+      </div>
+
+      {/* ── AUTHENTICATION ── */}
+      <div style={{ marginBottom:64 }}>
+        {/* Annotations above */}
+        <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginBottom:28 }}>
+          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+            Secure and seamless entry point for new and returning users.
+          </p>
+          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+            Easy access to view and manage membership details.
+          </p>
+        </div>
+
+        {/* 4 phones with stagger */}
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:14 }}>
+          {([1,2,3,4] as const).map((n, i) => (
+            <div key={n} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`} style={{
+              borderRadius:28, overflow:"hidden",
+              boxShadow:"0 16px 48px rgba(0,0,0,0.13)",
+              transform: i % 2 === 1 ? "translateY(12px)" : "translateY(0)",
+            }}>
+              <Image
+                src={`${FINAL}/a${n}.png`}
+                alt={`Authentication screen ${n}`}
+                width={320} height={693}
+                style={{ width:"100%", height:"auto", display:"block" }}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Annotations below */}
+        <div className="csl-reveal rd2" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginTop:28 }}>
+          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+            A reliable OTP verification system that adds an extra layer of security while keeping the process simple.
+          </p>
+          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+            Scan and see the process of onboarding and authentication in action.
+          </p>
+        </div>
+
+        {/* Handwriting label */}
+        <div className="csl-reveal rd3" style={{ textAlign:"left", marginTop:16 }}>
+          <span style={{
+            fontFamily:"var(--font-caveat), cursive",
+            fontSize:"3.2rem", fontWeight:700, color:A, lineHeight:1,
+          }}>
+            Authentication
+          </span>
+        </div>
+      </div>
+
+      {/* ── FILTERS ── */}
+      <div className="csl-reveal rd1" style={{ marginBottom:64 }}>
+        <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Genre Discovery</p>
+        <h3 style={{ fontSize:"1.1rem", fontWeight:700, color:"#111827", marginBottom:28 }}>
+          Tell us what you love to read.
+        </h3>
+        <div style={{ display:"flex", justifyContent:"center" }}>
+          <div style={{ width:260, borderRadius:28, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.13)" }}>
+            <Image
+              src={`${FINAL}/filters.png`}
+              alt="Genre filters — Tell us what you love to read"
+              width={320} height={693}
+              style={{ width:"100%", height:"auto", display:"block" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* ── CORE APP SCREENS ── */}
+      <div>
+        <div className="csl-reveal" style={{ marginBottom:28 }}>
+          <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Core App Screens</p>
+          <h3 style={{ fontSize:"1.1rem", fontWeight:700, color:"#111827" }}>
+            Home · Categories · Book Detail · Scan
+          </h3>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:14 }}>
+          {[
+            { file:"home-biblofi.png", label:"Home"         },
+            { file:"categories.png",   label:"Categories"   },
+            { file:"detailed.png",     label:"Book Detail"  },
+            { file:"scan.png",         label:"Scan"         },
+          ].map(({ file, label }, i) => (
+            <div key={file} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`} style={{ display:"flex", flexDirection:"column", gap:12 }}>
+              <div style={{
+                borderRadius:28, overflow:"hidden",
+                boxShadow:"0 16px 48px rgba(0,0,0,0.13)",
+                transform: i % 2 === 1 ? "translateY(12px)" : "translateY(0)",
+              }}>
+                <Image
+                  src={`${FINAL}/${file}`}
+                  alt={label}
+                  width={320} height={693}
+                  style={{ width:"100%", height:"auto", display:"block" }}
+                />
+              </div>
+              <p style={{ fontSize:"0.7rem", fontWeight:600, color:"#9CA3AF", textAlign:"center", letterSpacing:"0.04em" }}>{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </CsSection>
   );
 }
