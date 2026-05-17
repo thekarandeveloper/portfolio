@@ -16,6 +16,8 @@ const THEME_VARS: Record<CsTheme, CSSProperties> = {
     "--csl-hero-bg":       "#ffffff",
     "--csl-tag-bg":        "#E8F2FB",
     "--csl-toc-active-bg": "#EAF3FF",
+    backgroundImage: "linear-gradient(rgba(30,144,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(30,144,255,0.07) 1px, transparent 1px)",
+    backgroundSize: "28px 28px",
   } as CSSProperties,
   biblo: {
     "--csl-accent":        "#C8703A",
