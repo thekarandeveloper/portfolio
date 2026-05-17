@@ -96,20 +96,24 @@ function PhoneFrame({ src, alt, w, h, tilt, style = {} }: {
 function PhoneMockupScene() {
   return (
     <div style={{
-      position:"relative", width:"100%", height:560,
+      position:"relative", width:"100%",
       display:"flex", alignItems:"center", justifyContent:"center",
+      gap:12, padding:"64px 32px",
       overflow:"visible",
     }}>
+      {/* ambient glow */}
       <div style={{
         position:"absolute", width:320, height:320, borderRadius:"50%",
         background:"radial-gradient(circle, rgba(200,112,58,0.18) 0%, transparent 70%)",
         animation:"bibloGlowPulse 5s ease-in-out infinite",
-        pointerEvents:"none",
+        pointerEvents:"none", zIndex:0,
       }} />
-      <div style={{ position:"absolute", left:"4%", top:"50%", transform:"translateY(-50%)", zIndex:1, opacity:0.88 }}>
+      {/* left phone — flex item, shifted down for depth */}
+      <div style={{ transform:"translateY(28px)", opacity:0.88, zIndex:1, flexShrink:0 }}>
         <PhoneFrame src="/Image/Biblofi/hero1.png" alt="BibloFi screen" w={148} h={320} tilt="-6deg" />
       </div>
-      <div className="biblo-phone-wrap" style={{ zIndex:3 }}>
+      {/* center phone — flex item, floating animation */}
+      <div className="biblo-phone-wrap" style={{ zIndex:3, flexShrink:0 }}>
         <div style={{
           position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
           width:88, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
@@ -128,7 +132,8 @@ function PhoneMockupScene() {
         <div style={{ position:"absolute", left:-4, top:88,  width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
         <div style={{ position:"absolute", left:-4, top:142, width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
       </div>
-      <div style={{ position:"absolute", right:"4%", top:"50%", transform:"translateY(-50%)", zIndex:2, opacity:0.88 }}>
+      {/* right phone — flex item, shifted up for depth */}
+      <div style={{ transform:"translateY(-20px)", opacity:0.88, zIndex:2, flexShrink:0 }}>
         <PhoneFrame src="/Image/Biblofi/hero2.png" alt="BibloFi screen" w={148} h={320} tilt="5deg" />
       </div>
     </div>
