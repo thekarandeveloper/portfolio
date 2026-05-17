@@ -87,7 +87,7 @@ const html = `
 
           <!-- Footer -->
           <div class="dsz-card-footer">
-            <a class="dsz-cta" href="/projects/project-5">View Case Study &rarr;</a>
+            <span class="dsz-cta" style="opacity:0.5;cursor:default;">Coming soon</span>
             <div class="dsz-footer-chips">
               <span class="dsz-footer-chip dsz-chip-blue">Lato &middot; Inter</span>
               <span class="dsz-footer-chip dsz-chip-red">Jan&ndash;Aug 2023</span>
