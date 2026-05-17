@@ -313,6 +313,12 @@ function AirHero() {
         backgroundImage: "radial-gradient(circle, rgba(30,144,255,0.13) 1.5px, transparent 1.5px)",
         backgroundSize: "28px 28px",
       }} />
+      {/* Dark line grid matching homepage */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        backgroundImage: "linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px)",
+        backgroundSize: "28px 28px",
+      }} />
       <div className="csl-hero-inner">
         {/* Left */}
         <div className="csl-hero-left">
