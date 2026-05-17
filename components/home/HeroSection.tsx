@@ -45,7 +45,7 @@ const html = `<section class="hero" id="home">
       <div class="hi-pm-wrap hi-pm-3">
         <div class="hi-pm-tape hi-pm-tape--r"></div>
         <div class="hi-pm-frame">
-          <img src="/Image/hero/mai.png" class="hi-pm-photo hi-pm-photo--3" alt="food &gt; everything" />
+          <img src="/Image/hero/work-hero.png" class="hi-pm-photo hi-pm-photo--3" alt="food &gt; everything" />
           <span class="hi-pm-cap">food &gt; everything</span>
         </div>
       </div>
@@ -53,7 +53,7 @@ const html = `<section class="hero" id="home">
       <!-- polaroid 4 -->
       <div class="hi-pm-wrap hi-pm-4">
         <div class="hi-pm-frame">
-          <img src="/Image/hero/first.png" class="hi-pm-photo hi-pm-photo--4" alt="somewhere in between" />
+          <img src="/Image/hero/coffee-hero.png" class="hi-pm-photo hi-pm-photo--4" alt="somewhere in between" />
           <span class="hi-pm-cap">somewhere in between</span>
         </div>
       </div>

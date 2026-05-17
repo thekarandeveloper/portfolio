@@ -2064,7 +2064,7 @@ nav.scrolled .nav-pill{
 .hi-pm-1{left:8px;top:54px;z-index:2;width:215px;animation:hiPmFloat 7s ease-in-out 0s infinite;}
 .hi-pm-2{left:205px;top:-12px;z-index:3;width:228px;animation:hiPmFloat 7s ease-in-out 1.4s infinite;}
 .hi-pm-3{left:48px;top:196px;z-index:4;width:218px;animation:hiPmFloat 7s ease-in-out 0.7s infinite;}
-.hi-pm-4{left:256px;top:104px;z-index:1;width:198px;animation:hiPmFloat 7s ease-in-out 2s infinite;}
+.hi-pm-4{left:248px;top:210px;z-index:1;width:198px;animation:hiPmFloat 7s ease-in-out 2s infinite;}
 .hi-pm-1 .hi-pm-frame{transform:rotate(-7deg);}
 .hi-pm-2 .hi-pm-frame{transform:rotate(5deg);}
 .hi-pm-3 .hi-pm-frame{transform:rotate(-3deg);}
