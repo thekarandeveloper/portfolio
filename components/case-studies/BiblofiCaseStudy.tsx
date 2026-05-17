@@ -96,8 +96,9 @@ function PhoneFrame({ src, alt, w, h, tilt, style = {} }: {
 function PhoneMockupScene() {
   return (
     <div style={{
-      position:"relative", width:"100%", height:500,
+      position:"relative", width:"100%", height:560,
       display:"flex", alignItems:"center", justifyContent:"center",
+      overflow:"visible",
     }}>
       <div style={{
         position:"absolute", width:320, height:320, borderRadius:"50%",
@@ -105,7 +106,7 @@ function PhoneMockupScene() {
         animation:"bibloGlowPulse 5s ease-in-out infinite",
         pointerEvents:"none",
       }} />
-      <div style={{ position:"absolute", left:"4%", top:"50%", transform:"translateY(-40%)", zIndex:1, opacity:0.88 }}>
+      <div style={{ position:"absolute", left:"4%", top:"50%", transform:"translateY(-50%)", zIndex:1, opacity:0.88 }}>
         <PhoneFrame src="/Image/Biblofi/hero1.png" alt="BibloFi screen" w={148} h={320} tilt="-6deg" />
       </div>
       <div className="biblo-phone-wrap" style={{ zIndex:3 }}>
@@ -127,7 +128,7 @@ function PhoneMockupScene() {
         <div style={{ position:"absolute", left:-4, top:88,  width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
         <div style={{ position:"absolute", left:-4, top:142, width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
       </div>
-      <div style={{ position:"absolute", right:"4%", top:"50%", transform:"translateY(-55%)", zIndex:2, opacity:0.88 }}>
+      <div style={{ position:"absolute", right:"4%", top:"50%", transform:"translateY(-50%)", zIndex:2, opacity:0.88 }}>
         <PhoneFrame src="/Image/Biblofi/hero2.png" alt="BibloFi screen" w={148} h={320} tilt="5deg" />
       </div>
     </div>
@@ -139,7 +140,7 @@ function PhoneMockupScene() {
 ───────────────────────────────────────────────────────────────────── */
 function BibloHero() {
   return (
-    <div className="csl-hero csl-hero--light">
+    <div className="csl-hero csl-hero--light" style={{ overflow:"visible" }}>
       {/* Dark line grid matching homepage */}
       <div style={{
         position:"absolute", inset:0, pointerEvents:"none",
