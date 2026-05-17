@@ -53,7 +53,11 @@ export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
 
   if (slug === "airiq") {
-    return <AirIqCaseStudy />;
+    return (
+      <PasswordGate slug="airiq" password="2618">
+        <AirIqCaseStudy />
+      </PasswordGate>
+    );
   }
 
   if (slug === "biblofi") {

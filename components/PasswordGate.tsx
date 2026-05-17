@@ -3,8 +3,7 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 
-const PASSWORD = "12345";
-const LEN = PASSWORD.length;
+const DEFAULT_PASSWORD = "12345";
 
 /* Same 5-layer wave config as the hero canvas */
 const WAVES = [
@@ -15,7 +14,8 @@ const WAVES = [
   { yR: 0.62, amp: 34, freq: 0.0060, spd: 0.008,  ph: 4.71, r: 0,   g: 150, b: 255, a: 0.030 },
 ];
 
-export function PasswordGate({ children, slug }: { children: ReactNode; slug: string }) {
+export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { children: ReactNode; slug: string; password?: string }) {
+  const LEN = password.length;
   const [digits, setDigits]   = useState<string[]>(Array(LEN).fill(""));
   const [phase, setPhase]     = useState<"idle" | "error" | "success" | "done">("idle");
   const inputRefs  = useRef<(HTMLInputElement | null)[]>([]);
@@ -92,7 +92,7 @@ export function PasswordGate({ children, slug }: { children: ReactNode; slug: st
   }, [storageKey]);
 
   const tryUnlock = (filled: string[]) => {
-    if (filled.join("") === PASSWORD) {
+    if (filled.join("") === password) {
       setPhase("success");
       setTimeout(() => {
         sessionStorage.setItem(storageKey, "1");
@@ -247,7 +247,7 @@ export function PasswordGate({ children, slug }: { children: ReactNode; slug: st
 
             {isError
               ? <p className="pgx-status pgx-status-err">Incorrect, try again</p>
-              : <p className="pgx-hint">5-digit code</p>}
+              : <p className="pgx-hint">{LEN}-digit code</p>}
           </>
         )}
 
