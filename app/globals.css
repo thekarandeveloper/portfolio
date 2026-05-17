@@ -6220,7 +6220,8 @@ body.csl-page-active footer { display: none !important; }
 .csl-hero-stat-label{ font-size: 0.68rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.1em; }
 
 /* ── Light hero variant (Air IQ) ── */
-.csl-hero--light { color: #111827; }
+.csl-hero--light { color: #111827; overflow: visible; }
+.csl-hero--light .csl-hero-glow { opacity: 0.10; }
 .csl-hero--light .csl-hero-title { color: #111827; }
 .csl-hero--light .csl-hero-desc  { color: #374151; }
 .csl-hero--light .csl-hero-chip  {
@@ -6985,10 +6986,9 @@ body.csl-page-active footer { display: none !important; }
   background: #161616;
   border-radius: 42px;
   box-shadow:
-    0 0 0 1.5px rgba(255,255,255,0.07),
-    0 0 0 3px #222,
-    0 40px 80px rgba(0,0,0,0.55),
-    0 12px 28px rgba(0,0,0,0.3);
+    0 0 0 1px rgba(0,0,0,0.08),
+    0 32px 64px rgba(0,0,0,0.13),
+    0 8px 24px rgba(0,0,0,0.07);
   animation: bibloPhoneFloat 5s ease-in-out infinite;
   transform: rotate(-2deg);
 }

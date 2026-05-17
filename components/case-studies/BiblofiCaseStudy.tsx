@@ -68,7 +68,7 @@ function PhoneFrame({ src, alt, w, h, tilt, style = {} }: {
     <div style={{
       position:"relative", width:w, height:h,
       background:"#161616", borderRadius:42,
-      boxShadow:"0 0 0 1.5px rgba(255,255,255,0.07), 0 0 0 3px #222, 0 32px 64px rgba(0,0,0,0.5)",
+      boxShadow:"0 0 0 1px rgba(0,0,0,0.08), 0 20px 40px rgba(0,0,0,0.12)",
       transform:`rotate(${tilt})`,
       flexShrink:0,
       ...style,
