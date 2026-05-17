@@ -39,7 +39,7 @@ function SharedNavInner() {
   return (
     <nav className="cs-nav">
       <div className="nav-pill">
-        <div className="nav-monogram">NT</div>
+        <a href="/" className="nav-monogram nav-monogram-link" aria-label="Home">NT</a>
         <div className="nav-clock-group">
           <span className="nav-dot" />
           <span className="nav-time" id="shared-nav-clock">

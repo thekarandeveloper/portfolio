@@ -1,4 +1,3 @@
-import { ContactSection } from "./ContactSection";
 import { DesignSystemZoom } from "./DesignSystemZoom";
 import { HeroSection } from "./HeroSection";
 import { HomeBehavior } from "./HomeBehavior";
@@ -8,6 +7,7 @@ import { HomeNav } from "./HomeNav";
 import { HomeStyles } from "./HomeStyles";
 import { JourneySection } from "./JourneySection";
 import { WorkSection } from "./WorkSection";
+import { GlobalFooter } from "@/components/GlobalFooter";
 
 export function HomePageReplica() {
   return (
@@ -26,7 +26,7 @@ export function HomePageReplica() {
         <DesignSystemZoom />
         <JourneySection />
         <HomeExperiencesSection />
-        <ContactSection />
+        <GlobalFooter />
       </main>
     </>
   );

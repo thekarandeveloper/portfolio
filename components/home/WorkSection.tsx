@@ -13,7 +13,7 @@ const html = `<section class="cswk" id="work">
     <!-- ═══════════════════════════════════════════════
          01 · Air IQ — Visual Left | Content Right
     ═══════════════════════════════════════════════ -->
-    <a class="cswk-row reveal" href="/projects/airiq">
+    <a class="cswk-row reveal" href="/projects/airiq" data-project="airiq">
 
       <div class="cswk-visual">
         <img src="/Image/Airiq/thumnail/a1.png" alt="Air IQ screen 1" loading="eager" style="width:100%;height:auto;display:block;"/>
@@ -46,7 +46,7 @@ const html = `<section class="cswk" id="work">
     <!-- ═══════════════════════════════════════════════
          02 · BiblioFi — Visual Right | Content Left
     ═══════════════════════════════════════════════ -->
-    <a class="cswk-row cswk-reversed cswk-flat reveal reveal-delay-1" href="/projects/biblofi">
+    <a class="cswk-row cswk-reversed cswk-flat reveal reveal-delay-1" href="/projects/biblofi" data-project="biblofi">
 
       <div class="cswk-visual">
         <img src="/Image/Biblofi/use-thum.png" alt="BiblioFi iOS app" loading="lazy" style="width:100%;height:auto;display:block;"/>
@@ -79,7 +79,7 @@ const html = `<section class="cswk" id="work">
     <!-- ═══════════════════════════════════════════════
          03 · EcoTrack — Visual Left | Content Right
     ═══════════════════════════════════════════════ -->
-    <a class="cswk-row cswk-flat reveal reveal-delay-3" href="/projects/ecotrack">
+    <a class="cswk-row cswk-flat reveal reveal-delay-3" href="/projects/ecotrack" data-project="ecotrack">
 
       <div class="cswk-visual">
         <img src="/Image/Ecotrack/ecotrack/thumnail.png" alt="EcoTrack" loading="lazy" style="width:100%;height:auto;display:block;"/>

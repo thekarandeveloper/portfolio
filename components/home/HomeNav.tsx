@@ -1,6 +1,6 @@
 const html = `<nav id="nav">
   <div class="nav-pill">
-    <div class="nav-monogram">NT</div>
+    <a href="/" class="nav-monogram nav-monogram-link" aria-label="Home">NT</a>
     <div class="nav-clock-group">
       <span class="nav-dot"></span>
       <span class="nav-time" id="nav-clock">--:-- --</span>
