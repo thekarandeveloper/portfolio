@@ -205,10 +205,11 @@ function EcoCallout({ children, style = {}, className }: { children: React.React
       background: "#fff",
       padding: "18px 22px",
       boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.04)",
-      fontSize: "0.82rem",
+      fontSize: "0.92rem",
       color: "#374151",
       lineHeight: 1.75,
       marginBottom: 28,
+      fontWeight: 450,
       ...style,
     }}>
       {children}
@@ -224,8 +225,10 @@ function EcoCard({ children, style = {}, className }: { children: React.ReactNod
     <div className={className} style={{
       background: "#fff",
       borderRadius: 20,
-      padding: "22px 20px",
+      padding: "24px 22px",
       boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.04)",
+      fontSize: "0.9rem",
+      color: "#374151",
       ...style,
     }}>
       {children}
@@ -505,25 +508,25 @@ function OverviewSection() {
         <EcoCard style={{ gridArea: "a", display: "flex", flexDirection: "column", gap: 10 }}>
           <span style={{ fontSize: "1.6rem" }}>📊</span>
           <p style={{ fontSize: "0.9rem", fontWeight: 700, color: "#111827" }}>Daily Footprint Tracking</p>
-          <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>Quick-log from home. Every extra tap was a reason to quit.</p>
+          <p style={{ fontSize: "0.88rem", color: "#6B7280", lineHeight: 1.6 }}>Quick-log from home. Every extra tap was a reason to quit.</p>
         </EcoCard>
 
         <EcoCard style={{ gridArea: "b", background: "#0A1F0F", display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: 10, minHeight: 200 }}>
           <span style={{ fontSize: "1.6rem" }}>🌍</span>
           <p style={{ fontSize: "0.9rem", fontWeight: 700, color: "#fff" }}>Impact Visualization</p>
-          <p style={{ fontSize: "0.76rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>Raw CO₂ numbers reframed as plain-language comparisons.</p>
+          <p style={{ fontSize: "0.88rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>Raw CO₂ numbers reframed as plain-language comparisons.</p>
         </EcoCard>
 
         <EcoCard style={{ gridArea: "c", background: "#E8F7EC" }}>
           <span style={{ fontSize: "1.4rem", marginBottom: 8, display: "block" }}>💡</span>
           <p style={{ fontSize: "0.86rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>Learning Hub</p>
-          <p style={{ fontSize: "0.74rem", color: "#3B6B45", lineHeight: 1.55 }}>Education as context, not a tab.</p>
+          <p style={{ fontSize: "0.86rem", color: "#3B6B45", lineHeight: 1.55 }}>Education as context, not a tab.</p>
         </EcoCard>
 
         <EcoCard style={{ gridArea: "d" }}>
           <span style={{ fontSize: "1.4rem", marginBottom: 8, display: "block" }}>📈</span>
           <p style={{ fontSize: "0.86rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>Progress Profile</p>
-          <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.55 }}>Added after every tester asked &ldquo;am I getting better?&rdquo;</p>
+          <p style={{ fontSize: "0.86rem", color: "#6B7280", lineHeight: 1.55 }}>Added after every tester asked &ldquo;am I getting better?&rdquo;</p>
         </EcoCard>
       </div>
     </CsSection>
@@ -560,7 +563,7 @@ function ProblemSection() {
           <EcoCard key={c.label}>
             <span style={{ fontSize: "1.3rem", display: "block", marginBottom: 10 }}>{c.icon}</span>
             <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{c.label}</p>
-            <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.55 }}>{c.desc}</p>
+            <p style={{ fontSize: "0.86rem", color: "#6B7280", lineHeight: 1.55 }}>{c.desc}</p>
           </EcoCard>
         ))}
       </div>
@@ -602,7 +605,7 @@ function ProcessSection() {
               <p style={{ fontSize: "0.56rem", fontWeight: 700, color: "#2D7D43", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 4, textAlign: "center" }}>
                 {step.phase}
               </p>
-              <p style={{ fontSize: "0.78rem", fontWeight: 700, color: "#111827", textAlign: "center" }}>{step.name}</p>
+              <p style={{ fontSize: "0.9rem", fontWeight: 700, color: "#111827", textAlign: "center" }}>{step.name}</p>
             </div>
           ))}
         </div>
@@ -661,11 +664,11 @@ function ResearchSection() {
           ].map((row, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 10, alignItems: "center" }}>
               <div style={{ background: "#FEF2F2", borderRadius: 14, padding: "13px 16px" }}>
-                <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.6 }}>🔍 {row.finding}</p>
+                <p style={{ fontSize: "0.86rem", color: "#374151", lineHeight: 1.6 }}>🔍 {row.finding}</p>
               </div>
               <span style={{ fontSize: "0.9rem", color: "#D1D5DB" }}>→</span>
               <div style={{ background: "#E8F7EC", borderRadius: 14, padding: "13px 16px" }}>
-                <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.6 }}>✓ {row.decision}</p>
+                <p style={{ fontSize: "0.86rem", color: "#374151", lineHeight: 1.6 }}>✓ {row.decision}</p>
               </div>
             </div>
           ))}
@@ -699,7 +702,7 @@ function AudienceSection() {
         ].map((seg) => (
           <EcoCard key={seg.label} style={{ background: seg.bg }}>
             <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{seg.label}</p>
-            <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.55 }}>{seg.desc}</p>
+            <p style={{ fontSize: "0.86rem", color: "#374151", lineHeight: 1.55 }}>{seg.desc}</p>
           </EcoCard>
         ))}
       </div>
@@ -734,7 +737,7 @@ function PersonasSection() {
               {p.empathy.slice(0, 3).map((row) => (
                 <div key={row.cat} style={{ borderTop: "1px solid #F3F4F6", paddingTop: 10, marginTop: 10 }}>
                   <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
-                  <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.5 }}>{row.insight}</p>
+                  <p style={{ fontSize: "0.86rem", color: "#374151", lineHeight: 1.5 }}>{row.insight}</p>
                 </div>
               ))}
             </div>
@@ -766,7 +769,7 @@ function CompetitiveSection() {
                 <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Pros</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {comp.pros.map((p) => (
-                    <li key={p} style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.55, marginBottom: 3, display: "flex", gap: 5 }}>
+                    <li key={p} style={{ fontSize: "0.84rem", color: "#4B5563", lineHeight: 1.55, marginBottom: 3, display: "flex", gap: 5 }}>
                       <span style={{ color: "#10B981", flexShrink: 0 }}>+</span>{p}
                     </li>
                   ))}
@@ -777,7 +780,7 @@ function CompetitiveSection() {
                 <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#EF4444", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Cons</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {comp.cons.map((c) => (
-                    <li key={c} style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.55, marginBottom: 3, display: "flex", gap: 5 }}>
+                    <li key={c} style={{ fontSize: "0.84rem", color: "#4B5563", lineHeight: 1.55, marginBottom: 3, display: "flex", gap: 5 }}>
                       <span style={{ color: "#EF4444", flexShrink: 0 }}>–</span>{c}
                     </li>
                   ))}
@@ -785,7 +788,7 @@ function CompetitiveSection() {
               </div>
               <div style={{ padding: "16px 18px", background: "#F9FAFB" }}>
                 <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#2D7D43", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Design decision</p>
-                <p style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.6 }}>{comp.decision}</p>
+                <p style={{ fontSize: "0.84rem", color: "#374151", lineHeight: 1.6 }}>{comp.decision}</p>
               </div>
             </div>
           </EcoCard>
@@ -857,7 +860,7 @@ function DesignSection() {
                 <p style={{ fontSize: "0.88rem", fontWeight: 700, color: t.chosen ? "#2D7D43" : "#6B7280" }}>{t.name}</p>
                 <span style={{ fontSize: "0.54rem", fontWeight: 700, padding: "2px 8px", borderRadius: 100, background: t.chosen ? "#2D7D43" : "#E5E7EB", color: t.chosen ? "#fff" : "#9CA3AF" }}>{t.verdict}</span>
               </div>
-              <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.5 }}>{t.reason}</p>
+              <p style={{ fontSize: "0.84rem", color: "#4B5563", lineHeight: 1.5 }}>{t.reason}</p>
             </div>
           ))}
         </div>
@@ -982,7 +985,7 @@ function OnboardingSection() {
             "Sign Up deferred until after the user sees the app",
             "Quick-select tiles replace free text for habits",
           ].map((item) => (
-            <div key={item} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.55, marginBottom: 6, display: "flex", gap: 7 }}>
+            <div key={item} style={{ fontSize: "0.84rem", color: "#374151", lineHeight: 1.55, marginBottom: 6, display: "flex", gap: 7 }}>
               <span style={{ color: "#2D7D43", flexShrink: 0 }}>✓</span>{item}
             </div>
           ))}
@@ -994,7 +997,7 @@ function OnboardingSection() {
             "Free-text fields for travel distance and energy",
             "2 testers abandoned before completing setup",
           ].map((item) => (
-            <div key={item} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.55, marginBottom: 6, display: "flex", gap: 7 }}>
+            <div key={item} style={{ fontSize: "0.84rem", color: "#374151", lineHeight: 1.55, marginBottom: 6, display: "flex", gap: 7 }}>
               <span style={{ color: "#EF4444", flexShrink: 0 }}>✕</span>{item}
             </div>
           ))}
@@ -1016,57 +1019,54 @@ function ScreensSection() {
         sub="Each screen answers one question without requiring the user to navigate away."
       />
 
-      {/* ── Home Screen — annotated centered layout ── */}
+      {/* ── Home Screen — 3-column annotated layout ── */}
       <div className="csl-reveal" style={{ marginBottom: 60 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 28, textAlign: "center" }}>Home Screen</p>
+        <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 28, textAlign: "center" }}>Home Screen</p>
 
-        {/* Annotation wrapper — phone centered, notes on each side */}
-        <div style={{ position: "relative", display: "flex", justifyContent: "center", paddingBottom: 32 }}>
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "center", gap: 0, marginBottom: 24 }}>
 
-          {/* Phone */}
-          <div style={{
-            width: 200,
-            height: 500,
-            overflow: "hidden",
-            borderRadius: 28,
-            boxShadow: "0 28px 72px rgba(45,125,67,0.20)",
-            border: "1.5px solid rgba(45,125,67,0.18)",
-            flexShrink: 0,
-            position: "relative",
-            zIndex: 1,
-          }}>
-            <EcoImg src="/Image/Ecotrack/home-screen.png" alt="EcoTrack home screen" />
-          </div>
-
-          {/* Left annotations */}
-          <div style={{ position: "absolute", left: 0, top: 24, display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-            <div style={{ position: "absolute", top: 0 }}>
+          {/* Left annotation column — right-aligned so arrows point toward phone */}
+          <div style={{ width: 200, position: "relative", minHeight: 520, flexShrink: 0 }}>
+            <div style={{ position: "absolute", top: 32, right: 8, textAlign: "right" }}>
               <HandNote text="personalised greeting" dir="right" />
             </div>
-            <div style={{ position: "absolute", top: 180 }}>
-              <HandNote text="activity breakdown" dir="right" />
+            <div style={{ position: "absolute", top: 195, right: 8, textAlign: "right" }}>
+              <HandNote text="emission breakdown" dir="right" />
             </div>
-            <div style={{ position: "absolute", top: 360 }}>
+            <div style={{ position: "absolute", top: 360, right: 8, textAlign: "right" }}>
               <HandNote text="inline education" dir="right" />
             </div>
           </div>
 
-          {/* Right annotations */}
-          <div style={{ position: "absolute", right: 0, top: 24 }}>
-            <div style={{ position: "absolute", top: 80 }}>
-              <HandNote text="65% below daily avg" dir="left" />
+          {/* Phone centered */}
+          <div style={{
+            width: 200,
+            height: 520,
+            overflow: "hidden",
+            borderRadius: 28,
+            boxShadow: "0 28px 72px rgba(45,125,67,0.22)",
+            border: "1.5px solid rgba(45,125,67,0.18)",
+            flexShrink: 0,
+          }}>
+            <EcoImg src="/Image/Ecotrack/home-screen.png" alt="EcoTrack home screen" />
+          </div>
+
+          {/* Right annotation column — left-aligned so arrows point toward phone */}
+          <div style={{ width: 200, position: "relative", minHeight: 520, flexShrink: 0 }}>
+            <div style={{ position: "absolute", top: 100, left: 8 }}>
+              <HandNote text="65% below avg" dir="left" />
             </div>
-            <div style={{ position: "absolute", top: 250 }}>
-              <HandNote text="one eco tip, one action" dir="left" />
+            <div style={{ position: "absolute", top: 270, left: 8 }}>
+              <HandNote text="one tip, one action" dir="left" />
             </div>
-            <div style={{ position: "absolute", top: 440 }}>
-              <HandNote text="+ log in one tap" dir="left" />
+            <div style={{ position: "absolute", top: 455, left: 8 }}>
+              <HandNote text="log in one tap" dir="left" />
             </div>
           </div>
         </div>
 
         <EcoCallout style={{ marginBottom: 0 }}>
-          The greeting leads with your name, then positive framing: <strong>&ldquo;You&apos;re <EcoNum>15%</EcoNum> below average.&rdquo;</strong> Good news before data. The ring and label frame the number as progress, not accusation.
+          The greeting leads with your name, then positive framing: <strong>&ldquo;You&apos;re <EcoNum>15%</EcoNum> below average.&rdquo;</strong> Good news before data. The ring frames the number as progress, not accusation.
         </EcoCallout>
       </div>
 
@@ -1074,7 +1074,7 @@ function ScreensSection() {
       <div className="csl-reveal rd1" style={{ marginBottom: 56 }}>
         <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Impact Screen</p>
         <p style={{ fontFamily: HAND, fontSize: "1.35rem", color: "#111827", marginBottom: 10 }}>Badges · Emission Graph · Carbon Sources</p>
-        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 22 }}>
+        <p style={{ fontSize: "0.9rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 22 }}>
           Answers &ldquo;am I getting better?&rdquo; through <EcoNum>3</EcoNum> lenses. Badges celebrate milestones. The emission graph shows actual CO₂ reduction over time. Carbon Sources shows the donut of where emissions come from — so users can identify which category to work on next.
         </p>
         <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", boxShadow: "0 16px 48px rgba(45,125,67,0.1)" }}>
@@ -1089,7 +1089,7 @@ function ScreensSection() {
       <div className="csl-reveal rd2" style={{ marginBottom: 56 }}>
         <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Learn Screen</p>
         <p style={{ fontFamily: HAND, fontSize: "1.35rem", color: "#111827", marginBottom: 10 }}>Eco Quiz · Knowledge Bites · Watch & Learn</p>
-        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 22 }}>
+        <p style={{ fontSize: "0.9rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 22 }}>
           A standalone &ldquo;Learn&rdquo; tab doesn&apos;t get opened. So this screen mixes formats: an Eco Quiz for engagement, Knowledge Bites for quick reads, Watch &amp; Learn for video. The tracking panel on the same screen proves that learn and log belong together.
         </p>
         <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", boxShadow: "0 16px 48px rgba(45,125,67,0.1)" }}>
@@ -1116,13 +1116,13 @@ function ScreensSection() {
             <p style={{ fontFamily: HAND, fontSize: "1.4rem", color: "#111827", marginBottom: 14, lineHeight: 1.3 }}>
               David · <EcoNum>35.8 kg</EcoNum> CO₂ Saved · Member since February 2024
             </p>
-            <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 20 }}>
+            <p style={{ fontSize: "0.9rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 20 }}>
               <EcoNum>3</EcoNum> stats directly below the avatar: CO₂ Saved, Member Since, and <EcoNum>+5%</EcoNum> Weekly Trend. Answers &ldquo;am I getting better?&rdquo; with no leaderboard, no streak counter. Personal progress only.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
               {["Edit Profile", "Preference", "Support", "Log out"].map((item) => (
                 <div key={item} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 16px", background: "#F9FAFB", borderRadius: 12 }}>
-                  <p style={{ fontSize: "0.78rem", color: "#374151", fontWeight: 500 }}>{item}</p>
+                  <p style={{ fontSize: "0.9rem", color: "#374151", fontWeight: 500 }}>{item}</p>
                   <span style={{ fontSize: "0.8rem", color: "#C4C9D4" }}>›</span>
                 </div>
               ))}
@@ -1156,21 +1156,21 @@ function IterationsSection() {
         ].map((row) => (
           <div key={row.task} style={{ marginBottom: 12 }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
-              <p style={{ fontSize: "0.76rem", color: "#374151" }}>{row.task}</p>
-              <p style={{ fontSize: "0.76rem", fontWeight: 700, color: parseFloat(row.pct) < 70 ? "#EF4444" : "#2D7D43" }}>{row.score}</p>
+              <p style={{ fontSize: "0.88rem", color: "#374151" }}>{row.task}</p>
+              <p style={{ fontSize: "0.88rem", fontWeight: 700, color: parseFloat(row.pct) < 70 ? "#EF4444" : "#2D7D43" }}>{row.score}</p>
             </div>
             <div style={{ height: 6, background: "#F3F4F6", borderRadius: 3 }}>
               <div style={{ width: row.pct, height: "100%", background: parseFloat(row.pct) < 70 ? "#FCA5A5" : "#48A362", borderRadius: 3 }} />
             </div>
           </div>
         ))}
-        <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.6, marginTop: 14 }}>Tasks 1 and 4 failed due to navigation, not content. The fix was structural.</p>
+        <p style={{ fontSize: "0.84rem", color: "#4B5563", lineHeight: 1.6, marginTop: 14 }}>Tasks 1 and 4 failed due to navigation, not content. The fix was structural.</p>
       </EcoCard>
 
       <EcoCard style={{ marginBottom: 36 }} className="csl-reveal rd1">
         <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>What I Observed</p>
         {ecoTestInsights.map((insight) => (
-          <div key={insight} style={{ display: "flex", gap: 10, marginBottom: 12, fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>
+          <div key={insight} style={{ display: "flex", gap: 10, marginBottom: 12, fontSize: "0.86rem", color: "#6B7280", lineHeight: 1.6 }}>
             <span style={{ color: "#EF4444", flexShrink: 0, marginTop: 1 }}>→</span>{insight}
           </div>
         ))}
@@ -1254,10 +1254,10 @@ function OutcomesSection() {
           {tasks.map((t, i) => (
             <div key={t.task} style={{ display: "grid", gridTemplateColumns: "1fr 80px 80px 80px", borderBottom: i < tasks.length - 1 ? "1px solid #F3F4F6" : "none", alignItems: "center" }}>
               <div style={{ padding: "13px 14px" }}>
-                <p style={{ fontSize: "0.76rem", color: "#374151" }}>{t.task}</p>
+                <p style={{ fontSize: "0.88rem", color: "#374151" }}>{t.task}</p>
               </div>
               <div style={{ padding: "13px 14px", textAlign: "center" }}>
-                <p style={{ fontSize: "0.78rem", color: "#9CA3AF" }}>{t.r1}</p>
+                <p style={{ fontSize: "0.9rem", color: "#9CA3AF" }}>{t.r1}</p>
               </div>
               <div style={{ padding: "13px 14px", textAlign: "center" }}>
                 <p style={{ fontSize: "0.82rem", fontWeight: 800, color: "#2D7D43" }}>{t.r2}</p>
@@ -1277,12 +1277,12 @@ function OutcomesSection() {
         <EcoCard style={{ background: "#FEF2F2" }}>
           <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#EF4444", marginBottom: 12 }}>Most common word — Round 1</p>
           <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#111827", marginBottom: 8 }}>&ldquo;complicated&rdquo;</p>
-          <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>No single element was broken. The whole screen competed for attention.</p>
+          <p style={{ fontSize: "0.86rem", color: "#6B7280", lineHeight: 1.6 }}>No single element was broken. The whole screen competed for attention.</p>
         </EcoCard>
         <EcoCard style={{ background: "#E8F7EC" }}>
           <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 12 }}>Most common word — Round 2</p>
           <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#2D7D43", marginBottom: 8 }}>&ldquo;simple&rdquo;</p>
-          <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.6 }}>Same data. Better frame. Prioritised information, not less of it.</p>
+          <p style={{ fontSize: "0.86rem", color: "#374151", lineHeight: 1.6 }}>Same data. Better frame. Prioritised information, not less of it.</p>
         </EcoCard>
       </div>
 
@@ -1311,7 +1311,7 @@ function LearningsSection() {
           <EcoCard key={l.title}>
             <span style={{ fontSize: "1.5rem", display: "block", marginBottom: 12 }}>{l.icon}</span>
             <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{l.title}</p>
-            <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>{l.desc}</p>
+            <p style={{ fontSize: "0.86rem", color: "#6B7280", lineHeight: 1.6 }}>{l.desc}</p>
           </EcoCard>
         ))}
       </div>

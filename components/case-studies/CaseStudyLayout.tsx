@@ -32,8 +32,8 @@ const THEME_VARS: Record<CsTheme, CSSProperties> = {
     "--csl-hero-bg":       "#0A1F0F",
     "--csl-tag-bg":        "#E8F7EC",
     "--csl-toc-active-bg": "#E8F7EC",
-    backgroundImage: "radial-gradient(circle, rgba(45,125,67,0.13) 1px, transparent 1px)",
-    backgroundSize: "24px 24px",
+    backgroundImage: "linear-gradient(rgba(45,125,67,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(45,125,67,0.07) 1px, transparent 1px)",
+    backgroundSize: "28px 28px",
   } as CSSProperties,
   care: {
     "--csl-accent":        "#0077B6",
