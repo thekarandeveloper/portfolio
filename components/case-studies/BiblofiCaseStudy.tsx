@@ -119,7 +119,7 @@ function PhoneMockupScene() {
           width:88, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
         }} />
         <div style={{ position:"absolute", inset:0, borderRadius:42, overflow:"hidden" }}>
-          <Image src="/Image/Biblofi/smart-book.png" alt="BibloFi — Smart Book Discovery"
+          <Image src="/Image/Biblofi/smart-book.png" alt="BibloFi: Smart Book Discovery"
             width={420} height={908}
             style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
           <div style={{
@@ -330,7 +330,7 @@ function ResearchSection() {
   return (
     <CsSection id="research">
       <CsSectionHeader
-        label="Discover — Research"
+        label="Discover: Research"
         title={<>Understanding how students <em style={{ fontStyle:"italic" }}>actually use libraries.</em></>}
       />
 
@@ -352,7 +352,7 @@ function ResearchSection() {
       <div className="csl-reveal rd2" style={{ marginBottom:28, borderRadius:16, overflow:"hidden" }}>
         <Image
           src="/Image/Biblofi/research.png"
-          alt="Research methodology — surveys, interviews & observation"
+          alt="Research methodology: surveys, interviews and observation"
           width={1200} height={680}
           style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
         />
@@ -390,7 +390,7 @@ function InsightsSection() {
   return (
     <CsSection id="insights">
       <CsSectionHeader
-        label="Define — Personas"
+        label="Define: Personas"
         title={<>Two students, two stories, <em style={{ fontStyle:"italic" }}>one shared frustration.</em></>}
         sub="Based on real research insights, I created two fictional personas representing the core user archetypes."
       />
@@ -453,7 +453,7 @@ function WireframesSection() {
   return (
     <CsSection id="wireframes">
       <CsSectionHeader
-        label="Develop — Wireframes"
+        label="Develop: Wireframes"
         title={<>From rough sketches <em style={{ fontStyle:"italic" }}>to structured flows.</em></>}
         sub="The brainstorming started in WhatsApp chats and rough sketches, raw ideas translated into structured lo-fi wireframes in FigJam."
       />
@@ -481,7 +481,7 @@ function LoFiWireframesSection() {
   return (
     <CsSection id="lofi">
       <CsSectionHeader
-        label="Develop — Lo-Fi Wireframes"
+        label="Develop: Lo-Fi Wireframes"
         title={<>Rough ideas turned into <em style={{ fontStyle:"italic" }}>structured screens.</em></>}
         sub="Each flow was mapped out screen by screen, laying the foundation before moving into high-fidelity design."
       />
@@ -536,7 +536,7 @@ function ConstraintsSection() {
   return (
     <CsSection id="constraints">
       <CsSectionHeader
-        label="Develop — Constraints & Tradeoffs"
+        label="Develop: Constraints & Tradeoffs"
         title={<>What we worked within, <em style={{ fontStyle:"italic" }}>and what we chose to cut.</em></>}
         sub="Real projects have real limits. These constraints shaped every major decision in the design, and naming them is part of the work."
       />
@@ -569,7 +569,7 @@ function ScreensSection() {
   return (
     <CsSection id="screens">
       <CsSectionHeader
-        label="Deliver — Key Features"
+        label="Deliver: Key Features"
         title={<>Three features that make <em style={{ fontStyle:"italic" }}>library visits optional.</em></>}
       />
 
@@ -643,7 +643,7 @@ function FinalScreensSection() {
   return (
     <CsSection id="final">
       <CsSectionHeader
-        label="Deliver — Final Designs"
+        label="Deliver: Final Designs"
         title={<>The finished product, <em style={{ fontStyle:"italic" }}>every screen, polished.</em></>}
         sub="From onboarding to book discovery, seat booking to fine tracking, final high-fidelity screens delivered to the Infosys engineering team."
       />
@@ -794,7 +794,7 @@ function FinalScreensSection() {
           <div style={{ width:260, borderRadius:28, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.13)" }}>
             <Image
               src={`${FINAL}/filters.png`}
-              alt="Genre filters — Tell us what you love to read"
+              alt="Genre filters: Tell us what you love to read"
               width={320} height={693}
               style={{ width:"100%", height:"auto", display:"block" }}
             />

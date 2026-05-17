@@ -486,7 +486,7 @@ const heroHtml = `
       A <strong>product designer</strong> who makes things look intentional
       even when they're 10 minutes before the deadline ✨<br><br>
       I design B2B products, healthcare platforms, and occasionally
-      my own sleep schedule — <em>still in beta 🐛</em><br><br>
+      my own sleep schedule, <em>still in beta 🐛</em><br><br>
       Professionally, I turn messy problems into clean experiences.
       Personally, I turn cold coffee into design decisions. ☕
     </p>
@@ -543,7 +543,7 @@ const lovesHtml = `
       <h3 class="ab-love-name">Cold Coffee</h3>
       <p class="ab-love-desc">
         Hot coffee is a compromise. Iced americano is a way of life.
-        I take my coffee like I take my designs — cold, precise,
+        I take my coffee like I take my designs: cold, precise,
         and completely non-negotiable.
       </p>
       <p class="ab-love-whisper">streak: same order, 47 days straight</p>
@@ -555,7 +555,7 @@ const lovesHtml = `
       <h3 class="ab-love-name">Travel</h3>
       <p class="ab-love-desc">
         New cities rewire my brain. Every trip comes back as a design
-        reference, a rethought mental model, or at minimum — a really
+        reference, a rethought mental model, or at minimum, a really
         good story for interviews.
       </p>
       <p class="ab-love-whisper">currently planning: everywhere</p>

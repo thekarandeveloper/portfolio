@@ -34,7 +34,7 @@ function DSHero() {
             <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.55)" }}>Built for scale.</em>
           </h1>
           <p className="csl-hero-desc">
-            As Lead Product Designer, I planned, designed, and scaled a unified design system across multiple products. One Figma library that gave design and engineering a shared language — and ended the inconsistency for good.
+            As Lead Product Designer, I planned, designed, and scaled a unified design system across multiple products. One Figma library that gave design and engineering a shared language, ending the inconsistency for good.
           </p>
           <div className="csl-hero-chips">
             <span className="csl-hero-chip">Lead Product Designer</span>
@@ -174,11 +174,11 @@ function OverviewSection() {
       </div>
 
       <p className="csl-text csl-reveal" style={{ maxWidth: 620 }}>
-        Multiple products. Each evolving independently. The result: three shades of the same blue, buttons rebuilt every sprint, and Figma files no one could navigate. The goal was one system — one source of truth for design and engineering.
+        Multiple products. Each evolving independently. The result: three shades of the same blue, buttons rebuilt every sprint, and Figma files no one could navigate. The goal was one system: one source of truth for design and engineering.
       </p>
 
       <div className="csl-callout csl-reveal rd1" style={{ marginTop: 28, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
-        <strong>NDA Note —</strong> Built from scratch for a production organization, later scaled across products. Certain components and visuals have been edited to comply with NDA.
+        <strong>NDA Note:</strong> Built from scratch for a production organization, later scaled across products. Certain components and visuals have been edited to comply with NDA.
       </div>
     </CsSection>
   );
@@ -193,7 +193,7 @@ function DiscoverySection() {
       <CsSectionHeader
         label="Discovery Phase"
         title="The reality check: inconsistency everywhere."
-        sub="Before designing anything new, I conducted a full audit of every existing product across the organization. The goal was to understand what already existed — and where things were breaking down."
+        sub="Before designing anything new, I conducted a full audit of every existing product across the organization. The goal was to understand what already existed, and where things were breaking down."
       />
 
       {/* Pull quote — the most human moment, shown large */}
@@ -207,7 +207,7 @@ function DiscoverySection() {
       <div className="csl-reveal rd1" style={{ borderRadius: 18, overflow: "hidden", border: "1px solid #FEE2E2", marginBottom: 36 }}>
         <div style={{ background: "#FEF2F2", padding: "11px 20px", borderBottom: "1px solid #FEE2E2", display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#DC2626", flexShrink: 0 }} />
-          <p style={{ fontSize: "15px", fontWeight: 600, color: "#7F1D1D", textTransform: "uppercase", letterSpacing: "0.12em" }}>Audit finding — "the same blue" across three products</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#7F1D1D", textTransform: "uppercase", letterSpacing: "0.12em" }}>Audit finding: "the same blue" across three products</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", background: "#fff" }}>
           {[
@@ -228,7 +228,7 @@ function DiscoverySection() {
         </div>
         <div style={{ background: "#FEF2F2", padding: "10px 20px", borderTop: "1px solid #FEE2E2", display: "flex", alignItems: "center", gap: 8 }}>
           <span style={{ fontSize: "15px", color: "#DC2626", flexShrink: 0 }}>⚠</span>
-          <p style={{ fontSize: "15px", color: "#991B1B", lineHeight: 1.5 }}>Three hex values for the same "primary blue." All three in production simultaneously — no one realised they had diverged.</p>
+          <p style={{ fontSize: "15px", color: "#991B1B", lineHeight: 1.5 }}>Three hex values for the same "primary blue." All three in production simultaneously; no one realised they had diverged.</p>
         </div>
       </div>
 
@@ -236,7 +236,7 @@ function DiscoverySection() {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }} className="csl-reveal rd2">
         {[
           { title: "Multiple component versions",   body: "Buttons, tables, and form fields had 2–3 different versions each. No shared base component, no shared rules."               },
-          { title: "3 shades of the same blue",     body: "Tech Blue had three different hex values in production — all intended to be 'the primary blue'."                              },
+          { title: "3 shades of the same blue",     body: "Tech Blue had three different hex values in production, all intended to be 'the primary blue'."                              },
           { title: "No shared spacing or type rules",body: "Font sizes and spacing values were eyeballed per feature. No tokens, no scale, no documentation."                          },
           { title: "Figma files impossible to reuse",body: "Files were organized per-feature with no shared styles or components. Onboarding a new designer meant learning 12 files."  },
         ].map((item) => (
@@ -271,7 +271,7 @@ function DiscoverySection() {
 function ApproachSection() {
   const steps = [
     { num: "01", label: "Audit first",     detail: "40+ screens mapped before a single component was drawn. Understand what exists before building anything new." },
-    { num: "02", label: "Top-down",        detail: "High-impact, high-frequency components first. Deliver value fast — don't spend weeks on atoms no one uses." },
+    { num: "02", label: "Top-down",        detail: "High-impact, high-frequency components first. Deliver value fast; don't spend weeks on atoms no one uses." },
     { num: "03", label: "Dev from day 1",  detail: "Partnered with engineering before opening Figma. Named properties and constraints agreed upfront." },
     { num: "04", label: "Track in Figma",  detail: "Kanban board inside the library file. Status, feedback, and iteration visible to every team member." },
   ];
@@ -281,7 +281,7 @@ function ApproachSection() {
       <CsSectionHeader
         label="Approach & Strategy"
         title="Structure first. Components second."
-        sub="Before opening Figma, the process was defined — how work gets tracked, how developers stay involved, what principles guide every decision."
+        sub="Before opening Figma, the process was defined: how work gets tracked, how developers stay involved, what principles guide every decision."
       />
 
       {/* 4-step horizontal process */}
@@ -306,7 +306,7 @@ function ApproachSection() {
       </div>
 
       <div className="csl-callout csl-reveal rd1" style={{ borderLeftColor: "#1076BC", background: "#E3F3FF", marginBottom: 28 }}>
-        Built on <strong>Atomic Design</strong> — tokens → atoms → molecules → organisms. Change a token, every component that uses it updates automatically. Scalability is structural, not cosmetic.
+        Built on <strong>Atomic Design</strong>: tokens → atoms → molecules → organisms. Change a token, every component that uses it updates automatically. Scalability is structural, not cosmetic.
       </div>
 
       {/* Figma library — how the file was organized */}
@@ -315,7 +315,7 @@ function ApproachSection() {
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57" }} />
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFBD2E" }} />
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#28CA41" }} />
-          <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>AirIQ Design System.fig — how the library was organized</span>
+          <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>AirIQ Design System.fig: how the library was organized</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "200px 1fr" }}>
           {/* Pages sidebar */}
@@ -339,7 +339,7 @@ function ApproachSection() {
           </div>
           {/* Canvas area */}
           <div style={{ padding: "20px 24px", background: "#0D1117" }}>
-            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>05 – Components — Section overview</p>
+            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>05 – Components: Section overview</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
               {[
                 { label: "Buttons",    count: "4 variants" },
@@ -431,7 +431,7 @@ function ColorEditorialBanner() {
         <p style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)", color: "#4B5563", lineHeight: 1.7, fontWeight: 400, letterSpacing: "-0.01em" }}>
           When choosing{" "}
           <strong style={{ fontWeight: 800, color: "#111827" }}>a color system</strong>
-          {" "}for AirIQ, we prioritised trust — calm blues that signal{" "}
+          {" "}for AirIQ, we prioritised trust: calm blues that signal{" "}
           <strong style={{ fontWeight: 800, color: "#111827" }}>reliability</strong>
           {" "}and coral that drives urgency where it counts.
         </p>
@@ -524,7 +524,7 @@ function ColorSection() {
       {/* Signal colors — compact row */}
       <div className="csl-reveal rd2" style={{ marginBottom: 0 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>Signal Colors — Status & Feedback</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>Signal Colors: Status & Feedback</p>
           <span style={{ fontSize: "15px", fontWeight: 600, background: "#DCFFEA", color: "#059669", borderRadius: 20, padding: "2px 10px" }}>WCAG AA verified</span>
         </div>
         <div style={{ display: "flex", gap: 6 }}>
@@ -536,7 +536,7 @@ function ColorSection() {
           ))}
         </div>
         <p style={{ fontSize: "15px", color: "#6B7280", marginTop: 14, lineHeight: 1.6 }}>
-          Each signal ships with a light tint for alert backgrounds. Change the token — every component that uses it updates.
+          Each signal ships with a light tint for alert backgrounds. Change the token; every component that uses it updates.
         </p>
       </div>
 
@@ -561,12 +561,12 @@ function TypographySection() {
       <CsSectionHeader
         label="Typography"
         title={<>Lato. Clean, <em style={{ fontStyle: "italic" }}>human, readable.</em></>}
-        sub="One typeface, five weights, five sizes — with 140% line height and −0.5% letter spacing throughout. Readable at 11pt in a legal footnote, impactful at 28pt in a page heading."
+        sub="One typeface, five weights, five sizes, with 140% line height and −0.5% letter spacing throughout. Readable at 11pt in a legal footnote, impactful at 28pt in a page heading."
       />
 
       {/* Live type hierarchy — show it working, not specced */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 20, padding: "32px 36px" }}>
-        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 28 }}>Type hierarchy — shown at scale</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 28 }}>Type hierarchy: shown at scale</p>
         <div style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 20, marginBottom: 20 }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 4 }}>
             <p style={{ fontSize: "1.75rem", fontWeight: 700, color: "#111827", lineHeight: 1.2, flex: 1 }}>Book your next flight</p>
@@ -640,7 +640,7 @@ function IconographySection() {
       <div className="csl-reveal" style={{ borderRadius: 20, overflow: "hidden", background: "#071E35", marginBottom: 28 }}>
         <img
           src="/Design System/icons.png"
-          alt="Full icon library — all 62 custom icons across 12 categories at 3 sizes"
+          alt="Full icon library: all 62 custom icons across 12 categories at 3 sizes"
           style={{ width: "100%", display: "block" }}
         />
         <div style={{ padding: "14px 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -654,7 +654,7 @@ function IconographySection() {
       </div>
 
       <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.7, maxWidth: 640, marginBottom: 28 }} className="csl-reveal rd1">
-        Every icon is drawn on a 24×24px keyline grid — consistent 2px stroke, 2px corner radius. Each ships in three sizes with identical proportions and optical centre, so they look right whether they're in a nav bar or inside a table cell.
+        Every icon is drawn on a 24×24px keyline grid, with consistent 2px stroke, 2px corner radius. Each ships in three sizes with identical proportions and optical centre, so they look right whether they're in a nav bar or inside a table cell.
       </p>
 
       {/* Compact keyline spec — 2-col */}
@@ -698,7 +698,7 @@ function IconographySection() {
             ))}
           </div>
           <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.7 }}>
-            All three sizes share the same stroke weight and optical centre — they look consistent whether used in a top nav or as a small inline indicator inside a table cell.
+            All three sizes share the same stroke weight and optical centre; they look consistent whether used in a top nav or as a small inline indicator inside a table cell.
           </p>
         </div>
       </div>
@@ -711,7 +711,7 @@ function IconographySection() {
 ───────────────────────────────────────────────────────────────────── */
 function ComponentsSection() {
   const buttonTypes = [
-    { type: "Primary",    bg: "#1076BC",     color: "#fff",     border: "none",                   note: "Main CTA — search, book, confirm"   },
+    { type: "Primary",    bg: "#1076BC",     color: "#fff",     border: "none",                   note: "Main CTA: search, book, confirm"   },
     { type: "Secondary",  bg: "#F2616E",     color: "#fff",     border: "none",                   note: "Destructive · Alerts · Promotions"   },
     { type: "Tertiary",   bg: "transparent", color: "#1C1C1C",  border: "1.5px solid #E0E6EC",   note: "Secondary actions · Cancel · Filters" },
     { type: "Borderless", bg: "transparent", color: "#1076BC",  border: "none",                   note: "Inline links · Low-emphasis actions"  },
@@ -737,12 +737,12 @@ function ComponentsSection() {
       <CsSectionHeader
         label="Components"
         title={<>The itinerary card. <em style={{ fontStyle: "italic" }}>And everything around it.</em></>}
-        sub="The most-used and most complex component in the system — and the one that made everything else click. Once its structure was right, every other component fell into place."
+        sub="The most-used and most complex component in the system, and the one that made everything else click. Once its structure was right, every other component fell into place."
       />
 
       {/* ── Component library — at a glance ── */}
       <div className="csl-reveal" style={{ marginBottom: 32 }}>
-        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Component library — 20+ components, 8 categories</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Component library: 20+ components, 8 categories</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
 
           {/* Search Field */}
@@ -883,7 +883,7 @@ function ComponentsSection() {
 
       {/* ── Itinerary card — LEADS ── */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 28 }}>
-        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Itinerary Card — The most complex component</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Itinerary Card: The most complex component</p>
         <div className="csl-card-2col" style={{ alignItems: "start" }}>
           {/* Card mockup */}
           <div style={{ border: "1.5px solid #E0E6EC", borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}>
@@ -949,8 +949,8 @@ function ComponentsSection() {
               {[
                 { zone: "Header bar",    desc: "Airline identity · flight number · class + stop badges",   color: "#1076BC" },
                 { zone: "Route block",   desc: "Departure/arrival times · airport codes · duration line",   color: "#059669" },
-                { zone: "Route line",    desc: "SVG connector with stop indicators — scales for layovers",  color: "#606EF2" },
-                { zone: "Amenity strip", desc: "Baggage allowance · meal · seat type — token-sized icons",  color: "#F2616E" },
+                { zone: "Route line",    desc: "SVG connector with stop indicators, scales for layovers",  color: "#606EF2" },
+                { zone: "Amenity strip", desc: "Baggage allowance · meal · seat type, token-sized icons",  color: "#F2616E" },
                 { zone: "Price + CTA",   desc: "Starting fare always visible · primary Book button right-aligned", color: "#EDD916" },
               ].map((a, i, arr) => (
                 <div key={a.zone} style={{ display: "flex", gap: 12, padding: "12px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none", alignItems: "flex-start" }}>
@@ -964,7 +964,7 @@ function ComponentsSection() {
             </div>
             <div style={{ marginTop: 16, background: "#E3F3FF", borderRadius: 10, padding: "10px 14px" }}>
               <p style={{ fontSize: "15px", color: "#1076BC", lineHeight: 1.6 }}>
-                The itinerary card was the most-used component across all products. Getting its structure right — especially the route line scaling for layovers — unlocked consistency across all search result views.
+                The itinerary card was the most-used component across all products. Getting its structure right, especially the route line scaling for layovers, unlocking consistency across all search result views.
               </p>
             </div>
           </div>
@@ -973,7 +973,7 @@ function ComponentsSection() {
 
       {/* ── Button system ── */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Button System — 4 types · 4 states</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Button System: 4 types · 4 states</p>
         <div style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 12, alignItems: "end" }}>
           <div />
           {buttonTypes.map((b) => (
@@ -1042,7 +1042,7 @@ function ComponentsSection() {
             { k: "Padding H",    v: "20 px" },
             { k: "Corner radius",v: "8 px"  },
             { k: "Font",         v: "Lato · 15pt · 600" },
-            { k: "Full-width",   v: "Yes — fills container" },
+            { k: "Full-width",   v: "Yes, fills container" },
             { k: "Focus ring",   v: "2px offset, accent" },
           ].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
@@ -1055,7 +1055,7 @@ function ComponentsSection() {
 
       {/* ── Text field system ── */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Text Field System — 5 states</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Text Field System: 5 states</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, marginBottom: 20 }}>
           {fieldStates.map((f) => (
             <div key={f.label}>
@@ -1088,7 +1088,7 @@ function ComponentsSection() {
             { k: "Corner radius", v: "8 px" },
             { k: "Label",         v: "Lato · 11pt · 600 · uppercase" },
             { k: "Input text",    v: "Lato · 13pt · 500" },
-            { k: "Border",        v: "1.5 px — changes per state" },
+            { k: "Border",        v: "1.5 px, changes per state" },
             { k: "Error text",    v: "Lato · 11pt · 400 · Coral" },
           ].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", flexDirection: "column", gap: 3 }}>
@@ -1215,8 +1215,8 @@ function GridEditorialBanner() {
 ───────────────────────────────────────────────────────────────────── */
 function GridSection() {
   const grids = [
-    { name: "General Grid",  cols: 12, margin: "12 px", gutter: "12 px", context: "Desktop — all standard pages",      note: "Homepage, listing, profile, settings — every general layout uses this grid."                                         },
-    { name: "Search Grid",   cols: 5,  margin: "12 px", gutter: "12 px", context: "Desktop — search results",          note: "Sidebar takes 1 column; results take 4. No arbitrary pixel overrides needed."                                     },
+    { name: "General Grid",  cols: 12, margin: "12 px", gutter: "12 px", context: "Desktop: all standard pages",      note: "Homepage, listing, profile, settings: every general layout uses this grid."                                         },
+    { name: "Search Grid",   cols: 5,  margin: "12 px", gutter: "12 px", context: "Desktop: search results",          note: "Sidebar takes 1 column; results take 4. No arbitrary pixel overrides needed."                                     },
     { name: "Mobile Grid",   cols: 4,  margin: "12 px", gutter: "8 px",  context: "All mobile screens",                note: "Tighter 8px gutter maximises usable width on small screens while preserving breathing room between elements."       },
   ];
 
@@ -1248,8 +1248,8 @@ function GridSection() {
               <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
-          <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>Desktop — all standard pages</p>
-          <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Homepage, listing, profile, settings — every general layout uses this grid.</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>Desktop: all standard pages</p>
+          <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Homepage, listing, profile, settings: every general layout uses this grid.</p>
         </div>
 
         {/* 5-col Search Grid */}
@@ -1273,7 +1273,7 @@ function GridSection() {
               <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
-          <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>Desktop — search results</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>Desktop: search results</p>
           <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Sidebar takes 1 column; results take 4. No arbitrary pixel overrides needed.</p>
         </div>
 
@@ -1305,7 +1305,7 @@ function GridSection() {
       </div>
 
       <div className="csl-callout csl-reveal rd2" style={{ marginTop: 20, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
-        <strong>Why a separate search grid?</strong> The results page has a persistent filter sidebar. A 5-column grid maps the sidebar to exactly 1 column and the results panel to 4 — the layout is intentional, not improvised.
+        <strong>Why a separate search grid?</strong> The results page has a persistent filter sidebar. A 5-column grid maps the sidebar to exactly 1 column and the results panel to 4; the layout is intentional, not improvised.
       </div>
     </CsSection>
   );
@@ -1320,7 +1320,7 @@ function ResultsSection() {
       <CsSectionHeader
         label="Final Output & Impact"
         title="A complete system, actively in use."
-        sub="By the end of the project, a complete, scalable design system was in place — all core components documented, all tokens defined, and the system actively adopted across products."
+        sub="By the end of the project, a complete, scalable design system was in place: all core components documented, all tokens defined, and the system actively adopted across products."
       />
 
       {/* Before / After — hero visual */}
@@ -1334,12 +1334,12 @@ function ResultsSection() {
           </div>
         </div>
         {[
-          ["3 different 'primary blue' hex values in production",          "One Tech Blue token — #1076BC — everywhere"],
-          ["Icon styles mixed outlined and filled in the same flow",        "62 custom icons — one grid, one stroke weight, one style"],
+          ["3 different 'primary blue' hex values in production",          "One Tech Blue token, #1076BC, everywhere"],
+          ["Icon styles mixed outlined and filled in the same flow",        "62 custom icons: one grid, one stroke weight, one style"],
           ["Designers rebuilding components from scratch every sprint",     "New screens assembled from the library in hours"],
           ["Developers reverse-engineering spacing from screenshots",       "Token names match exactly between Figma and code"],
-          ["12+ Figma files — impossible to navigate or reuse",            "One organised library file, well-documented and shared"],
-          ["Slow onboarding — new designers needed to learn every file",   "Shared system means new designers are productive in days"],
+          ["12+ Figma files: impossible to navigate or reuse",            "One organised library file, well-documented and shared"],
+          ["Slow onboarding: new designers needed to learn every file",   "Shared system means new designers are productive in days"],
         ].map(([b, a], i) => (
           <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid #F3F4F6" }}>
             <div style={{ padding: "14px 24px", background: "#fff", display: "flex", alignItems: "center", gap: 10 }}>
@@ -1380,28 +1380,28 @@ function LearningsSection() {
     {
       category: "Process",
       assumption: "I thought building the components was the hard part.",
-      reality: "The real work was everything around them — the Kanban tracking, developer alignment, naming conventions, and communication cadence. The Figma file was 50% of the job.",
+      reality: "The real work was everything around them: the Kanban tracking, developer alignment, naming conventions, and communication cadence. The Figma file was 50% of the job.",
       color: "#1076BC",
       bg: "#E3F3FF",
     },
     {
       category: "Foundation",
       assumption: "I thought I could skip the audit and jump straight into designing.",
-      reality: "Two weeks of mapping the existing product revealed the true scope of the problem — and prevented me from building components that already existed in slightly different forms.",
+      reality: "Two weeks of mapping the existing product revealed the true scope of the problem, preventing me from building components that already existed in slightly different forms.",
       color: "#059669",
       bg: "#DCFFEA",
     },
     {
       category: "Scale",
       assumption: "I thought 'done' meant all components were built.",
-      reality: "A design system is never done. Publishing the library was day one of adoption, not the finish line. Systems evolve — the governance around them is what keeps them alive.",
+      reality: "A design system is never done. Publishing the library was day one of adoption, not the finish line. Systems evolve; the governance around them is what keeps them alive.",
       color: "#606EF2",
       bg: "#EDEDFF",
     },
     {
       category: "Collaboration",
       assumption: "I thought design decisions could be made in isolation, then handed off.",
-      reality: "Partnering with the developer from day one — on naming, component properties, and constraints — meant zero translation overhead. What was named in Figma was named in code.",
+      reality: "Partnering with the developer from day one, on naming, component properties, and constraints, meant zero translation overhead. What was named in Figma was named in code.",
       color: "#F2616E",
       bg: "#FFF0F1",
     },
@@ -1411,7 +1411,7 @@ function LearningsSection() {
     <CsSection id="learnings" last>
       <CsSectionHeader
         label="Learnings"
-        title="What I thought going in — and what actually happened."
+        title="What I thought going in, and what actually happened."
         sub="The most valuable lessons from this project weren't about design craft. They were about process, systems thinking, and working cross-functionally at scale."
       />
 
@@ -1460,7 +1460,7 @@ function LearningsSection() {
 
       {/* Mentorship note */}
       <div className="csl-callout csl-reveal" style={{ marginTop: 32, borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
-        <strong>Beyond the system itself —</strong> as part of this work I also mentored junior designers on component usage and design system thinking. Helping others understand the system revealed gaps in the documentation that I wouldn&apos;t have found on my own.
+        <strong>Beyond the system itself:</strong> as part of this work I also mentored junior designers on component usage and design system thinking. Helping others understand the system revealed gaps in the documentation that I wouldn&apos;t have found on my own.
       </div>
 
       <a href="/projects/care-autor" className="csl-next csl-reveal" style={{ marginTop: 56 }}>

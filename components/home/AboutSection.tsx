@@ -6,7 +6,7 @@ const html = `<section class="sc-about" id="about">
     <!-- TOP LEFT: bio card -->
     <div class="sc-card sc-bio reveal from-left">
       <span class="sc-tag">hey, i'm nikunj 👋</span>
-      <p class="sc-bio-text">A product designer who turns messy problems into clean, human experiences. I believe great design is invisible — it just <em>feels right.</em></p>
+      <p class="sc-bio-text">A product designer who turns messy problems into clean, human experiences. I believe great design is invisible; it just <em>feels right.</em></p>
       <div class="sc-bio-footer">
         <span>3+ yrs designing</span>
         <span class="sc-dot">·</span>

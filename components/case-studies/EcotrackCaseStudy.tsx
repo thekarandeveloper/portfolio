@@ -566,7 +566,7 @@ function FABPhone() {
 function TechnicalChartCard() {
   return (
     <EcoCard>
-      <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 12 }}>Carbon Metrics — Today</p>
+      <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 12 }}>Carbon Metrics: Today</p>
       {[
         { label: "Transport CO₂e", val: "0.8 kg", sub: "CH4 equiv: 0.03", pct: "35%" },
         { label: "Electricity kWh", val: "1.1 kg", sub: "Scope 2: indirect", pct: "47%" },
@@ -962,7 +962,7 @@ function DesignSection() {
       <EcoCard style={{ marginBottom: 20 }} className="csl-reveal rd1">
         <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 12 }}>Colour decision</p>
         <p style={{ fontSize: "15px", color: "#374151", lineHeight: 1.7, marginBottom: 20 }}>
-          Tested <EcoNum>3</EcoNum> green values. Lime-green was too optimistic — celebrating before the user did anything. Forest green felt preachy. <strong style={{ color: "#111827" }}>#2D7D43 sits between: calm, credible, grown-up.</strong>
+          Tested <EcoNum>3</EcoNum> green values. Lime-green was too optimistic, celebrating before the user did anything. Forest green felt preachy. <strong style={{ color: "#111827" }}>#2D7D43 sits between: calm, credible, grown-up.</strong>
         </p>
         <div style={{ display: "flex", borderRadius: 12, overflow: "hidden", marginBottom: 10 }}>
           {["#2D7D43", "#48A362", "#E8F7EC", "#0A1F0F", "#111827", "#6B7280"].map((hex) => (
@@ -1088,7 +1088,7 @@ function OnboardingSection() {
   return (
     <CsSection id="onboarding">
       <CsSectionHeader
-        label="High Fidelity — OnBoarding"
+        label="High Fidelity: OnBoarding"
         title={<>Nine screens. <Script>One commitment at a time.</Script></>}
         sub="V1 asked for too much before showing any value. 2 testers dropped off before setup was complete. V2 earns trust first, then asks."
       />
@@ -1154,7 +1154,7 @@ function ScreensSection() {
   return (
     <CsSection id="screens">
       <CsSectionHeader
-        label="High Fidelity — Core App Screens"
+        label="High Fidelity: Core App Screens"
         title={<>Five views. <Script>One coherent system.</Script></>}
         sub="Each screen answers one question without requiring the user to navigate away."
       />
@@ -1215,7 +1215,7 @@ function ScreensSection() {
         <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Impact Screen</p>
         <p style={{ fontFamily: HAND, fontSize: "1.35rem", color: "#111827", marginBottom: 10 }}>Badges · Emission Graph · Carbon Sources</p>
         <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.75, marginBottom: 22 }}>
-          Answers &ldquo;am I getting better?&rdquo; through <EcoNum>3</EcoNum> lenses. Badges celebrate milestones. The emission graph shows actual CO₂ reduction over time. Carbon Sources shows the donut of where emissions come from — so users can identify which category to work on next.
+          Answers &ldquo;am I getting better?&rdquo; through <EcoNum>3</EcoNum> lenses. Badges celebrate milestones. The emission graph shows actual CO₂ reduction over time. Carbon Sources shows the donut of where emissions come from, so users can identify which category to work on next.
         </p>
         <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", boxShadow: "0 16px 48px rgba(45,125,67,0.1)" }}>
           <EcoImg src="/Image/Ecotrack/impact%20screen.png" alt="EcoTrack impact screen" />
@@ -1348,7 +1348,7 @@ function IterationsSection() {
           <div>
             <p className="csl-ba-label before">✕ Hypothesis (V1)</p>
             <TechnicalChartCard />
-            <p className="csl-ba-desc"><EcoNum>3</EcoNum> testers: &quot;meaningless&quot; or &quot;like seeing calories on a menu — just guilt.&quot; The problem wasn&apos;t the design. It was the frame.</p>
+            <p className="csl-ba-desc"><EcoNum>3</EcoNum> testers: &quot;meaningless&quot; or &quot;like seeing calories on a menu, just guilt.&quot; The problem wasn&apos;t the design. It was the frame.</p>
           </div>
           <div>
             <p className="csl-ba-label after">✓ Updated Design (V2)</p>
@@ -1381,7 +1381,7 @@ function OutcomesSection() {
 
       <EcoCard style={{ marginBottom: 28 }} className="csl-reveal">
         <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 16 }}>
-          Usability test results — Round 1 vs Round 2 (n=<EcoNum>5</EcoNum> each)
+          Usability test results: Round 1 vs Round 2 (n=<EcoNum>5</EcoNum> each)
         </p>
         <div style={{ border: "1px solid #F3F4F6", borderRadius: 12, overflow: "hidden" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 80px 80px", background: "#F9FAFB", borderBottom: "1px solid #F3F4F6" }}>
@@ -1415,12 +1415,12 @@ function OutcomesSection() {
 
       <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 28 }}>
         <EcoCard style={{ background: "#FEF2F2" }}>
-          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#EF4444", marginBottom: 12 }}>Most common word — Round 1</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#EF4444", marginBottom: 12 }}>Most common word: Round 1</p>
           <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#111827", marginBottom: 8 }}>&ldquo;complicated&rdquo;</p>
           <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.6 }}>No single element was broken. The whole screen competed for attention.</p>
         </EcoCard>
         <EcoCard style={{ background: "#E8F7EC" }}>
-          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 12 }}>Most common word — Round 2</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 12 }}>Most common word: Round 2</p>
           <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#2D7D43", marginBottom: 8 }}>&ldquo;simple&rdquo;</p>
           <p style={{ fontSize: "15px", color: "#374151", lineHeight: 1.6 }}>Same data. Better frame. Prioritised information, not less of it.</p>
         </EcoCard>
@@ -1428,7 +1428,7 @@ function OutcomesSection() {
 
       <EcoCallout className="csl-reveal rd2">
         <span style={{ fontSize: "1.1rem", marginRight: 8 }}>📌</span>
-        <strong>Honest caveat:</strong> <EcoNum>5</EcoNum> participants per round validates direction — not production readiness. The test that would actually matter is <EcoNum>30</EcoNum>-day retention data. This sprint can&apos;t generate that.
+        <strong>Honest caveat:</strong> <EcoNum>5</EcoNum> participants per round validates direction, not production readiness. The test that would actually matter is <EcoNum>30</EcoNum>-day retention data. This sprint can&apos;t generate that.
       </EcoCallout>
     </CsSection>
   );
@@ -1472,7 +1472,7 @@ function LearningsSection() {
       <Link href="/projects/biblofi" className="csl-next csl-reveal rd2" style={{ marginTop: 8 }}>
         <div>
           <p className="csl-next-label">Next Case Study</p>
-          <p className="csl-next-title">BibloFi — Library Management System</p>
+          <p className="csl-next-title">BibloFi: Library Management System</p>
         </div>
         <span className="csl-next-arrow">→</span>
       </Link>

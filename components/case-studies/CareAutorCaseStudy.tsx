@@ -37,7 +37,7 @@ function CareHero() {
             Freelance · B2C · Healthcare
           </div>
           <h1 className="csl-hero-title">
-            Care Autor —<br />
+            Care Autor<br />
             <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.6)" }}>Designing for Care,</em>
             <br />Not Complexity.
           </h1>
@@ -98,7 +98,7 @@ function CareHeroMockup() {
           <p style={{ fontSize: "15px", fontWeight: 600, color: "#0077B6", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.1em" }}>Patient Status</p>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10B981" }} />
-            <p style={{ fontSize: "15px", color: "#1E3A5F" }}>James — Routine on track</p>
+            <p style={{ fontSize: "15px", color: "#1E3A5F" }}>James: Routine on track</p>
           </div>
         </div>
         {/* Task list */}
@@ -133,7 +133,7 @@ function OverviewSection() {
       <div className="csl-role-strip csl-reveal">
         {[
           { icon: "🏥", head: "B2C Healthcare",     body: "Freelance product design for a real healthcare startup entering a niche care market."       },
-          { icon: "👥", head: "Three user roles",    body: "Caregiver, patient family, and care admin — each with distinct needs and permissions."       },
+          { icon: "👥", head: "Three user roles",    body: "Caregiver, patient family, and care admin, each with distinct needs and permissions."       },
           { icon: "♿", head: "Accessibility first", body: "Every decision made with cognitive accessibility and emotional clarity as core constraints." },
         ].map((r) => (
           <div className="csl-role-chip" key={r.head}>
@@ -146,7 +146,7 @@ function OverviewSection() {
 
       {/* App overview image */}
       <div className="csl-reveal rd1" style={{ marginTop: 32 }}>
-        <CsImg label="Care Autor — app overview and key screens" height={420} icon="📱" sub="Place full app overview screenshot here" />
+        <CsImg label="Care Autor: app overview and key screens" height={420} icon="📱" sub="Place full app overview screenshot here" />
       </div>
     </CsSection>
   );
@@ -161,7 +161,7 @@ function ProblemSection() {
       <CsSectionHeader
         label="The Problem"
         title="Caregivers are overwhelmed. The tools aren't helping."
-        sub="People caring for Alzheimer's and Autism patients juggle medication schedules, therapy sessions, behavioral logs, and family updates — all across disconnected apps and paper notes."
+        sub="People caring for Alzheimer's and Autism patients juggle medication schedules, therapy sessions, behavioral logs, and family updates, all across disconnected apps and paper notes."
       />
 
       <div className="csl-callout csl-reveal" style={{ borderLeftColor: "#0077B6", background: "#E0F2FE" }}>
@@ -170,9 +170,9 @@ function ProblemSection() {
 
       <div className="csl-problem-grid csl-reveal rd1" style={{ marginTop: 28 }}>
         {[
-          { title: "No unified care timeline",        body: "Medication logs, therapy notes, and behavioral records live in separate apps — or on paper.",                       icon: "📋" },
+          { title: "No unified care timeline",        body: "Medication logs, therapy notes, and behavioral records live in separate apps or on paper.",                       icon: "📋" },
           { title: "Communication gaps",              body: "Family members, caregivers, and clinicians had no shared view of the patient's current status.",                  icon: "💬" },
-          { title: "Cognitive overload for caregivers",body: "Existing tools required too many steps for basic tasks — exhausting for people already under emotional strain.", icon: "🧠" },
+          { title: "Cognitive overload for caregivers",body: "Existing tools required too many steps for basic tasks, exhausting for people already under emotional strain.", icon: "🧠" },
           { title: "No role differentiation",         body: "Generic apps don't account for different levels of access needed by caregivers vs family vs administrators.",     icon: "🔐" },
         ].map((item) => (
           <div key={item.title} style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
@@ -185,7 +185,7 @@ function ProblemSection() {
 
       {/* Problem visualization */}
       <div className="csl-reveal rd2" style={{ marginTop: 28 }}>
-        <CsImg label="Problem space — caregiver pain point map" height={300} icon="🗺️" sub="Pain point mapping · Stakeholder journey" />
+        <CsImg label="Problem space: caregiver pain point map" height={300} icon="🗺️" sub="Pain point mapping · Stakeholder journey" />
       </div>
     </CsSection>
   );
@@ -199,7 +199,7 @@ function ResearchSection() {
     <CsSection id="research">
       <CsSectionHeader
         label="UX Research"
-        title="Listening before designing — especially in healthcare."
+        title="Listening before designing, especially in healthcare."
         sub="I ran stakeholder workshops, caregiver interviews, and observed live care routines before sketching a single screen."
       />
 
@@ -210,7 +210,7 @@ function ResearchSection() {
 
       {/* Research methodology image */}
       <div className="csl-reveal rd2" style={{ marginBottom: 28, marginTop: 24 }}>
-        <CsImg label="Research methodology — stakeholder interviews, observation, affinity mapping" height={340} icon="🔍" sub="5 caregiver interviews · 3 family interviews · 2 clinical observations" />
+        <CsImg label="Research methodology: stakeholder interviews, observation, affinity mapping" height={340} icon="🔍" sub="5 caregiver interviews · 3 family interviews · 2 clinical observations" />
       </div>
 
       {/* Research stats */}
@@ -230,7 +230,7 @@ function ResearchSection() {
 
       {/* Affinity diagram image */}
       <div className="csl-reveal rd3" style={{ marginTop: 24 }}>
-        <CsImg label="Affinity diagram — synthesized research findings" height={280} icon="🧩" sub="FigJam affinity mapping session" />
+        <CsImg label="Affinity diagram: synthesized research findings" height={280} icon="🧩" sub="FigJam affinity mapping session" />
       </div>
     </CsSection>
   );
@@ -243,19 +243,19 @@ function InsightsSection() {
   const personas = [
     {
       icon: "👩‍⚕️",
-      name: "Sarah, 34 — Professional Caregiver",
+      name: "Sarah, 34, Professional Caregiver",
       quote: "I spend more time updating records than being with the patient.",
       insights: ["Needs quick logging with minimal steps", "Wants real-time updates shared with family", "Frustrated by app-switching mid-task"],
     },
     {
       icon: "👨‍👩‍👦",
-      name: "The Mehta Family — Patient's Family",
+      name: "The Mehta Family, Patient's Family",
       quote: "We don't know what's happening unless we call every day.",
       insights: ["Wants a live view of care without micromanaging", "Needs clear medication and therapy schedules", "Overwhelmed by medical jargon in current tools"],
     },
     {
       icon: "🏢",
-      name: "Dr. Kapoor — Care Administrator",
+      name: "Dr. Kapoor, Care Administrator",
       quote: "We have no single system of record for patient care.",
       insights: ["Needs staff assignment and shift management", "Wants compliance reporting without manual entry", "Requires audit trails for regulatory purposes"],
     },
@@ -266,7 +266,7 @@ function InsightsSection() {
       <CsSectionHeader
         label="Key Insights & Personas"
         title="Three roles, one platform, zero compromise."
-        sub="Research revealed three distinct user archetypes with fundamentally different needs — all of which had to coexist in a single, cohesive experience."
+        sub="Research revealed three distinct user archetypes with fundamentally different needs, all of which had to coexist in a single, cohesive experience."
       />
 
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -301,17 +301,17 @@ function UserFlowSection() {
       <CsSectionHeader
         label="User Flows"
         title="Mapping every path through the care experience."
-        sub="12+ core flows designed — from onboarding and role assignment to medication logging, therapy scheduling, and family status updates."
+        sub="12+ core flows designed: from onboarding and role assignment to medication logging, therapy scheduling, and family status updates."
       />
 
       {/* User flow diagram */}
       <div className="csl-reveal" style={{ marginBottom: 24 }}>
-        <CsImg label="User flow — caregiver daily routine (main flow)" aspect="16/7" icon="🔀" sub="Onboarding → Dashboard → Task logging → Handoff" />
+        <CsImg label="User flow: caregiver daily routine (main flow)" aspect="16/7" icon="🔀" sub="Onboarding → Dashboard → Task logging → Handoff" />
       </div>
 
       <div className="csl-img-2up csl-reveal rd1">
-        <CsImg label="Family view — patient status flow" aspect="4/3" icon="👨‍👩‍👦" sub="Read-only family portal flow" />
-        <CsImg label="Admin flow — staff & schedule management" aspect="4/3" icon="🏢" sub="Role management · Reporting flow" />
+        <CsImg label="Family view: patient status flow" aspect="4/3" icon="👨‍👩‍👦" sub="Read-only family portal flow" />
+        <CsImg label="Admin flow: staff & schedule management" aspect="4/3" icon="🏢" sub="Role management · Reporting flow" />
       </div>
 
       <p className="csl-text csl-reveal rd2" style={{ marginTop: 20 }}>{LOREM}</p>
@@ -327,12 +327,12 @@ function WireframesSection() {
     <CsSection id="wireframes">
       <CsSectionHeader
         label="Wireframes"
-        title="Structure before style — especially in sensitive contexts."
+        title="Structure before style, especially in sensitive contexts."
         sub="Lo-fi and mid-fi wireframes were tested with real caregivers before any visual design. Clarity and cognitive ease were the primary success metrics."
       />
 
       <div className="csl-reveal" style={{ marginBottom: 20 }}>
-        <CsImg label="Lo-fi wireframes — early sketches and FigJam flows" height={320} icon="📐" sub="Sketch → FigJam → Figma lo-fi" />
+        <CsImg label="Lo-fi wireframes: early sketches and FigJam flows" height={320} icon="📐" sub="Sketch → FigJam → Figma lo-fi" />
       </div>
 
       <div className="csl-img-3up csl-reveal rd1">
@@ -342,7 +342,7 @@ function WireframesSection() {
       </div>
 
       <div className="csl-reveal rd2" style={{ marginTop: 16 }}>
-        <CsImg label="Mid-fidelity wireframes — validated layout with caregivers" height={300} icon="🖼️" sub="3 rounds of feedback · 8 participants" />
+        <CsImg label="Mid-fidelity wireframes: validated layout with caregivers" height={300} icon="🖼️" sub="3 rounds of feedback · 8 participants" />
       </div>
     </CsSection>
   );
@@ -365,7 +365,7 @@ function VisualDesignSection() {
     <CsSection id="visualdesign">
       <CsSectionHeader
         label="Visual Design"
-        title="Calm, clear, trustworthy — always."
+        title="Calm, clear, trustworthy, always."
         sub="Healthcare design requires restraint. Every visual decision was evaluated against: does this reduce or add to cognitive load?"
       />
 
@@ -386,7 +386,7 @@ function VisualDesignSection() {
 
         {/* Typography */}
         <div className="csl-card">
-          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Typography — Inter</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Typography: Inter</p>
           {[
             { sample: "Display",   px: 36, w: 800 },
             { sample: "Heading",   px: 22, w: 700 },
@@ -419,12 +419,12 @@ function ScreensSection() {
       <CsSectionHeader
         label="Final Screens"
         title="Every screen in service of the caregiver."
-        sub="Final hi-fidelity screens across the three user roles — caregiver, family, and admin. Gentle hierarchy, direct copy, repeatable card patterns."
+        sub="Final hi-fidelity screens across the three user roles: caregiver, family, and admin. Gentle hierarchy, direct copy, repeatable card patterns."
       />
 
       {/* Full-width hero screen */}
       <div className="csl-reveal" style={{ marginBottom: 20 }}>
-        <CsImg label="Caregiver dashboard — daily overview" aspect="16/9" icon="🖥️" sub="Main screen · Hi-fi final design" />
+        <CsImg label="Caregiver dashboard: daily overview" aspect="16/9" icon="🖥️" sub="Main screen · Hi-fi final design" />
       </div>
 
       <div className="csl-img-3up csl-reveal rd1">
@@ -436,12 +436,12 @@ function ScreensSection() {
       <div className="csl-img-3up csl-reveal rd2" style={{ marginTop: 16 }}>
         <CsImg label="Family status view" aspect="9/16" icon="📱" sub="Read-only family portal" />
         <CsImg label="Notification centre" aspect="9/16" icon="📱" sub="Alerts & reminders" />
-        <CsImg label="Admin — staff dashboard" aspect="9/16" icon="📱" sub="Admin role screen" />
+        <CsImg label="Admin: staff dashboard" aspect="9/16" icon="📱" sub="Admin role screen" />
       </div>
 
       {/* Prototype flow image */}
       <div className="csl-reveal rd3" style={{ marginTop: 20 }}>
-        <CsImg label="Full prototype — connected care flow" height={280} icon="🔗" sub="All screens · Complete user journey" />
+        <CsImg label="Full prototype: connected care flow" height={280} icon="🔗" sub="All screens · Complete user journey" />
       </div>
     </CsSection>
   );
@@ -479,7 +479,7 @@ function AccessibilitySection() {
       </div>
 
       <div className="csl-reveal rd1" style={{ marginTop: 24 }}>
-        <CsImg label="Accessibility audit — contrast checks and ARIA validation" height={240} icon="♿" sub="WCAG 2.1 AA compliance · Focus flow testing" />
+        <CsImg label="Accessibility audit: contrast checks and ARIA validation" height={240} icon="♿" sub="WCAG 2.1 AA compliance · Focus flow testing" />
       </div>
     </CsSection>
   );
@@ -494,7 +494,7 @@ function ResultsSection() {
       <CsSectionHeader
         label="Results"
         title="A clear product foundation for a complex healthcare idea."
-        sub="The project established the complete UX foundation for Care Autor — ready for engineering handoff and investor demonstration."
+        sub="The project established the complete UX foundation for Care Autor, ready for engineering handoff and investor demonstration."
       />
 
       <div className="csl-metrics csl-reveal">
@@ -512,11 +512,11 @@ function ResultsSection() {
       </div>
 
       <div className="csl-callout csl-reveal rd1">
-        The project established a clear product foundation for a complex healthcare idea, with accessibility, emotional clarity, and user-centered decision-making treated as core requirements — not afterthoughts.
+        The project established a clear product foundation for a complex healthcare idea, with accessibility, emotional clarity, and user-centered decision-making treated as core requirements, not afterthoughts.
       </div>
 
       <div className="csl-reveal rd2" style={{ marginTop: 24 }}>
-        <CsImg label="Final design handoff — dev-ready screens with annotations" height={300} icon="📦" sub="Figma handoff · Component documentation" />
+        <CsImg label="Final design handoff: dev-ready screens with annotations" height={300} icon="📦" sub="Figma handoff · Component documentation" />
       </div>
     </CsSection>
   );
@@ -530,7 +530,7 @@ function LearningsSection() {
     {
       n: "01",
       title: "Research depth matters more in high-stakes domains",
-      text: "In healthcare, a wrong assumption isn't just a UX failure — it's a real-world risk. Spending more time in research than design was the right call.",
+      text: "In healthcare, a wrong assumption isn't just a UX failure; it's a real-world risk. Spending more time in research than design was the right call.",
     },
     {
       n: "02",
@@ -540,12 +540,12 @@ function LearningsSection() {
     {
       n: "03",
       title: "Emotional context shapes interaction patterns",
-      text: "Caregivers log tasks when they're tired, worried, and distracted. That context changed everything — from button sizes to confirmation dialogs to default states.",
+      text: "Caregivers log tasks when they're tired, worried, and distracted. That context changed everything, from button sizes to confirmation dialogs to default states.",
     },
     {
       n: "04",
       title: "Simplicity is a feature, not a constraint",
-      text: "Every screen had to do one thing well. The temptation to add 'just one more option' was always there — and almost always wrong.",
+      text: "Every screen had to do one thing well. The temptation to add 'just one more option' was always there, and almost always wrong.",
     },
   ];
 
@@ -571,7 +571,7 @@ function LearningsSection() {
       <a href="/projects/airiq" className="csl-next csl-reveal" style={{ marginTop: 56 }}>
         <div>
           <p className="csl-next-label">Next Case Study</p>
-          <p className="csl-next-title">Air iQ — B2B Flight Booking Platform</p>
+          <p className="csl-next-title">Air iQ: B2B Flight Booking Platform</p>
         </div>
         <span className="csl-next-arrow">→</span>
       </a>

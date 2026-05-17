@@ -1,7 +1,7 @@
 const html = `<section class="scrapbook-section" id="shelf">
-  <p class="section-label reveal">If you'd like —</p>
+  <p class="section-label reveal">If you'd like,</p>
   <h2 class="scrapbook-title-line reveal reveal-delay-1">Here's some <em>personal stuff!</em></h2>
-  <p class="scrapbook-sub reveal reveal-delay-2">The things that make me, me — outside of Figma and deadlines.</p>
+  <p class="scrapbook-sub reveal reveal-delay-2">The things that make me, me. Outside of Figma and deadlines.</p>
 
   <div class="scrapbook-canvas reveal reveal-delay-3">
 

@@ -751,7 +751,7 @@ function CompetitiveCarousel() {
               <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
               <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
             </svg>
-            <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>AirIQ — {c.name} Research</span>
+            <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>AirIQ: {c.name} Research</span>
           </div>
           <a
             href={figmaLink}
@@ -1774,7 +1774,7 @@ function TheProductSection() {
           </div>
         </div>
         <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ fontSize: "15px", color: "#6B7280" }}>Explore the full platform in Figma —</span>
+          <span style={{ fontSize: "15px", color: "#6B7280" }}>Explore the full platform in Figma</span>
           <a href={airFigmaLinks.desktop} target="_blank" rel="noreferrer" style={{ fontSize: "15px", fontWeight: 600, color: "#1E90FF", textDecoration: "none" }}>Desktop Design ↗</a>
         </div>
       </div>
@@ -1823,7 +1823,7 @@ function DesignSystemSection() {
                 <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
               ))}
               <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
-                Air IQ — Design System
+                Air IQ: Design System
               </span>
             </div>
             <a
@@ -1850,7 +1850,7 @@ function DesignSystemSection() {
           <div key={s.val} style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
             <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "#111827", flexShrink: 0 }}>{s.val}</span>
             <span style={{ fontSize: "1.1rem", color: "#374151", fontWeight: 600 }}>{s.label}</span>
-            <span style={{ fontSize: "15px", color: "#9CA3AF" }}>— {s.sub}</span>
+            <span style={{ fontSize: "15px", color: "#9CA3AF" }}>{s.sub}</span>
           </div>
         ))}
       </div>
@@ -2046,7 +2046,7 @@ function LearningsSection() {
       <a href="/projects/biblofi" className="csl-next csl-reveal" style={{ marginTop: 56 }}>
         <div>
           <p className="csl-next-label">Next Case Study</p>
-          <p className="csl-next-title">BibloFi — Library Management App</p>
+          <p className="csl-next-title">BibloFi: Library Management App</p>
         </div>
         <span className="csl-next-arrow">→</span>
       </a>
@@ -2364,7 +2364,7 @@ function MobileSection() {
               {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
                 <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
               ))}
-              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginLeft: 6 }}>Air IQ — Mobile · 375px</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginLeft: 6 }}>Air IQ: Mobile · 375px</span>
             </div>
             <a href={airFigmaLinks.mobile} target="_blank" rel="noreferrer" style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}>
               Open in Figma ↗

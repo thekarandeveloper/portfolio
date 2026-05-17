@@ -4,7 +4,7 @@ const html = `<section class="testimonials-section" id="testimonials">
   <div class="testimonials-grid">
     <div class="testimonial-card reveal">
       <p class="testimonial-quote">"</p>
-      <p class="testimonial-text">Nikunj has an exceptional ability to simplify complex workflows. His work on our booking system genuinely changed how our agents operate — faster, clearer, more confident.</p>
+      <p class="testimonial-text">Nikunj has an exceptional ability to simplify complex workflows. His work on our booking system genuinely changed how our agents operate: faster, clearer, more confident.</p>
       <div class="testimonial-person"><div class="testimonial-avatar">👤</div><div><p class="testimonial-name">Add name here</p><p class="testimonial-role">Manager · Air IQ</p></div></div>
     </div>
     <div class="testimonial-card reveal reveal-delay-3">

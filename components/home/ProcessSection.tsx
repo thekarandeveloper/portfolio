@@ -69,7 +69,7 @@ const html = `<section class="process-section" id="process">
         <div class="anno-pop">
           <div class="anno-pop-step">01 / Discover</div>
           <div class="anno-pop-name">Find the wrong assumption</div>
-          <p class="anno-pop-desc">I ask what we're most wrong about — not what to build. Research before Figma, always.</p>
+          <p class="anno-pop-desc">I ask what we're most wrong about, not what to build. Research before Figma, always.</p>
         </div>
       </button>
 
@@ -96,7 +96,7 @@ const html = `<section class="process-section" id="process">
         <div class="anno-pop">
           <div class="anno-pop-step">04 / Design</div>
           <div class="anno-pop-name">High-fi with constraints</div>
-          <p class="anno-pop-desc">Real content, real data, design tokens. Not magic numbers — the system decides.</p>
+          <p class="anno-pop-desc">Real content, real data, design tokens. Not magic numbers; the system decides.</p>
         </div>
       </button>
 

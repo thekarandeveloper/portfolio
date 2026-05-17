@@ -214,7 +214,7 @@ export function PasswordGate({ children, slug }: { children: ReactNode; slug: st
         <p className="pgx-sub">
           {isSuccess
             ? "Opening case study…"
-            : "This case study is shared under NDA — reach out if you need access."}
+            : "This case study is shared under NDA; reach out if you need access."}
         </p>
 
         {/* OTP input */}
@@ -246,7 +246,7 @@ export function PasswordGate({ children, slug }: { children: ReactNode; slug: st
             </div>
 
             {isError
-              ? <p className="pgx-status pgx-status-err">Incorrect — try again</p>
+              ? <p className="pgx-status pgx-status-err">Incorrect, try again</p>
               : <p className="pgx-hint">5-digit code</p>}
           </>
         )}

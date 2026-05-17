@@ -1,6 +1,6 @@
 const html = `<section class="spiral-section section-fade" id="spiralSection">
   <div class="spiral-topbar">
-    <span class="spiral-topbar-label">— visual archive</span>
+    <span class="spiral-topbar-label">visual archive</span>
     <span class="spiral-topbar-mode">spiral</span>
   </div>
 

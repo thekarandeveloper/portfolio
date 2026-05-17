@@ -1167,7 +1167,7 @@ nav.scrolled .nav-pill{
 .contact-link:first-child{border-top:1px solid var(--border);}
 .contact-link:hover{padding-left:0.75rem;}
 .contact-link-left{display:flex;align-items:center;gap:1rem;}
-.contact-link-platform{font-size: 15px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink4);width:68px;}
+.contact-link-platform{font-size: 15px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink4);min-width:90px;flex-shrink:0;}
 .contact-link-value{font-family:var(--serif);font-size:1rem;color:var(--ink3);transition:color 0.2s;}
 .contact-link:hover .contact-link-value{color:var(--pink);}
 .contact-link-arrow{font-size: 15px;color:var(--ink4);transition:transform 0.2s,color 0.2s;}
