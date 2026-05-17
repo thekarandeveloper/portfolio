@@ -245,7 +245,7 @@ nav.scrolled .nav-pill{
 .nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:15rem 200px 4rem 200px;gap:40px;position:relative;overflow:visible;}
+.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:13.5rem 200px 4rem 200px;gap:40px;position:relative;overflow:visible;}
 
 /* about-style intro hero */
 .hi-left{position:relative;z-index:2;text-align:left;padding-top:1.5rem;}
