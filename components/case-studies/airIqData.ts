@@ -230,7 +230,7 @@ export const airTypeScale = [
   { sample: "H2 Bold", meta: "700 · 20–24px · Section heads", size: "20px", weight: 700 },
   { sample: "Label Bold", meta: "700 · 14–16px · Card labels", size: "16px", weight: 700 },
   { sample: "Body Regular", meta: "400 · 13–15px · Content, descriptions", size: "14px", weight: 400 },
-  { sample: "Caption Light", meta: "300 · 11–12px · Meta, hints", size: "12px", weight: 300, style: "italic" }
+  { sample: "Caption Light", meta: "300 · 11–12px · Meta, hints", size: "12px", weight: 300 }
 ];
 
 export const airSpacingTokens = [
