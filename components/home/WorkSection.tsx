@@ -16,7 +16,7 @@ const html = `<section class="cswk" id="work">
     <a class="cswk-row reveal" href="/projects/airiq" data-project="airiq">
 
       <div class="cswk-visual">
-        <img src="/Image/Airiq/thumnail/a1.png" alt="Air IQ screen 1" loading="eager" style="width:100%;height:auto;display:block;object-position:center 42%;"/>
+        <img src="/Image/Airiq/thumnail/a1.png" alt="Air IQ screen 1" loading="eager" style="width:100%;height:auto;display:block;aspect-ratio:auto;object-fit:contain;"/>
         <div class="cswk-annot">
           <svg width="22" height="18" viewBox="0 0 22 18" fill="none"><path d="M2 3 Q6 9 13 15" stroke="#1E90FF" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M10 13 L13 15 L11 17" stroke="#1E90FF" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span class="cswk-handlabel">built for speed &amp; clarity</span>

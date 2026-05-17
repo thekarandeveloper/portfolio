@@ -245,10 +245,10 @@ nav.scrolled .nav-pill{
 .nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:5.5rem 180px 4rem 340px;gap:20px;position:relative;overflow:visible;}
+.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:5.5rem 200px 4rem 260px;gap:40px;position:relative;overflow:visible;}
 
 /* about-style intro hero */
-.hi-left{position:relative;z-index:2;text-align:left;padding-top:3rem;}
+.hi-left{position:relative;z-index:2;text-align:left;padding-top:1.5rem;}
 .hi-right{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;position:relative;z-index:2;}
 .hi-hello{font-family:var(--hand);font-size:clamp(1.9rem,2.9vw,2.5rem);color:var(--pink);display:block;margin-bottom:0.1rem;font-weight:700;}
 .hi-headline{font-family:var(--serif);font-size:clamp(3.5rem,6.5vw,5.8rem);font-weight:400;color:var(--ink);line-height:1.0;letter-spacing:-0.025em;margin-bottom:1.2rem;}
@@ -2079,8 +2079,8 @@ nav.scrolled .nav-pill{
 .hi-ripped-note{
   position:absolute;
   top:426px;
-  left:28px;
-  right:14px;
+  left:38px;
+  right:38px;
   transform:rotate(-1.6deg);
   filter:drop-shadow(0 4px 14px rgba(0,0,0,0.13));
   animation:rippedFloat 6s ease-in-out 1.2s infinite;
