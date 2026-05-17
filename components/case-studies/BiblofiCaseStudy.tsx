@@ -42,7 +42,6 @@ const TOC_ITEMS = [
   { id: "constraints",   label: "Constraints"         },
   { id: "screens",       label: "Key Features"        },
   { id: "final",         label: "Final Screens"       },
-  { id: "edgestates",    label: "Edge States"         },
   { id: "accessibility", label: "Accessibility"       },
   { id: "testing",       label: "Usability Testing"   },
   { id: "learnings",     label: "Learnings"           },
@@ -147,12 +146,12 @@ function BibloHero() {
         <div className="csl-hero-left">
           <div className="csl-hero-eyebrow">Infosys Internship · iOS App</div>
           <h1 className="csl-hero-title">
-            BibloFi —<br />
+            BibloFi<br />
             <em style={{ fontStyle:"italic", color:"rgba(255,255,255,0.65)" }}>the library hadn&apos;t</em>
             <br />changed. The students had.
           </h1>
           <p className="csl-hero-desc">
-            Infosys brought me in to design a library app from scratch. What I found wasn&apos;t a missing app — it was a system that assumed students had time, patience, and willingness to just show up and hope for the best.
+            Infosys brought me in to design a library app from scratch. What I found wasn&apos;t a missing app, it was a system that assumed students had time, patience, and willingness to just show up and hope for the best.
           </p>
           <div className="csl-hero-chips">
             {bibloMeta.map((item) => (
@@ -196,7 +195,7 @@ function OverviewSection() {
       <div className="csl-card-2col csl-reveal">
         <div>
           <p className="csl-text">
-            Before BibloFi, students had no digital interface with the library at all. Checking book availability meant physically visiting. Reserving a study seat was first-come, first-served. Due dates were tracked by memory or handwritten slips — and forgotten ones meant fines. The system was entirely manual, managed by librarians over the counter.
+            Before BibloFi, students had no digital interface with the library at all. Checking book availability meant physically visiting. Reserving a study seat was first-come, first-served. Due dates were tracked by memory or handwritten slips, and forgotten ones meant fines. The system was entirely manual, managed by librarians over the counter.
           </p>
           <p className="csl-text">
             Infosys identified this as a real student pain point and brought me in as the lead designer for a 4-week internship sprint. I was given a blank canvas, a team of 10 iOS developers, and a clear mandate: design the complete member experience from scratch.
@@ -219,7 +218,7 @@ function OverviewSection() {
                     : item.dot}
                 </div>
                 <div>
-                  <div style={{ fontSize:"0.76rem", fontWeight:600, color:"#111827" }}>{item.title}</div>
+                  <div style={{ fontSize:"0.88rem", fontWeight:600, color:"#111827" }}>{item.title}</div>
                   <div style={{ fontSize:"0.68rem", color:"#9CA3AF" }}>{item.sub}</div>
                 </div>
               </div>
@@ -227,7 +226,7 @@ function OverviewSection() {
           </div>
           <div className="csl-callout" style={{ margin:0 }}>
             <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Project Goal</p>
-            <p style={{ fontSize:"0.78rem", color:"#374151", lineHeight:1.65 }}>
+            <p style={{ fontSize:"0.9rem", color:"#374151", lineHeight:1.65 }}>
               &quot;Create a seamless, feature-rich library app that empowers members to discover, reserve, and borrow books efficiently while reducing friction.&quot;
             </p>
           </div>
@@ -235,7 +234,7 @@ function OverviewSection() {
       </div>
 
       {/* Ownership declaration */}
-      <div className="csl-card csl-reveal rd1" style={{ marginTop:20, padding:"20px 24px" }}>
+      <div className="csl-reveal rd1" style={{ marginTop:20, padding:"20px 0" }}>
         <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:"#9CA3AF", marginBottom:16 }}>What I owned vs. what I didn&apos;t</p>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
           <div>
@@ -247,7 +246,7 @@ function OverviewSection() {
               "Design system + component library",
               "Usability test planning & analysis",
             ].map((item) => (
-              <p key={item} style={{ fontSize:"0.76rem", color:"#374151", marginBottom:6, lineHeight:1.5 }}>· {item}</p>
+              <p key={item} style={{ fontSize:"0.88rem", color:"#374151", marginBottom:6, lineHeight:1.5 }}>· {item}</p>
             ))}
           </div>
           <div>
@@ -258,11 +257,11 @@ function OverviewSection() {
               "Sprint timeline & planning",
               "Post-internship QA & release",
             ].map((item) => (
-              <p key={item} style={{ fontSize:"0.76rem", color:"#9CA3AF", marginBottom:6, lineHeight:1.5 }}>· {item}</p>
+              <p key={item} style={{ fontSize:"0.88rem", color:"#9CA3AF", marginBottom:6, lineHeight:1.5 }}>· {item}</p>
             ))}
           </div>
         </div>
-        <p style={{ fontSize:"0.72rem", color:"#9CA3AF", marginTop:16, fontStyle:"italic", borderTop:"1px solid #F3F4F6", paddingTop:12 }}>
+        <p style={{ fontSize:"0.84rem", color:"#9CA3AF", marginTop:16, fontStyle:"italic", borderTop:"1px solid #F3F4F6", paddingTop:12 }}>
           Delivered as final Figma specs + annotated design system to the iOS engineering team at internship end.
         </p>
       </div>
@@ -325,17 +324,17 @@ function ResearchSection() {
       />
 
       <p className="csl-text csl-reveal">
-        I surveyed 38 students and conducted 8 in-depth interviews across two campuses. Three observation sessions inside the library — watching how students navigated the space in real time — revealed behaviours that surveys alone would have missed. I also spent time with 2 librarians to understand the other side of every pain point students described.
+        I surveyed 38 students and conducted 8 in-depth interviews across two campuses. Three observation sessions inside the library, watching how students navigated the space in real time, revealed behaviours that surveys alone would have missed. I also spent time with 2 librarians to understand the other side of every pain point students described.
       </p>
       <p className="csl-text csl-reveal rd1">
-        Key finding: the friction wasn&apos;t in the library itself — it was in the invisible overhead. Not knowing if a book was available before visiting. Not being able to reserve a seat. No reminders for due dates. Digital tools existed everywhere else in students&apos; lives, but the library expected them to operate on its terms.
+        Key finding: the friction wasn&apos;t in the library itself, it was in the invisible overhead. Not knowing if a book was available before visiting. Not being able to reserve a seat. No reminders for due dates. Digital tools existed everywhere else in students&apos; lives, but the library expected them to operate on its terms.
       </p>
 
       {/* What surprised us — pivot insight */}
       <div className="csl-callout csl-reveal rd1" style={{ marginBottom:28 }}>
         <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>What surprised us</p>
         <p style={{ fontSize:"0.96rem", color:"#374151", lineHeight:1.75 }}>
-          We expected the main problem to be the book catalogue — students not finding titles they wanted. It wasn&apos;t. The catalogue was fine. The problem was <strong>uncertainty before arriving</strong>: students couldn&apos;t know if a book was available or a seat was free without physically going there first. The failed visit — not the failed search — was the core pain.
+          We expected the main problem to be the book catalogue, students not finding titles they wanted. It wasn&apos;t. The catalogue was fine. The problem was <strong>uncertainty before arriving</strong>: students couldn&apos;t know if a book was available or a seat was free without physically going there first. The failed visit, not the failed search, was the core pain.
         </p>
       </div>
 
@@ -350,20 +349,20 @@ function ResearchSection() {
 
       {/* User voice */}
       <div className="csl-reveal rd2" style={{
-        background:"#fff", borderRadius:16, padding:"24px",
-        boxShadow:"0 4px 14px rgba(0,0,0,0.04)", marginBottom:28,
+        padding:"24px 0 24px 24px",
+        marginBottom:28,
         borderLeft:`3px solid ${A}`,
       }}>
         <p style={{ fontSize:"0.68rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.1em", color:A, marginBottom:12 }}>From the interviews</p>
         <p style={{ fontSize:"1rem", color:"#374151", lineHeight:1.8, fontStyle:"italic" }}>
-          &quot;I walked 20 minutes to the library last month, and the book wasn&apos;t there. I&apos;d already planned to sit in my usual spot — but of course you can&apos;t actually reserve one. I just went home. I haven&apos;t been back since.&quot;
+          &quot;I walked 20 minutes to the library last month, and the book wasn&apos;t there. I&apos;d already planned to sit in my usual spot, but of course you can&apos;t actually reserve one. I just went home. I haven&apos;t been back since.&quot;
         </p>
-        <p style={{ fontSize:"0.68rem", color:"#9CA3AF", marginTop:10 }}>— B.Tech student, 3rd year · Interview participant</p>
+        <p style={{ fontSize:"0.68rem", color:"#9CA3AF", marginTop:10 }}> B.Tech student, 3rd year · Interview participant</p>
       </div>
 
       <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))", gap:14 }} className="csl-reveal rd2">
         {researchStats.map((stat) => (
-          <div key={stat.label} style={{ background:"#fff", borderRadius:16, padding:"22px 16px", textAlign:"center", boxShadow:"0 4px 14px rgba(0,0,0,0.04)" }}>
+          <div key={stat.label} style={{ padding:"22px 16px", textAlign:"center" }}>
             <p style={{ fontSize:"2rem", fontWeight:800, color:A, lineHeight:1, marginBottom:6 }}>{stat.value}</p>
             <p style={{ fontSize:"0.7rem", color:"#6B7280", textTransform:"uppercase", letterSpacing:"0.06em" }}>{stat.label}</p>
           </div>
@@ -386,8 +385,8 @@ function InsightsSection() {
       />
 
       <div className="csl-callout csl-reveal" style={{ marginBottom:32 }}>
-        &quot;Despite living in a digital-first world, library visits remain stuck in the past — long queues, no way to check book availability, and zero flexibility in planning. The result? A frustrating, disconnected experience that fails modern users.&quot;
-        <p style={{ fontSize:"0.68rem", color:"#9CA3AF", marginTop:10, fontStyle:"normal" }}>— Composite insight from 8 student interviews</p>
+        &quot;Despite living in a digital-first world, library visits remain stuck in the past, long queues, no way to check book availability, and zero flexibility in planning. The result? A frustrating, disconnected experience that fails modern users.&quot;
+        <p style={{ fontSize:"0.68rem", color:"#9CA3AF", marginTop:10, fontStyle:"normal" }}> Composite insight from 8 student interviews</p>
       </div>
 
       <div className="csl-persona-grid csl-reveal rd1">
@@ -402,13 +401,13 @@ function InsightsSection() {
               <p className="csl-persona-tag">{persona.meta}</p>
               <p style={{ fontSize:"0.68rem", fontWeight:700, color:A, textTransform:"uppercase", letterSpacing:"0.1em", marginBottom:8, marginTop:12 }}>Goals</p>
               {persona.goals.map((goal) => (
-                <div key={goal} style={{ display:"flex", gap:8, marginBottom:5, fontSize:"0.76rem", color:"#374151" }}>
+                <div key={goal} style={{ display:"flex", gap:8, marginBottom:5, fontSize:"0.88rem", color:"#374151" }}>
                   <span style={{ color:"#10B981" }}>✓</span>{goal}
                 </div>
               ))}
               <p style={{ fontSize:"0.68rem", fontWeight:700, color:"#EF4444", textTransform:"uppercase", letterSpacing:"0.1em", marginBottom:8, marginTop:12 }}>Pain Points</p>
               {persona.pains.map((pain) => (
-                <div key={pain} style={{ display:"flex", gap:8, marginBottom:5, fontSize:"0.76rem", color:"#374151" }}>
+                <div key={pain} style={{ display:"flex", gap:8, marginBottom:5, fontSize:"0.88rem", color:"#374151" }}>
                   <span style={{ color:"#EF4444" }}>✕</span>{pain}
                 </div>
               ))}
@@ -421,7 +420,7 @@ function InsightsSection() {
       <div id="journey" className="csl-reveal rd2" style={{ marginTop:40 }}>
         <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>User Journey Mapping</p>
         <h3 style={{ fontSize:"1.1rem", fontWeight:700, color:"#111827", marginBottom:20 }}>
-          Mapping the full emotional arc — <em style={{ fontStyle:"italic" }}>from intent to frustration.</em>
+          Mapping the full emotional arc, <em style={{ fontStyle:"italic" }}>from intent to frustration.</em>
         </h3>
         <div style={{ borderRadius:16, overflow:"hidden" }}>
           <Image
@@ -445,7 +444,7 @@ function WireframesSection() {
       <CsSectionHeader
         label="Develop — Wireframes"
         title={<>From rough sketches <em style={{ fontStyle:"italic" }}>to structured flows.</em></>}
-        sub="The brainstorming started in WhatsApp chats and rough sketches — raw ideas translated into structured lo-fi wireframes in FigJam."
+        sub="The brainstorming started in WhatsApp chats and rough sketches, raw ideas translated into structured lo-fi wireframes in FigJam."
       />
 
       <div className="csl-reveal" style={{ borderRadius:16, overflow:"hidden" }}>
@@ -473,7 +472,7 @@ function LoFiWireframesSection() {
       <CsSectionHeader
         label="Develop — Lo-Fi Wireframes"
         title={<>Rough ideas turned into <em style={{ fontStyle:"italic" }}>structured screens.</em></>}
-        sub="Each flow was mapped out screen by screen — laying the foundation before moving into high-fidelity design."
+        sub="Each flow was mapped out screen by screen, laying the foundation before moving into high-fidelity design."
       />
 
       <div className="csl-reveal" style={{ borderRadius:16, overflow:"hidden" }}>
@@ -489,7 +488,7 @@ function LoFiWireframesSection() {
       <div className="csl-callout csl-reveal rd1" style={{ marginTop:24 }}>
         <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>What the lo-fi round revealed</p>
         <p style={{ fontSize:"0.96rem", color:"#374151", lineHeight:1.75 }}>
-          Two structural problems surfaced immediately. The bottom tab bar had five items — one too many for comfortable one-handed use on a standard iPhone. The &apos;Issue Book&apos; action was buried three taps deep inside a book detail screen, which test observers flagged in the first five minutes. Both were fixed before opening Figma in hi-fi: the tab bar dropped to four primary items, and issuing a book became a single persistent action from the catalogue view.
+          Two structural problems surfaced immediately. The bottom tab bar had five items, one too many for comfortable one-handed use on a standard iPhone. The &apos;Issue Book&apos; action was buried three taps deep inside a book detail screen, which test observers flagged in the first five minutes. Both were fixed before opening Figma in hi-fi: the tab bar dropped to four primary items, and issuing a book became a single persistent action from the catalogue view.
         </p>
       </div>
     </CsSection>
@@ -509,7 +508,7 @@ function ConstraintsSection() {
     {
       icon:  "📱",
       title: "iOS 18 HIG compliance",
-      desc:  "No custom navigation patterns. Native components only — which eliminated several interaction ideas that would have required bespoke animation work from the dev team.",
+      desc:  "No custom navigation patterns. Native components only, which eliminated several interaction ideas that would have required bespoke animation work from the dev team.",
     },
     {
       icon:  "⚙️",
@@ -527,16 +526,16 @@ function ConstraintsSection() {
     <CsSection id="constraints">
       <CsSectionHeader
         label="Develop — Constraints & Tradeoffs"
-        title={<>What we worked within — <em style={{ fontStyle:"italic" }}>and what we chose to cut.</em></>}
-        sub="Real projects have real limits. These constraints shaped every major decision in the design — and naming them is part of the work."
+        title={<>What we worked within, <em style={{ fontStyle:"italic" }}>and what we chose to cut.</em></>}
+        sub="Real projects have real limits. These constraints shaped every major decision in the design, and naming them is part of the work."
       />
 
       <div className="csl-card-grid csl-reveal">
         {constraints.map((c) => (
-          <div key={c.title} style={{ background:"#fff", borderRadius:18, padding:"22px 20px", boxShadow:"0 4px 14px rgba(0,0,0,0.04)" }}>
+          <div key={c.title} style={{ padding:"22px 0" }}>
             <div style={{ fontSize:"1.5rem", marginBottom:12 }}>{c.icon}</div>
             <h3 style={{ fontSize:"0.92rem", fontWeight:700, color:"#111827", marginBottom:8 }}>{c.title}</h3>
-            <p style={{ fontSize:"0.76rem", color:"#6B7280", lineHeight:1.6 }}>{c.desc}</p>
+            <p style={{ fontSize:"0.88rem", color:"#6B7280", lineHeight:1.6 }}>{c.desc}</p>
           </div>
         ))}
       </div>
@@ -545,7 +544,7 @@ function ConstraintsSection() {
       <div className="csl-callout csl-reveal rd1" style={{ marginTop:20 }}>
         <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>The hardest tradeoff</p>
         <p style={{ fontSize:"0.96rem", color:"#374151", lineHeight:1.75 }}>
-          The seat waitlist feature — where students could queue and get notified when a spot opens — tested better than the booking-only model in concept testing. Users understood and wanted it. But the push notification backend would have taken the dev team two weeks to build, leaving no time to test the core flows. I made the call to cut it: a well-tested booking flow at handoff is worth more than a partially-built waitlist. The waitlist went into the Phase 2 doc with full specs.
+          The seat waitlist feature, where students could queue and get notified when a spot opens, tested better than the booking-only model in concept testing. Users understood and wanted it. But the push notification backend would have taken the dev team two weeks to build, leaving no time to test the core flows. I made the call to cut it: a well-tested booking flow at handoff is worth more than a partially-built waitlist. The waitlist went into the Phase 2 doc with full specs.
         </p>
       </div>
     </CsSection>
@@ -570,15 +569,15 @@ function ScreensSection() {
       }}>
         <div>
           <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:6 }}>Colour</p>
-          <p style={{ fontSize:"0.76rem", color:ADrk, lineHeight:1.6 }}>Warm orange-brown (#C8703A) — chosen to feel approachable rather than institutional. Libraries should feel inviting, not cold.</p>
+          <p style={{ fontSize:"0.88rem", color:ADrk, lineHeight:1.6 }}>Warm orange-brown (#C8703A), chosen to feel approachable rather than institutional. Libraries should feel inviting, not cold.</p>
         </div>
         <div>
           <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:6 }}>Typography</p>
-          <p style={{ fontSize:"0.76rem", color:ADrk, lineHeight:1.6 }}>iOS 18 system font (SF Pro) throughout — required by HIG and native to every iPhone user. Hierarchy through weight and size, no decorative typefaces.</p>
+          <p style={{ fontSize:"0.88rem", color:ADrk, lineHeight:1.6 }}>iOS 18 system font (SF Pro) throughout, required by HIG and native to every iPhone user. Hierarchy through weight and size, no decorative typefaces.</p>
         </div>
         <div>
           <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:6 }}>Components</p>
-          <p style={{ fontSize:"0.76rem", color:ADrk, lineHeight:1.6 }}>Built on iOS 18 UI Kit (Figma Community). Native sheets, tabs, and cards — so the engineering team had direct SwiftUI analogues with no bespoke component work.</p>
+          <p style={{ fontSize:"0.88rem", color:ADrk, lineHeight:1.6 }}>Built on iOS 18 UI Kit (Figma Community). Native sheets, tabs, and cards, so the engineering team had direct SwiftUI analogues with no bespoke component work.</p>
         </div>
       </div>
 
@@ -599,13 +598,13 @@ function ScreensSection() {
             {/* Why this approach */}
             <div style={{ background:A5, borderRadius:10, padding:"12px 16px", marginTop:14, marginBottom:10 }}>
               <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.12em", color:AMed, marginBottom:5 }}>Why this approach</p>
-              <p style={{ fontSize:"0.76rem", color:ADrk, lineHeight:1.65 }}>{feature.rationale}</p>
+              <p style={{ fontSize:"0.88rem", color:ADrk, lineHeight:1.65 }}>{feature.rationale}</p>
             </div>
 
             {/* Rejected alternative */}
             <div style={{ borderRadius:10, padding:"12px 16px", border:"1px solid #F3F4F6", marginBottom:12 }}>
               <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.12em", color:"#9CA3AF", marginBottom:5 }}>Alternative we rejected</p>
-              <p style={{ fontSize:"0.76rem", color:"#6B7280", lineHeight:1.65 }}>{feature.rejected}</p>
+              <p style={{ fontSize:"0.88rem", color:"#6B7280", lineHeight:1.65 }}>{feature.rejected}</p>
             </div>
 
             <span style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:"0.68rem", fontWeight:600, color:A, background:A5, padding:"4px 13px", borderRadius:100 }}>
@@ -634,8 +633,8 @@ function FinalScreensSection() {
     <CsSection id="final">
       <CsSectionHeader
         label="Deliver — Final Designs"
-        title={<>The finished product — <em style={{ fontStyle:"italic" }}>every screen, polished.</em></>}
-        sub="From onboarding to book discovery, seat booking to fine tracking — final high-fidelity screens delivered to the Infosys engineering team."
+        title={<>The finished product, <em style={{ fontStyle:"italic" }}>every screen, polished.</em></>}
+        sub="From onboarding to book discovery, seat booking to fine tracking, final high-fidelity screens delivered to the Infosys engineering team."
       />
 
       {/* ── INTRO CARD (inspired by "final one.png") ── */}
@@ -649,10 +648,10 @@ function FinalScreensSection() {
             fontFamily:"var(--font-caveat), cursive",
             fontSize:"1.9rem", fontWeight:700, color:A, lineHeight:1.2, marginBottom:20,
           }}>
-            BibloFi — A Complete Library Experience.
+            BibloFi. A Complete Library Experience.
           </p>
-          <p style={{ fontSize:"0.8rem", color:"#374151", lineHeight:1.8, marginBottom:16 }}>
-            BibloFi is inspired by the word <strong style={{ color:A }}>Bibliophile</strong> — a person who loves books. We wanted to create an app that feels like home for every reader.
+          <p style={{ fontSize:"0.92rem", color:"#374151", lineHeight:1.8, marginBottom:16 }}>
+            BibloFi is inspired by the word <strong style={{ color:A }}>Bibliophile</strong>, a person who loves books. We wanted to create an app that feels like home for every reader.
           </p>
           <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:20 }}>
             <span style={{ fontSize:"1rem", fontWeight:700, color:"#111827" }}>Biblio</span>
@@ -661,7 +660,7 @@ function FinalScreensSection() {
             <span style={{ fontSize:"1.1rem", color:"#D1D5DB", margin:"0 4px" }}>→</span>
             <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"1.4rem", fontWeight:700, color:A }}>BibloFi</span>
           </div>
-          <p style={{ fontSize:"0.76rem", color:"#9CA3AF", fontStyle:"italic" }}>
+          <p style={{ fontSize:"0.88rem", color:"#9CA3AF", fontStyle:"italic" }}>
             After all the hustle of research, user pain points, and design exploration, BibloFi was born.
           </p>
         </div>
@@ -676,10 +675,10 @@ function FinalScreensSection() {
       <div style={{ marginBottom:64 }}>
         {/* Annotations above */}
         <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginBottom:28 }}>
-          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+          <p style={{ fontSize:"0.92rem", color:"#6B7280", lineHeight:1.75 }}>
             Each screen introduces a core feature step by step, keeping the focus on clarity and user engagement.
           </p>
-          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+          <p style={{ fontSize:"0.92rem", color:"#6B7280", lineHeight:1.75 }}>
             We used minimal text with strong visuals to ensure quick comprehension and smooth navigation.
           </p>
         </div>
@@ -704,10 +703,10 @@ function FinalScreensSection() {
 
         {/* Annotations below */}
         <div className="csl-reveal rd2" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginTop:28 }}>
-          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+          <p style={{ fontSize:"0.92rem", color:"#6B7280", lineHeight:1.75 }}>
             We balanced typography, icons, and illustrations to make the journey visually appealing without overwhelming the user.
           </p>
-          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+          <p style={{ fontSize:"0.92rem", color:"#6B7280", lineHeight:1.75 }}>
             The design ensures that new users can quickly understand the value of the app and feel motivated to explore further.
           </p>
         </div>
@@ -727,10 +726,10 @@ function FinalScreensSection() {
       <div style={{ marginBottom:64 }}>
         {/* Annotations above */}
         <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginBottom:28 }}>
-          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+          <p style={{ fontSize:"0.92rem", color:"#6B7280", lineHeight:1.75 }}>
             Secure and seamless entry point for new and returning users.
           </p>
-          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+          <p style={{ fontSize:"0.92rem", color:"#6B7280", lineHeight:1.75 }}>
             Easy access to view and manage membership details.
           </p>
         </div>
@@ -755,10 +754,10 @@ function FinalScreensSection() {
 
         {/* Annotations below */}
         <div className="csl-reveal rd2" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginTop:28 }}>
-          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+          <p style={{ fontSize:"0.92rem", color:"#6B7280", lineHeight:1.75 }}>
             A reliable OTP verification system that adds an extra layer of security while keeping the process simple.
           </p>
-          <p style={{ fontSize:"0.8rem", color:"#6B7280", lineHeight:1.75 }}>
+          <p style={{ fontSize:"0.92rem", color:"#6B7280", lineHeight:1.75 }}>
             Scan and see the process of onboarding and authentication in action.
           </p>
         </div>
@@ -814,7 +813,7 @@ function FinalScreensSection() {
             ].map((a) => (
               <div key={a.title} style={{ textAlign:"right", paddingRight:18, borderRight:`2px dotted ${A2}` }}>
                 <p style={{ fontSize:"0.86rem", fontWeight:700, color:"#111827", marginBottom:5 }}>{a.title}</p>
-                <p style={{ fontSize:"0.72rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
+                <p style={{ fontSize:"0.84rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
               </div>
             ))}
           </div>
@@ -834,31 +833,10 @@ function FinalScreensSection() {
             ].map((a) => (
               <div key={a.title} style={{ paddingLeft:18, borderLeft:`2px dotted ${A2}` }}>
                 <p style={{ fontSize:"0.86rem", fontWeight:700, color:"#111827", marginBottom:5 }}>{a.title}</p>
-                <p style={{ fontSize:"0.72rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
+                <p style={{ fontSize:"0.84rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* ══ SCAN · CATEGORIES · DETAILED ══ */}
-      <div style={{ marginBottom:80 }}>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:28 }}>
-          {[
-            { file:"scan.png",       quote:"Just a quick scan, and the book details pop up instantly — it feels like magic at the library." },
-            { file:"categories.png", quote:"Browsing through categories feels effortless, making it easy to discover books that truly match my interests." },
-            { file:"detailed.png",   quote:"The detail view gives me everything I need at a glance — from ratings to publisher — so I know exactly what I'm picking." },
-          ].map(({ file, quote }, i) => (
-            <div key={file} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`}>
-              <div style={{ borderRadius:28, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.12)", marginBottom:20 }}>
-                <Image src={`${FINAL}/${file}`} alt={file} width={320} height={693}
-                  style={{ width:"100%", height:"auto", display:"block" }} />
-              </div>
-              <p style={{ fontSize:"0.82rem", color:"#374151", lineHeight:1.8, fontStyle:"italic" }}>
-                &ldquo;{quote}&rdquo;
-              </p>
-            </div>
-          ))}
         </div>
       </div>
 
@@ -915,7 +893,7 @@ function FinalScreensSection() {
           <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"3.2rem", fontWeight:700, color:A }}>
             Service
           </span>
-          <p style={{ fontSize:"0.76rem", color:"#6B7280", textAlign:"right", maxWidth:560, lineHeight:1.7 }}>
+          <p style={{ fontSize:"0.88rem", color:"#6B7280", textAlign:"right", maxWidth:560, lineHeight:1.7 }}>
             The Service tab is designed to provide members with seamless control over all their library interactions in one place. From reserving or cancelling study seats to keeping track of active bookings, users have everything at their fingertips.
           </p>
         </div>
@@ -938,70 +916,6 @@ function FinalScreensSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §09  EDGE STATES  (new section)
-───────────────────────────────────────────────────────────────────── */
-function EdgeStatesSection() {
-  const edgeStates = [
-    {
-      icon:  "🔍",
-      label: "No search results",
-      sub:   "Search: 'Microeconomics 4th Ed.' · 0 results found",
-      desc:  "Friendly empty state with suggested alternative searches and a 'Request this book' CTA — so a dead end becomes a next step.",
-    },
-    {
-      icon:  "📚",
-      label: "Book currently unavailable",
-      sub:   "All 3 copies issued · Due back in 4 days",
-      desc:  "Shows due date, copy count, and a 'Reserve when available' option. The user leaves with a plan, not a rejection.",
-    },
-    {
-      icon:  "🪑",
-      label: "Study hall full",
-      sub:   "All 48 seats booked · Peak: 10 am – 2 pm",
-      desc:  "Seat map greyed out with a capacity note and a 'Try tomorrow' shortcut pre-filled with the next available slot.",
-    },
-    {
-      icon:  "⚠️",
-      label: "Overdue books warning",
-      sub:   "1 book overdue · Fine accumulating: ₹2 / day",
-      desc:  "Persistent warning banner on the home screen showing the overdue title, fine amount, and a 'Return by scanning' CTA.",
-    },
-    {
-      icon:  "🔔",
-      label: "Empty notifications",
-      sub:   "You're all caught up",
-      desc:  "Oreo the mascot appears here — a moment of warmth in an otherwise empty screen, with a nudge to enable due-date reminders.",
-    },
-  ];
-
-  return (
-    <CsSection id="edgestates">
-      <CsSectionHeader
-        label="Deliver — Edge States"
-        title={<>Designed for what happens <em style={{ fontStyle:"italic" }}>when things go wrong.</em></>}
-        sub="Most screens only show the happy path. These are the states that decide whether an app feels reliable or fragile."
-      />
-
-      <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))", gap:16 }} className="csl-reveal">
-        {edgeStates.map((state) => (
-          <div key={state.label} style={{ background:"#fff", borderRadius:18, overflow:"hidden", boxShadow:"0 4px 14px rgba(0,0,0,0.04)" }}>
-            <CsImg label={state.label} aspect="9/16" icon={state.icon} sub={state.sub} />
-            <div style={{ padding:"16px 18px" }}>
-              <p style={{ fontSize:"0.76rem", fontWeight:600, color:"#111827", marginBottom:5 }}>{state.label}</p>
-              <p style={{ fontSize:"0.72rem", color:"#6B7280", lineHeight:1.6 }}>{state.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <p className="csl-text csl-reveal rd1" style={{ marginTop:20, color:"#9CA3AF", fontStyle:"italic" }}>
-        Edge states were designed alongside happy-path screens — not added at the end. Each state has a corresponding Figma component with all variants in the handoff library.
-      </p>
-    </CsSection>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
    §10  ACCESSIBILITY
 ───────────────────────────────────────────────────────────────────── */
 function AccessibilitySection() {
@@ -1010,22 +924,22 @@ function AccessibilitySection() {
       <CsSectionHeader
         label="Accessibility & Inclusivity"
         title={<>Designed for <em style={{ fontStyle:"italic" }}>everyone to use.</em></>}
-        sub="BibloFi was designed to be inclusive and accessible for all users — from day one, not as an afterthought."
+        sub="BibloFi was designed to be inclusive and accessible for all users, from day one, not as an afterthought."
       />
 
       <div className="csl-card-grid csl-reveal">
         {accessibilityCards.map((card) => (
-          <div key={card.title} style={{ background:"#fff", borderRadius:18, padding:"22px 20px", boxShadow:"0 4px 14px rgba(0,0,0,0.04)" }}>
+          <div key={card.title} style={{ padding:"22px 0" }}>
             <div style={{ fontSize:"1.5rem", marginBottom:12 }}>{card.icon}</div>
             <h3 style={{ fontSize:"0.92rem", fontWeight:700, color:"#111827", marginBottom:8 }}>{card.title}</h3>
-            <p style={{ fontSize:"0.76rem", color:"#6B7280", lineHeight:1.6, marginBottom:12 }}>{card.desc}</p>
+            <p style={{ fontSize:"0.88rem", color:"#6B7280", lineHeight:1.6, marginBottom:12 }}>{card.desc}</p>
             <span style={{ fontSize:"0.68rem", fontWeight:600, background:A5, color:A, padding:"4px 13px", borderRadius:100 }}>{card.badge}</span>
           </div>
         ))}
       </div>
 
       <p className="csl-text csl-reveal rd1" style={{ marginTop:20, color:"#9CA3AF", fontStyle:"italic" }}>
-        Design system built on iOS 18 UI Kit (Figma Community) and Apple&apos;s Human Interface Guidelines — ensuring the app felt native and familiar to iOS users.
+        Design system built on iOS 18 UI Kit (Figma Community) and Apple&apos;s Human Interface Guidelines, ensuring the app felt native and familiar to iOS users.
       </p>
     </CsSection>
   );
@@ -1045,8 +959,8 @@ function TestingSection() {
 
       <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16 }} className="csl-reveal">
         {testResults.map((result) => (
-          <div key={result.task} style={{ background:"#fff", borderRadius:18, padding:"22px 18px", boxShadow:"0 4px 14px rgba(0,0,0,0.04)", textAlign:"center" }}>
-            <p style={{ fontSize:"0.72rem", color:"#6B7280", marginBottom:14, lineHeight:1.5 }}>{result.task}</p>
+          <div key={result.task} style={{ padding:"22px 0", textAlign:"center" }}>
+            <p style={{ fontSize:"0.84rem", color:"#6B7280", marginBottom:14, lineHeight:1.5 }}>{result.task}</p>
             <p style={{ fontSize:"2rem", fontWeight:800, color:A, lineHeight:1 }}>{result.fraction}</p>
             <p style={{ fontSize:"0.7rem", fontWeight:600, color:"#111827", marginTop:4 }}>{result.label}</p>
             <p style={{ fontSize:"0.68rem", color:"#9CA3AF", marginTop:6, lineHeight:1.5 }}>{result.note}</p>
@@ -1056,36 +970,36 @@ function TestingSection() {
 
       <div className="csl-reveal rd1" style={{ marginTop:20, background:A5, borderRadius:16, padding:"20px 24px", textAlign:"center" }}>
         <p style={{ fontSize:"2.5rem", fontWeight:800, color:A, lineHeight:1 }}>90%</p>
-        <p style={{ fontSize:"0.8rem", color:AMed, marginTop:6 }}>
+        <p style={{ fontSize:"0.92rem", color:AMed, marginTop:6 }}>
           Overall task completion rate across all 3 tasks · 20 participants
         </p>
-        <p style={{ fontSize:"0.72rem", color:AMut, marginTop:6 }}>
-          Nielsen Norman Group benchmarks average task completion for well-designed consumer apps at 78% — BibloFi tested 12 points above that on a first prototype.
+        <p style={{ fontSize:"0.84rem", color:AMut, marginTop:6 }}>
+          Nielsen Norman Group benchmarks average task completion for well-designed consumer apps at 78%, BibloFi tested 12 points above that on a first prototype.
         </p>
       </div>
 
       <p className="csl-text csl-reveal rd2" style={{ marginTop:20 }}>
-        Key improvement from testing: secondary navigation was unclear in early iterations. We restructured the tab bar and improved labelling — confirmed positively in final feedback sessions.
+        Key improvement from testing: secondary navigation was unclear in early iterations. We restructured the tab bar and improved labelling, confirmed positively in final feedback sessions.
       </p>
 
       {/* Post-delivery honest caveat */}
       <div className="csl-callout csl-reveal rd2" style={{ marginTop:20 }}>
         <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Post-delivery context</p>
         <p style={{ fontSize:"0.96rem", color:"#374151", lineHeight:1.75 }}>
-          The Figma specs and design system were handed off to the iOS engineering team at internship end. Post-launch adoption data wasn&apos;t accessible to me after the internship concluded. These testing results represent the final pre-handoff validation — not production metrics. Instrumenting for post-launch measurement is something I&apos;d build into the brief from day one next time.
+          The Figma specs and design system were handed off to the iOS engineering team at internship end. Post-launch adoption data wasn&apos;t accessible to me after the internship concluded. These testing results represent the final pre-handoff validation, not production metrics. Instrumenting for post-launch measurement is something I&apos;d build into the brief from day one next time.
         </p>
       </div>
 
       {/* Oreo mascot */}
       <div className="csl-reveal rd2" style={{
-        marginTop:28, background:"#fff", borderRadius:20, padding:"24px",
-        boxShadow:"0 4px 20px rgba(0,0,0,0.05)", display:"flex", gap:20, alignItems:"center",
+        marginTop:28, padding:"24px 0",
+        display:"flex", gap:20, alignItems:"center",
       }}>
         <div style={{ fontSize:"2.5rem", flexShrink:0 }}>🐾</div>
         <div>
-          <h3 style={{ fontSize:"0.92rem", fontWeight:700, color:"#111827", marginBottom:8 }}>Meet Oreo — A mascot with personality</h3>
-          <p style={{ fontSize:"0.78rem", color:"#6B7280", lineHeight:1.65 }}>
-            Every great app has a soul. Oreo is the character we created to give BibloFi a unique theme and warmth — a small detail that made the experience feel human. Good UX isn&apos;t just about flows and components. It&apos;s about the moments that make users smile.
+          <h3 style={{ fontSize:"0.92rem", fontWeight:700, color:"#111827", marginBottom:8 }}>Meet Oreo, a mascot with personality</h3>
+          <p style={{ fontSize:"0.9rem", color:"#6B7280", lineHeight:1.65 }}>
+            Every great app has a soul. Oreo is the character we created to give BibloFi a unique theme and warmth, a small detail that made the experience feel human. Good UX isn&apos;t just about flows and components. It&apos;s about the moments that make users smile.
           </p>
         </div>
       </div>
@@ -1108,7 +1022,7 @@ function LearningsSection() {
       <div className="csl-callout csl-reveal" style={{ marginBottom:28 }}>
         <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>What this didn&apos;t fully solve</p>
         <p style={{ fontSize:"0.96rem", color:"#374151", lineHeight:1.75 }}>
-          BibloFi solves the student&apos;s experience. It doesn&apos;t solve the librarian&apos;s. Every booking, every fine, every availability update still requires manual work on the librarian&apos;s side. The admin panel was de-scoped in week 3 — it&apos;s the most important thing missing from what was delivered, and it&apos;s what I&apos;d prioritise in Phase 2.
+          BibloFi solves the student&apos;s experience. It doesn&apos;t solve the librarian&apos;s. Every booking, every fine, every availability update still requires manual work on the librarian&apos;s side. The admin panel was de-scoped in week 3, it&apos;s the most important thing missing from what was delivered, and it&apos;s what I&apos;d prioritise in Phase 2.
         </p>
       </div>
 
@@ -1116,14 +1030,15 @@ function LearningsSection() {
         {learnings.map((learning) => (
           <div key={learning.num} className="csl-reveal" style={{
             display:"flex", gap:20,
-            background: learning.num === "05" ? A5 : "#fff",
+            background: learning.num === "05" ? A5 : "transparent",
             border:     learning.num === "05" ? `1.5px solid ${A2}` : "none",
-            borderRadius:18, padding:"22px", boxShadow:"0 4px 14px rgba(0,0,0,0.04)",
+            borderRadius: learning.num === "05" ? 18 : 0,
+            padding:"22px 0",
           }}>
             <p style={{ fontSize:"0.6rem", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", flexShrink:0, marginTop:2 }}>{learning.num}</p>
             <div>
               <h3 style={{ fontSize:"0.92rem", fontWeight:700, color:"#111827", marginBottom:6 }}>{learning.title}</h3>
-              <p style={{ fontSize:"0.78rem", color:"#6B7280", lineHeight:1.7 }}>{learning.text}</p>
+              <p style={{ fontSize:"0.9rem", color:"#6B7280", lineHeight:1.7 }}>{learning.text}</p>
             </div>
           </div>
         ))}
@@ -1132,7 +1047,7 @@ function LearningsSection() {
       <a href="/projects/ecotrack" className="csl-next csl-reveal" style={{ marginTop:56 }}>
         <div>
           <p className="csl-next-label">Next Case Study</p>
-          <p className="csl-next-title">EcoTrack — Carbon Footprint Tracking</p>
+          <p className="csl-next-title">EcoTrack: Carbon Footprint Tracking</p>
         </div>
         <span className="csl-next-arrow">→</span>
       </a>
@@ -1162,7 +1077,6 @@ export function BiblofiCaseStudy() {
       <ConstraintsSection />
       <ScreensSection />
       <FinalScreensSection />
-      <EdgeStatesSection />
       <AccessibilitySection />
       <TestingSection />
       <LearningsSection />
