@@ -17,44 +17,49 @@ const html = `<section class="hero" id="home">
 
   </div>
 
-  <!-- RIGHT: paper clip card stack -->
+  <!-- RIGHT: polaroid memory collage -->
   <div class="hi-right reveal from-right reveal-delay-1">
-    <div class="hi-cs-wrap" id="hiCsWrap">
+    <div class="hi-pm-collage">
 
-      <!-- Blue structural back cards (fixed, never change) -->
-      <div class="hi-cs-back"></div>
-      <div class="hi-cs-mid"></div>
+      <!-- handwritten note — top -->
+      <span class="hi-pm-note hi-pm-note--tl">designing my way →</span>
 
-      <!-- Photo card 0 — "one day at a time" (starts active) -->
-      <div class="hi-cs-card hi-cs-active" data-idx="0">
-        <img src="/Image/hero/second.png" class="hi-cs-img" alt="one day at a time" />
-        <div class="hi-cs-grad"></div>
-        <span class="hi-cs-cap">one day at a time</span>
-        <div class="hi-cs-label">click to change</div>
+      <!-- polaroid 1 -->
+      <div class="hi-pm-wrap hi-pm-1">
+        <div class="hi-pm-tape"></div>
+        <div class="hi-pm-frame">
+          <img src="/Image/hero/second.png" class="hi-pm-photo hi-pm-photo--1" alt="one day at a time" />
+          <span class="hi-pm-cap">one day at a time</span>
+        </div>
       </div>
 
-      <!-- Photo card 1 — "food > everything" -->
-      <div class="hi-cs-card hi-cs-behind" data-idx="1">
-        <img src="/Image/hero/third.png" class="hi-cs-img" alt="food > everything" />
-        <div class="hi-cs-grad"></div>
-        <span class="hi-cs-cap">food &gt; everything</span>
-        <div class="hi-cs-label">click to change</div>
+      <!-- polaroid 2 -->
+      <div class="hi-pm-wrap hi-pm-2">
+        <div class="hi-pm-frame">
+          <img src="/about/portrait.jpg" class="hi-pm-photo hi-pm-photo--2" alt="coffee first, always" />
+          <span class="hi-pm-cap">coffee first, always</span>
+        </div>
       </div>
 
-      <!-- Photo card 2 — "coffee first, always" -->
-      <div class="hi-cs-card hi-cs-behind" data-idx="2">
-        <img src="/about/portrait.jpg" class="hi-cs-img" alt="coffee first, always" />
-        <div class="hi-cs-grad"></div>
-        <span class="hi-cs-cap">coffee first, always</span>
-        <div class="hi-cs-label">click to change</div>
+      <!-- polaroid 3 -->
+      <div class="hi-pm-wrap hi-pm-3">
+        <div class="hi-pm-tape hi-pm-tape--r"></div>
+        <div class="hi-pm-frame">
+          <img src="/Image/hero/third.png" class="hi-pm-photo hi-pm-photo--3" alt="food &gt; everything" />
+          <span class="hi-pm-cap">food &gt; everything</span>
+        </div>
       </div>
 
-      <!-- Paper clip — fixed on top of everything -->
-      <div class="hi-cs-clip">
-        <svg width="25" height="49" viewBox="0 0 36 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 6 C32 6 34 14 34 22 L34 52 C34 62 26 68 18 68 C10 68 2 62 2 52 L2 20 C2 10 10 4 18 4 C26 4 32 10 32 20 L32 52 C32 58 26 64 18 64 C12 64 8 58 8 52 L8 22 C8 14 12 10 18 10" stroke="#9AAAB8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        </svg>
+      <!-- polaroid 4 -->
+      <div class="hi-pm-wrap hi-pm-4">
+        <div class="hi-pm-frame">
+          <img src="/Image/hero/first.png" class="hi-pm-photo hi-pm-photo--4" alt="somewhere in between" />
+          <span class="hi-pm-cap">somewhere in between</span>
+        </div>
       </div>
+
+      <!-- handwritten note — bottom right -->
+      <span class="hi-pm-note hi-pm-note--br">caffeinated &amp; designing ☕</span>
 
     </div>
   </div>

@@ -2032,6 +2032,35 @@ nav.scrolled .nav-pill{
   .home-xp{padding:4rem 100px 5rem;}
 }
 @media(max-width:1100px){.home-xp-grid{grid-template-columns:repeat(3,1fr);}}
+/* ── POLAROID MEMORY COLLAGE (home hero right) ── */
+.hi-pm-collage{position:relative;width:420px;height:480px;flex-shrink:0;}
+.hi-pm-note{position:absolute;font-family:var(--hand);font-size:16px;color:rgba(60,40,20,0.44);pointer-events:none;line-height:1.55;z-index:0;}
+.hi-pm-note--tl{top:16px;left:6px;transform:rotate(-6deg);}
+.hi-pm-note--br{bottom:18px;right:6px;transform:rotate(4deg);text-align:right;}
+.hi-pm-wrap{position:absolute;cursor:pointer;}
+.hi-pm-frame{background:#fff;padding:10px 10px 34px;border-radius:2px;box-shadow:0 4px 16px rgba(0,0,0,0.09),0 10px 30px rgba(0,0,0,0.07);transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94),box-shadow 0.45s ease;}
+.hi-pm-tape{position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-3deg);width:44px;height:20px;background:rgba(252,224,165,0.72);border-radius:2px;z-index:5;box-shadow:0 1px 3px rgba(0,0,0,0.07);}
+.hi-pm-tape--r{transform:translateX(-50%) rotate(5deg);}
+.hi-pm-photo{display:block;width:100%;object-fit:cover;object-position:top center;filter:sepia(10%) brightness(0.97) contrast(0.96) saturate(0.92);border-radius:1px;}
+.hi-pm-photo--1{height:143px;}
+.hi-pm-photo--2{height:152px;}
+.hi-pm-photo--3{height:146px;}
+.hi-pm-photo--4{height:132px;}
+.hi-pm-cap{display:block;padding-top:7px;text-align:center;font-family:var(--hand);font-size:14px;color:rgba(90,55,20,0.70);line-height:1.3;}
+.hi-pm-1{left:10px;top:44px;z-index:2;width:165px;animation:hiPmFloat 7s ease-in-out 0s infinite;}
+.hi-pm-2{left:158px;top:-10px;z-index:3;width:175px;animation:hiPmFloat 7s ease-in-out 1.4s infinite;}
+.hi-pm-3{left:55px;top:152px;z-index:4;width:168px;animation:hiPmFloat 7s ease-in-out 0.7s infinite;}
+.hi-pm-4{left:202px;top:80px;z-index:1;width:152px;animation:hiPmFloat 7s ease-in-out 2s infinite;}
+.hi-pm-1 .hi-pm-frame{transform:rotate(-7deg);}
+.hi-pm-2 .hi-pm-frame{transform:rotate(5deg);}
+.hi-pm-3 .hi-pm-frame{transform:rotate(-3deg);}
+.hi-pm-4 .hi-pm-frame{transform:rotate(9deg);}
+.hi-pm-wrap:hover{z-index:20!important;}
+.hi-pm-wrap:hover .hi-pm-frame{transform:rotate(-1deg) translateY(-8px) scale(1.04);box-shadow:0 20px 60px rgba(0,0,0,0.18),0 6px 18px rgba(0,0,0,0.10);}
+@keyframes hiPmFloat{
+  0%,100%{transform:translateY(0);}
+  45%{transform:translateY(-5px);}
+}
 @media(max-width:900px){
   .hero{padding:8rem 48px 4rem;gap:16px;}
   .hi-scrapbook{width:240px;height:340px;}
@@ -2042,10 +2071,12 @@ nav.scrolled .nav-pill{
   .hi-mai{height:220px;}
   .home-loves{padding:4rem 48px;}
   .home-xp{padding:4rem 48px 5rem;}
+  .hi-pm-collage{width:340px;height:400px;transform:scale(0.86);transform-origin:center top;margin-bottom:-48px;}
 }
 @media(max-width:700px){
   .hero{grid-template-columns:1fr;padding:7rem 24px 4rem;text-align:center;}
   .hi-right{order:-1;}
+  .hi-pm-collage{transform:scale(0.72);transform-origin:center top;width:300px;height:340px;margin-bottom:-92px;}
   .hi-bio{margin:0 auto 2rem;}
   .hi-chips{justify-content:center;}
   .hi-pill{display:none;}
