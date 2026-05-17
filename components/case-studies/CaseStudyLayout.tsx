@@ -407,7 +407,6 @@ export function CaseStudyPage({
 
   return (
     <div className="csl-root" ref={rootRef} style={THEME_VARS[theme]}>
-      <CaseStudyNav />
       {hero}
       <div className="csl-body">
         <aside className="csl-sidebar">
@@ -415,7 +414,6 @@ export function CaseStudyPage({
         </aside>
         <main className="csl-main">{children}</main>
       </div>
-      <CsFooter />
     </div>
   );
 }

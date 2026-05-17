@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Caveat, Cormorant_Garamond, Instrument_Sans, Lato } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { SharedNav } from "@/components/SharedNav";
+import { SharedFooter } from "@/components/SharedFooter";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
@@ -197,9 +197,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       </head>
       <body>
         <GoogleAnalytics />
-        <Navbar />
+        <SharedNav />
         {children}
-        <Footer />
+        <SharedFooter />
         <ScrollToTop />
       </body>
     </html>
