@@ -326,7 +326,7 @@ function AirHero() {
           <p className="csl-hero-desc">
             A live product losing market share. A business mandate to redesign. One designer, six months, and a full redesign that cut booking time by 30–40%.
           </p>
-          <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, maxWidth: 460, margin: "0 0 32px", fontStyle: "italic" }}>
+          <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, maxWidth: 460, margin: "0 0 32px", fontStyle: "italic" }}>
             No design system. No prior UI. One designer. Six months.
           </p>
           <div className="csl-hero-chips">
@@ -371,7 +371,7 @@ function OverviewSection() {
           <span className="muted">
             <Typed text="used by 25,000+ agents" delay={200} />
           </span>
-          <span> — was losing </span>
+          <span> was </span>
           <span className="muted">
             <Typed text="ground to the market." delay={900} />
           </span>
@@ -379,13 +379,13 @@ function OverviewSection() {
 
         <div className="air-overview-copy">
           <p>
-            Air IQ was not a concept. It was a <strong>live B2B flight booking portal</strong> actively used by travel agencies across India. Over <strong>25,000 agents</strong> depended on it daily to search fares, manage passenger details, and confirm bookings on behalf of their clients.
+            Air IQ was a <strong>live B2B flight booking portal</strong> used by travel agencies across India. Over <strong>25,000 agents</strong> depended on it daily to search fares, manage passengers, and confirm bookings for clients.
           </p>
           <p>
-            But the product was aging. Feedback from agents was consistent and growing — the system was slowing them down. Competitors were catching up. The business risk was real: a platform that agents find frustrating gets replaced by one they don't.
+            But the product was aging. Agent feedback was consistent: the system was slowing them down. Competitors were catching up. A platform agents find frustrating gets replaced by one they don&apos;t.
           </p>
           <p>
-            The mandate was not a visual refresh. It was a <strong>complete redesign of the booking experience</strong> — from search to confirmation — with new features introduced alongside it. This was a business problem that needed to be solved at the design level.
+            The mandate was not a visual refresh. It was a <strong>complete redesign</strong> from search to confirmation, with new features built in alongside. A business problem that needed to be solved at the design level.
           </p>
         </div>
       </div>
@@ -399,7 +399,7 @@ function OverviewSection() {
         ].map((s) => (
           <div key={s.num} style={{ background: "#fff", padding: "28px 24px" }}>
             <div style={{ fontSize: "1.9rem", fontWeight: 800, color: "#1E90FF", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.num}</div>
-            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginTop: 8, lineHeight: 1.4 }}>{s.label}</div>
+            <div style={{ fontSize: "0.92rem", fontWeight: 700, color: "#111827", marginTop: 8, lineHeight: 1.4 }}>{s.label}</div>
             <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>{s.sub}</div>
           </div>
         ))}
@@ -543,27 +543,27 @@ function JourneyTimeline() {
 ───────────────────────────────────────────────────────────────────── */
 const PAIN_MOMENTS = [
   {
-    title: "Fare listings that drown agents in data",
-    scene: "Each airline offered 3 to 5+ fare tiers — Economy Saver, Economy Flex, Business Light, Business Full — each with a different combination of refund policy, meal inclusion, hand baggage, and check-in baggage allowance. The listing showed all of it at equal visual weight. Agents had to stop, read every row, and re-read before they could answer a client's most basic question: which fare is right for them?",
-    tag: "Visual overload on every single search",
+    title: "Fare listings overwhelmed agents",
+    scene: "Each airline offered 3 to 5+ fare tiers with different refund, meal, and baggage rules, all at equal visual weight. Agents had to read every row before making a single comparison. A high-frequency scan became a slow, exhausting read.",
+    tag: "Visual overload on every search",
     solvedBy: "Fare Listing Card",
   },
   {
-    title: "Fare changes disappeared into the noise",
-    scene: "Flight prices in this market move in real time. A fare that was ₹3,180 when the agent started the conversation could be ₹3,890 by the time the client said yes. The old system showed no alert, no highlight, no indication. Agents discovered the change only when the booking failed — after the client had already committed.",
-    tag: "No change alerts → booking failures",
+    title: "Prices changed with no warning",
+    scene: "Fares move in real time. A price at ₹3,180 when the agent searched could be ₹3,890 by the time the client said yes. The old system showed no alert, no highlight. Agents found out only when the booking failed.",
+    tag: "Silent price changes caused booking failures",
     solvedBy: "Fare Listing Card",
   },
   {
-    title: "The interface worked against how agents work",
-    scene: "Travel agents are keyboard-first professionals. They navigate by shortcut, switch screens by habit, and type without looking. The portal required mouse clicks for actions that should have been reachable in one keystroke. Every forced click broke flow and slowed a booking that should have taken seconds.",
+    title: "The interface fought how agents work",
+    scene: "Travel agents are keyboard-first. They navigate by shortcut and type without looking. The portal required mouse clicks for actions that should take one keystroke. Every forced click broke flow.",
     tag: "Mouse-dependent UI in a keyboard-native job",
     solvedBy: "Broader Design Decisions",
   },
   {
-    title: "The feedback kept pointing to the same problems",
-    scene: "It wasn't one complaint. It was a pattern — agents, operations teams, and support all flagging the same friction week after week. The company reached a threshold: this wasn't a feature gap, it was a product-level problem. A full redesign, with new features built in, was the only path to staying competitive.",
-    tag: "Business mandate, not just UX cleanup",
+    title: "The same problems, every week",
+    scene: "It wasn't one complaint. Agents, operations, and support all flagged the same friction repeatedly. The business reached a threshold: this wasn't a feature gap, it was a product-level problem that needed a full redesign.",
+    tag: "Business mandate, not a UX cleanup",
     solvedBy: "End-to-end redesign",
   },
 ];
@@ -572,8 +572,8 @@ function ProblemSection() {
   return (
     <CsSection id="problem">
       <CsSectionHeader
-        title="The portal was slowing agents down — and the business knew it."
-        sub="25,000 agents. Consistent feedback. Growing competitive pressure. This wasn't a UI problem. It was a business problem that showed up in the interface."
+        title="The portal was slowing agents down. The business knew it."
+        sub="25,000 agents. Consistent feedback. Growing competitive pressure. Not a UI problem. A business problem that lived in the interface."
       />
 
       <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
@@ -583,7 +583,7 @@ function ProblemSection() {
             paddingLeft: 18,
           }}>
             <p className="csl-h3" style={{ marginBottom: 6 }}>{m.title}</p>
-            <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 10px" }}>
+            <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 10px" }}>
               {m.scene}
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -599,8 +599,8 @@ function ProblemSection() {
 
       <div className="csl-reveal" style={{ marginTop: 28, padding: "16px 20px", background: "#F9FAFB", borderRadius: 12, border: "1px solid #F3F4F6" }}>
         <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.12em" }}>How I know this</span>
-        <p style={{ fontSize: "0.9rem", color: "#374151", lineHeight: 1.7, margin: "6px 0 0" }}>
-          Four agents were interviewed before the first wireframe. Sessions were semi-structured: I asked agents to walk me through a booking start to finish while narrating what they were checking and why. The patterns above appeared in every session.
+        <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.7, margin: "6px 0 0" }}>
+          Four agents interviewed before the first wireframe. Semi-structured sessions: walk me through a booking, narrate what you&apos;re checking. Every pattern above appeared in every session.
         </p>
       </div>
 
@@ -646,7 +646,7 @@ function ProblemSection() {
       <ConstraintsBlock />
 
       <div className="csl-reveal" style={{ marginTop: 40 }}>
-        <span className="csl-eyebrow">The booking journey — before and after</span>
+        <span className="csl-eyebrow">The booking journey: before and after</span>
         <div style={{ marginTop: 16 }}>
           <JourneyTimeline />
         </div>
@@ -667,11 +667,11 @@ const COMPETITORS = [
 ];
 
 const KEY_FINDINGS = [
-  "Fare listing is a constant problem across every portal — some handle it partially, none handle it well. **All decisions start here.**",
-  "Price dominates every scan — but **fare rules are never inline**. Refundability is always one extra click away across all 4 platforms.",
-  "Open filters, lose results. Agents need **both visible at once** — sequencing compare and filter breaks the workflow.",
-  "TripJack had the right data, wrong **visual hierarchy** — refundability and seat count were buried every time.",
-  "**80% of B2B bookings** leave add-ons and SSR empty — but every portal shows those empty rows anyway, creating confusion at review.",
+  "Fare listing is a constant problem across every portal. Some handle it partially, none handle it well. **All decisions start here.**",
+  "Price dominates every scan, but **fare rules are never inline**. Refundability is always one extra click away across all 4 platforms.",
+  "Agents need to filter and compare simultaneously. Every portal hides filters behind a modal, **breaking the compare loop**.",
+  "TripJack had the right data, wrong **visual hierarchy**. Refundability and seat count were buried every time.",
+  "**80% of B2B bookings** leave add-ons empty, yet every portal shows those empty rows, creating confusion at review.",
 ];
 
 function HighlightLine({ text, active }: { text: string; active: boolean }) {
@@ -790,7 +790,7 @@ function CompetitiveCarousel() {
                   fontSize: "0.68rem", fontWeight: 900, color: "#1E90FF",
                   flexShrink: 0, marginTop: 1,
                 }}>0{i + 1}</span>
-                <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
+                <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
                   {parts.map((part, j) =>
                     j % 2 === 1
                       ? <strong key={j} style={{ color: "#111827", fontWeight: 700 }}>{part}</strong>
@@ -830,15 +830,15 @@ const AGENT_INSIGHTS = [
   {
     label: "Insight 01",
     heading: "Fare data overload on every search",
-    text: "3 to 5+ fare tiers per airline — each with different refund policy, meal, and baggage rules — all shown at equal visual weight.",
-    dataText: "Agents had to re-read every row before answering a client's simplest question.",
+    text: "3 to 5+ fare tiers per airline, each with different refund, meal, and baggage rules, all at equal visual weight.",
+    dataText: "Agents re-read every row before answering a client's simplest question.",
     stat: "5+",
     statUnit: "fare tiers per airline",
   },
   {
     label: "Insight 02",
-    heading: "The hidden cost of fare rules",
-    text: "No inline summary. Agents guessed refundability from fine print — and sometimes got it wrong in front of a client.",
+    heading: "Fare rules were always hidden",
+    text: "No inline refund summary. Agents guessed refundability from fine print and sometimes got it wrong in front of a client.",
     dataText: "All 4 competitor platforms hid refundability behind extra clicks.",
     stat: "100%",
     statUnit: "of competitors did it",
@@ -846,16 +846,16 @@ const AGENT_INSIGHTS = [
   {
     label: "Insight 03",
     heading: "Keyboard-first agents, mouse-dependent portal",
-    text: "Agents navigate by shortcut and muscle memory. Every forced mouse click added seconds — at scale across 25,000 agents, it compounds.",
-    dataText: "The portal required clicks for actions agents expected to do with a single keystroke.",
+    text: "Agents navigate by shortcut and muscle memory. Every forced click added seconds. At 25,000 agents, it compounds.",
+    dataText: "The portal required clicks for actions agents expected in a single keystroke.",
     stat: "0",
     statUnit: "keyboard shortcuts designed for",
   },
   {
     label: "Insight 04",
     heading: "80% of bookings have empty SSR tables",
-    text: "Add-ons and special requests are blank in most B2B bookings — but the review page showed every empty row, creating confusion before confirmation.",
-    dataText: "Agents assumed empty rows meant missing data, not just unapplied options.",
+    text: "Add-ons are blank in most B2B bookings, yet the review page showed every empty row, creating confusion before confirmation.",
+    dataText: "Agents assumed empty rows meant missing data, not unapplied options.",
     stat: "80%",
     statUnit: "of bookings with empty SSR",
   },
@@ -896,7 +896,7 @@ function ResearchInsightCards() {
             {/* Body */}
             <p style={{
               fontFamily: "var(--font-lato), sans-serif",
-              fontSize: "0.82rem", color: "#6B7280",
+              fontSize: "0.92rem", color: "#6B7280",
               lineHeight: 1.65, margin: "0 0 16px",
             }}>
               {ins.text}
@@ -1019,7 +1019,7 @@ const WAFFLE_METRICS = [
     filled: 72,
     target: 72,
     suffix: "%",
-    desc: "Booking time lost to context-switching — not the booking itself.",
+    desc: "Booking time lost to context-switching, not the booking itself.",
     source: "Agent Interviews · Pre-launch",
   },
   {
@@ -1033,7 +1033,7 @@ const WAFFLE_METRICS = [
     filled: 100,
     target: 100,
     suffix: "%",
-    desc: "Competitors buried refundability — never shown inline.",
+    desc: "Competitors buried refundability. Never shown inline.",
     source: "Competitive Analysis · 4 Platforms",
   },
 ];
@@ -1193,27 +1193,27 @@ function ApproachSection() {
           {[
             {
               num: "01",
-              insight: "Price and refundability need to be in the same scan",
+              insight: "Price and refundability must be in the same scan",
               component: "Fare Listing Card",
-              detail: "Refund badge always visible inline — never one click away. Fare tiers readable without expanding.",
+              detail: "Refund badge always visible inline. Fare tiers readable without expanding.",
             },
             {
               num: "02",
-              insight: "80% of B2B bookings have empty SSR/add-on tables",
+              insight: "80% of B2B bookings have empty SSR tables",
               component: "Review Table",
-              detail: "Empty rows created confusion at review. Solution: hide empty SSR fields until filled — don't show absence as data.",
+              detail: "Empty rows created confusion. Hide SSR fields until filled. Don't show absence as data.",
             },
             {
               num: "03",
               insight: "Itinerary clarity is the agent's most-used output",
               component: "Itinerary Card",
-              detail: "Agents read itinerary details verbally to clients on a call. If the card isn't scannable in 3 seconds, the call drags and trust erodes.",
+              detail: "Agents read this aloud to clients on a call. Not scannable in 3 seconds means the call drags and trust erodes.",
             },
             {
               num: "04",
               insight: "Late errors cost money, not just time",
               component: "Review Table",
-              detail: "Errors caught at payment meant re-booking fees and a frustrated client on hold. Validation needed to move earlier in the flow.",
+              detail: "Errors at payment meant re-booking fees with a client on hold. Validation needed to move earlier.",
             },
           ].map((r) => (
             <div key={r.num}>
@@ -1225,7 +1225,7 @@ function ApproachSection() {
                 }}>{r.num}</span>
                 <span style={{
                   fontFamily: "var(--font-lato), sans-serif",
-                  fontSize: "0.95rem", fontWeight: 700,
+                  fontSize: "1.05rem", fontWeight: 700,
                   color: "#111827", lineHeight: 1.4,
                 }}>
                   {r.insight}
@@ -1233,7 +1233,7 @@ function ApproachSection() {
               </div>
               <p style={{
                 fontFamily: "var(--font-lato), sans-serif",
-                fontSize: "0.82rem", color: "#6B7280",
+                fontSize: "0.92rem", color: "#6B7280",
                 margin: 0, lineHeight: 1.6, paddingLeft: 36,
               }}>
                 <span style={{ color: "#c94a28", fontWeight: 600 }}>→ {r.component}: </span>
@@ -1261,7 +1261,7 @@ const FARE_APPROACHES = [
     statusBg: "#FEF2F2",
     statusBorder: "#FECACA",
     heading: "All data, equal weight",
-    reason: "Every field competed for attention — fare class, baggage, refundability all had the same visual weight. Agents had to read every row top-to-bottom before they could compare fares. A high-frequency scan became a slow, exhausting read.",
+    reason: "Every field competed for attention. Fare class, baggage, and refundability at equal visual weight. Agents read every row top-to-bottom before comparing. A fast scan became an exhausting read.",
     isFinal: false,
   },
   {
@@ -1272,7 +1272,7 @@ const FARE_APPROACHES = [
     statusBg: "#FFFBEB",
     statusBorder: "#FCD34D",
     heading: "Grouping added, labels still ambiguous",
-    reason: "Visual grouping helped reduce noise, but fare class labels like SME, SAVER, and FLEX meant nothing without explanation. Agents were still guessing which class to book. Refundability remained a secondary thought rather than an upfront signal.",
+    reason: "Visual grouping helped, but fare class labels like SME, SAVER, and FLEX meant nothing without explanation. Agents were still guessing which class to book. Refundability remained secondary, not an upfront signal.",
     isFinal: false,
   },
   {
@@ -1448,11 +1448,11 @@ function FareListingBlock() {
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 28 }}>
-        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
+        <h3 style={{ fontSize: "1.3rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
           Fare Listing Card
         </h3>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.75 }}>
-          The card agents see most often — search results page, every booking starts here.
+        <p style={{ fontSize: "1.1rem", color: "#6B7280", margin: 0, lineHeight: 1.75 }}>
+          The card agents see most often. Search results page, every booking starts here.
         </p>
       </div>
 
@@ -1471,8 +1471,8 @@ function FareListingBlock() {
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>
-        <p style={{ marginTop: 12, fontSize: "1.05rem", color: "#374151", lineHeight: 1.75 }}>
-          Multiple fare classes, baggage rules, airline policies — all competing at equal visual weight. Nothing prioritised. Agents had to read everything before making a single comparison.
+        <p style={{ marginTop: 12, fontSize: "1.1rem", color: "#374151", lineHeight: 1.75 }}>
+          Multiple fare classes, baggage rules, airline policies at equal visual weight. Nothing prioritised. Agents read everything before making a single comparison.
         </p>
       </div>
 
@@ -1529,7 +1529,7 @@ function FareListingBlock() {
                 <p style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", margin: "0 0 6px" }}>
                   {approach.heading}
                 </p>
-                <p style={{ fontSize: "1.05rem", color: "#4B5563", lineHeight: 1.75, margin: 0 }}>
+                <p style={{ fontSize: "1.1rem", color: "#4B5563", lineHeight: 1.75, margin: 0 }}>
                   {approach.reason}
                 </p>
               </div>
@@ -1561,16 +1561,16 @@ function FareListingBlock() {
               color: "#059669", background: "#ECFDF5", border: "1px solid #6EE7B7",
               borderRadius: 100, padding: "4px 12px", marginBottom: 12,
             }}>✦ Shipped</span>
-            <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", margin: "0 0 10px", lineHeight: 1.35 }}>
+            <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "#111827", margin: "0 0 10px", lineHeight: 1.35 }}>
               Price hierarchy first. Everything else at a glance.
             </p>
-            <p style={{ fontSize: "0.94rem", color: "#4B5563", lineHeight: 1.75, margin: "0 0 20px" }}>
+            <p style={{ fontSize: "1.05rem", color: "#4B5563", lineHeight: 1.75, margin: "0 0 20px" }}>
               Price and time dominate the scan path. Refundability, baggage allowance, and seat count are visible without expanding or hovering. Fare class icons map to symbols agents already recognise. Scan once, compare, decide, book.
             </p>
             <div>
               <span className="csl-eyebrow">Impact</span>
-              <p style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
-                This one card became the template for every fare listing in the platform — one pattern extended across one-way, international, and round-trip searches.
+              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+                This card became the template for every fare listing in the platform, extended across one-way, international, and round-trip searches.
               </p>
             </div>
           </div>
@@ -1614,11 +1614,11 @@ function ItineraryCardBlock() {
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 28 }}>
-        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
+        <h3 style={{ fontSize: "1.3rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
           Itinerary Card
         </h3>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.75 }}>
-          One card saves everyone 5 mins per conversation — agents share this directly with clients on a call.
+        <p style={{ fontSize: "1.1rem", color: "#6B7280", margin: 0, lineHeight: 1.75 }}>
+          The card agents read aloud to clients on a call. Every second saved is trust gained.
         </p>
       </div>
 
@@ -1630,16 +1630,16 @@ function ItineraryCardBlock() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/Image/Airiq/Second%20core/old.png" alt="Old itinerary design" style={{ width: "100%", height: "auto", display: "block" }} />
         </div>
-        <p style={{ marginTop: 12, fontSize: "1.05rem", color: "#374151", lineHeight: 1.75 }}>
-          Agents had to scan multiple scattered sections to understand journey details — leading to confusion and slower decision-making on calls with clients.
+        <p style={{ marginTop: 12, fontSize: "1.1rem", color: "#374151", lineHeight: 1.75 }}>
+          Agents scanned multiple scattered sections to piece together journey details. Confusion on calls, slower decisions, eroded trust.
         </p>
       </div>
 
       {/* ── What I Learned ── */}
       <div style={{ marginBottom: 28 }}>
         <span className="csl-eyebrow">What I learned</span>
-        <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: 0 }}>
-          Agents read this card on a phone call with a client. They need to confirm route, dates, and time in under 5 seconds — not navigate through scattered sections. The card had to do one job, perfectly.
+        <p style={{ fontSize: "1.2rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: 0 }}>
+          Agents read this card aloud to a client mid-call. Route, dates, and time confirmed in under 5 seconds. The card had to do one job, perfectly.
         </p>
       </div>
 
@@ -1657,17 +1657,17 @@ function ItineraryCardBlock() {
             }}>◉ Redesigned</span>
             {[
               { label: "Segment at a glance",     detail: "Origin → destination in one clear row. No scrolling to find the route." },
-              { label: "Dates + times grouped",    detail: "Departure and arrival sit side-by-side — not buried across separate sections." },
+              { label: "Dates + times grouped",    detail: "Departure and arrival side-by-side, not buried across sections." },
               { label: "Flat, single-card format", detail: "Everything an agent needs on a call is visible in one frame. Nothing collapsed." },
             ].map((item) => (
-              <p key={item.label} style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>
-                <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}</strong> — {item.detail}
+              <p key={item.label} style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>
+                <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}:</strong> {item.detail}
               </p>
             ))}
             <div style={{ marginTop: 8 }}>
               <span className="csl-eyebrow">Impact</span>
-              <p style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
-                Agents stopped fumbling for details mid-call. Route, class, and times confirmed in under 5 seconds — down from navigating 3 scattered sections.
+              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+                Agents stopped fumbling mid-call. Route, class, and times confirmed in under 5 seconds.
               </p>
             </div>
           </div>
@@ -1719,11 +1719,11 @@ function ReviewTableBlock() {
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 28 }}>
-        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
+        <h3 style={{ fontSize: "1.3rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
           Review Table View
         </h3>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", margin: 0, lineHeight: 1.75 }}>
-          Final review screen — the last checkpoint before a ticket is issued.
+        <p style={{ fontSize: "1.1rem", color: "#6B7280", margin: 0, lineHeight: 1.75 }}>
+          Final review screen. The last checkpoint before a ticket is issued.
         </p>
       </div>
 
@@ -1736,16 +1736,16 @@ function ReviewTableBlock() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/Image/Airiq/third%20core/old.png" alt="Old review table design" style={{ width: "100%", height: "auto", display: "block" }} />
         </div>
-        <p style={{ marginTop: 12, fontSize: "1.05rem", color: "#374151", lineHeight: 1.75 }}>
-          The previous table had excessive empty states and poor data density — making it feel incomplete and harder for agents to review critical information before submitting.
+        <p style={{ marginTop: 12, fontSize: "1.1rem", color: "#374151", lineHeight: 1.75 }}>
+          The previous table had excessive empty states and poor data density. Felt incomplete. Harder for agents to review critical information before submitting.
         </p>
       </div>
 
       {/* ── What I Learned ── */}
       <div style={{ marginBottom: 28 }}>
         <span className="csl-eyebrow">What I learned</span>
-        <p style={{ fontSize: "1.15rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: 0 }}>
-          Empty cells aren&apos;t neutral — they signal broken data to anyone reading the table. Agents were second-guessing information that was correct, just poorly presented. The fix wasn&apos;t adding data, it was removing the visual noise around it.
+        <p style={{ fontSize: "1.2rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: 0 }}>
+          Empty cells aren&apos;t neutral. They signal broken data. Agents were second-guessing correct information because of poor presentation. The fix wasn&apos;t adding data, it was removing the noise around it.
         </p>
       </div>
 
@@ -1774,17 +1774,17 @@ function ReviewTableBlock() {
             }}>◉ Redesigned</span>
             {[
               { label: "Optimised data density",     detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility." },
-              { label: "Explicit empty states",       detail: "No blank cells — missing data shows a clear dash so agents know it's intentional, not broken." },
-              { label: "Grouped headers + hierarchy", detail: "Related fields cluster under shared headers — agents scan by section, not hunting across a full row." },
+              { label: "Explicit empty states",       detail: "No blank cells. Missing data shows a clear dash so agents know it's intentional, not broken." },
+              { label: "Grouped headers + hierarchy", detail: "Related fields cluster under shared headers. Agents scan by section, not row by row." },
             ].map((item) => (
-              <p key={item.label} style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>
-                <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}</strong> — {item.detail}
+              <p key={item.label} style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>
+                <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}:</strong> {item.detail}
               </p>
             ))}
             <div style={{ marginTop: 8 }}>
               <span className="csl-eyebrow">Impact</span>
-              <p style={{ fontSize: "0.94rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
-                Agents stopped second-guessing the data. Pre-submission review went from triple-checking every row to a single confident scan. Operations reported a visible drop in error queries in the first weeks after launch.
+              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+                Agents stopped second-guessing. Review became one confident scan. Operations reported a visible drop in error queries post-launch.
               </p>
             </div>
           </div>
@@ -1931,7 +1931,7 @@ function DesignSystemSection() {
         {stats.map((s) => (
           <div key={s.val} style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
             <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "#111827", flexShrink: 0 }}>{s.val}</span>
-            <span style={{ fontSize: "1.05rem", color: "#374151", fontWeight: 600 }}>{s.label}</span>
+            <span style={{ fontSize: "1.1rem", color: "#374151", fontWeight: 600 }}>{s.label}</span>
             <span style={{ fontSize: "0.9rem", color: "#9CA3AF" }}>— {s.sub}</span>
           </div>
         ))}
@@ -1957,7 +1957,7 @@ function ResultsSection() {
             ~<CountUp to={7} />
             <span style={{ fontSize: "1.4rem", fontWeight: 700, color: "#6B7280", marginLeft: 4 }}>min</span>
           </div>
-          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Average booking time</div>
+          <div style={{ fontSize: "0.92rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Average booking time</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>down from ~12 min per booking</div>
           <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Agent Feedback</div>
         </div>
@@ -1967,7 +1967,7 @@ function ResultsSection() {
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
             30–40%
           </div>
-          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Faster booking completion</div>
+          <div style={{ fontSize: "0.92rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Faster booking completion</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>vs. pre-launch baseline</div>
           <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Operations Data</div>
         </div>
@@ -1977,7 +1977,7 @@ function ResultsSection() {
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
             25–35%
           </div>
-          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Fewer UI confusion tickets</div>
+          <div style={{ fontSize: "0.92rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Fewer UI confusion tickets</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>support drop post-launch</div>
           <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Support Team · Post-launch</div>
         </div>
@@ -1987,7 +1987,7 @@ function ResultsSection() {
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
             <CountUp to={25} />K<span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span>
           </div>
-          <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Active agents onboarded</div>
+          <div style={{ fontSize: "0.92rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Active agents onboarded</div>
           <div style={{ fontSize: "0.72rem", color: "#9CA3AF", marginTop: 4 }}>live across India post-launch</div>
           <div style={{ fontSize: "0.6rem", fontWeight: 700, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Product Analytics</div>
         </div>
@@ -1997,7 +1997,7 @@ function ResultsSection() {
       {/* Business impact bridge */}
       <div className="csl-reveal" style={{ marginBottom: 24, padding: "16px 20px", background: "#F9FAFB", borderRadius: 12, border: "1px solid #F3F4F6" }}>
         <p style={{ fontSize: "0.9rem", color: "#374151", lineHeight: 1.7, margin: 0 }}>
-          <strong style={{ color: "#111827" }}>Why this matters commercially:</strong> Faster booking = more bookings per agent per day = more revenue per seat. At 25,000+ agents, a 30–40% reduction in per-booking time compounds at scale. The engineering manager noted a visible drop in error-related support queries in the first weeks after launch.
+          Faster booking means more bookings per agent per day, more revenue per seat. At 25,000+ agents, a 30–40% time reduction compounds at scale. Support queries dropped visibly in the first weeks post-launch.
         </p>
       </div>
 
@@ -2070,7 +2070,7 @@ function ResultsSection() {
         <span style={{ fontSize: "1.5rem" }}>🏨</span>
         <div>
           <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 2 }}>Hotel module trusted to the same designer</div>
-          <p style={{ fontSize: "0.85rem", color: "#374151", lineHeight: 1.6, margin: 0 }}>After AIR iQ shipped, the team extended trust — the next product module (hotel booking) was handed to the same designer without a new brief process. That&apos;s a stakeholder signal.</p>
+          <p style={{ fontSize: "0.92rem", color: "#374151", lineHeight: 1.6, margin: 0 }}>After AIR iQ shipped, the team extended trust. The next product module (hotel booking) was handed to the same designer without a new brief process. That&apos;s a stakeholder signal.</p>
         </div>
       </div>
     </CsSection>
@@ -2090,7 +2090,7 @@ function LearningsSection() {
     {
       n: "02",
       title: "B2B is not B2C with a logo",
-      text: "Professionals tolerate complexity — but only organised complexity. The goal was never simplicity. It was the right kind of density: data that's always there when you need it, invisible when you don't.",
+      text: "Professionals tolerate complexity, but only organised complexity. The goal was never simplicity. It was the right kind of density: always present when needed, invisible when not.",
     },
     {
       n: "03",
@@ -2099,13 +2099,13 @@ function LearningsSection() {
     },
     {
       n: "04",
-      title: "AI saved synthesis time — not design time",
-      text: "Using ChatGPT to extract user stories from meeting notes and v0 to validate layouts saved roughly 11 days across the project. But every actual design decision — hierarchy, colour, interaction — was made by hand. AI accelerated process, not judgment.",
+      title: "AI saved synthesis time, not design time",
+      text: "Using ChatGPT and v0 saved roughly 11 days across the project. Every actual design decision, hierarchy, colour, and interaction, was made by hand. AI accelerated process, not judgment.",
     },
     {
       n: "05",
       title: "What I'd do differently: more agent time upfront",
-      text: "Four interviews before the first wireframe was not enough for a domain this specialized. GDS fare logic, airline code-share rules, and multi-pax edge cases all surfaced during design — not before. Earlier and more structured research would have caught them sooner.",
+      text: "Four interviews wasn't enough for a domain this specialised. GDS fare logic and multi-pax edge cases surfaced during design, not before. More structured research upfront would have caught them sooner.",
     },
   ];
 
@@ -2128,7 +2128,7 @@ function LearningsSection() {
             }}>{item.n}</span>
             <div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{item.title}</div>
-              <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
+              <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
             </div>
           </div>
         ))}
@@ -2172,7 +2172,7 @@ function StoryCardsGrid() {
               color: col.accent, background: col.bg,
               borderRadius: 100, padding: "3px 10px", marginBottom: 10,
             }}>{card.kicker}</span>
-            <p style={{ fontSize: "0.95rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3 }}>{card.title}</p>
+            <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3 }}>{card.title}</p>
             <p style={{ fontSize: "0.88rem", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{card.text}</p>
           </div>
         );
@@ -2194,12 +2194,12 @@ function ConstraintsBlock() {
     {
       icon: "📋",
       label: "Regulatory surface area",
-      text: "GST breakdowns, RAF levies, and PAN verification are mandatory in India's B2B travel context. Every fare summary and booking confirmation had to surface regulatory data — not just price.",
+      text: "GST breakdowns, RAF levies, and PAN verification are mandatory in India's B2B travel context. Every fare summary and booking confirmation had to surface regulatory data, not just price.",
     },
     {
       icon: "🧠",
       label: "Legacy mental models",
-      text: "Agents trained on command-line GDS interfaces for years. Modernising meant respecting what they already knew — speed of adoption depended on how little had to be relearned.",
+      text: "Agents trained on command-line GDS interfaces for years. Modernising meant respecting what they already knew. Speed of adoption depended on how little had to be relearned.",
     },
     {
       icon: "🏗",
@@ -2237,13 +2237,13 @@ function ProcessSection() {
     <CsSection id="process">
       <CsSectionHeader
         title="How I Worked"
-        sub="AI-assisted process — not AI-generated design. Every tool saved time on synthesis so I could spend it on craft."
+        sub="AI-assisted process, not AI-generated design. Every tool saved synthesis time so I could spend it on craft."
       />
       <StoryCardsGrid />
 
       <div className="csl-reveal" style={{ marginBottom: 40, padding: "24px 28px", background: "#F9FAFB", borderRadius: 16, border: "1px solid #F3F4F6" }}>
-        <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
-          After completing research, I aligned with product managers on both user needs and business constraints. I used AI tools to prototype and validate layout directions fast — testing many approaches in the time it would normally take to build one. The saved time went into craft: the actual design decisions, hierarchy, and component system that shipped.
+        <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+          After research, I aligned with PMs on user needs and business constraints. AI tools let me test many layout directions quickly. The saved time went into craft: design decisions, hierarchy, and the component system that shipped.
         </p>
       </div>
       <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -2271,7 +2271,7 @@ function ProcessSection() {
             {/* Right: content */}
             <div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{step.title}</div>
-              <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>{step.text}</p>
+              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>{step.text}</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                 {step.old && (
                   <span style={{
@@ -2302,7 +2302,7 @@ function DesignDecisionsBlock() {
   return (
     <div className="csl-reveal" style={{ marginTop: 16 }}>
       <span className="csl-eyebrow">Broader design decisions</span>
-      <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 24px" }}>
+      <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 24px" }}>
         Beyond the three core components, these were the decisions that shaped the whole platform.
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -2324,7 +2324,7 @@ function DesignDecisionsBlock() {
             <div>
               <div style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF", marginBottom: 4 }}>{d.label}</div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{d.title}</div>
-              <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>{d.text}</p>
+              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>{d.text}</p>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 6,
                 fontSize: "0.78rem", fontWeight: 600, color: "#059669",
@@ -2402,9 +2402,9 @@ function EdgeCasesSection() {
   return (
     <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
       <span className="csl-eyebrow">Edge cases designed for</span>
-      <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 20px" }}>
+      <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 20px" }}>
         Happy-path screens ship fast. What earns agent trust is designing for when things go wrong.
-        Cases marked <strong style={{ color: "#059669" }}>My initiative</strong> were not in the original brief — I proposed them and they were adopted.
+        Cases marked <strong style={{ color: "#059669" }}>My initiative</strong> were not in the original brief. I proposed them and they were adopted.
       </p>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
         {airEdgeCases.map((ec) => {
@@ -2449,23 +2449,23 @@ function MobileSection() {
   const items = [
     {
       num: "01",
-      title: "Sidebar → Bottom sheet",
-      text: "The persistent 274px filter sidebar on desktop consumes the full viewport on 375px. On mobile, filters become a sticky button that opens a full-screen bottom sheet. The last selection persists when it closes — same mental model, adapted form factor.",
+      title: "Sidebar becomes bottom sheet",
+      text: "The 274px filter sidebar consumes the full viewport at 375px. On mobile, filters become a sticky button opening a full-screen bottom sheet. Last selection persists. Same mental model, adapted form factor.",
     },
     {
       num: "02",
       title: "Same fare card, compressed density",
-      text: "The fare listing card reflows to single column. Price and refund status stay primary. Baggage and meal details move to a tap-to-expand row — present when needed, not competing for the first scan.",
+      text: "The fare listing card reflows to single column. Price and refund status stay primary. Baggage and meal details move to a tap-to-expand row: present when needed, not competing for the first scan.",
     },
     {
       num: "03",
       title: "Touch targets and keyboard parity",
-      text: "Inputs, date pickers, and passenger forms were re-evaluated for touch. 44px minimum hit areas throughout. No information was removed for mobile — only reorganised to respect the smaller viewport.",
+      text: "Inputs, date pickers, and passenger forms re-evaluated for touch. 44px minimum hit areas throughout. No information removed for mobile, only reorganised.",
     },
     {
       num: "04",
       title: "Full journey, login to confirmation",
-      text: "Every flow — search, select, passenger details, review, confirm — works end-to-end at 375px. Agents in the field needed the same capability as agents at a desk. Nothing was cut.",
+      text: "Every flow works end-to-end at 375px. Search, select, passenger details, review, confirm. Agents in the field needed the same capability as agents at a desk. Nothing cut.",
     },
   ];
 
@@ -2473,7 +2473,7 @@ function MobileSection() {
     <CsSection id="mobile">
       <CsSectionHeader
         title="Mobile Adaptivity"
-        sub="Same platform, same data, different form factor. Nothing was simplified for mobile — everything was adapted."
+        sub="Same platform, same data, different form factor. Nothing simplified for mobile, everything adapted."
       />
 
       <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -2494,7 +2494,7 @@ function MobileSection() {
             }}>{item.num}</span>
             <div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 6, lineHeight: 1.3 }}>{item.title}</div>
-              <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
+              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
             </div>
           </div>
         ))}

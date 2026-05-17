@@ -310,7 +310,7 @@ export const airDecisionBlocks = [
     num: "01",
     label: "Filter panel",
     title: "Persistent, not modal",
-    text: "First instinct: modal — clean, common. Built a v0 prototype in 30 min. One walkthrough made it obvious: agents compare while filtering. Modal kills that. Rebuilt as 274px fixed sidebar.",
+    text: "First instinct: modal. Clean and common. Built a v0 prototype in 30 min. One walkthrough made it obvious: agents compare while filtering. Modal kills that. Rebuilt as a 274px fixed sidebar.",
     outcome: "Zero context switching for agents",
     img: "filter-v3.png"
   },
@@ -318,8 +318,8 @@ export const airDecisionBlocks = [
     num: "02",
     label: "Flight card hierarchy",
     title: "The gap no one had flagged",
-    text: "About three weeks into hi-fi, I noticed agents scanning the table were consistently missing two fields — refundability status and seat count. I flagged it in the next standup with a quick annotation showing what agents' eyes were tracking vs. what the card was emphasising. The engineering manager said it was the first time anyone had put that on paper. We restructured the hierarchy the same week — price and status primary, everything else secondary.",
-    outcome: "Reduced missed information — shipped to production",
+    text: "Three weeks into hi-fi, I noticed agents consistently missing two fields: refundability status and seat count. I flagged it in the next standup with an annotation showing where eyes were tracking vs. what the card emphasised. The engineering manager said it was the first time anyone had put that on paper. We restructured hierarchy the same week.",
+    outcome: "Reduced missed information. Shipped to production.",
     img: "card-v3.png"
   },
   {
