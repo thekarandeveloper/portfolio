@@ -34,6 +34,7 @@ const TOC_ITEMS = [
   { id: "process",       label: "Design Process"      },
   { id: "research",      label: "Research"            },
   { id: "insights",      label: "Personas"            },
+  { id: "journey",       label: "User Journey Map"    },
   { id: "wireframes",    label: "Rough Sketches"      },
   { id: "lofi",          label: "Wireframes"          },
   { id: "constraints",   label: "Constraints"         },
@@ -412,6 +413,22 @@ function InsightsSection() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* User Journey Mapping */}
+      <div id="journey" className="csl-reveal rd2" style={{ marginTop:40 }}>
+        <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>User Journey Mapping</p>
+        <h3 style={{ fontSize:"1.1rem", fontWeight:700, color:"#111827", marginBottom:20 }}>
+          Mapping the full emotional arc — <em style={{ fontStyle:"italic" }}>from intent to frustration.</em>
+        </h3>
+        <div style={{ borderRadius:16, overflow:"hidden" }}>
+          <Image
+            src="/Image/Biblofi/research2.png"
+            alt="User journey map showing student experience with the library"
+            width={1200} height={680}
+            style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
+          />
+        </div>
       </div>
     </CsSection>
   );
