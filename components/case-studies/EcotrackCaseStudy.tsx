@@ -261,7 +261,7 @@ function EcoCO2Ring() {
       </svg>
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
         <p style={{ fontSize: "0.9rem", fontWeight: 800, color: "#fff", lineHeight: 1, textShadow: "0 1px 3px rgba(0,30,15,0.7)" }}>2.4</p>
-        <p style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.9)", textShadow: "0 1px 2px rgba(0,30,15,0.5)" }}>kg CO₂</p>
+        <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.9)", textShadow: "0 1px 2px rgba(0,30,15,0.5)" }}>kg CO₂</p>
       </div>
     </div>
   );
@@ -275,13 +275,13 @@ function EcoPhoneMockup() {
       </div>
       <div style={{ background: "#F2FAF3", padding: "16px 12px", minHeight: 220 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <p style={{ fontSize: "0.72rem", color: "#0D2312", fontWeight: 600 }}>Good morning 🌱</p>
+          <p style={{ fontSize: "13px", color: "#0D2312", fontWeight: 400}}>Good morning 🌱</p>
           <div style={{ width: 22, height: 22, borderRadius: "50%", background: "#D0EAD4" }} />
         </div>
         <div style={{ background: "#fff", borderRadius: 12, padding: "14px 12px", textAlign: "center", marginBottom: 10 }}>
           <EcoCO2Ring />
-          <p style={{ fontSize: "0.62rem", color: "#3B6B45" }}>Today&apos;s footprint</p>
-          <p style={{ fontSize: "0.6rem", color: "#48A362" }}>↓ 18% vs yesterday</p>
+          <p style={{ fontSize: "13px", color: "#3B6B45" }}>Today&apos;s footprint</p>
+          <p style={{ fontSize: "13px", color: "#48A362" }}>↓ 18% vs yesterday</p>
         </div>
         {[
           { icon: "🚗", w: "72%", val: "0.8" },
@@ -289,11 +289,11 @@ function EcoPhoneMockup() {
           { icon: "🍽️", w: "30%", val: "0.5" },
         ].map((row) => (
           <div key={row.icon} style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
-            <span style={{ fontSize: "0.7rem" }}>{row.icon}</span>
+            <span style={{ fontSize: "13px" }}>{row.icon}</span>
             <div style={{ flex: 1, height: 5, background: "#D0EAD4", borderRadius: 3 }}>
               <div style={{ width: row.w, height: "100%", background: "#2D7D43", borderRadius: 3 }} />
             </div>
-            <span style={{ fontSize: "0.6rem", color: "#3B6B45", width: 20 }}>{row.val}</span>
+            <span style={{ fontSize: "13px", color: "#3B6B45", width: 20 }}>{row.val}</span>
           </div>
         ))}
         <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
@@ -325,18 +325,18 @@ function EcoPhoneMockupLight() {
         {/* Greeting row */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
           <div>
-            <p style={{ fontSize: "0.62rem", color: "#6B7280", marginBottom: 1 }}>Good morning 🌱</p>
+            <p style={{ fontSize: "13px", color: "#6B7280", marginBottom: 1 }}>Good morning 🌱</p>
             <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#0D2312" }}>David</p>
           </div>
           <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#D0EAD4", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ fontSize: "0.7rem" }}>👤</span>
+            <span style={{ fontSize: "13px" }}>👤</span>
           </div>
         </div>
         {/* CO₂ ring card */}
         <div style={{ background: "#fff", borderRadius: 16, padding: "16px 14px", textAlign: "center", marginBottom: 12, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
           <EcoCO2Ring />
-          <p style={{ fontSize: "0.62rem", color: "#3B6B45", marginTop: 4 }}>Today&apos;s footprint</p>
-          <p style={{ fontSize: "0.68rem", fontWeight: 700, color: "#10B981", marginTop: 2 }}>↓ 18% vs yesterday</p>
+          <p style={{ fontSize: "13px", color: "#3B6B45", marginTop: 4 }}>Today&apos;s footprint</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, color: "#10B981", marginTop: 2 }}>↓ 18% vs yesterday</p>
         </div>
         {/* Progress bars */}
         {[
@@ -345,11 +345,11 @@ function EcoPhoneMockupLight() {
           { icon: "🍽️", label: "Food",     w: "30%", val: "0.5 kg" },
         ].map((row) => (
           <div key={row.icon} style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 8 }}>
-            <span style={{ fontSize: "0.65rem" }}>{row.icon}</span>
+            <span style={{ fontSize: "13px" }}>{row.icon}</span>
             <div style={{ flex: 1 }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
-                <p style={{ fontSize: "0.52rem", color: "#6B7280" }}>{row.label}</p>
-                <p style={{ fontSize: "0.52rem", color: "#374151", fontWeight: 600 }}>{row.val}</p>
+                <p style={{ fontSize: "13px", color: "#6B7280" }}>{row.label}</p>
+                <p style={{ fontSize: "13px", color: "#374151", fontWeight: 400}}>{row.val}</p>
               </div>
               <div style={{ height: 5, background: "#D0EAD4", borderRadius: 3 }}>
                 <div style={{ width: row.w, height: "100%", background: "#2D7D43", borderRadius: 3 }} />
@@ -373,7 +373,7 @@ function EcoPhoneMockupLight() {
           { icon: "👤", active: false },
         ].map(({ icon, active }, i) => (
           <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3, opacity: active ? 1 : 0.35 }}>
-            <span style={{ fontSize: "0.75rem" }}>{icon}</span>
+            <span style={{ fontSize: "13px" }}>{icon}</span>
             {active && <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#2D7D43" }} />}
           </div>
         ))}
@@ -463,12 +463,12 @@ function TabBarPhone() {
       </div>
       <div style={{ background: "#F2FAF3", padding: "12px 10px 8px", minHeight: 190 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-          <p style={{ fontSize: "0.62rem", fontWeight: 600, color: "#0D2312" }}>Good morning 🌱</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, color: "#0D2312" }}>Good morning 🌱</p>
           <div style={{ width: 18, height: 18, borderRadius: "50%", background: "#D0EAD4" }} />
         </div>
         <div style={{ background: "#fff", borderRadius: 10, height: 80, marginBottom: 8, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 4 }}>
           <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#E8F7EC", border: "2px solid #2D7D43" }} />
-          <p style={{ fontSize: "0.52rem", color: "#3B6B45" }}>Today&apos;s footprint</p>
+          <p style={{ fontSize: "13px", color: "#3B6B45" }}>Today&apos;s footprint</p>
         </div>
         <div style={{ background: "#fff", borderRadius: 8, height: 52 }} />
       </div>
@@ -501,12 +501,12 @@ function FABPhone() {
       </div>
       <div style={{ background: "#F2FAF3", padding: "12px 10px 8px", minHeight: 190, position: "relative" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-          <p style={{ fontSize: "0.62rem", fontWeight: 600, color: "#0D2312" }}>Good morning 🌱</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, color: "#0D2312" }}>Good morning 🌱</p>
           <div style={{ width: 18, height: 18, borderRadius: "50%", background: "#D0EAD4" }} />
         </div>
         <div style={{ background: "#fff", borderRadius: 10, height: 80, marginBottom: 8, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 4 }}>
           <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#E8F7EC", border: "2px solid #2D7D43" }} />
-          <p style={{ fontSize: "0.52rem", color: "#3B6B45" }}>Today&apos;s footprint</p>
+          <p style={{ fontSize: "13px", color: "#3B6B45" }}>Today&apos;s footprint</p>
         </div>
         <div style={{ background: "#fff", borderRadius: 8, height: 52 }} />
         <div style={{ position: "absolute", bottom: 12, right: 10, width: 36, height: 36, borderRadius: "50%", background: "#2D7D43", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 14px rgba(45,125,67,0.55)" }}>
@@ -528,7 +528,7 @@ function FABPhone() {
 function TechnicalChartCard() {
   return (
     <EcoCard>
-      <p style={{ fontSize: "0.62rem", fontWeight: 700, color: "#111827", marginBottom: 12 }}>Carbon Metrics — Today</p>
+      <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827", marginBottom: 12 }}>Carbon Metrics — Today</p>
       {[
         { label: "Transport CO₂e", val: "0.8 kg", sub: "CH4 equiv: 0.03", pct: "35%" },
         { label: "Electricity kWh", val: "1.1 kg", sub: "Scope 2: indirect", pct: "47%" },
@@ -536,17 +536,17 @@ function TechnicalChartCard() {
       ].map((row) => (
         <div key={row.label} style={{ marginBottom: 10 }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
-            <p style={{ fontSize: "0.56rem", color: "#374151" }}>{row.label}</p>
-            <p style={{ fontSize: "0.56rem", fontWeight: 700, color: "#111827" }}>{row.val}</p>
+            <p style={{ fontSize: "13px", color: "#374151" }}>{row.label}</p>
+            <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827" }}>{row.val}</p>
           </div>
           <div style={{ height: 5, background: "#F3F4F6", borderRadius: 3, marginBottom: 2 }}>
             <div style={{ width: row.pct, height: "100%", background: "#9CA3AF", borderRadius: 3 }} />
           </div>
-          <p style={{ fontSize: "0.48rem", color: "#9CA3AF" }}>{row.sub}</p>
+          <p style={{ fontSize: "13px", color: "#9CA3AF" }}>{row.sub}</p>
         </div>
       ))}
       <div style={{ marginTop: 10, padding: "6px 10px", background: "#FEF2F2", borderRadius: 8 }}>
-        <p style={{ fontSize: "0.54rem", color: "#EF4444", fontWeight: 700 }}>Total: 2.4 kg CO₂e · Scope 1+2</p>
+        <p style={{ fontSize: "13px", color: "#EF4444", fontWeight: 400}}>Total: 2.4 kg CO₂e · Scope 1+2</p>
       </div>
     </EcoCard>
   );
@@ -556,8 +556,8 @@ function ClearChartCard() {
   return (
     <EcoCard>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, color: "#111827" }}>Today&apos;s impact</p>
-        <span style={{ fontSize: "0.56rem", color: "#10B981", fontWeight: 700 }}>↓ 18% vs yesterday</span>
+        <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827" }}>Today&apos;s impact</p>
+        <span style={{ fontSize: "13px", color: "#10B981", fontWeight: 400}}>↓ 18% vs yesterday</span>
       </div>
       {[
         { icon: "🚗", label: "Transport", bar: "72%", note: "≈ 8km drive"   },
@@ -566,9 +566,9 @@ function ClearChartCard() {
       ].map((row) => (
         <div key={row.label} style={{ marginBottom: 10 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
-            <span style={{ fontSize: "0.7rem" }}>{row.icon}</span>
-            <p style={{ fontSize: "0.58rem", fontWeight: 600, color: "#374151", flex: 1 }}>{row.label}</p>
-            <p style={{ fontSize: "0.52rem", color: "#9CA3AF" }}>{row.note}</p>
+            <span style={{ fontSize: "13px" }}>{row.icon}</span>
+            <p style={{ fontSize: "13px", fontWeight: 400, color: "#374151", flex: 1 }}>{row.label}</p>
+            <p style={{ fontSize: "13px", color: "#9CA3AF" }}>{row.note}</p>
           </div>
           <div style={{ height: 6, background: "#E8F7EC", borderRadius: 3 }}>
             <div style={{ width: row.bar, height: "100%", background: "#2D7D43", borderRadius: 3 }} />
@@ -576,7 +576,7 @@ function ClearChartCard() {
         </div>
       ))}
       <div style={{ marginTop: 10, padding: "6px 10px", background: "#E8F7EC", borderRadius: 8 }}>
-        <p style={{ fontSize: "0.54rem", color: "#2D7D43", fontWeight: 700 }}>Good day. Below your weekly average.</p>
+        <p style={{ fontSize: "13px", color: "#2D7D43", fontWeight: 400}}>Good day. Below your weekly average.</p>
       </div>
     </EcoCard>
   );
@@ -651,7 +651,7 @@ function ProblemSection() {
         <p style={{ fontFamily: HAND, fontSize: "1.4rem", color: "#0D2312", lineHeight: 1.55, marginBottom: 10 }}>
           &ldquo;I opened Joro once, saw my score, felt terrible, and deleted it. I wasn&apos;t looking for a report card.&rdquo;
         </p>
-        <p style={{ fontSize: "0.68rem", color: "#3B6B45", fontWeight: 600 }}>Interview participant, 26, product manager</p>
+        <p style={{ fontSize: "13px", color: "#3B6B45", fontWeight: 400}}>Interview participant, 26, product manager</p>
       </div>
 
       <p className="csl-section-eyebrow csl-reveal rd2">Project Constraints</p>
@@ -704,7 +704,7 @@ function ProcessSection() {
               }}>
                 {step.icon}
               </div>
-              <p style={{ fontSize: "0.56rem", fontWeight: 700, color: "#2D7D43", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 4, textAlign: "center" }}>
+              <p style={{ fontSize: "13px", fontWeight: 400, color: "#2D7D43", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 4, textAlign: "center" }}>
                 {step.phase}
               </p>
               <p style={{ fontSize: "0.9rem", fontWeight: 700, color: "#111827", textAlign: "center" }}>{step.name}</p>
@@ -835,10 +835,10 @@ function PersonasSection() {
             </div>
             <div style={{ padding: "22px" }}>
               <p style={{ fontSize: "0.96rem", fontWeight: 700, color: "#111827", marginBottom: 2 }}>{p.name}</p>
-              <p style={{ fontSize: "0.72rem", color: "#9CA3AF", marginBottom: 16 }}>{p.tag}</p>
+              <p style={{ fontSize: "13px", color: "#9CA3AF", marginBottom: 16 }}>{p.tag}</p>
               {p.empathy.slice(0, 3).map((row) => (
                 <div key={row.cat} style={{ borderTop: "1px solid #F3F4F6", paddingTop: 10, marginTop: 10 }}>
-                  <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
+                  <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
                   <p style={{ fontSize: "0.86rem", color: "#374151", lineHeight: 1.5 }}>{row.insight}</p>
                 </div>
               ))}
@@ -868,7 +868,7 @@ function CompetitiveSection() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1.4fr" }}>
               <div style={{ padding: "16px 18px", borderRight: "1px solid #F3F4F6" }}>
                 <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 10 }}>{comp.name}</p>
-                <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Pros</p>
+                <p style={{ fontSize: "13px", fontWeight: 400, color: "#10B981", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Pros</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {comp.pros.map((p) => (
                     <li key={p} style={{ fontSize: "0.84rem", color: "#4B5563", lineHeight: 1.55, marginBottom: 3, display: "flex", gap: 5 }}>
@@ -879,7 +879,7 @@ function CompetitiveSection() {
               </div>
               <div style={{ padding: "16px 18px", borderRight: "1px solid #F3F4F6" }}>
                 <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "transparent", marginBottom: 10, userSelect: "none" }}>·</p>
-                <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#EF4444", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Cons</p>
+                <p style={{ fontSize: "13px", fontWeight: 400, color: "#EF4444", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Cons</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {comp.cons.map((c) => (
                     <li key={c} style={{ fontSize: "0.84rem", color: "#4B5563", lineHeight: 1.55, marginBottom: 3, display: "flex", gap: 5 }}>
@@ -889,7 +889,7 @@ function CompetitiveSection() {
                 </ul>
               </div>
               <div style={{ padding: "16px 18px", background: "#F9FAFB" }}>
-                <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#2D7D43", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Design decision</p>
+                <p style={{ fontSize: "13px", fontWeight: 400, color: "#2D7D43", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Design decision</p>
                 <p style={{ fontSize: "0.84rem", color: "#374151", lineHeight: 1.6 }}>{comp.decision}</p>
               </div>
             </div>
@@ -922,7 +922,7 @@ function DesignSection() {
       </div>
 
       <EcoCard style={{ marginBottom: 20 }} className="csl-reveal rd1">
-        <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 12 }}>Colour decision</p>
+        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 12 }}>Colour decision</p>
         <p style={{ fontSize: "0.82rem", color: "#374151", lineHeight: 1.7, marginBottom: 20 }}>
           Tested <EcoNum>3</EcoNum> green values. Lime-green was too optimistic — celebrating before the user did anything. Forest green felt preachy. <strong style={{ color: "#111827" }}>#2D7D43 sits between: calm, credible, grown-up.</strong>
         </p>
@@ -941,16 +941,16 @@ function DesignSection() {
             { hex: "#6B7280", name: "Muted",      role: "Body copy" },
           ].map((s, i) => (
             <div key={s.hex} style={{ padding: "8px 6px", borderRight: i < 5 ? "1px solid #F3F4F6" : "none" }}>
-              <p style={{ fontSize: "0.58rem", fontWeight: 700, color: "#111827", marginBottom: 1 }}>{s.name}</p>
-              <p style={{ fontSize: "0.5rem", color: "#9CA3AF", fontFamily: "ui-monospace, monospace", marginBottom: 2 }}>{s.hex}</p>
-              <p style={{ fontSize: "0.5rem", color: "#6B7280" }}>{s.role}</p>
+              <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827", marginBottom: 1 }}>{s.name}</p>
+              <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 2 }}>{s.hex}</p>
+              <p style={{ fontSize: "13px", color: "#6B7280" }}>{s.role}</p>
             </div>
           ))}
         </div>
       </EcoCard>
 
       <EcoCard className="csl-reveal rd2">
-        <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 16 }}>Typeface decision</p>
+        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 16 }}>Typeface decision</p>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, marginBottom: 20 }}>
           {[
             { name: "DM Sans", verdict: "Rejected", reason: "Too friendly. Wrong register for a data tool.", chosen: false },
@@ -960,7 +960,7 @@ function DesignSection() {
             <div key={t.name} style={{ padding: "14px 16px", borderRadius: 14, background: t.chosen ? "#E8F7EC" : "#F9FAFB", border: `1.5px solid ${t.chosen ? "#2D7D43" : "transparent"}` }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
                 <p style={{ fontSize: "0.88rem", fontWeight: 700, color: t.chosen ? "#2D7D43" : "#6B7280" }}>{t.name}</p>
-                <span style={{ fontSize: "0.54rem", fontWeight: 700, padding: "2px 8px", borderRadius: 100, background: t.chosen ? "#2D7D43" : "#E5E7EB", color: t.chosen ? "#fff" : "#9CA3AF" }}>{t.verdict}</span>
+                <span style={{ fontSize: "13px", fontWeight: 400, padding: "2px 8px", borderRadius: 100, background: t.chosen ? "#2D7D43" : "#E5E7EB", color: t.chosen ? "#fff" : "#9CA3AF" }}>{t.verdict}</span>
               </div>
               <p style={{ fontSize: "0.84rem", color: "#4B5563", lineHeight: 1.5 }}>{t.reason}</p>
             </div>
@@ -975,7 +975,7 @@ function DesignSection() {
           ].map((t) => (
             <div key={t.label}>
               <p style={{ fontSize: "1rem", fontWeight: t.w, color: "#111827", marginBottom: 4 }}>{t.label}</p>
-              <p style={{ fontSize: "0.6rem", color: "#9CA3AF", fontFamily: "ui-monospace, monospace" }}>{t.meta}</p>
+              <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>{t.meta}</p>
             </div>
           ))}
         </div>
@@ -1017,7 +1017,7 @@ function WireframesSection() {
             <div style={{ borderRadius: 14, overflow: "hidden", background: "#F9FAFB", boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.05)" }}>
               <EcoImg src={`/Image/Ecotrack/${file}`} alt={label} />
             </div>
-            <p style={{ fontSize: "0.62rem", color: "#6B7280", textAlign: "center", fontWeight: 500 }}>{label}</p>
+            <p style={{ fontSize: "13px", color: "#6B7280", textAlign: "center", fontWeight: 400}}>{label}</p>
           </div>
         ))}
       </div>
@@ -1061,8 +1061,8 @@ function OnboardingSection() {
             <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 4px 20px rgba(45,125,67,0.12)" }}>
               <EcoImg src={`/Image/Ecotrack/${file}`} alt={label} />
             </div>
-            <p style={{ fontSize: "0.62rem", color: "#111827", textAlign: "center", fontWeight: 700, lineHeight: 1.3 }}>{label}</p>
-            <p style={{ fontSize: "0.54rem", color: "#9CA3AF", textAlign: "center", lineHeight: 1.3 }}>{sub}</p>
+            <p style={{ fontSize: "13px", color: "#111827", textAlign: "center", fontWeight: 400, lineHeight: 1.3 }}>{label}</p>
+            <p style={{ fontSize: "13px", color: "#9CA3AF", textAlign: "center", lineHeight: 1.3 }}>{sub}</p>
           </div>
         ))}
       </div>
@@ -1073,15 +1073,15 @@ function OnboardingSection() {
             <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 8px 28px rgba(45,125,67,0.1)" }}>
               <EcoImg src={`/Image/Ecotrack/${file}`} alt={label} />
             </div>
-            <p style={{ fontSize: "0.72rem", color: "#111827", textAlign: "center", fontWeight: 700 }}>{label}</p>
-            <p style={{ fontSize: "0.6rem", color: "#6B7280", textAlign: "center", lineHeight: 1.45 }}>{sub}</p>
+            <p style={{ fontSize: "13px", color: "#111827", textAlign: "center", fontWeight: 400}}>{label}</p>
+            <p style={{ fontSize: "13px", color: "#6B7280", textAlign: "center", lineHeight: 1.45 }}>{sub}</p>
           </div>
         ))}
       </div>
 
       <div className="csl-card-2col csl-reveal rd3">
         <EcoCard style={{ background: "#E8F7EC" }}>
-          <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#0D2312", marginBottom: 10 }}>What changed in V2</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, color: "#0D2312", marginBottom: 10 }}>What changed in V2</p>
           {[
             "Value-first: 3 inspiration screens before any form",
             "Sign Up deferred until after the user sees the app",
@@ -1093,7 +1093,7 @@ function OnboardingSection() {
           ))}
         </EcoCard>
         <EcoCard style={{ background: "#FEF2F2" }}>
-          <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#7F1D1D", marginBottom: 10 }}>What V1 got wrong</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, color: "#7F1D1D", marginBottom: 10 }}>What V1 got wrong</p>
           {[
             "Sign Up form on screen 2, before any context",
             "Free-text fields for travel distance and energy",
@@ -1123,7 +1123,7 @@ function ScreensSection() {
 
       {/* ── Home Screen — 3-column annotated layout ── */}
       <div className="csl-reveal" style={{ marginBottom: 60 }}>
-        <p style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 28, textAlign: "center" }}>Home Screen</p>
+        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 28, textAlign: "center" }}>Home Screen</p>
 
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "center", gap: 0, marginBottom: 24 }}>
 
@@ -1174,7 +1174,7 @@ function ScreensSection() {
 
       {/* ── Impact Screen ── */}
       <div className="csl-reveal rd1" style={{ marginBottom: 56 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Impact Screen</p>
+        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Impact Screen</p>
         <p style={{ fontFamily: HAND, fontSize: "1.35rem", color: "#111827", marginBottom: 10 }}>Badges · Emission Graph · Carbon Sources</p>
         <p style={{ fontSize: "0.9rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 22 }}>
           Answers &ldquo;am I getting better?&rdquo; through <EcoNum>3</EcoNum> lenses. Badges celebrate milestones. The emission graph shows actual CO₂ reduction over time. Carbon Sources shows the donut of where emissions come from — so users can identify which category to work on next.
@@ -1189,7 +1189,7 @@ function ScreensSection() {
 
       {/* ── Learn Screen ── */}
       <div className="csl-reveal rd2" style={{ marginBottom: 56 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Learn Screen</p>
+        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Learn Screen</p>
         <p style={{ fontFamily: HAND, fontSize: "1.35rem", color: "#111827", marginBottom: 10 }}>Eco Quiz · Knowledge Bites · Watch & Learn</p>
         <p style={{ fontSize: "0.9rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 22 }}>
           A standalone &ldquo;Learn&rdquo; tab doesn&apos;t get opened. So this screen mixes formats: an Eco Quiz for engagement, Knowledge Bites for quick reads, Watch &amp; Learn for video. The tracking panel on the same screen proves that learn and log belong together.
@@ -1204,7 +1204,7 @@ function ScreensSection() {
 
       {/* ── Profile Screen ── */}
       <div className="csl-reveal rd3">
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Profile Screen</p>
+        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Profile Screen</p>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
           <div style={{ position: "relative" }}>
             <div style={{ borderRadius: 24, overflow: "hidden", boxShadow: "0 20px 56px rgba(0,0,0,0.1)" }}>
@@ -1225,7 +1225,7 @@ function ScreensSection() {
               {["Edit Profile", "Preference", "Support", "Log out"].map((item) => (
                 <div key={item} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 16px", background: "#F9FAFB", borderRadius: 12 }}>
                   <p style={{ fontSize: "0.9rem", color: "#374151", fontWeight: 500 }}>{item}</p>
-                  <span style={{ fontSize: "0.8rem", color: "#C4C9D4" }}>›</span>
+                  <span style={{ fontSize: "13px", color: "#C4C9D4" }}>›</span>
                 </div>
               ))}
             </div>
@@ -1249,7 +1249,7 @@ function IterationsSection() {
       />
 
       <EcoCard style={{ marginBottom: 28 }} className="csl-reveal">
-        <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 14 }}>Round 1 Task Completion (n=<EcoNum>5</EcoNum>)</p>
+        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 14 }}>Round 1 Task Completion (n=<EcoNum>5</EcoNum>)</p>
         {[
           { task: "Log a commute",    score: "3/5", pct: "60%" },
           { task: "Compare weeks",     score: "5/5", pct: "100%" },
@@ -1270,7 +1270,7 @@ function IterationsSection() {
       </EcoCard>
 
       <EcoCard style={{ marginBottom: 36 }} className="csl-reveal rd1">
-        <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>What I Observed</p>
+        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>What I Observed</p>
         {ecoTestInsights.map((insight) => (
           <div key={insight} style={{ display: "flex", gap: 10, marginBottom: 12, fontSize: "0.86rem", color: "#6B7280", lineHeight: 1.6 }}>
             <span style={{ color: "#EF4444", flexShrink: 0, marginTop: 1 }}>→</span>{insight}
@@ -1280,7 +1280,7 @@ function IterationsSection() {
 
       {/* Iteration 01 */}
       <div className="csl-reveal" style={{ marginBottom: 44 }}>
-        <span style={{ fontSize: "0.62rem", fontWeight: 700, background: "#E8F7EC", color: "#2D7D43", padding: "4px 14px", borderRadius: 100, display: "inline-flex", marginBottom: 14 }}>Iteration 01</span>
+        <span style={{ fontSize: "13px", fontWeight: 400, background: "#E8F7EC", color: "#2D7D43", padding: "4px 14px", borderRadius: 100, display: "inline-flex", marginBottom: 14 }}>Iteration 01</span>
         <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>The Add Button. From Hidden to Front and Centre.</h3>
         <EcoCallout style={{ marginBottom: 20, borderLeftColor: "#9CA3AF", background: "#F9FAFB" }}>
           <strong>Hypothesis:</strong> A centered tab bar add button mirrors Instagram and Spotify. Reality: <EcoNum>4/5</EcoNum> testers couldn&apos;t find it within <EcoNum>90</EcoNum> seconds.
@@ -1301,7 +1301,7 @@ function IterationsSection() {
 
       {/* Iteration 02 */}
       <div className="csl-reveal rd1">
-        <span style={{ fontSize: "0.62rem", fontWeight: 700, background: "#E8F7EC", color: "#2D7D43", padding: "4px 14px", borderRadius: 100, display: "inline-flex", marginBottom: 14 }}>Iteration 02</span>
+        <span style={{ fontSize: "13px", fontWeight: 400, background: "#E8F7EC", color: "#2D7D43", padding: "4px 14px", borderRadius: 100, display: "inline-flex", marginBottom: 14 }}>Iteration 02</span>
         <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>Carbon Charts. From Technical to Human.</h3>
         <EcoCallout style={{ marginBottom: 20, borderLeftColor: "#9CA3AF", background: "#F9FAFB" }}>
           <strong>Hypothesis:</strong> Exact CO₂ values with breakdowns would give users the understanding they wanted. They could read the numbers. They just felt worse after.
@@ -1342,14 +1342,14 @@ function OutcomesSection() {
       />
 
       <EcoCard style={{ marginBottom: 28 }} className="csl-reveal">
-        <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 16 }}>
+        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 16 }}>
           Usability test results — Round 1 vs Round 2 (n=<EcoNum>5</EcoNum> each)
         </p>
         <div style={{ border: "1px solid #F3F4F6", borderRadius: 12, overflow: "hidden" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 80px 80px", background: "#F9FAFB", borderBottom: "1px solid #F3F4F6" }}>
             {["Task", "Round 1", "Round 2", "Change"].map((h) => (
               <div key={h} style={{ padding: "10px 14px" }}>
-                <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.08em" }}>{h}</p>
+                <p style={{ fontSize: "13px", fontWeight: 400, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.08em" }}>{h}</p>
               </div>
             ))}
           </div>
@@ -1366,8 +1366,8 @@ function OutcomesSection() {
               </div>
               <div style={{ padding: "13px 14px", textAlign: "center" }}>
                 {t.up
-                  ? <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "#10B981", background: "#D1FAE5", padding: "3px 9px", borderRadius: 100 }}>↑ improved</span>
-                  : <span style={{ fontSize: "0.68rem", color: "#9CA3AF" }}>–</span>
+                  ? <span style={{ fontSize: "13px", fontWeight: 400, color: "#10B981", background: "#D1FAE5", padding: "3px 9px", borderRadius: 100 }}>↑ improved</span>
+                  : <span style={{ fontSize: "13px", color: "#9CA3AF" }}>–</span>
                 }
               </div>
             </div>
@@ -1377,12 +1377,12 @@ function OutcomesSection() {
 
       <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 28 }}>
         <EcoCard style={{ background: "#FEF2F2" }}>
-          <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#EF4444", marginBottom: 12 }}>Most common word — Round 1</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.1em", color: "#EF4444", marginBottom: 12 }}>Most common word — Round 1</p>
           <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#111827", marginBottom: 8 }}>&ldquo;complicated&rdquo;</p>
           <p style={{ fontSize: "0.86rem", color: "#6B7280", lineHeight: 1.6 }}>No single element was broken. The whole screen competed for attention.</p>
         </EcoCard>
         <EcoCard style={{ background: "#E8F7EC" }}>
-          <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 12 }}>Most common word — Round 2</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 12 }}>Most common word — Round 2</p>
           <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#2D7D43", marginBottom: 8 }}>&ldquo;simple&rdquo;</p>
           <p style={{ fontSize: "0.86rem", color: "#374151", lineHeight: 1.6 }}>Same data. Better frame. Prioritised information, not less of it.</p>
         </EcoCard>

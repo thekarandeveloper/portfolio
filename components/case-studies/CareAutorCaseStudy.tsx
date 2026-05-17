@@ -88,30 +88,30 @@ function CareHeroMockup() {
       <div style={{ background: "#F0F9FF", padding: "18px 14px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 14, alignItems: "center" }}>
           <div>
-            <p style={{ fontSize: "0.6rem", color: "#64748B", marginBottom: 2 }}>Welcome back</p>
+            <p style={{ fontSize: "13px", color: "#64748B", marginBottom: 2 }}>Welcome back</p>
             <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#0A2540" }}>Sarah, Caregiver</p>
           </div>
           <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#BAE6FD", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.9rem" }}>👩</div>
         </div>
         {/* Status card */}
         <div style={{ background: "#fff", borderRadius: 10, padding: "12px 14px", marginBottom: 10, boxShadow: "0 2px 8px rgba(0,119,182,0.08)" }}>
-          <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#0077B6", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.1em" }}>Patient Status</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, color: "#0077B6", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.1em" }}>Patient Status</p>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10B981" }} />
-            <p style={{ fontSize: "0.72rem", color: "#1E3A5F" }}>James — Routine on track</p>
+            <p style={{ fontSize: "13px", color: "#1E3A5F" }}>James — Routine on track</p>
           </div>
         </div>
         {/* Task list */}
         {["Morning medication", "Therapy at 2PM", "Evening check-in"].map((task, i) => (
           <div key={task} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 7 }}>
             <div style={{ width: 14, height: 14, borderRadius: 4, border: `1.5px solid ${i === 0 ? "#10B981" : "#CBD5E1"}`, background: i === 0 ? "#ECFDF5" : "transparent", flexShrink: 0 }}>
-              {i === 0 && <span style={{ fontSize: "0.5rem", color: "#10B981", lineHeight: "14px", display: "block", textAlign: "center" }}>✓</span>}
+              {i === 0 && <span style={{ fontSize: "13px", color: "#10B981", lineHeight: "14px", display: "block", textAlign: "center" }}>✓</span>}
             </div>
-            <p style={{ fontSize: "0.68rem", color: i === 0 ? "#9CA3AF" : "#374151", textDecoration: i === 0 ? "line-through" : "none" }}>{task}</p>
+            <p style={{ fontSize: "13px", color: i === 0 ? "#9CA3AF" : "#374151", textDecoration: i === 0 ? "line-through" : "none" }}>{task}</p>
           </div>
         ))}
         <div style={{ background: "#0077B6", borderRadius: 8, padding: "8px 12px", textAlign: "center", marginTop: 12 }}>
-          <p style={{ fontSize: "0.68rem", fontWeight: 600, color: "#fff" }}>Add Task +</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, color: "#fff" }}>Add Task +</p>
         </div>
       </div>
     </div>
@@ -275,10 +275,10 @@ function InsightsSection() {
             <div style={{ fontSize: "2rem", flexShrink: 0 }}>{p.icon}</div>
             <div style={{ flex: 1 }}>
               <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{p.name}</p>
-              <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#6B7280", marginBottom: 14, lineHeight: 1.6 }}>&ldquo;{p.quote}&rdquo;</p>
+              <p style={{ fontSize: "13px", fontStyle: "italic", color: "#6B7280", marginBottom: 14, lineHeight: 1.6 }}>&ldquo;{p.quote}&rdquo;</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                 {p.insights.map((ins) => (
-                  <span key={ins} style={{ fontSize: "0.7rem", background: "#E0F2FE", color: "#0077B6", padding: "4px 12px", borderRadius: 100, fontWeight: 500 }}>{ins}</span>
+                  <span key={ins} style={{ fontSize: "13px", background: "#E0F2FE", color: "#0077B6", padding: "4px 12px", borderRadius: 100, fontWeight: 400}}>{ins}</span>
                 ))}
               </div>
             </div>
@@ -372,13 +372,13 @@ function VisualDesignSection() {
       <div className="csl-card-2col csl-reveal">
         {/* Color system */}
         <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Color system</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Color system</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
             {colors.map((c) => (
               <div key={c.name}>
                 <div style={{ height: 44, borderRadius: 8, background: c.hex, border: c.border ? "1px solid rgba(0,0,0,0.1)" : "none", marginBottom: 5 }} />
-                <p style={{ fontSize: "0.62rem", fontWeight: 600, color: "#111827" }}>{c.name}</p>
-                <p style={{ fontSize: "0.58rem", color: "#9CA3AF" }}>{c.tag}</p>
+                <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827" }}>{c.name}</p>
+                <p style={{ fontSize: "13px", color: "#9CA3AF" }}>{c.tag}</p>
               </div>
             ))}
           </div>
@@ -386,7 +386,7 @@ function VisualDesignSection() {
 
         {/* Typography */}
         <div className="csl-card">
-          <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "ui-monospace,monospace", marginBottom: 16 }}>Typography — Inter</p>
+          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Typography — Inter</p>
           {[
             { sample: "Display",   px: 36, w: 800 },
             { sample: "Heading",   px: 22, w: 700 },
@@ -395,10 +395,10 @@ function VisualDesignSection() {
           ].map((t) => (
             <div key={t.sample} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: 10, marginBottom: 10, borderBottom: "1px solid #F3F4F6" }}>
               <span style={{ fontSize: Math.max(11, t.px * 0.38), fontWeight: t.w, color: "#111827" }}>{t.sample}</span>
-              <span style={{ fontSize: "0.62rem", color: "#9CA3AF", fontFamily: "ui-monospace,monospace" }}>{t.px}px/{t.w}</span>
+              <span style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>{t.px}px/{t.w}</span>
             </div>
           ))}
-          <p style={{ fontSize: "0.7rem", color: "#0077B6", marginTop: 6 }}>Accessible. 4.5:1 contrast minimum enforced throughout.</p>
+          <p style={{ fontSize: "13px", color: "#0077B6", marginTop: 6 }}>Accessible. 4.5:1 contrast minimum enforced throughout.</p>
         </div>
       </div>
 
@@ -473,7 +473,7 @@ function AccessibilitySection() {
           <div key={item.title} style={{ background: "#fff", borderRadius: 18, padding: "22px 20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
             <div style={{ fontSize: "1.5rem", marginBottom: 12 }}>{item.icon}</div>
             <h3 style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{item.title}</h3>
-            <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>{item.desc}</p>
+            <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.6 }}>{item.desc}</p>
           </div>
         ))}
       </div>
@@ -559,10 +559,10 @@ function LearningsSection() {
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         {items.map((item) => (
           <div key={item.n} className="csl-reveal" style={{ display: "flex", gap: 20, background: "#fff", borderRadius: 18, padding: "22px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
-            <span style={{ fontSize: "0.6rem", fontWeight: 700, color: "#0077B6", fontFamily: "ui-monospace,monospace", flexShrink: 0, marginTop: 2 }}>{item.n}</span>
+            <span style={{ fontSize: "13px", fontWeight: 400, color: "#0077B6", fontFamily: "Lato, sans-serif", flexShrink: 0, marginTop: 2 }}>{item.n}</span>
             <div>
               <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{item.title}</div>
-              <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.7 }}>{item.text}</p>
+              <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.7 }}>{item.text}</p>
             </div>
           </div>
         ))}

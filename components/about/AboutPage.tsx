@@ -57,16 +57,16 @@ const css = `
   color: inherit;
 }
 .ab-nav-initials {
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: #111;
+  font-size: 13px; font-weight:  400; letter-spacing: 0.06em; color: #111;
   background: rgba(0,0,0,0.06); padding: 2px 7px; border-radius: 6px;
 }
 .ab-nav-clock {
-  font-size: 0.74rem; font-variant-numeric: tabular-nums;
+  font-size: 13px; font-variant-numeric: tabular-nums;
   color: rgba(30,30,40,0.45); font-weight: 500; letter-spacing: 0.03em;
 }
 .ab-nav-links { display: flex; align-items: center; gap: 2px; }
 .ab-nav-link {
-  font-size: 0.76rem; letter-spacing: 0.02em; font-weight: 500;
+  font-size: 13px; letter-spacing: 0.02em; font-weight:  400;
   color: rgba(30,30,40,0.60); text-decoration: none;
   padding: 0.55rem 1.1rem; border-radius: 99px;
   transition: color 0.18s, background 0.18s;
@@ -76,7 +76,7 @@ const css = `
 .ab-nav-link.ab-active:hover { background: #0066FF; }
 .ab-nav-cta {
   display: inline-flex; align-items: center;
-  font-size: 0.76rem; letter-spacing: 0.02em; font-weight: 600;
+  font-size: 13px; letter-spacing: 0.02em; font-weight:  400;
   color: #fff; text-decoration: none;
   padding: 0.55rem 1.2rem; border-radius: 99px;
   background: #111; transition: background 0.18s;
@@ -139,7 +139,7 @@ const css = `
 .ab-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
 .ab-chip {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em;
+  font-size: 13px; font-weight:  400; letter-spacing: 0.03em;
   color: #555;
   background: rgba(0,0,0,0.04);
   border: 1px solid rgba(0,0,0,0.08);
@@ -247,7 +247,7 @@ const css = `
   position: relative;
 }
 .ab-section-label {
-  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
   color: #1E90FF; margin-bottom: 0.85rem; display: block;
 }
 .ab-section-title {

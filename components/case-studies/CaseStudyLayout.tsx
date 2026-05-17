@@ -200,7 +200,7 @@ function CsHeader({
             background: "rgba(30,144,255,0.08)",
             border: "1px solid rgba(30,144,255,0.18)",
             display: "inline-flex", alignItems: "center", justifyContent: "center",
-            fontSize: "0.62rem", fontWeight: 800, color: "#1E90FF",
+            fontSize: "13px", fontWeight: 400, color: "#1E90FF",
             flexShrink: 0, letterSpacing: "-0.01em",
           }}>NT</span>
           <span style={{
