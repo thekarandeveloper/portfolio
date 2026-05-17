@@ -792,37 +792,145 @@ function FinalScreensSection() {
         </div>
       </div>
 
-      {/* ── CORE APP SCREENS ── */}
-      <div>
-        <div className="csl-reveal" style={{ marginBottom:28 }}>
-          <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Core App Screens</p>
-          <h3 style={{ fontSize:"1.1rem", fontWeight:700, color:"#111827" }}>
-            Home · Categories · Book Detail · Scan
-          </h3>
+      {/* ══ HOMEPAGE SPOTLIGHT ══ */}
+      <div style={{ marginBottom:80 }}>
+        <div className="csl-reveal" style={{ marginBottom:36 }}>
+          <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"3.8rem", fontWeight:700, color:A, display:"block", lineHeight:1, marginBottom:14 }}>
+            HomePage
+          </span>
+          <p style={{ fontSize:"0.88rem", color:"#374151", maxWidth:400, lineHeight:1.8 }}>
+            The central hub of the app where users can access trending titles, recommendations, and personalized updates.
+          </p>
         </div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:14 }}>
-          {[
-            { file:"home-biblofi.png", label:"Home"         },
-            { file:"categories.png",   label:"Categories"   },
-            { file:"detailed.png",     label:"Book Detail"  },
-            { file:"scan.png",         label:"Scan"         },
-          ].map(({ file, label }, i) => (
-            <div key={file} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`} style={{ display:"flex", flexDirection:"column", gap:12 }}>
-              <div style={{
-                borderRadius:28, overflow:"hidden",
-                boxShadow:"0 16px 48px rgba(0,0,0,0.13)",
-                transform: i % 2 === 1 ? "translateY(12px)" : "translateY(0)",
-              }}>
-                <Image
-                  src={`${FINAL}/${file}`}
-                  alt={label}
-                  width={320} height={693}
-                  style={{ width:"100%", height:"auto", display:"block" }}
-                />
+
+        <div className="csl-reveal rd1" style={{ display:"grid", gridTemplateColumns:"1fr 1.4fr 1fr", gap:28, alignItems:"center" }}>
+          {/* Left callouts */}
+          <div style={{ display:"flex", flexDirection:"column", gap:36 }}>
+            {[
+              { title:"Search", desc:"Quickly find books using an intelligent, multi-filter search bar." },
+              { title:"Event & Promo Card", desc:"Display promotional banners for book fairs, events, or important notices." },
+              { title:"Top Picks for You", desc:"Curated book recommendations based on popularity and user preferences." },
+              { title:"Membership Card", desc:"Shows your active membership status, renewal info, and ID details." },
+            ].map((a) => (
+              <div key={a.title} style={{ textAlign:"right", paddingRight:18, borderRight:`2px dotted ${A2}` }}>
+                <p style={{ fontSize:"0.86rem", fontWeight:700, color:"#111827", marginBottom:5 }}>{a.title}</p>
+                <p style={{ fontSize:"0.72rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
               </div>
-              <p style={{ fontSize:"0.7rem", fontWeight:600, color:"#9CA3AF", textAlign:"center", letterSpacing:"0.04em" }}>{label}</p>
+            ))}
+          </div>
+
+          {/* Center phone */}
+          <div style={{ borderRadius:32, overflow:"hidden", boxShadow:"0 24px 64px rgba(0,0,0,0.15)" }}>
+            <Image src={`${FINAL}/home-biblofi.png`} alt="BibloFi home screen" width={320} height={693}
+              style={{ width:"100%", height:"auto", display:"block" }} />
+          </div>
+
+          {/* Right callouts */}
+          <div style={{ display:"flex", flexDirection:"column", gap:52 }}>
+            {[
+              { title:"Smart Notifications", desc:"Stay updated with the latest alerts, reminders, and library announcements." },
+              { title:"Book Scanner Shortcut", desc:"Instantly scan a book's barcode to check its availability or borrow status." },
+              { title:"Magazines & Novels", desc:"Discover trending magazines and novel collections in one place." },
+            ].map((a) => (
+              <div key={a.title} style={{ paddingLeft:18, borderLeft:`2px dotted ${A2}` }}>
+                <p style={{ fontSize:"0.86rem", fontWeight:700, color:"#111827", marginBottom:5 }}>{a.title}</p>
+                <p style={{ fontSize:"0.72rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ══ SCAN · CATEGORIES · DETAILED ══ */}
+      <div style={{ marginBottom:80 }}>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:28 }}>
+          {[
+            { file:"scan.png",       quote:"Just a quick scan, and the book details pop up instantly — it feels like magic at the library." },
+            { file:"categories.png", quote:"Browsing through categories feels effortless, making it easy to discover books that truly match my interests." },
+            { file:"detailed.png",   quote:"The detail view gives me everything I need at a glance — from ratings to publisher — so I know exactly what I'm picking." },
+          ].map(({ file, quote }, i) => (
+            <div key={file} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`}>
+              <div style={{ borderRadius:28, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.12)", marginBottom:20 }}>
+                <Image src={`${FINAL}/${file}`} alt={file} width={320} height={693}
+                  style={{ width:"100%", height:"auto", display:"block" }} />
+              </div>
+              <p style={{ fontSize:"0.82rem", color:"#374151", lineHeight:1.8, fontStyle:"italic" }}>
+                &ldquo;{quote}&rdquo;
+              </p>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* ══ CATEGORIES & SEARCHING ══ */}
+      <div style={{ marginBottom:80 }}>
+        {/* Amber banner */}
+        <div className="csl-reveal" style={{
+          background:"#F5A623", borderRadius:16, padding:"26px 40px", marginBottom:44, textAlign:"center",
+        }}>
+          <p style={{ fontSize:"1.05rem", fontWeight:700, color:"#fff", lineHeight:1.8 }}>
+            With categories spanning authors, genres, and personalized searches, BiblioFi gives me countless ways to explore and find exactly what I love.
+          </p>
+        </div>
+
+        <div className="csl-reveal rd1" style={{ display:"flex", justifyContent:"center", marginBottom:28 }}>
+          <div style={{ width:290, borderRadius:28, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.12)" }}>
+            <Image src={`${FINAL}/categoires.png`} alt="Categories and searching" width={320} height={693}
+              style={{ width:"100%", height:"auto", display:"block" }} />
+          </div>
+        </div>
+
+        <div className="csl-reveal rd2" style={{ textAlign:"right" }}>
+          <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"3.2rem", fontWeight:700, color:A }}>
+            Categories &amp; Searching
+          </span>
+        </div>
+      </div>
+
+      {/* ══ SERVICE / SEAT BOOKING ══ */}
+      <div style={{ marginBottom:80 }}>
+        <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"1.1fr 0.9fr", gap:48, alignItems:"start" }}>
+          {/* seat-booking.png is already a 2-phone composite */}
+          <div style={{ borderRadius:20, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.10)" }}>
+            <Image src={`${FINAL}/seat-booking.png`} alt="Library Services and Seat Booking screens"
+              width={900} height={540} style={{ width:"100%", height:"auto", display:"block" }} />
+          </div>
+
+          {/* Chat bubbles */}
+          <div style={{ display:"flex", flexDirection:"column", gap:16, paddingTop:16 }}>
+            {[
+              { text:"They can easily reissue books, check upcoming events, and stay updated on any library notifications or reminders.", bg:"#F5A623", fg:"#fff" },
+              { text:"This centralized hub reduces friction, saves time, and ensures members never miss an important activity or opportunity within the library.", bg:"#2D2D2D", fg:"#fff" },
+              { text:"By combining all essential services in one intuitive interface, the Service tab makes the library experience smooth, organized, and highly user-friendly.", bg:"#F5A623", fg:"#fff" },
+            ].map((b, i) => (
+              <div key={i} className={`csl-reveal rd${i+1}`}
+                style={{ background:b.bg, borderRadius:20, padding:"20px 24px" }}>
+                <p style={{ fontSize:"0.88rem", color:b.fg, lineHeight:1.8 }}>{b.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="csl-reveal rd2" style={{ marginTop:20, display:"flex", flexDirection:"column", alignItems:"flex-end", gap:10 }}>
+          <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"3.2rem", fontWeight:700, color:A }}>
+            Service
+          </span>
+          <p style={{ fontSize:"0.76rem", color:"#6B7280", textAlign:"right", maxWidth:560, lineHeight:1.7 }}>
+            The Service tab is designed to provide members with seamless control over all their library interactions in one place. From reserving or cancelling study seats to keeping track of active bookings, users have everything at their fingertips.
+          </p>
+        </div>
+      </div>
+
+      {/* ══ PROFILE ══ */}
+      <div className="csl-reveal rd1">
+        <p style={{ fontSize:"0.62rem", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Profile</p>
+        <h3 style={{ fontSize:"1.1rem", fontWeight:700, color:"#111827", marginBottom:28 }}>
+          Your library, your identity.
+        </h3>
+        {/* profile-biblofi.png is already a 3-phone composite */}
+        <div style={{ borderRadius:20, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.10)" }}>
+          <Image src={`${FINAL}/profile-biblofi.png`} alt="Profile, Account, and Edit Profile screens"
+            width={1200} height={560} style={{ width:"100%", height:"auto", display:"block" }} />
         </div>
       </div>
     </CsSection>
