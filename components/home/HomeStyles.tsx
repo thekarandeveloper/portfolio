@@ -245,7 +245,7 @@ nav.scrolled .nav-pill{
 .nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:5.5rem 200px 4rem 260px;gap:40px;position:relative;overflow:visible;}
+.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:5.5rem 200px 4rem 200px;gap:40px;position:relative;overflow:visible;}
 
 /* about-style intro hero */
 .hi-left{position:relative;z-index:2;text-align:left;padding-top:1.5rem;}
@@ -2042,7 +2042,7 @@ nav.scrolled .nav-pill{
 
 /* ── RESPONSIVE NEW SECTIONS ── */
 @media(max-width:1200px){
-  .hero{padding:9rem 200px 5rem 220px;}
+  .hero{padding:9rem 160px 5rem 160px;}
   .home-loves{padding:5rem 100px;}
   .home-xp{padding:4rem 100px 5rem;}
 }
