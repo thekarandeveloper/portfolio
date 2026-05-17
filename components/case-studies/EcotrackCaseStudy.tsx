@@ -815,46 +815,100 @@ function WireframesSection() {
    §10  ONBOARDING SHOWCASE
 ───────────────────────────────────────────────────────────────────── */
 function OnboardingSection() {
-  const screens = [
-    { file: "onboarding1.png", label: "Welcome" },
-    { file: "onboarding2.png", label: "Sign Up" },
-    { file: "onboarding3.png", label: "Your Goal" },
-    { file: "onboarding4.png", label: "Categories" },
-    { file: "onboarding5.png", label: "First Log" },
-    { file: "onabording6.png", label: "Dashboard" },
+  // Exact labels matching what each screen actually shows
+  const row1 = [
+    { file: "onboarding1.png", label: "Splash",              sub: "EcoTrack logo" },
+    { file: "onboarding2.png", label: "Track What Matters",  sub: "See your footprint grow or shrink in real time" },
+    { file: "onboarding3.png", label: "Small Steps, Big Change", sub: "Log daily actions, get eco tips, stay on track" },
+    { file: "onabording6.png", label: "Join the Eco Journey", sub: "Earn badges, build habits, make impact fun" },
+    { file: "onboarding5.png", label: "Welcome",             sub: "Sign In / Sign Up" },
+    { file: "onboarding4.png", label: "Sign Up",             sub: "Full Name · Email · Password · Google · Facebook" },
+  ];
+
+  const row2 = [
+    { file: "onboarding7.png", label: "Sign In",              sub: "\"Let's continue your journey to a greener, more sustainable future.\"" },
+    { file: "onboarding8.png", label: "Your Travel Habits",   sub: "Primary Mode of Transport? Car · Flights · Walking · Public Transport · Bicycle · Bike" },
+    { file: "onboarding9.png", label: "Your Home Energy Use", sub: "Type of Home — Apartment · House · Shared · Monthly Electricity Usage (kWh)" },
   ];
 
   return (
     <CsSection id="onboarding">
       <CsSectionHeader
         label="High Fidelity — OnBoarding Screen"
-        title={<>First impressions that <em style={{ fontStyle: "italic" }}>don&apos;t overwhelm.</em></>}
-        sub="Onboarding asked for too much upfront commitment in V1 — two testers dropped off before completing setup. The revised flow defers commitment: set a goal, pick categories, log one thing. That's it."
+        title={<>Nine screens. <em style={{ fontStyle: "italic" }}>One commitment at a time.</em></>}
+        sub="V1 onboarding asked for too much before showing any value — two testers dropped off before setup was complete. The revised flow earns trust in steps: inspire first, then ask."
       />
 
-      {/* Onboarding screens row */}
-      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 12, marginBottom: 28 }}>
-        {screens.map(({ file, label }) => (
-          <div key={file} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 8px 24px rgba(45,125,67,0.14)", border: "1px solid rgba(45,125,67,0.12)" }}>
+      {/* Flow explanation */}
+      <div className="csl-reveal" style={{ marginBottom: 24 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+          {["Splash", "Track What Matters", "Small Steps", "Join the Journey", "Welcome", "Sign Up / Sign In", "Travel Habits", "Home Energy", "Dashboard"].map((step, i, arr) => (
+            <div key={step} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: "0.68rem", color: "#374151", background: "#F9FAFB", padding: "4px 10px", borderRadius: 100, border: "1px solid #E5E7EB", whiteSpace: "nowrap" }}>{step}</span>
+              {i < arr.length - 1 && <span style={{ fontSize: "0.7rem", color: "#D1D5DB" }}>→</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Row 1 — Splash through Sign Up */}
+      <div className="csl-reveal rd1" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 12, marginBottom: 20 }}>
+        {row1.map(({ file, label, sub }) => (
+          <div key={file} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <div style={{ borderRadius: 18, overflow: "hidden", boxShadow: "0 8px 24px rgba(45,125,67,0.14)", border: "1px solid rgba(45,125,67,0.12)" }}>
               <EcoImg src={`/Image/Ecotrack/${file}`} alt={label} />
             </div>
-            <p style={{ fontSize: "0.6rem", color: "#6B7280", textAlign: "center", fontWeight: 500 }}>{label}</p>
+            <p style={{ fontSize: "0.62rem", color: "#111827", textAlign: "center", fontWeight: 700, lineHeight: 1.3 }}>{label}</p>
+            <p style={{ fontSize: "0.56rem", color: "#9CA3AF", textAlign: "center", lineHeight: 1.4 }}>{sub}</p>
           </div>
         ))}
       </div>
 
-      {/* Additional onboarding screens — second row */}
-      <div className="csl-reveal rd1" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-        {["onboarding7.png", "onboarding8.png", "onboarding9.png"].map((file, i) => (
-          <div key={file} style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 8px 24px rgba(45,125,67,0.12)", border: "1px solid rgba(45,125,67,0.1)" }}>
-            <EcoImg src={`/Image/Ecotrack/${file}`} alt={`Onboarding step ${i + 7}`} />
+      {/* Row 2 — Sign In, Travel Habits, Home Energy */}
+      <div className="csl-reveal rd2" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 28 }}>
+        {row2.map(({ file, label, sub }) => (
+          <div key={file} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 8px 28px rgba(45,125,67,0.13)", border: "1px solid rgba(45,125,67,0.1)" }}>
+              <EcoImg src={`/Image/Ecotrack/${file}`} alt={label} />
+            </div>
+            <p style={{ fontSize: "0.72rem", color: "#111827", textAlign: "center", fontWeight: 700 }}>{label}</p>
+            <p style={{ fontSize: "0.62rem", color: "#6B7280", textAlign: "center", lineHeight: 1.5 }}>{sub}</p>
           </div>
         ))}
       </div>
 
-      <div className="csl-callout csl-reveal rd2" style={{ borderLeftColor: "#2D7D43", background: "#E8F7EC", marginTop: 24 }}>
-        <strong>Key onboarding principle:</strong> Each screen asks for exactly one thing. No screens that require a decision before showing value. The app earns complexity — it doesn&apos;t demand it upfront.
+      {/* Design decisions */}
+      <div className="csl-card-2col csl-reveal rd3">
+        <div style={{ background: "#E8F7EC", borderRadius: 16, padding: "18px 20px" }}>
+          <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#0D2312", marginBottom: 8 }}>What changed in V2</p>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {[
+              "Value-first: three inspiration screens before any form",
+              "Sign Up/In deferred until after the user understands the app",
+              "Travel Habits & Home Energy asked as quick-select tiles — no free text",
+              "\"Get Started\" lands directly on the home dashboard",
+            ].map((item) => (
+              <li key={item} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.6, marginBottom: 6, display: "flex", gap: 6 }}>
+                <span style={{ color: "#2D7D43", flexShrink: 0 }}>✓</span>{item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div style={{ background: "#FEF2F2", borderRadius: 16, padding: "18px 20px" }}>
+          <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#7F1D1D", marginBottom: 8 }}>What V1 got wrong</p>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {[
+              "Sign Up form appeared on screen 2 — before any context",
+              "Free-text fields for travel distance and energy usage",
+              "Two testers abandoned before completing setup",
+              "No indication of what the app would feel like once open",
+            ].map((item) => (
+              <li key={item} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.6, marginBottom: 6, display: "flex", gap: 6 }}>
+                <span style={{ color: "#EF4444", flexShrink: 0 }}>✕</span>{item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </CsSection>
   );
@@ -873,50 +927,89 @@ function ScreensSection() {
       />
 
       {/* Home Screen */}
-      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+      <div className="csl-reveal" style={{ marginBottom: 48 }}>
         <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 12 }}>Home Screen</p>
-        <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 12 }}>One number. One action. Everything else is context.</p>
-        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.7, marginBottom: 20 }}>
-          The home screen answers one question: how am I doing today? The primary metric (today&apos;s CO₂ vs yesterday) is the first thing you see. The floating action button invites the next log. Everything else — category breakdown, tips — is secondary.
-        </p>
-        <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 12px 40px rgba(45,125,67,0.14)", border: "1px solid rgba(45,125,67,0.1)", maxWidth: 420, margin: "0 auto" }}>
-          <EcoImg src="/Image/Ecotrack/home-screen.png" alt="EcoTrack home screen" />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "start" }}>
+          {/* Left: what the screen shows */}
+          <div>
+            <p style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 12, lineHeight: 1.3 }}>
+              &ldquo;Good Morning David — You&apos;ve emitted 6.1 kg CO₂ today&rdquo;
+            </p>
+            <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 20 }}>
+              The greeting leads with your name and today&apos;s number — immediately followed by a positive reinforcement pill: <strong style={{ color: "#2D7D43" }}>&ldquo;You&apos;re 15% below average – Great job!&rdquo;</strong> Good news before data. The 65% ring and &ldquo;Below daily average&rdquo; label frame the number as progress, not accusation.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {[
+                { label: "Your Emission Insights", detail: "Travel 52% · Diet 15% · Energy 24% · Purchases 9% — each with one specific swap (e.g. &quot;Switch 1 car trip to metro = save 1.8 kg CO₂&quot;)" },
+                { label: "Eco Tip of the Day", detail: "\"Set your AC to 24°C – Save 1.5 kg CO₂/day\" — contextual, single-action tip pinned below the breakdown" },
+                { label: "Explore accordion", detail: "What is a Carbon Footprint? · How is my carbon footprint calculated? · What is a low-impact diet? — inline education, no tab switch needed" },
+              ].map((item) => (
+                <div key={item.label} style={{ background: "#F9FAFB", borderRadius: 12, padding: "12px 14px", border: "1px solid #F3F4F6" }}>
+                  <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111827", marginBottom: 4 }}>{item.label}</p>
+                  <p style={{ fontSize: "0.7rem", color: "#6B7280", lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: item.detail }} />
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Right: image */}
+          <div style={{ borderRadius: 24, overflow: "hidden", boxShadow: "0 16px 48px rgba(45,125,67,0.16)", border: "1px solid rgba(45,125,67,0.1)" }}>
+            <EcoImg src="/Image/Ecotrack/home-screen.png" alt="EcoTrack home screen — Good Morning David" />
+          </div>
         </div>
       </div>
 
       {/* Impact Screen */}
-      <div className="csl-reveal rd1" style={{ marginBottom: 40 }}>
+      <div className="csl-reveal rd1" style={{ marginBottom: 48 }}>
         <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 12 }}>Impact Screen</p>
-        <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 12 }}>Comparative framing, not raw data.</p>
-        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.7, marginBottom: 20 }}>
-          The impact screen uses relatable equivalents (≈ 8km drive, ≈ 2hrs AC) rather than raw kg CO₂e values. The reframe from &ldquo;here&apos;s your score&rdquo; to &ldquo;here&apos;s what that means&rdquo; was the single change that most affected how users described the app after testing.
+        <p style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 12 }}>Badges · Emission Graph · Carbon Sources</p>
+        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 20 }}>
+          The Impact screen answers &ldquo;am I getting better?&rdquo; through three lenses. <strong style={{ color: "#111827" }}>Badges</strong> (Eco Starter, Green Commuter) celebrate milestones without a points race. The <strong style={{ color: "#111827" }}>Emission Reduction Graph</strong> shows a Month/Week line chart — actual CO₂ reduction over time, not a projected score. <strong style={{ color: "#111827" }}>Carbon Sources</strong> shows the donut of where emissions come from, so the user can identify which category to work on next.
         </p>
-        <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 12px 40px rgba(45,125,67,0.12)", border: "1px solid rgba(45,125,67,0.1)" }}>
-          <EcoImg src="/Image/Ecotrack/impact%20screen.png" alt="EcoTrack impact screen" />
+        <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 12px 40px rgba(45,125,67,0.12)", border: "1px solid rgba(45,125,67,0.08)" }}>
+          <EcoImg src="/Image/Ecotrack/impact%20screen.png" alt="EcoTrack impact screen — Badges, Emission Graph, Carbon Sources" />
         </div>
       </div>
 
       {/* Learn Screen */}
-      <div className="csl-reveal rd2" style={{ marginBottom: 40 }}>
+      <div className="csl-reveal rd2" style={{ marginBottom: 48 }}>
         <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 12 }}>Learn Screen</p>
-        <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 12 }}>Context alongside tracking, not in a separate tab.</p>
-        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.7, marginBottom: 20 }}>
-          Competitive analysis showed that education siloed into a separate tab doesn&apos;t get opened. The learn screen surfaces contextually relevant tips — if you just logged a flight, you see alternatives. If your energy use is high, you see why.
+        <p style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 12 }}>Take the Eco Quiz · Knowledge Bites · Watch & Learn</p>
+        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 20 }}>
+          Research showed a standalone &ldquo;Learn&rdquo; tab doesn&apos;t get opened. So this screen mixes formats to create pull: an <strong style={{ color: "#111827" }}>Eco Quiz</strong> for engagement, <strong style={{ color: "#111827" }}>Knowledge Bites</strong> (card format — &ldquo;Buy food that&apos;s only 1st to you&rdquo;) for quick reads, and a <strong style={{ color: "#111827" }}>Watch & Learn</strong> section for video. The accompanying tracking panel (&ldquo;Your Travel — Primary Mode&rdquo;) shows that learn and log share the same screen. Education is context, not a destination.
         </p>
-        <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 12px 40px rgba(45,125,67,0.12)", border: "1px solid rgba(45,125,67,0.1)" }}>
-          <EcoImg src="/Image/Ecotrack/learn-screen.png" alt="EcoTrack learn screen" />
+        <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 12px 40px rgba(45,125,67,0.12)", border: "1px solid rgba(45,125,67,0.08)" }}>
+          <EcoImg src="/Image/Ecotrack/learn-screen.png" alt="EcoTrack learn screen — Quiz, Knowledge Bites, Watch & Learn" />
         </div>
       </div>
 
       {/* Profile Screen */}
       <div className="csl-reveal rd3" style={{ marginBottom: 20 }}>
         <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 12 }}>Profile Screen</p>
-        <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 12 }}>Goals that belong to you, not the app.</p>
-        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.7, marginBottom: 20 }}>
-          The profile screen separates personal goals from progress history. Every usability tester asked &ldquo;am I actually getting better?&rdquo; — this screen exists to answer that, week over week, without the pressure of a leaderboard or streak counter.
-        </p>
-        <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 12px 40px rgba(45,125,67,0.12)", border: "1px solid rgba(45,125,67,0.1)" }}>
-          <EcoImg src="/Image/Ecotrack/profile-screen.png" alt="EcoTrack profile screen" />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "start" }}>
+          {/* Left: image */}
+          <div style={{ borderRadius: 24, overflow: "hidden", boxShadow: "0 16px 48px rgba(0,0,0,0.12)", border: "1px solid #E5E7EB" }}>
+            <EcoImg src="/Image/Ecotrack/profile-screen.png" alt="EcoTrack profile screen — David, 35.8 kg CO₂ Saved" />
+          </div>
+          {/* Right: description */}
+          <div>
+            <p style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 12, lineHeight: 1.3 }}>
+              David · 35.8 kg CO₂ Saved · Member since February 2024
+            </p>
+            <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 20 }}>
+              Three stats sit directly below the avatar: <strong style={{ color: "#111827" }}>CO₂ Saved</strong> (total reduction since joining), <strong style={{ color: "#111827" }}>Member Since</strong> (February 2024), and <strong style={{ color: "#111827" }}>+5% Weekly Trend</strong>. These answer &ldquo;am I actually getting better?&rdquo; without a leaderboard or streak counter. No competitive pressure — just personal progress.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {["Edit Profile", "Preference", "Support", "Log out"].map((item) => (
+                <div key={item} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px", background: "#F9FAFB", borderRadius: 10, border: "1px solid #F3F4F6" }}>
+                  <p style={{ fontSize: "0.76rem", color: "#374151", fontWeight: 500 }}>{item}</p>
+                  <span style={{ fontSize: "0.7rem", color: "#9CA3AF" }}>›</span>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontSize: "0.68rem", color: "#9CA3AF", marginTop: 14, lineHeight: 1.6 }}>
+              Settings are minimal by design — Preference, Support, Log out. No feature bloat in the profile. The screen&apos;s job is one thing: show you your own story.
+            </p>
+          </div>
         </div>
       </div>
     </CsSection>
