@@ -20,7 +20,7 @@ const html = `
         <div class="wr-identity">
           <h3 class="wr-name">Air IQ</h3>
           <p class="wr-impact">25,000+ agents. 40% fewer booking errors.</p>
-          <p class="wr-desc">Simplifying B2B flight booking for travel agents across India &mdash; turning a chaotic legacy workflow into a calm, scannable experience.</p>
+          <p class="wr-desc">Simplifying B2B flight booking for travel agents across India, turning a chaotic legacy workflow into a calm, scannable experience.</p>
           <p class="wr-constraints">Constraints: legacy system, no design handoff, 3-week sprint</p>
         </div>
         <div class="wr-bottom">
@@ -48,7 +48,7 @@ const html = `
         <div class="wr-identity">
           <h3 class="wr-name">Care Autor</h3>
           <p class="wr-impact">3 care journeys. 1 unified platform.</p>
-          <p class="wr-desc">One platform for Alzheimer&rsquo;s, Autism &amp; Fitness &mdash; designing for caregivers who are already overwhelmed, making the interface invisible.</p>
+          <p class="wr-desc">One platform for Alzheimer&rsquo;s, Autism &amp; Fitness, designing for caregivers who are already overwhelmed, making the interface invisible.</p>
           <p class="wr-constraints">Constraints: 3 distinct user groups, no existing research</p>
         </div>
         <div class="wr-bottom">
@@ -82,7 +82,7 @@ const html = `
         <div class="wr-identity">
           <h3 class="wr-name">Design System</h3>
           <p class="wr-impact">1 system. Used across 4 products.</p>
-          <p class="wr-desc">A modular component library and token system for consistent product experiences &mdash; built to scale with the team, not against it.</p>
+          <p class="wr-desc">A modular component library and token system for consistent product experiences, built to scale with the team, not against it.</p>
           <p class="wr-constraints">Constraints: No dedicated systems team, built alongside shipping</p>
         </div>
         <div class="wr-bottom">
@@ -123,7 +123,7 @@ const html = `
         <div class="wr-identity">
           <h3 class="wr-name">BiblioFi</h3>
           <p class="wr-impact">Shipped in 6 weeks. 0 to App Store.</p>
-          <p class="wr-desc">iOS library management reimagining book discovery and borrowing &mdash; making the quiet joy of reading feel social without being loud about it.</p>
+          <p class="wr-desc">iOS library management reimagining book discovery and borrowing, making the quiet joy of reading feel social without being loud about it.</p>
           <p class="wr-constraints">Constraints: Solo, 6-week timeline, no iOS design precedent</p>
         </div>
         <div class="wr-bottom">

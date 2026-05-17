@@ -21,7 +21,7 @@ const html = `<section class="home-loves" id="loves">
         <h3 class="home-love-name">Cold Coffee</h3>
         <p class="home-love-desc">
           Hot coffee is a compromise. Iced americano is a way of life.
-          I take my coffee like I take my designs &mdash; cold, precise,
+          I take my coffee like I take my designs: cold, precise,
           and completely non-negotiable.
         </p>
         <p class="home-love-whisper">streak: same order, 47 days straight</p>
@@ -32,7 +32,7 @@ const html = `<section class="home-loves" id="loves">
         <h3 class="home-love-name">Travel</h3>
         <p class="home-love-desc">
           New cities rewire my brain. Every trip comes back as a design
-          reference, a rethought mental model, or at minimum &mdash; a really
+          reference, a rethought mental model, or at minimum, a really
           good story for interviews.
         </p>
         <p class="home-love-whisper">currently planning: everywhere</p>

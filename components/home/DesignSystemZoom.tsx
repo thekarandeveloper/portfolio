@@ -38,13 +38,13 @@ const html = `
           </div>
 
           <!-- Project label -->
-          <p class="dsz-project-label">04 &mdash; AirIQ &middot; Design System</p>
+          <p class="dsz-project-label">04 &middot; AirIQ &middot; Design System</p>
 
           <!-- Title -->
           <h3 class="dsz-title">A single system powering four products</h3>
 
           <!-- Subtitle -->
-          <p class="dsz-desc">A modular component library &amp; token system built to scale with the team &mdash; without slowing it down. No dedicated systems team. Shipped alongside product.</p>
+          <p class="dsz-desc">A modular component library &amp; token system built to scale with the team, without slowing it down. No dedicated systems team. Shipped alongside product.</p>
 
           <!-- Stats -->
           <div class="dsz-stat-grid">

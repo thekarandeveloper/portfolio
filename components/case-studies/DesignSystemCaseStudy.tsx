@@ -199,7 +199,7 @@ function DiscoverySection() {
       {/* Pull quote — the most human moment, shown large */}
       <div className="csl-reveal" style={{ textAlign: "center", padding: "44px 0 52px", borderBottom: "1px solid #F3F4F6", marginBottom: 48 }}>
         <p style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.5rem)", fontStyle: "italic", color: "#374151", lineHeight: 1.65, maxWidth: 640, margin: "0 auto", fontWeight: 400 }}>
-          &ldquo;The product looked different on every page. Not dramatically &mdash; subtly. Small inconsistencies that compound into something that never feels fully finished.&rdquo;
+          &ldquo;The product looked different on every page. Not dramatically, just subtly. Small inconsistencies that compound into something that never feels fully finished.&rdquo;
         </p>
       </div>
 
@@ -1466,7 +1466,7 @@ function LearningsSection() {
       <a href="/projects/care-autor" className="csl-next csl-reveal" style={{ marginTop: 56 }}>
         <div>
           <p className="csl-next-label">Next Case Study</p>
-          <p className="csl-next-title">Care Autor — Healthcare Support Platform</p>
+          <p className="csl-next-title">Care Autor: Healthcare Support Platform</p>
         </div>
         <span className="csl-next-arrow">→</span>
       </a>

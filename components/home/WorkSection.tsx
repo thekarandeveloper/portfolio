@@ -28,7 +28,7 @@ const html = `<section class="cswk" id="work">
           <span class="cswk-category" style="color:#1565C0;">Air IQ &middot; B2B SaaS</span>
         </div>
         <h3 class="cswk-title">Simplifying <em class="cswk-title-em" style="color:#1E90FF;">complex</em> flight booking systems</h3>
-        <p class="cswk-desc">Designed a 0&rarr;1 booking experience across web and mobile for 25,000+ travel agents&mdash;improving speed, clarity, and decision-making in high-pressure workflows.</p>
+        <p class="cswk-desc">Designed a 0&rarr;1 booking experience across web and mobile for 25,000+ travel agents, improving speed, clarity, and decision-making in high-pressure workflows.</p>
         <div class="cswk-tags">
           <span class="cswk-tag" style="color:#1565C0;background:#e8f2fb;">0&rarr;1 Design</span>
           <span class="cswk-tag" style="color:#1565C0;background:#e8f2fb;">B2B</span>
@@ -61,7 +61,7 @@ const html = `<section class="cswk" id="work">
           <span class="cswk-category" style="color:#C8703A;">BiblioFi &middot; iOS App</span>
         </div>
         <h3 class="cswk-title">Reimagining how readers <em class="cswk-title-em" style="color:#C8703A;">discover</em> &amp; borrow books</h3>
-        <p class="cswk-desc">iOS library management shipped solo in 6 weeks, 0 to App Store&mdash;making the quiet joy of reading feel social without being loud about it.</p>
+        <p class="cswk-desc">iOS library management shipped solo in 6 weeks, 0 to App Store, making the quiet joy of reading feel social without being loud about it.</p>
         <div class="cswk-tags">
           <span class="cswk-tag" style="color:#92400E;background:#fff3e0;">iOS</span>
           <span class="cswk-tag" style="color:#92400E;background:#fff3e0;">0&rarr;1</span>

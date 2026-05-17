@@ -12,7 +12,7 @@ const html = `
     <div class="sb sb-T">T</div>
   </div>
 
-  <p class="signoff-hint" id="signoffHint">&mdash;&nbsp;click anywhere to fix it&nbsp;&mdash;</p>
+  <p class="signoff-hint" id="signoffHint">click anywhere to fix it</p>
 
   <div class="signoff-reveal" id="signoffReveal">
     <span class="signoff-reveal-line1">Order out of chaos.</span>

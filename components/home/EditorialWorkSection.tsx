@@ -3,7 +3,7 @@ const html = `
 
   <div class="ew-header reveal">
     <span class="ew-label">Selected Work</span>
-    <p class="ew-manifesto">5 products shipped. 3 industries.<br>1 consistent belief&nbsp;&mdash; complexity is a design failure.</p>
+    <p class="ew-manifesto">5 products shipped. 3 industries.<br>1 consistent belief: complexity is a design failure.</p>
   </div>
 
   <div class="ew-list">
