@@ -90,7 +90,6 @@ function EcoImg({ src, alt, style = {} }: { src: string; alt: string; style?: Re
 
 /* ─────────────────────────────────────────────────────────────────────
    HAND ANNOTATION — cursive note + curved SVG arrow
-   Matches the home page's cswk-annot aesthetic
 ───────────────────────────────────────────────────────────────────── */
 type HandNoteDir = "down" | "right" | "up-right" | "left";
 
@@ -104,7 +103,7 @@ function HandNote({
   style?: React.CSSProperties;
 }) {
   const label = (
-    <span style={{ fontFamily: HAND, fontSize: "1rem", color: "#2D7D43", lineHeight: 1.25, display: "block" }}>
+    <span style={{ fontFamily: HAND, fontSize: "0.95rem", color: "#2D7D43", lineHeight: 1.25, display: "block" }}>
       {text}
     </span>
   );
@@ -176,6 +175,22 @@ function Script({ children }: { children: React.ReactNode }) {
     <em style={{ fontStyle: "normal", fontFamily: HAND, color: "#2D7D43", fontSize: "1.05em" }}>
       {children}
     </em>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   ECO NUM — inline number highlight
+───────────────────────────────────────────────────────────────────── */
+function EcoNum({ children }: { children: React.ReactNode }) {
+  return (
+    <strong style={{
+      fontFamily: HAND,
+      fontSize: "1.15em",
+      color: "#2D7D43",
+      fontWeight: 700,
+    }}>
+      {children}
+    </strong>
   );
 }
 
@@ -471,10 +486,9 @@ function OverviewSection() {
       <CsSectionHeader
         label="Project Overview"
         title={<>End-to-end solo. Research to <Script>tested prototype.</Script></>}
-        sub="I owned everything: screener survey, user interviews, information architecture, wireframes, visual design, and two rounds of usability testing. This is the account of what I learned, what I got wrong, and what I changed."
+        sub="Everything from screener survey to two rounds of usability testing. One designer, four weeks."
       />
 
-      {/* Cover image with hand annotation */}
       <div className="csl-reveal" style={{ position: "relative", borderRadius: 20, overflow: "hidden", marginBottom: 36, boxShadow: "0 20px 60px rgba(45,125,67,0.12)" }}>
         <EcoImg src="/Image/Ecotrack/ecotrack/cover.png" alt="EcoTrack app cover" />
         <div style={{ position: "absolute", bottom: 24, right: 24 }}>
@@ -491,25 +505,25 @@ function OverviewSection() {
         <EcoCard style={{ gridArea: "a", display: "flex", flexDirection: "column", gap: 10 }}>
           <span style={{ fontSize: "1.6rem" }}>📊</span>
           <p style={{ fontSize: "0.9rem", fontWeight: 700, color: "#111827" }}>Daily Footprint Tracking</p>
-          <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.65 }}>Quick-log from the home screen. Designed so users never need to navigate away to record an activity. Every extra tap was a reason to quit.</p>
+          <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>Quick-log from home. Every extra tap was a reason to quit.</p>
         </EcoCard>
 
         <EcoCard style={{ gridArea: "b", background: "#0A1F0F", display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: 10, minHeight: 200 }}>
           <span style={{ fontSize: "1.6rem" }}>🌍</span>
           <p style={{ fontSize: "0.9rem", fontWeight: 700, color: "#fff" }}>Impact Visualization</p>
-          <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>Raw CO₂ numbers mean nothing to most people. Every metric reframed as a plain-language comparison.</p>
+          <p style={{ fontSize: "0.76rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>Raw CO₂ numbers reframed as plain-language comparisons.</p>
         </EcoCard>
 
         <EcoCard style={{ gridArea: "c", background: "#E8F7EC" }}>
           <span style={{ fontSize: "1.4rem", marginBottom: 8, display: "block" }}>💡</span>
           <p style={{ fontSize: "0.86rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>Learning Hub</p>
-          <p style={{ fontSize: "0.76rem", color: "#3B6B45", lineHeight: 1.6 }}>Content and tracking on the same screen. Education is context, not a destination.</p>
+          <p style={{ fontSize: "0.74rem", color: "#3B6B45", lineHeight: 1.55 }}>Education as context, not a tab.</p>
         </EcoCard>
 
         <EcoCard style={{ gridArea: "d" }}>
           <span style={{ fontSize: "1.4rem", marginBottom: 8, display: "block" }}>📈</span>
           <p style={{ fontSize: "0.86rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>Progress Profile</p>
-          <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>Added after every tester asked "am I actually getting better?" The original dashboard didn&apos;t answer that.</p>
+          <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.55 }}>Added after every tester asked &ldquo;am I getting better?&rdquo;</p>
         </EcoCard>
       </div>
     </CsSection>
@@ -524,35 +538,29 @@ function ProblemSection() {
     <CsSection id="problem">
       <CsSectionHeader label="The Problem" title={<>Why motivated users <Script>still quit</Script> eco apps.</>} />
 
-      <p style={{ fontSize: "0.86rem", color: "#374151", lineHeight: 1.85, marginBottom: 24 }} className="csl-reveal">
-        In every interview I ran, users described the same moment. They opened an existing eco app, saw a number, felt bad, and eventually stopped opening it. The apps weren&apos;t missing features. They were missing a reason to come back tomorrow.
-      </p>
-
       <EcoCallout style={{ marginBottom: 28 }}>
         Motivated users abandon tracking not because they don&apos;t care. Existing apps optimise for <strong>data completeness over daily usability</strong>, making the act of tracking feel worse than not tracking at all.
       </EcoCallout>
 
-      {/* Pull quote */}
-      <div className="csl-reveal rd2" style={{ borderLeft: "3px solid #2D7D43", padding: "22px 28px", background: "#fff", borderRadius: "0 20px 20px 0", marginBottom: 36, boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04)" }}>
+      <div className="csl-reveal rd1" style={{ borderLeft: "3px solid #2D7D43", padding: "22px 28px", background: "#fff", borderRadius: "0 20px 20px 0", marginBottom: 36, boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04)" }}>
         <p style={{ fontFamily: HAND, fontSize: "1.4rem", color: "#0D2312", lineHeight: 1.55, marginBottom: 10 }}>
           &ldquo;I opened Joro once, saw my score, felt terrible, and deleted it. I wasn&apos;t looking for a report card.&rdquo;
         </p>
         <p style={{ fontSize: "0.68rem", color: "#3B6B45", fontWeight: 600 }}>Interview participant, 26, product manager</p>
       </div>
 
-      {/* Constraints */}
-      <p className="csl-section-eyebrow csl-reveal rd3">Project Constraints</p>
-      <div className="csl-card-grid csl-reveal rd3">
+      <p className="csl-section-eyebrow csl-reveal rd2">Project Constraints</p>
+      <div className="csl-card-grid csl-reveal rd2">
         {[
-          { icon: "📱", label: "iOS concept only", desc: "No backend, no live data sync. All carbon estimates are averaged. Deliberately approximate over precisely complex." },
-          { icon: "✂️", label: "Scope: daily habits", desc: "Carbon offset purchasing, social features, and leaderboards were explicitly cut. The core loop had to work first." },
-          { icon: "⏱️", label: "4-week sprint", desc: "Self-imposed deadline forced real prioritisation. Not every edge case could be designed, so I chose which ones mattered most." },
-          { icon: "🔬", label: "No longitudinal data", desc: "All insights come from 45-minute sessions, not observed behaviour over time. A real limitation I address honestly in Outcomes." },
+          { icon: "📱", label: "iOS concept only", desc: "No backend. Carbon estimates are averaged. Approximate over complex." },
+          { icon: "✂️", label: "Scope: daily habits", desc: "Offsets, social, leaderboards cut. The core loop had to work first." },
+          { icon: "⏱️", label: "4-week sprint", desc: "Self-imposed deadline forced real prioritisation." },
+          { icon: "🔬", label: "No longitudinal data", desc: "Insights from 45-minute sessions, not observed behaviour over time." },
         ].map((c) => (
           <EcoCard key={c.label}>
             <span style={{ fontSize: "1.3rem", display: "block", marginBottom: 10 }}>{c.icon}</span>
             <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{c.label}</p>
-            <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.6 }}>{c.desc}</p>
+            <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.55 }}>{c.desc}</p>
           </EcoCard>
         ))}
       </div>
@@ -569,15 +577,13 @@ function ProcessSection() {
       <CsSectionHeader
         label="Design Thinking Process"
         title={<>Five phases.</>}
-        sub="I followed a double-diamond structure, but the Define phase upended my assumptions entirely. What I thought the problem was turned out to be wrong."
+        sub="Double-diamond. The Define phase upended my assumptions entirely."
       />
 
-      {/* Cursive subline */}
       <p className="csl-reveal" style={{ fontFamily: HAND, fontSize: "1.6rem", color: "#2D7D43", marginBottom: 28, marginTop: -12 }}>
         only one went as planned.
       </p>
 
-      {/* Visual process timeline */}
       <div className="csl-reveal rd1" style={{ marginBottom: 32 }}>
         <div style={{ display: "flex", gap: 0, position: "relative" }}>
           <div style={{ position: "absolute", top: 28, left: "10%", right: "10%", height: 2, background: "linear-gradient(90deg, #2D7D43, #48A362, #2D7D43)", borderRadius: 2, zIndex: 0 }} />
@@ -611,10 +617,6 @@ function ProcessSection() {
           </div>
         ))}
       </div>
-
-      <EcoCallout style={{ marginTop: 24 }}>
-        <strong>4-week sprint:</strong> Week 1 — Research &amp; Interviews · Week 2 — Synthesis &amp; Define · Week 3 — Wireframes &amp; Prototype · Week 4 — Testing &amp; Iterations
-      </EcoCallout>
     </CsSection>
   );
 }
@@ -631,17 +633,12 @@ function ResearchSection() {
       <CsSectionHeader
         label="User Research"
         title={<>What I expected to find. <Script>What I actually found.</Script></>}
-        sub="I recruited people who described themselves as environmentally conscious but inconsistent. Not existing eco-app users. That distinction mattered."
+        sub="I recruited people who described themselves as eco-conscious but inconsistent. Not existing app users."
       />
-
-      <EcoCallout style={{ marginBottom: 28 }}>
-        <span style={{ fontSize: "1.1rem", marginRight: 8 }}>🔬</span>
-        <strong>Methodology:</strong> 5 semi-structured interviews (30 min each via Zoom) plus a 12-person screener survey. Participants were screened for environmental intent, not eco-app experience. I wanted to understand motivation and abandonment. Not feature preferences.
-      </EcoCallout>
 
       <div
         ref={rootRef as React.RefObject<HTMLDivElement>}
-        className="csl-metrics csl-reveal rd1"
+        className="csl-metrics csl-reveal"
       >
         {ecoResearchStats.map((stat) => (
           <div key={stat.label} className="csl-metric">
@@ -653,28 +650,22 @@ function ResearchSection() {
         ))}
       </div>
 
-      {/* Research findings with hand annotation */}
-      <div style={{ marginTop: 36, position: "relative" }} className="csl-reveal rd2">
-        <p className="csl-section-eyebrow">Research → Design Decisions</p>
-
-        {/* Floating hand note beside the chain */}
-        <div style={{ position: "absolute", right: -8, top: 40, transform: "translateX(100%)" }}>
-          <HandNote text="users didn't need more data. they needed less guilt." dir="left" style={{ maxWidth: 160, textAlign: "right" }} />
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      {/* Finding → Decision chain */}
+      <div style={{ marginTop: 36 }} className="csl-reveal rd1">
+        <p className="csl-section-eyebrow" style={{ marginBottom: 16 }}>Research → Design Decisions</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {[
-            { finding: "Users felt judged, not helped by their data", decision: "Every metric shows a positive comparison (today vs yesterday), never a score against an abstract goal" },
-            { finding: "3/5 had quit an app within the first 10 days", decision: "The first-time logging flow became the primary design problem. Not the dashboard." },
-            { finding: "No one wanted to manually log food in detail", decision: "Quick-select category cards replace free-form input for the most common logging scenarios" },
+            { finding: <><EcoNum>68%</EcoNum> felt judged, not helped, by their data</>, decision: "Every metric shows a positive comparison. Never a score against an abstract goal." },
+            { finding: <><EcoNum>3/5</EcoNum> had quit an app within the first <EcoNum>10</EcoNum> days</>, decision: "First-time logging became the primary design problem. Not the dashboard." },
+            { finding: "No one wanted to manually log food in detail", decision: "Quick-select cards replace free-form input for common logging scenarios." },
           ].map((row, i) => (
-            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 12, alignItems: "center" }}>
-              <div style={{ background: "#FEF2F2", borderRadius: 14, padding: "14px 16px", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
-                <p style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.65 }}>🔍 <strong style={{ color: "#111827" }}>Finding:</strong> {row.finding}</p>
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 10, alignItems: "center" }}>
+              <div style={{ background: "#FEF2F2", borderRadius: 14, padding: "13px 16px" }}>
+                <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.6 }}>🔍 {row.finding}</p>
               </div>
               <span style={{ fontSize: "0.9rem", color: "#D1D5DB" }}>→</span>
-              <div style={{ background: "#E8F7EC", borderRadius: 14, padding: "14px 16px", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
-                <p style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.65 }}>✓ <strong style={{ color: "#2D7D43" }}>Decision:</strong> {row.decision}</p>
+              <div style={{ background: "#E8F7EC", borderRadius: 14, padding: "13px 16px" }}>
+                <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.6 }}>✓ {row.decision}</p>
               </div>
             </div>
           ))}
@@ -693,7 +684,7 @@ function AudienceSection() {
       <CsSectionHeader
         label="Target Audience"
         title={<>Designing for people who <Script>already care.</Script></>}
-        sub="The target user isn't someone who needs to be convinced climate change is real. They already believe. The design challenge is habit. Not awareness."
+        sub="The design challenge is habit, not awareness."
       />
 
       <div className="csl-reveal" style={{ borderRadius: 20, overflow: "hidden", marginBottom: 28, boxShadow: "0 8px 40px rgba(45,125,67,0.1)" }}>
@@ -702,13 +693,13 @@ function AudienceSection() {
 
       <div className="csl-card-grid csl-reveal rd1">
         {[
-          { label: "Eco-Curious Beginners", desc: "They care but don't know where to start. Need gentle guidance and visible progress to build confidence.", bg: "#E8F7EC" },
-          { label: "Active Eco-Enthusiasts", desc: "They've built green habits but crave data-driven proof that their choices matter. Want insight, not instruction.", bg: "#D0EAD4" },
-          { label: "Lapsed Eco-App Users", desc: "They tried other apps and quit. Trust is broken. The design has to earn their return. Not demand it.", bg: "#F9FAFB" },
+          { label: "Eco-Curious Beginners", desc: "Need gentle guidance and visible progress to build confidence.", bg: "#E8F7EC" },
+          { label: "Active Eco-Enthusiasts", desc: "Want data-driven proof their choices matter. Insight, not instruction.", bg: "#D0EAD4" },
+          { label: "Lapsed Eco-App Users", desc: "Trust is broken. The design has to earn their return.", bg: "#F9FAFB" },
         ].map((seg) => (
           <EcoCard key={seg.label} style={{ background: seg.bg }}>
             <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{seg.label}</p>
-            <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.6 }}>{seg.desc}</p>
+            <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.55 }}>{seg.desc}</p>
           </EcoCard>
         ))}
       </div>
@@ -724,14 +715,14 @@ function PersonasSection() {
     <CsSection id="personas">
       <CsSectionHeader
         label="User Personas"
-        title={<>Fictional representations, <Script>built from real research.</Script></>}
-        sub="These personas guided every feature decision from information architecture to how I framed carbon data on screen. Priya needed simplicity. Arjun needed proof."
+        title={<>Fictional. <Script>Built from real research.</Script></>}
+        sub="Priya needed simplicity. Arjun needed proof. Every design decision traced back to one of them."
       />
 
       <div className="csl-card-2col csl-reveal">
         {[
-          { photo: "user-persona.png", name: "Priya Sharma", tag: "22 · College Student · Mumbai", bg: "#E8F7EC", desc: "Eco-curious beginner who cares about the planet but doesn't know where to start. Needs a friendly, visual app that guides her through sustainable choices without overwhelming her.", empathy: ecoEmpathy1 },
-          { photo: "user-persona2.png", name: "Arjun Mehta", tag: "28 · Product Manager · Bangalore", bg: "#D0EAD4", desc: "Active eco-enthusiast who has built green habits but needs data-driven proof that they matter. Looking for a sleek, efficient app that gives meaningful feedback without information overload.", empathy: ecoEmpathy2 },
+          { photo: "user-persona.png",  name: "Priya Sharma", tag: "22 · College Student · Mumbai",      bg: "#E8F7EC", empathy: ecoEmpathy1 },
+          { photo: "user-persona2.png", name: "Arjun Mehta",  tag: "28 · Product Manager · Bangalore",   bg: "#D0EAD4", empathy: ecoEmpathy2 },
         ].map((p) => (
           <div key={p.name} style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "0 1px 3px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.05)" }}>
             <div style={{ height: 220, overflow: "hidden", background: p.bg, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -739,12 +730,11 @@ function PersonasSection() {
             </div>
             <div style={{ padding: "22px" }}>
               <p style={{ fontSize: "0.96rem", fontWeight: 700, color: "#111827", marginBottom: 2 }}>{p.name}</p>
-              <p style={{ fontSize: "0.72rem", color: "#9CA3AF", marginBottom: 14 }}>{p.tag}</p>
-              <p style={{ fontSize: "0.78rem", color: "#374151", lineHeight: 1.65, marginBottom: 16 }}>{p.desc}</p>
-              {p.empathy.map((row) => (
+              <p style={{ fontSize: "0.72rem", color: "#9CA3AF", marginBottom: 16 }}>{p.tag}</p>
+              {p.empathy.slice(0, 3).map((row) => (
                 <div key={row.cat} style={{ borderTop: "1px solid #F3F4F6", paddingTop: 10, marginTop: 10 }}>
-                  <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
-                  <p style={{ fontSize: "0.75rem", color: "#374151", lineHeight: 1.55 }}>{row.insight}</p>
+                  <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 3 }}>{row.cat}</p>
+                  <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.5 }}>{row.insight}</p>
                 </div>
               ))}
             </div>
@@ -763,11 +753,11 @@ function CompetitiveSection() {
     <CsSection id="competitive">
       <CsSectionHeader
         label="Competitor Analysis"
-        title={<>What each app taught me. <Script>And what decision it changed.</Script></>}
-        sub="I didn't audit these apps to list their features. I used them like a user would, for 2 to 3 days each, paying attention to the moment I stopped wanting to open them."
+        title={<>What each app taught me. <Script>And what changed.</Script></>}
+        sub="I used each app for 2 to 3 days. I paid attention to the moment I stopped wanting to open it."
       />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }} className="csl-reveal">
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }} className="csl-reveal">
         {ecoCompetitors.map((comp) => (
           <EcoCard key={comp.name} style={{ padding: 0, overflow: "hidden" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1.4fr" }}>
@@ -776,7 +766,7 @@ function CompetitiveSection() {
                 <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#10B981", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Pros</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {comp.pros.map((p) => (
-                    <li key={p} style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6, marginBottom: 3, display: "flex", gap: 5 }}>
+                    <li key={p} style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.55, marginBottom: 3, display: "flex", gap: 5 }}>
                       <span style={{ color: "#10B981", flexShrink: 0 }}>+</span>{p}
                     </li>
                   ))}
@@ -787,7 +777,7 @@ function CompetitiveSection() {
                 <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#EF4444", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Cons</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {comp.cons.map((c) => (
-                    <li key={c} style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6, marginBottom: 3, display: "flex", gap: 5 }}>
+                    <li key={c} style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.55, marginBottom: 3, display: "flex", gap: 5 }}>
                       <span style={{ color: "#EF4444", flexShrink: 0 }}>–</span>{c}
                     </li>
                   ))}
@@ -795,16 +785,16 @@ function CompetitiveSection() {
               </div>
               <div style={{ padding: "16px 18px", background: "#F9FAFB" }}>
                 <p style={{ fontSize: "0.6rem", fontWeight: 700, color: "#2D7D43", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Design decision</p>
-                <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.65 }}>{comp.decision}</p>
+                <p style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.6 }}>{comp.decision}</p>
               </div>
             </div>
           </EcoCard>
         ))}
       </div>
 
-      <EcoCallout style={{ marginTop: 24 }}>
+      <EcoCallout style={{ marginTop: 20 }}>
         <span style={{ fontSize: "1.1rem", marginRight: 8 }}>💡</span>
-        The pattern across all four: <strong>no single app was bad</strong>. Each was good at one thing and weak on everything adjacent to it. EcoTrack&apos;s brief became: make daily logging so frictionless that users don&apos;t need anything else to build a habit.
+        No single app was bad. Each excelled at one thing. EcoTrack&apos;s brief: make daily logging so frictionless that users don&apos;t need anything else to build a habit.
       </EcoCallout>
     </CsSection>
   );
@@ -819,7 +809,7 @@ function DesignSection() {
       <CsSectionHeader
         label="Colors & Typography"
         title={<>Every decision had an alternative <Script>I chose not to use.</Script></>}
-        sub="Visual design choices are easier to evaluate when you know what was rejected and why. Here's the reasoning behind typeface and colour."
+        sub="Design choices are easier to evaluate when you know what was rejected."
       />
 
       <div className="csl-reveal" style={{ borderRadius: 20, overflow: "hidden", marginBottom: 32, boxShadow: "0 8px 40px rgba(45,125,67,0.08)" }}>
@@ -828,15 +818,12 @@ function DesignSection() {
 
       <EcoCard style={{ marginBottom: 20 }} className="csl-reveal rd1">
         <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 12 }}>Colour decision</p>
-        <p style={{ fontSize: "0.84rem", color: "#374151", lineHeight: 1.75, marginBottom: 20 }}>
-          I tested three green values. A vibrant lime-green felt too optimistic — celebrating before the user had done anything. A deep forest green felt heavy and preachy. <strong style={{ color: "#111827" }}>#2D7D43 sits between them: calm, credible, and grown-up.</strong> The register of a tool that takes the problem seriously.
+        <p style={{ fontSize: "0.82rem", color: "#374151", lineHeight: 1.7, marginBottom: 20 }}>
+          Tested <EcoNum>3</EcoNum> green values. Lime-green was too optimistic — celebrating before the user did anything. Forest green felt preachy. <strong style={{ color: "#111827" }}>#2D7D43 sits between: calm, credible, grown-up.</strong>
         </p>
         <div style={{ display: "flex", borderRadius: 12, overflow: "hidden", marginBottom: 10 }}>
-          {[
-            { hex: "#2D7D43" }, { hex: "#48A362" }, { hex: "#E8F7EC" },
-            { hex: "#0A1F0F" }, { hex: "#111827" }, { hex: "#6B7280" },
-          ].map((s) => (
-            <div key={s.hex} style={{ flex: 1, height: 52, background: s.hex }} />
+          {["#2D7D43", "#48A362", "#E8F7EC", "#0A1F0F", "#111827", "#6B7280"].map((hex) => (
+            <div key={hex} style={{ flex: 1, height: 52, background: hex }} />
           ))}
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
@@ -861,16 +848,16 @@ function DesignSection() {
         <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 16 }}>Typeface decision</p>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, marginBottom: 20 }}>
           {[
-            { name: "DM Sans", verdict: "Rejected", reason: "Too friendly. Felt like a consumer wellness app, not a credible data tool.", chosen: false },
-            { name: "Nunito",  verdict: "Rejected", reason: "Rounded terminals looked playful at small sizes. Wrong register for environmental data.", chosen: false },
-            { name: "Inter",   verdict: "Chosen",   reason: "Trustworthy, data-appropriate, excellent on screen at every weight. Intentionally not exciting.", chosen: true },
+            { name: "DM Sans", verdict: "Rejected", reason: "Too friendly. Wrong register for a data tool.", chosen: false },
+            { name: "Nunito",  verdict: "Rejected", reason: "Rounded terminals looked playful at small sizes.", chosen: false },
+            { name: "Inter",   verdict: "Chosen",   reason: "Trustworthy, data-appropriate, excellent at every weight.", chosen: true },
           ].map((t) => (
             <div key={t.name} style={{ padding: "14px 16px", borderRadius: 14, background: t.chosen ? "#E8F7EC" : "#F9FAFB", border: `1.5px solid ${t.chosen ? "#2D7D43" : "transparent"}` }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
                 <p style={{ fontSize: "0.88rem", fontWeight: 700, color: t.chosen ? "#2D7D43" : "#6B7280" }}>{t.name}</p>
                 <span style={{ fontSize: "0.54rem", fontWeight: 700, padding: "2px 8px", borderRadius: 100, background: t.chosen ? "#2D7D43" : "#E5E7EB", color: t.chosen ? "#fff" : "#9CA3AF" }}>{t.verdict}</span>
               </div>
-              <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.55 }}>{t.reason}</p>
+              <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.5 }}>{t.reason}</p>
             </div>
           ))}
         </div>
@@ -916,13 +903,8 @@ function WireframesSection() {
       <CsSectionHeader
         label="Mid-Fidelity Wireframes"
         title={<>IA first. <Script>Screens second.</Script></>}
-        sub="Before opening Figma I listed every feature the research suggested. I ended up with 23 potential screens, then applied one filter: can a first-time user complete this on day one, without guidance? What survived: 12 screens, 5 views."
+        sub="Started with 23 potential screens. One filter: can a first-time user complete this on day one? What survived: 12 screens, 5 views."
       />
-
-      <EcoCallout style={{ marginBottom: 28 }}>
-        <span style={{ fontSize: "1.1rem", marginRight: 8 }}>✂️</span>
-        <strong>From 23 screens to 5 views:</strong> Social sharing, streak mechanics, carbon offset purchasing, and detailed lifecycle analysis all failed the day-one filter. What remained: home dashboard, activity log, impact breakdown, learning hub, progress history.
-      </EcoCallout>
 
       <div className="csl-reveal rd1" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14, marginBottom: 20 }}>
         {Object.entries(wfNotes).map(([file, label]) => (
@@ -936,7 +918,7 @@ function WireframesSection() {
       </div>
 
       <EcoCallout>
-        I chose a standard bottom tab bar. Not because it&apos;s exciting, but because it&apos;s familiar. Every tester I interviewed uses 2 to 3 apps with tab-based navigation daily. I didn&apos;t want the navigation model to require learning. The cognitive load budget had to go toward understanding carbon data.
+        Social sharing, streak mechanics, carbon offsets, and lifecycle analysis all failed the day-one filter. What remained: home, activity log, impact breakdown, learning, progress.
       </EcoCallout>
     </CsSection>
   );
@@ -948,16 +930,16 @@ function WireframesSection() {
 function OnboardingSection() {
   const row1 = [
     { file: "onboarding1.png", label: "Splash",               sub: "EcoTrack logo" },
-    { file: "onboarding2.png", label: "Track What Matters",   sub: "See your footprint grow or shrink in real time" },
-    { file: "onboarding3.png", label: "Small Steps, Big Change", sub: "Log daily actions, get eco tips, stay on track" },
-    { file: "onabording6.png", label: "Join the Eco Journey", sub: "Earn badges, build habits, make impact fun" },
+    { file: "onboarding2.png", label: "Track What Matters",   sub: "See your footprint in real time" },
+    { file: "onboarding3.png", label: "Small Steps, Big Change", sub: "Log daily actions, get eco tips" },
+    { file: "onabording6.png", label: "Join the Eco Journey", sub: "Earn badges, build habits" },
     { file: "onboarding5.png", label: "Welcome",              sub: "Sign In / Sign Up" },
-    { file: "onboarding4.png", label: "Sign Up",              sub: "Full Name · Email · Password · Google · Facebook" },
+    { file: "onboarding4.png", label: "Sign Up",              sub: "Name · Email · Password" },
   ];
   const row2 = [
-    { file: "onboarding7.png", label: "Sign In",              sub: "\"Let's continue your journey to a greener, more sustainable future.\"" },
-    { file: "onboarding8.png", label: "Your Travel Habits",   sub: "Primary Mode of Transport: Car · Flights · Walking · Public Transport · Bicycle · Bike" },
-    { file: "onboarding9.png", label: "Your Home Energy Use", sub: "Type of Home: Apartment · House · Shared. Monthly Electricity Usage in kWh" },
+    { file: "onboarding7.png", label: "Sign In",              sub: "\"Let's continue your journey.\"" },
+    { file: "onboarding8.png", label: "Your Travel Habits",   sub: "Car · Flights · Walking · Public Transport · Bicycle" },
+    { file: "onboarding9.png", label: "Your Home Energy Use", sub: "Apartment · House · Shared · Monthly kWh" },
   ];
 
   return (
@@ -965,18 +947,8 @@ function OnboardingSection() {
       <CsSectionHeader
         label="High Fidelity — OnBoarding"
         title={<>Nine screens. <Script>One commitment at a time.</Script></>}
-        sub="V1 onboarding asked for too much before showing any value. Two testers dropped off before setup was complete. The revised flow earns trust in steps: inspire first, then ask."
+        sub="V1 asked for too much before showing any value. 2 testers dropped off before setup was complete. V2 earns trust first, then asks."
       />
-
-      {/* Flow breadcrumb */}
-      <div className="csl-reveal" style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
-        {["Splash", "Track What Matters", "Small Steps", "Join the Journey", "Welcome", "Sign Up / Sign In", "Travel Habits", "Home Energy", "Dashboard"].map((step, i, arr) => (
-          <div key={step} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "0.68rem", color: "#374151", background: "#F9FAFB", padding: "4px 10px", borderRadius: 100, boxShadow: "0 1px 3px rgba(0,0,0,0.06)", whiteSpace: "nowrap" }}>{step}</span>
-            {i < arr.length - 1 && <span style={{ fontSize: "0.7rem", color: "#D1D5DB" }}>→</span>}
-          </div>
-        ))}
-      </div>
 
       <div className="csl-reveal rd1" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 12, marginBottom: 20 }}>
         {row1.map(({ file, label, sub }) => (
@@ -985,7 +957,7 @@ function OnboardingSection() {
               <EcoImg src={`/Image/Ecotrack/${file}`} alt={label} />
             </div>
             <p style={{ fontSize: "0.62rem", color: "#111827", textAlign: "center", fontWeight: 700, lineHeight: 1.3 }}>{label}</p>
-            <p style={{ fontSize: "0.56rem", color: "#9CA3AF", textAlign: "center", lineHeight: 1.4 }}>{sub}</p>
+            <p style={{ fontSize: "0.54rem", color: "#9CA3AF", textAlign: "center", lineHeight: 1.3 }}>{sub}</p>
           </div>
         ))}
       </div>
@@ -997,7 +969,7 @@ function OnboardingSection() {
               <EcoImg src={`/Image/Ecotrack/${file}`} alt={label} />
             </div>
             <p style={{ fontSize: "0.72rem", color: "#111827", textAlign: "center", fontWeight: 700 }}>{label}</p>
-            <p style={{ fontSize: "0.62rem", color: "#6B7280", textAlign: "center", lineHeight: 1.5 }}>{sub}</p>
+            <p style={{ fontSize: "0.6rem", color: "#6B7280", textAlign: "center", lineHeight: 1.45 }}>{sub}</p>
           </div>
         ))}
       </div>
@@ -1006,12 +978,11 @@ function OnboardingSection() {
         <EcoCard style={{ background: "#E8F7EC" }}>
           <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#0D2312", marginBottom: 10 }}>What changed in V2</p>
           {[
-            "Value-first: three inspiration screens before any form",
-            "Sign Up deferred until after the user understands the app",
-            "Travel Habits and Home Energy asked as quick-select tiles. No free text.",
-            "Get Started lands directly on the home dashboard",
+            "Value-first: 3 inspiration screens before any form",
+            "Sign Up deferred until after the user sees the app",
+            "Quick-select tiles replace free text for habits",
           ].map((item) => (
-            <div key={item} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.6, marginBottom: 7, display: "flex", gap: 7 }}>
+            <div key={item} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.55, marginBottom: 6, display: "flex", gap: 7 }}>
               <span style={{ color: "#2D7D43", flexShrink: 0 }}>✓</span>{item}
             </div>
           ))}
@@ -1019,12 +990,11 @@ function OnboardingSection() {
         <EcoCard style={{ background: "#FEF2F2" }}>
           <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#7F1D1D", marginBottom: 10 }}>What V1 got wrong</p>
           {[
-            "Sign Up form appeared on screen 2, before any context",
-            "Free-text fields for travel distance and energy usage",
-            "Two testers abandoned before completing setup",
-            "No indication of what the app would feel like once open",
+            "Sign Up form on screen 2, before any context",
+            "Free-text fields for travel distance and energy",
+            "2 testers abandoned before completing setup",
           ].map((item) => (
-            <div key={item} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.6, marginBottom: 7, display: "flex", gap: 7 }}>
+            <div key={item} style={{ fontSize: "0.72rem", color: "#374151", lineHeight: 1.55, marginBottom: 6, display: "flex", gap: 7 }}>
               <span style={{ color: "#EF4444", flexShrink: 0 }}>✕</span>{item}
             </div>
           ))}
@@ -1043,48 +1013,69 @@ function ScreensSection() {
       <CsSectionHeader
         label="High Fidelity — Core App Screens"
         title={<>Five views. <Script>One coherent system.</Script></>}
-        sub="Each screen was designed to answer one question without requiring the user to navigate to another. The data has to make sense in context. Not just be present."
+        sub="Each screen answers one question without requiring the user to navigate away."
       />
 
-      {/* Home Screen */}
-      <div className="csl-reveal" style={{ marginBottom: 56 }}>
-        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Home Screen</p>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
-          <div>
-            <p style={{ fontFamily: HAND, fontSize: "1.5rem", color: "#111827", marginBottom: 14, lineHeight: 1.3 }}>
-              &ldquo;Good Morning David. You&apos;ve emitted 6.1 kg CO₂ today.&rdquo;
-            </p>
-            <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.8, marginBottom: 22 }}>
-              The greeting leads with your name and today&apos;s number — immediately followed by a positive reinforcement pill: <strong style={{ color: "#2D7D43" }}>&ldquo;You&apos;re 15% below average. Great job!&rdquo;</strong> Good news before data. The 65% ring and &ldquo;Below daily average&rdquo; label frame the number as progress, not accusation.
-            </p>
-            {[
-              { label: "Your Emission Insights", detail: "Travel 52% · Diet 15% · Energy 24% · Purchases 9%. Each with one specific swap, e.g. Switch 1 car trip to metro = save 1.8 kg CO₂." },
-              { label: "Eco Tip of the Day", detail: "Set your AC to 24°C – Save 1.5 kg CO₂/day. Contextual, single-action tip pinned below the breakdown." },
-              { label: "Explore accordion", detail: "What is a Carbon Footprint? · How is my carbon footprint calculated? · What is a low-impact diet? Inline education, no tab switch needed." },
-            ].map((item) => (
-              <EcoCard key={item.label} style={{ marginBottom: 10 }}>
-                <p style={{ fontSize: "0.72rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{item.label}</p>
-                <p style={{ fontSize: "0.7rem", color: "#6B7280", lineHeight: 1.6 }}>{item.detail}</p>
-              </EcoCard>
-            ))}
+      {/* ── Home Screen — annotated centered layout ── */}
+      <div className="csl-reveal" style={{ marginBottom: 60 }}>
+        <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 28, textAlign: "center" }}>Home Screen</p>
+
+        {/* Annotation wrapper — phone centered, notes on each side */}
+        <div style={{ position: "relative", display: "flex", justifyContent: "center", paddingBottom: 32 }}>
+
+          {/* Phone */}
+          <div style={{
+            width: 200,
+            height: 500,
+            overflow: "hidden",
+            borderRadius: 28,
+            boxShadow: "0 28px 72px rgba(45,125,67,0.20)",
+            border: "1.5px solid rgba(45,125,67,0.18)",
+            flexShrink: 0,
+            position: "relative",
+            zIndex: 1,
+          }}>
+            <EcoImg src="/Image/Ecotrack/home-screen.png" alt="EcoTrack home screen" />
           </div>
-          <div style={{ position: "relative" }}>
-            <div style={{ borderRadius: 24, overflow: "hidden", boxShadow: "0 24px 64px rgba(45,125,67,0.16)" }}>
-              <EcoImg src="/Image/Ecotrack/home-screen.png" alt="EcoTrack home screen" />
+
+          {/* Left annotations */}
+          <div style={{ position: "absolute", left: 0, top: 24, display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            <div style={{ position: "absolute", top: 0 }}>
+              <HandNote text="personalised greeting" dir="right" />
             </div>
-            <div style={{ position: "absolute", top: -20, left: -60 }}>
-              <HandNote text="good morning, David 🌿" dir="right" />
+            <div style={{ position: "absolute", top: 180 }}>
+              <HandNote text="activity breakdown" dir="right" />
+            </div>
+            <div style={{ position: "absolute", top: 360 }}>
+              <HandNote text="inline education" dir="right" />
+            </div>
+          </div>
+
+          {/* Right annotations */}
+          <div style={{ position: "absolute", right: 0, top: 24 }}>
+            <div style={{ position: "absolute", top: 80 }}>
+              <HandNote text="65% below daily avg" dir="left" />
+            </div>
+            <div style={{ position: "absolute", top: 250 }}>
+              <HandNote text="one eco tip, one action" dir="left" />
+            </div>
+            <div style={{ position: "absolute", top: 440 }}>
+              <HandNote text="+ log in one tap" dir="left" />
             </div>
           </div>
         </div>
+
+        <EcoCallout style={{ marginBottom: 0 }}>
+          The greeting leads with your name, then positive framing: <strong>&ldquo;You&apos;re <EcoNum>15%</EcoNum> below average.&rdquo;</strong> Good news before data. The ring and label frame the number as progress, not accusation.
+        </EcoCallout>
       </div>
 
-      {/* Impact Screen */}
+      {/* ── Impact Screen ── */}
       <div className="csl-reveal rd1" style={{ marginBottom: 56 }}>
         <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Impact Screen</p>
-        <p style={{ fontFamily: HAND, fontSize: "1.4rem", color: "#111827", marginBottom: 14 }}>Badges · Emission Graph · Carbon Sources</p>
-        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.8, marginBottom: 24 }}>
-          The Impact screen answers &ldquo;am I getting better?&rdquo; through three lenses. <strong style={{ color: "#111827" }}>Badges</strong> (Eco Starter, Green Commuter) celebrate milestones without a points race. The <strong style={{ color: "#111827" }}>Emission Reduction Graph</strong> shows a Month/Week line chart. Actual CO₂ reduction over time, not a projected score. <strong style={{ color: "#111827" }}>Carbon Sources</strong> shows the donut of where emissions come from, so the user can identify which category to work on next.
+        <p style={{ fontFamily: HAND, fontSize: "1.35rem", color: "#111827", marginBottom: 10 }}>Badges · Emission Graph · Carbon Sources</p>
+        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 22 }}>
+          Answers &ldquo;am I getting better?&rdquo; through <EcoNum>3</EcoNum> lenses. Badges celebrate milestones. The emission graph shows actual CO₂ reduction over time. Carbon Sources shows the donut of where emissions come from — so users can identify which category to work on next.
         </p>
         <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", boxShadow: "0 16px 48px rgba(45,125,67,0.1)" }}>
           <EcoImg src="/Image/Ecotrack/impact%20screen.png" alt="EcoTrack impact screen" />
@@ -1094,12 +1085,12 @@ function ScreensSection() {
         </div>
       </div>
 
-      {/* Learn Screen */}
+      {/* ── Learn Screen ── */}
       <div className="csl-reveal rd2" style={{ marginBottom: 56 }}>
         <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Learn Screen</p>
-        <p style={{ fontFamily: HAND, fontSize: "1.4rem", color: "#111827", marginBottom: 14 }}>Eco Quiz · Knowledge Bites · Watch & Learn</p>
-        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.8, marginBottom: 24 }}>
-          Research showed a standalone &ldquo;Learn&rdquo; tab doesn&apos;t get opened. So this screen mixes formats to create pull: an <strong style={{ color: "#111827" }}>Eco Quiz</strong> for engagement, <strong style={{ color: "#111827" }}>Knowledge Bites</strong> in card format for quick reads, and a <strong style={{ color: "#111827" }}>Watch &amp; Learn</strong> section for video. The accompanying tracking panel (&ldquo;Your Travel — Primary Mode&rdquo;) shows that learn and log share the same screen. Education is context, not a destination.
+        <p style={{ fontFamily: HAND, fontSize: "1.35rem", color: "#111827", marginBottom: 10 }}>Eco Quiz · Knowledge Bites · Watch & Learn</p>
+        <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 22 }}>
+          A standalone &ldquo;Learn&rdquo; tab doesn&apos;t get opened. So this screen mixes formats: an Eco Quiz for engagement, Knowledge Bites for quick reads, Watch &amp; Learn for video. The tracking panel on the same screen proves that learn and log belong together.
         </p>
         <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", boxShadow: "0 16px 48px rgba(45,125,67,0.1)" }}>
           <EcoImg src="/Image/Ecotrack/learn-screen.png" alt="EcoTrack learn screen" />
@@ -1109,7 +1100,7 @@ function ScreensSection() {
         </div>
       </div>
 
-      {/* Profile Screen */}
+      {/* ── Profile Screen ── */}
       <div className="csl-reveal rd3">
         <p style={{ fontSize: "0.62rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#2D7D43", marginBottom: 14 }}>Profile Screen</p>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
@@ -1122,23 +1113,20 @@ function ScreensSection() {
             </div>
           </div>
           <div>
-            <p style={{ fontFamily: HAND, fontSize: "1.5rem", color: "#111827", marginBottom: 14, lineHeight: 1.3 }}>
-              David · 35.8 kg CO₂ Saved · Member since February 2024
+            <p style={{ fontFamily: HAND, fontSize: "1.4rem", color: "#111827", marginBottom: 14, lineHeight: 1.3 }}>
+              David · <EcoNum>35.8 kg</EcoNum> CO₂ Saved · Member since February 2024
             </p>
-            <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.8, marginBottom: 22 }}>
-              Three stats sit directly below the avatar: <strong style={{ color: "#111827" }}>CO₂ Saved</strong> (total reduction since joining), <strong style={{ color: "#111827" }}>Member Since</strong> (February 2024), and <strong style={{ color: "#111827" }}>+5% Weekly Trend</strong>. These answer &ldquo;am I actually getting better?&rdquo; without a leaderboard or streak counter. No competitive pressure. Just personal progress.
+            <p style={{ fontSize: "0.78rem", color: "#6B7280", lineHeight: 1.75, marginBottom: 20 }}>
+              <EcoNum>3</EcoNum> stats directly below the avatar: CO₂ Saved, Member Since, and <EcoNum>+5%</EcoNum> Weekly Trend. Answers &ldquo;am I getting better?&rdquo; with no leaderboard, no streak counter. Personal progress only.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
               {["Edit Profile", "Preference", "Support", "Log out"].map((item) => (
-                <div key={item} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 16px", background: "#F9FAFB", borderRadius: 12, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+                <div key={item} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 16px", background: "#F9FAFB", borderRadius: 12 }}>
                   <p style={{ fontSize: "0.78rem", color: "#374151", fontWeight: 500 }}>{item}</p>
                   <span style={{ fontSize: "0.8rem", color: "#C4C9D4" }}>›</span>
                 </div>
               ))}
             </div>
-            <p style={{ fontSize: "0.68rem", color: "#9CA3AF", marginTop: 14, lineHeight: 1.65 }}>
-              Settings are minimal by design: Preference, Support, Log out. The screen&apos;s job is one thing. Show you your own story.
-            </p>
           </div>
         </div>
       </div>
@@ -1155,16 +1143,11 @@ function IterationsSection() {
       <CsSectionHeader
         label="User Testing & Before After"
         title={<>Two hypotheses that failed. <Script>And what replaced them.</Script></>}
-        sub="I documented both iterations as hypothesis-test-update cycles, not corrections to obvious mistakes. The original design decisions had reasoning behind them. And that reasoning was wrong."
+        sub="Documented as hypothesis-test-update cycles. The original decisions had reasoning. And that reasoning was wrong."
       />
 
-      <EcoCallout style={{ marginBottom: 28 }}>
-        <span style={{ fontSize: "1.1rem", marginRight: 8 }}>🎯</span>
-        <strong>Tasks given:</strong> (1) Log this morning&apos;s bus commute, 12km. (2) Find out how your week compared to last week. (3) Learn something actionable about reducing food emissions. (4) Add a new weekly goal.
-      </EcoCallout>
-
-      <EcoCard style={{ marginBottom: 32 }} className="csl-reveal rd1">
-        <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 14 }}>Round 1 Task Completion (n=5)</p>
+      <EcoCard style={{ marginBottom: 28 }} className="csl-reveal">
+        <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 14 }}>Round 1 Task Completion (n=<EcoNum>5</EcoNum>)</p>
         {[
           { task: "Log a commute",    score: "3/5", pct: "60%" },
           { task: "Compare weeks",     score: "5/5", pct: "100%" },
@@ -1181,13 +1164,13 @@ function IterationsSection() {
             </div>
           </div>
         ))}
-        <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.65, marginTop: 14 }}>Tasks 1 and 4 had the highest failure rates. Both caused by navigation decisions, not content. The fix was structural, not cosmetic.</p>
+        <p style={{ fontSize: "0.72rem", color: "#6B7280", lineHeight: 1.6, marginTop: 14 }}>Tasks 1 and 4 failed due to navigation, not content. The fix was structural.</p>
       </EcoCard>
 
-      <EcoCard style={{ marginBottom: 36 }} className="csl-reveal rd2">
+      <EcoCard style={{ marginBottom: 36 }} className="csl-reveal rd1">
         <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 14 }}>What I Observed</p>
         {ecoTestInsights.map((insight) => (
-          <div key={insight} style={{ display: "flex", gap: 10, marginBottom: 13, fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.65 }}>
+          <div key={insight} style={{ display: "flex", gap: 10, marginBottom: 12, fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>
             <span style={{ color: "#EF4444", flexShrink: 0, marginTop: 1 }}>→</span>{insight}
           </div>
         ))}
@@ -1195,46 +1178,42 @@ function IterationsSection() {
 
       {/* Iteration 01 */}
       <div className="csl-reveal" style={{ marginBottom: 44 }}>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-          <span style={{ fontSize: "0.62rem", fontWeight: 700, background: "#E8F7EC", color: "#2D7D43", padding: "4px 14px", borderRadius: 100 }}>Iteration 01</span>
-        </div>
+        <span style={{ fontSize: "0.62rem", fontWeight: 700, background: "#E8F7EC", color: "#2D7D43", padding: "4px 14px", borderRadius: 100, display: "inline-flex", marginBottom: 14 }}>Iteration 01</span>
         <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>The Add Button. From Hidden to Front and Centre.</h3>
         <EcoCallout style={{ marginBottom: 20, borderLeftColor: "#9CA3AF", background: "#F9FAFB" }}>
-          <strong>My hypothesis:</strong> A tab bar with a centered add button — standard iOS pattern, mirrors Instagram and Spotify — would be immediately discoverable. I was wrong. 4 of 5 testers couldn&apos;t find it within 90 seconds.
+          <strong>Hypothesis:</strong> A centered tab bar add button mirrors Instagram and Spotify. Reality: <EcoNum>4/5</EcoNum> testers couldn&apos;t find it within <EcoNum>90</EcoNum> seconds.
         </EcoCallout>
         <div className="csl-ba-grid">
           <div>
             <p className="csl-ba-label before">✕ Hypothesis (V1)</p>
             <TabBarPhone />
-            <p className="csl-ba-desc">Centered tab bar button. Reasoning: familiar iOS pattern, users know this convention. Reality: the add action is the primary action on home. It belongs on the home screen, not in navigation chrome.</p>
+            <p className="csl-ba-desc">Centered tab bar button. The add action is the primary action on home. It belongs on the screen, not in navigation chrome.</p>
           </div>
           <div>
             <p className="csl-ba-label after">✓ Updated Design (V2)</p>
             <FABPhone />
-            <p className="csl-ba-desc">Floating action button pinned to the home screen. Round 2 result: all 5 testers found it immediately. The FAB signals primacy. It&apos;s not a navigation item, it&apos;s an invitation to act.</p>
+            <p className="csl-ba-desc">Floating action button. Round 2: all <EcoNum>5/5</EcoNum> testers found it immediately. The FAB signals primacy.</p>
           </div>
         </div>
       </div>
 
       {/* Iteration 02 */}
       <div className="csl-reveal rd1">
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-          <span style={{ fontSize: "0.62rem", fontWeight: 700, background: "#E8F7EC", color: "#2D7D43", padding: "4px 14px", borderRadius: 100 }}>Iteration 02</span>
-        </div>
+        <span style={{ fontSize: "0.62rem", fontWeight: 700, background: "#E8F7EC", color: "#2D7D43", padding: "4px 14px", borderRadius: 100, display: "inline-flex", marginBottom: 14 }}>Iteration 02</span>
         <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>Carbon Charts. From Technical to Human.</h3>
         <EcoCallout style={{ marginBottom: 20, borderLeftColor: "#9CA3AF", background: "#F9FAFB" }}>
-          <strong>My hypothesis:</strong> Showing exact CO₂ values with category breakdowns would give users the understanding they said they wanted. Testing revealed I&apos;d solved the wrong problem. Users could read the numbers. They just felt worse after reading them.
+          <strong>Hypothesis:</strong> Exact CO₂ values with breakdowns would give users the understanding they wanted. They could read the numbers. They just felt worse after.
         </EcoCallout>
         <div className="csl-ba-grid">
           <div>
             <p className="csl-ba-label before">✕ Hypothesis (V1)</p>
             <TechnicalChartCard />
-            <p className="csl-ba-desc">Raw CO₂e values with technical sub-labels. Three testers described the data as &quot;meaningless&quot; or &quot;like seeing calories on a menu — just guilt.&quot; The problem wasn&apos;t the design. It was the frame.</p>
+            <p className="csl-ba-desc"><EcoNum>3</EcoNum> testers: &quot;meaningless&quot; or &quot;like seeing calories on a menu — just guilt.&quot; The problem wasn&apos;t the design. It was the frame.</p>
           </div>
           <div>
             <p className="csl-ba-label after">✓ Updated Design (V2)</p>
             <ClearChartCard />
-            <p className="csl-ba-desc">Comparative framing (↓ 18% vs yesterday) with plain-language equivalents (≈ 8km drive). Same data, different register. After the change, users described it as &quot;motivating&quot; rather than &quot;depressing.&quot;</p>
+            <p className="csl-ba-desc">Comparative framing (↓ <EcoNum>18%</EcoNum> vs yesterday) with plain-language equivalents. Same data, different register. After: users said &quot;motivating,&quot; not &quot;depressing.&quot;</p>
           </div>
         </div>
       </div>
@@ -1262,7 +1241,7 @@ function OutcomesSection() {
 
       <EcoCard style={{ marginBottom: 28 }} className="csl-reveal">
         <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 16 }}>
-          Usability test results — Round 1 vs Round 2 (n=5 each)
+          Usability test results — Round 1 vs Round 2 (n=<EcoNum>5</EcoNum> each)
         </p>
         <div style={{ border: "1px solid #F3F4F6", borderRadius: 12, overflow: "hidden" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 80px 80px", background: "#F9FAFB", borderBottom: "1px solid #F3F4F6" }}>
@@ -1278,10 +1257,10 @@ function OutcomesSection() {
                 <p style={{ fontSize: "0.76rem", color: "#374151" }}>{t.task}</p>
               </div>
               <div style={{ padding: "13px 14px", textAlign: "center" }}>
-                <p style={{ fontSize: "0.76rem", color: "#9CA3AF" }}>{t.r1}</p>
+                <p style={{ fontSize: "0.78rem", color: "#9CA3AF" }}>{t.r1}</p>
               </div>
               <div style={{ padding: "13px 14px", textAlign: "center" }}>
-                <p style={{ fontSize: "0.76rem", fontWeight: 700, color: "#2D7D43" }}>{t.r2}</p>
+                <p style={{ fontSize: "0.82rem", fontWeight: 800, color: "#2D7D43" }}>{t.r2}</p>
               </div>
               <div style={{ padding: "13px 14px", textAlign: "center" }}>
                 {t.up
@@ -1296,20 +1275,20 @@ function OutcomesSection() {
 
       <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 28 }}>
         <EcoCard style={{ background: "#FEF2F2" }}>
-          <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#EF4444", marginBottom: 12 }}>Most common word after Round 1</p>
+          <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#EF4444", marginBottom: 12 }}>Most common word — Round 1</p>
           <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#111827", marginBottom: 8 }}>&ldquo;complicated&rdquo;</p>
-          <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.65 }}>The data was present. But so was everything else. No single element was broken. The whole screen competed for attention.</p>
+          <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>No single element was broken. The whole screen competed for attention.</p>
         </EcoCard>
         <EcoCard style={{ background: "#E8F7EC" }}>
-          <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 12 }}>Most common word after Round 2</p>
+          <p style={{ fontSize: "0.64rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 12 }}>Most common word — Round 2</p>
           <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#2D7D43", marginBottom: 8 }}>&ldquo;simple&rdquo;</p>
-          <p style={{ fontSize: "0.76rem", color: "#374151", lineHeight: 1.65 }}>Same data, better frame. Not less information. Prioritised information. That shift validated the core hypothesis behind Iteration 02.</p>
+          <p style={{ fontSize: "0.74rem", color: "#374151", lineHeight: 1.6 }}>Same data. Better frame. Prioritised information, not less of it.</p>
         </EcoCard>
       </div>
 
       <EcoCallout className="csl-reveal rd2">
         <span style={{ fontSize: "1.1rem", marginRight: 8 }}>📌</span>
-        <strong>Honest caveat:</strong> This is a concept project tested with 5 participants per round. These results validate the design direction. They don&apos;t prove production readiness. The test that would actually matter is 30-day retention data, which this sprint can&apos;t generate.
+        <strong>Honest caveat:</strong> <EcoNum>5</EcoNum> participants per round validates direction — not production readiness. The test that would actually matter is <EcoNum>30</EcoNum>-day retention data. This sprint can&apos;t generate that.
       </EcoCallout>
     </CsSection>
   );
@@ -1324,7 +1303,7 @@ function LearningsSection() {
       <CsSectionHeader
         label="Key Learnings"
         title={<>What this project taught me. <Script>Including what I got wrong.</Script></>}
-        sub="These aren't general UX principles. They're specific things I didn't know before this project, or things I thought I knew and found out I didn't."
+        sub="Not general principles. Specific things I didn't know before, or thought I knew and found out I didn't."
       />
 
       <div className="csl-card-grid csl-reveal">
@@ -1332,20 +1311,19 @@ function LearningsSection() {
           <EcoCard key={l.title}>
             <span style={{ fontSize: "1.5rem", display: "block", marginBottom: 12 }}>{l.icon}</span>
             <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 8 }}>{l.title}</p>
-            <p style={{ fontSize: "0.76rem", color: "#6B7280", lineHeight: 1.65 }}>{l.desc}</p>
+            <p style={{ fontSize: "0.74rem", color: "#6B7280", lineHeight: 1.6 }}>{l.desc}</p>
           </EcoCard>
         ))}
       </div>
 
       {/* Handwritten closing */}
-      <div className="csl-reveal rd1" style={{ textAlign: "center", padding: "60px 0 32px", position: "relative" }}>
+      <div className="csl-reveal rd1" style={{ textAlign: "center", padding: "60px 0 32px" }}>
         <p style={{ fontFamily: HAND, fontSize: "2.4rem", color: "#2D7D43", marginBottom: 10 }}>
           thanks for reading.
         </p>
         <p style={{ fontFamily: HAND, fontSize: "1.2rem", color: "#9CA3AF" }}>
           if this project made you think, it did its job.
         </p>
-        {/* Decorative underline squiggle */}
         <svg width="160" height="12" viewBox="0 0 160 12" fill="none" style={{ margin: "16px auto 0", display: "block" }}>
           <path d="M4 8 Q20 2 40 8 Q60 14 80 8 Q100 2 120 8 Q140 14 156 8" stroke="#2D7D43" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.4" />
         </svg>
