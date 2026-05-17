@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -179,41 +178,45 @@ function CsSidebarMeta({ rows }: { rows: { label: string; value: string }[] }) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   STICKY HEADER
+   FLOATING PILL NAV (matches home page)
 ───────────────────────────────────────────────────────────────────── */
 
-function CsHeader({
-  title,
-  tag,
-}: {
-  title: string;
-  tag: string;
-}) {
+function CaseStudyNav() {
+  useEffect(() => {
+    const clockEl = document.getElementById("cs-nav-clock");
+    if (!clockEl) return;
+    function getIST() {
+      const ist = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+      const h = ist.getHours(), m = ist.getMinutes();
+      const ap = h >= 12 ? "PM" : "AM";
+      const h12 = h % 12 || 12;
+      return h12 + ":" + String(m).padStart(2, "0") + " " + ap;
+    }
+    clockEl.textContent = getIST();
+    const interval = setInterval(() => { clockEl.textContent = getIST(); }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <header className="csl-header">
-      <div className="csl-header-inner">
-        <Link href="/" style={{
-          display: "inline-flex", alignItems: "center", gap: 9,
-          textDecoration: "none", padding: "5px 14px 5px 5px",
-          borderRadius: 100, transition: "opacity 0.18s ease",
-        }}>
-          <span style={{
-            width: 32, height: 32, borderRadius: "50%",
-            background: "rgba(30,144,255,0.08)",
-            border: "1px solid rgba(30,144,255,0.18)",
-            display: "inline-flex", alignItems: "center", justifyContent: "center",
-            fontSize: "15px", fontWeight: 600, color: "#1E90FF",
-            flexShrink: 0, letterSpacing: "-0.01em",
-          }}>NT</span>
-          <span style={{
-            fontSize: "15px", fontWeight: 600, color: "#374151",
-            letterSpacing: "0.01em",
-          }}>Nikunj Tyagi</span>
-        </Link>
-        <span className="csl-header-brand">{title}</span>
-        <span className="csl-header-tag">{tag}</span>
+    <nav className="cs-nav">
+      <div className="nav-pill">
+        <div className="nav-monogram">NT</div>
+        <div className="nav-clock-group">
+          <span className="nav-dot" />
+          <span className="nav-time" id="cs-nav-clock">--:-- --</span>
+        </div>
+        <div className="nav-divider" />
+        <a href="/#work" className="nav-link-item">Work</a>
+        <a
+          href="/Nikunj-Resume.pdf"
+          className="nav-link-item nav-link-resume"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Resume <span className="nav-resume-arrow">↗</span>
+        </a>
       </div>
-    </header>
+    </nav>
   );
 }
 
@@ -280,7 +283,7 @@ export function CaseStudyPage({
 
   return (
     <div className="csl-root" ref={rootRef} style={THEME_VARS[theme]}>
-      <CsHeader title={title} tag={tag} />
+      <CaseStudyNav />
       {hero}
       <div className="csl-body">
         <aside className="csl-sidebar">
