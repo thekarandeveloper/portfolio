@@ -306,20 +306,121 @@ function EcoPhoneMockup() {
   );
 }
 
+function EcoPhoneMockupLight() {
+  return (
+    <div style={{
+      width: "min(260px, 100%)",
+      background: "#111827",
+      borderRadius: 40,
+      overflow: "hidden",
+      border: "1px solid rgba(45,125,67,0.25)",
+      boxShadow: "0 32px 80px rgba(45,125,67,0.18), 0 8px 24px rgba(0,0,0,0.12)",
+    }}>
+      {/* Notch */}
+      <div style={{ height: 28, display: "flex", alignItems: "center", justifyContent: "center", background: "#111827" }}>
+        <div style={{ width: 44, height: 5, background: "rgba(255,255,255,0.12)", borderRadius: 3 }} />
+      </div>
+      {/* Screen */}
+      <div style={{ background: "#F2FAF3", padding: "18px 14px 14px" }}>
+        {/* Greeting row */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+          <div>
+            <p style={{ fontSize: "0.62rem", color: "#6B7280", marginBottom: 1 }}>Good morning 🌱</p>
+            <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#0D2312" }}>David</p>
+          </div>
+          <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#D0EAD4", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ fontSize: "0.7rem" }}>👤</span>
+          </div>
+        </div>
+        {/* CO₂ ring card */}
+        <div style={{ background: "#fff", borderRadius: 16, padding: "16px 14px", textAlign: "center", marginBottom: 12, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+          <EcoCO2Ring />
+          <p style={{ fontSize: "0.62rem", color: "#3B6B45", marginTop: 4 }}>Today&apos;s footprint</p>
+          <p style={{ fontSize: "0.68rem", fontWeight: 700, color: "#10B981", marginTop: 2 }}>↓ 18% vs yesterday</p>
+        </div>
+        {/* Progress bars */}
+        {[
+          { icon: "🚗", label: "Transport", w: "72%", val: "0.8 kg" },
+          { icon: "⚡", label: "Energy",    w: "45%", val: "1.1 kg" },
+          { icon: "🍽️", label: "Food",     w: "30%", val: "0.5 kg" },
+        ].map((row) => (
+          <div key={row.icon} style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 8 }}>
+            <span style={{ fontSize: "0.65rem" }}>{row.icon}</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
+                <p style={{ fontSize: "0.52rem", color: "#6B7280" }}>{row.label}</p>
+                <p style={{ fontSize: "0.52rem", color: "#374151", fontWeight: 600 }}>{row.val}</p>
+              </div>
+              <div style={{ height: 5, background: "#D0EAD4", borderRadius: 3 }}>
+                <div style={{ width: row.w, height: "100%", background: "#2D7D43", borderRadius: 3 }} />
+              </div>
+            </div>
+          </div>
+        ))}
+        {/* FAB */}
+        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 10 }}>
+          <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#2D7D43", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 14px rgba(45,125,67,0.45)" }}>
+            <span style={{ color: "#fff", fontSize: "1.3rem", lineHeight: 1, fontWeight: 300 }}>+</span>
+          </div>
+        </div>
+      </div>
+      {/* Bottom tab bar */}
+      <div style={{ background: "#fff", borderTop: "1px solid #F3F4F6", padding: "10px 18px 12px", display: "flex", alignItems: "center", justifyContent: "space-around" }}>
+        {[
+          { icon: "🏠", active: true },
+          { icon: "📊", active: false },
+          { icon: "📚", active: false },
+          { icon: "👤", active: false },
+        ].map(({ icon, active }, i) => (
+          <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3, opacity: active ? 1 : 0.35 }}>
+            <span style={{ fontSize: "0.75rem" }}>{icon}</span>
+            {active && <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#2D7D43" }} />}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function EcoHero() {
   return (
-    <div className="csl-hero">
-      <div className="csl-hero-grid" />
-      <div className="csl-hero-glow" />
+    <div className="csl-hero csl-hero--light">
+      {/* Green dot grid overlay */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        backgroundImage: "radial-gradient(circle, rgba(45,125,67,0.15) 1.5px, transparent 1.5px)",
+        backgroundSize: "28px 28px",
+      }} />
+      {/* Soft green glow top-right */}
+      <div style={{
+        position: "absolute", top: -100, right: -60,
+        width: 480, height: 480,
+        background: "radial-gradient(circle, rgba(45,125,67,0.12), transparent 68%)",
+        pointerEvents: "none",
+      }} />
+      {/* Soft green glow bottom-left */}
+      <div style={{
+        position: "absolute", bottom: -80, left: -60,
+        width: 360, height: 360,
+        background: "radial-gradient(circle, rgba(72,163,98,0.08), transparent 70%)",
+        pointerEvents: "none",
+      }} />
+
       <div className="csl-hero-inner">
         <div className="csl-hero-left">
-          <div className="csl-hero-eyebrow">🌱 Personal Project · iOS App</div>
+          <div className="csl-hero-eyebrow">
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#2D7D43", display: "inline-block", animation: "pulse 2s infinite" }} />
+            Personal Project &nbsp;·&nbsp; iOS App &nbsp;·&nbsp; Sustainability
+          </div>
           <h1 className="csl-hero-title">
             EcoTrack.<br />
-            <em style={{ fontStyle: "normal", fontFamily: HAND, color: "rgba(255,255,255,0.65)", fontSize: "0.85em" }}>Making the Planet Count.</em>
+            <em style={{ fontStyle: "normal", fontFamily: HAND, color: "#2D7D43", fontSize: "0.85em", opacity: 0.75 }}>Making the Planet Count.</em>
           </h1>
           <p className="csl-hero-desc">
-            People who genuinely care about climate change often feel paralysed by it. Not indifferent. I spent 4 weeks researching why motivated users abandon eco apps, then designing the experience I wish already existed.
+            People who genuinely care about climate change often feel paralysed by it. Not indifferent. I spent 4 weeks researching why motivated users abandon eco apps, then designed the experience I wish already existed.
+          </p>
+          <p style={{ fontSize: "1rem", color: "#9CA3AF", lineHeight: 1.7, maxWidth: 460, margin: "0 0 32px" }}>
+            Solo. 5 interviews. 2 test rounds. One working prototype.
           </p>
           <div className="csl-hero-chips">
             {ecoMeta.map((item) => (
@@ -330,15 +431,16 @@ function EcoHero() {
           </div>
         </div>
         <div className="csl-hero-right">
-          <EcoPhoneMockup />
+          <EcoPhoneMockupLight />
         </div>
       </div>
+
       <div className="csl-hero-stats">
         {[
-          { val: "5",   label: "Users interviewed"  },
-          { val: "3",   label: "Competitors audited" },
-          { val: "2",   label: "Iteration rounds"   },
-          { val: "4wk", label: "Sprint duration"    },
+          { val: "5",   label: "Users interviewed"   },
+          { val: "3",   label: "Competitors audited"  },
+          { val: "2",   label: "Iteration rounds"    },
+          { val: "4wk", label: "Sprint duration"     },
         ].map((s) => (
           <div className="csl-hero-stat" key={s.label}>
             <div className="csl-hero-stat-val">{s.val}</div>

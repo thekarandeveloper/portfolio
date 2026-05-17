@@ -29,7 +29,7 @@ const THEME_VARS: Record<CsTheme, CSSProperties> = {
   eco: {
     "--csl-accent":        "#2D7D43",
     "--csl-accent-dim":    "rgba(45,125,67,0.1)",
-    "--csl-hero-bg":       "#0A1F0F",
+    "--csl-hero-bg":       "#ffffff",
     "--csl-tag-bg":        "#E8F7EC",
     "--csl-toc-active-bg": "#E8F7EC",
     backgroundImage: "linear-gradient(rgba(45,125,67,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(45,125,67,0.07) 1px, transparent 1px)",
