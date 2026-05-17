@@ -288,6 +288,26 @@ export function CaseStudyPage({
         </aside>
         <main className="csl-main">{children}</main>
       </div>
+      <footer style={{
+        borderTop: "1px solid rgba(180,140,130,0.15)",
+        padding: "2rem 3rem",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: "1rem",
+        background: "var(--bg2, #faf9f7)",
+      }}>
+        <span style={{ fontFamily: "Lato, sans-serif", fontSize: 15, color: "var(--ink3, #7a7069)" }}>
+          Nikunj Tyagi · Product Designer
+        </span>
+        <span style={{ fontFamily: "var(--font-caveat, cursive)", fontSize: "0.95rem", color: "var(--ink3, #7a7069)" }}>
+          made with ☕ &amp; obsession
+        </span>
+        <span style={{ fontSize: 15, letterSpacing: "0.06em", color: "var(--ink4, #b0a89f)" }}>
+          © 2026
+        </span>
+      </footer>
     </div>
   );
 }
