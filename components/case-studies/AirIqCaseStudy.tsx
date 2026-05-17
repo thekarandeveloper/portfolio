@@ -131,36 +131,36 @@ function FlightRow({ f, delay }: { f: typeof AIRLINES[0]; delay: number }) {
       <div style={{
         width: 32, height: 32, borderRadius: 8, flexShrink: 0,
         background: f.logoBg, display: "flex", alignItems: "center",
-        justifyContent: "center", fontSize: "13px", fontWeight: 400, color: f.logoColor,
+        justifyContent: "center", fontSize: "15px", fontWeight: 600, color: f.logoColor,
         letterSpacing: "-0.01em",
       }}>{f.abbr}</div>
 
       {/* Airline + code */}
       <div style={{ minWidth: 72 }}>
-        <div style={{ fontSize: "13px", fontWeight: 400, color: "#111827", lineHeight: 1.2 }}>{f.name}</div>
-        <div style={{ fontSize: "13px", color: "#9CA3AF" }}>{f.code}</div>
+        <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827", lineHeight: 1.2 }}>{f.name}</div>
+        <div style={{ fontSize: "15px", color: "#9CA3AF" }}>{f.code}</div>
       </div>
 
       {/* Times */}
       <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={{ fontSize: "0.88rem", fontWeight: 800, color: "#111827", letterSpacing: "-0.02em" }}>{f.dep}</span>
+        <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827", letterSpacing: "-0.02em" }}>{f.dep}</span>
         <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
-          <span style={{ fontSize: "13px", color: "#9CA3AF" }}>{f.dur}</span>
+          <span style={{ fontSize: "15px", color: "#9CA3AF" }}>{f.dur}</span>
           <div style={{ width: "100%", height: 1, background: "#E5E7EB", position: "relative" }}>
-            <span style={{ position: "absolute", right: -4, top: "50%", transform: "translateY(-50%)", fontSize: "13px", color: "#6B7280" }}>✈</span>
+            <span style={{ position: "absolute", right: -4, top: "50%", transform: "translateY(-50%)", fontSize: "15px", color: "#6B7280" }}>✈</span>
           </div>
-          <span style={{ fontSize: "13px", color: "#1E90FF", fontWeight: 400, letterSpacing: "0.05em" }}>NON-STOP</span>
+          <span style={{ fontSize: "15px", color: "#1E90FF", fontWeight: 600, letterSpacing: "0.05em" }}>NON-STOP</span>
         </div>
-        <span style={{ fontSize: "0.88rem", fontWeight: 800, color: "#111827", letterSpacing: "-0.02em" }}>{f.arr}</span>
+        <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827", letterSpacing: "-0.02em" }}>{f.arr}</span>
       </div>
 
       {/* Price + tag */}
       <div style={{ textAlign: "right", flexShrink: 0 }}>
-        <div style={{ fontSize: "0.9rem", fontWeight: 800, color: "#111827", letterSpacing: "-0.02em" }}>₹{f.price}</div>
+        <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827", letterSpacing: "-0.02em" }}>₹{f.price}</div>
         {f.tag ? (
-          <span style={{ fontSize: "13px", fontWeight: 400, color: f.tagColor, background: f.tagBg, borderRadius: 4, padding: "1px 5px" }}>{f.tag}</span>
+          <span style={{ fontSize: "15px", fontWeight: 600, color: f.tagColor, background: f.tagBg, borderRadius: 4, padding: "1px 5px" }}>{f.tag}</span>
         ) : (
-          <button style={{ fontSize: "13px", fontWeight: 400, color: "#1E90FF", background: "#EFF6FF", border: "none", borderRadius: 4, padding: "2px 7px", cursor: "pointer" }}>Book</button>
+          <button style={{ fontSize: "15px", fontWeight: 600, color: "#1E90FF", background: "#EFF6FF", border: "none", borderRadius: 4, padding: "2px 7px", cursor: "pointer" }}>Book</button>
         )}
       </div>
     </div>
@@ -207,7 +207,7 @@ function FlightSearchDemo() {
               background: "#F9FAFB",
               border: `1.5px solid ${phase === "typing" ? "#1E90FF" : "#E5E7EB"}`,
               borderRadius: 10, display: "flex", alignItems: "center",
-              padding: "0 14px", fontSize: "0.9rem", fontWeight: 700, color: "#111827",
+              padding: "0 14px", fontSize: "15px", fontWeight: 600, color: "#111827",
               letterSpacing: "-0.01em", transition: "border-color 0.3s",
             }}>
               {ROUTE.slice(0, chars)}
@@ -225,7 +225,7 @@ function FlightSearchDemo() {
             <button style={{
               height: 42, padding: "0 16px", border: "none", borderRadius: 10,
               background: isActive ? "#1E90FF" : "#BFDBFE",
-              fontSize: "13px", fontWeight: 400, color: "#fff",
+              fontSize: "15px", fontWeight: 600, color: "#fff",
               cursor: "pointer", transition: "background 0.4s", whiteSpace: "nowrap",
               display: "flex", alignItems: "center", gap: 5,
             }}>
@@ -237,7 +237,7 @@ function FlightSearchDemo() {
           <div style={{ display: "flex", gap: 6 }}>
             {["31 Dec 2026", "1 Adult", "Economy"].map((c) => (
               <span key={c} style={{
-                fontSize: "13px", fontWeight: 400, color: "#374151",
+                fontSize: "15px", fontWeight: 600, color: "#374151",
                 background: "#F3F4F6", border: "1px solid #E5E7EB",
                 borderRadius: 6, padding: "3px 10px",
               }}>{c}</span>
@@ -251,7 +251,7 @@ function FlightSearchDemo() {
           {/* Searching — skeleton */}
           {phase === "searching" && (
             <div style={{ padding: "10px 14px", display: "flex", flexDirection: "column", gap: 12 }}>
-              <div style={{ fontSize: "13px", color: "#6B7280", fontWeight: 400, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 4 }}>
+              <div style={{ fontSize: "15px", color: "#6B7280", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 4 }}>
                 Checking 3 GDS sources…
               </div>
               <div style={{ height: 3, background: "#F3F4F6", borderRadius: 2, overflow: "hidden" }}>
@@ -274,10 +274,10 @@ function FlightSearchDemo() {
           {phase === "result" && (
             <div>
               <div style={{ padding: "8px 14px 4px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ fontSize: "13px", fontWeight: 400, color: "#6B7280", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                <span style={{ fontSize: "15px", fontWeight: 600, color: "#6B7280", letterSpacing: "0.06em", textTransform: "uppercase" }}>
                   4 flights found · DEL → BOM
                 </span>
-                <span style={{ fontSize: "13px", color: "#1E90FF", fontWeight: 400}}>Sort: Price ↑</span>
+                <span style={{ fontSize: "15px", color: "#1E90FF", fontWeight: 600}}>Sort: Price ↑</span>
               </div>
               {AIRLINES.map((f, i) => <FlightRow key={f.code} f={f} delay={i * 80} />)}
             </div>
@@ -290,7 +290,7 @@ function FlightSearchDemo() {
               alignItems: "center", justifyContent: "center", gap: 8,
             }}>
               <span style={{ fontSize: "1.4rem" }}>✈</span>
-              <span style={{ fontSize: "13px", color: "#9CA3AF", fontWeight: 400}}>
+              <span style={{ fontSize: "15px", color: "#9CA3AF", fontWeight: 600}}>
                 Type a route to search flights
               </span>
             </div>
@@ -399,8 +399,8 @@ function OverviewSection() {
         ].map((s) => (
           <div key={s.num} style={{ background: "#fff", padding: "28px 24px" }}>
             <div style={{ fontSize: "1.9rem", fontWeight: 800, color: "#1E90FF", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.num}</div>
-            <div style={{ fontSize: "0.92rem", fontWeight: 700, color: "#111827", marginTop: 8, lineHeight: 1.4 }}>{s.label}</div>
-            <div style={{ fontSize: "13px", color: "#9CA3AF", marginTop: 4 }}>{s.sub}</div>
+            <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginTop: 8, lineHeight: 1.4 }}>{s.label}</div>
+            <div style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 4 }}>{s.sub}</div>
           </div>
         ))}
       </div>
@@ -465,11 +465,11 @@ function JourneyTimeline() {
     <div style={{ marginBottom: 0 }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
         <span style={{
-          fontSize: "13px", fontWeight: 400, textTransform: "uppercase",
+          fontSize: "15px", fontWeight: 600, textTransform: "uppercase",
           letterSpacing: "0.16em", color, background: bg,
           padding: "4px 12px", borderRadius: 100, border: `1px solid ${border}`,
         }}>{label}</span>
-        <span style={{ fontSize: "13px", fontWeight: 400, color: timeColor }}>{time}</span>
+        <span style={{ fontSize: "15px", fontWeight: 600, color: timeColor }}>{time}</span>
       </div>
       <div style={{ position: "relative", maxWidth: narrow ? "62%" : "100%" }}>
         <div style={{
@@ -489,12 +489,12 @@ function JourneyTimeline() {
                 width: 40, height: 40, borderRadius: 10,
                 background: bg, border: `1.5px solid ${border}`,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "0.92rem", flexShrink: 0,
+                fontSize: "15px", flexShrink: 0,
                 ...stepIn(i, offset),
               }}>{step.icon}</div>
               <div style={{ marginTop: 8, opacity: vis ? 1 : 0, transition: `opacity 0.4s ${(offset + i) * 0.07 + 0.18}s ease` }}>
-                <div style={{ fontSize: "13px", fontWeight: 400, color: "#374151", marginBottom: 2 }}>{step.label}</div>
-                <div style={{ fontSize: "13px", color: "#9CA3AF" }}>{step.sub}</div>
+                <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginBottom: 2 }}>{step.label}</div>
+                <div style={{ fontSize: "15px", color: "#9CA3AF" }}>{step.sub}</div>
               </div>
             </div>
           ))}
@@ -521,7 +521,7 @@ function JourneyTimeline() {
         opacity: vis ? 1 : 0, transition: "opacity 0.5s 0.5s ease",
       }}>
         <div style={{ flex: 1, height: 1, background: "rgba(0,0,0,0.07)" }} />
-        <span style={{ fontSize: "13px", fontWeight: 400, color: "#9CA3AF", letterSpacing: "0.12em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
+        <span style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", letterSpacing: "0.12em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
           AIR iQ redesigned this
         </span>
         <div style={{ flex: 1, height: 1, background: "rgba(0,0,0,0.07)" }} />
@@ -587,9 +587,9 @@ function ProblemSection() {
               {m.scene}
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: "13px", color: "#9CA3AF", fontWeight: 400}}>Fixed by</span>
+              <span style={{ fontSize: "15px", color: "#9CA3AF", fontWeight: 600}}>Fixed by</span>
               <span style={{
-                fontSize: "13px", fontWeight: 400, color: "#1E90FF",
+                fontSize: "15px", fontWeight: 600, color: "#1E90FF",
                 background: "#EFF6FF", borderRadius: 6, padding: "3px 10px",
               }}>{m.solvedBy}</span>
             </div>
@@ -627,9 +627,9 @@ function ProblemSection() {
               width: 32, height: 32, borderRadius: "50%",
               background: "rgba(30,144,255,0.2)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "13px", fontWeight: 400, color: "#1E90FF",
+              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
             }}>SA</div>
-            <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", fontWeight: 400}}>
+            <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.4)", fontWeight: 600}}>
               Senior travel agent · Pre-launch interview
             </span>
           </div>
@@ -745,13 +745,13 @@ function CompetitiveCarousel() {
               <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
               <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
             </svg>
-            <span style={{ fontSize: "13px", fontWeight: 400, color: "#374151" }}>AirIQ — {c.name} Research</span>
+            <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>AirIQ — {c.name} Research</span>
           </div>
           <a
             href={figmaLink}
             target="_blank"
             rel="noreferrer"
-            style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC", textDecoration: "none" }}
+            style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}
           >
             Open in Figma ↗
           </a>
@@ -780,7 +780,7 @@ function CompetitiveCarousel() {
                   width: 28, height: 28, borderRadius: 8,
                   background: "#EFF6FF", display: "flex",
                   alignItems: "center", justifyContent: "center",
-                  fontSize: "13px", fontWeight: 400, color: "#1E90FF",
+                  fontSize: "15px", fontWeight: 600, color: "#1E90FF",
                   flexShrink: 0, marginTop: 1,
                 }}>0{i + 1}</span>
                 <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
@@ -807,7 +807,7 @@ function ResearchScopePills({ items }: { items: string[] }) {
     <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>
       {items.map((item) => (
         <span key={item} style={{
-          fontSize: "13px", fontWeight: 400, color: "#374151",
+          fontSize: "15px", fontWeight: 600, color: "#374151",
           background: "#F3F4F6", border: "1px solid #E5E7EB",
           borderRadius: 100, padding: "5px 14px",
         }}>{item}</span>
@@ -870,7 +870,7 @@ function ResearchInsightCards() {
             {/* Label */}
             <div style={{
               fontFamily: "var(--font-lato), sans-serif",
-              fontSize: "13px", fontWeight: 400,
+              fontSize: "15px", fontWeight: 600,
               letterSpacing: "0.12em", textTransform: "uppercase",
               color: "#9CA3AF", marginBottom: 12,
             }}>
@@ -880,7 +880,7 @@ function ResearchInsightCards() {
             {/* Title */}
             <div style={{
               fontFamily: "var(--font-lato), sans-serif",
-              fontSize: "0.9rem", fontWeight: 700,
+              fontSize: "15px", fontWeight: 600,
               color: "#111827", lineHeight: 1.4, marginBottom: 10,
             }}>
               {ins.heading}
@@ -904,7 +904,7 @@ function ResearchInsightCards() {
               </div>
               <div style={{
                 fontFamily: "var(--font-lato), sans-serif",
-                fontSize: "13px", fontWeight: 400,
+                fontSize: "15px", fontWeight: 600,
                 letterSpacing: "0.1em", textTransform: "uppercase",
                 color: "#9CA3AF", marginTop: 5,
               }}>
@@ -920,7 +920,7 @@ function ResearchInsightCards() {
         <div style={{ width: 32, height: 1, background: "#E5E7EB", margin: "0 auto 10px" }} />
         <span style={{
           fontFamily: "var(--font-lato), sans-serif",
-          fontSize: "13px", color: "#9CA3AF",
+          fontSize: "15px", color: "#9CA3AF",
         }}>
           Source: Agent Interviews
         </span>
@@ -971,7 +971,7 @@ function MetricCallout({ stat, text, source, pct, last = false }: {
 
       {/* Source */}
       <div style={{
-        fontSize: "13px", fontWeight: 400,
+        fontSize: "15px", fontWeight: 600,
         color: "#9CA3AF",
         textTransform: "uppercase", letterSpacing: "0.12em",
       }}>Source: {source}</div>
@@ -1084,7 +1084,7 @@ function WaffleCol({ filled, target, suffix, desc, source }: typeof WAFFLE_METRI
       {/* Description with left border */}
       <p style={{
         fontFamily: "var(--font-lato), sans-serif",
-        fontSize: "0.84rem",
+        fontSize: "15px",
         color: "#374151",
         lineHeight: 1.65,
         borderLeft: "2px solid #1E90FF",
@@ -1097,7 +1097,7 @@ function WaffleCol({ filled, target, suffix, desc, source }: typeof WAFFLE_METRI
       {/* Source */}
       <p style={{
         fontFamily: "var(--font-lato), sans-serif",
-        fontSize: "13px",
+        fontSize: "15px",
         color: "#9CA3AF",
         paddingLeft: 14,
         margin: 0,
@@ -1113,7 +1113,7 @@ function DotMetricRow() {
     <div className="csl-reveal">
       <p style={{
         fontFamily: "var(--font-lato), sans-serif",
-        fontSize: "0.9rem", color: "#6B7280",
+        fontSize: "15px", color: "#6B7280",
         lineHeight: 1.7, margin: "0 0 36px", maxWidth: 480,
       }}>
         Numbers that shaped the design direction.
@@ -1258,7 +1258,7 @@ function CompatibilityShowcase() {
                 border: i === idx ? "none" : "1px solid rgba(30,144,255,0.25)",
                 background: i === idx ? "#1E90FF" : "rgba(255,255,255,0.6)",
                 color: i === idx ? "#fff" : "#1076BC",
-                fontSize: "13px", fontWeight: 400,
+                fontSize: "15px", fontWeight: 600,
                 cursor: "pointer",
                 transition: "all 0.25s ease",
                 boxShadow: i === idx ? "0 2px 10px rgba(30,144,255,0.35)" : "none",
@@ -1299,8 +1299,8 @@ function CompatibilityShowcase() {
               animation: "pulse 2s infinite",
             }} />
             <div style={{ textAlign: "center" }}>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#111827" }}>{v.label}</span>
-              <span style={{ fontSize: "13px", color: "#6B7280", marginLeft: 8 }}>{v.sub}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{v.label}</span>
+              <span style={{ fontSize: "15px", color: "#6B7280", marginLeft: 8 }}>{v.sub}</span>
             </div>
           </div>
         </div>
@@ -1347,7 +1347,7 @@ function FareListingBlock() {
       <div style={{ flex: 1, height: 14, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
       {blue && (
         <span style={{
-          fontSize: "13px", fontWeight: 400, letterSpacing: "0.1em",
+          fontSize: "15px", fontWeight: 600, letterSpacing: "0.1em",
           textTransform: "uppercase", color: "#fff",
           background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
         }}>Shipped</span>
@@ -1469,7 +1469,7 @@ function FareListingBlock() {
           <div className="cs-imgrow__content">
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 6,
-              fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em",
+              fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em",
               color: "#1E90FF", background: "#EFF6FF", border: "1px solid rgba(30,144,255,0.4)",
               borderRadius: 100, padding: "4px 12px", marginBottom: 12,
             }}>✦ Shipped</span>
@@ -1513,7 +1513,7 @@ function ItineraryCardBlock() {
       <div style={{ flex: 1, height: 13, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
       {tint && (
         <span style={{
-          fontSize: "13px", fontWeight: 400, letterSpacing: "0.1em",
+          fontSize: "15px", fontWeight: 600, letterSpacing: "0.1em",
           textTransform: "uppercase", color: "#fff",
           background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
         }}>Redesigned</span>
@@ -1563,7 +1563,7 @@ function ItineraryCardBlock() {
           <div className="cs-imgrow__content">
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 6,
-              fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em",
+              fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em",
               color: "#1076BC", background: "#E8F2FB", border: "1px solid #BFDBFE",
               borderRadius: 100, padding: "4px 12px", marginBottom: 14,
             }}>◉ Redesigned</span>
@@ -1618,7 +1618,7 @@ function ReviewTableBlock() {
       <div style={{ flex: 1, height: 13, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
       {tint && (
         <span style={{
-          fontSize: "13px", fontWeight: 400, letterSpacing: "0.1em",
+          fontSize: "15px", fontWeight: 600, letterSpacing: "0.1em",
           textTransform: "uppercase", color: "#fff",
           background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
         }}>Redesigned</span>
@@ -1680,7 +1680,7 @@ function ReviewTableBlock() {
           <div className="cs-imgrow__content">
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 6,
-              fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em",
+              fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em",
               color: "#1076BC", background: "#E8F2FB", border: "1px solid #BFDBFE",
               borderRadius: 100, padding: "4px 12px", marginBottom: 14,
             }}>◉ Redesigned</span>
@@ -1763,13 +1763,13 @@ function TheProductSection() {
             <span style={{ fontSize: "1.4rem", marginLeft: 4 }}>▶</span>
           </div>
           <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827" }}>Platform walkthrough</div>
-            <div style={{ fontSize: "13px", color: "#6B7280", marginTop: 4 }}>Video coming soon</div>
+            <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>Platform walkthrough</div>
+            <div style={{ fontSize: "15px", color: "#6B7280", marginTop: 4 }}>Video coming soon</div>
           </div>
         </div>
         <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ fontSize: "0.85rem", color: "#6B7280" }}>Explore the full platform in Figma —</span>
-          <a href={airFigmaLinks.desktop} target="_blank" rel="noreferrer" style={{ fontSize: "0.85rem", fontWeight: 700, color: "#1E90FF", textDecoration: "none" }}>Desktop Design ↗</a>
+          <span style={{ fontSize: "15px", color: "#6B7280" }}>Explore the full platform in Figma —</span>
+          <a href={airFigmaLinks.desktop} target="_blank" rel="noreferrer" style={{ fontSize: "15px", fontWeight: 600, color: "#1E90FF", textDecoration: "none" }}>Desktop Design ↗</a>
         </div>
       </div>
 
@@ -1816,7 +1816,7 @@ function DesignSystemSection() {
               {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
                 <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
               ))}
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#374151", marginLeft: 6 }}>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
                 Air IQ — Design System
               </span>
             </div>
@@ -1824,7 +1824,7 @@ function DesignSystemSection() {
               href={airFigmaLinks.designSystem}
               target="_blank"
               rel="noreferrer"
-              style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC", textDecoration: "none" }}
+              style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}
             >
               Open in Figma ↗
             </a>
@@ -1844,7 +1844,7 @@ function DesignSystemSection() {
           <div key={s.val} style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
             <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "#111827", flexShrink: 0 }}>{s.val}</span>
             <span style={{ fontSize: "1.1rem", color: "#374151", fontWeight: 600 }}>{s.label}</span>
-            <span style={{ fontSize: "0.9rem", color: "#9CA3AF" }}>— {s.sub}</span>
+            <span style={{ fontSize: "15px", color: "#9CA3AF" }}>— {s.sub}</span>
           </div>
         ))}
       </div>
@@ -1869,9 +1869,9 @@ function ResultsSection() {
             ~<CountUp to={7} />
             <span style={{ fontSize: "1.4rem", fontWeight: 700, color: "#6B7280", marginLeft: 4 }}>min</span>
           </div>
-          <div style={{ fontSize: "0.92rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Average booking time</div>
-          <div style={{ fontSize: "13px", color: "#9CA3AF", marginTop: 4 }}>down from ~12 min per booking</div>
-          <div style={{ fontSize: "13px", fontWeight: 400, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Agent Feedback</div>
+          <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Average booking time</div>
+          <div style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 4 }}>down from ~12 min per booking</div>
+          <div style={{ fontSize: "15px", fontWeight: 600, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Agent Feedback</div>
         </div>
 
         {/* 30–40% faster */}
@@ -1879,9 +1879,9 @@ function ResultsSection() {
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
             30–40%
           </div>
-          <div style={{ fontSize: "0.92rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Faster booking completion</div>
-          <div style={{ fontSize: "13px", color: "#9CA3AF", marginTop: 4 }}>vs. pre-launch baseline</div>
-          <div style={{ fontSize: "13px", fontWeight: 400, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Operations Data</div>
+          <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Faster booking completion</div>
+          <div style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 4 }}>vs. pre-launch baseline</div>
+          <div style={{ fontSize: "15px", fontWeight: 600, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Operations Data</div>
         </div>
 
         {/* 25–35% fewer support tickets */}
@@ -1889,9 +1889,9 @@ function ResultsSection() {
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
             25–35%
           </div>
-          <div style={{ fontSize: "0.92rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Fewer UI confusion tickets</div>
-          <div style={{ fontSize: "13px", color: "#9CA3AF", marginTop: 4 }}>support drop post-launch</div>
-          <div style={{ fontSize: "13px", fontWeight: 400, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Support Team · Post-launch</div>
+          <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Fewer UI confusion tickets</div>
+          <div style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 4 }}>support drop post-launch</div>
+          <div style={{ fontSize: "15px", fontWeight: 600, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Support Team · Post-launch</div>
         </div>
 
         {/* 25,000+ agents */}
@@ -1899,16 +1899,16 @@ function ResultsSection() {
           <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
             <CountUp to={25} />K<span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span>
           </div>
-          <div style={{ fontSize: "0.92rem", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Active agents onboarded</div>
-          <div style={{ fontSize: "13px", color: "#9CA3AF", marginTop: 4 }}>live across India post-launch</div>
-          <div style={{ fontSize: "13px", fontWeight: 400, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Product Analytics</div>
+          <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Active agents onboarded</div>
+          <div style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 4 }}>live across India post-launch</div>
+          <div style={{ fontSize: "15px", fontWeight: 600, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Product Analytics</div>
         </div>
 
       </div>
 
       {/* Business impact bridge */}
       <div className="csl-reveal" style={{ marginBottom: 24, padding: "16px 20px", background: "#F9FAFB", borderRadius: 12, border: "1px solid #F3F4F6" }}>
-        <p style={{ fontSize: "0.9rem", color: "#374151", lineHeight: 1.7, margin: 0 }}>
+        <p style={{ fontSize: "15px", color: "#374151", lineHeight: 1.7, margin: 0 }}>
           Faster booking means more bookings per agent per day, more revenue per seat. At 25,000+ agents, a 30–40% time reduction compounds at scale. Support queries dropped visibly in the first weeks post-launch.
         </p>
       </div>
@@ -1941,11 +1941,11 @@ function ResultsSection() {
               width: 32, height: 32, borderRadius: "50%",
               background: "rgba(30,144,255,0.15)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "13px", fontWeight: 400, color: "#1E90FF",
+              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
             }}>TA</div>
             <div>
-              <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.65)", fontWeight: 400}}>Anonymized travel agent</div>
-              <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", fontWeight: 400, marginTop: 2 }}>Post-launch feedback</div>
+              <div style={{ fontSize: "15px", color: "rgba(255,255,255,0.65)", fontWeight: 600}}>Anonymized travel agent</div>
+              <div style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", fontWeight: 600, marginTop: 2 }}>Post-launch feedback</div>
             </div>
           </div>
         </div>
@@ -1956,8 +1956,8 @@ function ResultsSection() {
         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1rem" }}>
           <thead>
             <tr style={{ borderBottom: "2px solid #F3F4F6" }}>
-              <th style={{ padding: "10px 0", textAlign: "left", color: "#9CA3AF", fontWeight: 400, fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.1em" }}>Before</th>
-              <th style={{ padding: "10px 0", textAlign: "left", color: "#9CA3AF", fontWeight: 400, fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.1em" }}>After</th>
+              <th style={{ padding: "10px 0", textAlign: "left", color: "#9CA3AF", fontWeight: 600, fontSize: "15px", textTransform: "uppercase", letterSpacing: "0.1em" }}>Before</th>
+              <th style={{ padding: "10px 0", textAlign: "left", color: "#9CA3AF", fontWeight: 600, fontSize: "15px", textTransform: "uppercase", letterSpacing: "0.1em" }}>After</th>
             </tr>
           </thead>
           <tbody>
@@ -1981,8 +1981,8 @@ function ResultsSection() {
       <div className="csl-reveal rd3" style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 16, padding: "16px 20px", background: "#EFF6FF", borderRadius: 12 }}>
         <span style={{ fontSize: "1.5rem" }}>🏨</span>
         <div>
-          <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "#111827", marginBottom: 2 }}>Hotel module trusted to the same designer</div>
-          <p style={{ fontSize: "0.92rem", color: "#374151", lineHeight: 1.6, margin: 0 }}>After AIR iQ shipped, the team extended trust. The next product module (hotel booking) was handed to the same designer without a new brief process. That&apos;s a stakeholder signal.</p>
+          <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 2 }}>Hotel module trusted to the same designer</div>
+          <p style={{ fontSize: "15px", color: "#374151", lineHeight: 1.6, margin: 0 }}>After AIR iQ shipped, the team extended trust. The next product module (hotel booking) was handed to the same designer without a new brief process. That&apos;s a stakeholder signal.</p>
         </div>
       </div>
     </CsSection>
@@ -2025,7 +2025,7 @@ function LearningsSection() {
               width: 28, height: 28, borderRadius: 8,
               background: "#EFF6FF", display: "flex",
               alignItems: "center", justifyContent: "center",
-              fontSize: "13px", fontWeight: 400, color: "#1E90FF",
+              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
               flexShrink: 0, marginTop: 2,
             }}>{item.n}</span>
             <div>
@@ -2069,13 +2069,13 @@ function StoryCardsGrid() {
             boxShadow: "0 2px 12px rgba(0,0,0,0.04)",
           }}>
             <span style={{
-              display: "inline-block", fontSize: "13px", fontWeight: 400,
+              display: "inline-block", fontSize: "15px", fontWeight: 600,
               textTransform: "uppercase", letterSpacing: "0.14em",
               color: col.accent, background: col.bg,
               borderRadius: 100, padding: "3px 10px", marginBottom: 10,
             }}>{card.kicker}</span>
             <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3 }}>{card.title}</p>
-            <p style={{ fontSize: "0.88rem", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{card.text}</p>
+            <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{card.text}</p>
           </div>
         );
       })}
@@ -2120,9 +2120,9 @@ function ConstraintsBlock() {
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
               <span style={{ fontSize: "1rem" }}>{item.icon}</span>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#111827" }}>{item.label}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{item.label}</span>
             </div>
-            <p style={{ fontSize: "0.88rem", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{item.text}</p>
+            <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{item.text}</p>
           </div>
         ))}
       </div>
@@ -2169,16 +2169,16 @@ function DesignDecisionsBlock() {
               width: 36, height: 36, borderRadius: 10,
               background: "#EFF6FF", display: "flex",
               alignItems: "center", justifyContent: "center",
-              fontSize: "13px", fontWeight: 400, color: "#1E90FF",
+              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
               flexShrink: 0, marginTop: 2,
             }}>{d.num}</span>
             <div>
-              <div style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF", marginBottom: 4 }}>{d.label}</div>
+              <div style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF", marginBottom: 4 }}>{d.label}</div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{d.title}</div>
               <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>{d.text}</p>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 6,
-                fontSize: "13px", fontWeight: 400, color: "#1E90FF",
+                fontSize: "15px", fontWeight: 600, color: "#1E90FF",
                 background: "#EFF6FF", borderRadius: 8, padding: "4px 12px",
               }}>✓ {d.outcome}</div>
             </div>
@@ -2206,14 +2206,14 @@ function JourneySection() {
           }}>
             {/* Left: content */}
             <div style={{ order: i % 2 === 0 ? 0 : 1 }}>
-              <div style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{block.step}</div>
+              <div style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{block.step}</div>
               <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 4, lineHeight: 1.3 }}>{block.title}</div>
-              <div style={{ fontSize: "13px", color: "#1E90FF", marginBottom: 14, fontFamily: "var(--font-lato), sans-serif" }}>{block.url}</div>
+              <div style={{ fontSize: "15px", color: "#1E90FF", marginBottom: 14, fontFamily: "var(--font-lato), sans-serif" }}>{block.url}</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 {block.decisions.map((dec, j) => (
                   <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
                     <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#1E90FF", flexShrink: 0, marginTop: 7 }} />
-                    <span style={{ fontSize: "0.88rem", color: "#374151", lineHeight: 1.6 }}>{dec}</span>
+                    <span style={{ fontSize: "15px", color: "#374151", lineHeight: 1.6 }}>{dec}</span>
                   </div>
                 ))}
               </div>
@@ -2230,8 +2230,8 @@ function JourneySection() {
                 gap: 8,
               }}>
                 <span style={{ fontSize: "1.6rem", opacity: 0.4 }}>✈</span>
-                <span style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC", textAlign: "center", padding: "0 16px", lineHeight: 1.4 }}>{block.step} · {block.title}</span>
-                <span style={{ fontSize: "13px", color: "#9CA3AF" }}>Screen placeholder</span>
+                <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textAlign: "center", padding: "0 16px", lineHeight: 1.4 }}>{block.step} · {block.title}</span>
+                <span style={{ fontSize: "15px", color: "#9CA3AF" }}>Screen placeholder</span>
               </div>
             </div>
           </div>
@@ -2272,17 +2272,17 @@ function EdgeCasesSection() {
                     width: 32, height: 32, borderRadius: 8,
                     background: "#F3F4F6", display: "flex",
                     alignItems: "center", justifyContent: "center",
-                    fontSize: "0.9rem", flexShrink: 0,
+                    fontSize: "15px", flexShrink: 0,
                   }}>{ec.icon}</span>
-                  <span style={{ fontSize: "0.9rem", fontWeight: 700, color: "#111827" }}>{ec.title}</span>
+                  <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{ec.title}</span>
                 </div>
                 <span style={{
-                  fontSize: "13px", fontWeight: 400,
+                  fontSize: "15px", fontWeight: 600,
                   background: badge.bg, color: badge.color,
                   borderRadius: 100, padding: "2px 8px", whiteSpace: "nowrap", flexShrink: 0,
                 }}>{ec.badge}</span>
               </div>
-              <p style={{ fontSize: "0.85rem", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{ec.desc}</p>
+              <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{ec.desc}</p>
             </div>
           );
         })}
@@ -2340,7 +2340,7 @@ function MobileSection() {
               width: 36, height: 36, borderRadius: 10,
               background: "#EFF6FF", display: "flex",
               alignItems: "center", justifyContent: "center",
-              fontSize: "13px", fontWeight: 400, color: "#1E90FF",
+              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
               flexShrink: 0, marginTop: 2,
             }}>{item.num}</span>
             <div>
@@ -2358,9 +2358,9 @@ function MobileSection() {
               {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
                 <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
               ))}
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#374151", marginLeft: 6 }}>Air IQ — Mobile · 375px</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginLeft: 6 }}>Air IQ — Mobile · 375px</span>
             </div>
-            <a href={airFigmaLinks.mobile} target="_blank" rel="noreferrer" style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC", textDecoration: "none" }}>
+            <a href={airFigmaLinks.mobile} target="_blank" rel="noreferrer" style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}>
               Open in Figma ↗
             </a>
           </div>

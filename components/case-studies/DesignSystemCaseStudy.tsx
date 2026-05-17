@@ -45,10 +45,10 @@ function DSHero() {
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             background: "rgba(16,118,188,0.12)", color: "#60BDFF", borderRadius: 8,
-            padding: "10px 20px", fontSize: "13px", fontWeight: 400,
+            padding: "10px 20px", fontSize: "15px", fontWeight: 600,
             marginTop: 8, width: "fit-content", border: "1px solid rgba(16,118,188,0.25)",
           }}>
-            <span style={{ fontSize: "13px" }}>◈</span> Figma file available on request
+            <span style={{ fontSize: "15px" }}>◈</span> Figma file available on request
           </div>
         </div>
         <div className="csl-hero-right">
@@ -86,26 +86,26 @@ function DSHeroVisual() {
         <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57" }} />
         <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFBD2E" }} />
         <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#28CA41" }} />
-        <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.35)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>AirIQ Design System.fig</span>
+        <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.35)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>AirIQ Design System.fig</span>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "130px 1fr" }}>
         {/* Pages sidebar */}
         <div style={{ background: "#1A2333", borderRight: "1px solid rgba(255,255,255,0.06)", padding: "10px 0" }}>
-          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.12em", padding: "0 10px", marginBottom: 6 }}>Pages</p>
+          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.12em", padding: "0 10px", marginBottom: 6 }}>Pages</p>
           {pages.map((pg, i) => (
             <div key={pg} style={{ padding: "4px 10px", background: i === 5 ? "rgba(16,118,188,0.2)" : "transparent", display: "flex", alignItems: "center", gap: 5 }}>
               <div style={{ width: 3, height: 3, borderRadius: "50%", background: i === 5 ? "#1076BC" : "rgba(255,255,255,0.18)", flexShrink: 0 }} />
-              <p style={{ fontSize: "13px", color: i === 5 ? "#60BDFF" : "rgba(255,255,255,0.38)", fontWeight: 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{pg}</p>
+              <p style={{ fontSize: "15px", color: i === 5 ? "#60BDFF" : "rgba(255,255,255,0.38)", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{pg}</p>
             </div>
           ))}
         </div>
         {/* Component canvas preview */}
         <div style={{ padding: "12px", background: "#0F172A" }}>
-          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>05 – Components</p>
+          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>05 – Components</p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5, marginBottom: 5 }}>
             {/* Color tokens row */}
             <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Colors</p>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Colors</p>
               <div style={{ display: "flex", gap: 3 }}>
                 {["#1076BC","#F2616E","#E3F3FF","#1C1C1C"].map(c => (
                   <div key={c} style={{ flex: 1, height: 14, borderRadius: 3, background: c, border: c === "#E3F3FF" ? "0.5px solid rgba(255,255,255,0.12)" : "none" }} />
@@ -113,33 +113,33 @@ function DSHeroVisual() {
               </div>
             </div>
             <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Buttons</p>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Buttons</p>
               <div style={{ display: "flex", gap: 3, alignItems: "center" }}>
-                <div style={{ background: "#1076BC", borderRadius: 3, padding: "3px 6px" }}><span style={{ fontSize: "13px", color: "#fff", fontWeight: 400}}>Primary</span></div>
-                <div style={{ background: "#F2616E", borderRadius: 3, padding: "3px 6px" }}><span style={{ fontSize: "13px", color: "#fff", fontWeight: 400}}>Secondary</span></div>
+                <div style={{ background: "#1076BC", borderRadius: 3, padding: "3px 6px" }}><span style={{ fontSize: "15px", color: "#fff", fontWeight: 600}}>Primary</span></div>
+                <div style={{ background: "#F2616E", borderRadius: 3, padding: "3px 6px" }}><span style={{ fontSize: "15px", color: "#fff", fontWeight: 600}}>Secondary</span></div>
               </div>
             </div>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5, marginBottom: 5 }}>
             <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Icons</p>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Icons</p>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 2 }}>
                 {["✉","⌕","≡","⬇","✓","⊞","⚠","⊙","✕","+","⌃","↕"].map((ic, i) => (
-                  <span key={i} style={{ fontSize: "13px", color: "rgba(255,255,255,0.35)", textAlign: "center" }}>{ic}</span>
+                  <span key={i} style={{ fontSize: "15px", color: "rgba(255,255,255,0.35)", textAlign: "center" }}>{ic}</span>
                 ))}
               </div>
             </div>
             <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Text Field</p>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Text Field</p>
               <div style={{ border: "1px solid rgba(16,118,188,0.5)", borderRadius: 3, padding: "3px 5px" }}>
-                <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.2)", marginBottom: 1 }}>From</p>
-                <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)" }}>New Delhi</p>
+                <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.2)", marginBottom: 1 }}>From</p>
+                <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.5)" }}>New Delhi</p>
               </div>
             </div>
           </div>
           <div style={{ background: "rgba(16,118,188,0.12)", borderRadius: 4, padding: "4px 8px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#60BDFF" }}>AirIQ Design System</span>
-            <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.25)", fontFamily: "Lato, sans-serif" }}>v1.0</span>
+            <span style={{ fontSize: "15px", color: "#60BDFF" }}>AirIQ Design System</span>
+            <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", fontFamily: "Lato, sans-serif" }}>v1.0</span>
           </div>
         </div>
       </div>
@@ -167,8 +167,8 @@ function OverviewSection() {
           { label: "Responsibilities", value: "Architecture · Components" },
         ].map((item) => (
           <div key={item.label} style={{ background: "#fff", padding: "18px 22px" }}>
-            <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{item.label}</p>
-            <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827", lineHeight: 1.4 }}>{item.value}</p>
+            <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{item.label}</p>
+            <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", lineHeight: 1.4 }}>{item.value}</p>
           </div>
         ))}
       </div>
@@ -207,7 +207,7 @@ function DiscoverySection() {
       <div className="csl-reveal rd1" style={{ borderRadius: 18, overflow: "hidden", border: "1px solid #FEE2E2", marginBottom: 36 }}>
         <div style={{ background: "#FEF2F2", padding: "11px 20px", borderBottom: "1px solid #FEE2E2", display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#DC2626", flexShrink: 0 }} />
-          <p style={{ fontSize: "13px", fontWeight: 400, color: "#7F1D1D", textTransform: "uppercase", letterSpacing: "0.12em" }}>Audit finding — "the same blue" across three products</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#7F1D1D", textTransform: "uppercase", letterSpacing: "0.12em" }}>Audit finding — "the same blue" across three products</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", background: "#fff" }}>
           {[
@@ -216,23 +216,23 @@ function DiscoverySection() {
             { product: "AirIQ Admin",  hex: "#147ABF", radius: 2  },
           ].map(({ product, hex, radius }, i) => (
             <div key={product} style={{ padding: "20px 22px", borderRight: i < 2 ? "1px solid #F3F4F6" : "none" }}>
-              <p style={{ fontSize: "13px", fontWeight: 400, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 14 }}>{product}</p>
+              <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 14 }}>{product}</p>
               <div style={{ height: 44, borderRadius: 8, background: hex, marginBottom: 8 }} />
-              <p style={{ fontSize: "13px", fontFamily: "Lato, sans-serif", color: "#6B7280", fontWeight: 400, marginBottom: 16 }}>{hex}</p>
+              <p style={{ fontSize: "15px", fontFamily: "Lato, sans-serif", color: "#6B7280", fontWeight: 600, marginBottom: 16 }}>{hex}</p>
               <div style={{ background: hex, borderRadius: radius, padding: "8px 16px", display: "inline-flex" }}>
-                <span style={{ fontSize: "13px", color: "#fff", fontWeight: 400}}>Book Now</span>
+                <span style={{ fontSize: "15px", color: "#fff", fontWeight: 600}}>Book Now</span>
               </div>
-              <p style={{ fontSize: "13px", color: "#B0B8C0", marginTop: 6, fontFamily: "Lato, sans-serif" }}>border-radius: {radius}px</p>
+              <p style={{ fontSize: "15px", color: "#B0B8C0", marginTop: 6, fontFamily: "Lato, sans-serif" }}>border-radius: {radius}px</p>
             </div>
           ))}
         </div>
         <div style={{ background: "#FEF2F2", padding: "10px 20px", borderTop: "1px solid #FEE2E2", display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: "13px", color: "#DC2626", flexShrink: 0 }}>⚠</span>
-          <p style={{ fontSize: "13px", color: "#991B1B", lineHeight: 1.5 }}>Three hex values for the same "primary blue." All three in production simultaneously — no one realised they had diverged.</p>
+          <span style={{ fontSize: "15px", color: "#DC2626", flexShrink: 0 }}>⚠</span>
+          <p style={{ fontSize: "15px", color: "#991B1B", lineHeight: 1.5 }}>Three hex values for the same "primary blue." All three in production simultaneously — no one realised they had diverged.</p>
         </div>
       </div>
 
-      <p style={{ fontSize: "13px", fontWeight: 400, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 16 }} className="csl-reveal rd2">What the audit found:</p>
+      <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 16 }} className="csl-reveal rd2">What the audit found:</p>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }} className="csl-reveal rd2">
         {[
           { title: "Multiple component versions",   body: "Buttons, tables, and form fields had 2–3 different versions each. No shared base component, no shared rules."               },
@@ -241,8 +241,8 @@ function DiscoverySection() {
           { title: "Figma files impossible to reuse",body: "Files were organized per-feature with no shared styles or components. Onboarding a new designer meant learning 12 files."  },
         ].map((item) => (
           <div key={item.title} style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)", borderLeft: "3px solid #E3F3FF" }}>
-            <div style={{ fontSize: "0.84rem", fontWeight: 700, color: "#1076BC", marginBottom: 8 }}>{item.title}</div>
-            <div style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.6 }}>{item.body}</div>
+            <div style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", marginBottom: 8 }}>{item.title}</div>
+            <div style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.6 }}>{item.body}</div>
           </div>
         ))}
       </div>
@@ -297,10 +297,10 @@ function ApproachSection() {
               border: i === 0 ? "none" : "1.5px solid #E0E6EC",
               boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
             }}>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: i === 0 ? "#fff" : "#1076BC", fontFamily: "Lato, sans-serif" }}>{s.num}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: i === 0 ? "#fff" : "#1076BC", fontFamily: "Lato, sans-serif" }}>{s.num}</span>
             </div>
-            <p style={{ fontSize: "0.82rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{s.label}</p>
-            <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65 }}>{s.detail}</p>
+            <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{s.label}</p>
+            <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.65 }}>{s.detail}</p>
           </div>
         ))}
       </div>
@@ -315,12 +315,12 @@ function ApproachSection() {
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57" }} />
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFBD2E" }} />
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#28CA41" }} />
-          <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>AirIQ Design System.fig — how the library was organized</span>
+          <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>AirIQ Design System.fig — how the library was organized</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "200px 1fr" }}>
           {/* Pages sidebar */}
           <div style={{ background: "#1A2333", borderRight: "1px solid rgba(255,255,255,0.06)", padding: "14px 0" }}>
-            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.12em", padding: "0 14px", marginBottom: 8 }}>Pages</p>
+            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.12em", padding: "0 14px", marginBottom: 8 }}>Pages</p>
             {[
               { name: "00 – Cover",      active: false, note: "Library overview" },
               { name: "01 – Tokens",     active: false, note: "Color · Spacing · Shadow" },
@@ -332,14 +332,14 @@ function ApproachSection() {
               { name: "07 – 📋 Kanban",  active: false, note: "Status tracking" },
             ].map((pg) => (
               <div key={pg.name} style={{ padding: "7px 14px", background: pg.active ? "rgba(16,118,188,0.18)" : "transparent" }}>
-                <p style={{ fontSize: "13px", color: pg.active ? "#60BDFF" : "rgba(255,255,255,0.45)", fontWeight: 400, marginBottom: 1 }}>{pg.name}</p>
-                <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.2)" }}>{pg.note}</p>
+                <p style={{ fontSize: "15px", color: pg.active ? "#60BDFF" : "rgba(255,255,255,0.45)", fontWeight: 600, marginBottom: 1 }}>{pg.name}</p>
+                <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.2)" }}>{pg.note}</p>
               </div>
             ))}
           </div>
           {/* Canvas area */}
           <div style={{ padding: "20px 24px", background: "#0D1117" }}>
-            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>05 – Components — Section overview</p>
+            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>05 – Components — Section overview</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
               {[
                 { label: "Buttons",    count: "4 variants" },
@@ -353,8 +353,8 @@ function ApproachSection() {
               ].map((c) => (
                 <div key={c.label} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 8, padding: "10px 12px", border: "1px solid rgba(255,255,255,0.06)" }}>
                   <div style={{ height: 20, borderRadius: 4, background: "rgba(16,118,188,0.2)", marginBottom: 8 }} />
-                  <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.55)", fontWeight: 400, marginBottom: 2 }}>{c.label}</p>
-                  <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.22)", fontFamily: "Lato, sans-serif" }}>{c.count}</p>
+                  <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", fontWeight: 600, marginBottom: 2 }}>{c.label}</p>
+                  <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.22)", fontFamily: "Lato, sans-serif" }}>{c.count}</p>
                 </div>
               ))}
             </div>
@@ -420,8 +420,8 @@ function ColorEditorialBanner() {
             filter: "blur(8px)",
           }} />
           <div style={{ width: "100%" }}>
-            <p style={{ fontSize: "13px", fontWeight: 400, color: "#374151", marginBottom: 2 }}>{s.name}</p>
-            <p style={{ fontSize: "13px", fontFamily: "Lato, sans-serif", color: "#9CA3AF" }}>{s.hex}</p>
+            <p style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginBottom: 2 }}>{s.name}</p>
+            <p style={{ fontSize: "15px", fontFamily: "Lato, sans-serif", color: "#9CA3AF" }}>{s.hex}</p>
           </div>
         </div>
       ))}
@@ -437,7 +437,7 @@ function ColorEditorialBanner() {
         </p>
         <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 24 }}>
           {["Trust", "Clarity", "Action", "Hierarchy"].map(tag => (
-            <span key={tag} style={{ fontSize: "13px", fontWeight: 400, color: "#6B7280", background: "#fff", border: "1px solid #E5E7EB", borderRadius: 20, padding: "4px 12px" }}>{tag}</span>
+            <span key={tag} style={{ fontSize: "15px", fontWeight: 600, color: "#6B7280", background: "#fff", border: "1px solid #E5E7EB", borderRadius: 20, padding: "4px 12px" }}>{tag}</span>
           ))}
         </div>
       </div>
@@ -492,13 +492,13 @@ function ColorSection() {
 
       {/* Brand primaries — large and dominant */}
       <div className="csl-reveal" style={{ marginBottom: 8 }}>
-        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 12 }}>Brand Primaries</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 12 }}>Brand Primaries</p>
         <div style={{ display: "flex", gap: 8 }}>
           {mainColors.map((c, i) => (
             <div key={c.hex} style={{ flex: i < 2 ? 2 : 1 }}>
               <div style={{ height: i < 2 ? 110 : 72, borderRadius: 12, background: c.hex, border: c.border ? "1px solid #E0E6EC" : "none", marginBottom: 10 }} />
-              <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827", marginBottom: 2, lineHeight: 1.3 }}>{c.name}</p>
-              <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>{c.hex}</p>
+              <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 2, lineHeight: 1.3 }}>{c.name}</p>
+              <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>{c.hex}</p>
             </div>
           ))}
         </div>
@@ -506,7 +506,7 @@ function ColorSection() {
 
       {/* Neutral scale — continuous strip */}
       <div className="csl-reveal rd1" style={{ marginBottom: 8 }}>
-        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 12 }}>Neutral Scale</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 12 }}>Neutral Scale</p>
         <div style={{ display: "flex", gap: 3, marginBottom: 10 }}>
           {neutrals.map((c) => (
             <div key={c.hex} style={{ flex: 1, height: 48, borderRadius: 6, background: c.hex, border: "1px solid #E0E6EC" }} />
@@ -515,7 +515,7 @@ function ColorSection() {
         <div style={{ display: "flex", gap: 3 }}>
           {neutrals.map((c) => (
             <div key={c.hex} style={{ flex: 1 }}>
-              <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", lineHeight: 1.4 }}>{c.hex}</p>
+              <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", lineHeight: 1.4 }}>{c.hex}</p>
             </div>
           ))}
         </div>
@@ -524,18 +524,18 @@ function ColorSection() {
       {/* Signal colors — compact row */}
       <div className="csl-reveal rd2" style={{ marginBottom: 0 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>Signal Colors — Status & Feedback</p>
-          <span style={{ fontSize: "13px", fontWeight: 400, background: "#DCFFEA", color: "#059669", borderRadius: 20, padding: "2px 10px" }}>WCAG AA verified</span>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>Signal Colors — Status & Feedback</p>
+          <span style={{ fontSize: "15px", fontWeight: 600, background: "#DCFFEA", color: "#059669", borderRadius: 20, padding: "2px 10px" }}>WCAG AA verified</span>
         </div>
         <div style={{ display: "flex", gap: 6 }}>
           {signals.map((c) => (
             <div key={c.hex} style={{ flex: 1 }}>
               <div style={{ height: 36, borderRadius: 8, background: c.hex, marginBottom: 6 }} />
-              <p style={{ fontSize: "13px", fontWeight: 400, color: "#374151", lineHeight: 1.3 }}>{c.name}</p>
+              <p style={{ fontSize: "15px", fontWeight: 600, color: "#374151", lineHeight: 1.3 }}>{c.name}</p>
             </div>
           ))}
         </div>
-        <p style={{ fontSize: "13px", color: "#6B7280", marginTop: 14, lineHeight: 1.6 }}>
+        <p style={{ fontSize: "15px", color: "#6B7280", marginTop: 14, lineHeight: 1.6 }}>
           Each signal ships with a light tint for alert backgrounds. Change the token — every component that uses it updates.
         </p>
       </div>
@@ -566,35 +566,35 @@ function TypographySection() {
 
       {/* Live type hierarchy — show it working, not specced */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 20, padding: "32px 36px" }}>
-        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 28 }}>Type hierarchy — shown at scale</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 28 }}>Type hierarchy — shown at scale</p>
         <div style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 20, marginBottom: 20 }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 4 }}>
             <p style={{ fontSize: "1.75rem", fontWeight: 700, color: "#111827", lineHeight: 1.2, flex: 1 }}>Book your next flight</p>
-            <span style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>H1 · 28pt · 700</span>
+            <span style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>H1 · 28pt · 700</span>
           </div>
         </div>
         <div style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 16, marginBottom: 16 }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 4 }}>
             <p style={{ fontSize: "1.35rem", fontWeight: 700, color: "#111827", lineHeight: 1.3, flex: 1 }}>Search results for New Delhi → Mumbai</p>
-            <span style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>H2 · 25pt · 700</span>
+            <span style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>H2 · 25pt · 700</span>
           </div>
         </div>
         <div style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 14, marginBottom: 14 }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
             <p style={{ fontSize: "1.0rem", fontWeight: 400, color: "#374151", lineHeight: 1.6, flex: 1 }}>247 flights found. Sorted by best value. Prices shown include all taxes and fees.</p>
-            <span style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>Body · 17pt · 400</span>
+            <span style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>Body · 17pt · 400</span>
           </div>
         </div>
         <div style={{ borderBottom: "1px solid #F3F4F6", paddingBottom: 12, marginBottom: 12 }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
-            <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "#6B7280", lineHeight: 1.5, flex: 1 }}>Departure · Terminal 3 · IndiGo 6E-234</p>
-            <span style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>Label · 13pt · 600</span>
+            <p style={{ fontSize: "15px", fontWeight: 600, color: "#6B7280", lineHeight: 1.5, flex: 1 }}>Departure · Terminal 3 · IndiGo 6E-234</p>
+            <span style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>Label · 13pt · 600</span>
           </div>
         </div>
         <div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
-            <p style={{ fontSize: "13px", fontWeight: 400, color: "#9CA3AF", lineHeight: 1.5, flex: 1 }}>*Fare includes base price only. Baggage and seat fees may apply at check-in.</p>
-            <span style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>Legal · 11pt · 400</span>
+            <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", lineHeight: 1.5, flex: 1 }}>*Fare includes base price only. Baggage and seat fees may apply at check-in.</p>
+            <span style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", flexShrink: 0 }}>Legal · 11pt · 400</span>
           </div>
         </div>
       </div>
@@ -602,20 +602,20 @@ function TypographySection() {
       {/* Compact specs */}
       <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 14 }}>
         <div className="csl-card">
-          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Weights in use</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Weights in use</p>
           {[{ w: 400, n: "Regular" }, { w: 500, n: "Medium" }, { w: 600, n: "Semi-Bold" }, { w: 700, n: "Bold" }, { w: 900, n: "Black" }].map(({ w, n }, i, arr) => (
             <div key={w} style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", padding: "8px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none" }}>
-              <span style={{ fontWeight: w, fontSize: "0.88rem", color: "#111827" }}>Lato {n}</span>
-              <span style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>{w}</span>
+              <span style={{ fontWeight: 600, fontSize: "15px", color: "#111827" }}>Lato {n}</span>
+              <span style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>{w}</span>
             </div>
           ))}
         </div>
         <div className="csl-card">
-          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Global settings</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Global settings</p>
           {[{ k: "Line height", v: "140%" }, { k: "Letter spacing", v: "−0.5%" }, { k: "H1 desktop", v: "28pt" }, { k: "H1 mobile", v: "20pt" }, { k: "H2 desktop", v: "25pt" }, { k: "H2 mobile", v: "16pt" }].map(({ k, v }, i, arr) => (
             <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none" }}>
-              <span style={{ fontSize: "13px", color: "#6B7280" }}>{k}</span>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span style={{ fontSize: "15px", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
         </div>
@@ -644,23 +644,23 @@ function IconographySection() {
           style={{ width: "100%", display: "block" }}
         />
         <div style={{ padding: "14px 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.45)", fontFamily: "Lato, sans-serif" }}>62 icons · 12 categories · 3 export sizes</p>
+          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.45)", fontFamily: "Lato, sans-serif" }}>62 icons · 12 categories · 3 export sizes</p>
           <div style={{ display: "flex", gap: 8 }}>
             {["Outlined", "2px stroke", "SVG export", "Optical centre"].map((tag) => (
-              <span key={tag} style={{ fontSize: "13px", fontWeight: 400, background: "rgba(16,118,188,0.22)", color: "#60BDFF", borderRadius: 20, padding: "3px 10px" }}>{tag}</span>
+              <span key={tag} style={{ fontSize: "15px", fontWeight: 600, background: "rgba(16,118,188,0.22)", color: "#60BDFF", borderRadius: 20, padding: "3px 10px" }}>{tag}</span>
             ))}
           </div>
         </div>
       </div>
 
-      <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.7, maxWidth: 640, marginBottom: 28 }} className="csl-reveal rd1">
+      <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.7, maxWidth: 640, marginBottom: 28 }} className="csl-reveal rd1">
         Every icon is drawn on a 24×24px keyline grid — consistent 2px stroke, 2px corner radius. Each ships in three sizes with identical proportions and optical centre, so they look right whether they're in a nav bar or inside a table cell.
       </p>
 
       {/* Compact keyline spec — 2-col */}
       <div className="csl-card-2col csl-reveal rd2">
         <div className="csl-card">
-          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Keyline construction</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Keyline construction</p>
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
             <div style={{ position: "relative", width: 80, height: 80, border: "2px solid #1076BC", borderRadius: 12 }}>
               <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.18 }} viewBox="0 0 80 80">
@@ -680,24 +680,24 @@ function IconographySection() {
             { k: "Export format", v: "SVG"           },
           ].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: "13px", color: "#6B7280" }}>{k}</span>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#111827", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span style={{ fontSize: "15px", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
         </div>
         <div className="csl-card">
-          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Three sizes · same proportions</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Three sizes · same proportions</p>
           <div style={{ display: "flex", gap: 20, alignItems: "flex-end", justifyContent: "center", marginBottom: 28 }}>
             {[{ size: 56, px: "24px" }, { size: 46, px: "20px" }, { size: 36, px: "16px" }].map(({ size, px }) => (
               <div key={px} style={{ textAlign: "center" }}>
                 <div style={{ width: size, height: size, border: "2px solid #1076BC", borderRadius: Math.round(size * 0.33), margin: "0 auto 10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <div style={{ width: size * 0.3, height: size * 0.3, borderRadius: "50%", background: "rgba(16,118,188,0.25)" }} />
                 </div>
-                <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827", fontFamily: "Lato, sans-serif" }}>{px}</p>
+                <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", fontFamily: "Lato, sans-serif" }}>{px}</p>
               </div>
             ))}
           </div>
-          <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.7 }}>
+          <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.7 }}>
             All three sizes share the same stroke weight and optical centre — they look consistent whether used in a top nav or as a small inline indicator inside a table cell.
           </p>
         </div>
@@ -742,29 +742,29 @@ function ComponentsSection() {
 
       {/* ── Component library — at a glance ── */}
       <div className="csl-reveal" style={{ marginBottom: 32 }}>
-        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Component library — 20+ components, 8 categories</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Component library — 20+ components, 8 categories</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
 
           {/* Search Field */}
           <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
-            <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Search Field</p>
+            <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Search Field</p>
             <div style={{ border: "1.5px solid #E0E6EC", borderRadius: 7, padding: "7px 10px", display: "flex", alignItems: "center", gap: 6 }}>
-              <span style={{ fontSize: "13px", color: "#B0B8C0" }}>⌕</span>
-              <p style={{ fontSize: "13px", color: "#B0B8C0" }}>From city...</p>
+              <span style={{ fontSize: "15px", color: "#B0B8C0" }}>⌕</span>
+              <p style={{ fontSize: "15px", color: "#B0B8C0" }}>From city...</p>
             </div>
           </div>
 
           {/* Dropdown */}
           <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
-            <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Dropdown</p>
+            <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Dropdown</p>
             <div style={{ border: "1.5px solid #1076BC", borderRadius: 7, padding: "7px 10px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-              <p style={{ fontSize: "13px", color: "#111827" }}>Economy</p>
-              <span style={{ fontSize: "13px", color: "#9CA3AF" }}>▾</span>
+              <p style={{ fontSize: "15px", color: "#111827" }}>Economy</p>
+              <span style={{ fontSize: "15px", color: "#9CA3AF" }}>▾</span>
             </div>
             <div style={{ border: "1px solid #E0E6EC", borderRadius: 6, overflow: "hidden", boxShadow: "0 3px 10px rgba(0,0,0,0.06)" }}>
               {["Economy", "Business", "First"].map((opt, i) => (
                 <div key={opt} style={{ padding: "5px 10px", background: i === 0 ? "#E3F3FF" : "#fff", borderBottom: i < 2 ? "1px solid #F3F4F6" : "none" }}>
-                  <span style={{ fontSize: "13px", color: i === 0 ? "#1076BC" : "#374151", fontWeight: 400}}>{opt}</span>
+                  <span style={{ fontSize: "15px", color: i === 0 ? "#1076BC" : "#374151", fontWeight: 600}}>{opt}</span>
                 </div>
               ))}
             </div>
@@ -772,25 +772,25 @@ function ComponentsSection() {
 
           {/* Date Picker */}
           <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
-            <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Date Picker</p>
+            <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Date Picker</p>
             <div style={{ border: "1px solid #E0E6EC", borderRadius: 7, overflow: "hidden" }}>
               <div style={{ background: "#F9FAFC", padding: "5px 8px", display: "flex", justifyContent: "space-between", borderBottom: "1px solid #E0E6EC" }}>
-                <span style={{ fontSize: "13px", fontWeight: 400, color: "#374151" }}>May 2025</span>
+                <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>May 2025</span>
                 <div style={{ display: "flex", gap: 6 }}>
-                  <span style={{ fontSize: "13px", color: "#9CA3AF" }}>‹</span>
-                  <span style={{ fontSize: "13px", color: "#9CA3AF" }}>›</span>
+                  <span style={{ fontSize: "15px", color: "#9CA3AF" }}>‹</span>
+                  <span style={{ fontSize: "15px", color: "#9CA3AF" }}>›</span>
                 </div>
               </div>
               <div style={{ padding: "6px 8px" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", marginBottom: 4 }}>
                   {["S","M","T","W","T","F","S"].map((d, i) => (
-                    <p key={i} style={{ fontSize: "13px", color: "#9CA3AF", textAlign: "center" }}>{d}</p>
+                    <p key={i} style={{ fontSize: "15px", color: "#9CA3AF", textAlign: "center" }}>{d}</p>
                   ))}
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 1 }}>
                   {[12,13,14,15,16,17,18,19,20,21,22,23,24,25].map((d) => (
                     <div key={d} style={{ width: 14, height: 14, borderRadius: "50%", background: d === 17 ? "#1076BC" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto" }}>
-                      <p style={{ fontSize: "13px", color: d === 17 ? "#fff" : "#374151", fontWeight: 400}}>{d}</p>
+                      <p style={{ fontSize: "15px", color: d === 17 ? "#fff" : "#374151", fontWeight: 600}}>{d}</p>
                     </div>
                   ))}
                 </div>
@@ -800,7 +800,7 @@ function ComponentsSection() {
 
           {/* Badges */}
           <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
-            <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Badges & Tags</p>
+            <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Badges & Tags</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
               {[
                 { t: "Direct",   bg: "#DCFFEA", c: "#059669" },
@@ -809,14 +809,14 @@ function ComponentsSection() {
                 { t: "On Time",  bg: "#E0FFF8", c: "#0FBCAC" },
                 { t: "₹3,450",   bg: "#F3F4F6", c: "#374151" },
               ].map(b => (
-                <span key={b.t} style={{ fontSize: "13px", fontWeight: 400, background: b.bg, color: b.c, borderRadius: 20, padding: "3px 8px" }}>{b.t}</span>
+                <span key={b.t} style={{ fontSize: "15px", fontWeight: 600, background: b.bg, color: b.c, borderRadius: 20, padding: "3px 8px" }}>{b.t}</span>
               ))}
             </div>
           </div>
 
           {/* Alert */}
           <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
-            <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Alerts</p>
+            <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Alerts</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
               {[
                 { c: "#059669", bg: "#DCFFEA", msg: "Booking confirmed" },
@@ -824,7 +824,7 @@ function ComponentsSection() {
                 { c: "#EDD916", bg: "#FFFBE0", msg: "Flight delayed" },
               ].map(a => (
                 <div key={a.msg} style={{ borderLeft: `3px solid ${a.c}`, background: a.bg, borderRadius: "0 6px 6px 0", padding: "5px 8px" }}>
-                  <p style={{ fontSize: "13px", color: a.c, fontWeight: 400}}>{a.msg}</p>
+                  <p style={{ fontSize: "15px", color: a.c, fontWeight: 600}}>{a.msg}</p>
                 </div>
               ))}
             </div>
@@ -832,12 +832,12 @@ function ComponentsSection() {
 
           {/* Tab Bar */}
           <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
-            <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Tab Bar</p>
+            <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Tab Bar</p>
             <div style={{ borderBottom: "1px solid #E0E6EC" }}>
               <div style={{ display: "flex", gap: 0 }}>
                 {["Flights", "Hotels", "Packages"].map((tab, i) => (
                   <div key={tab} style={{ padding: "6px 10px", borderBottom: i === 0 ? "2px solid #1076BC" : "2px solid transparent", marginBottom: -1 }}>
-                    <p style={{ fontSize: "13px", fontWeight: 400, color: i === 0 ? "#1076BC" : "#9CA3AF" }}>{tab}</p>
+                    <p style={{ fontSize: "15px", fontWeight: 600, color: i === 0 ? "#1076BC" : "#9CA3AF" }}>{tab}</p>
                   </div>
                 ))}
               </div>
@@ -851,14 +851,14 @@ function ComponentsSection() {
 
           {/* Toggle */}
           <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
-            <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Toggle</p>
+            <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Toggle</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {[
                 { label: "Price alerts", on: true  },
                 { label: "SMS updates",  on: false },
               ].map(t => (
                 <div key={t.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <p style={{ fontSize: "13px", color: "#374151" }}>{t.label}</p>
+                  <p style={{ fontSize: "15px", color: "#374151" }}>{t.label}</p>
                   <div style={{ width: 30, height: 16, borderRadius: 8, background: t.on ? "#1076BC" : "#E0E6EC", position: "relative" }}>
                     <div style={{ position: "absolute", top: 2, left: t.on ? 16 : 2, width: 12, height: 12, borderRadius: "50%", background: "#fff", boxShadow: "0 1px 3px rgba(0,0,0,0.2)", transition: "left 0.2s" }} />
                   </div>
@@ -869,11 +869,11 @@ function ComponentsSection() {
 
           {/* Pagination */}
           <div style={{ background: "#fff", borderRadius: 14, padding: "16px", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6" }}>
-            <p style={{ fontSize: "13px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Pagination</p>
+            <p style={{ fontSize: "15px", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 10 }}>Pagination</p>
             <div style={{ display: "flex", gap: 4, alignItems: "center", flexWrap: "wrap" }}>
               {["‹", "1", "2", "3", "4", "5", "›"].map((p, i) => (
                 <div key={i} style={{ width: 22, height: 22, borderRadius: 5, display: "flex", alignItems: "center", justifyContent: "center", background: p === "3" ? "#1076BC" : p === "‹" || p === "›" ? "transparent" : "#F9FAFC", border: p === "3" ? "none" : p === "‹" || p === "›" ? "none" : "1px solid #E0E6EC" }}>
-                  <span style={{ fontSize: "13px", fontWeight: 400, color: p === "3" ? "#fff" : p === "‹" || p === "›" ? "#9CA3AF" : "#374151" }}>{p}</span>
+                  <span style={{ fontSize: "15px", fontWeight: 600, color: p === "3" ? "#fff" : p === "‹" || p === "›" ? "#9CA3AF" : "#374151" }}>{p}</span>
                 </div>
               ))}
             </div>
@@ -883,7 +883,7 @@ function ComponentsSection() {
 
       {/* ── Itinerary card — LEADS ── */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 28 }}>
-        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Itinerary Card — The most complex component</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Itinerary Card — The most complex component</p>
         <div className="csl-card-2col" style={{ alignItems: "start" }}>
           {/* Card mockup */}
           <div style={{ border: "1.5px solid #E0E6EC", borderRadius: 14, overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}>
@@ -891,52 +891,52 @@ function ComponentsSection() {
             <div style={{ background: "#F9FAFC", borderBottom: "1px solid #E0E6EC", padding: "10px 16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
                 <div style={{ width: 22, height: 22, borderRadius: 6, background: "#1076BC", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ fontSize: "13px", color: "#fff", fontWeight: 400}}>6E</span>
+                  <span style={{ fontSize: "15px", color: "#fff", fontWeight: 600}}>6E</span>
                 </div>
-                <span style={{ fontSize: "13px", fontWeight: 400, color: "#374151" }}>IndiGo</span>
-                <span style={{ fontSize: "13px", color: "#9CA3AF" }}>6E-234</span>
+                <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>IndiGo</span>
+                <span style={{ fontSize: "15px", color: "#9CA3AF" }}>6E-234</span>
               </div>
               <div style={{ display: "flex", gap: 6 }}>
-                <span style={{ fontSize: "13px", fontWeight: 400, background: "#E3F3FF", color: "#1076BC", borderRadius: 20, padding: "2px 8px" }}>Economy</span>
-                <span style={{ fontSize: "13px", fontWeight: 400, background: "#DCFFEA", color: "#059669", borderRadius: 20, padding: "2px 8px" }}>Direct</span>
+                <span style={{ fontSize: "15px", fontWeight: 600, background: "#E3F3FF", color: "#1076BC", borderRadius: 20, padding: "2px 8px" }}>Economy</span>
+                <span style={{ fontSize: "15px", fontWeight: 600, background: "#DCFFEA", color: "#059669", borderRadius: 20, padding: "2px 8px" }}>Direct</span>
               </div>
             </div>
             {/* Flight route */}
             <div style={{ padding: "16px", display: "flex", alignItems: "center", gap: 12 }}>
               <div style={{ textAlign: "center", minWidth: 60 }}>
                 <p style={{ fontSize: "1.3rem", fontWeight: 800, color: "#111827", lineHeight: 1, marginBottom: 2 }}>06:00</p>
-                <p style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC" }}>DEL</p>
-                <p style={{ fontSize: "13px", color: "#9CA3AF" }}>Terminal 3</p>
+                <p style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC" }}>DEL</p>
+                <p style={{ fontSize: "15px", color: "#9CA3AF" }}>Terminal 3</p>
               </div>
               <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-                <p style={{ fontSize: "13px", color: "#6B7280" }}>2h 15m</p>
+                <p style={{ fontSize: "15px", color: "#6B7280" }}>2h 15m</p>
                 <div style={{ width: "100%", display: "flex", alignItems: "center", gap: 0 }}>
                   <div style={{ width: 6, height: 6, borderRadius: "50%", border: "1.5px solid #1076BC", background: "#fff", flexShrink: 0 }} />
                   <div style={{ flex: 1, height: 1.5, background: "#E0E6EC" }} />
-                  <span style={{ fontSize: "13px", color: "#1076BC" }}>✈</span>
+                  <span style={{ fontSize: "15px", color: "#1076BC" }}>✈</span>
                   <div style={{ flex: 1, height: 1.5, background: "#E0E6EC" }} />
                   <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#1076BC", flexShrink: 0 }} />
                 </div>
               </div>
               <div style={{ textAlign: "center", minWidth: 60 }}>
                 <p style={{ fontSize: "1.3rem", fontWeight: 800, color: "#111827", lineHeight: 1, marginBottom: 2 }}>08:15</p>
-                <p style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC" }}>BOM</p>
-                <p style={{ fontSize: "13px", color: "#9CA3AF" }}>Terminal 1</p>
+                <p style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC" }}>BOM</p>
+                <p style={{ fontSize: "15px", color: "#9CA3AF" }}>Terminal 1</p>
               </div>
             </div>
             {/* Footer */}
             <div style={{ borderTop: "1px solid #E0E6EC", padding: "10px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "#F9FAFC" }}>
               <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                <span style={{ fontSize: "13px", color: "#6B7280" }}>🧳 23 kg</span>
-                <span style={{ fontSize: "13px", color: "#6B7280" }}>🍽 Meal</span>
+                <span style={{ fontSize: "15px", color: "#6B7280" }}>🧳 23 kg</span>
+                <span style={{ fontSize: "15px", color: "#6B7280" }}>🍽 Meal</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <div>
-                  <p style={{ fontSize: "13px", color: "#9CA3AF", textAlign: "right" }}>from</p>
+                  <p style={{ fontSize: "15px", color: "#9CA3AF", textAlign: "right" }}>from</p>
                   <p style={{ fontSize: "1rem", fontWeight: 800, color: "#111827", lineHeight: 1 }}>₹3,450</p>
                 </div>
                 <div style={{ background: "#1076BC", borderRadius: 8, padding: "8px 14px", cursor: "pointer" }}>
-                  <span style={{ fontSize: "13px", color: "#fff", fontWeight: 400}}>Book →</span>
+                  <span style={{ fontSize: "15px", color: "#fff", fontWeight: 600}}>Book →</span>
                 </div>
               </div>
             </div>
@@ -944,7 +944,7 @@ function ComponentsSection() {
 
           {/* Anatomy breakdown */}
           <div>
-            <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827", marginBottom: 16 }}>Component anatomy</p>
+            <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 16 }}>Component anatomy</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
               {[
                 { zone: "Header bar",    desc: "Airline identity · flight number · class + stop badges",   color: "#1076BC" },
@@ -956,14 +956,14 @@ function ComponentsSection() {
                 <div key={a.zone} style={{ display: "flex", gap: 12, padding: "12px 0", borderBottom: i < arr.length - 1 ? "1px solid #F3F4F6" : "none", alignItems: "flex-start" }}>
                   <div style={{ width: 10, height: 10, borderRadius: "50%", background: a.color, flexShrink: 0, marginTop: 4 }} />
                   <div>
-                    <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827", marginBottom: 2 }}>{a.zone}</p>
-                    <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.5 }}>{a.desc}</p>
+                    <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 2 }}>{a.zone}</p>
+                    <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.5 }}>{a.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
             <div style={{ marginTop: 16, background: "#E3F3FF", borderRadius: 10, padding: "10px 14px" }}>
-              <p style={{ fontSize: "13px", color: "#1076BC", lineHeight: 1.6 }}>
+              <p style={{ fontSize: "15px", color: "#1076BC", lineHeight: 1.6 }}>
                 The itinerary card was the most-used component across all products. Getting its structure right — especially the route line scaling for layovers — unlocked consistency across all search result views.
               </p>
             </div>
@@ -973,19 +973,19 @@ function ComponentsSection() {
 
       {/* ── Button system ── */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Button System — 4 types · 4 states</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Button System — 4 types · 4 states</p>
         <div style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 12, alignItems: "end" }}>
           <div />
           {buttonTypes.map((b) => (
             <div key={b.type}>
-              <p style={{ fontSize: "13px", fontWeight: 400, color: "#111827", marginBottom: 3 }}>{b.type}</p>
-              <p style={{ fontSize: "13px", color: "#9CA3AF", lineHeight: 1.4 }}>{b.note}</p>
+              <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 3 }}>{b.type}</p>
+              <p style={{ fontSize: "15px", color: "#9CA3AF", lineHeight: 1.4 }}>{b.note}</p>
             </div>
           ))}
         </div>
         {states.map(({ label, bgs, disabled, focused }) => (
           <div key={label} style={{ display: "grid", gridTemplateColumns: "72px repeat(4, 1fr)", gap: 12, marginBottom: 10, alignItems: "center" }}>
-            <p style={{ fontSize: "13px", color: "#6B7280", fontWeight: 400}}>{label}</p>
+            <p style={{ fontSize: "15px", color: "#6B7280", fontWeight: 600}}>{label}</p>
             {buttonTypes.map((b, i) => (
               <div key={b.type}>
                 <div style={{
@@ -995,7 +995,7 @@ function ComponentsSection() {
                   outline: focused ? "2px solid #1076BC" : "none",
                   outlineOffset: 2,
                   borderRadius: 8, padding: "8px 14px",
-                  fontSize: "13px", fontWeight: 400,
+                  fontSize: "15px", fontWeight: 600,
                   opacity: disabled ? 0.7 : 1,
                   display: "inline-flex", alignItems: "center", gap: 4,
                   whiteSpace: "nowrap",
@@ -1007,20 +1007,20 @@ function ComponentsSection() {
           </div>
         ))}
         <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid #F3F4F6" }}>
-          <p style={{ fontSize: "13px", fontWeight: 400, color: "#6B7280", marginBottom: 12 }}>Icon Button</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#6B7280", marginBottom: 12 }}>Icon Button</p>
           <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
             <div style={{ background: "#1076BC", borderRadius: 8, padding: "9px 18px", display: "inline-flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: "13px", color: "#fff", fontWeight: 400}}>Find Flights</span>
-              <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.8)" }}>⌕</span>
+              <span style={{ fontSize: "15px", color: "#fff", fontWeight: 600}}>Find Flights</span>
+              <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.8)" }}>⌕</span>
             </div>
-            <p style={{ fontSize: "13px", color: "#6B7280", maxWidth: 280, lineHeight: 1.6 }}>Icon buttons pair a label with a trailing icon. Used for primary search CTAs and key conversion actions.</p>
+            <p style={{ fontSize: "15px", color: "#6B7280", maxWidth: 280, lineHeight: 1.6 }}>Icon buttons pair a label with a trailing icon. Used for primary search CTAs and key conversion actions.</p>
           </div>
         </div>
       </div>
 
       <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 28 }}>
         <div className="csl-card">
-          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 14 }}>Desktop specs</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 14 }}>Desktop specs</p>
           {[
             { k: "Height",        v: "36 px" },
             { k: "Padding H",     v: "16 px" },
@@ -1030,13 +1030,13 @@ function ComponentsSection() {
             { k: "Focus ring",    v: "2px offset, accent" },
           ].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: "13px", color: "#6B7280" }}>{k}</span>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#111827", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span style={{ fontSize: "15px", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
         </div>
         <div className="csl-card">
-          <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 14 }}>Mobile specs</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 14 }}>Mobile specs</p>
           {[
             { k: "Height",       v: "44 px (min touch)" },
             { k: "Padding H",    v: "20 px" },
@@ -1046,8 +1046,8 @@ function ComponentsSection() {
             { k: "Focus ring",   v: "2px offset, accent" },
           ].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 8, marginBottom: 8, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: "13px", color: "#6B7280" }}>{k}</span>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#111827", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span style={{ fontSize: "15px", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
         </div>
@@ -1055,11 +1055,11 @@ function ComponentsSection() {
 
       {/* ── Text field system ── */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 20 }}>
-        <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Text Field System — 5 states</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Text Field System — 5 states</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, marginBottom: 20 }}>
           {fieldStates.map((f) => (
             <div key={f.label}>
-              <p style={{ fontSize: "13px", fontWeight: 400, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>{f.label}</p>
+              <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>{f.label}</p>
               <div style={{
                 border: `1.5px solid ${f.border}`,
                 borderRadius: 8,
@@ -1068,12 +1068,12 @@ function ComponentsSection() {
                 position: "relative",
                 opacity: f.label === "Disabled" ? 0.6 : 1,
               }}>
-                <p style={{ fontSize: "13px", color: f.labelCol, marginBottom: 3, fontWeight: 400}}>From</p>
-                <p style={{ fontSize: "13px", color: f.value ? "#1C1C1C" : "#B0B8C0", fontWeight: 400, minHeight: 18 }}>
+                <p style={{ fontSize: "15px", color: f.labelCol, marginBottom: 3, fontWeight: 600}}>From</p>
+                <p style={{ fontSize: "15px", color: f.value ? "#1C1C1C" : "#B0B8C0", fontWeight: 600, minHeight: 18 }}>
                   {f.value || "City or airport"}
                 </p>
                 {f.hint && (
-                  <p style={{ fontSize: "13px", color: f.border === "#EC1A2E" ? "#EC1A2E" : "#9CA3AF", marginTop: 6 }}>{f.hint}</p>
+                  <p style={{ fontSize: "15px", color: f.border === "#EC1A2E" ? "#EC1A2E" : "#9CA3AF", marginTop: 6 }}>{f.hint}</p>
                 )}
                 {f.label === "Focus" && (
                   <div style={{ position: "absolute", inset: -3, border: "2px solid rgba(16,118,188,0.25)", borderRadius: 10, pointerEvents: "none" }} />
@@ -1092,8 +1092,8 @@ function ComponentsSection() {
             { k: "Error text",    v: "Lato · 11pt · 400 · Coral" },
           ].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", flexDirection: "column", gap: 3 }}>
-              <span style={{ fontSize: "13px", color: "#9CA3AF" }}>{k}</span>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#111827", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span style={{ fontSize: "15px", color: "#9CA3AF" }}>{k}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
         </div>
@@ -1130,7 +1130,7 @@ function GridEditorialBanner() {
         <div style={{ flex: "0 0 56%" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
             {["0", "12", "", "", "", "", "", "", "", "", "1428", "1440"].map((v, i) => (
-              <span key={i} style={{ fontSize: "13px", color: "rgba(255,255,255,0.22)", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span key={i} style={{ fontSize: "15px", color: "rgba(255,255,255,0.22)", fontFamily: "Lato, sans-serif" }}>{v}</span>
             ))}
           </div>
           <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 220 }}>
@@ -1144,18 +1144,18 @@ function GridEditorialBanner() {
               <div style={{ width: 36, height: 10, borderRadius: 3, background: "rgba(255,255,255,0.2)" }} />
               <div style={{ flex: 1 }} />
               {["Flights","Hotels","Packages","Help"].map(t => (
-                <p key={t} style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)" }}>{t}</p>
+                <p key={t} style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)" }}>{t}</p>
               ))}
             </div>
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: "40px 24px 16px" }}>
               <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.3, marginBottom: 6 }}>AirIQ Travel Platform</p>
-              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.24)", textAlign: "center", maxWidth: 220, lineHeight: 1.5, marginBottom: 12 }}>Find low-cost flights, manage bookings, and personalised travel AI.</p>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.24)", textAlign: "center", maxWidth: 220, lineHeight: 1.5, marginBottom: 12 }}>Find low-cost flights, manage bookings, and personalised travel AI.</p>
               <div style={{ background: "#1076BC", borderRadius: 6, padding: "6px 16px" }}>
-                <span style={{ fontSize: "13px", color: "#fff", fontWeight: 400}}>Book a Flight</span>
+                <span style={{ fontSize: "15px", color: "#fff", fontWeight: 600}}>Book a Flight</span>
               </div>
             </div>
           </div>
-          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", marginTop: 8, fontFamily: "Lato, sans-serif" }}>
+          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginTop: 8, fontFamily: "Lato, sans-serif" }}>
             1440 Desktop &nbsp;·&nbsp; 12 Count &nbsp;·&nbsp; 12 Gutter &nbsp;·&nbsp; 12 Margin
           </p>
         </div>
@@ -1164,7 +1164,7 @@ function GridEditorialBanner() {
         <div style={{ flex: "0 0 25%" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
             {["0", "", "744", ""].map((v, i) => (
-              <span key={i} style={{ fontSize: "13px", color: "rgba(255,255,255,0.22)", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span key={i} style={{ fontSize: "15px", color: "rgba(255,255,255,0.22)", fontFamily: "Lato, sans-serif" }}>{v}</span>
             ))}
           </div>
           <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 220 }}>
@@ -1174,11 +1174,11 @@ function GridEditorialBanner() {
               ))}
             </div>
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: 16 }}>
-              <p style={{ fontSize: "13px", fontWeight: 400, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.3, marginBottom: 6 }}>AirIQ<br />Tablet</p>
-              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.22)", textAlign: "center", lineHeight: 1.5 }}>Optimised for iPad &amp; tablet views.</p>
+              <p style={{ fontSize: "15px", fontWeight: 600, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.3, marginBottom: 6 }}>AirIQ<br />Tablet</p>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.22)", textAlign: "center", lineHeight: 1.5 }}>Optimised for iPad &amp; tablet views.</p>
             </div>
           </div>
-          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", marginTop: 8, fontFamily: "Lato, sans-serif" }}>
+          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginTop: 8, fontFamily: "Lato, sans-serif" }}>
             744 Tablet &nbsp;·&nbsp; 8 Count &nbsp;·&nbsp; 10 Gutter
           </p>
         </div>
@@ -1187,7 +1187,7 @@ function GridEditorialBanner() {
         <div style={{ flex: "0 0 calc(19% - 28px)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
             {["16", "359", "375"].map((v, i) => (
-              <span key={i} style={{ fontSize: "13px", color: "rgba(255,255,255,0.22)", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span key={i} style={{ fontSize: "15px", color: "rgba(255,255,255,0.22)", fontFamily: "Lato, sans-serif" }}>{v}</span>
             ))}
           </div>
           <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", background: "#1A2333", height: 220 }}>
@@ -1197,11 +1197,11 @@ function GridEditorialBanner() {
               ))}
             </div>
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", zIndex: 1, padding: 14 }}>
-              <p style={{ fontSize: "13px", fontWeight: 400, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.35, marginBottom: 4 }}>AirIQ<br />Mobile</p>
-              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.22)", textAlign: "center", lineHeight: 1.5 }}>4-col mobile grid.</p>
+              <p style={{ fontSize: "15px", fontWeight: 600, color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.35, marginBottom: 4 }}>AirIQ<br />Mobile</p>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.22)", textAlign: "center", lineHeight: 1.5 }}>4-col mobile grid.</p>
             </div>
           </div>
-          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.3)", marginTop: 8, fontFamily: "Lato, sans-serif" }}>
+          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginTop: 8, fontFamily: "Lato, sans-serif" }}>
             375 Mobile &nbsp;·&nbsp; 4 Count &nbsp;·&nbsp; 8 Gutter
           </p>
         </div>
@@ -1241,15 +1241,15 @@ function GridSection() {
               </div>
             </div>
           </div>
-          <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>General Grid</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 14 }}>General Grid</p>
           {[{ k: "Columns", v: "12" }, { k: "Margin", v: "12 px" }, { k: "Gutter", v: "12 px" }].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 7, marginBottom: 7, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: "13px", color: "#6B7280" }}>{k}</span>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span style={{ fontSize: "15px", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
-          <p style={{ fontSize: "13px", fontWeight: 400, color: "#9CA3AF", marginBottom: 8 }}>Desktop — all standard pages</p>
-          <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Homepage, listing, profile, settings — every general layout uses this grid.</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>Desktop — all standard pages</p>
+          <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Homepage, listing, profile, settings — every general layout uses this grid.</p>
         </div>
 
         {/* 5-col Search Grid */}
@@ -1266,15 +1266,15 @@ function GridSection() {
               </div>
             </div>
           </div>
-          <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>Search Grid</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 14 }}>Search Grid</p>
           {[{ k: "Columns", v: "5" }, { k: "Margin", v: "12 px" }, { k: "Gutter", v: "12 px" }].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 7, marginBottom: 7, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: "13px", color: "#6B7280" }}>{k}</span>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span style={{ fontSize: "15px", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
-          <p style={{ fontSize: "13px", fontWeight: 400, color: "#9CA3AF", marginBottom: 8 }}>Desktop — search results</p>
-          <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Sidebar takes 1 column; results take 4. No arbitrary pixel overrides needed.</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>Desktop — search results</p>
+          <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Sidebar takes 1 column; results take 4. No arbitrary pixel overrides needed.</p>
         </div>
 
         {/* 4-col Mobile Grid */}
@@ -1292,15 +1292,15 @@ function GridSection() {
               </div>
             </div>
           </div>
-          <p style={{ fontSize: "0.84rem", fontWeight: 700, color: "#111827", marginBottom: 14 }}>Mobile Grid</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 14 }}>Mobile Grid</p>
           {[{ k: "Columns", v: "4" }, { k: "Margin", v: "12 px" }, { k: "Gutter", v: "8 px" }].map(({ k, v }) => (
             <div key={k} style={{ display: "flex", justifyContent: "space-between", paddingBottom: 7, marginBottom: 7, borderBottom: "1px solid #F3F4F6" }}>
-              <span style={{ fontSize: "13px", color: "#6B7280" }}>{k}</span>
-              <span style={{ fontSize: "13px", fontWeight: 400, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
+              <span style={{ fontSize: "15px", color: "#6B7280" }}>{k}</span>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", fontFamily: "Lato, sans-serif" }}>{v}</span>
             </div>
           ))}
-          <p style={{ fontSize: "13px", fontWeight: 400, color: "#9CA3AF", marginBottom: 8 }}>All mobile screens</p>
-          <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Tighter 8px gutter maximises usable width on small screens while keeping breathing room between elements.</p>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", marginBottom: 8 }}>All mobile screens</p>
+          <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.6, marginTop: "auto" }}>Tighter 8px gutter maximises usable width on small screens while keeping breathing room between elements.</p>
         </div>
       </div>
 
@@ -1327,10 +1327,10 @@ function ResultsSection() {
       <div className="csl-reveal" style={{ borderRadius: 20, overflow: "hidden", border: "1px solid #E0E6EC", marginBottom: 28 }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
           <div style={{ background: "#F9FAFC", padding: "18px 24px 10px", borderBottom: "1px solid #E0E6EC" }}>
-            <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF" }}>Before</p>
+            <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF" }}>Before</p>
           </div>
           <div style={{ background: "#E3F3FF", padding: "18px 24px 10px", borderBottom: "1px solid #D0E6F5", borderLeft: "1px solid #D0E6F5" }}>
-            <p style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: "#1076BC" }}>After</p>
+            <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#1076BC" }}>After</p>
           </div>
         </div>
         {[
@@ -1344,11 +1344,11 @@ function ResultsSection() {
           <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid #F3F4F6" }}>
             <div style={{ padding: "14px 24px", background: "#fff", display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#E0E6EC", flexShrink: 0 }} />
-              <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.5 }}>{b}</p>
+              <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.5 }}>{b}</p>
             </div>
             <div style={{ padding: "14px 24px", background: "rgba(227,243,255,0.3)", borderLeft: "1px solid #D0E6F5", display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#1076BC", flexShrink: 0 }} />
-              <p style={{ fontSize: "13px", color: "#1076BC", fontWeight: 400, lineHeight: 1.5 }}>{a}</p>
+              <p style={{ fontSize: "15px", color: "#1076BC", fontWeight: 600, lineHeight: 1.5 }}>{a}</p>
             </div>
           </div>
         ))}
@@ -1422,15 +1422,15 @@ function LearningsSection() {
             key={item.category}
             style={{ background: "#fff", borderRadius: 18, padding: "28px", boxShadow: "0 4px 14px rgba(0,0,0,0.04)", borderLeft: `4px solid ${item.color}` }}
           >
-            <span style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: item.color, background: item.bg, borderRadius: 20, padding: "3px 10px", display: "inline-block", marginBottom: 16 }}>
+            <span style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: item.color, background: item.bg, borderRadius: 20, padding: "3px 10px", display: "inline-block", marginBottom: 16 }}>
               {item.category}
             </span>
-            <p style={{ fontSize: "13px", fontStyle: "italic", color: "#9CA3AF", marginBottom: 12, lineHeight: 1.6 }}>
+            <p style={{ fontSize: "15px", fontStyle: "italic", color: "#9CA3AF", marginBottom: 12, lineHeight: 1.6 }}>
               &ldquo;{item.assumption}&rdquo;
             </p>
             <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
               <span style={{ color: item.color, fontWeight: 700, fontSize: "1.1rem", flexShrink: 0, lineHeight: 1.4 }}>→</span>
-              <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "#111827", lineHeight: 1.65 }}>{item.reality}</p>
+              <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", lineHeight: 1.65 }}>{item.reality}</p>
             </div>
           </div>
         ))}
@@ -1444,16 +1444,16 @@ function LearningsSection() {
           style={{ background: item.bg, borderRadius: 18, padding: "32px", marginBottom: 16, display: "grid", gridTemplateColumns: "1fr 2fr", gap: 32, alignItems: "center" }}
         >
           <div>
-            <span style={{ fontSize: "13px", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.14em", color: item.color, display: "inline-block", marginBottom: 14 }}>
+            <span style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: item.color, display: "inline-block", marginBottom: 14 }}>
               {item.category}
             </span>
-            <p style={{ fontSize: "13px", fontStyle: "italic", color: "#6B7280", lineHeight: 1.6 }}>
+            <p style={{ fontSize: "15px", fontStyle: "italic", color: "#6B7280", lineHeight: 1.6 }}>
               &ldquo;{item.assumption}&rdquo;
             </p>
           </div>
           <div style={{ display: "flex", gap: 12, alignItems: "flex-start", paddingLeft: 32, borderLeft: `2px solid ${item.color}` }}>
             <span style={{ color: item.color, fontWeight: 700, fontSize: "1.2rem", flexShrink: 0, lineHeight: 1.3 }}>→</span>
-            <p style={{ fontSize: "0.88rem", fontWeight: 600, color: "#111827", lineHeight: 1.65 }}>{item.reality}</p>
+            <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", lineHeight: 1.65 }}>{item.reality}</p>
           </div>
         </div>
       ))}

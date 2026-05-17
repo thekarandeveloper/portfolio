@@ -200,11 +200,11 @@ function CsHeader({
             background: "rgba(30,144,255,0.08)",
             border: "1px solid rgba(30,144,255,0.18)",
             display: "inline-flex", alignItems: "center", justifyContent: "center",
-            fontSize: "13px", fontWeight: 400, color: "#1E90FF",
+            fontSize: "15px", fontWeight: 600, color: "#1E90FF",
             flexShrink: 0, letterSpacing: "-0.01em",
           }}>NT</span>
           <span style={{
-            fontSize: "0.82rem", fontWeight: 600, color: "#374151",
+            fontSize: "15px", fontWeight: 600, color: "#374151",
             letterSpacing: "0.01em",
           }}>Nikunj Tyagi</span>
         </Link>

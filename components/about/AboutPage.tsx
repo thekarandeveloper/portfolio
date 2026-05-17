@@ -57,16 +57,16 @@ const css = `
   color: inherit;
 }
 .ab-nav-initials {
-  font-size: 13px; font-weight:  400; letter-spacing: 0.06em; color: #111;
+  font-size: 15px; font-weight: 600; letter-spacing: 0.06em; color: #111;
   background: rgba(0,0,0,0.06); padding: 2px 7px; border-radius: 6px;
 }
 .ab-nav-clock {
-  font-size: 13px; font-variant-numeric: tabular-nums;
+  font-size: 15px; font-variant-numeric: tabular-nums;
   color: rgba(30,30,40,0.45); font-weight: 500; letter-spacing: 0.03em;
 }
 .ab-nav-links { display: flex; align-items: center; gap: 2px; }
 .ab-nav-link {
-  font-size: 13px; letter-spacing: 0.02em; font-weight:  400;
+  font-size: 15px; letter-spacing: 0.02em; font-weight: 600;
   color: rgba(30,30,40,0.60); text-decoration: none;
   padding: 0.55rem 1.1rem; border-radius: 99px;
   transition: color 0.18s, background 0.18s;
@@ -76,7 +76,7 @@ const css = `
 .ab-nav-link.ab-active:hover { background: #0066FF; }
 .ab-nav-cta {
   display: inline-flex; align-items: center;
-  font-size: 13px; letter-spacing: 0.02em; font-weight:  400;
+  font-size: 15px; letter-spacing: 0.02em; font-weight: 600;
   color: #fff; text-decoration: none;
   padding: 0.55rem 1.2rem; border-radius: 99px;
   background: #111; transition: background 0.18s;
@@ -139,7 +139,7 @@ const css = `
 .ab-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
 .ab-chip {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 13px; font-weight:  400; letter-spacing: 0.03em;
+  font-size: 15px; font-weight: 600; letter-spacing: 0.03em;
   color: #555;
   background: rgba(0,0,0,0.04);
   border: 1px solid rgba(0,0,0,0.08);
@@ -247,7 +247,7 @@ const css = `
   position: relative;
 }
 .ab-section-label {
-  font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+  font-size: 15px; letter-spacing: 0.2em; text-transform: uppercase;
   color: #1E90FF; margin-bottom: 0.85rem; display: block;
 }
 .ab-section-title {
@@ -287,7 +287,7 @@ const css = `
   margin-bottom: 0.5rem; line-height: 1.2;
 }
 .ab-love-desc {
-  font-size: 0.875rem; color: #555; line-height: 1.75;
+  font-size: 15px; color: #555; line-height: 1.75;
 }
 .ab-love-whisper {
   margin-top: 1.2rem;
@@ -358,7 +358,7 @@ const css = `
   position: absolute; bottom: 0; left: 0; right: 0; height: 46px;
   display: flex; align-items: center; justify-content: center;
   font-family: 'Caveat', cursive;
-  font-size: 0.92rem; color: #888;
+  font-size: 15px; color: #888;
   padding: 0 8px; text-align: center; line-height: 1.3;
 }
 /* hover overlay */
@@ -402,7 +402,7 @@ const css = `
 }
 .ab-anno-text {
   font-family: 'Caveat', cursive;
-  font-size: 0.9rem; color: rgba(0,0,0,0.38); line-height: 1.35;
+  font-size: 15px; color: rgba(0,0,0,0.38); line-height: 1.35;
 }
 @media (max-width: 1100px) {
   .ab-pol-grid { grid-template-columns: repeat(3, 1fr); }
@@ -515,7 +515,7 @@ const heroHtml = `
   <div class="ab-float-pill" style="bottom:22%;right:7%;animation:abDrift 6.2s ease-in-out infinite 1.6s;--r:2deg;">pixels &gt; sleep ✦</div>
   <span class="ab-float-star" style="top:17%;right:14%;animation:abDrift 4.5s ease-in-out infinite 0.4s;font-size:1.5rem;">✦</span>
   <span class="ab-float-star" style="bottom:38%;left:2%;animation:abDrift 5.8s ease-in-out infinite 1s;font-size:1.1rem;">✦</span>
-  <span class="ab-float-star" style="top:52%;right:2%;animation:abDrift 7s ease-in-out infinite 2s;font-size:0.85rem;">✦</span>
+  <span class="ab-float-star" style="top:52%;right:2%;animation:abDrift 7s ease-in-out infinite 2s;font-size: 15px;">✦</span>
 
 </section>
 `;
