@@ -20,7 +20,7 @@ const THEME_VARS: Record<CsTheme, CSSProperties> = {
   biblo: {
     "--csl-accent":        "#C8703A",
     "--csl-accent-dim":    "rgba(200,112,58,0.1)",
-    "--csl-hero-bg":       "#1C0F08",
+    "--csl-hero-bg":       "#FFFDF8",
     "--csl-tag-bg":        "#FEF4E8",
     "--csl-toc-active-bg": "#FEF4E8",
     backgroundImage: "linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px)",

@@ -139,15 +139,20 @@ function PhoneMockupScene() {
 ───────────────────────────────────────────────────────────────────── */
 function BibloHero() {
   return (
-    <div className="csl-hero">
-      <div className="csl-hero-grid" />
+    <div className="csl-hero csl-hero--light">
+      {/* Dark line grid matching homepage */}
+      <div style={{
+        position:"absolute", inset:0, pointerEvents:"none",
+        backgroundImage:"linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px)",
+        backgroundSize:"28px 28px",
+      }} />
       <div className="csl-hero-glow" />
       <div className="csl-hero-inner">
         <div className="csl-hero-left">
           <div className="csl-hero-eyebrow">Infosys Internship · iOS App</div>
           <h1 className="csl-hero-title">
             BibloFi<br />
-            <em style={{ fontStyle:"italic", color:"rgba(255,255,255,0.65)" }}>the library hadn&apos;t</em>
+            <em style={{ fontStyle:"italic", color:"rgba(200,112,58,0.7)" }}>the library hadn&apos;t</em>
             <br />changed. The students had.
           </h1>
           <p className="csl-hero-desc">
