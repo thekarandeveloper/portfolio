@@ -56,133 +56,85 @@ const META_ROWS = [
 ];
 
 /* ─────────────────────────────────────────────────────────────────────
-   HERO POLAROID MEMORY COLLAGE
+   HERO PHONE MOCKUP
 ───────────────────────────────────────────────────────────────────── */
-const POLAROIDS = [
-  {
-    src: "/Image/Biblofi/me.png",
-    alt: "At the library",
-    caption: "at the library 📚",
-    rot: -7, x: 5,   y: 50,  z: 2, w: 158, delay: "0s",   tape: true,
-  },
-  {
-    src: "/Image/Biblofi/research.png",
-    alt: "User research sessions",
-    caption: "real students, real struggles",
-    rot: 5,  x: 134, y: -12, z: 3, w: 170, delay: "1.4s", tape: false,
-  },
-  {
-    src: "/Image/Biblofi/team-infosys.png",
-    alt: "Infosys internship team",
-    caption: "the infosys crew",
-    rot: -4, x: 62,  y: 148, z: 4, w: 168, delay: "0.7s", tape: true,
-  },
-  {
-    src: "/Image/Biblofi/design-process.png",
-    alt: "Design process sketches",
-    caption: "Apr '23",
-    rot: 9,  x: 200, y: 68,  z: 1, w: 148, delay: "2s",   tape: false,
-  },
-] as const;
-
-function PolaroidMemoryCollage() {
-  const [hovered, setHovered] = React.useState<number | null>(null);
-
+function PhoneFrame({ src, alt, w, h, tilt, style = {} }: {
+  src: string; alt: string; w: number; h: number; tilt: string; style?: React.CSSProperties;
+}) {
+  const islandW = Math.round(w * 0.42);
+  const btnH    = Math.round(h * 0.14);
+  const volH    = Math.round(h * 0.1);
   return (
-    <div className="csl-polaroid-collage">
-      {/* handwritten annotation — top */}
-      <div className="csl-polaroid-note" style={{ top: 18, left: "6%", fontSize: 17, transform: "rotate(-6deg)" }}>
-        6 weeks of chaos →
+    <div style={{
+      position:"relative", width:w, height:h,
+      background:"#161616", borderRadius:42,
+      boxShadow:"0 0 0 1px rgba(0,0,0,0.08), 0 20px 40px rgba(0,0,0,0.12)",
+      transform:`rotate(${tilt})`,
+      flexShrink:0,
+      ...style,
+    }}>
+      <div style={{
+        position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
+        width:islandW, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
+      }} />
+      <div style={{ position:"absolute", inset:0, borderRadius:42, overflow:"hidden" }}>
+        <Image src={src} alt={alt} width={w * 2} height={h * 2}
+          style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+        <div style={{
+          position:"absolute", inset:0,
+          background:"linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%)",
+          borderRadius:42, pointerEvents:"none",
+        }} />
       </div>
+      <div style={{ position:"absolute", right:-4, top:Math.round(h*0.24), width:4, height:btnH, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
+      <div style={{ position:"absolute", left:-4, top:Math.round(h*0.2),  width:4, height:volH, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
+      <div style={{ position:"absolute", left:-4, top:Math.round(h*0.32), width:4, height:volH, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
+    </div>
+  );
+}
 
-      <div className="csl-polaroid-stage">
-        {POLAROIDS.map((p, i) => {
-          const isHovered = hovered === i;
-          return (
-            <div
-              key={i}
-              style={{
-                position: "absolute",
-                left: p.x,
-                top: p.y,
-                zIndex: isHovered ? 20 : p.z,
-                animation: `polaroidFloat 7s ease-in-out ${p.delay} infinite`,
-              }}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              {/* tape piece */}
-              {p.tape && (
-                <div style={{
-                  position: "absolute",
-                  top: -11,
-                  left: "50%",
-                  transform: "translateX(-50%) rotate(-3deg)",
-                  width: 44,
-                  height: 20,
-                  background: "rgba(252, 224, 165, 0.72)",
-                  borderRadius: 2,
-                  zIndex: 5,
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
-                }} />
-              )}
-
-              {/* polaroid frame */}
-              <div style={{
-                background: "#fff",
-                padding: "10px 10px 34px",
-                borderRadius: 2,
-                boxShadow: isHovered
-                  ? "0 20px 60px rgba(0,0,0,0.18), 0 6px 18px rgba(0,0,0,0.10)"
-                  : "0 4px 16px rgba(0,0,0,0.09), 0 10px 30px rgba(0,0,0,0.07)",
-                transform: isHovered
-                  ? "rotate(-1deg) translateY(-8px) scale(1.04)"
-                  : `rotate(${p.rot}deg)`,
-                transition: "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.45s ease",
-                cursor: "pointer",
-              }}>
-                {/* photo */}
-                <div style={{
-                  width: p.w,
-                  height: Math.round(p.w * 0.87),
-                  overflow: "hidden",
-                  background: "#e0d8d0",
-                }}>
-                  <Image
-                    src={p.src}
-                    alt={p.alt}
-                    width={p.w * 2}
-                    height={Math.round(p.w * 0.87) * 2}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      filter: "sepia(12%) brightness(0.97) contrast(0.96) saturate(0.92)",
-                      display: "block",
-                    }}
-                  />
-                </div>
-
-                {/* caption */}
-                <div style={{
-                  paddingTop: 7,
-                  textAlign: "center",
-                  fontFamily: "var(--font-caveat)",
-                  fontSize: 14,
-                  color: "rgba(90, 55, 20, 0.72)",
-                  lineHeight: 1.3,
-                }}>
-                  {p.caption}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+function PhoneMockupScene() {
+  return (
+    <div style={{
+      position:"relative", width:"100%",
+      display:"flex", alignItems:"center", justifyContent:"center",
+      gap:12, padding:"64px 32px",
+      overflow:"visible",
+    }}>
+      {/* ambient glow */}
+      <div style={{
+        position:"absolute", width:320, height:320, borderRadius:"50%",
+        background:"radial-gradient(circle, rgba(200,112,58,0.18) 0%, transparent 70%)",
+        animation:"bibloGlowPulse 5s ease-in-out infinite",
+        pointerEvents:"none", zIndex:0,
+      }} />
+      {/* left phone — flex item, shifted down for depth */}
+      <div style={{ transform:"translateY(28px)", opacity:0.88, zIndex:1, flexShrink:0 }}>
+        <PhoneFrame src="/Image/Biblofi/hero1.png" alt="BibloFi screen" w={148} h={320} tilt="-6deg" />
       </div>
-
-      {/* handwritten note — bottom right */}
-      <div className="csl-polaroid-note" style={{ bottom: 22, right: "6%", fontSize: 15, transform: "rotate(4deg)", textAlign: "right" }}>
-        it all started with<br />a sticky note wall ♡
+      {/* center phone — flex item, floating animation */}
+      <div className="biblo-phone-wrap" style={{ zIndex:3, flexShrink:0 }}>
+        <div style={{
+          position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
+          width:88, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
+        }} />
+        <div style={{ position:"absolute", inset:0, borderRadius:42, overflow:"hidden" }}>
+          <Image src="/Image/Biblofi/smart-book.png" alt="BibloFi: Smart Book Discovery"
+            width={420} height={908}
+            style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+          <div style={{
+            position:"absolute", inset:0,
+            background:"linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%)",
+            borderRadius:42, pointerEvents:"none",
+          }} />
+        </div>
+        <div style={{ position:"absolute", right:-4, top:110, width:4, height:64, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
+        <div style={{ position:"absolute", left:-4, top:88,  width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
+        <div style={{ position:"absolute", left:-4, top:142, width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
+      </div>
+      {/* right phone — flex item, shifted up for depth */}
+      <div style={{ transform:"translateY(-20px)", opacity:0.88, zIndex:2, flexShrink:0 }}>
+        <PhoneFrame src="/Image/Biblofi/hero2.png" alt="BibloFi screen" w={148} h={320} tilt="5deg" />
       </div>
     </div>
   );
@@ -219,7 +171,7 @@ function BibloHero() {
           </div>
         </div>
         <div className="csl-hero-right">
-          <PolaroidMemoryCollage />
+          <PhoneMockupScene />
         </div>
       </div>
 
