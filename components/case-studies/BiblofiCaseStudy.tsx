@@ -336,8 +336,13 @@ function ResearchSection() {
         </p>
       </div>
 
-      <div className="csl-reveal rd2" style={{ marginBottom:28 }}>
-        <CsImg label="Research methodology — surveys, interviews & observation" height={340} icon="🔍" sub="Place /Image/Biblofi/method.png here" />
+      <div className="csl-reveal rd2" style={{ marginBottom:28, borderRadius:16, overflow:"hidden" }}>
+        <Image
+          src="/Image/Biblofi/research.png"
+          alt="Research methodology — surveys, interviews & observation"
+          width={1200} height={680}
+          style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
+        />
       </div>
 
       {/* User voice */}
