@@ -6053,7 +6053,7 @@ body.csl-page-active footer { display: none !important; }
 
 .csl-root {
   min-height: 100vh;
-  background: #ffffff;
+  background-color: #ffffff;
   font-family: var(--font-lato), sans-serif;
   --csl-accent:         #3B5BDB;
   --csl-accent-dim:     rgba(59,91,219,0.1);
