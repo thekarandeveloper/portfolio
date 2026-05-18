@@ -2465,7 +2465,97 @@ nav.scrolled .nav-pill{
 .dark .loader-bar{background:rgba(30,144,255,0.7);}
 
 /* ── Images — subtle contrast balance in dark mode ── */
-.dark img:not([data-no-dim]){filter:brightness(0.90) contrast(1.02);}`;
+.dark img:not([data-no-dim]){filter:brightness(0.90) contrast(1.02);}
+
+/* ── Work section tags + CTAs ── */
+.dark .pw-tag{
+  background:rgba(255,255,255,0.06);
+  border-color:rgba(255,255,255,0.08);
+  color:rgba(237,232,227,0.52);
+}
+.dark .cswk-cta{
+  background:rgba(255,255,255,0.06);
+  border-color:rgba(255,255,255,0.09);
+  color:rgba(237,232,227,0.75);
+  box-shadow:0 2px 12px rgba(0,0,0,0.3);
+}
+
+/* ── Bento tags (needs !important to beat existing !important) ── */
+.dark .bento-tag{
+  background:rgba(255,255,255,0.07)!important;
+  border-color:rgba(255,255,255,0.09);
+  color:rgba(237,232,227,0.52);
+}
+
+/* ── Home loves cards (correct singular class name) ── */
+.dark .home-love-card{
+  background:#1c1917;
+  box-shadow:0 1px 4px rgba(0,0,0,0.22),0 4px 22px rgba(0,0,0,0.38);
+}
+.dark .home-love-card:hover{
+  box-shadow:0 12px 40px rgba(0,0,0,0.52),0 2px 10px rgba(0,0,0,0.25);
+}
+
+/* ── Polaroid experience photos ── */
+.dark .home-xp-pol{
+  background:#1c1917;
+  box-shadow:0 4px 20px rgba(0,0,0,0.42),0 1px 5px rgba(0,0,0,0.22);
+}
+.dark .home-xp-pol:hover{
+  box-shadow:0 28px 64px rgba(0,0,0,0.58),0 6px 20px rgba(0,0,0,0.32);
+}
+
+/* ── Polaroid frames (hero section) ── */
+.dark .hi-pm-frame{
+  background:#1c1917;
+  box-shadow:0 4px 16px rgba(0,0,0,0.38),0 10px 30px rgba(0,0,0,0.28);
+}
+
+/* ── Timeline dot ── */
+.dark .timeline-dot{
+  background:#1c1917;
+  border-color:rgba(30,144,255,0.42);
+  box-shadow:0 0 0 3px rgba(30,144,255,0.10);
+}
+
+/* ── Contact section search results ── */
+.dark .gsearch-item{
+  background:#1c1917;
+  border-color:rgba(255,255,255,0.07);
+  box-shadow:0 2px 10px rgba(0,0,0,0.22);
+}
+.dark .gsearch-item:hover{
+  box-shadow:0 4px 18px rgba(30,100,200,0.15);
+  border-color:rgba(30,144,255,0.22);
+}
+
+/* ── About nav dots + hint ── */
+.dark .about-page-dot{
+  background:#1c1917;
+  border-color:rgba(255,255,255,0.12);
+  box-shadow:0 2px 8px rgba(0,0,0,0.32);
+}
+.dark .about-page-dot.active{background:#1E90FF;border-color:#1E90FF;}
+.dark .about-turn-hint{
+  background:#1c1917;
+  color:rgba(237,232,227,0.65);
+  box-shadow:0 3px 14px rgba(0,0,0,0.38);
+}
+
+/* ── Hero line2 / line3 text (typed gradient) ── */
+.dark .hero-line1 span,.dark .hero-name{color:#ede8e3;}
+.dark .hero-line2{color:rgba(237,232,227,0.46);}
+
+/* ── Section/work dividers ── */
+.dark .pw-divider,.dark .sec-divider,.dark hr{border-color:rgba(255,255,255,0.07);}
+
+/* ── HeroSection heading text overrides ── */
+.dark .hi-name,.dark .hi-title,.dark .hi-role{color:#ede8e3;}
+.dark .hi-year,.dark .hi-location{color:rgba(237,232,227,0.38);}
+
+/* ── Scroll shapes ── */
+.dark .ss{border-color:rgba(255,255,255,0.06);}
+.dark .ss-line{background:rgba(255,255,255,0.06);}`;
 
 export function HomeStyles() {
   return <style dangerouslySetInnerHTML={{ __html: css }} />;

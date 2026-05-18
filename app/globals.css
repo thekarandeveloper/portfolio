@@ -86,6 +86,45 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ── Global CSS design tokens ─────────────────────────────
+   These are the single source of truth for both themes.
+   Every component should use var(--color-*) instead of
+   hardcoded hex values wherever possible.
+   ──────────────────────────────────────────────────────── */
+:root {
+  --color-page-bg:    #FDFAF8;
+  --color-surface:    #ffffff;
+  --color-surface-2:  #F9F5F2;
+  --color-surface-3:  #F3EDE8;
+  --color-border:     rgba(0,0,0,0.08);
+  --color-border-2:   rgba(0,0,0,0.12);
+  --color-text:       #1A1210;
+  --color-text-2:     #3D2E28;
+  --color-text-muted: #7A6058;
+  --color-text-faint: #B09A90;
+  --color-accent:     #1E90FF;
+  --color-pink:       #E8547A;
+  --shadow-card:      0 2px 12px rgba(0,0,0,0.06);
+  --shadow-card-hover:0 20px 60px rgba(0,0,0,0.09);
+}
+
+.dark {
+  --color-page-bg:    #0f0d0c;
+  --color-surface:    #1c1917;
+  --color-surface-2:  #232120;
+  --color-surface-3:  #2c2826;
+  --color-border:     rgba(255,255,255,0.07);
+  --color-border-2:   rgba(255,255,255,0.11);
+  --color-text:       #ede8e3;
+  --color-text-2:     #d4cec8;
+  --color-text-muted: #a09590;
+  --color-text-faint: #6e6460;
+  --color-accent:     #1E90FF;
+  --color-pink:       #f06080;
+  --shadow-card:      0 2px 16px rgba(0,0,0,0.35);
+  --shadow-card-hover:0 20px 60px rgba(0,0,0,0.50);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -7655,4 +7694,63 @@ p.iq2-frame-caption,
 .dark .scroll-to-top:hover {
   background: #252220;
   color: #ede8e3;
+}
+
+/* ── Footer inline-style override
+   GlobalFooter sets background via JS inline style (for per-page themes).
+   We override with !important in dark mode so the dark bg always wins.
+   ── */
+.dark footer {
+  background-color: #0a0908 !important;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px) !important;
+  background-size: 28px 28px !important;
+}
+
+/* ── Tailwind bg-white / hardcoded white surfaces in dark mode ── */
+.dark .bg-white,
+.dark [class*="bg-white"] {
+  background-color: var(--color-surface) !important;
+}
+.dark [style*="background:#fff"],
+.dark [style*="background: #fff"],
+.dark [style*="background-color:#fff"],
+.dark [style*="background-color: #fff"],
+.dark [style*="background: white"],
+.dark [style*="background:white"] {
+  background-color: var(--color-surface) !important;
+}
+
+/* ── Tailwind hardcoded dark text in dark mode ── */
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark [class*="text-gray-9"],
+.dark [class*="text-gray-8"] {
+  color: var(--color-text) !important;
+}
+.dark .text-gray-700,
+.dark .text-gray-600,
+.dark [class*="text-gray-7"],
+.dark [class*="text-gray-6"] {
+  color: var(--color-text-muted) !important;
+}
+
+/* ── prefers-color-scheme media fallback (no JS / toggle not yet clicked) ── */
+@media (prefers-color-scheme: dark) {
+  :root:not(.dark):not(.light) {
+    --color-page-bg:    #0f0d0c;
+    --color-surface:    #1c1917;
+    --color-surface-2:  #232120;
+    --color-surface-3:  #2c2826;
+    --color-border:     rgba(255,255,255,0.07);
+    --color-border-2:   rgba(255,255,255,0.11);
+    --color-text:       #ede8e3;
+    --color-text-2:     #d4cec8;
+    --color-text-muted: #a09590;
+    --color-text-faint: #6e6460;
+    --color-pink:       #f06080;
+    --shadow-card:      0 2px 16px rgba(0,0,0,0.35);
+    --shadow-card-hover:0 20px 60px rgba(0,0,0,0.50);
+  }
 }
