@@ -2168,8 +2168,8 @@ nav.scrolled .nav-pill{
   --border2:rgba(255,255,255,0.10);
   --ink:#ede8e3;
   --ink2:#d4cec8;
-  --ink3:#a09590;
-  --ink4:#6e6460;
+  --ink3:#a8a09a;
+  --ink4:#8c847e;   /* was #6e6460 — too dark on #0f0d0c bg, now lighter */
   --pink3:rgba(30,144,255,0.10);
   --pink5:rgba(30,144,255,0.06);
 }
@@ -2555,7 +2555,67 @@ nav.scrolled .nav-pill{
 
 /* ── Scroll shapes ── */
 .dark .ss{border-color:rgba(255,255,255,0.06);}
-.dark .ss-line{background:rgba(255,255,255,0.06);}`;
+.dark .ss-line{background:rgba(255,255,255,0.06);}
+
+/* ═══════════════════════════════════════════════════════
+   DESIGN SYSTEM ZOOM — inner element dark overrides
+   ═══════════════════════════════════════════════════════ */
+.dark .dsz-title-main{color:#ede8e3;}
+.dark .dsz-title-script{color:#1E90FF;}
+.dark .dsz-float-arrow{opacity:0.4;}
+.dark .dsz-cta{
+  background:rgba(255,255,255,0.06);
+  border-color:rgba(255,255,255,0.10);
+  color:rgba(237,232,227,0.75);
+}
+.dark .dsz-cta:hover{background:#1076BC;color:#ffffff;border-color:#1076BC;}
+/* card inner */
+.dark .dsz-project-label{color:rgba(237,232,227,0.28);}
+.dark .dsz-title{color:#ede8e3;}
+.dark .dsz-desc{color:rgba(237,232,227,0.48);}
+.dark .dsz-pill{
+  background:rgba(255,255,255,0.07);
+  color:rgba(237,232,227,0.62);
+}
+.dark .dsz-wip-tag{background:rgba(30,144,255,0.12);color:rgba(30,180,255,0.88);}
+.dark .dsz-stat-chip{background:rgba(255,255,255,0.05);}
+.dark .dsz-stat-number{color:#1E90FF;}
+.dark .dsz-stat-label{color:rgba(237,232,227,0.30);}
+.dark .dsz-inner-divider{background:rgba(255,255,255,0.06);}
+.dark .dsz-bar-track{background:rgba(255,255,255,0.08);}
+.dark .dsz-bar-label{color:rgba(237,232,227,0.42);}
+.dark .dsz-bar-pct{color:rgba(237,232,227,0.38);}
+.dark .dsz-footer-chip{background:rgba(255,255,255,0.06);color:rgba(237,232,227,0.55);}
+.dark .dsz-card::before{background:linear-gradient(90deg,transparent,rgba(30,144,255,0.2),transparent);}
+
+/* ═══════════════════════════════════════════════════════
+   WORK SECTION (cswk) — dark text + divider overrides
+   ═══════════════════════════════════════════════════════ */
+.dark .cswk-title{color:#ede8e3;}
+.dark .cswk-desc{color:rgba(237,232,227,0.52);}
+.dark .cswk-category{color:rgba(237,232,227,0.32);}
+.dark .cswk-num{color:rgba(237,232,227,0.26);}
+.dark .cswk-sep{color:rgba(237,232,227,0.18);}
+.dark .cswk-handlabel{color:rgba(237,232,227,0.40);}
+.dark .cswk-annot{opacity:0.5;}
+.dark .cswk-divider{
+  background:linear-gradient(to right,transparent 0%,rgba(255,255,255,0.07) 25%,rgba(255,255,255,0.07) 75%,transparent 100%);
+}
+.dark .cswk-note{
+  background:rgba(255,255,255,0.04);
+  border-color:rgba(255,255,255,0.07);
+  color:rgba(237,232,227,0.55);
+}
+/* reel dots */
+.dark .cswk-reel-dot{background:rgba(255,255,255,0.25);}
+@keyframes cswkDotDark{0%,22%{width:18px;height:5px;background:rgba(255,255,255,0.65);}27%,100%{width:5px;height:5px;background:rgba(255,255,255,0.2);}}
+.dark .cswk-reel-dot{animation-name:cswkDotDark;}
+/* tape corners */
+.dark .cswk-tape{opacity:0.25;}
+.dark .cswk-corner{opacity:0.18;}
+/* cswk-tag colors — each project uses its own color via inline style,
+   but base border should adapt */
+.dark .cswk-tag{border-color:rgba(255,255,255,0.10);}`;
 
 export function HomeStyles() {
   return <style dangerouslySetInnerHTML={{ __html: css }} />;
