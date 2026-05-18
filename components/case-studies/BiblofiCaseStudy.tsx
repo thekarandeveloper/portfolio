@@ -45,6 +45,7 @@ const TOC_ITEMS = [
   { id: "accessibility", label: "Accessibility"       },
   { id: "testing",       label: "Usability Testing"   },
   { id: "learnings",     label: "Learnings"           },
+  { id: "experience",   label: "Experience"          },
 ];
 
 const META_ROWS = [
@@ -98,40 +99,17 @@ function PhotoStack() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   HERO PHONE MOCKUP
+   HERO PHONE — drop-shadow preserves PNG corners, no overflow clipping
 ───────────────────────────────────────────────────────────────────── */
-function PhoneFrame({ src, alt, w, h, tilt, style = {} }: {
-  src: string; alt: string; w: number; h: number; tilt: string; style?: React.CSSProperties;
-}) {
-  const islandW = Math.round(w * 0.42);
-  const btnH    = Math.round(h * 0.14);
-  const volH    = Math.round(h * 0.1);
+function BibloPhone({ src, alt, w, tilt }: { src: string; alt: string; w: number; tilt: string }) {
   return (
     <div style={{
-      position:"relative", width:w, height:h,
-      background:"#161616", borderRadius:42,
-      boxShadow:"0 0 0 1px rgba(0,0,0,0.08), 0 20px 40px rgba(0,0,0,0.12)",
-      transform:`rotate(${tilt})`,
-      flexShrink:0,
-      overflow:"hidden",
-      ...style,
+      width: w, flexShrink: 0,
+      transform: `rotate(${tilt})`,
+      filter: "drop-shadow(0 20px 44px rgba(0,0,0,0.14)) drop-shadow(0 4px 10px rgba(0,0,0,0.07))",
     }}>
-      <div style={{
-        position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
-        width:islandW, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
-      }} />
-      <div style={{ position:"absolute", inset:4, borderRadius:38, overflow:"hidden" }}>
-        <Image src={src} alt={alt} width={w * 2} height={h * 2}
-          style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
-        <div style={{
-          position:"absolute", inset:0,
-          background:"linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%)",
-          borderRadius:38, pointerEvents:"none",
-        }} />
-      </div>
-      <div style={{ position:"absolute", right:-4, top:Math.round(h*0.24), width:4, height:btnH, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
-      <div style={{ position:"absolute", left:-4, top:Math.round(h*0.2),  width:4, height:volH, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
-      <div style={{ position:"absolute", left:-4, top:Math.round(h*0.32), width:4, height:volH, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} style={{ width: "100%", height: "auto", display: "block" }} />
     </div>
   );
 }
@@ -141,7 +119,7 @@ function PhoneMockupScene() {
     <div style={{
       position:"relative", width:"100%",
       display:"flex", alignItems:"center", justifyContent:"center",
-      gap:12, padding:"64px 32px",
+      gap:16, padding:"64px 32px",
       overflow:"visible",
     }}>
       {/* ambient glow */}
@@ -151,39 +129,14 @@ function PhoneMockupScene() {
         animation:"bibloGlowPulse 5s ease-in-out infinite",
         pointerEvents:"none", zIndex:0,
       }} />
-      {/* left phone — flex item, shifted down for depth */}
-      <div style={{ transform:"translateY(28px)", opacity:0.88, zIndex:1, flexShrink:0 }}>
-        <PhoneFrame src="/Image/Biblofi/final%20screens%20-%20biblofi/home-biblofi.png" alt="BibloFi screen" w={148} h={320} tilt="-6deg" />
+      <div style={{ transform:"translateY(28px)", opacity:0.88, zIndex:1 }}>
+        <BibloPhone src="/Image/Biblofi/hero1.png" alt="BibloFi screen" w={148} tilt="-6deg" />
       </div>
-      {/* center phone — flex item, floating animation */}
-      <div className="biblo-phone-wrap" style={{
-        zIndex:3, flexShrink:0,
-        position:"relative", width:210, height:454,
-        background:"#161616", borderRadius:42,
-        boxShadow:"0 0 0 1px rgba(0,0,0,0.08), 0 24px 56px rgba(0,0,0,0.18)",
-        overflow:"hidden",
-      }}>
-        <div style={{
-          position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
-          width:88, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
-        }} />
-        <div style={{ position:"absolute", inset:4, borderRadius:38, overflow:"hidden" }}>
-          <Image src="/Image/Biblofi/smart-book.png" alt="BibloFi: Smart Book Discovery"
-            width={420} height={908}
-            style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
-          <div style={{
-            position:"absolute", inset:0,
-            background:"linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%)",
-            borderRadius:38, pointerEvents:"none",
-          }} />
-        </div>
-        <div style={{ position:"absolute", right:-4, top:110, width:4, height:64, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
-        <div style={{ position:"absolute", left:-4, top:88,  width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
-        <div style={{ position:"absolute", left:-4, top:142, width:4, height:44, background:"#2A2A2A", borderRadius:"3px 0 0 3px" }} />
+      <div className="biblo-phone-wrap" style={{ zIndex:3 }}>
+        <BibloPhone src="/Image/Biblofi/smart-book.png" alt="BibloFi: Smart Book Discovery" w={210} tilt="0deg" />
       </div>
-      {/* right phone — flex item, shifted up for depth */}
-      <div style={{ transform:"translateY(-20px)", opacity:0.88, zIndex:2, flexShrink:0 }}>
-        <PhoneFrame src="/Image/Biblofi/final%20screens%20-%20biblofi/profile-biblofi.png" alt="BibloFi screen" w={148} h={320} tilt="5deg" />
+      <div style={{ transform:"translateY(-20px)", opacity:0.88, zIndex:2 }}>
+        <BibloPhone src="/Image/Biblofi/hero2.png" alt="BibloFi screen" w={148} tilt="5deg" />
       </div>
     </div>
   );
@@ -242,13 +195,10 @@ function OverviewSection() {
       <div className="csl-card-2col csl-reveal">
         <div>
           <p className="csl-text">
-            BibloFi started as an Infosys internship project, time-bounded to 1 month with a structured sprint delivery model. Every week had to produce one working sprint, which meant decisions had to be intentional and fast. There was no room to iterate infinitely.
+            BibloFi was a 1-month Infosys internship project with weekly sprint deliveries. Each sprint had to ship — no room to over-iterate. We were handed an SRS document outlining every required feature, and the task was to turn those requirements into an experience that actually felt good on a real phone.
           </p>
           <p className="csl-text">
-            We were handed an SRS (Software Requirements Specification) document laying out every feature the app needed. This was our brief. The design challenge was to take those listed requirements and turn them into an experience that actually felt good to use on a real phone.
-          </p>
-          <p className="csl-text">
-            The context was the Infosys Mysore campus library — one of the most immersive library environments on campus, rich with books and reading spaces, but running entirely on manual processes. No digital layer existed. Students had to show up to check availability, and the librarians handled everything by hand.
+            The context was the Infosys Mysore campus library — an immersive, well-stocked physical space running entirely on manual processes. Students had to physically visit to check availability, librarians handled everything at the counter, and there was no digital layer at all.
           </p>
           <div className="csl-tags csl-reveal rd1">
             {bibloRoleChips.map((chip) => (
@@ -256,50 +206,16 @@ function OverviewSection() {
             ))}
           </div>
         </div>
-
-        <div>
-          <div className="csl-card csl-reveal rd1" style={{ marginBottom:14 }}>
-            <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:"#9CA3AF", marginBottom:14 }}>My team</p>
-            {bibloTeam.map((item) => (
-              <div key={item.dot} style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
-                <div style={{ width:28, height:28, borderRadius:"50%", background:A2, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"15px", fontWeight:700, color:A, flexShrink:0, overflow:"hidden" }}>
-                  {item.dot === "NT"
-                    ? <Image src="/Image/Biblofi/me.png" alt="Nikunj" width={28} height={28} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
-                    : item.dot}
-                </div>
-                <div>
-                  <div style={{ fontSize:"1rem", fontWeight:600, color:"#111827" }}>{item.title}</div>
-                  <div style={{ fontSize:"15px", color:"#9CA3AF" }}>{item.sub}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="csl-callout" style={{ margin:0 }}>
-            <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>The Brief</p>
-            <p style={{ fontSize:"1rem", color:"#374151", lineHeight:1.65 }}>
-              Design the complete member experience of a library app for the Mysore campus — from onboarding to book discovery, seat booking, and fine tracking — within 4 weeks.
-            </p>
+        <div className="csl-callout csl-reveal rd1" style={{ margin:0, alignSelf:"start" }}>
+          <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>The Brief</p>
+          <p style={{ fontSize:"1rem", color:"#374151", lineHeight:1.65, marginBottom:16 }}>
+            Design the complete member experience of a library app for Mysore campus — onboarding, book discovery, seat booking, and fine tracking — in 4 weeks.
+          </p>
+          <div style={{ borderTop:`1px solid ${A2}`, paddingTop:12 }}>
+            <p style={{ fontSize:"13px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.12em", color:"#9CA3AF", marginBottom:6 }}>Team</p>
+            <p style={{ fontSize:"0.95rem", color:"#374151" }}>1 designer (me) · 10 iOS engineers · 1 product owner</p>
           </div>
         </div>
-      </div>
-
-      {/* Experience notes + photo stack */}
-      <div className="csl-reveal rd2" style={{ marginTop:32, display:"grid", gridTemplateColumns:"1fr auto", gap:40, alignItems:"start" }}>
-        <div>
-          <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:"#9CA3AF", marginBottom:16 }}>From the internship</p>
-          {[
-            "The SRS was detailed but silent on the 'why' — understanding the real student frustrations required going beyond the document.",
-            "Working with 10 iOS developers meant every design decision had to be defensible in SwiftUI terms. Good communication was part of the design work.",
-            "The Mysore campus library had beautiful physical space. The gap wasn't the space — it was the invisible overhead students faced before ever arriving.",
-            "Sprint reviews every Friday kept the team honest. If something wasn't working by Thursday, it got cut, not patched.",
-          ].map((note) => (
-            <div key={note} style={{ display:"flex", gap:12, marginBottom:12, alignItems:"flex-start" }}>
-              <span style={{ color:A, fontWeight:700, marginTop:2, flexShrink:0 }}>·</span>
-              <p style={{ fontSize:"0.97rem", color:"#374151", lineHeight:1.7 }}>{note}</p>
-            </div>
-          ))}
-        </div>
-        <PhotoStack />
       </div>
 
       <div className="csl-reveal rd2" style={{ marginTop:28, borderRadius:16, overflow:"hidden" }}>
@@ -325,23 +241,55 @@ function ProcessSection() {
         title={<>The Double Diamond <em style={{ fontStyle:"italic" }}>framework in practice.</em></>}
       />
 
-      {/* Why Design Thinking */}
-      <div className="csl-callout csl-reveal" style={{ marginBottom:28 }}>
-        <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Why Design Thinking?</p>
-        <p style={{ fontSize:"1.05rem", color:"#374151", lineHeight:1.8 }}>
-          With a hard 4-week deadline and a 10-person iOS dev team waiting on specs each Friday, we needed a process that was structured enough to communicate progress to stakeholders, yet iterative enough to respond when we found something new. Design Thinking was that fit. The Discover → Define → Develop → Deliver arc mapped cleanly onto our sprint calendar, with each phase anchoring one week of delivery. It kept user needs front-and-centre even when engineering constraints pushed back, and it gave everyone — designers, developers, and the Infosys product owner — a shared vocabulary for every decision.
+      {/* Double Diamond inspiration note */}
+      <div className="csl-reveal" style={{ display:"flex", alignItems:"center", gap:12, marginBottom:24 }}>
+        <div style={{ width:28, height:28, background:A5, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem", flexShrink:0 }}>💡</div>
+        <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.6 }}>
+          Inspired by the <strong style={{ color:A }}>Double Diamond theory</strong> — diverge to understand the problem fully, converge to a focused solution. Applied to a 4-week sprint model: one diamond per two weeks, one sprint per week.
         </p>
       </div>
 
-      <div className="csl-process-grid csl-reveal">
-        {diamondSteps.map((step) => (
-          <div key={step.name} className="csl-process-step" style={step.active ? { borderTopColor:A } : {}}>
-            <div style={{ fontSize:"1.2rem", marginBottom:10 }}>{step.icon}</div>
-            <div className="csl-process-num">{step.phase}</div>
-            <div className="csl-process-title">{step.name}</div>
-            <p className="csl-process-text">{step.desc}</p>
-          </div>
-        ))}
+      {/* Visual week-by-week process */}
+      <div className="csl-reveal" style={{ marginBottom:32 }}>
+        {/* Diamond shape visual */}
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:0, marginBottom:28, position:"relative" }}>
+          {/* connector line */}
+          <div style={{
+            position:"absolute", top:28, left:"12.5%", right:"12.5%", height:2,
+            background:`linear-gradient(90deg, ${A2}, ${A}, ${A}, ${A2})`,
+            zIndex:0,
+          }} />
+          {[
+            { icon:"🔍", week:"Week 1", phase:"Discover", color:A, tasks:["38 student surveys","8 in-depth interviews","3 library observations"] },
+            { icon:"📌", week:"Week 2", phase:"Define",   color:"#6366F1", tasks:["2 user personas","Journey mapping","Problem statement"] },
+            { icon:"✏️", week:"Week 3", phase:"Develop",  color:"#10B981", tasks:["Rough sketches","Lo-fi wireframes","7 user flows"] },
+            { icon:"✅", week:"Week 4", phase:"Deliver",  color:A, tasks:["Hi-fi designs","Design system","Usability testing"] },
+          ].map((s, i) => (
+            <div key={s.phase} style={{ display:"flex", flexDirection:"column", alignItems:"center", position:"relative", zIndex:1 }}>
+              <div style={{
+                width:56, height:56, borderRadius:16, background:s.color,
+                display:"flex", alignItems:"center", justifyContent:"center",
+                fontSize:"1.5rem", boxShadow:`0 4px 16px ${s.color}44`,
+                transform: i === 1 || i === 2 ? "scale(1.1)" : "scale(1)",
+              }}>
+                {s.icon}
+              </div>
+              <p style={{ fontSize:"11px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.1em", color:"#9CA3AF", marginTop:10, marginBottom:2 }}>{s.week}</p>
+              <p style={{ fontSize:"0.95rem", fontWeight:700, color:"#111827", marginBottom:8 }}>{s.phase}</p>
+              {s.tasks.map((t) => (
+                <p key={t} style={{ fontSize:"12px", color:"#6B7280", textAlign:"center", lineHeight:1.5 }}>· {t}</p>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        {/* Fast iteration note */}
+        <div style={{ background:A5, borderRadius:12, padding:"14px 20px", display:"flex", gap:12, alignItems:"center" }}>
+          <span style={{ fontSize:"1.2rem" }}>⚡</span>
+          <p style={{ fontSize:"0.93rem", color:ADrk, lineHeight:1.6 }}>
+            <strong>Tight feedback loops:</strong> every Friday was a sprint review with the dev team. If something didn&apos;t hold up, it was cut before Monday. This pace forced early decisions and prevented over-design.
+          </p>
+        </div>
       </div>
     </CsSection>
   );
@@ -587,7 +535,7 @@ function ConstraintsSection() {
       <div className="csl-card-grid csl-reveal">
         {constraints.map((c) => (
           <div key={c.title} style={{ padding:"22px 0" }}>
-            <div style={{ fontSize:"1.5rem", marginBottom:12 }}>{c.icon}</div>
+            <div style={{ fontSize:"3rem", marginBottom:16, lineHeight:1 }}>{c.icon}</div>
             <h3 style={{ fontSize:"1.15rem", fontWeight:700, color:"#111827", marginBottom:8 }}>{c.title}</h3>
             <p style={{ fontSize:"1rem", color:"#6B7280", lineHeight:1.6 }}>{c.desc}</p>
           </div>
@@ -728,53 +676,37 @@ function FinalScreensSection() {
 
       {/* ── ONBOARDING SCREENS ── */}
       <div style={{ marginBottom:64 }}>
-        {/* Annotations above */}
-        <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginBottom:28 }}>
-          <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            Each screen introduces a core feature step by step, keeping the focus on clarity and user engagement. <span style={{ color:A }}>↓</span>
-          </p>
-          <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            <span style={{ color:A }}>↓</span> Minimal text with strong visuals ensures quick comprehension and smooth navigation.
-          </p>
+        <div className="csl-reveal rd3" style={{ textAlign:"right", marginBottom:28 }}>
+          <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"3.2rem", fontWeight:700, color:A, lineHeight:1 }}>
+            Onboarding Screens
+          </span>
         </div>
 
-        {/* 4 phones with stagger */}
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:14 }}>
-          {([1,2,3,4] as const).map((n, i) => (
-            <div key={n} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`} style={{
-              borderRadius:28, overflow:"hidden",
-              boxShadow:"0 16px 48px rgba(0,0,0,0.13)",
-              transform: i % 2 === 1 ? "translateY(12px)" : "translateY(0)",
+        {/* 4-step flow with arrows pointing to each screen's purpose */}
+        <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:16, position:"relative" }}>
+          {/* connecting arrows */}
+          <div style={{ position:"absolute", top:32, left:"12.5%", right:"12.5%", height:2, background:`linear-gradient(90deg, ${A2}, ${A2})`, zIndex:0, display:"flex", alignItems:"center", justifyContent:"space-between" }} />
+          {[
+            { num:"01", screen:"Welcome",      arrow:"↓", desc:"Brand intro and app purpose — sets the tone before any feature is shown.", color:A5 },
+            { num:"02", screen:"Features",     arrow:"↓", desc:"Three key features previewed: search, seat booking, scan. One tap each.", color:"#F0F7FF" },
+            { num:"03", screen:"Genre Pick",   arrow:"↓", desc:"User selects preferred genres. Feeds the Home screen's recommendations directly.", color:A5 },
+            { num:"04", screen:"Get Started",  arrow:"↓", desc:"Single CTA to enter the app. No account required to explore.", color:"#F0F7FF" },
+          ].map((s, i) => (
+            <div key={s.num} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`} style={{
+              background:s.color, borderRadius:16, padding:"20px 16px", textAlign:"center",
+              border:`1px solid ${A2}`, position:"relative", zIndex:1,
             }}>
-              <Image
-                src={`${FINAL}/ob${n}.png`}
-                alt={`Onboarding screen ${n}`}
-                width={320} height={693}
-                style={{ width:"100%", height:"auto", display:"block" }}
-              />
+              <p style={{ fontSize:"22px", fontWeight:900, color:A, marginBottom:4, fontFamily:"ui-monospace,monospace" }}>{s.num}</p>
+              <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>{s.screen}</p>
+              <p style={{ fontSize:"1.5rem", color:A, marginBottom:8 }}>{s.arrow}</p>
+              <p style={{ fontSize:"0.88rem", color:"#6B7280", lineHeight:1.6 }}>{s.desc}</p>
             </div>
           ))}
         </div>
 
-        {/* Annotations below */}
-        <div className="csl-reveal rd2" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginTop:28 }}>
-          <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            We balanced typography, icons, and illustrations to make the journey visually appealing without overwhelming the user.
-          </p>
-          <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            The design ensures that new users can quickly understand the value of the app and feel motivated to explore further.
-          </p>
-        </div>
-
-        {/* Handwriting label */}
-        <div className="csl-reveal rd3" style={{ textAlign:"right", marginTop:16 }}>
-          <span style={{
-            fontFamily:"var(--font-caveat), cursive",
-            fontSize:"3.2rem", fontWeight:700, color:A, lineHeight:1,
-          }}>
-            Onboarding Screens
-          </span>
-        </div>
+        <p className="csl-reveal rd1" style={{ fontSize:"0.93rem", color:"#9CA3AF", fontStyle:"italic", marginTop:20, textAlign:"center" }}>
+          4-screen onboarding flow · swipeable · skippable · no sign-up gate
+        </p>
       </div>
 
 
@@ -877,13 +809,6 @@ function FinalScreensSection() {
           <p style={{ fontSize:"1.15rem", fontWeight:700, color:"#fff", lineHeight:1.8 }}>
             With categories spanning authors, genres, and personalized searches, BiblioFi gives me countless ways to explore and find exactly what I love.
           </p>
-        </div>
-
-        <div className="csl-reveal rd1" style={{ display:"flex", justifyContent:"center", marginBottom:28 }}>
-          <div style={{ width:290, borderRadius:28, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.12)" }}>
-            <Image src={`${FINAL}/categoires.png`} alt="Categories and searching" width={320} height={693}
-              style={{ width:"100%", height:"auto", display:"block" }} />
-          </div>
         </div>
 
         <div className="csl-reveal rd2" style={{ textAlign:"right" }}>
@@ -1027,7 +952,7 @@ function TestingSection() {
 ───────────────────────────────────────────────────────────────────── */
 function LearningsSection() {
   return (
-    <CsSection id="learnings" last>
+    <CsSection id="learnings">
       <CsSectionHeader
         label="What I Learned"
         title={<>Growing as a designer <em style={{ fontStyle:"italic" }}>and a leader.</em></>}
@@ -1063,6 +988,41 @@ function LearningsSection() {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────────────
+   EXPERIENCE SECTION (end of case study)
+───────────────────────────────────────────────────────────────────── */
+function ExperienceSection() {
+  return (
+    <CsSection id="experience" last>
+      <CsSectionHeader
+        label="Internship Experience"
+        title={<>Four weeks, one team, <em style={{ fontStyle:"italic" }}>a lot learned.</em></>}
+      />
+      <div style={{ display:"grid", gridTemplateColumns:"1fr auto", gap:48, alignItems:"start" }}>
+        <div>
+          {[
+            { n:"01", title:"The SRS was the starting point, not the whole story", note:"The document listed features. It didn't explain why students weren't using the library. Understanding the real frustrations required going beyond the brief — doing research the SRS didn't ask for." },
+            { n:"02", title:"Communication was as important as design", note:"Working with 10 iOS developers meant every decision had to be explainable in engineering terms. I started annotating Figma with rationale notes. By week 3 the devs were reading them without being asked." },
+            { n:"03", title:"Mysore campus had a beautiful library — and zero digital presence", note:"The physical space was immersive and well-stocked. The gap wasn't the environment — it was the invisible overhead before students ever arrived. The app solved that overhead." },
+            { n:"04", title:"Sprint reviews kept us honest", note:"Every Friday was a show-and-tell with the product owner and dev team. If something wasn't working by Thursday, we cut it — not patched it. That discipline made the final handoff clean." },
+          ].map((item) => (
+            <div key={item.n} className="csl-reveal" style={{ display:"flex", gap:16, marginBottom:20, paddingBottom:20, borderBottom:"1px solid #F3F4F6" }}>
+              <p style={{ fontSize:"13px", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", flexShrink:0, marginTop:3 }}>{item.n}</p>
+              <div>
+                <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:5 }}>{item.title}</p>
+                <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.7 }}>{item.note}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="csl-reveal rd1">
+          <PhotoStack />
+        </div>
+      </div>
+    </CsSection>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════════════════
    MAIN EXPORT
 ════════════════════════════════════════════════════════════════════════ */
@@ -1088,6 +1048,7 @@ export function BiblofiCaseStudy() {
       <AccessibilitySection />
       <TestingSection />
       <LearningsSection />
+      <ExperienceSection />
     </CaseStudyPage>
   );
 }

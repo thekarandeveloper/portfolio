@@ -102,13 +102,12 @@ export const bibloFeatures = [
     tag: "Study Seat Booking",
     title: "Reserve your spot before you arrive.",
     desc: [
-      "Seat unavailability during exam season was the single most-mentioned pain point across all 8 interviews. The seat booking feature lets students view the study hall layout in real time, select an available seat, and receive a confirmation, all before leaving home.",
-      "17 out of 20 participants successfully booked a seat. The 3 who struggled found the confirmation step unclear, which we restructured in the final iteration.",
+      "Seat unavailability during exam season was the single most-mentioned pain point across all 8 interviews. Students can view the study hall layout, select a seat, and get a confirmation — before leaving home.",
     ],
     rationale:
-      "11 of 12 students who had stopped visiting the library regularly cited seat unavailability during exams as the reason. Solving this one problem had the highest potential to change actual behaviour.",
+      "11 of 12 students who stopped visiting regularly cited seat uncertainty as the reason. This single feature had the highest potential to change real behaviour.",
     rejected:
-      "A 'notify me when a seat opens' waitlist was designed first. Cut because persistent push notification infrastructure wasn't available in the sprint timeline. A real engineering constraint, not a design preference.",
+      "Waitlist notifications were cut — push infrastructure wasn't available in the sprint. Booking-only became the viable path.",
     impact: "📚 85% seat booking success rate",
     img:   "/Image/Biblofi/seat.png",
     phone: "seat",
@@ -184,26 +183,26 @@ export const learnings = [
   {
     num:   "01",
     title: "Navigation is your first design decision, not your last",
-    text:  "Early brainstorming in WhatsApp chats produced three different nav structures before anyone opened Figma. The lo-fi round proved this mattered: we had five tabs instead of four, one too many for comfortable one-handed iPhone use. Catching it at wireframe stage took 20 minutes to fix. In hi-fi, that same catch would have cost two days of rework. Information architecture isn't the boring part. It's the part everything else depends on.",
+    text:  "We had five tabs instead of four — caught it in lo-fi. Fixing it at wireframe stage took 20 minutes. In hi-fi, the same fix would have cost two days.",
   },
   {
     num:   "02",
-    title: "User feedback early saves time late",
-    text:  "Getting real users into testing before the design was 'perfect' led to better decisions. The confirmation step issue in seat booking would have shipped broken if we hadn't tested. That one finding alone justified the entire testing phase, and it only surfaced because we put the prototype in front of someone who wasn't us.",
+    title: "Early testing saves late rework",
+    text:  "The confirmation step in seat booking would have shipped broken without testing. That one finding alone justified the entire testing phase.",
   },
   {
     num:   "03",
-    title: "Leading a team of 10 is itself a design challenge",
-    text:  "Communicating design decisions to 10 developers, each with their own mental model of the product, taught me that documentation is as important as the design itself. I started writing decision rationale directly into Figma comments. By week 3, the dev team was referencing those notes without asking me. Good collaboration is a UX problem.",
+    title: "Leading 10 developers is a design challenge",
+    text:  "I started writing decision rationale into Figma comments. By week 3, the dev team was referencing those notes without asking me. Documentation is part of the design.",
   },
   {
     num:   "04",
-    title: "Know what to cut, and cut it cleanly",
-    text:  "In week 3, we de-scoped three planned features: audiobook streaming, a librarian-facing admin panel, and in-app fine payment. These weren't abandoned. They were deliberately cut to protect the quality of the 7 core flows. Shipping 7 excellent flows beats shipping 10 mediocre ones. The cut list went into the handoff doc as 'Phase 2 recommendations' with full specs.",
+    title: "Know what to cut — and cut it cleanly",
+    text:  "Three features de-scoped in week 3 to protect quality of the 7 core flows. They didn't disappear — they went into the handoff doc as Phase 2 recommendations with full specs.",
   },
   {
     num:   "05",
     title: "What I'd do differently",
-    text:  "I'd include librarians in the research phase from day one, not just students. The app solves the member experience but leaves the librarian's workload completely unchanged. I'd push for 6 weeks instead of 4. The seat booking flow deserved another testing round. And I'd build post-launch success metrics into the handoff brief from the start, so adoption data wouldn't disappear when the internship ended.",
+    text:  "Include librarians in research from day one. Push for 6 weeks instead of 4. Build post-launch success metrics into the brief so adoption data doesn't disappear when the internship ends.",
   },
 ];
