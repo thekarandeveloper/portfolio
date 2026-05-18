@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { CaseStudyPage, CsSection, CsSectionHeader } from "./CaseStudyLayout";
 import {
@@ -1579,13 +1578,6 @@ function LearningsSection() {
         </svg>
       </div>
 
-      <Link href="/projects/biblofi" className="csl-next csl-reveal rd2" style={{ marginTop: 8 }}>
-        <div>
-          <p className="csl-next-label">Next Case Study</p>
-          <p className="csl-next-title">BibloFi: Library Management System</p>
-        </div>
-        <span className="csl-next-arrow">→</span>
-      </Link>
     </CsSection>
   );
 }
