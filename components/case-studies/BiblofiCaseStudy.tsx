@@ -110,7 +110,7 @@ function PhoneMockupScene() {
       }} />
       {/* left phone — flex item, shifted down for depth */}
       <div style={{ transform:"translateY(28px)", opacity:0.88, zIndex:1, flexShrink:0 }}>
-        <PhoneFrame src="/Image/Biblofi/hero1.png" alt="BibloFi screen" w={148} h={320} tilt="-6deg" />
+        <PhoneFrame src="/Image/Biblofi/final%20screens%20-%20biblofi/home-biblofi.png" alt="BibloFi screen" w={148} h={320} tilt="-6deg" />
       </div>
       {/* center phone — flex item, floating animation */}
       <div className="biblo-phone-wrap" style={{ zIndex:3, flexShrink:0 }}>
@@ -134,7 +134,7 @@ function PhoneMockupScene() {
       </div>
       {/* right phone — flex item, shifted up for depth */}
       <div style={{ transform:"translateY(-20px)", opacity:0.88, zIndex:2, flexShrink:0 }}>
-        <PhoneFrame src="/Image/Biblofi/hero2.png" alt="BibloFi screen" w={148} h={320} tilt="5deg" />
+        <PhoneFrame src="/Image/Biblofi/final%20screens%20-%20biblofi/profile-biblofi.png" alt="BibloFi screen" w={148} h={320} tilt="5deg" />
       </div>
     </div>
   );
