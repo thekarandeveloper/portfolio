@@ -27,7 +27,7 @@ const TOC_ITEMS = [
 ];
 
 const META_ROWS = [
-  { label: "Role",      value: "Lead UX Designer" },
+  { label: "Role",      value: "UI/UX Designer" },
   { label: "Duration",  value: "6 Months"         },
   { label: "Platform",  value: "Web · Mobile"     },
   { label: "Tools",     value: "Figma · v0 · AI"  },
@@ -327,7 +327,7 @@ function AirHero() {
             Live in Production &nbsp;·&nbsp; B2B SaaS &nbsp;·&nbsp; Travel
           </div>
           <h1 className="csl-hero-title">
-            <span>Redesigning a live B2B flight portal for&nbsp;25,000+ agents</span>
+            <span>12 minutes to 7. One designer. 25,000 agents. A complete B2B flight portal redesign that shipped.</span>
           </h1>
           <p className="csl-hero-desc">
             A live product losing market share. A business mandate to redesign. One designer, six months, and a full redesign that cut booking time by 30–40%.
@@ -336,7 +336,7 @@ function AirHero() {
             No design system. No prior UI. One designer. Six months.
           </p>
           <div className="csl-hero-chips">
-            <span className="csl-hero-chip">Lead UX Designer</span>
+            <span className="csl-hero-chip">UI/UX Designer</span>
             <span className="csl-hero-chip">6 Months</span>
             <span className="csl-hero-chip">Systems Design · B2B</span>
             <span className="csl-hero-chip">Full Redesign</span>
@@ -352,7 +352,7 @@ function AirHero() {
         {[
           { label: "Platform", val: "Desktop & Mobile Web"                    },
           { label: "Screens",  val: "40+ Screens · 4 Core Flows"              },
-          { label: "Role",     val: "Lead UX Designer"                        },
+          { label: "Role",     val: "UI/UX Designer"                           },
           { label: "Team",     val: "3 Product Manager · 2 Engineering Manager" },
         ].map((s) => (
           <div className="csl-hero-stat" key={s.label}>
@@ -644,12 +644,6 @@ function ProblemSection() {
 
       <ConstraintsBlock />
 
-      <div className="csl-reveal" style={{ marginTop: 40 }}>
-        <span className="csl-eyebrow">The booking journey: before and after</span>
-        <div style={{ marginTop: 16 }}>
-          <JourneyTimeline />
-        </div>
-      </div>
 
     </CsSection>
   );
@@ -753,14 +747,6 @@ function CompetitiveCarousel() {
             </svg>
             <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>AirIQ: {c.name} Research</span>
           </div>
-          <a
-            href={figmaLink}
-            target="_blank"
-            rel="noreferrer"
-            style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}
-          >
-            Open in Figma ↗
-          </a>
         </div>
         <iframe
           key={c.nodeId}
@@ -831,7 +817,8 @@ const AGENT_INSIGHTS = [
     heading: "Fare data overload on every search",
     text: "3 to 5+ fare tiers per airline, each with different refund, meal, and baggage rules, all at equal visual weight.",
     dataText: "Agents re-read every row before answering a client's simplest question.",
-    stat: "5+",
+    statNum: 5,
+    statSuffix: "+",
     statUnit: "fare tiers per airline",
   },
   {
@@ -839,7 +826,8 @@ const AGENT_INSIGHTS = [
     heading: "Fare rules were always hidden",
     text: "No inline refund summary. Agents guessed refundability from fine print and sometimes got it wrong in front of a client.",
     dataText: "All 4 competitor platforms hid refundability behind extra clicks.",
-    stat: "100%",
+    statNum: 100,
+    statSuffix: "%",
     statUnit: "of competitors did it",
   },
   {
@@ -847,7 +835,8 @@ const AGENT_INSIGHTS = [
     heading: "Keyboard-first agents, mouse-dependent portal",
     text: "Agents navigate by shortcut and muscle memory. Every forced click added seconds. At 25,000 agents, it compounds.",
     dataText: "The portal required clicks for actions agents expected in a single keystroke.",
-    stat: "0",
+    statNum: 0,
+    statSuffix: "",
     statUnit: "keyboard shortcuts designed for",
   },
   {
@@ -855,7 +844,8 @@ const AGENT_INSIGHTS = [
     heading: "80% of bookings have empty SSR tables",
     text: "Add-ons are blank in most B2B bookings, yet the review page showed every empty row, creating confusion before confirmation.",
     dataText: "Agents assumed empty rows meant missing data, not unapplied options.",
-    stat: "80%",
+    statNum: 80,
+    statSuffix: "%",
     statUnit: "of bookings with empty SSR",
   },
 ];
@@ -906,7 +896,7 @@ function ResearchInsightCards() {
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
               }}>
-                {ins.stat}
+                {ins.statNum > 0 ? <CountUp to={ins.statNum} /> : "0"}{ins.statSuffix}
               </div>
               <div style={{
                 fontFamily: "var(--font-lato), sans-serif",
@@ -1148,18 +1138,11 @@ function ApproachSection() {
         <CompetitiveCarousel />
       </div>
 
-      {/* Research scope + insight cards */}
+      {/* Insight cards */}
       <div className="csl-reveal" style={{ marginBottom: 8 }}>
-        <span className="csl-eyebrow" style={{ marginBottom: 16, display: "block" }}>Research scope</span>
-        <ResearchScopePills items={["4 Travel Agents", "Semi-structured Interviews", "4 Competitor Platforms", "3 GDS Systems", "5 Key Patterns"]} />
         <ResearchInsightCards />
       </div>
 
-      {/* Dot-grid metrics — exact screenshot UI */}
-      <div style={{ marginBottom: 32 }}>
-        <span className="csl-eyebrow">By the numbers</span>
-        <DotMetricRow />
-      </div>
 
     </CsSection>
   );
@@ -1456,38 +1439,43 @@ function FareListingBlock() {
         </div>
       </div>
 
-      {/* ── Final Design — home-page grid row (image 65% | content 35%) ── */}
+      {/* ── Final Design — dark full-width ── */}
       <div style={{ marginTop: 32 }}>
         <span className="csl-eyebrow">Final Design</span>
-        <div className="cs-imgrow">
-          {/* Visual (65%) */}
-          <div className="cs-imgrow__visual" style={{
-            borderRadius: 14, overflow: "hidden",
-            border: "1.5px solid rgba(30,144,255,0.3)",
-            boxShadow: "0 8px 32px rgba(30,144,255,0.12), 0 2px 8px rgba(0,0,0,0.06)",
-          }}>
+        <div style={{
+          background: "#111827", borderRadius: 20, overflow: "hidden",
+          marginTop: 12,
+        }}>
+          {/* Image — full width on dark bg */}
+          <div style={{ padding: "28px 28px 0" }}>
             <ChromeBar blue />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/Image/Airiq/first%20core/final.png" alt="Final fare listing design" style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
 
-          {/* Content (35%) */}
-          <div className="cs-imgrow__content">
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: 6,
-              fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em",
-              color: "#1E90FF", background: "#EFF6FF", border: "1px solid rgba(30,144,255,0.4)",
-              borderRadius: 100, padding: "4px 12px", marginBottom: 12,
-            }}>✦ Shipped</span>
-            <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "#111827", margin: "0 0 10px", lineHeight: 1.35 }}>
-              Price hierarchy first. Everything else at a glance.
-            </p>
-            <p style={{ fontSize: "1.05rem", color: "#4B5563", lineHeight: 1.75, margin: "0 0 20px" }}>
-              Price and time dominate the scan path. Refundability, baggage allowance, and seat count are visible without expanding or hovering. Fare class icons map to symbols agents already recognise. Scan once, compare, decide, book.
-            </p>
+          {/* Why + Impact on same dark bg */}
+          <div style={{ padding: "28px 32px 32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
             <div>
-              <span className="csl-eyebrow">Impact</span>
-              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+              <span style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
+                color: "#1E90FF", background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
+                borderRadius: 100, padding: "4px 12px", marginBottom: 14,
+              }}>✦ Why this was selected</span>
+              <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "rgba(255,255,255,0.9)", margin: "0 0 10px", lineHeight: 1.4 }}>
+                Price hierarchy first. Everything else at a glance.
+              </p>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>
+                Price and time dominate the scan path. Refundability, baggage allowance, and seat count are visible without expanding or hovering. Fare class icons map to symbols agents already recognise. Scan once, compare, decide, book.
+              </p>
+            </div>
+            <div>
+              <span style={{
+                display: "inline-block",
+                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
+                color: "#9CA3AF", marginBottom: 14,
+              }}>Impact</span>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>
                 This card became the template for every fare listing in the platform, extended across one-way, international, and round-trip searches.
               </p>
             </div>
@@ -1561,44 +1549,46 @@ function ItineraryCardBlock() {
         </p>
       </div>
 
-      {/* ── The New Design — reversed grid (content 35% | image 65%) ── */}
+      {/* ── The New Design — dark full-width ── */}
       <div>
         <span className="csl-eyebrow">The redesign</span>
-        <div className="cs-imgrow cs-imgrow--rev">
-          {/* Content (35% — left because reversed) */}
-          <div className="cs-imgrow__content">
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: 6,
-              fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em",
-              color: "#1076BC", background: "#E8F2FB", border: "1px solid #BFDBFE",
-              borderRadius: 100, padding: "4px 12px", marginBottom: 14,
-            }}>◉ Redesigned</span>
-            {[
-              { label: "Segment at a glance",     detail: "Origin → destination in one clear row. No scrolling to find the route." },
-              { label: "Dates + times grouped",    detail: "Departure and arrival side-by-side, not buried across sections." },
-              { label: "Flat, single-card format", detail: "Everything an agent needs on a call is visible in one frame. Nothing collapsed." },
-            ].map((item) => (
-              <p key={item.label} style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>
-                <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}:</strong> {item.detail}
-              </p>
-            ))}
-            <div style={{ marginTop: 8 }}>
-              <span className="csl-eyebrow">Impact</span>
-              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
-                Agents stopped fumbling mid-call. Route, class, and times confirmed in under 5 seconds.
-              </p>
-            </div>
-          </div>
-
-          {/* Visual (65% — right because reversed) */}
-          <div className="cs-imgrow__visual" style={{
-            borderRadius: 16, overflow: "hidden",
-            border: "1.5px solid rgba(30,144,255,0.3)",
-            boxShadow: "0 8px 32px rgba(30,144,255,0.12), 0 2px 8px rgba(0,0,0,0.06)",
-          }}>
+        <div style={{
+          background: "#111827", borderRadius: 20, overflow: "hidden",
+          marginTop: 12,
+        }}>
+          <div style={{ padding: "28px 28px 0" }}>
             <Bar tint />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/Image/Airiq/Second%20core/new.png" alt="Redesigned itinerary card" style={{ width: "100%", height: "auto", display: "block" }} />
+          </div>
+          <div style={{ padding: "28px 32px 32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+            <div>
+              <span style={{
+                display: "inline-block",
+                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
+                color: "#1E90FF", background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
+                borderRadius: 100, padding: "4px 12px", marginBottom: 14,
+              }}>◉ Why this was selected</span>
+              {[
+                { label: "Segment at a glance",     detail: "Origin → destination in one clear row. No scrolling to find the route." },
+                { label: "Dates + times grouped",    detail: "Departure and arrival side-by-side, not buried across sections." },
+                { label: "Flat, single-card format", detail: "Everything an agent needs on a call is visible in one frame. Nothing collapsed." },
+              ].map((item) => (
+                <p key={item.label} style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: "0 0 8px" }}>
+                  <strong style={{ color: "rgba(255,255,255,0.85)", fontWeight: 700 }}>{item.label}:</strong> {item.detail}
+                </p>
+              ))}
+            </div>
+            <div>
+              <span style={{
+                display: "inline-block",
+                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
+                color: "#9CA3AF", marginBottom: 14,
+              }}>Impact</span>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>
+                Agents stopped fumbling mid-call. Route, class, and times confirmed in under 5 seconds.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -1667,41 +1657,43 @@ function ReviewTableBlock() {
         </p>
       </div>
 
-      {/* ── The New Design — grid (image 65% | content 35%) ── */}
+      {/* ── The New Design — dark full-width ── */}
       <div>
         <span className="csl-eyebrow">The redesign</span>
-        <div className="cs-imgrow">
-          {/* Visual (65%) */}
-          <div className="cs-imgrow__visual" style={{
-            borderRadius: 16, overflow: "hidden",
-            border: "1.5px solid rgba(30,144,255,0.3)",
-            boxShadow: "0 8px 32px rgba(30,144,255,0.12), 0 2px 8px rgba(0,0,0,0.06)",
-          }}>
+        <div style={{
+          background: "#111827", borderRadius: 20, overflow: "hidden",
+          marginTop: 12,
+        }}>
+          <div style={{ padding: "28px 28px 0" }}>
             <Bar tint />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/Image/Airiq/third%20core/new.png" alt="Redesigned review table" style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
-
-          {/* Content (35%) */}
-          <div className="cs-imgrow__content">
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: 6,
-              fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em",
-              color: "#1076BC", background: "#E8F2FB", border: "1px solid #BFDBFE",
-              borderRadius: 100, padding: "4px 12px", marginBottom: 14,
-            }}>◉ Redesigned</span>
-            {[
-              { label: "Optimised data density",     detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility." },
-              { label: "Explicit empty states",       detail: "No blank cells. Missing data shows a clear dash so agents know it's intentional, not broken." },
-              { label: "Grouped headers + hierarchy", detail: "Related fields cluster under shared headers. Agents scan by section, not row by row." },
-            ].map((item) => (
-              <p key={item.label} style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>
-                <strong style={{ color: "#111827", fontWeight: 700 }}>{item.label}:</strong> {item.detail}
-              </p>
-            ))}
-            <div style={{ marginTop: 8 }}>
-              <span className="csl-eyebrow">Impact</span>
-              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>
+          <div style={{ padding: "28px 32px 32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+            <div>
+              <span style={{
+                display: "inline-block",
+                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
+                color: "#1E90FF", background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
+                borderRadius: 100, padding: "4px 12px", marginBottom: 14,
+              }}>◉ Why this was selected</span>
+              {[
+                { label: "Optimised data density",     detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility." },
+                { label: "Explicit empty states",       detail: "No blank cells. Missing data shows a clear dash so agents know it's intentional, not broken." },
+                { label: "Grouped headers + hierarchy", detail: "Related fields cluster under shared headers. Agents scan by section, not row by row." },
+              ].map((item) => (
+                <p key={item.label} style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: "0 0 8px" }}>
+                  <strong style={{ color: "rgba(255,255,255,0.85)", fontWeight: 700 }}>{item.label}:</strong> {item.detail}
+                </p>
+              ))}
+            </div>
+            <div>
+              <span style={{
+                display: "inline-block",
+                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
+                color: "#9CA3AF", marginBottom: 14,
+              }}>Impact</span>
+              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>
                 Agents stopped second-guessing. Review became one confident scan. Operations reported a visible drop in error queries post-launch.
               </p>
             </div>
@@ -1714,6 +1706,8 @@ function ReviewTableBlock() {
 }
 
 function CoreComponentsSection() {
+  const desktopEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.desktop)}`;
+
   return (
     <CsSection id="insights">
       <CsSectionHeader
@@ -1732,6 +1726,39 @@ function CoreComponentsSection() {
 
       {/* Broader design decisions */}
       <DesignDecisionsBlock />
+
+      {/* Desktop designs Figma embed */}
+      <div className="csl-reveal" style={{ marginTop: 48 }}>
+        <span className="csl-eyebrow">Explore desktop designs</span>
+        <div style={{
+          borderRadius: 18, overflow: "hidden",
+          border: "1px solid rgba(0,0,0,0.08)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
+          marginTop: 12,
+        }}>
+          <div style={{
+            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
+            display: "flex", alignItems: "center", padding: "0 16px",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <svg width="14" height="14" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 28.5C19 25.9804 20.0009 23.5641 21.7825 21.7825C23.5641 20.0009 25.9804 19 28.5 19C31.0196 19 33.4359 20.0009 35.2175 21.7825C36.9991 23.5641 38 25.9804 38 28.5C38 31.0196 36.9991 33.4359 35.2175 35.2175C33.4359 36.9991 31.0196 38 28.5 38C25.9804 38 23.5641 36.9991 21.7825 35.2175C20.0009 33.4359 19 31.0196 19 28.5Z" fill="#1ABCFE"/>
+                <path d="M0 47.5C0 44.9804 1.00089 42.5641 2.78249 40.7825C4.56408 39.0009 6.98044 38 9.5 38H19V47.5C19 50.0196 17.9991 52.4359 16.2175 54.2175C14.4359 55.9991 12.0196 57 9.5 57C6.98044 57 4.56408 55.9991 2.78249 54.2175C1.00089 52.4359 0 50.0196 0 47.5Z" fill="#0ACF83"/>
+                <path d="M19 0V19H28.5C31.0196 19 33.4359 17.9991 35.2175 16.2175C36.9991 14.4359 38 12.0196 38 9.5C38 6.98044 36.9991 4.56408 35.2175 2.78249C33.4359 1.00089 31.0196 0 28.5 0H19Z" fill="#FF7262"/>
+                <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
+                <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
+              </svg>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>Air IQ: Desktop Designs</span>
+            </div>
+          </div>
+          <iframe
+            src={desktopEmbedUrl}
+            allowFullScreen
+            style={{ width: "100%", height: 600, border: "none", display: "block" }}
+            loading="lazy"
+          />
+        </div>
+      </div>
     </CsSection>
   );
 }
@@ -1739,7 +1766,37 @@ function CoreComponentsSection() {
 /* ─────────────────────────────────────────────────────────────────────
    §05  THE PRODUCT
 ───────────────────────────────────────────────────────────────────── */
+function VideoPlaceholder({ label }: { label: string }) {
+  return (
+    <div style={{
+      borderRadius: 18, overflow: "hidden",
+      border: "1px solid rgba(0,0,0,0.08)",
+      boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
+      background: "linear-gradient(145deg, #EAF4FF 0%, #F0F8FF 100%)",
+      aspectRatio: "16/9",
+      display: "flex", flexDirection: "column",
+      alignItems: "center", justifyContent: "center",
+      gap: 12,
+    }}>
+      <div style={{
+        width: 56, height: 56, borderRadius: "50%",
+        background: "rgba(30,144,255,0.12)",
+        border: "2px solid rgba(30,144,255,0.25)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <span style={{ fontSize: "1.4rem", marginLeft: 4 }}>▶</span>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{label}</div>
+        <div style={{ fontSize: "15px", color: "#6B7280", marginTop: 4 }}>Video coming soon</div>
+      </div>
+    </div>
+  );
+}
+
 function TheProductSection() {
+  const edgeCasesEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.edgeCases)}`;
+
   return (
     <CsSection id="product">
       <CsSectionHeader
@@ -1747,41 +1804,52 @@ function TheProductSection() {
         sub="20+ screens shipped across 5 flows. One platform, every booking."
       />
 
-      {/* Desktop — video placeholder + Figma link */}
-      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+      {/* Desktop video */}
+      <div className="csl-reveal" style={{ marginBottom: 32 }}>
         <span className="csl-eyebrow">Desktop Platform</span>
+        <VideoPlaceholder label="Platform walkthrough" />
+      </div>
+
+      {/* Mobile video */}
+      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+        <span className="csl-eyebrow">Mobile Platform</span>
+        <VideoPlaceholder label="Mobile walkthrough" />
+      </div>
+
+      {/* Edge cases — Figma embed */}
+      <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
+        <span className="csl-eyebrow">Edge cases designed for</span>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 20px" }}>
+          Happy-path screens ship fast. What earns agent trust is designing for when things go wrong.
+        </p>
         <div style={{
           borderRadius: 18, overflow: "hidden",
           border: "1px solid rgba(0,0,0,0.08)",
           boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
-          background: "linear-gradient(145deg, #EAF4FF 0%, #F0F8FF 100%)",
-          aspectRatio: "16/9",
-          display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "center",
-          gap: 12,
         }}>
           <div style={{
-            width: 56, height: 56, borderRadius: "50%",
-            background: "rgba(30,144,255,0.12)",
-            border: "2px solid rgba(30,144,255,0.25)",
-            display: "flex", alignItems: "center", justifyContent: "center",
+            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
+            display: "flex", alignItems: "center", padding: "0 16px",
           }}>
-            <span style={{ fontSize: "1.4rem", marginLeft: 4 }}>▶</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <svg width="14" height="14" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 28.5C19 25.9804 20.0009 23.5641 21.7825 21.7825C23.5641 20.0009 25.9804 19 28.5 19C31.0196 19 33.4359 20.0009 35.2175 21.7825C36.9991 23.5641 38 25.9804 38 28.5C38 31.0196 36.9991 33.4359 35.2175 35.2175C33.4359 36.9991 31.0196 38 28.5 38C25.9804 38 23.5641 36.9991 21.7825 35.2175C20.0009 33.4359 19 31.0196 19 28.5Z" fill="#1ABCFE"/>
+                <path d="M0 47.5C0 44.9804 1.00089 42.5641 2.78249 40.7825C4.56408 39.0009 6.98044 38 9.5 38H19V47.5C19 50.0196 17.9991 52.4359 16.2175 54.2175C14.4359 55.9991 12.0196 57 9.5 57C6.98044 57 4.56408 55.9991 2.78249 54.2175C1.00089 52.4359 0 50.0196 0 47.5Z" fill="#0ACF83"/>
+                <path d="M19 0V19H28.5C31.0196 19 33.4359 17.9991 35.2175 16.2175C36.9991 14.4359 38 12.0196 38 9.5C38 6.98044 36.9991 4.56408 35.2175 2.78249C33.4359 1.00089 31.0196 0 28.5 0H19Z" fill="#FF7262"/>
+                <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
+                <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
+              </svg>
+              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>Air IQ: Edge Cases</span>
+            </div>
           </div>
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>Platform walkthrough</div>
-            <div style={{ fontSize: "15px", color: "#6B7280", marginTop: 4 }}>Video coming soon</div>
-          </div>
-        </div>
-        <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ fontSize: "15px", color: "#6B7280" }}>Explore the full platform in Figma</span>
-          <a href={airFigmaLinks.desktop} target="_blank" rel="noreferrer" style={{ fontSize: "15px", fontWeight: 600, color: "#1E90FF", textDecoration: "none" }}>Desktop Design ↗</a>
+          <iframe
+            src={edgeCasesEmbedUrl}
+            allowFullScreen
+            style={{ width: "100%", height: 600, border: "none", display: "block" }}
+            loading="lazy"
+          />
         </div>
       </div>
-
-      <JourneySection />
-
-      <EdgeCasesSection />
     </CsSection>
   );
 }
@@ -1826,14 +1894,6 @@ function DesignSystemSection() {
                 Air IQ: Design System
               </span>
             </div>
-            <a
-              href={airFigmaLinks.designSystem}
-              target="_blank"
-              rel="noreferrer"
-              style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}
-            >
-              Open in Figma ↗
-            </a>
           </div>
           <iframe
             src={systemEmbedUrl}
@@ -1844,16 +1904,6 @@ function DesignSystemSection() {
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        {stats.map((s) => (
-          <div key={s.val} style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
-            <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "#111827", flexShrink: 0 }}>{s.val}</span>
-            <span style={{ fontSize: "1.1rem", color: "#374151", fontWeight: 600 }}>{s.label}</span>
-            <span style={{ fontSize: "15px", color: "#9CA3AF" }}>{s.sub}</span>
-          </div>
-        ))}
-      </div>
     </CsSection>
   );
 }
@@ -1957,40 +2007,6 @@ function ResultsSection() {
         </div>
       </div>
 
-      {/* Before/After table */}
-      <div className="csl-reveal rd2" style={{ marginTop: 24 }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1rem" }}>
-          <thead>
-            <tr style={{ borderBottom: "2px solid #F3F4F6" }}>
-              <th style={{ padding: "10px 0", textAlign: "left", color: "#9CA3AF", fontWeight: 600, fontSize: "15px", textTransform: "uppercase", letterSpacing: "0.1em" }}>Before</th>
-              <th style={{ padding: "10px 0", textAlign: "left", color: "#9CA3AF", fontWeight: 600, fontSize: "15px", textTransform: "uppercase", letterSpacing: "0.1em" }}>After</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              ["Agents juggled 3+ tools",       "Single unified platform"],
-              ["Manual entry errors frequent",   "Validation + inline warnings"],
-              ["No dashboard visibility",        "20+ screens, 5 core flows live"],
-              ["~12 min per booking",            "~7 min (agent feedback)"],
-              ["No design system",               "80+ token-driven components"],
-            ].map(([b, a], i) => (
-              <tr key={i} style={{ borderBottom: "1px solid #F3F4F6" }}>
-                <td style={{ padding: "12px 0", color: "#6B7280", lineHeight: 1.5 }}>{b}</td>
-                <td style={{ padding: "12px 0", color: "#111827", fontWeight: 600, lineHeight: 1.5 }}>{a}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Hotel module signal */}
-      <div className="csl-reveal rd3" style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 16, padding: "16px 20px", background: "#EFF6FF", borderRadius: 12 }}>
-        <span style={{ fontSize: "1.5rem" }}>🏨</span>
-        <div>
-          <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 2 }}>Hotel module trusted to the same designer</div>
-          <p style={{ fontSize: "15px", color: "#374151", lineHeight: 1.6, margin: 0 }}>After AIR iQ shipped, the team extended trust. The next product module (hotel booking) was handed to the same designer without a new brief process. That&apos;s a stakeholder signal.</p>
-        </div>
-      </div>
     </CsSection>
   );
 }
@@ -2042,14 +2058,6 @@ function LearningsSection() {
         ))}
       </div>
 
-      {/* Next project */}
-      <a href="/projects/biblofi" className="csl-next csl-reveal" style={{ marginTop: 56 }}>
-        <div>
-          <p className="csl-next-label">Next Case Study</p>
-          <p className="csl-next-title">BibloFi: Library Management App</p>
-        </div>
-        <span className="csl-next-arrow">→</span>
-      </a>
     </CsSection>
   );
 }
@@ -2366,9 +2374,6 @@ function MobileSection() {
               ))}
               <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginLeft: 6 }}>Air IQ: Mobile · 375px</span>
             </div>
-            <a href={airFigmaLinks.mobile} target="_blank" rel="noreferrer" style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textDecoration: "none" }}>
-              Open in Figma ↗
-            </a>
           </div>
           <iframe
             src={mobileEmbedUrl}
