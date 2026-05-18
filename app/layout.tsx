@@ -85,9 +85,9 @@ export const metadata: Metadata = {
       "Product Designer crafting B2B SaaS, healthcare, and iOS experiences. See UX case studies and design systems.",
     images: [
       {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
+        url: "/about/banner.png",
+        width: 2400,
+        height: 1254,
         alt: "Nikunj Tyagi · Product Designer"
       }
     ]
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     title: "Nikunj Tyagi · Product Designer",
     description:
       "Product Designer crafting B2B SaaS, healthcare, and iOS experiences.",
-    images: ["/opengraph-image"],
+    images: ["/about/banner.png"],
     creator: "@nikunjtyagi"
   },
   robots: {
