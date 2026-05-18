@@ -2615,7 +2615,14 @@ nav.scrolled .nav-pill{
 .dark .cswk-corner{opacity:0.18;}
 /* cswk-tag colors — each project uses its own color via inline style,
    but base border should adapt */
-.dark .cswk-tag{border-color:rgba(255,255,255,0.10);}`;
+.dark .cswk-tag{border-color:rgba(255,255,255,0.10);}
+/* ── Override forced white section backgrounds in dark mode ── */
+.dark .hero,.dark .work,.dark .zoom-sticky,.dark .dsz-sticky,.dark .about,
+.dark .gallery-section,.dark .shelf-section,.dark .scrapbook-section,
+.dark .testimonials-section,.dark .home-loves,.dark .home-xp,.dark .contact{
+  background-color:#0f0d0c;
+  background-image:linear-gradient(rgba(255,255,255,0.020) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.020) 1px,transparent 1px);
+}`;
 
 export function HomeStyles() {
   return <style dangerouslySetInnerHTML={{ __html: css }} />;
