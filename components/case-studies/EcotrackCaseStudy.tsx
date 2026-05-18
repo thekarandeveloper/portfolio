@@ -23,20 +23,19 @@ const HAND = "var(--font-caveat,'Caveat',cursive)";
    TOC + META
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",    label: "Overview"        },
-  { id: "problem",     label: "The Problem"     },
-  { id: "process",     label: "Design Process"  },
-  { id: "research",    label: "User Research"   },
-  { id: "audience",    label: "Target Audience" },
-  { id: "personas",    label: "User Personas"   },
-  { id: "competitive", label: "Competitive"     },
-  { id: "design",      label: "Visual Design"   },
-  { id: "wireframes",  label: "Wireframes"      },
-  { id: "onboarding",  label: "OnBoarding"      },
-  { id: "screens",     label: "App Screens"     },
-  { id: "iterations",  label: "Iterations"      },
-  { id: "outcomes",    label: "Outcomes"        },
-  { id: "learnings",   label: "Learnings"       },
+  { id: "overview",    label: "Overview"           },
+  { id: "problem",     label: "The Problem"        },
+  { id: "process",     label: "Design Process"     },
+  { id: "research",    label: "User Research"      },
+  { id: "personas",    label: "Audience & Personas"},
+  { id: "competitive", label: "Competitive"        },
+  { id: "design",      label: "Visual Design"      },
+  { id: "wireframes",  label: "Wireframes"         },
+  { id: "onboarding",  label: "OnBoarding"         },
+  { id: "screens",     label: "App Screens"        },
+  { id: "iterations",  label: "Iterations"         },
+  { id: "outcomes",    label: "Outcomes"           },
+  { id: "learnings",   label: "Learnings"          },
 ];
 
 const META_ROWS = [
@@ -191,6 +190,27 @@ function EcoNum({ children }: { children: React.ReactNode }) {
     }}>
       {children}
     </strong>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   SECTION BRIDGE — narrative connector between sections
+───────────────────────────────────────────────────────────────────── */
+function SectionBridge({ text }: { text: string }) {
+  return (
+    <div style={{
+      marginTop: 44,
+      padding: "14px 24px 14px 18px",
+      background: "linear-gradient(90deg, rgba(232,247,236,0.9) 0%, transparent 100%)",
+      borderLeft: "2px solid rgba(45,125,67,0.45)",
+      borderRadius: "0 14px 14px 0",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+    }}>
+      <span style={{ fontSize: "0.95rem", color: "#2D7D43", flexShrink: 0, fontFamily: HAND }}>→</span>
+      <p style={{ fontFamily: HAND, fontSize: "1.0rem", color: "#3B6B45", lineHeight: 1.45 }}>{text}</p>
+    </div>
   );
 }
 
@@ -707,6 +727,8 @@ function ProblemSection() {
           </EcoCard>
         ))}
       </div>
+
+      <SectionBridge text="Before designing anything, I needed to understand this problem through the people feeling it — not through assumptions." />
     </CsSection>
   );
 }
@@ -752,14 +774,41 @@ function ProcessSection() {
       </div>
 
       <div className="csl-process-grid csl-reveal rd2">
-        {ecoProcess.map((step) => (
-          <div key={step.name} className="csl-process-step" style={step.active ? { borderTopColor: "#2D7D43" } : {}}>
-            <div className="csl-process-num">{step.phase}</div>
-            <div className="csl-process-title">{step.name}</div>
-            <p className="csl-process-text">{step.desc}</p>
-          </div>
-        ))}
+        {ecoProcess.map((step) => {
+          const isDefine = step.name === "Define";
+          return (
+            <div
+              key={step.name}
+              className="csl-process-step"
+              style={{
+                ...(step.active ? { borderTopColor: "#2D7D43" } : {}),
+                ...(isDefine ? {
+                  background: "#0A1F0F",
+                  borderTopColor: "#2D7D43",
+                  gridColumn: "span 1",
+                } : {}),
+              }}
+            >
+              <div className="csl-process-num" style={isDefine ? { color: "rgba(72,163,98,0.85)" } : {}}>{step.phase}</div>
+              <div className="csl-process-title" style={isDefine ? { color: "#fff" } : {}}>{step.name}</div>
+              <p className="csl-process-text" style={isDefine ? { color: "rgba(255,255,255,0.65)" } : {}}>{step.desc}</p>
+              {isDefine && (
+                <span style={{
+                  fontSize: "0.72rem", fontWeight: 700,
+                  background: "#2D7D43", color: "#fff",
+                  padding: "3px 10px", borderRadius: 100,
+                  display: "inline-block", marginTop: 12,
+                  letterSpacing: "0.08em", textTransform: "uppercase",
+                }}>
+                  pivot point
+                </span>
+              )}
+            </div>
+          );
+        })}
       </div>
+
+      <SectionBridge text="The double-diamond looked tidy on paper. The Define phase is where assumptions broke down — and the real problem surfaced." />
     </CsSection>
   );
 }
@@ -779,9 +828,31 @@ function ResearchSection() {
         sub="I recruited people who described themselves as eco-conscious but inconsistent. Not existing app users."
       />
 
+      {/* Big insight hero */}
+      <div className="csl-reveal" style={{
+        padding: "32px 36px",
+        background: "linear-gradient(135deg, #0A1F0F 0%, #1B4022 100%)",
+        borderRadius: 20,
+        marginBottom: 24,
+        position: "relative",
+        overflow: "hidden",
+      }}>
+        <div style={{ position: "absolute", top: -60, right: -40, width: 240, height: 240, background: "radial-gradient(circle, rgba(45,125,67,0.28), transparent 70%)", pointerEvents: "none" }} />
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.16em", color: "rgba(72,163,98,0.85)", marginBottom: 12 }}>
+          The finding that changed everything
+        </p>
+        <p style={{ fontFamily: HAND, fontSize: "2.5rem", color: "#fff", lineHeight: 1.15, marginBottom: 16 }}>
+          68% felt judged,<br />not helped.
+        </p>
+        <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.68)", lineHeight: 1.75, maxWidth: 520 }}>
+          I expected to fix a UX problem. Research surfaced an emotional one. The brief wasn&apos;t &ldquo;make tracking easier&rdquo; — it was &ldquo;make it feel safe to be imperfect.&rdquo;
+        </p>
+      </div>
+
+      {/* Supporting stats */}
       <div
         ref={rootRef as React.RefObject<HTMLDivElement>}
-        className="csl-metrics csl-reveal"
+        className="csl-metrics csl-reveal rd1"
       >
         {ecoResearchStats.map((stat) => (
           <div key={stat.label} className="csl-metric">
@@ -794,13 +865,13 @@ function ResearchSection() {
       </div>
 
       {/* Finding → Decision chain */}
-      <div style={{ marginTop: 36 }} className="csl-reveal rd1">
-        <p className="csl-section-eyebrow" style={{ marginBottom: 16 }}>Research → Design Decisions</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ marginTop: 28 }} className="csl-reveal rd2">
+        <p className="csl-section-eyebrow" style={{ marginBottom: 14 }}>Finding → Design decision</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {[
-            { finding: <><EcoNum>68%</EcoNum> felt judged, not helped, by their data</>, decision: "Every metric shows a positive comparison. Never a score against an abstract goal." },
             { finding: <><EcoNum>3/5</EcoNum> had quit an app within the first <EcoNum>10</EcoNum> days</>, decision: "First-time logging became the primary design problem. Not the dashboard." },
-            { finding: "No one wanted to manually log food in detail", decision: "Quick-select cards replace free-form input for common logging scenarios." },
+            { finding: "No one wanted to manually log food in detail", decision: "Quick-select cards replace free-form input. Speed over completeness." },
+            { finding: "Every extra navigation step caused 1–2 testers to abandon the task", decision: "Log without leaving home screen. The FAB exists because of this single observation." },
           ].map((row, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 10, alignItems: "center" }}>
               <div style={{ background: "#FEF2F2", borderRadius: 14, padding: "13px 16px" }}>
@@ -814,55 +885,48 @@ function ResearchSection() {
           ))}
         </div>
       </div>
+
+      <SectionBridge text="Those findings had faces. Two archetypes turned raw data into design decisions." />
     </CsSection>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §05  TARGET AUDIENCE
-───────────────────────────────────────────────────────────────────── */
-function AudienceSection() {
-  return (
-    <CsSection id="audience">
-      <CsSectionHeader
-        label="Target Audience"
-        title={<>Designing for people who <Script>already care.</Script></>}
-        sub="The design challenge is habit, not awareness."
-      />
-
-      <div className="csl-reveal" style={{ borderRadius: 20, overflow: "hidden", marginBottom: 28, boxShadow: "0 8px 40px rgba(45,125,67,0.1)" }}>
-        <EcoImg src="/Image/Ecotrack/target-audience.png" alt="Target audience overview" />
-      </div>
-
-      <div className="csl-card-grid csl-reveal rd1">
-        {[
-          { label: "Eco-Curious Beginners", desc: "Need gentle guidance and visible progress to build confidence.", bg: "#E8F7EC" },
-          { label: "Active Eco-Enthusiasts", desc: "Want data-driven proof their choices matter. Insight, not instruction.", bg: "#D0EAD4" },
-          { label: "Lapsed Eco-App Users", desc: "Trust is broken. The design has to earn their return.", bg: "#F9FAFB" },
-        ].map((seg) => (
-          <EcoCard key={seg.label} style={{ background: seg.bg }}>
-            <p style={{ fontSize: "15px", fontWeight: 600, color: "#111827", marginBottom: 8 }}>{seg.label}</p>
-            <p style={{ fontSize: "15px", color: "#374151", lineHeight: 1.55 }}>{seg.desc}</p>
-          </EcoCard>
-        ))}
-      </div>
-    </CsSection>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   §06  USER PERSONAS
+   §05+06  AUDIENCE & PERSONAS  (merged)
 ───────────────────────────────────────────────────────────────────── */
 function PersonasSection() {
   return (
     <CsSection id="personas">
       <CsSectionHeader
-        label="User Personas"
-        title={<>Fictional. <Script>Built from real research.</Script></>}
-        sub="Priya needed simplicity. Arjun needed proof. Every design decision traced back to one of them."
+        label="Audience & Personas"
+        title={<>Three segments. <Script>Two design lenses.</Script></>}
+        sub="Research defined who I was designing for. Two personas made that concrete."
       />
 
-      <div className="csl-card-2col csl-reveal">
+      {/* Audience segments strip */}
+      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 32 }}>
+        {[
+          { icon: "🌱", label: "Eco-Curious Beginner", desc: "Cares but overwhelmed. Needs wins, not warnings." },
+          { icon: "🚲", label: "Active Eco-Enthusiast", desc: "Built habits already. Wants proof they matter." },
+          { icon: "🔄", label: "Lapsed Eco-App User", desc: "Burned by guilt-driven data. Trust is the entry point." },
+        ].map((seg) => (
+          <div key={seg.label} style={{
+            padding: "18px 18px",
+            background: "#fff",
+            borderRadius: 14,
+            borderTop: "3px solid #2D7D43",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04)",
+          }}>
+            <span style={{ fontSize: "1.35rem", display: "block", marginBottom: 10 }}>{seg.icon}</span>
+            <p style={{ fontSize: "15px", fontWeight: 700, color: "#111827", marginBottom: 6 }}>{seg.label}</p>
+            <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.5 }}>{seg.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="csl-section-eyebrow csl-reveal rd1" style={{ marginBottom: 16 }}>Two archetypes shaped every screen</p>
+
+      <div className="csl-card-2col csl-reveal rd1">
         {[
           { photo: "user-persona.png",  name: "Priya Sharma", tag: "22 · College Student · Mumbai",      bg: "#E8F7EC", empathy: ecoEmpathy1 },
           { photo: "user-persona2.png", name: "Arjun Mehta",  tag: "28 · Product Manager · Bangalore",   bg: "#D0EAD4", empathy: ecoEmpathy2 },
@@ -884,6 +948,8 @@ function PersonasSection() {
           </div>
         ))}
       </div>
+
+      <SectionBridge text="With the audience defined, I audited what already existed — and studied the moment users stopped wanting to open each app." />
     </CsSection>
   );
 }
@@ -939,6 +1005,8 @@ function CompetitiveSection() {
         <span style={{ fontSize: "1.1rem", marginRight: 8 }}>💡</span>
         No single app was bad. Each excelled at one thing. EcoTrack&apos;s brief: make daily logging so frictionless that users don&apos;t need anything else to build a habit.
       </EcoCallout>
+
+      <SectionBridge text="The audit wasn't inspiration — it was permission to make hard, explicit rejections in every design choice that followed." />
     </CsSection>
   );
 }
@@ -1018,6 +1086,8 @@ function DesignSection() {
           ))}
         </div>
       </EcoCard>
+
+      <SectionBridge text="Visual language locked. Next: structure — and the first brutal cuts." />
     </CsSection>
   );
 }
@@ -1046,8 +1116,49 @@ function WireframesSection() {
       <CsSectionHeader
         label="Mid-Fidelity Wireframes"
         title={<>IA first. <Script>Screens second.</Script></>}
-        sub="Started with 23 potential screens. One filter: can a first-time user complete this on day one? What survived: 12 screens, 5 views."
+        sub="One filter: can a first-time user complete this on day one? Everything that failed the filter was cut."
       />
+
+      {/* 23 → 12 cut visualization */}
+      <div className="csl-reveal" style={{
+        display: "grid",
+        gridTemplateColumns: "120px 1fr",
+        gap: 24,
+        marginBottom: 28,
+        padding: "24px",
+        background: "#fff",
+        borderRadius: 18,
+        boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04)",
+        alignItems: "start",
+      }}>
+        <div style={{ textAlign: "center" }}>
+          <p style={{ fontFamily: HAND, fontSize: "2.6rem", color: "#9CA3AF", lineHeight: 1 }}>23</p>
+          <p style={{ fontSize: "15px", color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>ideas</p>
+          <div style={{ height: 2, background: "#F3F4F6", marginBottom: 10 }} />
+          <p style={{ fontFamily: HAND, fontSize: "2.2rem", color: "#2D7D43", lineHeight: 1 }}>12</p>
+          <p style={{ fontSize: "15px", color: "#2D7D43", textTransform: "uppercase", letterSpacing: "0.1em" }}>kept</p>
+        </div>
+        <div>
+          <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12 }}>Failed the day-one filter</p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5px 20px" }}>
+            {[
+              "Social sharing & leaderboards",
+              "Carbon offset purchases",
+              "Lifecycle analysis",
+              "Streak mechanics",
+              "Friend comparisons",
+              "Batch import from bank",
+              "Detailed food calculations",
+              "Export to CSV",
+              "Custom notification rules",
+              "In-app community",
+              "Carbon offsetting marketplace",
+            ].map((item) => (
+              <p key={item} style={{ fontSize: "15px", color: "#C4C9D4", textDecoration: "line-through", lineHeight: 1.5 }}>{item}</p>
+            ))}
+          </div>
+        </div>
+      </div>
 
       <div className="csl-reveal rd1" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14, marginBottom: 20 }}>
         {Object.entries(wfNotes).map(([file, label]) => (
@@ -1063,6 +1174,8 @@ function WireframesSection() {
       <EcoCallout>
         Social sharing, streak mechanics, carbon offsets, and lifecycle analysis all failed the day-one filter. What remained: home, activity log, impact breakdown, learning, progress.
       </EcoCallout>
+
+      <SectionBridge text="The skeleton held. The question was whether first-time users could actually navigate it." />
     </CsSection>
   );
 }
@@ -1143,6 +1256,8 @@ function OnboardingSection() {
           ))}
         </EcoCard>
       </div>
+
+      <SectionBridge text="Onboarding earns entry. The core screens have to sustain it." />
     </CsSection>
   );
 }
@@ -1270,6 +1385,8 @@ function ScreensSection() {
           </div>
         </div>
       </div>
+
+      <SectionBridge text="The screens looked right in Figma. Then real users sat down with them." />
     </CsSection>
   );
 }
@@ -1365,70 +1482,63 @@ function IterationsSection() {
    §13  OUTCOMES
 ───────────────────────────────────────────────────────────────────── */
 function OutcomesSection() {
-  const tasks = [
-    { task: "Log a morning commute (bus, 12km)", r1: "3/5", r2: "5/5", up: true },
-    { task: "Compare this week vs last week",    r1: "5/5", r2: "5/5", up: false },
-    { task: "Find an actionable food tip",       r1: "4/5", r2: "5/5", up: true },
-    { task: "Add a new weekly goal",             r1: "2/5", r2: "4/5", up: true },
-  ];
-
   return (
     <CsSection id="outcomes">
       <CsSectionHeader
         label="Outcomes"
-        title={<>What actually changed. <Script>What I can honestly claim.</Script></>}
+        title={<>Two iterations. <Script>One word that said everything.</Script></>}
+        sub="The numbers improved. But the most telling signal was the language participants used."
       />
 
-      <EcoCard style={{ marginBottom: 28 }} className="csl-reveal">
-        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 16 }}>
-          Usability test results: Round 1 vs Round 2 (n=<EcoNum>5</EcoNum> each)
-        </p>
-        <div style={{ border: "1px solid #F3F4F6", borderRadius: 12, overflow: "hidden" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 80px 80px", background: "#F9FAFB", borderBottom: "1px solid #F3F4F6" }}>
-            {["Task", "Round 1", "Round 2", "Change"].map((h) => (
-              <div key={h} style={{ padding: "10px 14px" }}>
-                <p style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.08em" }}>{h}</p>
-              </div>
-            ))}
-          </div>
-          {tasks.map((t, i) => (
-            <div key={t.task} style={{ display: "grid", gridTemplateColumns: "1fr 80px 80px 80px", borderBottom: i < tasks.length - 1 ? "1px solid #F3F4F6" : "none", alignItems: "center" }}>
-              <div style={{ padding: "13px 14px" }}>
-                <p style={{ fontSize: "15px", color: "#374151" }}>{t.task}</p>
-              </div>
-              <div style={{ padding: "13px 14px", textAlign: "center" }}>
-                <p style={{ fontSize: "15px", color: "#9CA3AF" }}>{t.r1}</p>
-              </div>
-              <div style={{ padding: "13px 14px", textAlign: "center" }}>
-                <p style={{ fontSize: "15px", fontWeight: 600, color: "#2D7D43" }}>{t.r2}</p>
-              </div>
-              <div style={{ padding: "13px 14px", textAlign: "center" }}>
-                {t.up
-                  ? <span style={{ fontSize: "15px", fontWeight: 600, color: "#10B981", background: "#D1FAE5", padding: "3px 9px", borderRadius: 100 }}>↑ improved</span>
-                  : <span style={{ fontSize: "15px", color: "#9CA3AF" }}>–</span>
-                }
-              </div>
-            </div>
-          ))}
-        </div>
-      </EcoCard>
-
-      <div className="csl-card-2col csl-reveal rd1" style={{ marginBottom: 28 }}>
-        <EcoCard style={{ background: "#FEF2F2" }}>
-          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#EF4444", marginBottom: 12 }}>Most common word: Round 1</p>
-          <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#111827", marginBottom: 8 }}>&ldquo;complicated&rdquo;</p>
-          <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.6 }}>No single element was broken. The whole screen competed for attention.</p>
+      {/* Language shift hero */}
+      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 16, alignItems: "center", marginBottom: 28 }}>
+        <EcoCard style={{ background: "#FEF2F2", textAlign: "center", padding: "30px 20px" }}>
+          <p style={{ fontSize: "15px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#EF4444", marginBottom: 10 }}>Round 1 · Most said</p>
+          <p style={{ fontFamily: HAND, fontSize: "2.4rem", color: "#7F1D1D", lineHeight: 1 }}>&ldquo;complicated&rdquo;</p>
+          <p style={{ fontSize: "15px", color: "#6B7280", marginTop: 10, lineHeight: 1.5 }}>Every screen competed for attention</p>
         </EcoCard>
-        <EcoCard style={{ background: "#E8F7EC" }}>
-          <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2D7D43", marginBottom: 12 }}>Most common word: Round 2</p>
-          <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#2D7D43", marginBottom: 8 }}>&ldquo;simple&rdquo;</p>
-          <p style={{ fontSize: "15px", color: "#374151", lineHeight: 1.6 }}>Same data. Better frame. Prioritised information, not less of it.</p>
+        <div style={{ textAlign: "center", flexShrink: 0 }}>
+          <p style={{ fontFamily: HAND, fontSize: "2rem", color: "#2D7D43", lineHeight: 1 }}>→</p>
+          <p style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 6 }}>2 iterations</p>
+        </div>
+        <EcoCard style={{ background: "#E8F7EC", textAlign: "center", padding: "30px 20px" }}>
+          <p style={{ fontSize: "15px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "#2D7D43", marginBottom: 10 }}>Round 2 · Most said</p>
+          <p style={{ fontFamily: HAND, fontSize: "2.4rem", color: "#2D7D43", lineHeight: 1 }}>&ldquo;simple&rdquo;</p>
+          <p style={{ fontSize: "15px", color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Same data. Prioritised, not reduced.</p>
         </EcoCard>
       </div>
 
+      {/* Task improvement deltas */}
+      <EcoCard className="csl-reveal rd1" style={{ marginBottom: 28 }}>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#9CA3AF", marginBottom: 18 }}>
+          3 of 4 tasks improved — here&apos;s what moved the needle
+        </p>
+        {[
+          { task: "Log a morning commute", r1: "3/5", r2: "5/5", why: "FAB replaced buried tab button" },
+          { task: "Find an actionable food tip", r1: "4/5", r2: "5/5", why: "Comparative framing replaced raw CO₂ numbers" },
+          { task: "Add a new weekly goal", r1: "2/5", r2: "4/5", why: "Goals separated from the Profile tab" },
+        ].map((row, i) => (
+          <div key={row.task} style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 52px 52px 1fr",
+            gap: 12,
+            alignItems: "center",
+            padding: "13px 0",
+            borderBottom: i < 2 ? "1px solid #F3F4F6" : "none",
+          }}>
+            <p style={{ fontSize: "15px", color: "#374151", fontWeight: 600 }}>{row.task}</p>
+            <p style={{ fontSize: "15px", color: "#9CA3AF", textAlign: "center" }}>{row.r1}</p>
+            <p style={{ fontSize: "15px", fontWeight: 700, color: "#2D7D43", textAlign: "center" }}>{row.r2}</p>
+            <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.45, borderLeft: "1px solid #F3F4F6", paddingLeft: 12 }}>
+              ↑ {row.why}
+            </p>
+          </div>
+        ))}
+      </EcoCard>
+
       <EcoCallout className="csl-reveal rd2">
         <span style={{ fontSize: "1.1rem", marginRight: 8 }}>📌</span>
-        <strong>Honest caveat:</strong> <EcoNum>5</EcoNum> participants per round validates direction, not production readiness. The test that would actually matter is <EcoNum>30</EcoNum>-day retention data. This sprint can&apos;t generate that.
+        <strong>Honest caveat:</strong> <EcoNum>5</EcoNum> participants per round validates direction, not production readiness. The real test — <EcoNum>30</EcoNum>-day retention — requires a live product. This sprint can&apos;t generate that number, and that&apos;s the correct thing to say.
       </EcoCallout>
     </CsSection>
   );
@@ -1497,7 +1607,6 @@ export function EcotrackCaseStudy() {
       <ProblemSection />
       <ProcessSection />
       <ResearchSection />
-      <AudienceSection />
       <PersonasSection />
       <CompetitiveSection />
       <DesignSection />
