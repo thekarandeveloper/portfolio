@@ -327,7 +327,7 @@ function AirHero() {
             Live in Production &nbsp;·&nbsp; B2B SaaS &nbsp;·&nbsp; Travel
           </div>
           <h1 className="csl-hero-title">
-            <span>12 minutes to 7. One designer. 25,000 agents. A complete B2B flight portal redesign that shipped.</span>
+            <span>Simplifying complex flight booking system</span>
           </h1>
           <p className="csl-hero-desc">
             A live product losing market share. A business mandate to redesign. One designer, six months, and a full redesign that cut booking time by 30–40%.
