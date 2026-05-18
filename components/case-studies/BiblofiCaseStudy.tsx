@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { CaseStudyPage, CsSection, CsSectionHeader, CsImg } from "./CaseStudyLayout";
 import {
@@ -56,6 +56,48 @@ const META_ROWS = [
 ];
 
 /* ─────────────────────────────────────────────────────────────────────
+   INTERNSHIP PHOTO STACK
+───────────────────────────────────────────────────────────────────── */
+function PhotoStack() {
+  const photos = [
+    "/Image/Biblofi/team-infosys.png",
+    "/Image/Biblofi/use-thum.png",
+    "/Image/Biblofi/me.png",
+  ];
+  const [active, setActive] = useState(0);
+  const rotations = [-4, 0, 4];
+  return (
+    <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:12 }}>
+      <div
+        style={{ position:"relative", width:260, height:180, cursor:"pointer" }}
+        onClick={() => setActive((active + 1) % photos.length)}
+      >
+        {photos.map((photo, i) => {
+          const offset = (i - active + photos.length) % photos.length;
+          return (
+            <div key={photo} style={{
+              position:"absolute", inset:0,
+              borderRadius:14, overflow:"hidden",
+              boxShadow:"0 8px 24px rgba(0,0,0,0.18)",
+              transform:`rotate(${rotations[offset]}deg) translateY(${offset * 10}px)`,
+              zIndex: photos.length - offset,
+              opacity: offset === 0 ? 1 : offset === 1 ? 0.75 : 0.5,
+              transition:"all 0.35s cubic-bezier(0.34,1.56,0.64,1)",
+            }}>
+              <Image src={photo} alt="Internship" width={520} height={360}
+                style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+            </div>
+          );
+        })}
+      </div>
+      <p style={{ fontSize:"13px", color:"#9CA3AF", letterSpacing:"0.06em" }}>
+        Click to browse · {active + 1}/{photos.length}
+      </p>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
    HERO PHONE MOCKUP
 ───────────────────────────────────────────────────────────────────── */
 function PhoneFrame({ src, alt, w, h, tilt, style = {} }: {
@@ -71,19 +113,20 @@ function PhoneFrame({ src, alt, w, h, tilt, style = {} }: {
       boxShadow:"0 0 0 1px rgba(0,0,0,0.08), 0 20px 40px rgba(0,0,0,0.12)",
       transform:`rotate(${tilt})`,
       flexShrink:0,
+      overflow:"hidden",
       ...style,
     }}>
       <div style={{
         position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
         width:islandW, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
       }} />
-      <div style={{ position:"absolute", inset:0, borderRadius:42, overflow:"hidden" }}>
+      <div style={{ position:"absolute", inset:4, borderRadius:38, overflow:"hidden" }}>
         <Image src={src} alt={alt} width={w * 2} height={h * 2}
           style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
         <div style={{
           position:"absolute", inset:0,
           background:"linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%)",
-          borderRadius:42, pointerEvents:"none",
+          borderRadius:38, pointerEvents:"none",
         }} />
       </div>
       <div style={{ position:"absolute", right:-4, top:Math.round(h*0.24), width:4, height:btnH, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
@@ -113,19 +156,25 @@ function PhoneMockupScene() {
         <PhoneFrame src="/Image/Biblofi/final%20screens%20-%20biblofi/home-biblofi.png" alt="BibloFi screen" w={148} h={320} tilt="-6deg" />
       </div>
       {/* center phone — flex item, floating animation */}
-      <div className="biblo-phone-wrap" style={{ zIndex:3, flexShrink:0 }}>
+      <div className="biblo-phone-wrap" style={{
+        zIndex:3, flexShrink:0,
+        position:"relative", width:210, height:454,
+        background:"#161616", borderRadius:42,
+        boxShadow:"0 0 0 1px rgba(0,0,0,0.08), 0 24px 56px rgba(0,0,0,0.18)",
+        overflow:"hidden",
+      }}>
         <div style={{
           position:"absolute", top:14, left:"50%", transform:"translateX(-50%)",
           width:88, height:26, background:"#0A0A0A", borderRadius:20, zIndex:10,
         }} />
-        <div style={{ position:"absolute", inset:0, borderRadius:42, overflow:"hidden" }}>
+        <div style={{ position:"absolute", inset:4, borderRadius:38, overflow:"hidden" }}>
           <Image src="/Image/Biblofi/smart-book.png" alt="BibloFi: Smart Book Discovery"
             width={420} height={908}
             style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
           <div style={{
             position:"absolute", inset:0,
             background:"linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%)",
-            borderRadius:42, pointerEvents:"none",
+            borderRadius:38, pointerEvents:"none",
           }} />
         </div>
         <div style={{ position:"absolute", right:-4, top:110, width:4, height:64, background:"#2A2A2A", borderRadius:"0 3px 3px 0" }} />
@@ -164,7 +213,7 @@ function BibloHero() {
           <p className="csl-hero-desc">
             Infosys brought me in to design a library app from scratch. What I found wasn&apos;t a missing app, it was a system that assumed students had time, patience, and willingness to just show up and hope for the best.
           </p>
-          <div className="csl-hero-chips">
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8, marginTop:16 }}>
             {bibloMeta.map((item) => (
               <span className="csl-hero-chip" key={item.label}>{item.label}: {item.value}</span>
             ))}
@@ -175,19 +224,6 @@ function BibloHero() {
         </div>
       </div>
 
-      <div className="csl-hero-stats">
-        {[
-          { val:"20",   label:"Usability test users"  },
-          { val:"90%",  label:"Task completion rate"  },
-          { val:"7",    label:"User flows designed"   },
-          { val:"1 mo", label:"Project duration"      },
-        ].map((s) => (
-          <div className="csl-hero-stat" key={s.label}>
-            <div className="csl-hero-stat-val">{s.val}</div>
-            <div className="csl-hero-stat-label">{s.label}</div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
@@ -206,10 +242,13 @@ function OverviewSection() {
       <div className="csl-card-2col csl-reveal">
         <div>
           <p className="csl-text">
-            Before BibloFi, students had no digital interface with the library at all. Checking book availability meant physically visiting. Reserving a study seat was first-come, first-served. Due dates were tracked by memory or handwritten slips, and forgotten ones meant fines. The system was entirely manual, managed by librarians over the counter.
+            BibloFi started as an Infosys internship project, time-bounded to 1 month with a structured sprint delivery model. Every week had to produce one working sprint, which meant decisions had to be intentional and fast. There was no room to iterate infinitely.
           </p>
           <p className="csl-text">
-            Infosys identified this as a real student pain point and brought me in as the lead designer for a 4-week internship sprint. I was given a blank canvas, a team of 10 iOS developers, and a clear mandate: design the complete member experience from scratch.
+            We were handed an SRS (Software Requirements Specification) document laying out every feature the app needed. This was our brief. The design challenge was to take those listed requirements and turn them into an experience that actually felt good to use on a real phone.
+          </p>
+          <p className="csl-text">
+            The context was the Infosys Mysore campus library — one of the most immersive library environments on campus, rich with books and reading spaces, but running entirely on manual processes. No digital layer existed. Students had to show up to check availability, and the librarians handled everything by hand.
           </p>
           <div className="csl-tags csl-reveal rd1">
             {bibloRoleChips.map((chip) => (
@@ -236,45 +275,31 @@ function OverviewSection() {
             ))}
           </div>
           <div className="csl-callout" style={{ margin:0 }}>
-            <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Project Goal</p>
+            <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>The Brief</p>
             <p style={{ fontSize:"1rem", color:"#374151", lineHeight:1.65 }}>
-              &quot;Create a seamless, feature-rich library app that empowers members to discover, reserve, and borrow books efficiently while reducing friction.&quot;
+              Design the complete member experience of a library app for the Mysore campus — from onboarding to book discovery, seat booking, and fine tracking — within 4 weeks.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Ownership declaration */}
-      <div className="csl-reveal rd1" style={{ marginTop:20, padding:"20px 0" }}>
-        <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:"#9CA3AF", marginBottom:16 }}>What I owned vs. what I didn&apos;t</p>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16 }}>
-          <div>
-            <p style={{ fontSize:"15px", fontWeight:700, color:"#10B981", textTransform:"uppercase", letterSpacing:"0.08em", marginBottom:10 }}>✓  I owned</p>
-            {[
-              "End-to-end UX + UI design",
-              "Research planning & execution",
-              "Information architecture",
-              "Design system + component library",
-              "Usability test planning & analysis",
-            ].map((item) => (
-              <p key={item} style={{ fontSize:"1rem", color:"#374151", marginBottom:6, lineHeight:1.5 }}>· {item}</p>
-            ))}
-          </div>
-          <div>
-            <p style={{ fontSize:"15px", fontWeight:700, color:"#9CA3AF", textTransform:"uppercase", letterSpacing:"0.08em", marginBottom:10 }}>–  Not mine</p>
-            {[
-              "iOS engineering & implementation",
-              "Product scope & business requirements",
-              "Sprint timeline & planning",
-              "Post-internship QA & release",
-            ].map((item) => (
-              <p key={item} style={{ fontSize:"1rem", color:"#9CA3AF", marginBottom:6, lineHeight:1.5 }}>· {item}</p>
-            ))}
-          </div>
+      {/* Experience notes + photo stack */}
+      <div className="csl-reveal rd2" style={{ marginTop:32, display:"grid", gridTemplateColumns:"1fr auto", gap:40, alignItems:"start" }}>
+        <div>
+          <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:"#9CA3AF", marginBottom:16 }}>From the internship</p>
+          {[
+            "The SRS was detailed but silent on the 'why' — understanding the real student frustrations required going beyond the document.",
+            "Working with 10 iOS developers meant every design decision had to be defensible in SwiftUI terms. Good communication was part of the design work.",
+            "The Mysore campus library had beautiful physical space. The gap wasn't the space — it was the invisible overhead students faced before ever arriving.",
+            "Sprint reviews every Friday kept the team honest. If something wasn't working by Thursday, it got cut, not patched.",
+          ].map((note) => (
+            <div key={note} style={{ display:"flex", gap:12, marginBottom:12, alignItems:"flex-start" }}>
+              <span style={{ color:A, fontWeight:700, marginTop:2, flexShrink:0 }}>·</span>
+              <p style={{ fontSize:"0.97rem", color:"#374151", lineHeight:1.7 }}>{note}</p>
+            </div>
+          ))}
         </div>
-        <p style={{ fontSize:"0.96rem", color:"#9CA3AF", marginTop:16, fontStyle:"italic", borderTop:"1px solid #F3F4F6", paddingTop:12 }}>
-          Delivered as final Figma specs + annotated design system to the iOS engineering team at internship end.
-        </p>
+        <PhotoStack />
       </div>
 
       <div className="csl-reveal rd2" style={{ marginTop:28, borderRadius:16, overflow:"hidden" }}>
@@ -300,6 +325,14 @@ function ProcessSection() {
         title={<>The Double Diamond <em style={{ fontStyle:"italic" }}>framework in practice.</em></>}
       />
 
+      {/* Why Design Thinking */}
+      <div className="csl-callout csl-reveal" style={{ marginBottom:28 }}>
+        <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Why Design Thinking?</p>
+        <p style={{ fontSize:"1.05rem", color:"#374151", lineHeight:1.8 }}>
+          With a hard 4-week deadline and a 10-person iOS dev team waiting on specs each Friday, we needed a process that was structured enough to communicate progress to stakeholders, yet iterative enough to respond when we found something new. Design Thinking was that fit. The Discover → Define → Develop → Deliver arc mapped cleanly onto our sprint calendar, with each phase anchoring one week of delivery. It kept user needs front-and-centre even when engineering constraints pushed back, and it gave everyone — designers, developers, and the Infosys product owner — a shared vocabulary for every decision.
+        </p>
+      </div>
+
       <div className="csl-process-grid csl-reveal">
         {diamondSteps.map((step) => (
           <div key={step.name} className="csl-process-step" style={step.active ? { borderTopColor:A } : {}}>
@@ -309,15 +342,6 @@ function ProcessSection() {
             <p className="csl-process-text">{step.desc}</p>
           </div>
         ))}
-      </div>
-
-      <div className="csl-reveal rd1" style={{ marginTop:28, borderRadius:16, overflow:"hidden" }}>
-        <Image
-          src="/Image/Biblofi/design-process.png"
-          alt="Double Diamond design process diagram"
-          width={1200} height={560}
-          style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
-        />
       </div>
     </CsSection>
   );
@@ -340,6 +364,26 @@ function ResearchSection() {
       <p className="csl-text csl-reveal rd1">
         Key finding: the friction wasn&apos;t in the library itself, it was in the invisible overhead. Not knowing if a book was available before visiting. Not being able to reserve a seat. No reminders for due dates. Digital tools existed everywhere else in students&apos; lives, but the library expected them to operate on its terms.
       </p>
+
+      {/* 5W 1H Framework */}
+      <div className="csl-reveal rd1" style={{ marginBottom:32 }}>
+        <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:20 }}>Research framework: 5W 1H</p>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:14 }}>
+          {[
+            { q:"Who?",   a:"B.Tech students aged 19–23 on Infosys Mysore campus — digital-first users expected modern tools everywhere except the library." },
+            { q:"What?",  a:"Cannot check book availability or reserve study seats without physically visiting the library first." },
+            { q:"When?",  a:"Pain peaks during exam season when seat demand spikes and specific reference books get heavily contested." },
+            { q:"Where?", a:"Infosys Mysore campus library — a well-stocked, immersive physical space running entirely on manual librarian-managed processes." },
+            { q:"Why?",   a:"No digital interface exists between students and the library system. Everything requires a physical counter visit." },
+            { q:"How?",   a:"Students physically visit, ask librarians for status, and plan study time around uncertainty about what they'll find on arrival." },
+          ].map(({ q, a }) => (
+            <div key={q} style={{ background:"#FAFAFA", border:"1px solid #F0F0F0", borderRadius:12, padding:"18px 16px" }}>
+              <p style={{ fontSize:"1.15rem", fontWeight:800, color:A, marginBottom:8 }}>{q}</p>
+              <p style={{ fontSize:"0.95rem", color:"#374151", lineHeight:1.65 }}>{a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* What surprised us — pivot insight */}
       <div className="csl-callout csl-reveal rd1" style={{ marginBottom:28 }}>
@@ -403,9 +447,8 @@ function InsightsSection() {
       <div className="csl-persona-grid csl-reveal rd1">
         {personas.map((persona) => (
           <div className="csl-persona-card" key={persona.name}>
-            <div className="csl-persona-img" style={{ background:A2 }}>
-              <span className="csl-persona-img-icon">{persona.avatar}</span>
-              <span className="csl-persona-img-label">Persona photo placeholder</span>
+            <div className="csl-persona-img" style={{ background:"transparent", border:"none", paddingTop:8 }}>
+              <span style={{ fontSize:"5rem", lineHeight:1 }}>{persona.avatar}</span>
             </div>
             <div className="csl-persona-body">
               <p className="csl-persona-name">{persona.name}</p>
@@ -594,40 +637,32 @@ function ScreensSection() {
 
       {bibloFeatures.map((feature) => (
         <div key={feature.title} className="csl-reveal" style={{
-          background:"#fff", borderRadius:20, padding:"28px 24px",
+          background:"#fff", borderRadius:20, padding:"24px",
           boxShadow:"0 4px 20px rgba(0,0,0,0.05)", marginBottom:20,
-          display:"grid", gridTemplateColumns:"1.8fr 1fr", gap:32, alignItems:"start",
+          display:"grid", gridTemplateColumns:"1fr 200px", gap:28, alignItems:"center",
         }}>
           <div style={{ order: feature.reverse ? 2 : 1 }}>
-            <p style={{ fontSize:"15px", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", marginBottom:6 }}>{feature.num}</p>
-            <p style={{ fontSize:"15px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.1em", color:AMut, marginBottom:10 }}>{feature.tag}</p>
-            <h3 style={{ fontSize:"1.25rem", fontWeight:700, color:"#111827", marginBottom:12 }}>{feature.title}</h3>
-            {feature.desc.map((line) => (
-              <p key={line} className="csl-text">{line}</p>
-            ))}
+            <p style={{ fontSize:"15px", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", marginBottom:4 }}>{feature.num}</p>
+            <p style={{ fontSize:"13px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.1em", color:AMut, marginBottom:8 }}>{feature.tag}</p>
+            <h3 style={{ fontSize:"1.15rem", fontWeight:700, color:"#111827", marginBottom:10 }}>{feature.title}</h3>
+            <p className="csl-text" style={{ marginBottom:12 }}>{feature.desc[0]}</p>
 
             {/* Why this approach */}
-            <div style={{ background:A5, borderRadius:10, padding:"12px 16px", marginTop:14, marginBottom:10 }}>
-              <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.12em", color:AMed, marginBottom:5 }}>Why this approach</p>
-              <p style={{ fontSize:"1rem", color:ADrk, lineHeight:1.65 }}>{feature.rationale}</p>
+            <div style={{ background:A5, borderRadius:10, padding:"10px 14px", marginBottom:10 }}>
+              <p style={{ fontSize:"13px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.12em", color:AMed, marginBottom:4 }}>Why this approach</p>
+              <p style={{ fontSize:"0.93rem", color:ADrk, lineHeight:1.6 }}>{feature.rationale}</p>
             </div>
 
-            {/* Rejected alternative */}
-            <div style={{ borderRadius:10, padding:"12px 16px", border:"1px solid #F3F4F6", marginBottom:12 }}>
-              <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.12em", color:"#9CA3AF", marginBottom:5 }}>Alternative we rejected</p>
-              <p style={{ fontSize:"1rem", color:"#6B7280", lineHeight:1.65 }}>{feature.rejected}</p>
-            </div>
-
-            <span style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:"15px", fontWeight:600, color:A, background:A5, padding:"4px 13px", borderRadius:100 }}>
+            <span style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:"13px", fontWeight:600, color:A, background:A5, padding:"4px 12px", borderRadius:100 }}>
               {feature.impact}
             </span>
           </div>
-          <div style={{ order: feature.reverse ? 1 : 2, display:"flex", justifyContent:"center" }}>
+          <div style={{ order: feature.reverse ? 1 : 2, display:"flex", justifyContent:"center", alignItems:"center" }}>
             <Image
               src={feature.img}
               alt={feature.title}
               width={240} height={427}
-              style={{ width:"100%", maxWidth:220, height:"auto", display:"block", borderRadius:20, boxShadow:"0 8px 32px rgba(0,0,0,0.12)" }}
+              style={{ width:"100%", maxWidth:200, height:"auto", display:"block", borderRadius:20, boxShadow:"0 8px 32px rgba(0,0,0,0.12)" }}
             />
           </div>
         </div>
@@ -664,12 +699,21 @@ function FinalScreensSection() {
           <p style={{ fontSize:"1.05rem", color:"#374151", lineHeight:1.8, marginBottom:16 }}>
             BibloFi is inspired by the word <strong style={{ color:A }}>Bibliophile</strong>, a person who loves books. We wanted to create an app that feels like home for every reader.
           </p>
-          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:20 }}>
-            <span style={{ fontSize:"1rem", fontWeight:700, color:"#111827" }}>Biblio</span>
-            <span style={{ fontSize:"1.1rem", opacity:0.35 }}>⊕</span>
-            <span style={{ fontSize:"1rem", fontWeight:700, color:"#111827" }}>Fi</span>
-            <span style={{ fontSize:"1.1rem", color:"#D1D5DB", margin:"0 4px" }}>→</span>
-            <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"1.4rem", fontWeight:700, color:A }}>BibloFi</span>
+          <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:24, flexWrap:"wrap" }}>
+            <div style={{ textAlign:"center" }}>
+              <span style={{ fontSize:"2.4rem", fontWeight:900, color:"#111827", letterSpacing:"-0.02em", display:"block" }}>Biblio</span>
+              <span style={{ fontSize:"11px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.12em", color:"#9CA3AF" }}>love of books</span>
+            </div>
+            <span style={{ fontSize:"2rem", color:A, fontWeight:300, opacity:0.6 }}>+</span>
+            <div style={{ textAlign:"center" }}>
+              <span style={{ fontSize:"2.4rem", fontWeight:900, color:"#111827", letterSpacing:"-0.02em", display:"block" }}>Fi</span>
+              <span style={{ fontSize:"11px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.12em", color:"#9CA3AF" }}>fidelity</span>
+            </div>
+            <span style={{ fontSize:"2rem", color:"#D1D5DB", margin:"0 4px" }}>→</span>
+            <div style={{ textAlign:"center" }}>
+              <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"4rem", fontWeight:700, color:A, display:"block", lineHeight:1 }}>BibloFi</span>
+              <span style={{ fontSize:"11px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.12em", color:A }}>the app</span>
+            </div>
           </div>
           <p style={{ fontSize:"1rem", color:"#9CA3AF", fontStyle:"italic" }}>
             After all the hustle of research, user pain points, and design exploration, BibloFi was born.
@@ -687,10 +731,10 @@ function FinalScreensSection() {
         {/* Annotations above */}
         <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginBottom:28 }}>
           <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            Each screen introduces a core feature step by step, keeping the focus on clarity and user engagement.
+            Each screen introduces a core feature step by step, keeping the focus on clarity and user engagement. <span style={{ color:A }}>↓</span>
           </p>
           <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            We used minimal text with strong visuals to ensure quick comprehension and smooth navigation.
+            <span style={{ color:A }}>↓</span> Minimal text with strong visuals ensures quick comprehension and smooth navigation.
           </p>
         </div>
 
@@ -733,71 +777,44 @@ function FinalScreensSection() {
         </div>
       </div>
 
-      {/* ── AUTHENTICATION ── */}
-      <div style={{ marginBottom:64 }}>
-        {/* Annotations above */}
-        <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginBottom:28 }}>
-          <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            Secure and seamless entry point for new and returning users.
-          </p>
-          <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            Easy access to view and manage membership details.
-          </p>
-        </div>
 
-        {/* 4 phones with stagger */}
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:14 }}>
-          {([1,2,3,4] as const).map((n, i) => (
-            <div key={n} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`} style={{
-              borderRadius:28, overflow:"hidden",
-              boxShadow:"0 16px 48px rgba(0,0,0,0.13)",
-              transform: i % 2 === 1 ? "translateY(12px)" : "translateY(0)",
-            }}>
-              <Image
-                src={`${FINAL}/a${n}.png`}
-                alt={`Authentication screen ${n}`}
-                width={320} height={693}
-                style={{ width:"100%", height:"auto", display:"block" }}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Annotations below */}
-        <div className="csl-reveal rd2" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:40, marginTop:28 }}>
-          <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            A reliable OTP verification system that adds an extra layer of security while keeping the process simple.
-          </p>
-          <p style={{ fontSize:"1.05rem", color:"#6B7280", lineHeight:1.75 }}>
-            Scan and see the process of onboarding and authentication in action.
-          </p>
-        </div>
-
-        {/* Handwriting label */}
-        <div className="csl-reveal rd3" style={{ textAlign:"left", marginTop:16 }}>
-          <span style={{
-            fontFamily:"var(--font-caveat), cursive",
-            fontSize:"3.2rem", fontWeight:700, color:A, lineHeight:1,
-          }}>
-            Authentication
-          </span>
-        </div>
-      </div>
-
-      {/* ── FILTERS ── */}
+      {/* ── FILTERS / GENRE DISCOVERY ── */}
       <div className="csl-reveal rd1" style={{ marginBottom:64 }}>
         <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Genre Discovery</p>
         <h3 style={{ fontSize:"1.2rem", fontWeight:700, color:"#111827", marginBottom:28 }}>
           Tell us what you love to read.
         </h3>
-        <div style={{ display:"flex", justifyContent:"center" }}>
-          <div style={{ width:260, borderRadius:28, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.13)" }}>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 260px 1fr", gap:32, alignItems:"center" }}>
+          {/* Left text */}
+          <div style={{ textAlign:"right" }}>
+            <div style={{ marginBottom:28 }}>
+              <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>Pick your genres →</p>
+              <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.65 }}>Students choose from a rich list of categories — Fiction, Science, History, Technology and more — in a single tap flow.</p>
+            </div>
+            <div>
+              <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>One-time personalisation →</p>
+              <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.65 }}>Set once during onboarding and the app remembers. Genre preferences persist across sessions without any settings menu.</p>
+            </div>
+          </div>
+          {/* Center phone */}
+          <div style={{ borderRadius:28, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.13)" }}>
             <Image
               src={`${FINAL}/filters.png`}
               alt="Genre filters: Tell us what you love to read"
               width={320} height={693}
               style={{ width:"100%", height:"auto", display:"block" }}
             />
+          </div>
+          {/* Right text */}
+          <div>
+            <div style={{ marginBottom:28 }}>
+              <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>← Shapes recommendations</p>
+              <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.65 }}>The selections directly feed the Home screen's &quot;Top Picks for You&quot; section — what you choose here is exactly what surfaces there.</p>
+            </div>
+            <div>
+              <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>← Reduces discovery friction</p>
+              <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.65 }}>Instead of browsing a flat catalogue of hundreds of books, students land on a feed already filtered to their interests.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -815,16 +832,16 @@ function FinalScreensSection() {
 
         <div className="csl-reveal rd1" style={{ display:"grid", gridTemplateColumns:"1fr 1.4fr 1fr", gap:28, alignItems:"center" }}>
           {/* Left callouts */}
-          <div style={{ display:"flex", flexDirection:"column", gap:36 }}>
+          <div style={{ display:"flex", flexDirection:"column", gap:32 }}>
             {[
               { title:"Search", desc:"Quickly find books using an intelligent, multi-filter search bar." },
               { title:"Event & Promo Card", desc:"Display promotional banners for book fairs, events, or important notices." },
               { title:"Top Picks for You", desc:"Curated book recommendations based on popularity and user preferences." },
               { title:"Membership Card", desc:"Shows your active membership status, renewal info, and ID details." },
             ].map((a) => (
-              <div key={a.title} style={{ textAlign:"right", paddingRight:18, borderRight:`2px dotted ${A2}` }}>
-                <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:5 }}>{a.title}</p>
-                <p style={{ fontSize:"0.96rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
+              <div key={a.title} style={{ textAlign:"right", paddingRight:18, borderRight:`2px solid ${A2}` }}>
+                <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:4 }}>{a.title} <span style={{ color:A }}>→</span></p>
+                <p style={{ fontSize:"0.93rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
               </div>
             ))}
           </div>
@@ -836,15 +853,15 @@ function FinalScreensSection() {
           </div>
 
           {/* Right callouts */}
-          <div style={{ display:"flex", flexDirection:"column", gap:52 }}>
+          <div style={{ display:"flex", flexDirection:"column", gap:48 }}>
             {[
               { title:"Smart Notifications", desc:"Stay updated with the latest alerts, reminders, and library announcements." },
               { title:"Book Scanner Shortcut", desc:"Instantly scan a book's barcode to check its availability or borrow status." },
               { title:"Magazines & Novels", desc:"Discover trending magazines and novel collections in one place." },
             ].map((a) => (
-              <div key={a.title} style={{ paddingLeft:18, borderLeft:`2px dotted ${A2}` }}>
-                <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:5 }}>{a.title}</p>
-                <p style={{ fontSize:"0.96rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
+              <div key={a.title} style={{ paddingLeft:18, borderLeft:`2px solid ${A2}` }}>
+                <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:4 }}><span style={{ color:A }}>←</span> {a.title}</p>
+                <p style={{ fontSize:"0.93rem", color:"#6B7280", lineHeight:1.6 }}>{a.desc}</p>
               </div>
             ))}
           </div>
@@ -1001,19 +1018,6 @@ function TestingSection() {
         </p>
       </div>
 
-      {/* Oreo mascot */}
-      <div className="csl-reveal rd2" style={{
-        marginTop:28, padding:"24px 0",
-        display:"flex", gap:20, alignItems:"center",
-      }}>
-        <div style={{ fontSize:"2.5rem", flexShrink:0 }}>🐾</div>
-        <div>
-          <h3 style={{ fontSize:"1.15rem", fontWeight:700, color:"#111827", marginBottom:8 }}>Meet Oreo, a mascot with personality</h3>
-          <p style={{ fontSize:"1rem", color:"#6B7280", lineHeight:1.65 }}>
-            Every great app has a soul. Oreo is the character we created to give BibloFi a unique theme and warmth, a small detail that made the experience feel human. Good UX isn&apos;t just about flows and components. It&apos;s about the moments that make users smile.
-          </p>
-        </div>
-      </div>
     </CsSection>
   );
 }
@@ -1055,13 +1059,6 @@ function LearningsSection() {
         ))}
       </div>
 
-      <a href="/projects/ecotrack" className="csl-next csl-reveal" style={{ marginTop:56 }}>
-        <div>
-          <p className="csl-next-label">Next Case Study</p>
-          <p className="csl-next-title">EcoTrack: Carbon Footprint Tracking</p>
-        </div>
-        <span className="csl-next-arrow">→</span>
-      </a>
     </CsSection>
   );
 }
