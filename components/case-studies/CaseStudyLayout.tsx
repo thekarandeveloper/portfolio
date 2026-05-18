@@ -406,7 +406,7 @@ export function CaseStudyPage({
   }, []);
 
   return (
-    <div className="csl-root" ref={rootRef} style={THEME_VARS[theme]}>
+    <div className="csl-root" data-csl-theme={theme} ref={rootRef} style={THEME_VARS[theme]}>
       {hero}
       <div className="csl-body">
         <aside className="csl-sidebar">

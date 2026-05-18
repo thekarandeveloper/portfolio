@@ -7642,10 +7642,209 @@ p.iq2-frame-caption,
   background: #0b1a35;
 }
 
-/* Biblofi case study dark overrides */
+/* Biblofi case study dark overrides (legacy class) */
 .dark .biblofi-case-study {
   background: #0f0d0c;
   color: #ede8e3;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   BIBLOFI — new CaseStudyLayout dark mode (data-csl-theme="biblo")
+   Warm cream palette, not the green-tinted EcoTrack defaults.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Root surface */
+.dark [data-csl-theme="biblo"].csl-root {
+  background: #120d08;
+}
+
+/* Hero */
+.dark [data-csl-theme="biblo"] .csl-hero--light {
+  background: #1c1208 !important;
+}
+.dark [data-csl-theme="biblo"] .csl-hero--light .csl-hero-title {
+  color: rgba(237, 225, 210, 0.95);
+}
+.dark [data-csl-theme="biblo"] .csl-hero--light .csl-hero-desc {
+  color: rgba(210, 192, 168, 0.72);
+}
+.dark [data-csl-theme="biblo"] .csl-hero--light .csl-hero-chip {
+  background: rgba(200, 112, 58, 0.15) !important;
+  border-color: rgba(200, 112, 58, 0.28) !important;
+  color: rgba(225, 170, 120, 0.92) !important;
+}
+.dark [data-csl-theme="biblo"] .csl-hero--light .csl-hero-eyebrow {
+  color: rgba(200, 112, 58, 0.75);
+}
+
+/* Callout boxes — warm orange tint */
+.dark [data-csl-theme="biblo"] .csl-callout {
+  background: rgba(200, 112, 58, 0.08) !important;
+  border-color: rgba(200, 112, 58, 0.20) !important;
+  color: rgba(225, 205, 182, 0.82);
+}
+
+/* Process step cards */
+.dark [data-csl-theme="biblo"] .csl-process-step {
+  background: rgba(255, 255, 255, 0.03);
+  border-top-color: rgba(200, 112, 58, 0.18);
+}
+.dark [data-csl-theme="biblo"] .csl-process-title {
+  color: rgba(237, 220, 198, 0.92);
+}
+.dark [data-csl-theme="biblo"] .csl-process-text {
+  color: rgba(200, 178, 150, 0.65);
+}
+
+/* Section header typography */
+.dark [data-csl-theme="biblo"] .csl-section-title {
+  color: rgba(237, 220, 200, 0.95);
+}
+.dark [data-csl-theme="biblo"] .csl-section-sub {
+  color: rgba(200, 178, 152, 0.65);
+}
+.dark [data-csl-theme="biblo"] .csl-section-label {
+  color: rgba(200, 112, 58, 0.82);
+}
+
+/* csl-text paragraphs */
+.dark [data-csl-theme="biblo"] .csl-text {
+  color: rgba(210, 190, 165, 0.78);
+}
+.dark [data-csl-theme="biblo"] .csl-text strong {
+  color: rgba(237, 220, 198, 0.95);
+}
+
+/* Card surfaces */
+.dark [data-csl-theme="biblo"] .csl-card {
+  background: rgba(28, 20, 14, 0.95);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Tags */
+.dark [data-csl-theme="biblo"] .csl-tag {
+  background: rgba(200, 112, 58, 0.12);
+  color: rgba(220, 162, 112, 0.92);
+  border-color: rgba(200, 112, 58, 0.22);
+}
+
+/* Persona cards */
+.dark [data-csl-theme="biblo"] .csl-persona-card {
+  background: rgba(28, 20, 14, 0.9);
+  border-color: rgba(200, 112, 58, 0.12);
+}
+.dark [data-csl-theme="biblo"] .csl-persona-name {
+  color: rgba(237, 220, 198, 0.95);
+}
+.dark [data-csl-theme="biblo"] .csl-persona-tag {
+  color: rgba(175, 155, 130, 0.60);
+}
+
+/* Inline text-color overrides — warm cream instead of green */
+.dark [data-csl-theme="biblo"] [style*="color: #111827"],
+.dark [data-csl-theme="biblo"] [style*='color:#111827'] {
+  color: rgba(237, 225, 210, 0.95) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="color: #374151"],
+.dark [data-csl-theme="biblo"] [style*='color:#374151'] {
+  color: rgba(215, 198, 175, 0.82) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="color: #6B7280"],
+.dark [data-csl-theme="biblo"] [style*='color:#6B7280'] {
+  color: rgba(182, 162, 138, 0.65) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="color: #9CA3AF"],
+.dark [data-csl-theme="biblo"] [style*='color:#9CA3AF'] {
+  color: rgba(158, 140, 118, 0.55) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="color: #4B5563"] {
+  color: rgba(195, 175, 150, 0.70) !important;
+}
+/* BibloFi palette darks → warm light equivalents */
+.dark [data-csl-theme="biblo"] [style*="color: #3D2010"] {
+  color: rgba(235, 205, 170, 0.92) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="color: #8B5A35"] {
+  color: rgba(212, 165, 115, 0.88) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="color: #AA7845"] {
+  color: rgba(200, 158, 105, 0.85) !important;
+}
+/* Separator / faint lines */
+.dark [data-csl-theme="biblo"] [style*="color: #D1D5DB"] {
+  color: rgba(255, 255, 255, 0.20) !important;
+}
+
+/* Inline background overrides */
+/* White cards */
+.dark [data-csl-theme="biblo"] [style*="background: #fff"],
+.dark [data-csl-theme="biblo"] [style*="background:#fff"],
+.dark [data-csl-theme="biblo"] [style*="background: white"] {
+  background: rgba(30, 22, 14, 0.95) !important;
+}
+/* A5 = #FEF4E8 — soft warm tint */
+.dark [data-csl-theme="biblo"] [style*="background: #FEF4E8"],
+.dark [data-csl-theme="biblo"] [style*="background:#FEF4E8"] {
+  background: rgba(200, 112, 58, 0.10) !important;
+}
+/* FFFDF8 intro card warm dark */
+.dark [data-csl-theme="biblo"] [style*="background: #FFFDF8"],
+.dark [data-csl-theme="biblo"] [style*="background:#FFFDF8"] {
+  background: rgba(25, 17, 10, 0.97) !important;
+}
+/* FAFAFA generic subtle bg */
+.dark [data-csl-theme="biblo"] [style*="background: #FAFAFA"],
+.dark [data-csl-theme="biblo"] [style*="background:#FAFAFA"] {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+/* F0F7FF subtle blue tint (used in onboarding steps) */
+.dark [data-csl-theme="biblo"] [style*="background: #F0F7FF"],
+.dark [data-csl-theme="biblo"] [style*="background:#F0F7FF"] {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Inline border overrides */
+.dark [data-csl-theme="biblo"] [style*="border: 1px solid #F0F0F0"],
+.dark [data-csl-theme="biblo"] [style*="border:1px solid #F0F0F0"] {
+  border-color: rgba(255, 255, 255, 0.07) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="border: 2px dashed #D4B896"] {
+  border-color: rgba(200, 112, 58, 0.28) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="borderTop: 1px solid #F3F4F6"],
+.dark [data-csl-theme="biblo"] [style*="border-top: 1px solid #F3F4F6"] {
+  border-top-color: rgba(255, 255, 255, 0.07) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="border: 1px solid #F3F4F6"] {
+  border-color: rgba(255, 255, 255, 0.07) !important;
+}
+/* A2 border (#FDE8CC) */
+.dark [data-csl-theme="biblo"] [style*="border: 1px solid #FDE8CC"],
+.dark [data-csl-theme="biblo"] [style*="borderTop: 1px solid #FDE8CC"],
+.dark [data-csl-theme="biblo"] [style*="border-top: 1px solid #FDE8CC"] {
+  border-color: rgba(200, 112, 58, 0.18) !important;
+}
+/* Solid side-accent borders used on callouts and annotations */
+.dark [data-csl-theme="biblo"] [style*="border-left: 3px solid"],
+.dark [data-csl-theme="biblo"] [style*="borderLeft: 3px solid"] {
+  border-left-color: rgba(200, 112, 58, 0.55) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="border-right: 2px solid #FDE8CC"] {
+  border-right-color: rgba(200, 112, 58, 0.22) !important;
+}
+.dark [data-csl-theme="biblo"] [style*="border-left: 2px solid #FDE8CC"] {
+  border-left-color: rgba(200, 112, 58, 0.22) !important;
+}
+
+/* Divider between experience items */
+.dark [data-csl-theme="biblo"] [style*="border-bottom: 1px solid #F3F4F6"] {
+  border-bottom-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Sticky header in dark */
+.dark [data-csl-theme="biblo"] .csl-sticky-header {
+  background: rgba(18, 13, 8, 0.92);
+  border-bottom-color: rgba(200, 112, 58, 0.12);
 }
 
 /* Eco case study */
