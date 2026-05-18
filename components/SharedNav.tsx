@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { DarkModeToggle } from "@/components/DarkModeToggle";
 
 export function SharedNav() {
   const pathname = usePathname();
@@ -58,6 +59,8 @@ function SharedNavInner() {
         >
           Resume <span className="nav-resume-arrow">↗</span>
         </a>
+        <div className="nav-toggle-divider" />
+        <DarkModeToggle />
       </div>
     </nav>
   );

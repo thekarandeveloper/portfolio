@@ -1,16 +1,53 @@
-const html = `<nav id="nav">
-  <div class="nav-pill">
-    <a href="/" class="nav-monogram nav-monogram-link" aria-label="Home">NT</a>
-    <div class="nav-clock-group">
-      <span class="nav-dot"></span>
-      <span class="nav-time" id="nav-clock">--:-- --</span>
-    </div>
-    <div class="nav-divider"></div>
-    <a href="#work" class="nav-link-item">Work</a>
-    <a href="/Nikunj-Resume.pdf" class="nav-link-item nav-link-resume" target="_blank" rel="noopener noreferrer">Resume <span class="nav-resume-arrow">↗</span></a>
-  </div>
-</nav>`;
+"use client";
+
+import { useEffect } from "react";
+import { DarkModeToggle } from "@/components/DarkModeToggle";
 
 export function HomeNav() {
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  useEffect(() => {
+    const clockEl = document.getElementById("nav-clock");
+    if (!clockEl) return;
+
+    function getIST() {
+      const ist = new Date(
+        new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
+      );
+      const h = ist.getHours();
+      const m = ist.getMinutes();
+      const ap = h >= 12 ? "PM" : "AM";
+      const h12 = h % 12 || 12;
+      return h12 + ":" + String(m).padStart(2, "0") + " " + ap;
+    }
+
+    clockEl.textContent = getIST();
+    const interval = setInterval(() => {
+      clockEl.textContent = getIST();
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <nav id="nav">
+      <div className="nav-pill">
+        <a href="/" className="nav-monogram nav-monogram-link" aria-label="Home">NT</a>
+        <div className="nav-clock-group">
+          <span className="nav-dot"></span>
+          <span className="nav-time" id="nav-clock">--:-- --</span>
+        </div>
+        <div className="nav-divider"></div>
+        <a href="#work" className="nav-link-item">Work</a>
+        <a
+          href="/Nikunj-Resume.pdf"
+          className="nav-link-item nav-link-resume"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Resume <span className="nav-resume-arrow">↗</span>
+        </a>
+        <div className="nav-toggle-divider"></div>
+        <DarkModeToggle />
+      </div>
+    </nav>
+  );
 }
