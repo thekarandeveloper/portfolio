@@ -197,7 +197,7 @@ function EcoNum({ children }: { children: React.ReactNode }) {
 ───────────────────────────────────────────────────────────────────── */
 function SectionBridge({ text }: { text: string }) {
   return (
-    <div style={{
+    <div className="eco-bridge" style={{
       marginTop: 44,
       padding: "14px 24px 14px 18px",
       background: "linear-gradient(90deg, rgba(232,247,236,0.9) 0%, transparent 100%)",
@@ -218,7 +218,7 @@ function SectionBridge({ text }: { text: string }) {
 ───────────────────────────────────────────────────────────────────── */
 function EcoCallout({ children, style = {}, className }: { children: React.ReactNode; style?: React.CSSProperties; className?: string }) {
   return (
-    <div className={className} style={{
+    <div className={`eco-callout${className ? ` ${className}` : ""}`} style={{
       borderLeft: "3px solid #2D7D43",
       borderRadius: "0 16px 16px 0",
       background: "#fff",
@@ -241,7 +241,7 @@ function EcoCallout({ children, style = {}, className }: { children: React.React
 ───────────────────────────────────────────────────────────────────── */
 function EcoCard({ children, style = {}, className }: { children: React.ReactNode; style?: React.CSSProperties; className?: string }) {
   return (
-    <div className={className} style={{
+    <div className={`eco-card${className ? ` ${className}` : ""}`} style={{
       background: "#fff",
       borderRadius: 20,
       padding: "24px 22px",

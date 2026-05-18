@@ -7754,3 +7754,114 @@ p.iq2-frame-caption,
     --shadow-card-hover:0 20px 60px rgba(0,0,0,0.50);
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   ECOTRACK CASE STUDY — DARK MODE
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Light-variant hero becomes dark */
+.dark .csl-hero--light {
+  background: #0b1612 !important;
+}
+.dark .csl-hero--light .csl-hero-title { color: rgba(218, 242, 224, 0.95); }
+.dark .csl-hero--light .csl-hero-desc  { color: rgba(188, 220, 196, 0.72); }
+.dark .csl-hero--light .csl-hero-chip {
+  background: rgba(45,125,67,0.14) !important;
+  border-color: rgba(45,125,67,0.3) !important;
+  color: rgba(140, 205, 158, 0.9) !important;
+}
+.dark .csl-hero--light .csl-hero-stats { border-top-color:  rgba(255,255,255,0.07) !important; }
+.dark .csl-hero--light .csl-hero-stat  { border-right-color: rgba(255,255,255,0.07) !important; }
+.dark .csl-hero--light .csl-hero-stat-val   { color: rgba(215, 240, 222, 0.94); }
+.dark .csl-hero--light .csl-hero-stat-label { color: rgba(158, 200, 168, 0.52); }
+
+/* EcoCard — white surface → dark green-tinted surface */
+.dark .eco-card {
+  background: #13201a !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.22) !important;
+  color: rgba(205, 232, 212, 0.88);
+}
+/* Tinted card variants (higher specificity than base .eco-card rule) */
+.dark .eco-card[style*="#E8F7EC"] { background: rgba(45,125,67,0.14) !important; }
+.dark .eco-card[style*="#D0EAD4"] { background: rgba(45,125,67,0.18) !important; }
+.dark .eco-card[style*="#FEF2F2"] { background: rgba(239,68,68,0.10) !important; }
+.dark .eco-card[style*="#F9FAFB"] { background: rgba(255,255,255,0.03) !important; }
+/* Already-dark cards stay dark */
+.dark .eco-card[style*="#0A1F0F"] {
+  background: #0a1f0f !important;
+  box-shadow: none !important;
+}
+
+/* EcoCallout */
+.dark .eco-callout {
+  background: rgba(45,125,67,0.06) !important;
+  color: rgba(198, 228, 208, 0.82);
+}
+
+/* SectionBridge */
+.dark .eco-bridge {
+  background: linear-gradient(90deg, rgba(45,125,67,0.1) 0%, transparent 100%) !important;
+}
+.dark .eco-bridge p,
+.dark .eco-bridge span { color: rgba(122, 190, 140, 0.85) !important; }
+
+/* Process step cards */
+.dark .csl-process-step {
+  background: rgba(255,255,255,0.03);
+  border-top-color: rgba(255,255,255,0.08);
+}
+.dark .csl-process-title { color: rgba(212, 238, 220, 0.9); }
+.dark .csl-process-text  { color: rgba(168, 208, 178, 0.65); }
+
+/* Section typography */
+.dark .csl-section-title { color: rgba(216, 240, 222, 0.95); }
+.dark .csl-section-sub   { color: rgba(162, 205, 172, 0.65); }
+
+/* Stat labels + before/after descriptions */
+.dark .csl-metric-label { color: rgba(152, 198, 162, 0.55); }
+.dark .csl-ba-desc      { color: rgba(165, 208, 175, 0.65); }
+
+/* ── Inline text-color overrides (dark neutrals → readable on dark bg) ── */
+.dark .csl-root [style*="color: #111827"] { color: rgba(220, 242, 226, 0.95) !important; }
+.dark .csl-root [style*="color: #374151"] { color: rgba(198, 228, 208, 0.82) !important; }
+.dark .csl-root [style*="color: #6B7280"] { color: rgba(165, 208, 175, 0.62) !important; }
+.dark .csl-root [style*="color: #9CA3AF"] { color: rgba(145, 192, 158, 0.50) !important; }
+.dark .csl-root [style*="color: #4B5563"] { color: rgba(182, 218, 192, 0.68) !important; }
+.dark .csl-root [style*="color: #3B6B45"] { color: rgba(108, 195, 130, 0.88) !important; }
+.dark .csl-root [style*="color: #0D2312"] { color: rgba(195, 235, 208, 0.95) !important; }
+.dark .csl-root [style*="color: #7F1D1D"] { color: rgba(255, 185, 180, 0.90) !important; }
+.dark .csl-root [style*="color: #D1D5DB"] { color: rgba(255,255,255,0.22)     !important; }
+.dark .csl-root [style*="color: #C4C9D4"] { color: rgba(255,255,255,0.18)     !important; }
+
+/* ── Inline background overrides for non-card tinted elements ── */
+.dark .csl-root [style*="background: #F9FAFB"]:not(.eco-card) {
+  background: rgba(255,255,255,0.03) !important;
+}
+/* Decision column in competitive table gets subtle green tint */
+.dark .csl-root [style*="background: #F9FAFB"].eco-card,
+.dark .csl-root [style*="background: #f9fafb"]:not(.eco-card) {
+  background: rgba(45,125,67,0.05) !important;
+}
+.dark .csl-root [style*="background: #E8F7EC"]:not(.eco-card) {
+  background: rgba(45,125,67,0.12) !important;
+}
+.dark .csl-root [style*="background: #FEF2F2"]:not(.eco-card) {
+  background: rgba(239,68,68,0.10) !important;
+}
+.dark .csl-root [style*="background: #D0EAD4"]:not(.eco-card) {
+  background: rgba(45,125,67,0.18) !important;
+}
+.dark .csl-root [style*="background: #D1FAE5"] {
+  background: rgba(16,185,129,0.14) !important;
+}
+.dark .csl-root [style*="background: #E5E7EB"] {
+  background: rgba(255,255,255,0.06) !important;
+}
+
+/* ── Inline border overrides ── */
+.dark .csl-root [style*="border-top: 1px solid #F3F4F6"]    { border-top-color:    rgba(255,255,255,0.07) !important; }
+.dark .csl-root [style*="border-bottom: 1px solid #F3F4F6"] { border-bottom-color: rgba(255,255,255,0.07) !important; }
+.dark .csl-root [style*="border-right: 1px solid #F3F4F6"]  { border-right-color:  rgba(255,255,255,0.07) !important; }
+.dark .csl-root [style*="border: 1px solid #F3F4F6"]        { border-color:        rgba(255,255,255,0.07) !important; }
+.dark .csl-root [style*="border-top: 1px solid #E5E7EB"]    { border-top-color:    rgba(255,255,255,0.09) !important; }
+.dark .csl-root [style*="border: 1px solid #E5E7EB"]        { border-color:        rgba(255,255,255,0.09) !important; }
