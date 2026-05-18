@@ -2513,6 +2513,15 @@ nav, header, footer, main, section, article, aside,
   .airiq-case-study #outcomes { padding: 60px 5%; }
 }
 
+@media (max-width: 480px) {
+  .airiq-case-study .s-inner { padding: 48px 20px; }
+  .airiq-case-study .hero-inner { padding: 80px 20px 60px; padding-top: calc(48px + 20px); }
+  .airiq-case-study .story-summary { grid-template-columns: 1fr; }
+  .airiq-case-study .ds-stats { grid-template-columns: 1fr; }
+  .airiq-case-study .hero-metrics { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .airiq-case-study #outcomes { padding: 48px 20px; }
+}
+
 .biblofi-case-study {
   --biblo-bg: #F8F7FC;
   --biblo-bg2: #F2F0F9;
@@ -4092,6 +4101,15 @@ nav, header, footer, main, section, article, aside,
     flex-direction: column;
     text-align: center;
   }
+}
+
+@media (max-width: 480px) {
+  .biblofi-case-study section { padding: 3rem 1.25rem; }
+  .biblofi-case-study .cs-hero { padding: 5rem 1.25rem 3rem; }
+  .biblofi-case-study nav { padding: 0 1.25rem; }
+  .biblofi-case-study .cs-title { font-size: clamp(1.8rem, 9vw, 2.6rem); }
+  .biblofi-case-study .wf-img-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .biblofi-case-study .final-screens-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Biblofi asset additions ── */
@@ -6638,6 +6656,7 @@ p.iq2-frame-caption,
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
+  .csl-hero { padding: 80px 6% 0; }
   .csl-body { grid-template-columns: 1fr; }
   .csl-sidebar { display: none; }
   .csl-hero-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -6755,7 +6774,8 @@ p.iq2-frame-caption,
 }
 @media (max-width: 480px) {
   .biblo-sprint-timeline { grid-template-columns: 1fr; }
-  .biblo-result-strip    { grid-template-columns: 1fr 1fr; }
+  .biblo-result-strip    { grid-template-columns: 1fr; }
+  .biblo-persona-panel   { padding: 28px 20px; }
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -7376,6 +7396,22 @@ p.iq2-frame-caption,
 }
 /* push case study content below the floating nav */
 .csl-root { padding-top: 80px; }
+
+/* ── cs-nav mobile responsiveness ── */
+@media (max-width: 900px) {
+  .cs-nav { padding: 8px 12px; }
+  .cs-nav .nav-pill { height: 42px; padding: 0 10px; }
+  .cs-nav .nav-clock-group { display: none; }
+  .cs-nav .nav-divider { display: none; }
+  .cs-nav .nav-link-item { padding: 4px 10px; font-size: 14px; }
+  .cs-nav .nav-monogram { margin-right: 10px; }
+}
+@media (max-width: 480px) {
+  .cs-nav { padding: 6px 10px; }
+  .cs-nav .nav-pill { height: 40px; padding: 0 8px; }
+  .cs-nav .nav-link-item.nav-link-resume { display: none; }
+  .cs-nav .nav-monogram { margin-right: 8px; }
+}
 
 /* ═══════════════════════════════════════════════════════════════
    THEME TOGGLE BUTTON

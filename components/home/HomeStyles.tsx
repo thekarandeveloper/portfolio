@@ -2626,6 +2626,199 @@ nav.scrolled .nav-pill{
 .dark .testimonials-section,.dark .home-loves,.dark .home-xp,.dark .contact{
   background-color:#0f0d0c;
   background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);
+}
+
+/* ══════════════════════════════════════════════════════════
+   COMPREHENSIVE MOBILE POLISH — intentionally designed mobile
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Disable scroll snap on mobile for better scroll UX ── */
+@media(max-width:768px){html{scroll-snap-type:none;}}
+
+/* ── Hero — proper single-column stacking at 768px ── */
+@media(max-width:768px){
+  .hero{
+    grid-template-columns:1fr;
+    padding:7.5rem 28px 3rem;
+    gap:0;
+    text-align:center;
+    align-items:center;
+  }
+  .hi-left{text-align:center;order:2;padding-top:0;}
+  .hi-right{order:1;display:flex;justify-content:center;margin-bottom:0.5rem;}
+  .hi-bio-line,.hi-sub-line{max-width:100%;}
+  .hi-sticky-coffee{margin:0.75rem auto 0.9rem;}
+  .hi-pm-collage{
+    width:440px;height:600px;
+    transform:scale(0.80);
+    transform-origin:center top;
+    margin-bottom:-120px;
+  }
+  .hi-sub-line{text-align:center;}
+  .hero-scroll-hint{display:none;}
+}
+
+/* ── Nav — very small screens (< 480px) ── */
+@media(max-width:480px){
+  nav{padding:6px 10px;}
+  .nav-pill{height:42px;padding:0 8px;}
+  .nav-link-item.nav-link-resume{display:none;}
+  .nav-monogram{margin-right:8px;}
+  .nav-divider{margin:0 12px;}
+}
+
+/* ── Hero very small phones (< 480px) ── */
+@media(max-width:480px){
+  .hero{padding:6rem 16px 2.5rem;}
+  .hi-headline{font-size:clamp(2.8rem,11vw,4.2rem);}
+  .hi-bio-line{font-size:clamp(0.88rem,3.5vw,1rem);}
+  .hi-pm-collage{
+    width:380px;height:540px;
+    transform:scale(0.65);
+    transform-origin:center top;
+    margin-bottom:-185px;
+  }
+}
+
+/* ── Scrapbook section — responsive grid replaces absolute positioning ── */
+@media(max-width:900px){
+  .scrapbook-section{padding:3rem clamp(24px,4vw,50px);}
+  .scrapbook-canvas{
+    position:relative;
+    min-height:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .sc-card{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    width:auto!important;
+    transform:none!important;
+    animation:none!important;
+    will-change:auto;
+  }
+  .sc-coffee:hover,.sc-spidey:hover,.sc-hp:hover,.sc-music:hover,
+  .sc-travel:hover,.sc-photo:hover,.sc-shop:hover{
+    transform:translateY(-6px) scale(1.02)!important;
+  }
+  .sc-doodle-line{display:none;}
+}
+@media(max-width:640px){
+  .scrapbook-section{padding:3rem 20px;}
+  .scrapbook-canvas{grid-template-columns:repeat(2,1fr);gap:12px;}
+}
+@media(max-width:380px){
+  .scrapbook-canvas{grid-template-columns:1fr;}
+}
+
+/* ── Contact section — left-align on stacked mobile layout ── */
+@media(max-width:900px){
+  .contact-right{text-align:left;margin-left:0;max-width:100%;}
+  .contact-right .contact-title{text-align:left;}
+  .contact-right .contact-sub{text-align:left;margin-left:0;}
+  .contact-right .contact-links{margin-left:0;}
+  .contact-right .contact-footer{justify-content:flex-start;}
+}
+
+/* ── Gallery section — tighten on very small screens ── */
+@media(max-width:480px){
+  .gallery-section{padding:3rem 20px;}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:140px;}
+}
+
+/* ── Testimonials section ── */
+@media(max-width:640px){
+  .testimonials-section{padding:3rem 20px;}
+  .testimonials-grid{grid-template-columns:1fr;}
+}
+
+/* ── Zoom section — reduce scroll height on mobile ── */
+@media(max-width:768px){.zoom-section{height:280vh;}}
+@media(max-width:480px){.zoom-section{height:220vh;}}
+
+/* ── Spiral section — reduce scroll height on mobile ── */
+@media(max-width:768px){.spiral-section{height:280vh;}}
+@media(max-width:480px){.spiral-section{height:200vh;}}
+
+/* ── Signoff section — padding tightening ── */
+@media(max-width:640px){.signoff{padding:4.5rem 24px 5.5rem;}}
+@media(max-width:480px){.signoff{padding:3.5rem 20px 4.5rem;}}
+
+/* ── home-loves section — responsive grid ── */
+@media(max-width:640px){
+  .home-loves{padding:3rem 20px 3.5rem;}
+  .home-loves-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:480px){
+  .home-loves-grid{grid-template-columns:1fr;}
+}
+
+/* ── home-xp polaroids ── */
+@media(max-width:640px){
+  .home-xp{padding:3rem 20px 4rem;}
+  .home-xp-grid{grid-template-columns:repeat(2,1fr);gap:18px 10px;}
+}
+@media(max-width:400px){
+  .home-xp-grid{grid-template-columns:1fr;}
+}
+
+/* ── Work rows — prevent overflow on small screens ── */
+@media(max-width:640px){
+  .pw-thumb,.pw-mockup{border-radius:12px;}
+  .pw-img-wrap{transform:none!important;}
+  .pw-row:hover .pw-img-wrap{transform:none;}
+  .pw-sticky{transform:none!important;}
+  .pw-row:hover .pw-sticky{transform:none;}
+}
+
+/* ── CSWK section on very small screens ── */
+@media(max-width:480px){
+  .cswk{padding:2.5rem 20px;}
+  .cswk-head{margin-bottom:2rem;}
+  .cswk-rows{gap:2.5rem;}
+  .cswk-frame-pad{min-height:260px;}
+  .cswk-note{transform:none;}
+  .cswk-row:hover .cswk-note{transform:none;}
+}
+
+/* ── DSZ section on very small screens ── */
+@media(max-width:480px){
+  .dsz-heading-wrap{padding:0 0 2rem;}
+  .dsz-sticky{padding:32px 0 48px;}
+}
+
+/* ── Process annotation popups — prevent off-screen on mobile ── */
+@media(max-width:640px){
+  .anno-pop{width:160px;}
+}
+
+/* ── About book — very small screens ── */
+@media(max-width:380px){
+  .about-book-stage{width:118%;margin-left:-9%;aspect-ratio:1.0;}
+  .about-page-content{left:8%;right:8%;}
+}
+
+/* ── Touch-friendly interaction states ── */
+@media(hover:none) and (pointer:coarse){
+  .nav-link-item{min-height:44px;padding:10px 14px;}
+  .pw-cta{padding:12px 22px;min-height:44px;}
+  .cswk-cta{padding:12px 24px;min-height:44px;}
+  .dsz-cta{padding:12px 24px;}
+  .sc-card:hover{transform:none!important;}
+}
+
+/* ── Global padding fix at 480px ── */
+@media(max-width:480px){
+  .work{padding:3rem 20px;}
+  .journey{padding:3rem 20px;}
+  .about{padding:3rem 20px;}
+  .contact{padding:3rem 20px;}
+  .process-section{padding:3rem 20px;}
+  .gallery-section{padding:3rem 20px;}
+  .testimonials-section{padding:3rem 20px;}
+  .shelf-section{padding:3rem 20px;}
 }`;
 
 export function HomeStyles() {
