@@ -4,10 +4,8 @@ import { useEffect, useState } from "react";
 
 export function DarkModeToggle() {
   const [dark, setDark] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const saved = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = saved ? saved === "dark" : prefersDark;
@@ -29,9 +27,9 @@ export function DarkModeToggle() {
       className="theme-toggle"
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       title={dark ? "Light mode" : "Dark mode"}
-      style={{ opacity: mounted ? 1 : 0, pointerEvents: mounted ? "auto" : "none" }}
+      suppressHydrationWarning
     >
-      <span className={`theme-toggle-track ${dark ? "is-dark" : "is-light"}`}>
+      <span className={`theme-toggle-track ${dark ? "is-dark" : "is-light"}`} suppressHydrationWarning>
         {/* Moon — shown in light mode */}
         <span className="theme-icon theme-icon-moon">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
