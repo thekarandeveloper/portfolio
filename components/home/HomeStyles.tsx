@@ -2562,7 +2562,8 @@ nav.scrolled .nav-pill{
    ═══════════════════════════════════════════════════════ */
 .dark .dsz-title-main{color:#ede8e3;}
 .dark .dsz-title-script{color:#1E90FF;}
-.dark .dsz-float-arrow{opacity:0.4;}
+.dark .dsz-float{color:rgba(237,232,227,0.52);}
+.dark .dsz-float-arrow{opacity:0.5;}
 .dark .dsz-cta{
   background:rgba(255,255,255,0.06);
   border-color:rgba(255,255,255,0.10);
