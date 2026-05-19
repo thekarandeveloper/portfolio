@@ -26,35 +26,37 @@ const footerCSS = `
 .gf-title{font-family:var(--font-caveat,'Caveat',cursive);font-size:clamp(3.2rem,7vw,5.5rem);font-weight:700;color:#111111;line-height:1.25;margin-bottom:1.25rem;padding:0.2em 0.15em 0;overflow:visible;text-align:right;}
 .gf-title .gf-coffee{color:#1E90FF;}
 .gf-sub{font-family:'DM Serif Display',Georgia,serif;font-size:1.1rem;font-style:italic;color:#7a7069;line-height:1.65;margin-bottom:2.75rem;max-width:400px;text-align:right;margin-left:auto;}
-.gf-links{display:flex;flex-direction:column;margin-bottom:3.5rem;max-width:400px;margin-left:auto;}
-.gf-link{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid rgba(0,0,0,0.08);text-decoration:none;color:#111111;transition:padding-left 0.25s;cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;width:100%;font-family:inherit;}
+.gf-links{display:flex;flex-direction:column;margin-bottom:3.5rem;max-width:400px;margin-left:auto;overflow:visible;}
+.gf-link{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;padding:1rem 0;border-bottom:1px solid rgba(0,0,0,0.08);text-decoration:none;color:#111111;transition:padding-left 0.25s;cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;width:100%;font-family:inherit;}
 .gf-link:first-child{border-top:1px solid rgba(0,0,0,0.08);}
 .gf-link:hover{padding-left:0.75rem;}
-.gf-link-left{display:flex;align-items:center;gap:1rem;}
+.gf-link-left{display:flex;align-items:center;gap:1rem;flex:1;min-width:0;}
 .gf-link-icon{width:34px;height:34px;border-radius:10px;background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s,border-color 0.2s;}
 .gf-link:hover .gf-link-icon{background:rgba(30,144,255,0.08);border-color:rgba(30,144,255,0.2);}
 .gf-link-icon svg{display:block;}
-.gf-link-platform{font-family:Lato,sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#b0a89f;min-width:90px;flex-shrink:0;}
-.gf-link-value{font-family:'DM Serif Display',Georgia,serif;font-size:1rem;color:#7a7069;transition:color 0.2s;}
+.gf-link-platform{font-family:Lato,sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#b0a89f;min-width:72px;flex-shrink:0;}
+.gf-link-value{font-family:'DM Serif Display',Georgia,serif;font-size:1rem;color:#7a7069;transition:color 0.2s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .gf-link:hover .gf-link-value{color:#1E90FF;}
-.gf-link-arrow{font-size:15px;color:#b0a89f;transition:transform 0.2s,color 0.2s;}
-.gf-link:hover .gf-link-arrow{transform:translate(3px,-3px);color:#1E90FF;}
+.gf-link-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.gf-link-arrow{font-size:15px;color:#b0a89f;transition:transform 0.2s,color 0.2s;flex-shrink:0;}
+.gf-link:hover .gf-link-arrow{transform:translateX(4px);color:#1E90FF;}
 
-/* Email copy interaction */
-.gf-email-link{position:relative;}
-.gf-email-copied{
-  position:absolute;
-  right:0;top:50%;transform:translateY(-50%);
-  background:#111;color:#fff;
-  font-family:Lato,sans-serif;font-size:12px;letter-spacing:0.08em;
-  padding:4px 10px;border-radius:99px;
-  opacity:0;pointer-events:none;
-  transition:opacity 0.25s ease,transform 0.25s ease;
-  white-space:nowrap;
+/* Email copy button */
+.gf-copy-btn{
+  display:flex;align-items:center;justify-content:center;
+  width:28px;height:28px;border-radius:8px;
+  background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.07);
+  cursor:pointer;flex-shrink:0;
+  transition:background 0.2s,border-color 0.2s,transform 0.15s;
 }
-.gf-email-link.gf-copied .gf-email-copied{opacity:1;transform:translateY(-50%) translateX(-4px);}
-.gf-email-link.gf-copied .gf-link-arrow{color:#22c55e;}
-.gf-email-link.gf-copied .gf-link-value{color:#22c55e;}
+.gf-copy-btn:hover{background:rgba(30,144,255,0.1);border-color:rgba(30,144,255,0.25);transform:scale(1.08);}
+.gf-copy-btn svg{display:block;transition:opacity 0.15s;}
+.gf-copy-btn .gf-icon-copy{opacity:1;}
+.gf-copy-btn .gf-icon-check{opacity:0;position:absolute;}
+.gf-copy-btn{position:relative;}
+.gf-copy-btn.gf-copied .gf-icon-copy{opacity:0;}
+.gf-copy-btn.gf-copied .gf-icon-check{opacity:1;}
+.gf-copy-btn.gf-copied{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);}
 
 .gf-footer-bar{display:flex;justify-content:flex-end;align-items:center;padding-top:2rem;border-top:1px solid rgba(0,0,0,0.08);flex-wrap:wrap;gap:1rem;}
 .gf-footer-name{font-family:Lato,sans-serif;font-size:13px;color:#7a7069;}
@@ -226,22 +228,29 @@ const footerHTML = `
       <h2 class="gf-title">Let&rsquo;s grab<br>a <span class="gf-coffee">coffee</span> ☕</h2>
       <p class="gf-sub">Whether it&rsquo;s a role, a collab, or just a good conversation about design, I&rsquo;m always up for it.</p>
       <div class="gf-links">
-        <button class="gf-link gf-email-link" id="gfEmailBtn" data-email="${EMAIL}">
+        <a href="mailto:${EMAIL}" class="gf-link">
           <div class="gf-link-left">
             <div class="gf-link-icon">${EMAIL_ICON}</div>
             <span class="gf-link-platform">Email</span>
             <span class="gf-link-value">${EMAIL}</span>
           </div>
-          <span class="gf-link-arrow">↗</span>
-          <span class="gf-email-copied">Copied!</span>
-        </button>
+          <div class="gf-link-right">
+            <button class="gf-copy-btn" id="gfCopyEmailBtn" aria-label="Copy email address" title="Copy email">
+              <svg class="gf-icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7a7069" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg class="gf-icon-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+            <span class="gf-link-arrow">↗</span>
+          </div>
+        </a>
         <a href="https://www.linkedin.com/in/nikunj-tyagi26/" target="_blank" rel="noopener noreferrer" class="gf-link">
           <div class="gf-link-left">
             <div class="gf-link-icon">${LINKEDIN_ICON}</div>
             <span class="gf-link-platform">LinkedIn</span>
             <span class="gf-link-value">nikunj-tyagi26</span>
           </div>
-          <span class="gf-link-arrow">↗</span>
+          <div class="gf-link-right">
+            <span class="gf-link-arrow">↗</span>
+          </div>
         </a>
         <a href="https://www.instagram.com/nikunjtyagi_/" target="_blank" rel="noopener noreferrer" class="gf-link">
           <div class="gf-link-left">
@@ -249,7 +258,9 @@ const footerHTML = `
             <span class="gf-link-platform">Instagram</span>
             <span class="gf-link-value">@nikunjtyagi_</span>
           </div>
-          <span class="gf-link-arrow">↗</span>
+          <div class="gf-link-right">
+            <span class="gf-link-arrow">↗</span>
+          </div>
         </a>
       </div>
       <div class="gf-footer-bar">
@@ -326,7 +337,6 @@ export function GlobalFooter() {
     const responseText = document.getElementById("gfChatRespText");
     const suggestionsEl = document.getElementById("gfChatSuggestions");
     const initSuggestions = document.getElementById("gfChatInitSuggestions");
-    const emailBtn = document.getElementById("gfEmailBtn");
 
     function showResponse(query: string) {
       if (!input || !responseEl || !responseText || !suggestionsEl) return;
@@ -386,14 +396,17 @@ export function GlobalFooter() {
       });
     });
 
-    // Email copy interaction
-    if (emailBtn) {
-      emailBtn.addEventListener("click", () => {
+    // Email copy button
+    const copyBtn = document.getElementById("gfCopyEmailBtn");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         navigator.clipboard.writeText(EMAIL).then(() => {
-          emailBtn.classList.add("gf-copied");
+          copyBtn.classList.add("gf-copied");
           if (copiedTimerRef.current) clearTimeout(copiedTimerRef.current);
           copiedTimerRef.current = setTimeout(() => {
-            emailBtn.classList.remove("gf-copied");
+            copyBtn.classList.remove("gf-copied");
           }, 2000);
         });
       });
