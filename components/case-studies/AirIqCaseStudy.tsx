@@ -603,42 +603,33 @@ function ProblemSection() {
         ))}
       </div>
 
-      {/* Agent quote — dark pull quote */}
+      {/* Agent quote — inline pull quote */}
       <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
         <span className="csl-eyebrow">In their own words</span>
         <div style={{
-          background: "#111827", borderRadius: 16, padding: "32px 32px 28px",
-          position: "relative", marginTop: 12, overflow: "hidden",
+          borderLeft: "3px solid #1E90FF",
+          paddingLeft: 20,
+          marginTop: 16,
+          background: "#F9FAFB",
+          borderRadius: "0 10px 10px 0",
+          padding: "18px 20px 18px 20px",
+          borderLeftWidth: 3,
+          borderLeftStyle: "solid",
+          borderLeftColor: "#1E90FF",
         }}>
-          {/* ambient glow */}
-          <div style={{
-            position: "absolute", top: -40, right: -40,
-            width: 180, height: 180, borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(30,144,255,0.12) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }} />
-          <span style={{
-            position: "absolute", top: 4, left: 20,
-            fontSize: "6rem", color: "#1E90FF", lineHeight: 1,
-            userSelect: "none", opacity: 0.6,
-          }}>&ldquo;</span>
           <p style={{
-            fontSize: "1.2rem", fontWeight: 600, color: "rgba(255,255,255,0.9)",
-            lineHeight: 1.75, margin: "28px 0 20px", paddingLeft: 4,
+            fontSize: "0.95rem",
+            fontStyle: "italic",
+            color: "#374151",
+            lineHeight: 1.8,
+            margin: "0 0 12px",
+            fontFamily: "inherit",
           }}>
-            I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.
+            &ldquo;I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.&rdquo;
           </p>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{
-              width: 32, height: 32, borderRadius: "50%",
-              background: "rgba(30,144,255,0.2)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
-            }}>SA</div>
-            <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.4)", fontWeight: 600}}>
-              Senior travel agent · Pre-launch interview
-            </span>
-          </div>
+          <span style={{ fontSize: "0.85rem", color: "#9CA3AF", fontWeight: 600 }}>
+            Senior travel agent · Pre-launch interview
+          </span>
         </div>
       </div>
 
@@ -689,43 +680,42 @@ function HighlightLine({ text, active }: { text: string; active: boolean }) {
 }
 
 function CompetitiveCarousel() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [hoveredFinding, setHoveredFinding] = useState<number | null>(null);
-  const c = COMPETITORS[activeIdx];
+  /* single static embed — first competitor as reference */
+  const c = COMPETITORS[0];
   const embedUrl = `https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/D6XwtXxLfGueNa2O4fwkHy/AirIQ-Case-Study?node-id=${c.nodeId}`;
-  const figmaLink = `https://www.figma.com/design/D6XwtXxLfGueNa2O4fwkHy/AirIQ-Case-Study?node-id=${c.nodeId}`;
 
   return (
     <div>
-      {/* ── Logo tabs ── */}
+      {/* ── 2×2 platform grid (no tabs — simultaneous display) ── */}
       <span className="csl-eyebrow">Platforms studied</span>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 20 }}>
-        {COMPETITORS.map((comp, i) => (
-          <button
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 24 }}>
+        {COMPETITORS.map((comp) => (
+          <div
             key={comp.slug}
-            onClick={() => setActiveIdx(i)}
             style={{
-              borderRadius: 12, overflow: "hidden",
-              background: activeIdx === i ? "rgba(16,118,188,0.06)" : "#fff",
-              border: activeIdx === i ? "2px solid #1076BC" : "1px solid rgba(0,0,0,0.07)",
-              boxShadow: activeIdx === i ? "0 2px 12px rgba(16,118,188,0.14)" : "0 1px 4px rgba(0,0,0,0.05)",
-              height: 68,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              padding: "0 14px", cursor: "pointer",
-              transition: "border 0.2s, background 0.2s, box-shadow 0.2s",
+              display: "flex", alignItems: "center", gap: 12,
+              background: "#fff",
+              border: "1px solid rgba(0,0,0,0.07)",
+              borderRadius: 12,
+              boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
+              padding: "12px 16px",
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`/Image/Airiq/research/logo-${comp.slug}.png`}
               alt={comp.name}
-              style={{ maxWidth: "100%", maxHeight: 40, objectFit: "contain", display: "block" }}
+              style={{ maxWidth: 80, maxHeight: 32, objectFit: "contain", display: "block", flexShrink: 0 }}
             />
-          </button>
+            <div>
+              <div style={{ fontSize: "14px", fontWeight: 600, color: "#111827" }}>{comp.name}</div>
+              <div style={{ fontSize: "12px", color: "#9CA3AF", marginTop: 2 }}>{comp.type}</div>
+            </div>
+          </div>
         ))}
       </div>
 
-      {/* ── Figma embed — swaps on tab change ── */}
+      {/* ── Single Figma embed (reference design) ── */}
       <div style={{
         borderRadius: 16, overflow: "hidden",
         border: "1px solid rgba(0,0,0,0.08)",
@@ -734,8 +724,7 @@ function CompetitiveCarousel() {
       }}>
         <div style={{
           height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "0 16px",
+          display: "flex", alignItems: "center", padding: "0 16px",
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <svg width="14" height="14" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -745,11 +734,10 @@ function CompetitiveCarousel() {
               <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
               <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
             </svg>
-            <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>AirIQ: {c.name} Research</span>
+            <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>AirIQ: Competitive Research</span>
           </div>
         </div>
         <iframe
-          key={c.nodeId}
           src={embedUrl}
           allowFullScreen
           style={{ width: "100%", height: 520, border: "none", display: "block" }}
@@ -856,10 +844,13 @@ function ResearchInsightCards() {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
         {AGENT_INSIGHTS.map((ins) => (
           <div key={ins.label} style={{
-            background: "#ffffff",
-            border: "0.5px solid #E5E7EB",
+            background: "linear-gradient(135deg, rgba(173,216,255,0.15), rgba(255,236,153,0.12))",
+            backdropFilter: "blur(12px) saturate(1.4)",
+            WebkitBackdropFilter: "blur(12px) saturate(1.4)",
+            border: "1px solid rgba(255,255,255,0.2)",
             borderRadius: 16,
-            padding: "28px 28px 24px",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+            padding: 24,
             display: "flex",
             flexDirection: "column",
           }}>
@@ -1152,166 +1143,137 @@ function ApproachSection() {
    §04  CORE COMPONENTS
 ───────────────────────────────────────────────────────────────────── */
 
-/* ── Fare Listing Card: approach carousel data ── */
-const FARE_APPROACHES = [
+/* ── Fare Listing Card: timeline stage data ── */
+const TIMELINE_STAGES = [
   {
-    step: "Approach 01",
-    img: "/Image/Airiq/first%20core/first-approch.png",
+    vLabel: "V1",
+    eyebrow: "The Old Design",
+    statusText: "Outdated",
+    statusColor: "#EF4444",
+    statusBg: "#FEF2F2",
+    img: "/Image/Airiq/first%20core/old-design.png",
+    heading: "No visual hierarchy",
+    annotation: "Multiple fare classes, baggage rules, and airline policies at equal visual weight. Nothing prioritised. Agents had to read every row before making a single comparison. A high-frequency scan became a slow, exhausting read.",
+  },
+  {
+    vLabel: "V2",
+    eyebrow: "Approach 1",
     statusText: "Didn't land",
     statusColor: "#EF4444",
     statusBg: "#FEF2F2",
-    statusBorder: "#FECACA",
+    img: "/Image/Airiq/first%20core/first-approch.png",
     heading: "All data, equal weight",
-    reason: "Every field competed for attention. Fare class, baggage, and refundability at equal visual weight. Agents read every row top-to-bottom before comparing. A fast scan became an exhausting read.",
-    isFinal: false,
+    annotation: "Every field competed for attention. Fare class, baggage, and refundability at equal visual weight. Agents read every row top-to-bottom before comparing. A fast scan became an exhausting read.",
   },
   {
-    step: "Approach 02",
-    img: "/Image/Airiq/first%20core/second-approch.png",
+    vLabel: "V3",
+    eyebrow: "Approach 2",
     statusText: "Getting closer",
     statusColor: "#D97706",
     statusBg: "#FFFBEB",
-    statusBorder: "#FCD34D",
+    img: "/Image/Airiq/first%20core/second-approch.png",
     heading: "Grouping added, labels still ambiguous",
-    reason: "Visual grouping helped, but fare class labels like SME, SAVER, and FLEX meant nothing without explanation. Agents were still guessing which class to book. Refundability remained secondary, not an upfront signal.",
-    isFinal: false,
+    annotation: "Visual grouping helped, but fare class labels like SME, SAVER, and FLEX meant nothing without explanation. Agents were still guessing which class to book. Refundability remained secondary, not an upfront signal.",
   },
-  {
-    step: "Final Design",
-    img: "/Image/Airiq/first%20core/final.png",
-    statusText: "Shipped",
-    statusColor: "#1E90FF",
-    statusBg: "#EFF6FF",
-    statusBorder: "rgba(30,144,255,0.4)",
-    heading: "Price hierarchy first. Everything else at a glance.",
-    reason: "Price and time dominate the scan path. Refundability, baggage allowance, and seat count are visible without expanding or hovering. Fare class icons map to symbols agents already recognise. Scan once, compare, decide, book.",
-    isFinal: true,
-  },
-];
+] as const;
 
-const FARE_COMPAT = [
-  { label: "One Way",               img: "/Image/Airiq/first%20core/one-way.png",     sub: "Domestic single-leg search"   },
-  { label: "One Way International", img: "/Image/Airiq/first%20core/one-way-int.png", sub: "Cross-border single leg"       },
-  { label: "Round Trip",            img: "/Image/Airiq/first%20core/round-trip.png",  sub: "Outbound + return in one view" },
+const WHERE_IT_LIVES_DATA = [
+  { label: "One Way",       sub: "Domestic single-leg",  img: "/Image/Airiq/first%20core/one-way.png"     },
+  { label: "International", sub: "Cross-border search",  img: "/Image/Airiq/first%20core/one-way-int.png" },
+  { label: "Round Trip",    sub: "Outbound + return",    img: "/Image/Airiq/first%20core/round-trip.png"  },
 ];
 
 /* ─────────────────────────────────────────────────────────────────────
-   COMPATIBILITY SHOWCASE  (auto-cycling animated reveal)
+   TIMELINE STAGE CARD  (V1 / V2 / V3)
 ───────────────────────────────────────────────────────────────────── */
-function CompatibilityShowcase() {
-  const [idx,  setIdx]  = useState(0);
-  const [show, setShow] = useState(true);
+type StageData = typeof TIMELINE_STAGES[number];
 
-  const manualGo = (i: number) => {
-    if (i === idx) return;
-    setShow(false);
-    setTimeout(() => { setIdx(i); setShow(true); }, 420);
-  };
+function StageCard({ stage, idx }: { stage: StageData; idx: number }) {
+  const [vis, setVis] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const v = FARE_COMPAT[idx];
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
+      { threshold: 0.08 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <div style={{ marginTop: 28 }}>
-      <span className="csl-eyebrow">Works across all search types</span>
-
-      {/* Stage */}
-      <div style={{
-        background: "linear-gradient(145deg, #EAF4FF 0%, #F0F8FF 60%, #E6F1FF 100%)",
-        border: "1px solid rgba(30,144,255,0.18)",
-        borderRadius: 20,
-        padding: "24px 20px 20px",
+    <div
+      ref={ref}
+      style={{
+        opacity: vis ? 1 : 0,
+        transform: vis ? "translateY(0)" : "translateY(24px)",
+        transition: `opacity 400ms cubic-bezier(0.22,1,0.36,1) ${idx * 80}ms, transform 400ms cubic-bezier(0.22,1,0.36,1) ${idx * 80}ms`,
         position: "relative",
-        overflow: "hidden",
+        paddingLeft: 56,
+        marginBottom: 40,
+      }}
+    >
+      {/* Spine dot */}
+      <div style={{
+        position: "absolute", left: 20, top: 26,
+        width: 12, height: 12, borderRadius: "50%",
+        background: "#fff", border: "2px solid #D1D5DB", zIndex: 1,
+      }} />
+
+      {/* Card */}
+      <div style={{
+        position: "relative", background: "#fff",
+        border: "1px solid #E5E7EB", borderRadius: 18, overflow: "hidden",
       }}>
-        {/* Ambient glow blob */}
+        {/* Watermark version label */}
         <div style={{
-          position: "absolute", top: -40, left: "50%",
-          transform: "translateX(-50%)",
-          width: 320, height: 200,
-          background: "radial-gradient(ellipse at center, rgba(30,144,255,0.18) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }} />
+          position: "absolute", bottom: -10, left: 8,
+          fontSize: 96, fontWeight: 800, color: "#1E90FF",
+          opacity: 0.05, lineHeight: 1, letterSpacing: "-0.06em",
+          userSelect: "none", pointerEvents: "none", zIndex: 0,
+        }}>{stage.vLabel}</div>
 
-        {/* Tab pills */}
-        <div style={{
-          display: "flex", justifyContent: "center", gap: 8,
-          marginBottom: 20, position: "relative", zIndex: 1,
-        }}>
-          {FARE_COMPAT.map((item, i) => (
-            <button
-              key={item.label}
-              onClick={() => manualGo(i)}
-              style={{
-                padding: "5px 14px",
-                borderRadius: 100,
-                border: i === idx ? "none" : "1px solid rgba(30,144,255,0.25)",
-                background: i === idx ? "#1E90FF" : "rgba(255,255,255,0.6)",
-                color: i === idx ? "#fff" : "#1076BC",
-                fontSize: "15px", fontWeight: 600,
-                cursor: "pointer",
-                transition: "all 0.25s ease",
-                boxShadow: i === idx ? "0 2px 10px rgba(30,144,255,0.35)" : "none",
-                backdropFilter: "blur(4px)",
-              }}
-            >{item.label}</button>
-          ))}
-        </div>
-
-        {/* Animated image + caption */}
-        <div style={{
-          opacity: show ? 1 : 0,
-          transform: show ? "scale(1) translateY(0px)" : "scale(0.97) translateY(10px)",
-          filter: show ? "blur(0px)" : "blur(5px)",
-          transition: show
-            ? "opacity 0.48s cubic-bezier(.22,.68,0,1.2), transform 0.48s cubic-bezier(.22,.68,0,1.2), filter 0.48s ease"
-            : "opacity 0.32s ease, transform 0.32s ease, filter 0.32s ease",
-          position: "relative", zIndex: 1,
-        }}>
+        {/* Content */}
+        <div style={{ position: "relative", zIndex: 1 }}>
+          {/* Header row */}
           <div style={{
-            borderRadius: 14, overflow: "hidden",
-            boxShadow: "0 8px 40px rgba(30,144,255,0.22), 0 2px 8px rgba(0,0,0,0.07)",
-            border: "1.5px solid rgba(30,144,255,0.22)",
+            padding: "16px 20px 12px",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
           }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={v.img} alt={v.label} style={{ width: "100%", height: "auto", display: "block" }} />
+            <span className="csl-eyebrow" style={{ margin: 0 }}>{stage.eyebrow}</span>
+            <span style={{
+              fontSize: "12px", fontWeight: 700,
+              color: stage.statusColor, background: stage.statusBg,
+              borderRadius: 100, padding: "3px 10px",
+            }}>{stage.statusText}</span>
           </div>
 
-          {/* Caption row */}
-          <div style={{
-            marginTop: 14, display: "flex", alignItems: "center",
-            justifyContent: "center", gap: 10,
-          }}>
+          {/* Chrome bar + image */}
+          <div style={{ borderTop: "1px solid #E5E7EB" }}>
             <div style={{
-              width: 6, height: 6, borderRadius: "50%",
-              background: "#1E90FF",
-              boxShadow: "0 0 8px rgba(30,144,255,0.7)",
-              animation: "pulse 2s infinite",
-            }} />
-            <div style={{ textAlign: "center" }}>
-              <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{v.label}</span>
-              <span style={{ fontSize: "15px", color: "#6B7280", marginLeft: 8 }}>{v.sub}</span>
+              height: 32, background: "#F3F4F6", borderBottom: "1px solid #E5E7EB",
+              display: "flex", alignItems: "center", padding: "0 12px", gap: 6,
+            }}>
+              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+                <span key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c, flexShrink: 0 }} />
+              ))}
+              <div style={{ flex: 1, height: 12, background: "rgba(0,0,0,0.07)", borderRadius: 20, marginLeft: 6 }} />
             </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={stage.img} alt={stage.heading} style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
-        </div>
 
-        {/* Step dots */}
-        <div style={{
-          display: "flex", justifyContent: "center", gap: 6,
-          marginTop: 16, position: "relative", zIndex: 1,
-        }}>
-          {FARE_COMPAT.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => manualGo(i)}
-              style={{
-                width: i === idx ? 20 : 6, height: 6,
-                borderRadius: 100, border: "none", padding: 0,
-                background: i === idx ? "#1E90FF" : "rgba(30,144,255,0.25)",
-                cursor: "pointer",
-                transition: "all 0.28s ease",
-              }}
-            />
-          ))}
+          {/* Annotation */}
+          <div style={{ padding: "16px 20px 20px" }}>
+            <p style={{ fontSize: "15px", fontWeight: 700, color: "#111827", margin: "0 0 6px", lineHeight: 1.3 }}>
+              {stage.heading}
+            </p>
+            <p style={{ fontSize: "0.95rem", color: "#4B5563", lineHeight: 1.75, margin: 0 }}>
+              {stage.annotation}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -1319,36 +1281,265 @@ function CompatibilityShowcase() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   FARE LISTING BLOCK  (component 1 — rich version with real images)
+   FINAL DESIGN CARD  (elevated, with tab switcher + where it lives)
 ───────────────────────────────────────────────────────────────────── */
-function FareListingBlock() {
-  /* shared chrome bar — used by old design + each timeline entry */
-  const ChromeBar = ({ blue = false }: { blue?: boolean }) => (
-    <div style={{
-      height: 34,
-      background: blue ? "#DCE9F7" : "#F3F4F6",
-      borderBottom: `1px solid ${blue ? "rgba(30,144,255,0.18)" : "#E5E7EB"}`,
-      display: "flex", alignItems: "center", padding: "0 14px", gap: 6, flexShrink: 0,
-    }}>
-      {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
-        <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
-      ))}
-      <div style={{ flex: 1, height: 14, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
-      {blue && (
-        <span style={{
-          fontSize: "15px", fontWeight: 600, letterSpacing: "0.1em",
-          textTransform: "uppercase", color: "#fff",
-          background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
-        }}>Shipped</span>
-      )}
+function FinalDesignCard({ idx }: { idx: number }) {
+  const [activeTab, setActiveTab] = useState<"oneway" | "roundtrip">("oneway");
+  const [tabContentVis, setTabContentVis] = useState(true);
+  const [vis, setVis] = useState(false);
+  const [thumbVis, setThumbVis] = useState<boolean[]>([false, false, false]);
+  const ref = useRef<HTMLDivElement>(null);
+  const thumbRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const cardObs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVis(true); cardObs.disconnect(); } },
+      { threshold: 0.05 }
+    );
+    cardObs.observe(el);
+
+    thumbRefs.current.forEach((thumb, i) => {
+      if (!thumb) return;
+      const tObs = new IntersectionObserver(
+        ([e]) => {
+          if (e.isIntersecting) {
+            setTimeout(() => {
+              setThumbVis((prev) => { const n = [...prev]; n[i] = true; return n; });
+            }, 200 + i * 80);
+            tObs.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      tObs.observe(thumb);
+    });
+
+    return () => { cardObs.disconnect(); };
+  }, []);
+
+  const switchTab = (tab: "oneway" | "roundtrip") => {
+    if (tab === activeTab) return;
+    setTabContentVis(false);
+    setTimeout(() => { setActiveTab(tab); setTabContentVis(true); }, 200);
+  };
+
+  const tabImg = activeTab === "oneway"
+    ? "/Image/Airiq/first%20core/final.png"
+    : "/Image/Airiq/first%20core/round-trip.png";
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: vis ? 1 : 0,
+        transform: vis ? "translateY(0)" : "translateY(24px)",
+        transition: `opacity 400ms cubic-bezier(0.22,1,0.36,1) ${idx * 80}ms, transform 400ms cubic-bezier(0.22,1,0.36,1) ${idx * 80}ms`,
+        position: "relative",
+        paddingLeft: 56,
+      }}
+    >
+      {/* Spine dot — accent */}
+      <div style={{
+        position: "absolute", left: 18, top: 26,
+        width: 16, height: 16, borderRadius: "50%",
+        background: "#1E90FF",
+        boxShadow: "0 0 0 4px rgba(30,144,255,0.18)",
+        zIndex: 1,
+      }} />
+
+      {/* Elevated card */}
+      <div style={{
+        position: "relative",
+        background: "#0B1E3D",
+        border: "1px solid rgba(30,144,255,0.35)",
+        borderRadius: 20, overflow: "hidden",
+        boxShadow: "0 0 40px rgba(30,144,255,0.12), 0 8px 32px rgba(0,0,0,0.18)",
+      }}>
+        {/* Watermark "Final" */}
+        <div style={{
+          position: "absolute", bottom: -10, left: 8,
+          fontSize: 96, fontWeight: 800, color: "#fff",
+          opacity: 0.04, lineHeight: 1, letterSpacing: "-0.05em",
+          userSelect: "none", pointerEvents: "none", zIndex: 0,
+        }}>Final</div>
+
+        <div style={{ position: "relative", zIndex: 1 }}>
+          {/* Header */}
+          <div style={{
+            padding: "20px 24px 0",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+          }}>
+            <span style={{
+              fontSize: "12px", fontWeight: 700, textTransform: "uppercase" as const,
+              letterSpacing: "0.12em", color: "#9CA3AF",
+            }}>Final Design</span>
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              fontSize: "12px", fontWeight: 700, textTransform: "uppercase" as const,
+              letterSpacing: "0.14em", color: "#1E90FF",
+              background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
+              borderRadius: 100, padding: "4px 12px",
+            }}>✦ Shipped</span>
+          </div>
+
+          {/* Tab switcher — One Way / Round Trip */}
+          <div role="tablist" style={{
+            display: "flex", justifyContent: "center", gap: 8,
+            padding: "16px 24px",
+          }}>
+            {(["oneway", "roundtrip"] as const).map((tab) => (
+              <button
+                key={tab}
+                role="tab"
+                aria-selected={activeTab === tab}
+                tabIndex={0}
+                onClick={() => switchTab(tab)}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); switchTab(tab); } }}
+                style={{
+                  padding: "6px 20px", borderRadius: 100,
+                  border: activeTab === tab ? "none" : "1px solid rgba(30,144,255,0.3)",
+                  background: activeTab === tab ? "#1E90FF" : "transparent",
+                  color: activeTab === tab ? "#fff" : "rgba(255,255,255,0.5)",
+                  fontSize: "14px", fontWeight: 600,
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                  boxShadow: activeTab === tab ? "0 2px 12px rgba(30,144,255,0.4)" : "none",
+                  outline: "none",
+                }}
+              >
+                {tab === "oneway" ? "One Way" : "Round Trip"}
+              </button>
+            ))}
+          </div>
+
+          {/* Image with crossfade */}
+          <div style={{ borderTop: "1px solid rgba(30,144,255,0.15)" }}>
+            <div style={{
+              height: 32, background: "#DCE9F7", borderBottom: "1px solid rgba(30,144,255,0.18)",
+              display: "flex", alignItems: "center", padding: "0 12px", gap: 6,
+            }}>
+              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+                <span key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c, flexShrink: 0 }} />
+              ))}
+              <div style={{ flex: 1, height: 12, background: "rgba(0,0,0,0.08)", borderRadius: 20, marginLeft: 6 }} />
+              <span style={{
+                fontSize: "12px", fontWeight: 600, letterSpacing: "0.1em",
+                textTransform: "uppercase" as const, color: "#fff",
+                background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
+              }}>Shipped</span>
+            </div>
+            <div style={{
+              opacity: tabContentVis ? 1 : 0,
+              transition: "opacity 200ms ease",
+            }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={tabImg}
+                alt={activeTab === "oneway" ? "One Way fare listing" : "Round Trip fare listing"}
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+          </div>
+
+          {/* Why + Impact */}
+          <div style={{ padding: "24px 24px 20px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28 }}>
+            <div>
+              <p style={{ fontSize: "1rem", fontWeight: 700, color: "rgba(255,255,255,0.9)", margin: "0 0 8px", lineHeight: 1.4 }}>
+                Price hierarchy first. Everything else at a glance.
+              </p>
+              <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", lineHeight: 1.75, margin: 0 }}>
+                Price and time dominate the scan path. Refundability, baggage allowance, and seat count visible without expanding. Fare class icons map to symbols agents already recognise.
+              </p>
+            </div>
+            <div>
+              <span style={{
+                fontSize: "12px", fontWeight: 700, textTransform: "uppercase" as const,
+                letterSpacing: "0.14em", color: "#9CA3AF", display: "block", marginBottom: 10,
+              }}>Impact</span>
+              <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", lineHeight: 1.75, margin: 0 }}>
+                Became the template for every fare listing in the platform, extended across one-way, international, and round-trip searches.
+              </p>
+            </div>
+          </div>
+
+          {/* Where else it lives */}
+          <div style={{ padding: "0 24px 28px" }}>
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 20, marginBottom: 16 }}>
+              <span style={{
+                fontSize: "12px", fontWeight: 700, textTransform: "uppercase" as const,
+                letterSpacing: "0.12em", color: "#9CA3AF",
+              }}>Where else it lives</span>
+            </div>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" as const }}>
+              {WHERE_IT_LIVES_DATA.map((item, i) => (
+                <div
+                  key={item.label}
+                  ref={(el) => { thumbRefs.current[i] = el; }}
+                  style={{
+                    width: 180, flexShrink: 0,
+                    opacity: thumbVis[i] ? 1 : 0,
+                    transform: thumbVis[i] ? "translateY(0)" : "translateY(12px)",
+                    transition: "opacity 400ms cubic-bezier(0.22,1,0.36,1), transform 400ms cubic-bezier(0.22,1,0.36,1)",
+                  }}
+                >
+                  <div
+                    style={{
+                      borderRadius: 10, overflow: "hidden",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                      cursor: "default",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.transform = "scale(1.04)";
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.35)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={item.img} alt={item.label} style={{ width: "100%", height: "auto", display: "block" }} />
+                  </div>
+                  <div style={{ marginTop: 8, textAlign: "center" as const }}>
+                    <div style={{ fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.8)" }}>{item.label}</div>
+                    <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", marginTop: 2 }}>{item.sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   FARE LISTING BLOCK  (component 1 — vertical storyboard timeline)
+───────────────────────────────────────────────────────────────────── */
+function FareListingBlock() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [spineH, setSpineH] = useState(0);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setSpineH(100); obs.disconnect(); } },
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <div className="csl-reveal" style={{ marginBottom: 64 }}>
 
       {/* ── Header ── */}
-      <div style={{ marginBottom: 28 }}>
+      <div style={{ marginBottom: 36 }}>
         <h3 style={{ fontSize: "1.3rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
           Fare Listing Card
         </h3>
@@ -1357,135 +1548,28 @@ function FareListingBlock() {
         </p>
       </div>
 
-      {/* ── Old Design ── */}
-      <div style={{ marginBottom: 28 }}>
-        <span className="csl-eyebrow">The outdated design</span>
+      {/* ── Vertical storyboard timeline ── */}
+      <div ref={containerRef} style={{ position: "relative" }}>
+        {/* Spine */}
         <div style={{
-          borderRadius: 16, overflow: "hidden",
-          border: "1px solid #E5E7EB",
+          position: "absolute", left: 26, top: 30, bottom: 30,
+          width: 2, background: "#F3F4F6", borderRadius: 2, overflow: "hidden",
         }}>
-          <ChromeBar />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/Image/Airiq/first%20core/old-design.png"
-            alt="Outdated fare listing design"
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
-        </div>
-        <p style={{ marginTop: 12, fontSize: "1.1rem", color: "#374151", lineHeight: 1.75 }}>
-          Multiple fare classes, baggage rules, airline policies at equal visual weight. Nothing prioritised. Agents read everything before making a single comparison.
-        </p>
-      </div>
-
-      {/* ── What I Tried — vertical timeline ── */}
-      <div>
-        <span className="csl-eyebrow" style={{ marginBottom: 24 }}>What I tried</span>
-
-        {/* Timeline container */}
-        <div style={{ position: "relative", paddingLeft: 44 }}>
-          {/* Vertical line — runs between first node and last node */}
           <div style={{
-            position: "absolute", left: 13, top: 14, bottom: 14,
-            width: 2,
-            background: "linear-gradient(to bottom, #E5E7EB 0%, #E5E7EB 88%, transparent 100%)",
+            width: "100%", height: `${spineH}%`,
+            background: "linear-gradient(to bottom, rgba(30,144,255,0.35) 0%, rgba(30,144,255,0.1) 100%)",
+            transition: "height 1.4s cubic-bezier(0.22,1,0.36,1)", borderRadius: 2,
           }} />
-
-          {FARE_APPROACHES.slice(0, 2).map((approach, i) => (
-            <div
-              key={approach.step}
-              style={{
-                position: "relative",
-                marginBottom: i < 1 ? 40 : 0,
-              }}
-            >
-              {/* Node dot */}
-              <div style={{
-                position: "absolute",
-                left: -44, top: 6,
-                width: 12, height: 12, borderRadius: "50%",
-                background: "#D1D5DB",
-                zIndex: 1,
-              }} />
-
-              {/* Step label */}
-              <span className="csl-eyebrow" style={{ marginBottom: 8 }}>{approach.step}</span>
-
-              {/* Image */}
-              <div style={{
-                borderRadius: 14, overflow: "hidden",
-                border: "1px solid #E5E7EB",
-                marginBottom: 12,
-              }}>
-                <ChromeBar />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={approach.img}
-                  alt={approach.heading}
-                  style={{ width: "100%", height: "auto", display: "block" }}
-                />
-              </div>
-
-              {/* Annotation */}
-              <div>
-                <p style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", margin: "0 0 6px" }}>
-                  {approach.heading}
-                </p>
-                <p style={{ fontSize: "1.1rem", color: "#4B5563", lineHeight: 1.75, margin: 0 }}>
-                  {approach.reason}
-                </p>
-              </div>
-            </div>
-          ))}
         </div>
+
+        {/* Stage cards V1 / V2 / V3 */}
+        {TIMELINE_STAGES.map((stage, i) => (
+          <StageCard key={stage.vLabel} stage={stage} idx={i} />
+        ))}
+
+        {/* Final design card */}
+        <FinalDesignCard idx={TIMELINE_STAGES.length} />
       </div>
-
-      {/* ── Final Design — dark full-width ── */}
-      <div style={{ marginTop: 32 }}>
-        <span className="csl-eyebrow">Final Design</span>
-        <div style={{
-          background: "#111827", borderRadius: 20, overflow: "hidden",
-          marginTop: 12,
-        }}>
-          {/* Image — full width on dark bg */}
-          <div style={{ padding: "28px 28px 0" }}>
-            <ChromeBar blue />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Image/Airiq/first%20core/final.png" alt="Final fare listing design" style={{ width: "100%", height: "auto", display: "block" }} />
-          </div>
-
-          {/* Why + Impact on same dark bg */}
-          <div style={{ padding: "28px 32px 32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-            <div>
-              <span style={{
-                display: "inline-flex", alignItems: "center", gap: 6,
-                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
-                color: "#1E90FF", background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
-                borderRadius: 100, padding: "4px 12px", marginBottom: 14,
-              }}>✦ Why this was selected</span>
-              <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "rgba(255,255,255,0.9)", margin: "0 0 10px", lineHeight: 1.4 }}>
-                Price hierarchy first. Everything else at a glance.
-              </p>
-              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>
-                Price and time dominate the scan path. Refundability, baggage allowance, and seat count are visible without expanding or hovering. Fare class icons map to symbols agents already recognise. Scan once, compare, decide, book.
-              </p>
-            </div>
-            <div>
-              <span style={{
-                display: "inline-block",
-                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
-                color: "#9CA3AF", marginBottom: 14,
-              }}>Impact</span>
-              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>
-                This card became the template for every fare listing in the platform, extended across one-way, international, and round-trip searches.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Compatibility animated showcase ── */}
-      <CompatibilityShowcase />
-
     </div>
   );
 }
@@ -1735,19 +1819,48 @@ function ReviewTableBlock() {
 function CoreComponentsSection() {
   return (
     <CsSection id="insights">
-      <CsSectionHeader
-        title="3 Core Flow Fixes"
-        sub="Fixing the listing, the share card, and the review table unblocked every other screen. Here's what I tried, what I scrapped, and what shipped."
-      />
+      {/* Sticky progress label — activates the instant 1px enters viewport */}
+      <div style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 10,
+        background: "rgba(255,255,255,0.92)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+        borderBottom: "1px solid rgba(0,0,0,0.06)",
+        padding: "9px 0",
+        marginBottom: 0,
+      }}>
+        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" as const }}>
+          <span style={{
+            fontSize: "11px", fontWeight: 700, color: "#9CA3AF",
+            textTransform: "uppercase" as const, letterSpacing: "0.12em",
+          }}>Core Components</span>
+          <span style={{ color: "#D1D5DB", fontSize: "11px" }}>·</span>
+          {["Fare Listing Card", "Itinerary Card", "Review Table"].map((name, i) => (
+            <span key={name} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              {i > 0 && <span style={{ color: "#D1D5DB", fontSize: "11px" }}>·</span>}
+              <span style={{ fontSize: "12px", fontWeight: 600, color: "#374151" }}>{name}</span>
+            </span>
+          ))}
+        </div>
+      </div>
 
-      {/* Component 1 — Fare Listing Card */}
-      <FareListingBlock />
+      <div style={{ paddingTop: 32 }}>
+        <CsSectionHeader
+          title="3 Core Flow Fixes"
+          sub="Fixing the listing, the share card, and the review table unblocked every other screen. Here's what I tried, what I scrapped, and what shipped."
+        />
 
-      {/* Component 2 — Itinerary Card */}
-      <ItineraryCardBlock />
+        {/* Component 1 — Fare Listing Card */}
+        <FareListingBlock />
 
-      {/* Component 3 — Review Table */}
-      <ReviewTableBlock />
+        {/* Component 2 — Itinerary Card */}
+        <ItineraryCardBlock />
+
+        {/* Component 3 — Review Table */}
+        <ReviewTableBlock />
+      </div>
     </CsSection>
   );
 }
