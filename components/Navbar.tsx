@@ -38,8 +38,9 @@ export function Navbar() {
       </div>
       <div className="justify-self-end">
         <a
-          href="/Nikunj-Resume.pdf"
-          download
+          href="https://docs.google.com/document/d/13FPLODLMONa5ZYwlLNAZMchZnM_s88bSBnIZICCFik8/edit?tab=t.0"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-[0.4rem] rounded-full border border-[rgba(180,140,130,0.28)] px-4 py-[0.38rem] text-[0.68rem] uppercase tracking-[0.08em] text-ink3 no-underline transition hover:border-[#1E90FF] hover:bg-[#1E90FF] hover:text-white"
         >
           ↓ Resume

@@ -208,7 +208,7 @@ function CaseStudyNav() {
         <div className="nav-divider" />
         <a href="/#work" className="nav-link-item">Work</a>
         <a
-          href="/Nikunj-Resume.pdf"
+          href="https://docs.google.com/document/d/13FPLODLMONa5ZYwlLNAZMchZnM_s88bSBnIZICCFik8/edit?tab=t.0"
           className="nav-link-item nav-link-resume"
           target="_blank"
           rel="noopener noreferrer"
