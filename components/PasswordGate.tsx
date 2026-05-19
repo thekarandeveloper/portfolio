@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
-
-const DEFAULT_PASSWORD = "12345";
+import { validateCaseStudyPassword } from "@/lib/authActions";
 
 /* Same 5-layer wave config as the hero canvas */
 const WAVES = [
@@ -14,16 +13,23 @@ const WAVES = [
   { yR: 0.62, amp: 34, freq: 0.0060, spd: 0.008,  ph: 4.71, r: 0,   g: 150, b: 255, a: 0.030 },
 ];
 
-export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { children: ReactNode; slug: string; password?: string }) {
-  const LEN = password.length;
-  const [digits, setDigits]   = useState<string[]>(Array(LEN).fill(""));
-  const [phase, setPhase]     = useState<"idle" | "error" | "success" | "done">("idle");
+export function PasswordGate({
+  children,
+  slug,
+  digits = 4,
+}: {
+  children: ReactNode;
+  slug: string;
+  digits?: number;
+}) {
+  const [pins, setPins]   = useState<string[]>(Array(digits).fill(""));
+  const [phase, setPhase] = useState<"idle" | "checking" | "error" | "success" | "done">("idle");
   const inputRefs  = useRef<(HTMLInputElement | null)[]>([]);
   const canvasRef  = useRef<HTMLCanvasElement>(null);
   const glowRef    = useRef<HTMLDivElement>(null);
   const storageKey = `pw-${slug}`;
 
-  /* Wave canvas — identical to HomeBehavior hero wave */
+  /* Wave canvas */
   useEffect(() => {
     const cv = canvasRef.current;
     if (!cv) return;
@@ -70,7 +76,7 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
     };
   }, []);
 
-  /* Cursor glow — matching hero cursor-glow behaviour */
+  /* Cursor glow */
   useEffect(() => {
     const glow = glowRef.current;
     if (!glow) return;
@@ -91,17 +97,28 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
     setTimeout(() => inputRefs.current[0]?.focus(), 380);
   }, [storageKey]);
 
-  const tryUnlock = (filled: string[]) => {
-    if (filled.join("") === password) {
-      setPhase("success");
-      setTimeout(() => {
-        sessionStorage.setItem(storageKey, "1");
-        setPhase("done");
-      }, 1300);
-    } else {
+  const tryUnlock = async (filled: string[]) => {
+    setPhase("checking");
+    try {
+      const valid = await validateCaseStudyPassword(slug, filled.join(""));
+      if (valid) {
+        setPhase("success");
+        setTimeout(() => {
+          sessionStorage.setItem(storageKey, "1");
+          setPhase("done");
+        }, 1300);
+      } else {
+        setPhase("error");
+        setTimeout(() => {
+          setPins(Array(digits).fill(""));
+          setPhase("idle");
+          inputRefs.current[0]?.focus();
+        }, 750);
+      }
+    } catch {
       setPhase("error");
       setTimeout(() => {
-        setDigits(Array(LEN).fill(""));
+        setPins(Array(digits).fill(""));
         setPhase("idle");
         inputRefs.current[0]?.focus();
       }, 750);
@@ -109,12 +126,13 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
   };
 
   const handleChange = (i: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    if (phase === "checking") return;
     const val = e.target.value.replace(/\D/g, "").slice(-1);
     if (!val) return;
-    const next = [...digits];
+    const next = [...pins];
     next[i] = val;
-    setDigits(next);
-    if (i < LEN - 1) {
+    setPins(next);
+    if (i < digits - 1) {
       inputRefs.current[i + 1]?.focus();
     } else {
       tryUnlock(next);
@@ -122,24 +140,26 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
   };
 
   const handleKeyDown = (i: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (phase === "checking") return;
     if (e.key === "Backspace") {
-      if (digits[i]) {
-        const next = [...digits];
+      if (pins[i]) {
+        const next = [...pins];
         next[i] = "";
-        setDigits(next);
+        setPins(next);
       } else if (i > 0) {
         inputRefs.current[i - 1]?.focus();
       }
     }
-    if (e.key === "Enter" && digits.every(Boolean)) {
-      tryUnlock(digits);
+    if (e.key === "Enter" && pins.every(Boolean)) {
+      tryUnlock(pins);
     }
   };
 
   if (phase === "done") return <>{children}</>;
 
-  const isError   = phase === "error";
-  const isSuccess = phase === "success";
+  const isChecking = phase === "checking";
+  const isError    = phase === "error";
+  const isSuccess  = phase === "success";
 
   return (
     <div className={`pgx${isError ? " pgx-err" : ""}${isSuccess ? " pgx-ok" : ""}`}>
@@ -150,7 +170,7 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
       {/* Cursor glow */}
       <div ref={glowRef} className="pgx-cursor-glow" aria-hidden="true" />
 
-      {/* Back button — floating pill, matching nav style */}
+      {/* Back button */}
       <Link href="/" className="pgx-back">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <polyline points="15 18 9 12 15 6" />
@@ -158,7 +178,7 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
         Back to projects
       </Link>
 
-      {/* ── LinkedIn card — top right ── */}
+      {/* LinkedIn card — top right */}
       {!isSuccess && (
         <a
           href="https://www.linkedin.com/in/nikunj-tyagi26/"
@@ -166,14 +186,11 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
           rel="noopener noreferrer"
           className="pgx-li-card"
         >
-          {/* Avatar */}
           <span className="pgx-li-avatar" aria-hidden="true">N</span>
-
-          {/* Text block */}
           <span className="pgx-li-text">
             <span className="pgx-li-ask">Don&rsquo;t have the password?</span>
             <span className="pgx-li-cta">
-              Message me
+              Let&rsquo;s talk design
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <line x1="7" y1="17" x2="17" y2="7" />
                 <polyline points="7 7 17 7 17 17" />
@@ -183,7 +200,7 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
         </a>
       )}
 
-      {/* ── Center content ── */}
+      {/* Center content */}
       <div className="pgx-body">
 
         {/* Lock badge */}
@@ -201,7 +218,7 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
         </div>
 
         {/* Eyebrow */}
-        <p className="pgx-eyebrow">Protected Work</p>
+        <p className="pgx-eyebrow">Confidential Work</p>
 
         {/* Title */}
         <h1 className="pgx-title">
@@ -214,32 +231,33 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
         <p className="pgx-sub">
           {isSuccess
             ? "Opening case study…"
-            : "This case study is shared under NDA; reach out if you need access."}
+            : "This case study is shared selectively. Reach out on LinkedIn if you’d like access."}
         </p>
 
         {/* OTP input */}
         {!isSuccess && (
           <>
-            <div className="pgx-otp">
-              {Array.from({ length: LEN }).map((_, i) => (
+            <div className={`pgx-otp${isChecking ? " pgx-otp-loading" : ""}`}>
+              {Array.from({ length: digits }).map((_, i) => (
                 <label
                   key={i}
-                  className={`pgx-box${digits[i] ? " pgx-box-on" : ""}${isError ? " pgx-box-err" : ""}`}
+                  className={`pgx-box${pins[i] ? " pgx-box-on" : ""}${isError ? " pgx-box-err" : ""}`}
                 >
                   <input
                     ref={el => { inputRefs.current[i] = el; }}
                     type="text"
                     inputMode="numeric"
                     maxLength={1}
-                    value={digits[i]}
+                    value={pins[i]}
                     onChange={e => handleChange(i, e)}
                     onKeyDown={e => handleKeyDown(i, e)}
                     className="pgx-hidden"
                     autoComplete="off"
                     aria-label={`Digit ${i + 1}`}
+                    disabled={isChecking}
                   />
                   <span
-                    className={`pgx-pip${digits[i] ? " pgx-pip-on" : ""}${isError ? " pgx-pip-err" : ""}`}
+                    className={`pgx-pip${pins[i] ? " pgx-pip-on" : ""}${isError ? " pgx-pip-err" : ""}`}
                   />
                 </label>
               ))}
@@ -247,13 +265,15 @@ export function PasswordGate({ children, slug, password = DEFAULT_PASSWORD }: { 
 
             {isError
               ? <p className="pgx-status pgx-status-err">Incorrect, try again</p>
-              : <p className="pgx-hint">{LEN}-digit code</p>}
+              : isChecking
+              ? <p className="pgx-hint">Verifying…</p>
+              : <p className="pgx-hint">{digits}-digit code</p>}
           </>
         )}
 
         {isSuccess && (
           <div className="pgx-ok-row">
-            {Array.from({ length: LEN }).map((_, i) => (
+            {Array.from({ length: digits }).map((_, i) => (
               <span
                 key={i}
                 className="pgx-ok-dot"

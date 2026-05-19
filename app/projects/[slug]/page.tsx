@@ -54,7 +54,7 @@ export default async function ProjectPage({ params }: Props) {
 
   if (slug === "airiq") {
     return (
-      <PasswordGate slug="airiq" password="2618">
+      <PasswordGate slug="airiq" digits={4}>
         <AirIqCaseStudy />
       </PasswordGate>
     );
@@ -70,7 +70,7 @@ export default async function ProjectPage({ params }: Props) {
 
   if (slug === "care-autor") {
     return (
-      <PasswordGate slug="care-autor">
+      <PasswordGate slug="care-autor" digits={5}>
         <CareAutorCaseStudy />
       </PasswordGate>
     );

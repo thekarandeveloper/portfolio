@@ -370,6 +370,8 @@ export function CaseStudyPage({
   const [active, setActive] = useState(tocItems[0]?.id ?? "");
 
   useEffect(() => {
+    /* Reset scroll position so hero is always the first thing visible */
+    window.scrollTo(0, 0);
     document.body.classList.add("csl-page-active");
     return () => document.body.classList.remove("csl-page-active");
   }, []);

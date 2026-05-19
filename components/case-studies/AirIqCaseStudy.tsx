@@ -19,10 +19,10 @@ const TOC_ITEMS = [
   { id: "approach",       label: "Research"        },
   { id: "process",        label: "How I Worked"    },
   { id: "insights",       label: "Core Flow Fixes" },
+  { id: "product",        label: "Product Flow"    },
   { id: "mobile",         label: "Mobile"          },
-  { id: "product",        label: "The Product"     },
   { id: "design-system",  label: "Design System"   },
-  { id: "results",        label: "Results"         },
+  { id: "results",        label: "Impact"          },
   { id: "learnings",      label: "Learnings"       },
 ];
 
@@ -1510,7 +1510,7 @@ function ItineraryCardBlock() {
           fontSize: "15px", fontWeight: 600, letterSpacing: "0.1em",
           textTransform: "uppercase", color: "#fff",
           background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
-        }}>Redesigned</span>
+        }}>Shipped</span>
       )}
     </div>
   );
@@ -1528,30 +1528,44 @@ function ItineraryCardBlock() {
         </p>
       </div>
 
-      {/* ── The Problem + Old Design ── */}
+      {/* ── What I Tried — Approach 01 (old design) ── */}
       <div style={{ marginBottom: 28 }}>
-        <span className="csl-eyebrow">The outdated design</span>
-        <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #E5E7EB" }}>
-          <Bar />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Image/Airiq/Second%20core/old.png" alt="Old itinerary design" style={{ width: "100%", height: "auto", display: "block" }} />
+        <span className="csl-eyebrow" style={{ marginBottom: 20 }}>What I tried</span>
+
+        <div style={{ position: "relative", paddingLeft: 44 }}>
+          <div style={{
+            position: "absolute", left: 13, top: 14, bottom: 14,
+            width: 2,
+            background: "linear-gradient(to bottom, #E5E7EB 0%, #E5E7EB 88%, transparent 100%)",
+          }} />
+
+          <div style={{ position: "relative" }}>
+            <div style={{
+              position: "absolute", left: -44, top: 6,
+              width: 12, height: 12, borderRadius: "50%",
+              background: "#D1D5DB", zIndex: 1,
+            }} />
+            <span className="csl-eyebrow" style={{ marginBottom: 8 }}>Approach 01</span>
+            <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid #E5E7EB", marginBottom: 12 }}>
+              <Bar />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Image/Airiq/Second%20core/old.png" alt="Original itinerary design" style={{ width: "100%", height: "auto", display: "block" }} />
+            </div>
+            <div>
+              <p style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", margin: "0 0 6px" }}>
+                Scattered layout, no clear reading path
+              </p>
+              <p style={{ fontSize: "1.1rem", color: "#4B5563", lineHeight: 1.75, margin: 0 }}>
+                Journey details were spread across multiple sections. Agents had to assemble the full picture themselves mid-call. Confusion was almost guaranteed, especially with international itineraries.
+              </p>
+            </div>
+          </div>
         </div>
-        <p style={{ marginTop: 12, fontSize: "1.1rem", color: "#374151", lineHeight: 1.75 }}>
-          Agents scanned multiple scattered sections to piece together journey details. Confusion on calls, slower decisions, eroded trust.
-        </p>
       </div>
 
-      {/* ── What I Learned ── */}
-      <div style={{ marginBottom: 28 }}>
-        <span className="csl-eyebrow">What I learned</span>
-        <p style={{ fontSize: "1.2rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: 0 }}>
-          Agents read this card aloud to a client mid-call. Route, dates, and time confirmed in under 5 seconds. The card had to do one job, perfectly.
-        </p>
-      </div>
-
-      {/* ── The New Design — dark full-width ── */}
-      <div>
-        <span className="csl-eyebrow">The redesign</span>
+      {/* ── Final Design — dark full-width ── */}
+      <div style={{ marginTop: 32 }}>
+        <span className="csl-eyebrow">Final Design</span>
         <div style={{
           background: "#111827", borderRadius: 20, overflow: "hidden",
           marginTop: 12,
@@ -1564,11 +1578,11 @@ function ItineraryCardBlock() {
           <div style={{ padding: "28px 32px 32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
             <div>
               <span style={{
-                display: "inline-block",
+                display: "inline-flex", alignItems: "center", gap: 6,
                 fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
                 color: "#1E90FF", background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
                 borderRadius: 100, padding: "4px 12px", marginBottom: 14,
-              }}>◉ Why this was selected</span>
+              }}>✦ Why this was selected</span>
               {[
                 { label: "Segment at a glance",     detail: "Origin → destination in one clear row. No scrolling to find the route." },
                 { label: "Dates + times grouped",    detail: "Departure and arrival side-by-side, not buried across sections." },
@@ -1617,7 +1631,7 @@ function ReviewTableBlock() {
           fontSize: "15px", fontWeight: 600, letterSpacing: "0.1em",
           textTransform: "uppercase", color: "#fff",
           background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
-        }}>Redesigned</span>
+        }}>Shipped</span>
       )}
     </div>
   );
@@ -1635,31 +1649,44 @@ function ReviewTableBlock() {
         </p>
       </div>
 
-      {/* ── The Problem + Old Design ── */}
-      {/* ── The Problem + Old Design ── */}
+      {/* ── What I Tried — Approach 01 ── */}
       <div style={{ marginBottom: 28 }}>
-        <span className="csl-eyebrow">The outdated design</span>
-        <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #E5E7EB" }}>
-          <Bar />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Image/Airiq/third%20core/old.png" alt="Old review table design" style={{ width: "100%", height: "auto", display: "block" }} />
+        <span className="csl-eyebrow" style={{ marginBottom: 20 }}>What I tried</span>
+
+        <div style={{ position: "relative", paddingLeft: 44 }}>
+          <div style={{
+            position: "absolute", left: 13, top: 14, bottom: 14,
+            width: 2,
+            background: "linear-gradient(to bottom, #E5E7EB 0%, #E5E7EB 88%, transparent 100%)",
+          }} />
+
+          <div style={{ position: "relative" }}>
+            <div style={{
+              position: "absolute", left: -44, top: 6,
+              width: 12, height: 12, borderRadius: "50%",
+              background: "#D1D5DB", zIndex: 1,
+            }} />
+            <span className="csl-eyebrow" style={{ marginBottom: 8 }}>Approach 01</span>
+            <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid #E5E7EB", marginBottom: 12 }}>
+              <Bar />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Image/Airiq/third%20core/old.png" alt="Original review table design" style={{ width: "100%", height: "auto", display: "block" }} />
+            </div>
+            <div>
+              <p style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", margin: "0 0 6px" }}>
+                Too many empty cells, broken trust
+              </p>
+              <p style={{ fontSize: "1.1rem", color: "#4B5563", lineHeight: 1.75, margin: 0 }}>
+                The table showed every row including blank SSR fields. Agents couldn&apos;t tell whether empty cells meant missing data or unapplied options. A screen meant to confirm a booking was creating doubt before submission.
+              </p>
+            </div>
+          </div>
         </div>
-        <p style={{ marginTop: 12, fontSize: "1.1rem", color: "#374151", lineHeight: 1.75 }}>
-          The previous table had excessive empty states and poor data density. Felt incomplete. Harder for agents to review critical information before submitting.
-        </p>
       </div>
 
-      {/* ── What I Learned ── */}
-      <div style={{ marginBottom: 28 }}>
-        <span className="csl-eyebrow">What I learned</span>
-        <p style={{ fontSize: "1.2rem", fontWeight: 600, color: "#111827", lineHeight: 1.7, margin: 0 }}>
-          Empty cells aren&apos;t neutral. They signal broken data. Agents were second-guessing correct information because of poor presentation. The fix wasn&apos;t adding data, it was removing the noise around it.
-        </p>
-      </div>
-
-      {/* ── The New Design — dark full-width ── */}
-      <div>
-        <span className="csl-eyebrow">The redesign</span>
+      {/* ── Final Design — dark full-width ── */}
+      <div style={{ marginTop: 32 }}>
+        <span className="csl-eyebrow">Final Design</span>
         <div style={{
           background: "#111827", borderRadius: 20, overflow: "hidden",
           marginTop: 12,
@@ -1672,11 +1699,11 @@ function ReviewTableBlock() {
           <div style={{ padding: "28px 32px 32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
             <div>
               <span style={{
-                display: "inline-block",
+                display: "inline-flex", alignItems: "center", gap: 6,
                 fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
                 color: "#1E90FF", background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
                 borderRadius: 100, padding: "4px 12px", marginBottom: 14,
-              }}>◉ Why this was selected</span>
+              }}>✦ Why this was selected</span>
               {[
                 { label: "Optimised data density",     detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility." },
                 { label: "Explicit empty states",       detail: "No blank cells. Missing data shows a clear dash so agents know it's intentional, not broken." },
@@ -1706,8 +1733,6 @@ function ReviewTableBlock() {
 }
 
 function CoreComponentsSection() {
-  const desktopEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.desktop)}`;
-
   return (
     <CsSection id="insights">
       <CsSectionHeader
@@ -1723,132 +1748,163 @@ function CoreComponentsSection() {
 
       {/* Component 3 — Review Table */}
       <ReviewTableBlock />
-
-      {/* Broader design decisions */}
-      <DesignDecisionsBlock />
-
-      {/* Desktop designs Figma embed */}
-      <div className="csl-reveal" style={{ marginTop: 48 }}>
-        <span className="csl-eyebrow">Explore desktop designs</span>
-        <div style={{
-          borderRadius: 18, overflow: "hidden",
-          border: "1px solid rgba(0,0,0,0.08)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
-          marginTop: 12,
-        }}>
-          <div style={{
-            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
-            display: "flex", alignItems: "center", padding: "0 16px",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <svg width="14" height="14" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 28.5C19 25.9804 20.0009 23.5641 21.7825 21.7825C23.5641 20.0009 25.9804 19 28.5 19C31.0196 19 33.4359 20.0009 35.2175 21.7825C36.9991 23.5641 38 25.9804 38 28.5C38 31.0196 36.9991 33.4359 35.2175 35.2175C33.4359 36.9991 31.0196 38 28.5 38C25.9804 38 23.5641 36.9991 21.7825 35.2175C20.0009 33.4359 19 31.0196 19 28.5Z" fill="#1ABCFE"/>
-                <path d="M0 47.5C0 44.9804 1.00089 42.5641 2.78249 40.7825C4.56408 39.0009 6.98044 38 9.5 38H19V47.5C19 50.0196 17.9991 52.4359 16.2175 54.2175C14.4359 55.9991 12.0196 57 9.5 57C6.98044 57 4.56408 55.9991 2.78249 54.2175C1.00089 52.4359 0 50.0196 0 47.5Z" fill="#0ACF83"/>
-                <path d="M19 0V19H28.5C31.0196 19 33.4359 17.9991 35.2175 16.2175C36.9991 14.4359 38 12.0196 38 9.5C38 6.98044 36.9991 4.56408 35.2175 2.78249C33.4359 1.00089 31.0196 0 28.5 0H19Z" fill="#FF7262"/>
-                <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
-                <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
-              </svg>
-              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>Air IQ: Desktop Designs</span>
-            </div>
-          </div>
-          <iframe
-            src={desktopEmbedUrl}
-            allowFullScreen
-            style={{ width: "100%", height: 600, border: "none", display: "block" }}
-            loading="lazy"
-          />
-        </div>
-      </div>
     </CsSection>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §05  THE PRODUCT
+   FIGMA ICON (reusable)
 ───────────────────────────────────────────────────────────────────── */
-function VideoPlaceholder({ label }: { label: string }) {
+function FigmaIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19 28.5C19 25.9804 20.0009 23.5641 21.7825 21.7825C23.5641 20.0009 25.9804 19 28.5 19C31.0196 19 33.4359 20.0009 35.2175 21.7825C36.9991 23.5641 38 25.9804 38 28.5C38 31.0196 36.9991 33.4359 35.2175 35.2175C33.4359 36.9991 31.0196 38 28.5 38C25.9804 38 23.5641 36.9991 21.7825 35.2175C20.0009 33.4359 19 31.0196 19 28.5Z" fill="#1ABCFE"/>
+      <path d="M0 47.5C0 44.9804 1.00089 42.5641 2.78249 40.7825C4.56408 39.0009 6.98044 38 9.5 38H19V47.5C19 50.0196 17.9991 52.4359 16.2175 54.2175C14.4359 55.9991 12.0196 57 9.5 57C6.98044 57 4.56408 55.9991 2.78249 54.2175C1.00089 52.4359 0 50.0196 0 47.5Z" fill="#0ACF83"/>
+      <path d="M19 0V19H28.5C31.0196 19 33.4359 17.9991 35.2175 16.2175C36.9991 14.4359 38 12.0196 38 9.5C38 6.98044 36.9991 4.56408 35.2175 2.78249C33.4359 1.00089 31.0196 0 28.5 0H19Z" fill="#FF7262"/>
+      <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
+      <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
+    </svg>
+  );
+}
+
+function FigmaEmbed({ url, label, height = 600 }: { url: string; label: string; height?: number }) {
   return (
     <div style={{
       borderRadius: 18, overflow: "hidden",
       border: "1px solid rgba(0,0,0,0.08)",
       boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
-      background: "linear-gradient(145deg, #EAF4FF 0%, #F0F8FF 100%)",
-      aspectRatio: "16/9",
-      display: "flex", flexDirection: "column",
-      alignItems: "center", justifyContent: "center",
-      gap: 12,
     }}>
       <div style={{
-        width: 56, height: 56, borderRadius: "50%",
-        background: "rgba(30,144,255,0.12)",
-        border: "2px solid rgba(30,144,255,0.25)",
-        display: "flex", alignItems: "center", justifyContent: "center",
+        height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
+        display: "flex", alignItems: "center", padding: "0 16px",
       }}>
-        <span style={{ fontSize: "1.4rem", marginLeft: 4 }}>▶</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <FigmaIcon />
+          <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>{label}</span>
+        </div>
       </div>
-      <div style={{ textAlign: "center" }}>
-        <div style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{label}</div>
-        <div style={{ fontSize: "15px", color: "#6B7280", marginTop: 4 }}>Video coming soon</div>
-      </div>
+      <iframe
+        src={url}
+        allowFullScreen
+        style={{ width: "100%", height, border: "none", display: "block" }}
+        loading="lazy"
+      />
     </div>
   );
 }
 
-function TheProductSection() {
+/* ─────────────────────────────────────────────────────────────────────
+   §05  PRODUCT FLOW WALKTHROUGH
+───────────────────────────────────────────────────────────────────── */
+function ProductFlowSection() {
+  const desktopEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.desktop)}`;
   const edgeCasesEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.edgeCases)}`;
 
   return (
     <CsSection id="product">
       <CsSectionHeader
-        title="The Product"
-        sub="20+ screens shipped across 5 flows. One platform, every booking."
+        title="Complete Product Flow"
+        sub="Every screen, every decision, in sequence. Here's how the full booking journey was designed — from the first search to the final confirmation."
       />
 
-      {/* Desktop video */}
-      <div className="csl-reveal" style={{ marginBottom: 32 }}>
-        <span className="csl-eyebrow">Desktop Platform</span>
-        <VideoPlaceholder label="Platform walkthrough" />
+      {/* ── Large desktop Figma embed ── */}
+      <div className="csl-reveal" style={{ marginBottom: 48 }}>
+        <span className="csl-eyebrow">End-to-end desktop flow</span>
+        <FigmaEmbed
+          url={desktopEmbedUrl}
+          label="Air IQ · Desktop Platform"
+          height={900}
+        />
       </div>
 
-      {/* Mobile video */}
-      <div className="csl-reveal" style={{ marginBottom: 40 }}>
-        <span className="csl-eyebrow">Mobile Platform</span>
-        <VideoPlaceholder label="Mobile walkthrough" />
-      </div>
-
-      {/* Edge cases — Figma embed */}
-      <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
-        <span className="csl-eyebrow">Edge cases designed for</span>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 20px" }}>
-          Happy-path screens ship fast. What earns agent trust is designing for when things go wrong.
+      {/* ── Screen-by-screen walkthrough ── */}
+      <div className="csl-reveal" style={{ marginBottom: 48 }}>
+        <span className="csl-eyebrow">Screen by screen</span>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.8, margin: "0 0 32px" }}>
+          Each screen in the flow was designed around a specific agent behaviour. Below is what each screen does, why the decision was made, and what edge cases were considered.
         </p>
-        <div style={{
-          borderRadius: 18, overflow: "hidden",
-          border: "1px solid rgba(0,0,0,0.08)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
-        }}>
-          <div style={{
-            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
-            display: "flex", alignItems: "center", padding: "0 16px",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <svg width="14" height="14" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 28.5C19 25.9804 20.0009 23.5641 21.7825 21.7825C23.5641 20.0009 25.9804 19 28.5 19C31.0196 19 33.4359 20.0009 35.2175 21.7825C36.9991 23.5641 38 25.9804 38 28.5C38 31.0196 36.9991 33.4359 35.2175 35.2175C33.4359 36.9991 31.0196 38 28.5 38C25.9804 38 23.5641 36.9991 21.7825 35.2175C20.0009 33.4359 19 31.0196 19 28.5Z" fill="#1ABCFE"/>
-                <path d="M0 47.5C0 44.9804 1.00089 42.5641 2.78249 40.7825C4.56408 39.0009 6.98044 38 9.5 38H19V47.5C19 50.0196 17.9991 52.4359 16.2175 54.2175C14.4359 55.9991 12.0196 57 9.5 57C6.98044 57 4.56408 55.9991 2.78249 54.2175C1.00089 52.4359 0 50.0196 0 47.5Z" fill="#0ACF83"/>
-                <path d="M19 0V19H28.5C31.0196 19 33.4359 17.9991 35.2175 16.2175C36.9991 14.4359 38 12.0196 38 9.5C38 6.98044 36.9991 4.56408 35.2175 2.78249C33.4359 1.00089 31.0196 0 28.5 0H19Z" fill="#FF7262"/>
-                <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
-                <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
-              </svg>
-              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>Air IQ: Edge Cases</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+          {airJourneyBlocks.map((block, i) => (
+            <div key={block.step} style={{
+              paddingTop: i === 0 ? 0 : 32,
+              paddingBottom: 32,
+              borderBottom: i < airJourneyBlocks.length - 1 ? "1px solid #F3F4F6" : "none",
+              display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "start",
+            }}>
+              {/* Left: content */}
+              <div style={{ order: i % 2 === 0 ? 0 : 1 }}>
+                <div style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{block.step}</div>
+                <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#111827", marginBottom: 4, lineHeight: 1.3 }}>{block.title}</div>
+                <div style={{ fontSize: "15px", color: "#1E90FF", marginBottom: 16, fontFamily: "var(--font-lato), sans-serif" }}>{block.url}</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {block.decisions.map((dec, j) => (
+                    <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                      <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#1E90FF", flexShrink: 0, marginTop: 8 }} />
+                      <span style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.7 }}>{dec}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* Right: screen placeholder */}
+              <div style={{ order: i % 2 === 0 ? 1 : 0 }}>
+                <div style={{
+                  background: "linear-gradient(145deg, #EAF4FF, #F0F8FF)",
+                  border: "1.5px solid rgba(30,144,255,0.18)",
+                  borderRadius: 14, overflow: "hidden",
+                  aspectRatio: "16/10",
+                  display: "flex", flexDirection: "column",
+                  alignItems: "center", justifyContent: "center",
+                  gap: 8,
+                }}>
+                  <span style={{ fontSize: "1.6rem", opacity: 0.35 }}>✈</span>
+                  <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textAlign: "center", padding: "0 16px", lineHeight: 1.4 }}>{block.step} · {block.title}</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <iframe
-            src={edgeCasesEmbedUrl}
-            allowFullScreen
-            style={{ width: "100%", height: 600, border: "none", display: "block" }}
-            loading="lazy"
-          />
+          ))}
         </div>
+      </div>
+
+      {/* ── Edge cases Figma embed ── */}
+      <div className="csl-reveal" style={{ paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
+        <span className="csl-eyebrow">Edge cases</span>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.8, margin: "0 0 20px" }}>
+          Happy-path screens ship fast. What earns agent trust is designing for when things go wrong.
+          Cases marked <strong style={{ color: "#1E90FF" }}>My initiative</strong> were not in the original brief — I proposed and they were adopted.
+        </p>
+        <div className="csl-reveal" style={{ marginBottom: 24 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 28 }}>
+            {airEdgeCases.map((ec) => {
+              const badgeColors: Record<string, { bg: string; color: string }> = {
+                "Edge case":     { bg: "#F3F4F6",  color: "#374151" },
+                "Critical path": { bg: "#FEF2F2",  color: "#EF4444" },
+                "My initiative": { bg: "#EFF6FF",  color: "#1E90FF" },
+              };
+              const badge = badgeColors[ec.badge] ?? badgeColors["Edge case"];
+              return (
+                <div key={ec.title} style={{
+                  background: "#fff", borderRadius: 12, padding: "16px 18px",
+                  border: "1px solid rgba(0,0,0,0.06)",
+                  boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
+                }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ width: 32, height: 32, borderRadius: 8, background: "#F3F4F6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>{ec.icon}</span>
+                      <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{ec.title}</span>
+                    </div>
+                    <span style={{ fontSize: "15px", fontWeight: 600, background: badge.bg, color: badge.color, borderRadius: 100, padding: "2px 8px", whiteSpace: "nowrap", flexShrink: 0 }}>{ec.badge}</span>
+                  </div>
+                  <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{ec.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <FigmaEmbed
+          url={edgeCasesEmbedUrl}
+          label="Air IQ: Edge Cases"
+          height={600}
+        />
       </div>
     </CsSection>
   );
@@ -1912,61 +1968,88 @@ function DesignSystemSection() {
    §07  RESULTS
 ───────────────────────────────────────────────────────────────────── */
 function ResultsSection() {
+  const outcomes = [
+    {
+      stat: <><span>~</span><CountUp to={7} /><span style={{ fontSize: "1.4rem", fontWeight: 700, color: "#6B7280", marginLeft: 4 }}>min</span></>,
+      statColor: "#111827",
+      label: "Average booking time",
+      sub: "down from ~12 min per booking",
+      source: "Agent Feedback",
+      tag: "Faster",
+      desc: "A 5-minute drop per booking sounds small. At 25,000 agents making multiple bookings a day, it compounds into real revenue recovered at scale. This was the metric the business was watching.",
+    },
+    {
+      stat: "30–40%",
+      statColor: "#1E90FF",
+      label: "Faster booking completion",
+      sub: "vs. pre-launch baseline",
+      source: "Operations Data",
+      tag: "Much Fewer Mistakes",
+      desc: "Hierarchy-first fare cards and consolidated review screens meant agents stopped misreading information. Fewer mistakes per booking equals fewer escalations, refunds, and support tickets.",
+    },
+    {
+      stat: "25–35%",
+      statColor: "#1E90FF",
+      label: "Fewer UI confusion tickets",
+      sub: "support drop post-launch",
+      source: "Support Team · Post-launch",
+      tag: "Clearer",
+      desc: "Support tickets flagging UI confusion dropped in the first weeks. The design resolved the ambiguity agents had been reporting for months — empty cells, unclear fare rules, no error states.",
+    },
+    {
+      stat: <><CountUp to={25} />K<span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span></>,
+      statColor: "#111827",
+      label: "Active agents onboarded",
+      sub: "live across India post-launch",
+      source: "Product Analytics",
+      tag: "Adopted",
+      desc: "The product shipped to all existing agents without a retraining mandate. Adoption was near-instant because the interface respected existing workflows rather than replacing them.",
+    },
+  ];
+
   return (
     <CsSection id="results">
-      <CsSectionHeader title="The Impact" />
+      <CsSectionHeader title="The Impact" sub="Design decisions measured by what they changed in the real world, not what they looked like on a slide." />
 
-      {/* Big numbers grid — 4 genuine outcomes */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1, marginBottom: 40, background: "#F3F4F6", borderRadius: 20, overflow: "hidden" }}>
-
-        {/* ~7 min */}
-        <div className="csl-reveal" style={{ background: "#fff", padding: "36px 32px" }}>
-          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
-            ~<CountUp to={7} />
-            <span style={{ fontSize: "1.4rem", fontWeight: 700, color: "#6B7280", marginLeft: 4 }}>min</span>
+      {/* Outcomes — 2-col grid */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 0, marginBottom: 40 }}>
+        {outcomes.map((o, i) => (
+          <div key={i} className="csl-reveal" style={{
+            display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 32, alignItems: "start",
+            paddingTop: i === 0 ? 0 : 32,
+            paddingBottom: 32,
+            borderBottom: i < outcomes.length - 1 ? "1px solid #F3F4F6" : "none",
+          }}>
+            {/* Left: stat */}
+            <div>
+              <div style={{ fontSize: "3rem", fontWeight: 800, color: o.statColor, lineHeight: 1, letterSpacing: "-0.03em", marginBottom: 10 }}>
+                {o.stat}
+              </div>
+              <div style={{ fontSize: "1rem", fontWeight: 600, color: "#374151", marginBottom: 4, lineHeight: 1.4 }}>{o.label}</div>
+              <div style={{ fontSize: "15px", color: "#9CA3AF", marginBottom: 10 }}>{o.sub}</div>
+              {/* Light outcome tag */}
+              <span style={{
+                display: "inline-block",
+                fontSize: "13px", fontWeight: 600,
+                color: "#1E90FF",
+                background: "#EFF6FF",
+                border: "1px solid rgba(30,144,255,0.2)",
+                borderRadius: 100,
+                padding: "3px 10px",
+                letterSpacing: "0.04em",
+              }}>{o.tag}</span>
+            </div>
+            {/* Right: description */}
+            <div style={{ paddingTop: 8 }}>
+              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.8, margin: "0 0 14px" }}>
+                {o.desc}
+              </p>
+              <div style={{ fontSize: "13px", fontWeight: 600, color: "#C4C9D4", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                Source: {o.source}
+              </div>
+            </div>
           </div>
-          <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Average booking time</div>
-          <div style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 4 }}>down from ~12 min per booking</div>
-          <div style={{ fontSize: "15px", fontWeight: 600, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Agent Feedback</div>
-        </div>
-
-        {/* 30–40% faster */}
-        <div className="csl-reveal rd1" style={{ background: "#fff", padding: "36px 32px" }}>
-          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
-            30–40%
-          </div>
-          <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Faster booking completion</div>
-          <div style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 4 }}>vs. pre-launch baseline</div>
-          <div style={{ fontSize: "15px", fontWeight: 600, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Operations Data</div>
-        </div>
-
-        {/* 25–35% fewer support tickets */}
-        <div className="csl-reveal rd1" style={{ background: "#fff", padding: "36px 32px" }}>
-          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>
-            25–35%
-          </div>
-          <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Fewer UI confusion tickets</div>
-          <div style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 4 }}>support drop post-launch</div>
-          <div style={{ fontSize: "15px", fontWeight: 600, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Support Team · Post-launch</div>
-        </div>
-
-        {/* 25,000+ agents */}
-        <div className="csl-reveal rd2" style={{ background: "#fff", padding: "36px 32px" }}>
-          <div style={{ fontSize: "3.2rem", fontWeight: 800, color: "#111827", lineHeight: 1, letterSpacing: "-0.03em" }}>
-            <CountUp to={25} />K<span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span>
-          </div>
-          <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginTop: 10, lineHeight: 1.5 }}>Active agents onboarded</div>
-          <div style={{ fontSize: "15px", color: "#9CA3AF", marginTop: 4 }}>live across India post-launch</div>
-          <div style={{ fontSize: "15px", fontWeight: 600, color: "#C4C9D4", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Source: Product Analytics</div>
-        </div>
-
-      </div>
-
-      {/* Business impact bridge */}
-      <div className="csl-reveal" style={{ marginBottom: 24, padding: "16px 20px", background: "#F9FAFB", borderRadius: 12, border: "1px solid #F3F4F6" }}>
-        <p style={{ fontSize: "15px", color: "#374151", lineHeight: 1.7, margin: 0 }}>
-          Faster booking means more bookings per agent per day, more revenue per seat. At 25,000+ agents, a 30–40% time reduction compounds at scale. Support queries dropped visibly in the first weeks post-launch.
-        </p>
+        ))}
       </div>
 
       {/* Quote — dark pull quote */}
@@ -2000,7 +2083,7 @@ function ResultsSection() {
               fontSize: "15px", fontWeight: 600, color: "#1E90FF",
             }}>TA</div>
             <div>
-              <div style={{ fontSize: "15px", color: "rgba(255,255,255,0.65)", fontWeight: 600}}>Anonymized travel agent</div>
+              <div style={{ fontSize: "15px", color: "rgba(255,255,255,0.65)", fontWeight: 600 }}>Anonymized travel agent</div>
               <div style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", fontWeight: 600, marginTop: 2 }}>Post-launch feedback</div>
             </div>
           </div>
@@ -2161,193 +2244,57 @@ function ProcessSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   DESIGN DECISIONS BLOCK
-───────────────────────────────────────────────────────────────────── */
-function DesignDecisionsBlock() {
-  return (
-    <div className="csl-reveal" style={{ marginTop: 16 }}>
-      <span className="csl-eyebrow">Broader design decisions</span>
-      <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 24px" }}>
-        Beyond the three core components, these were the decisions that shaped the whole platform.
-      </p>
-      <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-        {airDecisionBlocks.map((d, i) => (
-          <div key={d.num} style={{
-            display: "grid", gridTemplateColumns: "40px 1fr",
-            gap: "0 16px", alignItems: "start",
-            paddingTop: i === 0 ? 0 : 24,
-            paddingBottom: 24,
-            borderBottom: i < airDecisionBlocks.length - 1 ? "1px solid #F3F4F6" : "none",
-          }}>
-            <span style={{
-              width: 36, height: 36, borderRadius: 10,
-              background: "#EFF6FF", display: "flex",
-              alignItems: "center", justifyContent: "center",
-              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
-              flexShrink: 0, marginTop: 2,
-            }}>{d.num}</span>
-            <div>
-              <div style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF", marginBottom: 4 }}>{d.label}</div>
-              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{d.title}</div>
-              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: "0 0 10px" }}>{d.text}</p>
-              <div style={{
-                display: "inline-flex", alignItems: "center", gap: 6,
-                fontSize: "15px", fontWeight: 600, color: "#1E90FF",
-                background: "#EFF6FF", borderRadius: 8, padding: "4px 12px",
-              }}>✓ {d.outcome}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   JOURNEY SECTION
-───────────────────────────────────────────────────────────────────── */
-function JourneySection() {
-  return (
-    <div className="csl-reveal" style={{ marginTop: 32 }}>
-      <span className="csl-eyebrow">Screen-by-screen decisions</span>
-      <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-        {airJourneyBlocks.map((block, i) => (
-          <div key={block.step} style={{
-            paddingTop: i === 0 ? 0 : 28,
-            paddingBottom: 28,
-            borderBottom: i < airJourneyBlocks.length - 1 ? "1px solid #F3F4F6" : "none",
-            display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "center",
-          }}>
-            {/* Left: content */}
-            <div style={{ order: i % 2 === 0 ? 0 : 1 }}>
-              <div style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{block.step}</div>
-              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 4, lineHeight: 1.3 }}>{block.title}</div>
-              <div style={{ fontSize: "15px", color: "#1E90FF", marginBottom: 14, fontFamily: "var(--font-lato), sans-serif" }}>{block.url}</div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                {block.decisions.map((dec, j) => (
-                  <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
-                    <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#1E90FF", flexShrink: 0, marginTop: 7 }} />
-                    <span style={{ fontSize: "15px", color: "#374151", lineHeight: 1.6 }}>{dec}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Right: image placeholder */}
-            <div style={{ order: i % 2 === 0 ? 1 : 0 }}>
-              <div style={{
-                background: "linear-gradient(145deg, #EAF4FF, #F0F8FF)",
-                border: "1.5px solid rgba(30,144,255,0.18)",
-                borderRadius: 14, overflow: "hidden",
-                aspectRatio: "16/10",
-                display: "flex", flexDirection: "column",
-                alignItems: "center", justifyContent: "center",
-                gap: 8,
-              }}>
-                <span style={{ fontSize: "1.6rem", opacity: 0.4 }}>✈</span>
-                <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textAlign: "center", padding: "0 16px", lineHeight: 1.4 }}>{block.step} · {block.title}</span>
-                <span style={{ fontSize: "15px", color: "#9CA3AF" }}>Screen placeholder</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   EDGE CASES SECTION
-───────────────────────────────────────────────────────────────────── */
-function EdgeCasesSection() {
-  const badgeColors: Record<string, { bg: string; color: string }> = {
-    "Edge case":     { bg: "#F3F4F6",  color: "#374151" },
-    "Critical path": { bg: "#FEF2F2",  color: "#EF4444" },
-    "My initiative": { bg: "#EFF6FF",  color: "#1E90FF" },
-  };
-  return (
-    <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
-      <span className="csl-eyebrow">Edge cases designed for</span>
-      <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 20px" }}>
-        Happy-path screens ship fast. What earns agent trust is designing for when things go wrong.
-        Cases marked <strong style={{ color: "#1E90FF" }}>My initiative</strong> were not in the original brief. I proposed them and they were adopted.
-      </p>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-        {airEdgeCases.map((ec) => {
-          const badge = badgeColors[ec.badge] ?? badgeColors["Edge case"];
-          return (
-            <div key={ec.title} style={{
-              background: "#fff", borderRadius: 12, padding: "16px 18px",
-              border: "1px solid rgba(0,0,0,0.06)",
-              boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
-            }}>
-              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{
-                    width: 32, height: 32, borderRadius: 8,
-                    background: "#F3F4F6", display: "flex",
-                    alignItems: "center", justifyContent: "center",
-                    fontSize: "15px", flexShrink: 0,
-                  }}>{ec.icon}</span>
-                  <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{ec.title}</span>
-                </div>
-                <span style={{
-                  fontSize: "15px", fontWeight: 600,
-                  background: badge.bg, color: badge.color,
-                  borderRadius: 100, padding: "2px 8px", whiteSpace: "nowrap", flexShrink: 0,
-                }}>{ec.badge}</span>
-              </div>
-              <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{ec.desc}</p>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
    MOBILE SECTION
 ───────────────────────────────────────────────────────────────────── */
 function MobileSection() {
   const mobileEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.mobile)}`;
+  const edgeCasesEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.edgeCases)}`;
 
   const items = [
     {
       num: "01",
       title: "Sidebar becomes bottom sheet",
-      text: "The 274px filter sidebar consumes the full viewport at 375px. On mobile, filters become a sticky button opening a full-screen bottom sheet. Last selection persists. Same mental model, adapted form factor.",
+      text: "The 274px filter sidebar consumes the full viewport at 375px. On mobile, filters become a sticky button opening a full-screen bottom sheet. Last selection persists. Same mental model, adapted form factor. Agents don't need to relearn — they just reach down instead of to the side.",
     },
     {
       num: "02",
       title: "Same fare card, compressed density",
-      text: "The fare listing card reflows to single column. Price and refund status stay primary. Baggage and meal details move to a tap-to-expand row: present when needed, not competing for the first scan.",
+      text: "The fare listing card reflows to single column. Price and refund status stay primary. Baggage and meal details move to a tap-to-expand row: present when needed, not competing for the first scan. The hierarchy decision made in desktop paid off immediately here.",
     },
     {
       num: "03",
       title: "Touch targets and keyboard parity",
-      text: "Inputs, date pickers, and passenger forms re-evaluated for touch. 44px minimum hit areas throughout. No information removed for mobile, only reorganised.",
+      text: "Inputs, date pickers, and passenger forms re-evaluated for touch. 44px minimum hit areas throughout. No information removed for mobile, only reorganised. Form length was reduced by grouping related fields, reducing scroll depth without cutting data.",
     },
     {
       num: "04",
       title: "Full journey, login to confirmation",
-      text: "Every flow works end-to-end at 375px. Search, select, passenger details, review, confirm. Agents in the field needed the same capability as agents at a desk. Nothing cut.",
+      text: "Every flow works end-to-end at 375px. Search, select, passenger details, review, confirm. Agents in the field needed the same capability as agents at a desk. Nothing cut. Edge cases like +1 day arrival and sold-out states were equally important on mobile — the flight doesn't care what screen you're on.",
     },
+  ];
+
+  const mobileEdgeCases = [
+    { icon: "◒", title: "Bottom sheet filters", desc: "Filter panel adapts to full-screen sheet. Agent selections persist across open/close cycles." },
+    { icon: "↕", title: "Scroll depth management", desc: "Long passenger forms grouped by section. Visible progress reduces perceived length." },
+    { icon: "⟳", title: "Network retry state", desc: "GDS timeouts on mobile networks. Retry UI surfaces without losing form state." },
+    { icon: "✓", title: "Thumb-zone confirmation", desc: "Primary CTAs placed in the lower 60% of screen. Reachable with one hand on 375px." },
   ];
 
   return (
     <CsSection id="mobile">
       <CsSectionHeader
-        title="Mobile Adaptivity"
+        title="Mobile Adaptability"
         sub="Same platform, same data, different form factor. Nothing simplified for mobile, everything adapted."
       />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+      {/* Story flow */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 0, marginBottom: 40 }}>
         {items.map((item, i) => (
           <div key={item.num} className="csl-reveal" style={{
             display: "grid", gridTemplateColumns: "40px 1fr",
             gap: "0 16px",
-            paddingTop: i === 0 ? 0 : 24,
-            paddingBottom: 24,
+            paddingTop: i === 0 ? 0 : 28,
+            paddingBottom: 28,
             borderBottom: i < items.length - 1 ? "1px solid #F3F4F6" : "none",
           }}>
             <span style={{
@@ -2358,30 +2305,52 @@ function MobileSection() {
               flexShrink: 0, marginTop: 2,
             }}>{item.num}</span>
             <div>
-              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 6, lineHeight: 1.3 }}>{item.title}</div>
-              <p style={{ fontSize: "1.05rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
+              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{item.title}</div>
+              <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>{item.text}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="csl-reveal" style={{ marginTop: 32 }}>
-        <div style={{ borderRadius: 18, overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 8px 32px rgba(0,0,0,0.07)" }}>
-          <div style={{ height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
-                <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
-              ))}
-              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginLeft: 6 }}>Air IQ: Mobile · 375px</span>
+      {/* Mobile Figma embed */}
+      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+        <FigmaEmbed
+          url={mobileEmbedUrl}
+          label="Air IQ: Mobile · 375px"
+          height={520}
+        />
+      </div>
+
+      {/* Mobile edge cases */}
+      <div className="csl-reveal" style={{ paddingTop: 32, borderTop: "1px solid #F3F4F6", marginBottom: 28 }}>
+        <span className="csl-eyebrow">Mobile edge cases</span>
+        <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.8, margin: "0 0 20px" }}>
+          The same care applied to desktop edge cases carried over to mobile — with additional constraints around connectivity, viewport, and one-handed use.
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+          {mobileEdgeCases.map((ec) => (
+            <div key={ec.title} style={{
+              background: "#fff", borderRadius: 12, padding: "16px 18px",
+              border: "1px solid rgba(0,0,0,0.06)",
+              boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                <span style={{ width: 32, height: 32, borderRadius: 8, background: "#EFF6FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0, color: "#1E90FF" }}>{ec.icon}</span>
+                <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{ec.title}</span>
+              </div>
+              <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{ec.desc}</p>
             </div>
-          </div>
-          <iframe
-            src={mobileEmbedUrl}
-            allowFullScreen
-            style={{ width: "100%", height: 520, border: "none", display: "block" }}
-            loading="lazy"
-          />
+          ))}
         </div>
+      </div>
+
+      {/* Mobile edge cases Figma embed */}
+      <div className="csl-reveal">
+        <FigmaEmbed
+          url={edgeCasesEmbedUrl}
+          label="Air IQ: Mobile Edge Cases"
+          height={480}
+        />
       </div>
     </CsSection>
   );
@@ -2405,8 +2374,8 @@ export function AirIqCaseStudy() {
       <ApproachSection />
       <ProcessSection />
       <CoreComponentsSection />
+      <ProductFlowSection />
       <MobileSection />
-      <TheProductSection />
       <DesignSystemSection />
       <ResultsSection />
       <LearningsSection />
