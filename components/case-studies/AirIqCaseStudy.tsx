@@ -1886,113 +1886,24 @@ function FigmaEmbed({ url, label, height = 600 }: { url: string; label: string; 
    §05  PRODUCT FLOW WALKTHROUGH
 ───────────────────────────────────────────────────────────────────── */
 function ProductFlowSection() {
-  const desktopEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.desktop)}`;
-  const edgeCasesEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.edgeCases)}`;
-
   return (
     <CsSection id="product">
       <CsSectionHeader
         title="Complete Product Flow"
         sub="Every screen, every decision, in sequence. Here's how the full booking journey was designed — from the first search to the final confirmation."
       />
-
-      {/* ── Large desktop Figma embed ── */}
-      <div className="csl-reveal" style={{ marginBottom: 48 }}>
-        <span className="csl-eyebrow">End-to-end desktop flow</span>
-        <FigmaEmbed
-          url={desktopEmbedUrl}
-          label="Air IQ · Desktop Platform"
-          height={900}
-        />
-      </div>
-
-      {/* ── Screen-by-screen walkthrough ── */}
-      <div className="csl-reveal" style={{ marginBottom: 48 }}>
-        <span className="csl-eyebrow">Screen by screen</span>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.8, margin: "0 0 32px" }}>
-          Each screen in the flow was designed around a specific agent behaviour. Below is what each screen does, why the decision was made, and what edge cases were considered.
-        </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-          {airJourneyBlocks.map((block, i) => (
-            <div key={block.step} style={{
-              paddingTop: i === 0 ? 0 : 32,
-              paddingBottom: 32,
-              borderBottom: i < airJourneyBlocks.length - 1 ? "1px solid #F3F4F6" : "none",
-              display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "start",
-            }}>
-              {/* Left: content */}
-              <div style={{ order: i % 2 === 0 ? 0 : 1 }}>
-                <div style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{block.step}</div>
-                <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#111827", marginBottom: 4, lineHeight: 1.3 }}>{block.title}</div>
-                <div style={{ fontSize: "15px", color: "#1E90FF", marginBottom: 16, fontFamily: "var(--font-lato), sans-serif" }}>{block.url}</div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  {block.decisions.map((dec, j) => (
-                    <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                      <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#1E90FF", flexShrink: 0, marginTop: 8 }} />
-                      <span style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.7 }}>{dec}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {/* Right: screen placeholder */}
-              <div style={{ order: i % 2 === 0 ? 1 : 0 }}>
-                <div style={{
-                  background: "linear-gradient(145deg, #EAF4FF, #F0F8FF)",
-                  border: "1.5px solid rgba(30,144,255,0.18)",
-                  borderRadius: 14, overflow: "hidden",
-                  aspectRatio: "16/10",
-                  display: "flex", flexDirection: "column",
-                  alignItems: "center", justifyContent: "center",
-                  gap: 8,
-                }}>
-                  <span style={{ fontSize: "1.6rem", opacity: 0.35 }}>✈</span>
-                  <span style={{ fontSize: "15px", fontWeight: 600, color: "#1076BC", textAlign: "center", padding: "0 16px", lineHeight: 1.4 }}>{block.step} · {block.title}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Edge cases Figma embed ── */}
-      <div className="csl-reveal" style={{ paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
-        <span className="csl-eyebrow">Edge cases</span>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.8, margin: "0 0 20px" }}>
-          Happy-path screens ship fast. What earns agent trust is designing for when things go wrong.
-          Cases marked <strong style={{ color: "#1E90FF" }}>My initiative</strong> were not in the original brief — I proposed and they were adopted.
-        </p>
-        <div className="csl-reveal" style={{ marginBottom: 24 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 28 }}>
-            {airEdgeCases.map((ec) => {
-              const badgeColors: Record<string, { bg: string; color: string }> = {
-                "Edge case":     { bg: "#F3F4F6",  color: "#374151" },
-                "Critical path": { bg: "#FEF2F2",  color: "#EF4444" },
-                "My initiative": { bg: "#EFF6FF",  color: "#1E90FF" },
-              };
-              const badge = badgeColors[ec.badge] ?? badgeColors["Edge case"];
-              return (
-                <div key={ec.title} style={{
-                  background: "#fff", borderRadius: 12, padding: "16px 18px",
-                  border: "1px solid rgba(0,0,0,0.06)",
-                  boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
-                }}>
-                  <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ width: 32, height: 32, borderRadius: 8, background: "#F3F4F6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0 }}>{ec.icon}</span>
-                      <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{ec.title}</span>
-                    </div>
-                    <span style={{ fontSize: "15px", fontWeight: 600, background: badge.bg, color: badge.color, borderRadius: 100, padding: "2px 8px", whiteSpace: "nowrap", flexShrink: 0 }}>{ec.badge}</span>
-                  </div>
-                  <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{ec.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <FigmaEmbed
-          url={edgeCasesEmbedUrl}
-          label="Air IQ: Edge Cases"
-          height={600}
+      <div style={{
+        width: "calc(100% + 80px)",
+        marginLeft: -40,
+        borderRadius: 20,
+        overflow: "hidden",
+        boxShadow: "0 2px 24px rgba(0,0,0,0.10)",
+      }}>
+        <iframe
+          src="/Image/Airiq/presentation/flow-presentation.html"
+          style={{ width: "100%", height: 920, border: "none", display: "block" }}
+          title="AIR iQ Product Flow"
+          loading="lazy"
         />
       </div>
     </CsSection>

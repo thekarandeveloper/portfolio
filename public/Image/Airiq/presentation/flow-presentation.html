@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIR iQ · Product Flow</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--accent:#1E90FF;--accent10:rgba(30,144,255,0.10);--accent60:rgba(30,144,255,0.60);--fw:820px;--fh:580px;--tbh:44px;--ch:536px}
+body{background:#0A0A0C;color:#fff;font-family:'Inter',-apple-system,sans-serif;padding:60px 20px 48px;overflow-x:hidden}
+.bg-glow{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle at center,rgba(29,106,255,0.10) 0%,transparent 70%);pointer-events:none;z-index:0;animation:glowPulse 4s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1}}
+.page-wrap{display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
+
+/* STAGE */
+.stage{position:relative;width:100%;max-width:1400px;height:var(--fh);display:flex;align-items:center;justify-content:center}
+.arrow-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10;overflow:visible}
+
+/* ANNOTATION ZONES */
+.ann-zone{position:absolute;top:0;bottom:0;width:calc(50% - 430px);min-width:0;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:16px 12px}
+.ann-zone.left{left:0;align-items:flex-end}
+.ann-zone.right{right:0;align-items:flex-start}
+.ann-group{display:none;flex-direction:column;gap:18px;align-items:inherit;width:100%}
+.ann-group.on{display:flex}
+.ann-bubble{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:12px;padding:12px 16px;max-width:220px;opacity:0;transition:opacity .36s ease,transform .36s ease}
+.ann-zone.left .ann-bubble{transform:translateX(-16px);text-align:right}
+.ann-zone.right .ann-bubble{transform:translateX(16px);text-align:left}
+.ann-bubble.vis{opacity:1;transform:translateX(0)!important}
+.ann-num{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.ann-zone.left .ann-num{margin-left:auto}
+.ann-text{font-size:12.5px;color:rgba(255,255,255,0.58);line-height:1.55}
+
+/* BROWSER FRAME */
+.browser-frame{width:var(--fw);height:var(--fh);border-radius:16px;background:#1C1C1E;box-shadow:0 48px 140px rgba(0,0,0,0.65),0 0 0 1px rgba(255,255,255,0.06);overflow:hidden;flex-shrink:0;position:relative;z-index:5;transform-origin:top center}
+.titlebar{height:var(--tbh);background:#2A2A2E;display:flex;align-items:center;padding:0 16px;position:relative;flex-shrink:0}
+.tlights{display:flex;gap:8px;align-items:center}
+.tldot{width:12px;height:12px;border-radius:50%}
+.tldot.r{background:#FF5F57}.tldot.y{background:#FEBC2E}.tldot.g{background:#28C840}
+.url-pill{position:absolute;left:50%;transform:translateX(-50%);background:#1C1C1E;height:26px;width:280px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,0.42);overflow:hidden}
+.url-text{transition:opacity .38s ease;white-space:nowrap}
+.url-text.fade{opacity:0}
+.sdots{margin-left:auto;display:flex;gap:5px;align-items:center}
+.sdot{width:7px;height:7px;border-radius:50%;transition:background .3s,opacity .3s}
+
+/* CONTENT AREA */
+.content-area{height:var(--ch);position:relative;overflow:hidden;cursor:default}
+.prog-line{position:absolute;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:20;pointer-events:none}
+.screen-wrap{position:absolute;top:0;left:0;width:100%;opacity:0;z-index:1;will-change:opacity,transform}
+.screen-wrap img{width:100%;display:block;transform:translateY(0)}
+.content-fade{position:absolute;bottom:0;left:0;right:0;height:56px;background:linear-gradient(to bottom,transparent,#1C1C1E);z-index:15;pointer-events:none}
+
+/* PILLS */
+.pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:32px}
+.pill{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.10em;color:rgba(255,255,255,0.42);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:999px;padding:5px 14px;cursor:pointer;transition:background .2s,border-color .2s,color .2s;user-select:none}
+.pill.on{border-color:var(--accent);background:var(--accent10);color:#fff}
+.pill:hover:not(.on){border-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.68)}
+
+/* REPLAY */
+.replay-btn{margin-top:48px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:10px 28px;font-size:13px;font-weight:500;color:rgba(255,255,255,0.58);cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;transition:border-color .2s,color .2s}
+.replay-btn:hover{border-color:var(--accent);color:rgba(255,255,255,0.90)}
+.replay-btn:hover .ri{animation:spinIcon .5s ease-in-out}
+.ri{width:16px;height:16px;flex-shrink:0}
+@keyframes spinIcon{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* MOBILE */
+@media(max-width:768px){
+  .stage{height:auto}
+  .browser-frame{width:100%!important;height:auto;border-radius:12px}
+  .content-area{height:56vw}
+  .ann-zone{display:none!important}
+  .pills{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="page-wrap">
+  <div class="stage" id="stage">
+    <svg class="arrow-svg" id="arrowSvg"></svg>
+    <div class="ann-zone left" id="annL"></div>
+    <div class="browser-frame" id="frame">
+      <div class="titlebar">
+        <div class="tlights">
+          <div class="tldot r"></div>
+          <div class="tldot y"></div>
+          <div class="tldot g"></div>
+        </div>
+        <div class="url-pill">
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="none"><rect x="1" y="5" width="8" height="7" rx="1.5" stroke="rgba(255,255,255,0.38)" stroke-width="1.2"/><path d="M3 5V3.5a2 2 0 014 0V5" stroke="rgba(255,255,255,0.38)" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <span class="url-text" id="urlTxt">airiq.com</span>
+        </div>
+        <div class="sdots" id="sdots"></div>
+      </div>
+      <div class="content-area" id="ca">
+        <div class="prog-line" id="pl"></div>
+        <div class="content-fade"></div>
+      </div>
+    </div>
+    <div class="ann-zone right" id="annR"></div>
+  </div>
+  <div class="pills" id="pills"></div>
+  <button class="replay-btn" id="replayBtn">
+    <svg class="ri" viewBox="0 0 16 16" fill="none"><path d="M13.5 8A5.5 5.5 0 112.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 2v3.5H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Replay Flow
+  </button>
+</div>
+
+<script>
+const S=[
+  {img:'./login.png',url:'airiq.com/login',step:'01',label:'Login',
+   L:[{n:'1',t:'Brand trust established before any input is asked',y:.28},{n:'2',t:'75,000+ agents — credibility at the moment of hesitation',y:.68}],
+   R:[{n:'3',t:'Role-labelled form — agents know this space is built for them',y:.52}]},
+  {img:'./homepage.png',url:'airiq.com/home',step:'02',label:'Home',
+   L:[{n:'①',t:'Primary task — search — sits at F-pattern reading position',y:.32},{n:'②',t:'SME, NDC, SOTO fare types exposed before search — B2B first',y:.52}],
+   R:[{n:'③',t:'Agents managing 20+ bookings recover context in one tap',y:.62},{n:'④',t:'Upcoming view prevents duplicate bookings for the same client',y:.76}]},
+  {img:'./search-result.png',url:'airiq.com/search/results',step:'03',label:'Results',
+   L:[{n:'①',t:'19 filter types — surgical control for professional agents',y:.42},{n:'②',t:'Chips allow one-tap removal without resetting all filters',y:.22}],
+   R:[{n:'③',t:'SME → Sales → Corporate fares shown inline — no extra click',y:.50},{n:'④',t:'Sort anchors match how agents mentally prioritise flight options',y:.25}]},
+  {img:'./see-details.png',url:'airiq.com/search/results',step:'04',label:'Details',
+   L:[{n:'①',t:'Drawer preserves list context — no back navigation needed',y:.48}],
+   R:[{n:'②',t:'Per-leg, per-pax baggage shown — critical for group bookings',y:.62},{n:'③',t:'Technical layover warnings surface before commitment, not after',y:.78}]},
+  {img:'./details.png',url:'airiq.com/booking/details',step:'05',label:'Passengers',
+   L:[{n:'①',t:'Saved passenger profiles auto-fill — 60% faster for repeat travellers',y:.28},{n:'②',t:'Seat map embedded inline — no modal, no context switch',y:.62}],
+   R:[{n:'③',t:'Total updates in real time as SSRs are added — no payment surprises',y:.48}]},
+  {img:'./review.png',url:'airiq.com/booking/review',step:'06',label:'Review',
+   L:[{n:'①',t:'Every section editable from review — no full back-navigation',y:.42}],
+   R:[{n:'②',t:'Wallet-first payment with exact deduction shown — one confident tap',y:.78}]},
+  {img:'./confirmation.png',url:'airiq.com/booking/confirmed',step:'07',label:'Confirmed',
+   L:[{n:'①',t:'Per-pax ticket selection — agents distribute to individuals in a group',y:.40}],
+   R:[{n:'②',t:'WhatsApp + Email share built in — agents work across channels',y:.62},{n:'③',t:'Full record visible without opening a separate itinerary screen',y:.30}]}
+];
+
+let cur=0,progRaf=null,scrollRaf=null,advTimer=null,hovering=false,currentWrap=null;
+const ca=document.getElementById('ca');
+const pl=document.getElementById('pl');
+const urlTxt=document.getElementById('urlTxt');
+const sdots=document.getElementById('sdots');
+const pillsEl=document.getElementById('pills');
+const annL=document.getElementById('annL');
+const annR=document.getElementById('annR');
+const svg=document.getElementById('arrowSvg');
+const frame=document.getElementById('frame');
+const stage=document.getElementById('stage');
+const replayBtn=document.getElementById('replayBtn');
+
+function init(){
+  S.forEach((s,i)=>{
+    const w=document.createElement('div');
+    w.className='screen-wrap';w.id='sw'+i;
+    const img=document.createElement('img');
+    img.className='screen-img';img.src=s.img;img.alt=s.label;img.draggable=false;
+    w.appendChild(img);
+    ca.insertBefore(w,ca.querySelector('.content-fade'));
+    const d=document.createElement('div');d.className='sdot';sdots.appendChild(d);
+    const p=document.createElement('div');p.className='pill';
+    p.textContent=s.step+' '+s.label;p.onclick=()=>goTo(i);pillsEl.appendChild(p);
+    annL.appendChild(buildGroup(s.L,'L',i));
+    annR.appendChild(buildGroup(s.R,'R',i));
+  });
+  ca.addEventListener('mouseenter',()=>{hovering=true});
+  ca.addEventListener('mouseleave',()=>{hovering=false});
+  scaleFrame();
+  showFirst();
+}
+
+function buildGroup(anns,side,idx){
+  const g=document.createElement('div');g.className='ann-group';g.id='ag'+side+idx;
+  anns.forEach(a=>{
+    const b=document.createElement('div');b.className='ann-bubble';b.dataset.y=a.y;
+    const n=document.createElement('div');n.className='ann-num';n.textContent=a.n;
+    const t=document.createElement('div');t.className='ann-text';t.textContent=a.t;
+    b.appendChild(n);b.appendChild(t);g.appendChild(b);
+  });
+  return g;
+}
+
+function scaleFrame(){
+  const sw=stage.offsetWidth;
+  if(sw<820){
+    const sc=sw/820;
+    frame.style.transform='scale('+sc+')';
+    stage.style.height=(580*sc)+'px';
+  }else{
+    frame.style.transform='';
+    stage.style.height='580px';
+  }
+  const showAnn=sw>1080;
+  annL.style.visibility=showAnn?'visible':'hidden';
+  annR.style.visibility=showAnn?'visible':'hidden';
+}
+
+function showFirst(){
+  const w=document.getElementById('sw0');
+  w.style.opacity='1';w.style.zIndex='2';
+  currentWrap=w;
+  updateUrl(S[0].url,true);
+  updateDots(0);updatePills(0);
+  setTimeout(()=>{enterAnns(0);setTimeout(()=>drawArrows(0),80)},100);
+  startProgress(0);
+}
+
+function goTo(idx){
+  if(idx===cur)return;
+  clearAll();
+  exitAnns(cur,()=>transition(idx));
+}
+
+function transition(idx){
+  const prev=cur;cur=idx;
+  updateUrl(S[idx].url);updateDots(idx);updatePills(idx);
+  const nw=document.getElementById('sw'+idx);
+  const ow=currentWrap;
+  nw.style.cssText='opacity:0;transform:scale(1.015);z-index:3;transition:none;';
+  nw.offsetHeight;
+  nw.style.transition='opacity .38s ease-out,transform .38s ease-out';
+  nw.style.opacity='1';nw.style.transform='scale(1)';
+  setTimeout(()=>{
+    if(ow&&ow!==nw){ow.style.opacity='0';ow.style.zIndex='1';}
+    nw.style.zIndex='2';nw.style.transition='';
+    currentWrap=nw;
+    resetScroll(idx);
+  },400);
+  setTimeout(()=>{enterAnns(idx);setTimeout(()=>drawArrows(idx),80)},220);
+  startProgress(idx);
+}
+
+function resetScroll(idx){
+  const img=document.querySelector('#sw'+idx+' img');
+  if(img)img.style.transform='translateY(0)';
+}
+
+/* PROGRESS + ADVANCE */
+function startProgress(idx){
+  cancelProgress();
+  const img=document.querySelector('#sw'+idx+' img');
+  if(!img)return;
+  const run=()=>{
+    const iw=img.offsetWidth||820;
+    const ih=img.naturalHeight&&img.naturalWidth?iw*(img.naturalHeight/img.naturalWidth):0;
+    const ch=ca.offsetHeight||536;
+    const needScroll=ih>ch+30;
+    let dur;
+    if(needScroll){
+      const dist=ih-ch;
+      const scrollDur=(dist/16)*1000;
+      dur=scrollDur+800;
+      doAutoScroll(idx,dist,scrollDur);
+      scheduleNext(dur);
+    }else{
+      dur=3800;
+      scheduleNext(3800);
+    }
+    animProg(dur);
+  };
+  if(img.complete&&img.naturalWidth>0)run();
+  else img.addEventListener('load',run,{once:true});
+}
+
+function cancelProgress(){
+  if(progRaf){cancelAnimationFrame(progRaf);progRaf=null;}
+  pl.style.transition='none';pl.style.width='0%';
+}
+
+function animProg(dur){
+  let t0=null,paused=false,pausedAt=0,totalPaused=0;
+  const tick=(now)=>{
+    if(hovering){
+      if(!paused){paused=true;pausedAt=now;}
+      progRaf=requestAnimationFrame(tick);return;
+    }
+    if(paused){paused=false;totalPaused+=now-pausedAt;}
+    if(!t0)t0=now;
+    const pct=Math.min((now-t0-totalPaused)/dur*100,100);
+    pl.style.width=pct+'%';
+    if(pct<100)progRaf=requestAnimationFrame(tick);
+  };
+  progRaf=requestAnimationFrame(tick);
+}
+
+function doAutoScroll(idx,dist,dur){
+  const img=document.querySelector('#sw'+idx+' img');
+  if(!img)return;
+  let t0=null,acc=0,last=null;
+  const tick=(now)=>{
+    if(!last)last=now;
+    if(!hovering)acc+=now-last;
+    last=now;
+    if(!t0)t0=now;
+    const p=Math.min(acc/dur,1);
+    img.style.transform='translateY('+(-(p*dist))+'px)';
+    if(p<1){scrollRaf=requestAnimationFrame(tick);}
+  };
+  scrollRaf=requestAnimationFrame(tick);
+}
+
+function scheduleNext(delay){
+  advTimer=setTimeout(()=>{
+    const next=(cur+1)%S.length;
+    exitAnns(cur,()=>transition(next));
+  },delay);
+}
+
+function clearAll(){
+  if(advTimer){clearTimeout(advTimer);advTimer=null;}
+  if(scrollRaf){cancelAnimationFrame(scrollRaf);scrollRaf=null;}
+  cancelProgress();
+}
+
+/* URL */
+function updateUrl(url,instant){
+  if(instant){urlTxt.textContent=url;return;}
+  urlTxt.classList.add('fade');
+  setTimeout(()=>{urlTxt.textContent=url;urlTxt.classList.remove('fade')},190);
+}
+
+/* DOTS + PILLS */
+function updateDots(idx){
+  sdots.querySelectorAll('.sdot').forEach((d,i)=>{
+    if(i<idx)d.style.background='rgba(255,255,255,0.40)';
+    else if(i===idx)d.style.background='#1E90FF';
+    else d.style.background='rgba(255,255,255,0.10)';
+  });
+}
+function updatePills(idx){
+  pillsEl.querySelectorAll('.pill').forEach((p,i)=>p.classList.toggle('on',i===idx));
+}
+
+/* ANNOTATIONS */
+function enterAnns(idx){
+  ['L','R'].forEach(side=>{
+    const g=document.getElementById('ag'+side+idx);
+    if(!g)return;
+    g.classList.add('on');
+    g.querySelectorAll('.ann-bubble').forEach((b,i)=>{
+      setTimeout(()=>b.classList.add('vis'),i*120);
+    });
+  });
+}
+
+function exitAnns(idx,cb){
+  let done=0,total=0;
+  ['L','R'].forEach(side=>{
+    const g=document.getElementById('ag'+side+idx);
+    if(g)total+=g.querySelectorAll('.ann-bubble.vis').length;
+  });
+  clearArrows();
+  if(total===0){cb&&cb();return;}
+  ['L','R'].forEach(side=>{
+    const g=document.getElementById('ag'+side+idx);
+    if(!g)return;
+    g.querySelectorAll('.ann-bubble.vis').forEach(b=>{
+      b.classList.remove('vis');
+      setTimeout(()=>{
+        b.style.opacity='0';
+        done++;
+        if(done>=total){
+          ['L','R'].forEach(s=>{
+            const gg=document.getElementById('ag'+s+idx);
+            if(gg){gg.classList.remove('on');gg.querySelectorAll('.ann-bubble').forEach(bb=>{bb.style.opacity='';});}
+          });
+          cb&&cb();
+        }
+      },360);
+    });
+  });
+}
+
+/* ARROWS */
+function clearArrows(){svg.innerHTML='';}
+
+function drawArrows(idx){
+  clearArrows();
+  const stR=stage.getBoundingClientRect();
+  const fR=frame.getBoundingClientRect();
+  const sc=parseFloat(frame.style.transform.replace('scale(','').replace(')',''))||1;
+  const tbh=44*sc;
+  const ch=(fR.height-tbh);
+  const fLeft=fR.left-stR.left;
+  const fRight=fR.right-stR.left;
+  const fTop=fR.top-stR.top;
+
+  ['L','R'].forEach(side=>{
+    const g=document.getElementById('ag'+side+idx);
+    if(!g||!g.classList.contains('on'))return;
+    g.querySelectorAll('.ann-bubble').forEach(b=>{
+      const bR=b.getBoundingClientRect();
+      const by=(bR.top+bR.height/2)-stR.top;
+      const targetY=parseFloat(b.dataset.y)||0.5;
+      const ty=fTop+tbh+targetY*ch;
+      let x1,y1,x2,y2;
+      if(side==='L'){x1=bR.right-stR.left;y1=by;x2=fLeft;y2=ty;}
+      else{x1=bR.left-stR.left;y1=by;x2=fRight;y2=ty;}
+      mkArrow(x1,y1,x2,y2,side);
+    });
+  });
+}
+
+function mkArrow(x1,y1,x2,y2,side){
+  const dx=Math.abs(x2-x1);
+  const cp1x=side==='L'?x1+dx*.55:x1-dx*.55;
+  const cp1y=y1;
+  const cp2x=side==='L'?x2-dx*.25:x2+dx*.25;
+  const cp2y=y2;
+  const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+  path.setAttribute('d','M '+x1+' '+y1+' C '+cp1x+' '+cp1y+', '+cp2x+' '+cp2y+', '+x2+' '+y2);
+  path.setAttribute('stroke','#1E90FF');path.setAttribute('stroke-opacity','0.55');
+  path.setAttribute('stroke-width','1.5');path.setAttribute('fill','none');
+  path.style.opacity='0';path.style.transition='opacity .36s ease .28s';
+  svg.appendChild(path);
+  const sz=5,ang=Math.atan2(y2-cp2y,x2-cp2x);
+  const pts=[[x2,y2],[x2-sz*Math.cos(ang-Math.PI/6),y2-sz*Math.sin(ang-Math.PI/6)],[x2-sz*Math.cos(ang+Math.PI/6),y2-sz*Math.sin(ang+Math.PI/6)]].map(p=>p.join(',')).join(' ');
+  const ah=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+  ah.setAttribute('points',pts);ah.setAttribute('fill','#1E90FF');ah.setAttribute('fill-opacity','0.55');
+  ah.style.opacity='0';ah.style.transition='opacity .36s ease .28s';
+  svg.appendChild(ah);
+  requestAnimationFrame(()=>{path.style.opacity='1';ah.style.opacity='1';});
+}
+
+/* REPLAY */
+replayBtn.addEventListener('click',()=>{
+  clearAll();clearArrows();
+  ['L','R'].forEach(side=>{
+    const g=document.getElementById('ag'+side+cur);
+    if(g){g.querySelectorAll('.ann-bubble').forEach(b=>{b.classList.remove('vis');b.style.opacity='';});g.classList.remove('on');}
+  });
+  frame.style.opacity='0';frame.style.transition='opacity .2s';
+  setTimeout(()=>{
+    document.querySelectorAll('.screen-wrap').forEach(w=>{
+      w.style.cssText='opacity:0;z-index:1;transform:scale(1);transition:none;';
+      const img=w.querySelector('img');if(img)img.style.transform='translateY(0)';
+    });
+    cur=0;updateUrl(S[0].url,true);updateDots(0);updatePills(0);
+    const w=document.getElementById('sw0');
+    w.style.cssText='opacity:1;z-index:2;transform:scale(1);';
+    currentWrap=w;
+    frame.style.opacity='1';frame.style.transition='opacity .3s';
+    setTimeout(()=>{frame.style.transition='';},300);
+    setTimeout(()=>{enterAnns(0);setTimeout(()=>drawArrows(0),80);},50);
+    startProgress(0);
+  },220);
+});
+
+window.addEventListener('resize',()=>{scaleFrame();drawArrows(cur);});
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>
