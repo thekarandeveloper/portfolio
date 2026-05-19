@@ -653,6 +653,7 @@ nav.scrolled .nav-pill{
 .cswk-row[data-project="ecotrack"]:hover .cswk-cta{background:#2D7D43;border-color:#2D7D43;box-shadow:0 6px 22px rgba(45,125,67,0.32);}
 .cswk-cta-arrow{display:inline-block;transition:transform 0.2s ease;}
 .cswk-row:hover .cswk-cta-arrow{transform:translateX(3px);}
+.cswk-flat .cswk-visual img{aspect-ratio:auto;object-fit:contain;object-position:center top;box-shadow:none;}
 .cswk-flat .cswk-note{transform:none;}
 .cswk-flat:hover .cswk-note{transform:none;}
 .cswk-flat:hover .cswk-cta{color:#fff;transform:none;}

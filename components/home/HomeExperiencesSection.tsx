@@ -1,7 +1,7 @@
 const html = `<section class="home-xp" id="experiences">
   <div class="home-xp-inner">
     <h2 class="home-xp-title reveal">
-      Good <em>experiences.</em>
+      Life, <em>unfiltered.</em>
     </h2>
     <div class="home-xp-grid">
 

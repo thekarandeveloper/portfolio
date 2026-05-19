@@ -43,7 +43,7 @@ export const viewport: Viewport = {
     { color: "#fafaf8", media: "(prefers-color-scheme: light)" },
     { color: "#0f0d0c", media: "(prefers-color-scheme: dark)" },
   ],
-  colorScheme: "light dark"
+  colorScheme: "light"
 };
 
 export const metadata: Metadata = {
@@ -190,8 +190,8 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       className={`${cormorant.variable} ${instrumentSans.variable} ${caveat.variable} ${lato.variable}`}
     >
       <head>
-        {/* Sync theme before paint to prevent flash of wrong theme */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var s=localStorage.getItem('theme');var p=window.matchMedia('(prefers-color-scheme:dark)').matches;if(s?s==='dark':p)document.documentElement.classList.add('dark');}catch(e){}})();` }} />
+        {/* Always force light mode before paint — removes any persisted dark class */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{document.documentElement.classList.remove('dark');localStorage.removeItem('theme');}catch(e){}})();` }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500&family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=Lora:ital,wght@0,400;0,700;1,400&family=Nico+Moji&family=Rethink+Sans:wght@400;600;700;800&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
