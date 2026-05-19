@@ -1414,33 +1414,18 @@ function FinalDesignCard({ idx }: { idx: number }) {
             ))}
           </div>
 
-          {/* Image with crossfade */}
-          <div style={{ borderTop: "1px solid rgba(30,144,255,0.15)" }}>
-            <div style={{
-              height: 32, background: "#DCE9F7", borderBottom: "1px solid rgba(30,144,255,0.18)",
-              display: "flex", alignItems: "center", padding: "0 12px", gap: 6,
-            }}>
-              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
-                <span key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c, flexShrink: 0 }} />
-              ))}
-              <div style={{ flex: 1, height: 12, background: "rgba(0,0,0,0.08)", borderRadius: 20, marginLeft: 6 }} />
-              <span style={{
-                fontSize: "12px", fontWeight: 600, letterSpacing: "0.1em",
-                textTransform: "uppercase" as const, color: "#fff",
-                background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
-              }}>Shipped</span>
-            </div>
-            <div style={{
-              opacity: tabContentVis ? 1 : 0,
-              transition: "opacity 200ms ease",
-            }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={tabImg}
-                alt={activeTab === "oneway" ? "One Way fare listing" : "Round Trip fare listing"}
-                style={{ width: "100%", height: "auto", display: "block" }}
-              />
-            </div>
+          {/* Image with crossfade — no chrome bar */}
+          <div style={{
+            borderTop: "1px solid rgba(30,144,255,0.15)",
+            opacity: tabContentVis ? 1 : 0,
+            transition: "opacity 200ms ease",
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={tabImg}
+              alt={activeTab === "oneway" ? "One Way fare listing" : "Round Trip fare listing"}
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
           </div>
 
           {/* Why + Impact */}
@@ -1466,40 +1451,31 @@ function FinalDesignCard({ idx }: { idx: number }) {
 
           {/* Where else it lives */}
           <div style={{ padding: "0 24px 28px" }}>
-            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 20, marginBottom: 16 }}>
-              <span style={{
-                fontSize: "12px", fontWeight: 700, textTransform: "uppercase" as const,
-                letterSpacing: "0.12em", color: "#9CA3AF",
-              }}>Where else it lives</span>
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 20, marginBottom: 20 }}>
+              <p style={{
+                fontSize: "1rem", fontWeight: 700,
+                color: "rgba(255,255,255,0.85)",
+                margin: 0, letterSpacing: "-0.01em",
+              }}>Where else it lives</p>
+              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", margin: "4px 0 0" }}>
+                This card extends across all search types
+              </p>
             </div>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" as const }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
               {WHERE_IT_LIVES_DATA.map((item, i) => (
                 <div
                   key={item.label}
                   ref={(el) => { thumbRefs.current[i] = el; }}
                   style={{
-                    width: 180, flexShrink: 0,
                     opacity: thumbVis[i] ? 1 : 0,
                     transform: thumbVis[i] ? "translateY(0)" : "translateY(12px)",
                     transition: "opacity 400ms cubic-bezier(0.22,1,0.36,1), transform 400ms cubic-bezier(0.22,1,0.36,1)",
                   }}
                 >
-                  <div
-                    style={{
-                      borderRadius: 10, overflow: "hidden",
-                      border: "1px solid rgba(255,255,255,0.1)",
-                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                      cursor: "default",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.transform = "scale(1.04)";
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 24px rgba(0,0,0,0.35)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
-                      (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-                    }}
-                  >
+                  <div style={{
+                    borderRadius: 10, overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.12)",
+                  }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={item.img} alt={item.label} style={{ width: "100%", height: "auto", display: "block" }} />
                   </div>
