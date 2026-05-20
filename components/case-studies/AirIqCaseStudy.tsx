@@ -1,6 +1,7 @@
 "use client";
 
 import { CaseStudyPage, CsSection, CsSectionHeader } from "./CaseStudyLayout";
+import { ProductFlowShowcase, type FlowScreen } from "./ProductFlowShowcase";
 import {
   airFigmaLinks,
   airStoryCards,
@@ -9,6 +10,72 @@ import {
   airJourneyBlocks,
   airEdgeCases,
 } from "./airIqData";
+
+const AIR_IQ_FLOW: FlowScreen[] = [
+  {
+    stepNumber: 1, totalSteps: 7,
+    heading: "Agent Authentication",
+    subheading: "Trust is established before the first click",
+    description: "A split-screen separates brand proof from the login task, reducing anxiety at the highest-stakes entry point. Role-specific labels — Agent and Distributor — immediately frame the space for B2B users who have been burned by consumer UX in professional tools.",
+    imageSrc: "/Image/Airiq/presentation/login.png",
+    imageAlt: "AIR iQ login screen",
+    url: "airiq.com/login",
+  },
+  {
+    stepNumber: 2, totalSteps: 7,
+    heading: "The Command Centre",
+    subheading: "Every recurring action within one gesture",
+    description: "Search anchors the F-pattern primary zone with fare type checkboxes (SME, NDC, SOTO) exposed before the query — a deliberate B2B-first decision. Recent searches and upcoming bookings eliminate re-entry friction for agents juggling multiple bookings at once.",
+    imageSrc: "/Image/Airiq/presentation/homepage.png",
+    imageAlt: "AIR iQ home dashboard",
+    url: "airiq.com/home",
+  },
+  {
+    stepNumber: 3, totalSteps: 7,
+    heading: "Flight Listing & Fare Discovery",
+    subheading: "Nineteen filters. Zero cognitive overload.",
+    description: "Applied filter chips with one-tap removal let agents maintain precise query states without losing mental context. SME, Sales, and Corporate fare tiers stack inline per flight row — the comparison that matters most, without a single extra tap.",
+    imageSrc: "/Image/Airiq/presentation/search-result.png",
+    imageAlt: "AIR iQ search results",
+    url: "airiq.com/search",
+  },
+  {
+    stepNumber: 4, totalSteps: 7,
+    heading: "Baggage & Itinerary Detail",
+    subheading: "Every question answered without leaving the list",
+    description: "A drawer overlay keeps the results list intact underneath — dismiss means instant return to your scroll position, zero navigation cost. Per-leg, per-passenger baggage weights for adults, children, and infants surface without a page change, critical before committing a group booking.",
+    imageSrc: "/Image/Airiq/presentation/see-details.png",
+    imageAlt: "AIR iQ flight detail drawer",
+    url: "airiq.com/search",
+  },
+  {
+    stepNumber: 5, totalSteps: 7,
+    heading: "Passengers & Add-ons",
+    subheading: "Four passengers, zero context switching",
+    description: "Saved-profile lookup auto-fills frequent flyer numbers, passports, and meal preferences for returning travellers — cutting form time by up to 60%. The seat map sits inline below each passenger tab, and switching between passengers never resets your selection or scroll position.",
+    imageSrc: "/Image/Airiq/presentation/details.png",
+    imageAlt: "AIR iQ passenger details form",
+    url: "airiq.com/booking/details",
+  },
+  {
+    stepNumber: 6, totalSteps: 7,
+    heading: "Final Review",
+    subheading: "Every detail verifiable before commitment",
+    description: "Inline edit links on every section prevent back-navigation at the most critical step, eliminating drop-off. Wallet-first payment shows the exact deduction split before the agent confirms — removing the last source of uncertainty on a ₹2,21,000 booking.",
+    imageSrc: "/Image/Airiq/presentation/review.png",
+    imageAlt: "AIR iQ review and payment screen",
+    url: "airiq.com/booking/review",
+  },
+  {
+    stepNumber: 7, totalSteps: 7,
+    heading: "Booking Confirmed",
+    subheading: "Every channel. One screen. Done.",
+    description: "PDF, ZIP, WhatsApp, and Email all surface on a single confirmation screen. Per-passenger checkbox selection lets agents distribute individual tickets from a group booking — a post-confirmation workflow that most B2B travel platforms completely overlook.",
+    imageSrc: "/Image/Airiq/presentation/confirmation.png",
+    imageAlt: "AIR iQ booking confirmation",
+    url: "airiq.com/booking/confirmed",
+  },
+];
 
 /* ─────────────────────────────────────────────────────────────────────
    TOC
@@ -1890,22 +1957,9 @@ function ProductFlowSection() {
     <CsSection id="product">
       <CsSectionHeader
         title="Complete Product Flow"
-        sub="Every screen, every decision, in sequence. Here's how the full booking journey was designed — from the first search to the final confirmation."
+        sub="Seven screens. Every decision annotated. Here's how the full booking journey was designed — from the first login to the final confirmation."
       />
-      <div style={{
-        width: "calc(100% + 80px)",
-        marginLeft: -40,
-        borderRadius: 20,
-        overflow: "hidden",
-        boxShadow: "0 2px 24px rgba(0,0,0,0.10)",
-      }}>
-        <iframe
-          src="/Image/Airiq/presentation/flow-presentation.html"
-          style={{ width: "100%", height: 1300, border: "none", display: "block" }}
-          title="AIR iQ Product Flow"
-          loading="lazy"
-        />
-      </div>
+      <ProductFlowShowcase screens={AIR_IQ_FLOW} />
     </CsSection>
   );
 }

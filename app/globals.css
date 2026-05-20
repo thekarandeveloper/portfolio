@@ -6812,6 +6812,186 @@ p.iq2-frame-caption,
 }
 
 /* ════════════════════════════════════════════════════════════════
+   PRODUCT FLOW SHOWCASE  (pfs-*)
+════════════════════════════════════════════════════════════════ */
+
+.pfs-bg {
+  background: linear-gradient(140deg, #EAF4FB 0%, #F5F2F0 52%, #FDFBF0 100%);
+  border-radius: 20px;
+  padding: 72px 56px 80px;
+  overflow: hidden;
+}
+
+/* scroll-reveal — own observer so it works outside CaseStudyLayout context */
+.pfs-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pfs-reveal.in { opacity: 1; transform: translateY(0); }
+
+/* row */
+.pfs-row {
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  gap: 56px;
+  align-items: start;
+  margin-bottom: 120px;
+}
+.pfs-row:last-child { margin-bottom: 0; }
+
+/* even rows: frame left, text right */
+.pfs-row--even .pfs-text  { order: 2; }
+.pfs-row--even .pfs-frame { order: 1; }
+
+/* ── text block ── */
+.pfs-text { min-width: 0; }
+
+.pfs-counter {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  margin-bottom: 18px;
+}
+
+.pfs-h {
+  font-size: 32px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.18;
+  letter-spacing: -0.022em;
+  margin-bottom: 14px;
+}
+
+.pfs-sh {
+  font-size: 18px;
+  font-weight: 400;
+  color: #6B7280;
+  text-align: right;
+  line-height: 1.45;
+  margin-bottom: 24px;
+}
+
+.pfs-desc {
+  font-size: 15px;
+  font-weight: 400;
+  color: #374151;
+  line-height: 1.7;
+  max-width: 380px;
+}
+
+/* ── browser frame ── */
+.pfs-frame {
+  width: 480px;
+  height: 580px;
+  border-radius: 12px;
+  border: 0.5px solid #C8D5E8;
+  box-shadow: 0 2px 24px rgba(100, 130, 180, 0.09), 0 1px 4px rgba(100, 130, 180, 0.05);
+  overflow: hidden;
+  background: #ffffff;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pfs-chrome {
+  height: 40px;
+  background: #F4F5F7;
+  border-bottom: 0.5px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.pfs-chrome-dots { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+.pfs-chrome-dot  { width: 10px; height: 10px; border-radius: 50%; }
+.pfs-chrome-dot--r { background: #FFBDB5; }
+.pfs-chrome-dot--y { background: #FFDFB5; }
+.pfs-chrome-dot--g { background: #B5EAC8; }
+
+.pfs-url-pill {
+  flex: 1;
+  height: 22px;
+  background: #EBEDF2;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 10px;
+  max-width: 210px;
+  margin: 0 auto;
+  min-width: 0;
+}
+.pfs-url-txt {
+  font-size: 10.5px;
+  color: #8A94B8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+.pfs-screen {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #C8D5E8 transparent;
+}
+.pfs-screen::-webkit-scrollbar       { width: 4px; }
+.pfs-screen::-webkit-scrollbar-track { background: transparent; }
+.pfs-screen::-webkit-scrollbar-thumb { background: #C8D5E8; border-radius: 2px; }
+.pfs-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ── responsive ── */
+@media (max-width: 1200px) {
+  .pfs-bg  { padding: 56px 40px 64px; }
+  .pfs-row { grid-template-columns: 1fr 420px; gap: 40px; margin-bottom: 96px; }
+  .pfs-frame { width: 420px; }
+}
+
+@media (max-width: 960px) {
+  .pfs-bg  { padding: 48px 28px 56px; }
+  .pfs-row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 72px;
+    text-align: center;
+  }
+  .pfs-row--even .pfs-text,
+  .pfs-row--even .pfs-frame { order: unset; }
+  .pfs-text { display: flex; flex-direction: column; align-items: center; }
+  .pfs-sh   { text-align: center; }
+  .pfs-desc { max-width: 520px; text-align: left; }
+  .pfs-frame {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    margin: 0 auto;
+  }
+  .pfs-screen { height: 460px; flex: none; }
+}
+
+@media (max-width: 480px) {
+  .pfs-bg  { padding: 36px 16px 44px; border-radius: 12px; }
+  .pfs-h   { font-size: 26px; }
+  .pfs-sh  { font-size: 15px; }
+  .pfs-screen { height: 360px; }
+}
+
+/* ════════════════════════════════════════════════════════════════
    BIBLOFI VISUAL STORYTELLING  (biblo-*)
 ════════════════════════════════════════════════════════════════ */
 
