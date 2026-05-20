@@ -49,7 +49,7 @@ const TOC_ITEMS = [
    FIGMA EMBED
 ───────────────────────────────────────────────────────────────────── */
 const FIGMA_BASE =
-  "https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System%3Fnode-id%3D";
+  "https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/iwqDFTjLmGMWGnM79LOMUB/Design-System-nik%3Fnode-id%3D";
 
 function FigmaEmbed({
   nodeId,
@@ -122,7 +122,7 @@ function DSHero() {
 
           <div style={{ display: "flex", gap: 12, marginTop: 8, flexWrap: "wrap" }}>
             <a
-              href="https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System"
+              href="https://www.figma.com/design/iwqDFTjLmGMWGnM79LOMUB/Design-System-nik"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -159,7 +159,7 @@ function DSHero() {
           }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/Image/Airiq/design system .png"
+              src="/Image/Airiq/design%20system%20.png"
               alt="Design System overview"
               style={{
                 width: "100%", maxWidth: 520, height: "auto", display: "block",
@@ -382,8 +382,13 @@ function ComponentsSection() {
     },
     {
       nodeId: "14007-210",
-      title: "Pagination & Date Picker",
-      note: "Travel-critical components. The date picker was the single most-requested component; it ships with range selection and blocked-date states.",
+      title: "Pagination",
+      note: "Compact pagination with explicit page controls and item-count feedback. Sized to sit quietly inside dense data tables.",
+    },
+    {
+      nodeId: "14030-2",
+      title: "Date & Time Picker",
+      note: "Travel-critical component. Ships with range selection, blocked-date states, and a time picker — the most-requested component in v1.",
     },
   ];
 
