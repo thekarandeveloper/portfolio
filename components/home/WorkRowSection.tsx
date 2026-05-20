@@ -72,12 +72,12 @@ const html = `
       </div>
     </a>
 
-    <div class="wr-row reveal reveal-delay-2" style="--wr-rot:-2deg;--wr-tint:rgba(219,39,119,0.022);cursor:default;">
+    <a href="/projects/project-5" class="wr-row reveal reveal-delay-2" style="--wr-rot:-2deg;--wr-tint:rgba(219,39,119,0.022);text-decoration:none;color:inherit;">
       <div class="wr-text">
         <div class="wr-meta-row">
           <span>Design systems</span><span class="wr-dot"></span>
           <span>Component library</span>
-          <span class="wr-meta-year">2023</span>
+          <span class="wr-meta-year">2026</span>
         </div>
         <div class="wr-identity">
           <h3 class="wr-name">Design System</h3>
@@ -87,7 +87,7 @@ const html = `
         </div>
         <div class="wr-bottom">
           <span class="wr-role-pill">Systems thinking</span>
-          <span class="wr-cta" style="opacity:0.5;cursor:default;">Coming soon</span>
+          <span class="wr-cta">View Case Study &rarr;</span>
         </div>
       </div>
       <div class="wr-image-col">
@@ -109,7 +109,7 @@ const html = `
           </div>
         </div>
       </div>
-    </div>
+    </a>
 
     <a class="wr-row flip reveal reveal-delay-3" href="/projects/biblofi" style="--wr-rot:1deg;--wr-tint:rgba(200,112,58,0.025);">
       <div class="wr-text">

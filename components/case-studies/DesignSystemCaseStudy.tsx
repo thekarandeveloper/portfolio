@@ -39,7 +39,7 @@ function DSHero() {
           </p>
           <div className="csl-hero-chips">
             <span className="csl-hero-chip">Lead Product Designer</span>
-            <span className="csl-hero-chip">8-Month Build</span>
+            <span className="csl-hero-chip">Nov – Jan 2026</span>
             <span className="csl-hero-chip">Tokens · Components · Governance</span>
             <span className="csl-hero-chip">0 → 1 System</span>
           </div>

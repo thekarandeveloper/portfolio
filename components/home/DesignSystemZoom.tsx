@@ -87,10 +87,10 @@ const html = `
 
           <!-- Footer -->
           <div class="dsz-card-footer">
-            <span class="dsz-cta" style="opacity:0.5;cursor:default;">Coming soon</span>
+            <a href="/projects/project-5" class="dsz-cta">View Case Study &rarr;</a>
             <div class="dsz-footer-chips">
               <span class="dsz-footer-chip dsz-chip-blue">Lato &middot; Inter</span>
-              <span class="dsz-footer-chip dsz-chip-red">Jan&ndash;Aug 2023</span>
+              <span class="dsz-footer-chip dsz-chip-red">Nov&ndash;Jan 2026</span>
             </div>
           </div>
 
