@@ -151,14 +151,19 @@ function DSHero() {
         </div>
 
         {/* RIGHT */}
-        <div className="csl-hero-right">
+        <div
+          className="csl-hero-right"
+          style={{ alignSelf: "stretch", padding: 0, overflow: "hidden", borderRadius: 20, background: "#EBF4FF" }}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/Image/Airiq/design-system.png"
             alt="Design System overview"
             style={{
               width: "100%",
-              height: "auto",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
               display: "block",
             }}
           />
