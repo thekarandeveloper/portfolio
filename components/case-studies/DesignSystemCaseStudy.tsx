@@ -83,98 +83,6 @@ function FigmaEmbed({
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   HERO RIGHT — minimal system preview card
-───────────────────────────────────────────────────────────────────── */
-function DSHeroCard() {
-  return (
-    <div
-      style={{
-        background: "#ffffff",
-        border: "1px solid rgba(16,118,188,0.14)",
-        borderRadius: 16,
-        padding: "24px 24px 20px",
-        boxShadow: "0 8px 32px rgba(16,118,188,0.08), 0 2px 8px rgba(0,0,0,0.04)",
-        width: "100%",
-        maxWidth: 380,
-        fontFamily: "Lato, sans-serif",
-      }}
-    >
-      {/* label */}
-      <p style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 14 }}>
-        Design System · AirIQ · 2026
-      </p>
-
-      {/* color tokens */}
-      <div style={{ marginBottom: 18 }}>
-        <p style={{ fontSize: 11, color: "#9CA3AF", marginBottom: 8, letterSpacing: "0.08em", textTransform: "uppercase" }}>Tokens</p>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          {[
-            { color: "#1076BC", label: "Primary" },
-            { color: "#F2616E", label: "Alert" },
-            { color: "#059669", label: "Success" },
-            { color: "#6B7280", label: "Neutral" },
-            { color: "#F9FAFC", label: "Surface", border: "1px solid #E5E7EB" },
-          ].map((t) => (
-            <div key={t.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-              <div
-                style={{
-                  width: 32, height: 32, borderRadius: 8,
-                  background: t.color, border: t.border ?? "none",
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-                }}
-              />
-              <span style={{ fontSize: 9, color: "#9CA3AF", letterSpacing: "0.04em" }}>{t.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* type scale */}
-      <div style={{ marginBottom: 18, borderTop: "1px solid #F3F4F6", paddingTop: 14 }}>
-        <p style={{ fontSize: 11, color: "#9CA3AF", marginBottom: 10, letterSpacing: "0.08em", textTransform: "uppercase" }}>Type Scale</p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: 20, fontWeight: 700, color: "#111827", lineHeight: 1 }}>Heading</span>
-            <span style={{ fontSize: 10, color: "#9CA3AF" }}>Bold · 700 · 28pt</span>
-          </div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: 14, fontWeight: 400, color: "#374151" }}>Body copy</span>
-            <span style={{ fontSize: 10, color: "#9CA3AF" }}>Regular · 400 · 15pt</span>
-          </div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: 10, fontWeight: 600, color: "#6B7280", letterSpacing: "0.10em", textTransform: "uppercase" }}>LABEL SMALL</span>
-            <span style={{ fontSize: 10, color: "#9CA3AF" }}>Semi · 600 · 11pt</span>
-          </div>
-        </div>
-      </div>
-
-      {/* component chips */}
-      <div style={{ borderTop: "1px solid #F3F4F6", paddingTop: 14, display: "flex", flexWrap: "wrap", gap: 6 }}>
-        {[
-          { label: "Primary", bg: "#1076BC", color: "#fff" },
-          { label: "Tertiary", bg: "transparent", color: "#1076BC", border: "1px solid rgba(16,118,188,0.35)" },
-          { label: "Dropdown ▾", bg: "#F9FAFC", color: "#374151", border: "1px solid #E5E7EB" },
-          { label: "Direct", bg: "#EAF9F1", color: "#059669" },
-          { label: "Economy", bg: "#EEF6FD", color: "#1076BC" },
-          { label: "Delayed", bg: "#FEF3F2", color: "#F2616E" },
-        ].map((c) => (
-          <span
-            key={c.label}
-            style={{
-              fontSize: 11, fontWeight: 600, borderRadius: 6,
-              padding: "4px 10px", background: c.bg, color: c.color,
-              border: c.border ?? "none", fontFamily: "Lato, sans-serif",
-            }}
-          >
-            {c.label}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
    HERO
 ───────────────────────────────────────────────────────────────────── */
 function DSHero() {
@@ -243,8 +151,23 @@ function DSHero() {
         </div>
 
         {/* RIGHT */}
-        <div className="csl-hero-right" style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-          <DSHeroCard />
+        <div className="csl-hero-right">
+          <div style={{
+            width: "100%",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            padding: "40px 24px",
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/Image/Airiq/design system .png"
+              alt="Design System overview"
+              style={{
+                width: "100%", maxWidth: 520, height: "auto", display: "block",
+                borderRadius: 14,
+                filter: "drop-shadow(0 24px 48px rgba(16,118,188,0.14)) drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
