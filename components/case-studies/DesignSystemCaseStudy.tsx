@@ -152,22 +152,16 @@ function DSHero() {
 
         {/* RIGHT */}
         <div className="csl-hero-right">
-          <div style={{
-            width: "100%",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            padding: "40px 24px",
-          }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/Image/Airiq/design-system.png"
-              alt="Design System overview"
-              style={{
-                width: "100%", maxWidth: 520, height: "auto", display: "block",
-                borderRadius: 14,
-                filter: "drop-shadow(0 24px 48px rgba(16,118,188,0.14)) drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
-              }}
-            />
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/Image/Airiq/design-system.png"
+            alt="Design System overview"
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+            }}
+          />
         </div>
       </div>
     </div>
