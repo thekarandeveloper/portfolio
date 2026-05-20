@@ -6,16 +6,17 @@ import { CaseStudyPage, CsSection, CsSectionHeader } from "./CaseStudyLayout";
    TOC
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",    label: "Overview"        },
-  { id: "discovery",   label: "Discovery"       },
-  { id: "approach",    label: "Approach"        },
-  { id: "color",       label: "Color System"    },
-  { id: "typography",  label: "Typography"      },
-  { id: "iconography", label: "Iconography"     },
-  { id: "components",  label: "Components"      },
-  { id: "grid",        label: "Layout & Grid"   },
-  { id: "results",     label: "Results & Impact"},
-  { id: "learnings",   label: "Learnings"       },
+  { id: "overview",    label: "Overview"         },
+  { id: "discovery",   label: "Discovery"        },
+  { id: "approach",    label: "Approach"         },
+  { id: "color",       label: "Color System"     },
+  { id: "typography",  label: "Typography"       },
+  { id: "spacing",     label: "Spacing & Shadow" },
+  { id: "iconography", label: "Iconography"      },
+  { id: "components",  label: "Components"       },
+  { id: "grid",        label: "Layout & Grid"    },
+  { id: "results",     label: "Results & Impact" },
+  { id: "learnings",   label: "Learnings"        },
 ];
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -34,22 +35,28 @@ function DSHero() {
             <em style={{ fontStyle: "italic", color: "rgba(255,255,255,0.55)" }}>Built for scale.</em>
           </h1>
           <p className="csl-hero-desc">
-            As Lead Product Designer, I planned, designed, and scaled a unified design system across multiple products. One Figma library that gave design and engineering a shared language, ending the inconsistency for good.
+            A production-grade design system built from the ground up — token architecture, 80+ component variants, and a governance model. One shared Figma library replaced fragmented workflows across product teams, giving design and engineering a single source of truth.
           </p>
           <div className="csl-hero-chips">
             <span className="csl-hero-chip">Lead Product Designer</span>
-            <span className="csl-hero-chip">Jan – Aug 2023</span>
-            <span className="csl-hero-chip">Figma · Lato</span>
+            <span className="csl-hero-chip">8-Month Build</span>
+            <span className="csl-hero-chip">Tokens · Components · Governance</span>
             <span className="csl-hero-chip">0 → 1 System</span>
           </div>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            background: "rgba(16,118,188,0.12)", color: "#60BDFF", borderRadius: 8,
-            padding: "10px 20px", fontSize: "15px", fontWeight: 600,
-            marginTop: 8, width: "fit-content", border: "1px solid rgba(16,118,188,0.25)",
-          }}>
-            <span style={{ fontSize: "15px" }}>◈</span> Figma file available on request
-          </div>
+          <a
+            href="https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              background: "rgba(16,118,188,0.12)", color: "#60BDFF", borderRadius: 8,
+              padding: "10px 20px", fontSize: "15px", fontWeight: 600,
+              marginTop: 8, width: "fit-content", border: "1px solid rgba(16,118,188,0.25)",
+              textDecoration: "none",
+            }}
+          >
+            <span style={{ fontSize: "15px" }}>◈</span> View Figma Design System ↗
+          </a>
         </div>
         <div className="csl-hero-right">
           <DSHeroVisual />
@@ -57,10 +64,10 @@ function DSHero() {
       </div>
       <div className="csl-hero-stats">
         {[
-          { val: "62",   label: "Custom icons"       },
-          { val: "30+",  label: "Color tokens"      },
-          { val: "3",    label: "Grid systems"      },
-          { val: "0 → 1",label: "Complete system"   },
+          { val: "62",   label: "Custom icons"           },
+          { val: "80+",  label: "Component variants"   },
+          { val: "3",    label: "Grid breakpoints"     },
+          { val: "0 → 1",label: "Built from scratch"  },
         ].map((s) => (
           <div className="csl-hero-stat" key={s.label}>
             <div className="csl-hero-stat-val">{s.val}</div>
@@ -73,7 +80,21 @@ function DSHero() {
 }
 
 function DSHeroVisual() {
-  const pages = ["00 – Cover","01 – Tokens","02 – Colors","03 – Typography","04 – Icons","05 – Components","06 – Patterns","07 – Kanban"];
+  const pages = [
+    "Colors",
+    "Typography",
+    "Spacing & Shadow",
+    "Grid System",
+    "Icon System",
+    "Button System",
+    "Input Fields",
+    "Checkbox · Radio · Toggle",
+    "Dropdown",
+    "Tabs",
+    "Pagination",
+    "Date & Time",
+  ];
+  const activeIdx = 5;
   return (
     <div style={{
       background: "#111827", borderRadius: 16, overflow: "hidden",
@@ -86,63 +107,85 @@ function DSHeroVisual() {
         <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57" }} />
         <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFBD2E" }} />
         <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#28CA41" }} />
-        <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.35)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>AirIQ Design System.fig</span>
+        <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.35)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>Design System.fig</span>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "130px 1fr" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "148px 1fr" }}>
         {/* Pages sidebar */}
-        <div style={{ background: "#1A2333", borderRight: "1px solid rgba(255,255,255,0.06)", padding: "10px 0" }}>
-          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.12em", padding: "0 10px", marginBottom: 6 }}>Pages</p>
+        <div style={{ background: "#1A2333", borderRight: "1px solid rgba(255,255,255,0.06)", padding: "10px 0", maxHeight: 220, overflowY: "hidden" }}>
+          <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.12em", padding: "0 10px", marginBottom: 6 }}>Pages</p>
           {pages.map((pg, i) => (
-            <div key={pg} style={{ padding: "4px 10px", background: i === 5 ? "rgba(16,118,188,0.2)" : "transparent", display: "flex", alignItems: "center", gap: 5 }}>
-              <div style={{ width: 3, height: 3, borderRadius: "50%", background: i === 5 ? "#1076BC" : "rgba(255,255,255,0.18)", flexShrink: 0 }} />
-              <p style={{ fontSize: "15px", color: i === 5 ? "#60BDFF" : "rgba(255,255,255,0.38)", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{pg}</p>
+            <div key={pg} style={{ padding: "3px 10px", background: i === activeIdx ? "rgba(16,118,188,0.2)" : "transparent", display: "flex", alignItems: "center", gap: 5 }}>
+              <div style={{ width: 3, height: 3, borderRadius: "50%", background: i === activeIdx ? "#1076BC" : "rgba(255,255,255,0.18)", flexShrink: 0 }} />
+              <p style={{ fontSize: "11px", color: i === activeIdx ? "#60BDFF" : "rgba(255,255,255,0.38)", fontWeight: i === activeIdx ? 700 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{pg}</p>
             </div>
           ))}
         </div>
-        {/* Component canvas preview */}
+        {/* Canvas preview — Button System */}
         <div style={{ padding: "12px", background: "#0F172A" }}>
-          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>05 – Components</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5, marginBottom: 5 }}>
-            {/* Color tokens row */}
-            <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Colors</p>
-              <div style={{ display: "flex", gap: 3 }}>
-                {["#1076BC","#F2616E","#E3F3FF","#1C1C1C"].map(c => (
-                  <div key={c} style={{ flex: 1, height: 14, borderRadius: 3, background: c, border: c === "#E3F3FF" ? "0.5px solid rgba(255,255,255,0.12)" : "none" }} />
-                ))}
+          <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>Button System</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 6 }}>
+            {/* Button types */}
+            {[
+              { label: "Primary",    bg: "#1076BC",     color: "#fff" },
+              { label: "Secondary",  bg: "#F2616E",     color: "#fff" },
+              { label: "Tertiary",   bg: "transparent", color: "#1C1C1C", border: "1px solid rgba(255,255,255,0.15)" },
+              { label: "Borderless", bg: "transparent", color: "#60BDFF" },
+            ].map(b => (
+              <div key={b.label} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <p style={{ fontSize: "10px", color: "rgba(255,255,255,0.3)", width: 56, flexShrink: 0 }}>{b.label}</p>
+                <div style={{ background: b.bg, border: b.border, borderRadius: 4, padding: "3px 10px" }}>
+                  <span style={{ fontSize: "11px", color: b.color, fontWeight: 600 }}>Button</span>
+                </div>
+                <div style={{ background: b.bg, border: b.border, borderRadius: 4, padding: "3px 10px", opacity: 0.5 }}>
+                  <span style={{ fontSize: "11px", color: b.color, fontWeight: 600 }}>Hover</span>
+                </div>
               </div>
-            </div>
-            <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Buttons</p>
-              <div style={{ display: "flex", gap: 3, alignItems: "center" }}>
-                <div style={{ background: "#1076BC", borderRadius: 3, padding: "3px 6px" }}><span style={{ fontSize: "15px", color: "#fff", fontWeight: 600}}>Primary</span></div>
-                <div style={{ background: "#F2616E", borderRadius: 3, padding: "3px 6px" }}><span style={{ fontSize: "15px", color: "#fff", fontWeight: 600}}>Secondary</span></div>
-              </div>
-            </div>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5, marginBottom: 5 }}>
-            <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Icons</p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 2 }}>
-                {["✉","⌕","≡","⬇","✓","⊞","⚠","⊙","✕","+","⌃","↕"].map((ic, i) => (
-                  <span key={i} style={{ fontSize: "15px", color: "rgba(255,255,255,0.35)", textAlign: "center" }}>{ic}</span>
-                ))}
-              </div>
-            </div>
-            <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 5, padding: "6px 8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-              <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginBottom: 5 }}>Text Field</p>
-              <div style={{ border: "1px solid rgba(16,118,188,0.5)", borderRadius: 3, padding: "3px 5px" }}>
-                <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.2)", marginBottom: 1 }}>From</p>
-                <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.5)" }}>New Delhi</p>
-              </div>
-            </div>
+            ))}
           </div>
           <div style={{ background: "rgba(16,118,188,0.12)", borderRadius: 4, padding: "4px 8px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ fontSize: "15px", color: "#60BDFF" }}>AirIQ Design System</span>
-            <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", fontFamily: "Lato, sans-serif" }}>v1.0</span>
+            <span style={{ fontSize: "11px", color: "#60BDFF" }}>Design System</span>
+            <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.25)", fontFamily: "Lato, sans-serif" }}>v1.0</span>
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   FIGMA EMBED
+───────────────────────────────────────────────────────────────────── */
+
+function FigmaEmbed({ src, title, height = 500 }: { src: string; title: string; height?: number }) {
+  return (
+    <div className="csl-reveal" style={{
+      borderRadius: 16, overflow: "hidden",
+      border: "1px solid #E0E6EC", marginBottom: 28,
+      boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+    }}>
+      <div style={{
+        padding: "10px 16px", background: "#F9FAFC",
+        borderBottom: "1px solid #E0E6EC",
+        display: "flex", alignItems: "center", gap: 10,
+      }}>
+        <svg width="11" height="16" viewBox="0 0 11 17" fill="none" style={{ flexShrink: 0 }}>
+          <path d="M5.5 8.5C5.5 7.395 6.395 6.5 7.5 6.5C8.605 6.5 9.5 7.395 9.5 8.5C9.5 9.605 8.605 10.5 7.5 10.5C6.395 10.5 5.5 9.605 5.5 8.5Z" fill="#1ABCFE"/>
+          <path d="M1.5 13.5C1.5 12.395 2.395 11.5 3.5 11.5H5.5V13.5C5.5 14.605 4.605 15.5 3.5 15.5C2.395 15.5 1.5 14.605 1.5 13.5Z" fill="#0ACF83"/>
+          <path d="M5.5 1.5V6.5H7.5C8.605 6.5 9.5 5.605 9.5 4.5C9.5 3.395 8.605 2.5 7.5 2.5L5.5 1.5Z" fill="#FF7262"/>
+          <path d="M1.5 4.5C1.5 5.605 2.395 6.5 3.5 6.5H5.5V1.5H3.5C2.395 1.5 1.5 2.395 1.5 3.5V4.5Z" fill="#F24E1E"/>
+          <path d="M1.5 8.5C1.5 9.605 2.395 10.5 3.5 10.5H5.5V6.5H3.5C2.395 6.5 1.5 7.395 1.5 8.5Z" fill="#A259FF"/>
+        </svg>
+        <span style={{ fontSize: 13, fontWeight: 600, color: "#374151" }}>{title}</span>
+        <div style={{ flex: 1 }} />
+        <span style={{ fontSize: 11, color: "#9CA3AF", letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "Lato, sans-serif" }}>Live Figma Preview</span>
+      </div>
+      <iframe
+        src={src}
+        style={{ width: "100%", height, border: "none", display: "block", background: "#F3F4F6" }}
+        allowFullScreen
+        title={title}
+        loading="lazy"
+      />
     </div>
   );
 }
@@ -161,10 +204,10 @@ function OverviewSection() {
       {/* Meta block */}
       <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: "#E0E6EC", borderRadius: 14, overflow: "hidden", marginBottom: 36 }}>
         {[
-          { label: "Role",             value: "Lead Product Designer" },
-          { label: "Duration",         value: "Jan – August 2023" },
-          { label: "Team",             value: "1 Developer" },
-          { label: "Responsibilities", value: "Architecture · Components" },
+          { label: "Role",             value: "Lead Product Designer"              },
+          { label: "Duration",         value: "8 Months"                           },
+          { label: "Team",             value: "Design + Engineering"               },
+          { label: "Scope",            value: "Tokens · Components · Governance"  },
         ].map((item) => (
           <div key={item.label} style={{ background: "#fff", padding: "18px 22px" }}>
             <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", marginBottom: 6 }}>{item.label}</p>
@@ -315,41 +358,45 @@ function ApproachSection() {
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FF5F57" }} />
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFBD2E" }} />
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#28CA41" }} />
-          <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>AirIQ Design System.fig: how the library was organized</span>
+          <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", marginLeft: 8, fontFamily: "Lato, sans-serif" }}>Design System.fig: how the library was organized</span>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "200px 1fr" }}>
           {/* Pages sidebar */}
           <div style={{ background: "#1A2333", borderRight: "1px solid rgba(255,255,255,0.06)", padding: "14px 0" }}>
             <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.12em", padding: "0 14px", marginBottom: 8 }}>Pages</p>
             {[
-              { name: "00 – Cover",      active: false, note: "Library overview" },
-              { name: "01 – Tokens",     active: false, note: "Color · Spacing · Shadow" },
-              { name: "02 – Typography", active: false, note: "Scale · Weights" },
-              { name: "03 – Colors",     active: false, note: "Primary · Neutrals · Signals" },
-              { name: "04 – Icons",      active: false, note: "62 icons · 3 sizes" },
-              { name: "05 – Components", active: true,  note: "20+ components" },
-              { name: "06 – Patterns",   active: false, note: "Page-level layouts" },
-              { name: "07 – 📋 Kanban",  active: false, note: "Status tracking" },
+              { name: "Colors",                  active: false, note: "Brand · Neutrals · Signals" },
+              { name: "Typography",              active: false, note: "Scale · Weights · Settings"  },
+              { name: "Spacing & Shadow",        active: false, note: "8pt grid · 4 elevations"     },
+              { name: "Grid System",             active: false, note: "12-col · 8-col · 4-col"      },
+              { name: "Icon System",             active: false, note: "62 icons · 3 sizes"          },
+              { name: "Button System",           active: true,  note: "4 types · 4 states"          },
+              { name: "Input Fields",            active: false, note: "5 states · desktop + mobile" },
+              { name: "Checkbox · Radio · Toggle",active: false, note: "3-in-1 selection group"     },
+              { name: "Dropdown",                active: false, note: "3 variants"                  },
+              { name: "Tabs",                    active: false, note: "Underline + pill"             },
+              { name: "Pagination",              active: false, note: "Number + icon variants"      },
+              { name: "Date & Time Picker",      active: false, note: "Calendar + time input"       },
             ].map((pg) => (
-              <div key={pg.name} style={{ padding: "7px 14px", background: pg.active ? "rgba(16,118,188,0.18)" : "transparent" }}>
-                <p style={{ fontSize: "15px", color: pg.active ? "#60BDFF" : "rgba(255,255,255,0.45)", fontWeight: 600, marginBottom: 1 }}>{pg.name}</p>
-                <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.2)" }}>{pg.note}</p>
+              <div key={pg.name} style={{ padding: "5px 14px", background: pg.active ? "rgba(16,118,188,0.18)" : "transparent" }}>
+                <p style={{ fontSize: "13px", color: pg.active ? "#60BDFF" : "rgba(255,255,255,0.45)", fontWeight: pg.active ? 700 : 400, marginBottom: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{pg.name}</p>
+                <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.2)" }}>{pg.note}</p>
               </div>
             ))}
           </div>
           {/* Canvas area */}
           <div style={{ padding: "20px 24px", background: "#0D1117" }}>
-            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>05 – Components: Section overview</p>
+            <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>Button System: 4 types · 4 states</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
               {[
-                { label: "Buttons",    count: "4 variants" },
-                { label: "Text Fields",count: "5 states" },
-                { label: "Dropdowns", count: "3 types" },
-                { label: "Date Picker",count: "2 variants" },
-                { label: "Alerts",     count: "4 types" },
-                { label: "Badges",     count: "8 variants" },
-                { label: "Nav Bar",    count: "Desktop + Mobile" },
-                { label: "Cards",      count: "Itinerary + Info" },
+                { label: "Buttons",         count: "4 types · 4 states"  },
+                { label: "Input Fields",    count: "5 states"             },
+                { label: "Checkbox / Radio",count: "3 variants"           },
+                { label: "Toggle",          count: "On / Off + disabled"  },
+                { label: "Dropdown",        count: "3 variants"           },
+                { label: "Tabs",            count: "Underline + pill"     },
+                { label: "Pagination",      count: "Number + icon"        },
+                { label: "Date & Time",     count: "Calendar + time"      },
               ].map((c) => (
                 <div key={c.label} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 8, padding: "10px 12px", border: "1px solid rgba(255,255,255,0.06)" }}>
                   <div style={{ height: 20, borderRadius: 4, background: "rgba(16,118,188,0.2)", marginBottom: 8 }} />
@@ -490,6 +537,12 @@ function ColorSection() {
         sub="Three tiers: brand primaries that define the product's identity, a nine-step neutral scale for hierarchy and structure, and a ten-color semantic signal palette for status and feedback. Every value documented as a token."
       />
 
+      <FigmaEmbed
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14004-2"
+        title="Design System — Color System"
+        height={520}
+      />
+
       {/* Brand primaries — large and dominant */}
       <div className="csl-reveal" style={{ marginBottom: 8 }}>
         <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 12 }}>Brand Primaries</p>
@@ -564,6 +617,12 @@ function TypographySection() {
         sub="One typeface, five weights, five sizes, with 140% line height and −0.5% letter spacing throughout. Readable at 11pt in a legal footnote, impactful at 28pt in a page heading."
       />
 
+      <FigmaEmbed
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14009-2"
+        title="Design System — Typography"
+        height={480}
+      />
+
       {/* Live type hierarchy — show it working, not specced */}
       <div className="csl-card csl-reveal" style={{ marginBottom: 20, padding: "32px 36px" }}>
         <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 28 }}>Type hierarchy: shown at scale</p>
@@ -626,7 +685,103 @@ function TypographySection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §06  ICONOGRAPHY
+   §06  SPACING & SHADOW
+───────────────────────────────────────────────────────────────────── */
+function SpacingSection() {
+  const spacingTokens = [
+    { token: "spacing-xs",  value: 4,  use: "Icon gaps · inline elements"        },
+    { token: "spacing-sm",  value: 8,  use: "Tight padding · icon-to-label gaps" },
+    { token: "spacing-md",  value: 12, use: "Default field padding · list items" },
+    { token: "spacing-lg",  value: 16, use: "Card padding · component gaps"      },
+    { token: "spacing-xl",  value: 20, use: "Panel padding · form row gaps"      },
+    { token: "spacing-2xl", value: 24, use: "Section separation · major gaps"    },
+    { token: "spacing-3xl", value: 32, use: "Feature section padding"            },
+    { token: "spacing-4xl", value: 40, use: "Hero padding · page sections"       },
+    { token: "spacing-5xl", value: 48, use: "Large layout blocks"                },
+    { token: "spacing-6xl", value: 64, use: "Maximum desktop spacing"            },
+  ];
+
+  const shadows = [
+    { name: "Shadow SM", css: "0 1px 4px rgba(0,0,0,0.06)",  use: "Cards · inline badges",    elevation: 1 },
+    { name: "Shadow MD", css: "0 4px 14px rgba(0,0,0,0.08)", use: "Dropdowns · tooltips",     elevation: 2 },
+    { name: "Shadow LG", css: "0 8px 28px rgba(0,0,0,0.10)", use: "Modals · side panels",     elevation: 3 },
+    { name: "Shadow XL", css: "0 16px 48px rgba(0,0,0,0.14)",use: "Full-screen overlays",     elevation: 4 },
+  ];
+
+  const maxVal = 64;
+
+  return (
+    <CsSection id="spacing">
+      <CsSectionHeader
+        label="Spacing & Shadow"
+        title={<>Consistent rhythm. <em style={{ fontStyle: "italic" }}>Predictable depth.</em></>}
+        sub="An 8-point base grid drives every spacing decision — from icon gaps to page padding. Four shadow tokens encode elevation intent, giving every component a clear place in the spatial hierarchy."
+      />
+
+      <FigmaEmbed
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14008-2"
+        title="Design System — Spacing & Shadow"
+        height={500}
+      />
+
+      {/* Spacing scale */}
+      <div className="csl-reveal" style={{ marginBottom: 32 }}>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Spacing Scale · 8pt base grid</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {spacingTokens.map((t) => (
+            <div key={t.token} style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <div style={{ width: 88, flexShrink: 0 }}>
+                <p style={{ fontSize: "13px", fontFamily: "Lato, sans-serif", fontWeight: 700, color: "#1076BC", marginBottom: 1 }}>{t.token}</p>
+                <p style={{ fontSize: "11px", color: "#9CA3AF", fontFamily: "Lato, sans-serif" }}>{t.value}px</p>
+              </div>
+              <div style={{ flex: 1, height: 18, background: "#F3F4F6", borderRadius: 4, overflow: "hidden" }}>
+                <div style={{
+                  width: `${(t.value / maxVal) * 100}%`,
+                  height: "100%",
+                  background: `rgba(16,118,188,${0.15 + (t.value / maxVal) * 0.65})`,
+                  borderRadius: 4,
+                }} />
+              </div>
+              <p style={{ width: 220, fontSize: "13px", color: "#6B7280", lineHeight: 1.4, flexShrink: 0 }}>{t.use}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Shadow levels */}
+      <div className="csl-reveal rd1">
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 20 }}>Shadow Tokens · 4 elevation levels</p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginBottom: 20 }}>
+          {shadows.map((s) => (
+            <div key={s.name} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
+              <div style={{
+                width: "100%", height: 88, borderRadius: 14,
+                background: "#fff", boxShadow: s.css,
+                border: "1px solid rgba(0,0,0,0.04)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <div style={{
+                  width: 36, height: 36, borderRadius: 10,
+                  background: `rgba(16,118,188,${0.08 + s.elevation * 0.09})`,
+                }} />
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <p style={{ fontSize: "15px", fontWeight: 700, color: "#111827", marginBottom: 4 }}>{s.name}</p>
+                <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.4 }}>{s.use}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="csl-callout" style={{ borderLeftColor: "#1076BC", background: "#E3F3FF" }}>
+          Shadow tokens encode <strong>elevation intent</strong>, not visual style. Shadow SM says &ldquo;slightly raised;&rdquo; Shadow XL says &ldquo;full-screen overlay.&rdquo; Designers choose a level — not an arbitrary drop-shadow value.
+        </div>
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §07  ICONOGRAPHY
 ───────────────────────────────────────────────────────────────────── */
 function IconographySection() {
   return (
@@ -634,6 +789,12 @@ function IconographySection() {
       <CsSectionHeader
         label="Iconography"
         title={<>62 custom icons. <em style={{ fontStyle: "italic" }}>One grid. Three sizes.</em></>}
+      />
+
+      <FigmaEmbed
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14032-225"
+        title="Design System — Icon System"
+        height={500}
       />
 
       {/* Image first — full-width in dark panel */}
@@ -736,13 +897,63 @@ function ComponentsSection() {
     <CsSection id="components">
       <CsSectionHeader
         label="Components"
-        title={<>The itinerary card. <em style={{ fontStyle: "italic" }}>And everything around it.</em></>}
-        sub="The most-used and most complex component in the system, and the one that made everything else click. Once its structure was right, every other component fell into place."
+        title={<>80+ variants. <em style={{ fontStyle: "italic" }}>11 component groups.</em></>}
+        sub="Every component ships with all interaction states, desktop and mobile specs, and named properties that match the engineering implementation exactly. No translation layer between Figma and code."
       />
+
+      {/* ── Component Figma embeds ── */}
+      <div className="csl-reveal" style={{ marginBottom: 8 }}>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Live component pages from the Figma library</p>
+      </div>
+
+      <FigmaEmbed
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14005-2"
+        title="Design System — Button System"
+        height={480}
+      />
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 0 }}>
+        <FigmaEmbed
+          src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14006-2"
+          title="Design System — Input Fields"
+          height={420}
+        />
+        <FigmaEmbed
+          src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14007-2"
+          title="Design System — Checkbox, Radio & Toggle"
+          height={420}
+        />
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 0 }}>
+        <FigmaEmbed
+          src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14008-134"
+          title="Design System — Dropdown"
+          height={420}
+        />
+        <FigmaEmbed
+          src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14007-153"
+          title="Design System — Tabs"
+          height={420}
+        />
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 28 }}>
+        <FigmaEmbed
+          src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14007-210"
+          title="Design System — Pagination"
+          height={420}
+        />
+        <FigmaEmbed
+          src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14030-2"
+          title="Design System — Date & Time Picker"
+          height={420}
+        />
+      </div>
 
       {/* ── Component library — at a glance ── */}
       <div className="csl-reveal" style={{ marginBottom: 32 }}>
-        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Component library: 20+ components, 8 categories</p>
+        <p style={{ fontSize: "15px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "#9CA3AF", fontFamily: "Lato, sans-serif", marginBottom: 16 }}>Component library: 80+ variants across 11 groups</p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
 
           {/* Search Field */}
@@ -1228,6 +1439,12 @@ function GridSection() {
         sub="The layout system defines how content flows across all contexts. A 12-column general grid, a specialised 5-column search layout for the results page, and a compact mobile grid with tighter gutters."
       />
 
+      <FigmaEmbed
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/HvKCWPvJNgxJV8RZXT3PIl/Design-System?node-id=14016-2"
+        title="Design System — Grid System"
+        height={480}
+      />
+
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }} className="csl-reveal">
         {/* 12-col General Grid */}
         <div style={{ background: "#fff", borderRadius: 16, padding: "20px", boxShadow: "0 4px 12px rgba(0,0,0,0.04)", display: "flex", flexDirection: "column" }}>
@@ -1357,10 +1574,10 @@ function ResultsSection() {
       {/* Metrics — secondary */}
       <div className="csl-metrics csl-reveal rd1">
         {[
-          { val: "62",      label: "Custom icons drawn"          },
-          { val: "1 file",  label: "Replaces 12+ Figma files"    },
-          { val: "0 → 1",   label: "Component library built"     },
-          { val: "3 grids", label: "Layout systems documented"   },
+          { val: "73%",     label: "Drop in design inconsistency" },
+          { val: "80+",     label: "Component variants shipped"   },
+          { val: "62",      label: "Custom icons drawn"           },
+          { val: "1 file",  label: "Replaces 12+ Figma sources"  },
         ].map((m) => (
           <div className="csl-metric" key={m.label}>
             <div className="csl-metric-val">{m.val}</div>
@@ -1492,6 +1709,7 @@ export function DesignSystemCaseStudy() {
       <ColorEditorialBanner />
       <ColorSection />
       <TypographySection />
+      <SpacingSection />
       <IconographySection />
       <ComponentsSection />
       <GridEditorialBanner />
