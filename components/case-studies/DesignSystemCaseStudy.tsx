@@ -153,7 +153,7 @@ function DSHero() {
         {/* RIGHT */}
         <div
           className="csl-hero-right"
-          style={{ alignSelf: "stretch", padding: 0, overflow: "hidden", borderRadius: 20, background: "#EBF4FF" }}
+          style={{ alignSelf: "stretch", padding: 0, overflow: "hidden", borderRadius: 20 }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
