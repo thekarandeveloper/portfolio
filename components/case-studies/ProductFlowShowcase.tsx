@@ -35,27 +35,13 @@ export function ProductFlowShowcase({ screens }: ProductFlowShowcaseProps) {
   return (
     <div className="pfs-bg" ref={wrapRef}>
       {screens.map((screen) => {
-        const isEven = screen.stepNumber % 2 === 0;
         const step = String(screen.stepNumber).padStart(2, "0");
         const total = String(screen.totalSteps).padStart(2, "0");
         const url = screen.url ?? "airiq.com";
 
         return (
-          <div
-            key={screen.stepNumber}
-            className={`pfs-row pfs-reveal${isEven ? " pfs-row--even" : ""}`}
-          >
-            {/* ── text block ── */}
-            <div className="pfs-text">
-              <p className="pfs-counter">
-                {step}&thinsp;/&thinsp;{total}
-              </p>
-              <h3 className="pfs-h">{screen.heading}</h3>
-              <p className="pfs-sh">{screen.subheading}</p>
-              <p className="pfs-desc">{screen.description}</p>
-            </div>
-
-            {/* ── browser frame ── */}
+          <div key={screen.stepNumber} className="pfs-row pfs-reveal">
+            {/* ── browser frame (top) ── */}
             <div className="pfs-frame">
               <div className="pfs-chrome">
                 <div className="pfs-chrome-dots">
@@ -64,40 +50,24 @@ export function ProductFlowShowcase({ screens }: ProductFlowShowcaseProps) {
                   <span className="pfs-chrome-dot pfs-chrome-dot--g" />
                 </div>
                 <div className="pfs-url-pill">
-                  <svg
-                    width="9"
-                    height="10"
-                    viewBox="0 0 10 12"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <rect
-                      x="1"
-                      y="5"
-                      width="8"
-                      height="7"
-                      rx="1.5"
-                      stroke="#8A94B8"
-                      strokeWidth="1.2"
-                    />
-                    <path
-                      d="M3 5V3.5a2 2 0 014 0V5"
-                      stroke="#8A94B8"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                    />
+                  <svg width="9" height="10" viewBox="0 0 10 12" fill="none" aria-hidden="true">
+                    <rect x="1" y="5" width="8" height="7" rx="1.5" stroke="#8A94B8" strokeWidth="1.2" />
+                    <path d="M3 5V3.5a2 2 0 014 0V5" stroke="#8A94B8" strokeWidth="1.2" strokeLinecap="round" />
                   </svg>
                   <span className="pfs-url-txt">{url}</span>
                 </div>
               </div>
               <div className="pfs-screen">
-                <img
-                  src={screen.imageSrc}
-                  alt={screen.imageAlt}
-                  loading="lazy"
-                  draggable={false}
-                />
+                <img src={screen.imageSrc} alt={screen.imageAlt} loading="lazy" draggable={false} />
               </div>
+            </div>
+
+            {/* ── text block (below frame) ── */}
+            <div className="pfs-text">
+              <p className="pfs-counter">{step}&thinsp;/&thinsp;{total}</p>
+              <h3 className="pfs-h">{screen.heading}</h3>
+              <p className="pfs-sh">{screen.subheading}</p>
+              <p className="pfs-desc">{screen.description}</p>
             </div>
           </div>
         );

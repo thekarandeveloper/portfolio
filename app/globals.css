@@ -6822,7 +6822,7 @@ p.iq2-frame-caption,
   overflow: hidden;
 }
 
-/* scroll-reveal — own observer so it works outside CaseStudyLayout context */
+/* scroll-reveal */
 .pfs-reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -6830,68 +6830,24 @@ p.iq2-frame-caption,
 }
 .pfs-reveal.in { opacity: 1; transform: translateY(0); }
 
-/* row */
+/* row — frame on top, text below */
 .pfs-row {
-  display: grid;
-  grid-template-columns: 1fr 480px;
-  gap: 56px;
-  align-items: start;
-  margin-bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 96px;
 }
 .pfs-row:last-child { margin-bottom: 0; }
 
-/* even rows: frame left, text right */
-.pfs-row--even .pfs-text  { order: 2; }
-.pfs-row--even .pfs-frame { order: 1; }
-
-/* ── text block ── */
-.pfs-text { min-width: 0; }
-
-.pfs-counter {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #9CA3AF;
-  margin-bottom: 18px;
-}
-
-.pfs-h {
-  font-size: 32px;
-  font-weight: 600;
-  color: #111827;
-  line-height: 1.18;
-  letter-spacing: -0.022em;
-  margin-bottom: 14px;
-}
-
-.pfs-sh {
-  font-size: 18px;
-  font-weight: 400;
-  color: #6B7280;
-  text-align: right;
-  line-height: 1.45;
-  margin-bottom: 24px;
-}
-
-.pfs-desc {
-  font-size: 15px;
-  font-weight: 400;
-  color: #374151;
-  line-height: 1.7;
-  max-width: 380px;
-}
-
 /* ── browser frame ── */
 .pfs-frame {
-  width: 480px;
-  height: 580px;
-  border-radius: 12px;
+  width: 100%;
+  border-radius: 12px 12px 0 0;
   border: 0.5px solid #C8D5E8;
+  border-bottom: none;
   box-shadow: 0 2px 24px rgba(100, 130, 180, 0.09), 0 1px 4px rgba(100, 130, 180, 0.05);
   overflow: hidden;
   background: #ffffff;
-  flex-shrink: 0;
   display: flex;
   flex-direction: column;
 }
@@ -6936,9 +6892,9 @@ p.iq2-frame-caption,
   max-width: 160px;
 }
 
+/* screen — height driven by image, capped for tall screens */
 .pfs-screen {
-  flex: 1;
-  min-height: 0;
+  max-height: 560px;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
@@ -6955,40 +6911,71 @@ p.iq2-frame-caption,
   -webkit-user-drag: none;
 }
 
-/* ── responsive ── */
-@media (max-width: 1200px) {
-  .pfs-bg  { padding: 56px 40px 64px; }
-  .pfs-row { grid-template-columns: 1fr 420px; gap: 40px; margin-bottom: 96px; }
-  .pfs-frame { width: 420px; }
+/* ── text block — sits below the frame ── */
+.pfs-text {
+  border: 0.5px solid #C8D5E8;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  background: rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 28px 32px 32px;
 }
 
-@media (max-width: 960px) {
-  .pfs-bg  { padding: 48px 28px 56px; }
-  .pfs-row {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    margin-bottom: 72px;
-    text-align: center;
-  }
-  .pfs-row--even .pfs-text,
-  .pfs-row--even .pfs-frame { order: unset; }
-  .pfs-text { display: flex; flex-direction: column; align-items: center; }
-  .pfs-sh   { text-align: center; }
-  .pfs-desc { max-width: 520px; text-align: left; }
-  .pfs-frame {
-    width: 100%;
-    max-width: 480px;
-    height: auto;
-    margin: 0 auto;
-  }
-  .pfs-screen { height: 460px; flex: none; }
+.pfs-counter {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  margin-bottom: 14px;
+}
+
+.pfs-h {
+  font-size: 32px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.18;
+  letter-spacing: -0.022em;
+  margin-bottom: 10px;
+}
+
+.pfs-sh {
+  font-size: 18px;
+  font-weight: 400;
+  color: #6B7280;
+  text-align: right;
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.pfs-desc {
+  font-size: 15px;
+  font-weight: 400;
+  color: #374151;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+/* ── responsive ── */
+@media (max-width: 1200px) {
+  .pfs-bg { padding: 56px 40px 64px; }
+}
+
+@media (max-width: 768px) {
+  .pfs-bg  { padding: 48px 24px 56px; }
+  .pfs-row { margin-bottom: 64px; }
+  .pfs-text { padding: 22px 20px 24px; }
+  .pfs-h  { font-size: 26px; }
+  .pfs-sh { font-size: 15px; }
+  .pfs-desc { max-width: 100%; }
 }
 
 @media (max-width: 480px) {
   .pfs-bg  { padding: 36px 16px 44px; border-radius: 12px; }
-  .pfs-h   { font-size: 26px; }
-  .pfs-sh  { font-size: 15px; }
-  .pfs-screen { height: 360px; }
+  .pfs-h   { font-size: 22px; }
+  .pfs-sh  { font-size: 14px; }
+  .pfs-screen { max-height: 400px; }
 }
 
 /* ════════════════════════════════════════════════════════════════
