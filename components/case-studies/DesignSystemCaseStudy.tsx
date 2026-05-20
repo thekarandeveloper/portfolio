@@ -88,14 +88,14 @@ function FigmaEmbed({
 function DSHero() {
   return (
     <div className="csl-hero csl-hero--light" style={{ position: "relative", overflow: "hidden" }}>
-      {/* dot grid overlay */}
+      {/* dot grid — left half only so it doesn't show behind the image */}
       <div
         style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           backgroundImage: "radial-gradient(circle, rgba(16,118,188,0.18) 1px, transparent 1px)",
           backgroundSize: "22px 22px",
-          maskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%)",
+          maskImage: "linear-gradient(to right, black 0%, black 40%, transparent 65%)",
+          WebkitMaskImage: "linear-gradient(to right, black 0%, black 40%, transparent 65%)",
         }}
       />
 
@@ -151,21 +151,12 @@ function DSHero() {
         </div>
 
         {/* RIGHT */}
-        <div
-          className="csl-hero-right"
-          style={{ alignSelf: "stretch", padding: 0, overflow: "hidden", borderRadius: 20 }}
-        >
+        <div className="csl-hero-right">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/Image/Airiq/design-system.png"
             alt="Design System overview"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              display: "block",
-            }}
+            style={{ width: "115%", height: "auto", display: "block", marginLeft: "-7.5%" }}
           />
         </div>
       </div>
