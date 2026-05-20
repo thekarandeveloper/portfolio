@@ -1901,7 +1901,7 @@ function ProductFlowSection() {
       }}>
         <iframe
           src="/Image/Airiq/presentation/flow-presentation.html"
-          style={{ width: "100%", height: 1060, border: "none", display: "block" }}
+          style={{ width: "100%", height: 1300, border: "none", display: "block" }}
           title="AIR iQ Product Flow"
           loading="lazy"
         />
