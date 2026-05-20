@@ -159,7 +159,7 @@ function DSHero() {
           }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/Image/Airiq/design%20system%20.png"
+              src="/Image/Airiq/design-system.png"
               alt="Design System overview"
               style={{
                 width: "100%", maxWidth: 520, height: "auto", display: "block",
