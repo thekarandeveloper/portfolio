@@ -46,9 +46,11 @@ const THEME_VARS: Record<CsTheme, CSSProperties> = {
   ds: {
     "--csl-accent":        "#1076BC",
     "--csl-accent-dim":    "rgba(16,118,188,0.1)",
-    "--csl-hero-bg":       "#071E35",
+    "--csl-hero-bg":       "#ffffff",
     "--csl-tag-bg":        "#E3F3FF",
     "--csl-toc-active-bg": "#E3F3FF",
+    backgroundImage: "linear-gradient(rgba(16,118,188,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(16,118,188,0.06) 1px, transparent 1px)",
+    backgroundSize: "28px 28px",
   } as CSSProperties,
 };
 
