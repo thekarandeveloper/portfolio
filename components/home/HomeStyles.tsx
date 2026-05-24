@@ -2658,15 +2658,16 @@ nav.scrolled .nav-pill{
     overflow-x:hidden;
   }
   .hi-left{text-align:center;order:2;padding-top:0;}
-  .hi-right{order:1;display:flex;justify-content:center;margin-bottom:0.5rem;}
+  .hi-right{order:1;display:block;width:100%;margin-bottom:0.5rem;}
   .hi-bio-line,.hi-sub-line{max-width:100%;}
   .hi-sticky-coffee{margin:0.75rem auto 0.9rem;}
   .hi-pm-collage{
+    position:relative;
+    left:calc(50% - 220px);
     width:440px;height:600px;
     transform:scale(0.80);
     transform-origin:center top;
     margin-bottom:-120px;
-    flex-shrink:0;
   }
   .hi-sub-line{text-align:center;}
   .hero-scroll-hint{display:none;}
@@ -2687,11 +2688,11 @@ nav.scrolled .nav-pill{
   .hi-headline{font-size:clamp(2.8rem,11vw,4.2rem);}
   .hi-bio-line{font-size:clamp(0.88rem,3.5vw,1rem);}
   .hi-pm-collage{
+    left:calc(50% - 190px);
     width:380px;height:540px;
     transform:scale(0.65);
     transform-origin:center top;
     margin-bottom:-185px;
-    flex-shrink:0;
   }
 }
 

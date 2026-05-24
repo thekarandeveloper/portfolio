@@ -6,6 +6,7 @@ import { BiblofiCaseStudy } from "@/components/case-studies/BiblofiCaseStudy";
 import { EcotrackCaseStudy } from "@/components/case-studies/EcotrackCaseStudy";
 import { CareAutorCaseStudy } from "@/components/case-studies/CareAutorCaseStudy";
 import { DesignSystemCaseStudy } from "@/components/case-studies/DesignSystemCaseStudy";
+import { MobileCaseStudyGate } from "@/components/MobileCaseStudyGate";
 import { PasswordGate } from "@/components/PasswordGate";
 import { CloudinaryImage } from "@/components/CloudinaryImage";
 import { Container } from "@/components/Container";
@@ -54,30 +55,51 @@ export default async function ProjectPage({ params }: Props) {
 
   if (slug === "airiq") {
     return (
-      <PasswordGate slug="airiq" digits={4}>
-        <AirIqCaseStudy />
-      </PasswordGate>
+      <>
+        <MobileCaseStudyGate />
+        <PasswordGate slug="airiq" digits={4}>
+          <AirIqCaseStudy />
+        </PasswordGate>
+      </>
     );
   }
 
   if (slug === "biblofi") {
-    return <BiblofiCaseStudy />;
+    return (
+      <>
+        <MobileCaseStudyGate />
+        <BiblofiCaseStudy />
+      </>
+    );
   }
 
   if (slug === "ecotrack") {
-    return <EcotrackCaseStudy />;
+    return (
+      <>
+        <MobileCaseStudyGate />
+        <EcotrackCaseStudy />
+      </>
+    );
   }
 
   if (slug === "care-autor") {
     return (
-      <PasswordGate slug="care-autor" digits={5}>
-        <CareAutorCaseStudy />
-      </PasswordGate>
+      <>
+        <MobileCaseStudyGate />
+        <PasswordGate slug="care-autor" digits={5}>
+          <CareAutorCaseStudy />
+        </PasswordGate>
+      </>
     );
   }
 
   if (slug === "project-5") {
-    return <DesignSystemCaseStudy />;
+    return (
+      <>
+        <MobileCaseStudyGate />
+        <DesignSystemCaseStudy />
+      </>
+    );
   }
 
   let project;
@@ -108,6 +130,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <main className={isAir ? "bg-air-off" : isBiblo ? "bg-biblo-bg" : "bg-bg dark:bg-ink"}>
+      <MobileCaseStudyGate />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
