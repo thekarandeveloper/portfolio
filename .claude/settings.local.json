@@ -19,10 +19,13 @@
       "Read(//private/tmp/**)",
       "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio push origin main)",
       "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio add -A)",
-      "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio add components/home/HomePageReplica.tsx)"
+      "Bash(git -C /Users/nikunjtyagi/Documents/Portfolio-5may/portfolio add components/home/HomePageReplica.tsx)",
+      "Bash(npm run dev > /tmp/next-dev.log 2>&1 & *)",
+      "Bash(node -e ' *)"
     ],
     "additionalDirectories": [
-      "/Users/nikunjtyagi/Documents/Portfolio-5may/portfolio/public/Image"
+      "/Users/nikunjtyagi/Documents/Portfolio-5may/portfolio/public/Image",
+      "/tmp"
     ]
   }
 }
