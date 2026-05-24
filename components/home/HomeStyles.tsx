@@ -812,19 +812,17 @@ nav.scrolled .nav-pill{
 .dsz-stat-label{font-size: 15px;font-weight: 600;color:#9e9c97;text-transform:uppercase;letter-spacing:0.06em;}
 /* inner divider */
 .dsz-inner-divider{height:1px;background:rgba(0,0,0,0.06);margin-bottom:16px;}
-/* progress bars - new layout */
-.dsz-progress-rows{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
-.dsz-progress-row{display:flex;align-items:center;gap:8px;}
-.dsz-swatch-pair{display:flex;gap:3px;flex-shrink:0;}
-.dsz-sw{width:12px;height:12px;border-radius:3px;}
-.dsz-bar-label{
-  font-family: Lato, sans-serif;font-size: 15px;font-weight: 600;
-  color:#7a7570;width:90px;flex-shrink:0;
+/* delivered deliverables list */
+.dsz-deliverables{display:flex;flex-direction:column;gap:9px;margin-bottom:20px;}
+.dsz-deliverable{display:flex;align-items:center;gap:10px;}
+.dsz-del-check{
+  width:18px;height:18px;border-radius:50%;flex-shrink:0;
+  background:#E8F7F0;color:#059669;
+  font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  line-height:1;
 }
-.dsz-bar-track{flex:1;height:4px;border-radius:99px;background:#edecea;overflow:hidden;}
-.dsz-bar-fill{height:100%;border-radius:99px;}
-.dsz-bar-fill.dsz-bar-anim{width:0%;transition:width 1.2s cubic-bezier(0.22,1,0.36,1);}
-.dsz-bar-pct{font-size: 15px;font-weight: 600;color:#9e9c97;width:28px;text-align:right;flex-shrink:0;}
+.dsz-del-label{font-family:Lato,sans-serif;font-size:13px;color:#4B5563;font-weight:500;line-height:1.4;}
 /* card footer */
 .dsz-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .dsz-footer-chips{display:flex;gap:6px;align-items:center;}

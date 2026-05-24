@@ -6437,6 +6437,15 @@ p.iq2-frame-caption,
 .csl-hero--light { color: #111827; overflow: visible !important; }
 .csl-hero--light .csl-hero-inner { overflow: visible; }
 .csl-hero--light .csl-hero-right  { overflow: visible; }
+
+/* Design System hero — image bleeds full-height, no box around it */
+.ds-hero-override { overflow: visible !important; }
+.ds-hero-img-col {
+  overflow: visible !important;
+  align-items: flex-start !important;
+  align-self: stretch !important;
+  padding-top: 0 !important;
+}
 .csl-hero--light .csl-hero-glow { opacity: 0.10; }
 .csl-hero--light .csl-hero-title { color: #111827; }
 .csl-hero--light .csl-hero-desc  { color: #374151; }

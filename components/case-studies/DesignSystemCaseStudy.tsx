@@ -46,6 +46,60 @@ const TOC_ITEMS = [
 ];
 
 /* ─────────────────────────────────────────────────────────────────────
+   FOUNDATION ICONS (inline SVG, consistent 20×20)
+───────────────────────────────────────────────────────────────────── */
+const FoundationIcons = {
+  color: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <circle cx="8" cy="13" r="6" fill="#1076BC" opacity="0.8"/>
+      <circle cx="14" cy="13" r="6" fill="#F2616E" opacity="0.8"/>
+      <circle cx="11" cy="8" r="6" fill="#F59E0B" opacity="0.8"/>
+    </svg>
+  ),
+  type: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <line x1="3" y1="5" x2="19" y2="5" stroke="#1076BC" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="11" y1="5" x2="11" y2="18" stroke="#1076BC" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="7" y1="18" x2="15" y2="18" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 1.5"/>
+    </svg>
+  ),
+  spacing: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <line x1="3" y1="4" x2="3" y2="18" stroke="#1076BC" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="19" y1="4" x2="19" y2="18" stroke="#1076BC" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="3" y1="11" x2="19" y2="11" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2"/>
+      <line x1="3" y1="4" x2="6" y2="4" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="3" y1="18" x2="6" y2="18" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="19" y1="4" x2="16" y2="4" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="19" y1="18" x2="16" y2="18" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ),
+  grid: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <rect x="2" y="3" width="7" height="7" rx="1.5" fill="#1076BC" opacity="0.5"/>
+      <rect x="11" y="3" width="4" height="7" rx="1" fill="#1076BC" opacity="0.3"/>
+      <rect x="17" y="3" width="3" height="7" rx="1" fill="#1076BC" opacity="0.18"/>
+      <rect x="2" y="13" width="18" height="6" rx="1.5" fill="#1076BC" opacity="0.12" stroke="#1076BC" strokeWidth="1" strokeOpacity="0.3"/>
+    </svg>
+  ),
+  icons: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <circle cx="5.5" cy="5.5" r="3" stroke="#1076BC" strokeWidth="1.5"/>
+      <rect x="13.5" y="2.5" width="6" height="6" rx="1.5" stroke="#1076BC" strokeWidth="1.5"/>
+      <path d="M2.5 19 L5.5 14 L8.5 19 Z" stroke="#1076BC" strokeWidth="1.5" strokeLinejoin="round" fill="none"/>
+      <path d="M14 14 L16.5 17 L19 14" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    </svg>
+  ),
+  component: (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <rect x="2" y="3" width="18" height="5" rx="2" stroke="#1076BC" strokeWidth="1.5"/>
+      <rect x="2" y="11" width="8" height="8" rx="2" stroke="#1076BC" strokeWidth="1.5"/>
+      <rect x="12" y="11" width="8" height="8" rx="2" fill="#1076BC" opacity="0.15" stroke="#1076BC" strokeWidth="1.5"/>
+    </svg>
+  ),
+};
+
+/* ─────────────────────────────────────────────────────────────────────
    FIGMA EMBED
 ───────────────────────────────────────────────────────────────────── */
 const FIGMA_BASE =
@@ -87,19 +141,19 @@ function FigmaEmbed({
 ───────────────────────────────────────────────────────────────────── */
 function DSHero() {
   return (
-    <div className="csl-hero csl-hero--light" style={{ position: "relative", overflow: "hidden" }}>
+    <div className="csl-hero csl-hero--light ds-hero-override" style={{ position: "relative" }}>
       {/* dot grid — left half only so it doesn't show behind the image */}
       <div
         style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           backgroundImage: "radial-gradient(circle, rgba(16,118,188,0.18) 1px, transparent 1px)",
           backgroundSize: "22px 22px",
-          maskImage: "linear-gradient(to right, black 0%, black 40%, transparent 65%)",
-          WebkitMaskImage: "linear-gradient(to right, black 0%, black 40%, transparent 65%)",
+          maskImage: "linear-gradient(to right, black 0%, black 38%, transparent 60%)",
+          WebkitMaskImage: "linear-gradient(to right, black 0%, black 38%, transparent 60%)",
         }}
       />
 
-      <div className="csl-hero-inner" style={{ position: "relative", zIndex: 1 }}>
+      <div className="csl-hero-inner" style={{ position: "relative", zIndex: 1, alignItems: "center" }}>
         {/* LEFT */}
         <div className="csl-hero-left">
           <div className="csl-hero-eyebrow">Design System &middot; AirIQ</div>
@@ -150,13 +204,20 @@ function DSHero() {
           </div>
         </div>
 
-        {/* RIGHT */}
-        <div className="csl-hero-right">
+        {/* RIGHT — image bleeds full height, no background box */}
+        <div className="csl-hero-right ds-hero-img-col">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/Image/Airiq/design-system.png"
             alt="Design System overview"
-            style={{ width: "115%", height: "auto", display: "block", marginLeft: "-7.5%" }}
+            style={{
+              width: "135%",
+              height: "auto",
+              display: "block",
+              marginLeft: "-17.5%",
+              marginTop: "-32px",
+              filter: "drop-shadow(0 24px 48px rgba(16,118,188,0.14))",
+            }}
           />
         </div>
       </div>
@@ -288,30 +349,35 @@ function FoundationsSection() {
     {
       nodeId: "14004-2",
       title: "Color System",
+      icon: FoundationIcons.color,
       decision: "Colour tokens are split into three tiers: primitive (raw hex), semantic (intent-based), and component-specific. This means a single theme swap changes every surface without touching a component.",
       height: 520,
     },
     {
       nodeId: "14009-2",
       title: "Typography",
+      icon: FoundationIcons.type,
       decision: "Two typefaces, one purpose each: Inter for UI density and scanability, Lato for marketing weight. Nine named steps in the scale — nothing ad hoc.",
       height: 460,
     },
     {
       nodeId: "14008-2",
       title: "Spacing & Shadow",
+      icon: FoundationIcons.spacing,
       decision: "An 8pt grid governs all spacing. Three shadow levels (resting, elevated, floating) map directly to depth intent — no decorative shadows.",
       height: 460,
     },
     {
       nodeId: "14016-2",
       title: "Layout & Grid",
+      icon: FoundationIcons.grid,
       decision: "12-column fluid grid with defined breakpoints. Component-level responsive rules live inside components, not as page-level overrides.",
       height: 460,
     },
     {
       nodeId: "14032-225",
       title: "Iconography",
+      icon: FoundationIcons.icons,
       decision: "150+ icons in a single stroke weight. Every icon exports at 20 × 20 dp. Mixing icon styles is the fastest way to make a UI feel cheap — so we didn't.",
       height: 520,
     },
@@ -326,10 +392,32 @@ function FoundationsSection() {
       />
 
       {foundations.map((f) => (
-        <div key={f.nodeId} className="csl-reveal">
-          <p style={{ fontFamily: "Lato, sans-serif", fontSize: 13, fontWeight: 700, color: "#111827", marginBottom: 10, letterSpacing: "0.04em" }}>
-            {f.title}
-          </p>
+        <div key={f.nodeId} className="csl-reveal" style={{ marginBottom: 48 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+            <span style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 40,
+              height: 40,
+              borderRadius: 10,
+              background: "rgba(16,118,188,0.08)",
+              flexShrink: 0,
+            }}>
+              {f.icon}
+            </span>
+            <h3 style={{
+              fontFamily: "Lato, sans-serif",
+              fontSize: 22,
+              fontWeight: 700,
+              color: "#111827",
+              margin: 0,
+              letterSpacing: "-0.01em",
+              lineHeight: 1.2,
+            }}>
+              {f.title}
+            </h3>
+          </div>
           <FigmaEmbed nodeId={f.nodeId} title={f.title} height={f.height} />
           <EmbedCaption>
             <span style={{ color: "#1076BC", fontWeight: 600 }}>Decision: </span>{f.decision}
@@ -392,13 +480,34 @@ function ComponentsSection() {
 
       <div
         className="csl-reveal"
-        style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }}
+        style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 32 }}
       >
         {components.map((c) => (
           <div key={c.nodeId}>
-            <p style={{ fontFamily: "Lato, sans-serif", fontSize: 13, fontWeight: 700, color: "#111827", marginBottom: 8, letterSpacing: "0.04em" }}>
-              {c.title}
-            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 34,
+                height: 34,
+                borderRadius: 8,
+                background: "rgba(16,118,188,0.08)",
+                flexShrink: 0,
+              }}>
+                {FoundationIcons.component}
+              </span>
+              <h3 style={{
+                fontFamily: "Lato, sans-serif",
+                fontSize: 18,
+                fontWeight: 700,
+                color: "#111827",
+                margin: 0,
+                letterSpacing: "-0.01em",
+              }}>
+                {c.title}
+              </h3>
+            </div>
             <FigmaEmbed nodeId={c.nodeId} title={c.title} height={360} />
             <EmbedCaption>{c.note}</EmbedCaption>
           </div>

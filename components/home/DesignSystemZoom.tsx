@@ -31,14 +31,12 @@ const html = `
             </div>
             <div class="dsz-tags-row">
               <span class="dsz-pill">Design Systems</span>
-              <span class="dsz-pill">Components</span>
-              <span class="dsz-pill">Tokens</span>
-              <span class="dsz-pill dsz-wip-tag"><span class="dsz-pulse-dot"></span>In Progress</span>
+              <span class="dsz-pill">Token-first</span>
             </div>
           </div>
 
           <!-- Project label -->
-          <p class="dsz-project-label">04 &middot; AirIQ &middot; Design System</p>
+          <p class="dsz-project-label">AirIQ &middot; 2025&ndash;2026</p>
 
           <!-- Title -->
           <h3 class="dsz-title">A single system powering four products</h3>
@@ -57,31 +55,23 @@ const html = `
           <!-- Divider -->
           <div class="dsz-inner-divider"></div>
 
-          <!-- Progress bars -->
-          <div class="dsz-progress-rows">
-            <div class="dsz-progress-row">
-              <div class="dsz-swatch-pair"><div class="dsz-sw" style="background:#1a1a1a;"></div><div class="dsz-sw" style="background:#e8e6e0;"></div></div>
-              <span class="dsz-bar-label">Typography</span>
-              <div class="dsz-bar-track"><div class="dsz-bar-fill dsz-bar-anim" data-width="90" style="background:#1076BC;"></div></div>
-              <span class="dsz-bar-pct">90%</span>
+          <!-- Delivered deliverables -->
+          <div class="dsz-deliverables">
+            <div class="dsz-deliverable">
+              <span class="dsz-del-check">&#10003;</span>
+              <span class="dsz-del-label">Typography system &mdash; 9 named scale steps</span>
             </div>
-            <div class="dsz-progress-row">
-              <div class="dsz-swatch-pair"><div class="dsz-sw" style="background:#1076BC;"></div><div class="dsz-sw" style="background:#e3f3ff;"></div></div>
-              <span class="dsz-bar-label">Components</span>
-              <div class="dsz-bar-track"><div class="dsz-bar-fill dsz-bar-anim" data-width="75" style="background:#1076BC;"></div></div>
-              <span class="dsz-bar-pct">75%</span>
+            <div class="dsz-deliverable">
+              <span class="dsz-del-check">&#10003;</span>
+              <span class="dsz-del-label">30+ components across 4 products</span>
             </div>
-            <div class="dsz-progress-row">
-              <div class="dsz-swatch-pair"><div class="dsz-sw" style="background:#F2616E;"></div><div class="dsz-sw" style="background:#fff0f0;"></div></div>
-              <span class="dsz-bar-label">Tokens</span>
-              <div class="dsz-bar-track"><div class="dsz-bar-fill dsz-bar-anim" data-width="60" style="background:#F2616E;"></div></div>
-              <span class="dsz-bar-pct">60%</span>
+            <div class="dsz-deliverable">
+              <span class="dsz-del-check">&#10003;</span>
+              <span class="dsz-del-label">Color tokens &mdash; 3-tier semantic architecture</span>
             </div>
-            <div class="dsz-progress-row">
-              <div class="dsz-swatch-pair"><div class="dsz-sw" style="background:#7a7570;"></div><div class="dsz-sw" style="background:#f0ede8;"></div></div>
-              <span class="dsz-bar-label">Docs</span>
-              <div class="dsz-bar-track"><div class="dsz-bar-fill dsz-bar-anim" data-width="45" style="background:#7a7570;"></div></div>
-              <span class="dsz-bar-pct">45%</span>
+            <div class="dsz-deliverable">
+              <span class="dsz-del-check">&#10003;</span>
+              <span class="dsz-del-label">150+ icons, one unified stroke weight</span>
             </div>
           </div>
 
