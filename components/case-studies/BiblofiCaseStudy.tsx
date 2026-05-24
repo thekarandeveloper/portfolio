@@ -45,7 +45,7 @@ const TOC_ITEMS = [
   { id: "accessibility", label: "Accessibility"       },
   { id: "testing",       label: "Usability Testing"   },
   { id: "learnings",     label: "Learnings"           },
-  { id: "experience",   label: "Experience"          },
+  { id: "experience",    label: "Experience"          },
 ];
 
 const META_ROWS = [
@@ -99,7 +99,7 @@ function PhotoStack() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   HERO PHONE — drop-shadow preserves PNG corners, no overflow clipping
+   HERO PHONE
 ───────────────────────────────────────────────────────────────────── */
 function BibloPhone({ src, alt, w, tilt }: { src: string; alt: string; w: number; tilt: string }) {
   return (
@@ -148,7 +148,6 @@ function PhoneMockupScene() {
 function BibloHero() {
   return (
     <div className="csl-hero csl-hero--light" style={{ overflow:"visible" }}>
-      {/* Dark line grid matching homepage */}
       <div style={{
         position:"absolute", inset:0, pointerEvents:"none",
         backgroundImage:"linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px)",
@@ -160,15 +159,15 @@ function BibloHero() {
           <div className="csl-hero-eyebrow">Infosys Internship · iOS App</div>
           <h1 className="csl-hero-title">
             BibloFi<br />
-            <em style={{ fontStyle:"italic", color:"rgba(200,112,58,0.7)" }}>the library hadn&apos;t</em>
-            <br />changed. The students had.
+            <em style={{ fontStyle:"italic", color:"rgba(200,112,58,0.7)" }}>the library hadn&apos;t changed.</em>
+            <br />The students had.
           </h1>
           <p className="csl-hero-desc">
-            Infosys brought me in to design a library app from scratch. What I found wasn&apos;t a missing app, it was a system that assumed students had time, patience, and willingness to just show up and hope for the best.
+            Infosys asked me to design a library app from scratch. What I found wasn&apos;t a missing feature; it was a system that hadn&apos;t considered the student at all.
           </p>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8, marginTop:16 }}>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginTop:16 }}>
             {bibloMeta.map((item) => (
-              <span className="csl-hero-chip" key={item.label}>{item.label}: {item.value}</span>
+              <span className="csl-hero-chip" key={item.label}>{item.value}</span>
             ))}
           </div>
         </div>
@@ -176,7 +175,6 @@ function BibloHero() {
           <PhoneMockupScene />
         </div>
       </div>
-
     </div>
   );
 }
@@ -195,10 +193,10 @@ function OverviewSection() {
       <div className="csl-card-2col csl-reveal">
         <div>
           <p className="csl-text">
-            BibloFi was a 1-month Infosys internship project with weekly sprint deliveries. Each sprint had to ship — no room to over-iterate. We were handed an SRS document outlining every required feature, and the task was to turn those requirements into an experience that actually felt good on a real phone.
+            BibloFi was a 1-month Infosys internship project with weekly sprint deliveries. Each sprint had to ship; no room to over-iterate. We were handed an SRS document outlining every required feature, and the task was to turn those requirements into an experience that actually felt good on a real phone.
           </p>
           <p className="csl-text">
-            The context was the Infosys Mysore campus library — an immersive, well-stocked physical space running entirely on manual processes. Students had to physically visit to check availability, librarians handled everything at the counter, and there was no digital layer at all.
+            The context was the Infosys Mysore campus library: an immersive, well-stocked physical space running entirely on manual processes. Students had to physically visit to check availability, librarians handled everything at the counter, and there was no digital layer at all.
           </p>
           <div className="csl-tags csl-reveal rd1">
             {bibloRoleChips.map((chip) => (
@@ -209,7 +207,7 @@ function OverviewSection() {
         <div className="csl-callout csl-reveal rd1" style={{ margin:0, alignSelf:"start" }}>
           <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>The Brief</p>
           <p style={{ fontSize:"1rem", color:"#374151", lineHeight:1.65, marginBottom:16 }}>
-            Design the complete member experience of a library app for Mysore campus — onboarding, book discovery, seat booking, and fine tracking — in 4 weeks.
+            Design the complete member experience of a library app for Mysore campus: onboarding, book discovery, seat booking, and fine tracking, in 4 weeks.
           </p>
           <div style={{ borderTop:`1px solid ${A2}`, paddingTop:12 }}>
             <p style={{ fontSize:"13px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.12em", color:"#9CA3AF", marginBottom:6 }}>Team</p>
@@ -241,19 +239,15 @@ function ProcessSection() {
         title={<>The Double Diamond <em style={{ fontStyle:"italic" }}>framework in practice.</em></>}
       />
 
-      {/* Double Diamond inspiration note */}
       <div className="csl-reveal" style={{ display:"flex", alignItems:"center", gap:12, marginBottom:24 }}>
         <div style={{ width:28, height:28, background:A5, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem", flexShrink:0 }}>💡</div>
         <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.6 }}>
-          Inspired by the <strong style={{ color:A }}>Double Diamond theory</strong> — diverge to understand the problem fully, converge to a focused solution. Applied to a 4-week sprint model: one diamond per two weeks, one sprint per week.
+          Inspired by the <strong style={{ color:A }}>Double Diamond theory</strong>: diverge to understand the problem fully, converge to a focused solution. Applied to a 4-week sprint model, one diamond per two weeks.
         </p>
       </div>
 
-      {/* Visual week-by-week process */}
       <div className="csl-reveal" style={{ marginBottom:32 }}>
-        {/* Diamond shape visual */}
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:0, marginBottom:28, position:"relative" }}>
-          {/* connector line */}
           <div style={{
             position:"absolute", top:28, left:"12.5%", right:"12.5%", height:2,
             background:`linear-gradient(90deg, ${A2}, ${A}, ${A}, ${A2})`,
@@ -283,7 +277,6 @@ function ProcessSection() {
           ))}
         </div>
 
-        {/* Fast iteration note */}
         <div style={{ background:A5, borderRadius:12, padding:"14px 20px", display:"flex", gap:12, alignItems:"center" }}>
           <span style={{ fontSize:"1.2rem" }}>⚡</span>
           <p style={{ fontSize:"0.93rem", color:ADrk, lineHeight:1.6 }}>
@@ -307,37 +300,30 @@ function ResearchSection() {
       />
 
       <p className="csl-text csl-reveal">
-        I surveyed 38 students and conducted 8 in-depth interviews across two campuses. Three observation sessions inside the library, watching how students navigated the space in real time, revealed behaviours that surveys alone would have missed. I also spent time with 2 librarians to understand the other side of every pain point students described.
+        I surveyed 38 students and conducted 8 in-depth interviews across two campuses. Three observation sessions inside the library revealed behaviours that surveys alone would have missed. I also spent time with 2 librarians to understand the other side of every pain point students described.
       </p>
       <p className="csl-text csl-reveal rd1">
-        Key finding: the friction wasn&apos;t in the library itself, it was in the invisible overhead. Not knowing if a book was available before visiting. Not being able to reserve a seat. No reminders for due dates. Digital tools existed everywhere else in students&apos; lives, but the library expected them to operate on its terms.
+        Key finding: the friction wasn&apos;t in the library itself, it was in the invisible overhead. Not knowing if a book was available before visiting. Not being able to reserve a seat. No reminders for due dates. The failed visit, not the failed search, was the core pain.
       </p>
 
-      {/* 5W 1H Framework */}
+      {/* 5W 1H Framework visual */}
       <div className="csl-reveal rd1" style={{ marginBottom:32 }}>
         <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:20 }}>Research framework: 5W 1H</p>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:14 }}>
-          {[
-            { q:"Who?",   a:"B.Tech students aged 19–23 on Infosys Mysore campus — digital-first users expected modern tools everywhere except the library." },
-            { q:"What?",  a:"Cannot check book availability or reserve study seats without physically visiting the library first." },
-            { q:"When?",  a:"Pain peaks during exam season when seat demand spikes and specific reference books get heavily contested." },
-            { q:"Where?", a:"Infosys Mysore campus library — a well-stocked, immersive physical space running entirely on manual librarian-managed processes." },
-            { q:"Why?",   a:"No digital interface exists between students and the library system. Everything requires a physical counter visit." },
-            { q:"How?",   a:"Students physically visit, ask librarians for status, and plan study time around uncertainty about what they'll find on arrival." },
-          ].map(({ q, a }) => (
-            <div key={q} style={{ background:"#FAFAFA", border:"1px solid #F0F0F0", borderRadius:12, padding:"18px 16px" }}>
-              <p style={{ fontSize:"1.15rem", fontWeight:800, color:A, marginBottom:8 }}>{q}</p>
-              <p style={{ fontSize:"0.95rem", color:"#374151", lineHeight:1.65 }}>{a}</p>
-            </div>
-          ))}
+        <div style={{ borderRadius:16, overflow:"hidden" }}>
+          <Image
+            src="/Image/Biblofi/method.png"
+            alt="5W1H research framework"
+            width={1200} height={680}
+            style={{ width:"100%", height:"auto", display:"block" }}
+          />
         </div>
       </div>
 
-      {/* What surprised us — pivot insight */}
+      {/* What surprised us */}
       <div className="csl-callout csl-reveal rd1" style={{ marginBottom:28 }}>
         <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>What surprised us</p>
         <p style={{ fontSize:"1.08rem", color:"#374151", lineHeight:1.75 }}>
-          We expected the main problem to be the book catalogue, students not finding titles they wanted. It wasn&apos;t. The catalogue was fine. The problem was <strong>uncertainty before arriving</strong>: students couldn&apos;t know if a book was available or a seat was free without physically going there first. The failed visit, not the failed search, was the core pain.
+          We expected the main problem to be the book catalogue. It wasn&apos;t. The catalogue was fine. The problem was <strong>uncertainty before arriving</strong>: students couldn&apos;t know if a book was available or a seat was free without physically going there first.
         </p>
       </div>
 
@@ -360,7 +346,7 @@ function ResearchSection() {
         <p style={{ fontSize:"1rem", color:"#374151", lineHeight:1.8, fontStyle:"italic" }}>
           &quot;I walked 20 minutes to the library last month, and the book wasn&apos;t there. I&apos;d already planned to sit in my usual spot, but of course you can&apos;t actually reserve one. I just went home. I haven&apos;t been back since.&quot;
         </p>
-        <p style={{ fontSize:"15px", color:"#9CA3AF", marginTop:10 }}> B.Tech student, 3rd year · Interview participant</p>
+        <p style={{ fontSize:"15px", color:"#9CA3AF", marginTop:10 }}>B.Tech student, 3rd year · Interview participant</p>
       </div>
 
       <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))", gap:14 }} className="csl-reveal rd2">
@@ -389,7 +375,7 @@ function InsightsSection() {
 
       <div className="csl-callout csl-reveal" style={{ marginBottom:32 }}>
         &quot;Despite living in a digital-first world, library visits remain stuck in the past, long queues, no way to check book availability, and zero flexibility in planning. The result? A frustrating, disconnected experience that fails modern users.&quot;
-        <p style={{ fontSize:"15px", color:"#9CA3AF", marginTop:10, fontStyle:"normal" }}> Composite insight from 8 student interviews</p>
+        <p style={{ fontSize:"15px", color:"#9CA3AF", marginTop:10, fontStyle:"normal" }}>Composite insight from 8 student interviews</p>
       </div>
 
       <div className="csl-persona-grid csl-reveal rd1">
@@ -486,11 +472,10 @@ function LoFiWireframesSection() {
         />
       </div>
 
-      {/* Bridge: what the lo-fi round revealed */}
       <div className="csl-callout csl-reveal rd1" style={{ marginTop:24 }}>
         <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>What the lo-fi round revealed</p>
         <p style={{ fontSize:"1.08rem", color:"#374151", lineHeight:1.75 }}>
-          Two structural problems surfaced immediately. The bottom tab bar had five items, one too many for comfortable one-handed use on a standard iPhone. The &apos;Issue Book&apos; action was buried three taps deep inside a book detail screen, which test observers flagged in the first five minutes. Both were fixed before opening Figma in hi-fi: the tab bar dropped to four primary items, and issuing a book became a single persistent action from the catalogue view.
+          Two structural problems surfaced immediately. The bottom tab bar had five items, one too many for comfortable one-handed use. The &apos;Issue Book&apos; action was buried three taps deep, flagged in the first five minutes of testing. Both were fixed before opening Figma in hi-fi: tabs dropped to four, and issuing a book became a persistent action from the catalogue view.
         </p>
       </div>
     </CsSection>
@@ -498,7 +483,7 @@ function LoFiWireframesSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §06  CONSTRAINTS & TRADEOFFS  (new section)
+   §06  CONSTRAINTS & TRADEOFFS
 ───────────────────────────────────────────────────────────────────── */
 function ConstraintsSection() {
   const constraints = [
@@ -515,7 +500,7 @@ function ConstraintsSection() {
     {
       icon:  "⚙️",
       title: "No real-time push backend",
-      desc:  "Push notification infrastructure wasn't available in this sprint. The 'notify me when a seat opens' waitlist idea was cut; a booking-only model became the viable path.",
+      desc:  "Push notification infrastructure wasn't available in this sprint. The seat waitlist idea was cut; a booking-only model became the viable path.",
     },
     {
       icon:  "✂️",
@@ -542,11 +527,10 @@ function ConstraintsSection() {
         ))}
       </div>
 
-      {/* The hardest tradeoff moment */}
       <div className="csl-callout csl-reveal rd1" style={{ marginTop:20 }}>
         <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>The hardest tradeoff</p>
         <p style={{ fontSize:"1.08rem", color:"#374151", lineHeight:1.75 }}>
-          The seat waitlist feature, where students could queue and get notified when a spot opens, tested better than the booking-only model in concept testing. Users understood and wanted it. But the push notification backend would have taken the dev team two weeks to build, leaving no time to test the core flows. I made the call to cut it: a well-tested booking flow at handoff is worth more than a partially-built waitlist. The waitlist went into the Phase 2 doc with full specs.
+          The seat waitlist feature tested better than the booking-only model in concept testing. But the push notification backend would have taken two weeks to build, leaving no time to test the core flows. A well-tested booking flow at handoff is worth more than a partially-built waitlist. The waitlist went into the Phase 2 doc with full specs.
         </p>
       </div>
     </CsSection>
@@ -579,15 +563,17 @@ function ScreensSection() {
         </div>
         <div>
           <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:6 }}>Components</p>
-          <p style={{ fontSize:"1rem", color:ADrk, lineHeight:1.6 }}>Built on iOS 18 UI Kit (Figma Community). Native sheets, tabs, and cards, so the engineering team had direct SwiftUI analogues with no bespoke component work.</p>
+          <p style={{ fontSize:"1rem", color:ADrk, lineHeight:1.6 }}>Built on iOS 18 UI Kit (Figma Community). Native sheets, tabs, and cards so the engineering team had direct SwiftUI analogues with no bespoke component work.</p>
         </div>
       </div>
 
       {bibloFeatures.map((feature) => (
         <div key={feature.title} className="csl-reveal" style={{
           background:"#fff", borderRadius:20, padding:"24px",
-          boxShadow:"0 4px 20px rgba(0,0,0,0.05)", marginBottom:20,
-          display:"grid", gridTemplateColumns:"1fr 200px", gap:28, alignItems:"center",
+          marginBottom:20,
+          display:"grid",
+          gridTemplateColumns: feature.reverse ? "200px 1fr" : "1fr 200px",
+          gap:28, alignItems:"center",
         }}>
           <div style={{ order: feature.reverse ? 2 : 1 }}>
             <p style={{ fontSize:"15px", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", marginBottom:4 }}>{feature.num}</p>
@@ -595,7 +581,6 @@ function ScreensSection() {
             <h3 style={{ fontSize:"1.15rem", fontWeight:700, color:"#111827", marginBottom:10 }}>{feature.title}</h3>
             <p className="csl-text" style={{ marginBottom:12 }}>{feature.desc[0]}</p>
 
-            {/* Why this approach */}
             <div style={{ background:A5, borderRadius:10, padding:"10px 14px", marginBottom:10 }}>
               <p style={{ fontSize:"13px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.12em", color:AMed, marginBottom:4 }}>Why this approach</p>
               <p style={{ fontSize:"0.93rem", color:ADrk, lineHeight:1.6 }}>{feature.rationale}</p>
@@ -610,7 +595,7 @@ function ScreensSection() {
               src={feature.img}
               alt={feature.title}
               width={240} height={427}
-              style={{ width:"100%", maxWidth:200, height:"auto", display:"block", borderRadius:20, boxShadow:"0 8px 32px rgba(0,0,0,0.12)" }}
+              style={{ width:"100%", maxWidth:200, height:"auto", display:"block", borderRadius:20 }}
             />
           </div>
         </div>
@@ -631,80 +616,61 @@ function FinalScreensSection() {
         sub="From onboarding to book discovery, seat booking to fine tracking, final high-fidelity screens delivered to the Infosys engineering team."
       />
 
-      {/* ── INTRO CARD (inspired by "final one.png") ── */}
+      {/* ── INTRO CARD with glowing BibloFi branding ── */}
       <div className="csl-reveal" style={{
-        border:"2px dashed #D4B896", borderRadius:20, background:"#FFFDF8",
-        padding:"36px", marginBottom:56,
-        display:"grid", gridTemplateColumns:"1.1fr 0.9fr", gap:40, alignItems:"center",
+        borderRadius:20, background:"#FFFDF8",
+        border:"2px dashed #D4B896",
+        padding:"40px 36px", marginBottom:48,
+        textAlign:"center",
       }}>
-        <div>
-          <p style={{
+        {/* Glowing branding element */}
+        <div style={{ display:"inline-block", position:"relative", marginBottom:12 }}>
+          <div style={{
+            position:"absolute",
+            inset:"-24px -40px",
+            background:"radial-gradient(ellipse, rgba(200,112,58,0.28) 0%, rgba(200,112,58,0.10) 50%, transparent 75%)",
+            filter:"blur(16px)",
+            borderRadius:"50%",
+            pointerEvents:"none",
+          }} />
+          <div style={{
+            position:"absolute",
+            inset:"-8px -16px",
+            background:"radial-gradient(ellipse, rgba(255,220,160,0.35) 0%, transparent 70%)",
+            borderRadius:"50%",
+            pointerEvents:"none",
+          }} />
+          <span style={{
             fontFamily:"var(--font-caveat), cursive",
-            fontSize:"1.9rem", fontWeight:700, color:A, lineHeight:1.2, marginBottom:20,
-          }}>
-            BibloFi. A Complete Library Experience.
-          </p>
-          <p style={{ fontSize:"1.05rem", color:"#374151", lineHeight:1.8, marginBottom:16 }}>
-            BibloFi is inspired by the word <strong style={{ color:A }}>Bibliophile</strong>, a person who loves books. We wanted to create an app that feels like home for every reader.
-          </p>
-          <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:24, flexWrap:"wrap" }}>
-            <div style={{ textAlign:"center" }}>
-              <span style={{ fontSize:"2.4rem", fontWeight:900, color:"#111827", letterSpacing:"-0.02em", display:"block" }}>Biblio</span>
-              <span style={{ fontSize:"11px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.12em", color:"#9CA3AF" }}>love of books</span>
-            </div>
-            <span style={{ fontSize:"2rem", color:A, fontWeight:300, opacity:0.6 }}>+</span>
-            <div style={{ textAlign:"center" }}>
-              <span style={{ fontSize:"2.4rem", fontWeight:900, color:"#111827", letterSpacing:"-0.02em", display:"block" }}>Fi</span>
-              <span style={{ fontSize:"11px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.12em", color:"#9CA3AF" }}>fidelity</span>
-            </div>
-            <span style={{ fontSize:"2rem", color:"#D1D5DB", margin:"0 4px" }}>→</span>
-            <div style={{ textAlign:"center" }}>
-              <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"4rem", fontWeight:700, color:A, display:"block", lineHeight:1 }}>BibloFi</span>
-              <span style={{ fontSize:"11px", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.12em", color:A }}>the app</span>
-            </div>
-          </div>
-          <p style={{ fontSize:"1rem", color:"#9CA3AF", fontStyle:"italic" }}>
-            After all the hustle of research, user pain points, and design exploration, BibloFi was born.
-          </p>
+            fontSize:"4.5rem", fontWeight:700, color:A,
+            display:"block", lineHeight:1, position:"relative", zIndex:1,
+            textShadow:`0 0 32px rgba(200,112,58,0.5), 0 0 64px rgba(200,112,58,0.25), 0 2px 8px rgba(200,112,58,0.2)`,
+          }}>BibloFi</span>
         </div>
-        <div style={{ background:A, borderRadius:16, padding:"28px 24px" }}>
-          <p style={{ fontSize:"1.08rem", fontWeight:600, color:"#fff", lineHeight:1.75 }}>
-            Our onboarding screens are designed to highlight the most important features of the app in a simple and engaging flow.
-          </p>
-        </div>
+
+        <p style={{ fontSize:"1.25rem", fontWeight:700, color:"#111827", marginTop:16, letterSpacing:"-0.01em" }}>
+          Complete Library Experience
+        </p>
+        <p style={{ fontSize:"0.95rem", color:"#6B7280", marginTop:8, maxWidth:480, margin:"8px auto 0", lineHeight:1.7 }}>
+          Inspired by the word <strong style={{ color:A }}>Bibliophile</strong>, a person who loves books. Designed to feel like home for every reader on campus.
+        </p>
       </div>
 
-      {/* ── ONBOARDING SCREENS ── */}
+      {/* ── ONBOARDING SCREENS as real photos ── */}
       <div style={{ marginBottom:64 }}>
-        <div className="csl-reveal rd3" style={{ textAlign:"right", marginBottom:28 }}>
-          <span style={{ fontFamily:"var(--font-caveat), cursive", fontSize:"3.2rem", fontWeight:700, color:A, lineHeight:1 }}>
-            Onboarding Screens
-          </span>
-        </div>
-
-        {/* 4-step flow with arrows pointing to each screen's purpose */}
-        <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:16, position:"relative" }}>
-          {/* connecting arrows */}
-          <div style={{ position:"absolute", top:32, left:"12.5%", right:"12.5%", height:2, background:`linear-gradient(90deg, ${A2}, ${A2})`, zIndex:0, display:"flex", alignItems:"center", justifyContent:"space-between" }} />
-          {[
-            { num:"01", screen:"Welcome",      arrow:"↓", desc:"Brand intro and app purpose — sets the tone before any feature is shown.", color:A5 },
-            { num:"02", screen:"Features",     arrow:"↓", desc:"Three key features previewed: search, seat booking, scan. One tap each.", color:"#F0F7FF" },
-            { num:"03", screen:"Genre Pick",   arrow:"↓", desc:"User selects preferred genres. Feeds the Home screen's recommendations directly.", color:A5 },
-            { num:"04", screen:"Get Started",  arrow:"↓", desc:"Single CTA to enter the app. No account required to explore.", color:"#F0F7FF" },
-          ].map((s, i) => (
-            <div key={s.num} className={`csl-reveal${i > 0 ? ` rd${i}` : ""}`} style={{
-              background:s.color, borderRadius:16, padding:"20px 16px", textAlign:"center",
-              border:`1px solid ${A2}`, position:"relative", zIndex:1,
-            }}>
-              <p style={{ fontSize:"22px", fontWeight:900, color:A, marginBottom:4, fontFamily:"ui-monospace,monospace" }}>{s.num}</p>
-              <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>{s.screen}</p>
-              <p style={{ fontSize:"1.5rem", color:A, marginBottom:8 }}>{s.arrow}</p>
-              <p style={{ fontSize:"0.88rem", color:"#6B7280", lineHeight:1.6 }}>{s.desc}</p>
+        <div className="csl-reveal rd1" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:14 }}>
+          {["ob1.png","ob2.png","ob3.png","ob4.png"].map((img, i) => (
+            <div key={img} style={{ borderRadius:20, overflow:"hidden" }}>
+              <Image
+                src={`${FINAL}/${img}`}
+                alt={`Onboarding screen ${i + 1}`}
+                width={320} height={693}
+                style={{ width:"100%", height:"auto", display:"block" }}
+              />
             </div>
           ))}
         </div>
-
-        <p className="csl-reveal rd1" style={{ fontSize:"0.93rem", color:"#9CA3AF", fontStyle:"italic", marginTop:20, textAlign:"center" }}>
+        <p className="csl-reveal rd2" style={{ fontSize:"0.93rem", color:"#9CA3AF", fontStyle:"italic", marginTop:16, textAlign:"center" }}>
           4-screen onboarding flow · swipeable · skippable · no sign-up gate
         </p>
       </div>
@@ -721,7 +687,7 @@ function FinalScreensSection() {
           <div style={{ textAlign:"right" }}>
             <div style={{ marginBottom:28 }}>
               <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>Pick your genres →</p>
-              <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.65 }}>Students choose from a rich list of categories — Fiction, Science, History, Technology and more — in a single tap flow.</p>
+              <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.65 }}>Students choose from a rich list of categories: Fiction, Science, History, Technology and more, in a single tap flow.</p>
             </div>
             <div>
               <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>One-time personalisation →</p>
@@ -729,7 +695,7 @@ function FinalScreensSection() {
             </div>
           </div>
           {/* Center phone */}
-          <div style={{ borderRadius:28, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.13)" }}>
+          <div style={{ borderRadius:28, overflow:"hidden" }}>
             <Image
               src={`${FINAL}/filters.png`}
               alt="Genre filters: Tell us what you love to read"
@@ -741,7 +707,7 @@ function FinalScreensSection() {
           <div>
             <div style={{ marginBottom:28 }}>
               <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>← Shapes recommendations</p>
-              <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.65 }}>The selections directly feed the Home screen's &quot;Top Picks for You&quot; section — what you choose here is exactly what surfaces there.</p>
+              <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.65 }}>The selections directly feed the Home screen&apos;s &quot;Top Picks for You&quot; section; what you choose here is exactly what surfaces there.</p>
             </div>
             <div>
               <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:6 }}>← Reduces discovery friction</p>
@@ -779,7 +745,7 @@ function FinalScreensSection() {
           </div>
 
           {/* Center phone */}
-          <div style={{ borderRadius:32, overflow:"hidden", boxShadow:"0 24px 64px rgba(0,0,0,0.15)" }}>
+          <div style={{ borderRadius:32, overflow:"hidden" }}>
             <Image src={`${FINAL}/home-biblofi.png`} alt="BibloFi home screen" width={320} height={693}
               style={{ width:"100%", height:"auto", display:"block" }} />
           </div>
@@ -802,7 +768,6 @@ function FinalScreensSection() {
 
       {/* ══ CATEGORIES & SEARCHING ══ */}
       <div style={{ marginBottom:80 }}>
-        {/* Amber banner */}
         <div className="csl-reveal" style={{
           background:"#F5A623", borderRadius:16, padding:"26px 40px", marginBottom:44, textAlign:"center",
         }}>
@@ -821,8 +786,7 @@ function FinalScreensSection() {
       {/* ══ SERVICE / SEAT BOOKING ══ */}
       <div style={{ marginBottom:80 }}>
         <div className="csl-reveal" style={{ display:"grid", gridTemplateColumns:"1.1fr 0.9fr", gap:48, alignItems:"start" }}>
-          {/* seat-booking.png is already a 2-phone composite */}
-          <div style={{ borderRadius:20, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.10)" }}>
+          <div style={{ borderRadius:20, overflow:"hidden" }}>
             <Image src={`${FINAL}/seat-booking.png`} alt="Library Services and Seat Booking screens"
               width={900} height={540} style={{ width:"100%", height:"auto", display:"block" }} />
           </div>
@@ -858,8 +822,7 @@ function FinalScreensSection() {
         <h3 style={{ fontSize:"1.2rem", fontWeight:700, color:"#111827", marginBottom:28 }}>
           Your library, your identity.
         </h3>
-        {/* profile-biblofi.png is already a 3-phone composite */}
-        <div style={{ borderRadius:20, overflow:"hidden", boxShadow:"0 16px 48px rgba(0,0,0,0.10)" }}>
+        <div style={{ borderRadius:20, overflow:"hidden" }}>
           <Image src={`${FINAL}/profile-biblofi.png`} alt="Profile, Account, and Edit Profile screens"
             width={1200} height={560} style={{ width:"100%", height:"auto", display:"block" }} />
         </div>
@@ -935,11 +898,10 @@ function TestingSection() {
         Key improvement from testing: secondary navigation was unclear in early iterations. We restructured the tab bar and improved labelling, confirmed positively in final feedback sessions.
       </p>
 
-      {/* Post-delivery honest caveat */}
       <div className="csl-callout csl-reveal rd2" style={{ marginTop:20 }}>
         <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Post-delivery context</p>
         <p style={{ fontSize:"1.08rem", color:"#374151", lineHeight:1.75 }}>
-          The Figma specs and design system were handed off to the iOS engineering team at internship end. Post-launch adoption data wasn&apos;t accessible to me after the internship concluded. These testing results represent the final pre-handoff validation, not production metrics. Instrumenting for post-launch measurement is something I&apos;d build into the brief from day one next time.
+          The Figma specs and design system were handed off to the iOS engineering team at internship end. Post-launch adoption data wasn&apos;t accessible to me after the internship concluded. These testing results represent the final pre-handoff validation, not production metrics.
         </p>
       </div>
 
@@ -955,30 +917,27 @@ function LearningsSection() {
     <CsSection id="learnings">
       <CsSectionHeader
         label="What I Learned"
-        title={<>Growing as a designer <em style={{ fontStyle:"italic" }}>and a leader.</em></>}
+        title={<>Quietly growing, <em style={{ fontStyle:"italic" }}>sprint by sprint.</em></>}
       />
 
-      {/* What this didn't fully solve */}
-      <div className="csl-callout csl-reveal" style={{ marginBottom:28 }}>
+      <div className="csl-callout csl-reveal" style={{ marginBottom:32 }}>
         <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>What this didn&apos;t fully solve</p>
-        <p style={{ fontSize:"1.08rem", color:"#374151", lineHeight:1.75 }}>
-          BibloFi solves the student&apos;s experience. It doesn&apos;t solve the librarian&apos;s. Every booking, every fine, every availability update still requires manual work on the librarian&apos;s side. The admin panel was de-scoped in week 3, it&apos;s the most important thing missing from what was delivered, and it&apos;s what I&apos;d prioritise in Phase 2.
+        <p style={{ fontSize:"1.05rem", color:"#374151", lineHeight:1.75 }}>
+          BibloFi solves the student&apos;s experience. It doesn&apos;t solve the librarian&apos;s. Every booking still requires manual work on the librarian&apos;s side. The admin panel was de-scoped in week 3; it&apos;s the most important thing missing, and it&apos;s what I&apos;d prioritise in Phase 2.
         </p>
       </div>
 
-      <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
-        {learnings.map((learning) => (
+      <div style={{ display:"flex", flexDirection:"column" }}>
+        {learnings.map((learning, i) => (
           <div key={learning.num} className="csl-reveal" style={{
-            display:"flex", gap:20,
-            background: learning.num === "05" ? A5 : "transparent",
-            border:     learning.num === "05" ? `1.5px solid ${A2}` : "none",
-            borderRadius: learning.num === "05" ? 18 : 0,
-            padding:"22px 0",
+            display:"flex", gap:20, alignItems:"baseline",
+            padding:"20px 0",
+            borderBottom: i < learnings.length - 1 ? "1px solid #F3F4F6" : "none",
           }}>
-            <p style={{ fontSize:"15px", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", flexShrink:0, marginTop:2 }}>{learning.num}</p>
+            <span style={{ fontSize:"13px", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", flexShrink:0 }}>{learning.num}</span>
             <div>
-              <h3 style={{ fontSize:"1.15rem", fontWeight:700, color:"#111827", marginBottom:6 }}>{learning.title}</h3>
-              <p style={{ fontSize:"1rem", color:"#6B7280", lineHeight:1.7 }}>{learning.text}</p>
+              <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:4, lineHeight:1.4 }}>{learning.title}</p>
+              <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.7, fontStyle:"italic" }}>{learning.text}</p>
             </div>
           </div>
         ))}
@@ -996,25 +955,50 @@ function ExperienceSection() {
     <CsSection id="experience" last>
       <CsSectionHeader
         label="Internship Experience"
-        title={<>Four weeks, one team, <em style={{ fontStyle:"italic" }}>a lot learned.</em></>}
+        title={<>Thank you, <em style={{ fontStyle:"italic" }}>truly.</em></>}
       />
       <div style={{ display:"grid", gridTemplateColumns:"1fr auto", gap:48, alignItems:"start" }}>
-        <div>
-          {[
-            { n:"01", title:"The SRS was the starting point, not the whole story", note:"The document listed features. It didn't explain why students weren't using the library. Understanding the real frustrations required going beyond the brief — doing research the SRS didn't ask for." },
-            { n:"02", title:"Communication was as important as design", note:"Working with 10 iOS developers meant every decision had to be explainable in engineering terms. I started annotating Figma with rationale notes. By week 3 the devs were reading them without being asked." },
-            { n:"03", title:"Mysore campus had a beautiful library — and zero digital presence", note:"The physical space was immersive and well-stocked. The gap wasn't the environment — it was the invisible overhead before students ever arrived. The app solved that overhead." },
-            { n:"04", title:"Sprint reviews kept us honest", note:"Every Friday was a show-and-tell with the product owner and dev team. If something wasn't working by Thursday, we cut it — not patched it. That discipline made the final handoff clean." },
-          ].map((item) => (
-            <div key={item.n} className="csl-reveal" style={{ display:"flex", gap:16, marginBottom:20, paddingBottom:20, borderBottom:"1px solid #F3F4F6" }}>
-              <p style={{ fontSize:"13px", fontWeight:700, color:A, fontFamily:"ui-monospace,monospace", flexShrink:0, marginTop:3 }}>{item.n}</p>
-              <div>
-                <p style={{ fontSize:"1rem", fontWeight:700, color:"#111827", marginBottom:5 }}>{item.title}</p>
-                <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.7 }}>{item.note}</p>
-              </div>
-            </div>
-          ))}
+        {/* Handwritten note */}
+        <div className="csl-reveal" style={{
+          background:"#FFFEF5",
+          border:"1.5px solid #E8D5A0",
+          borderRadius:16,
+          padding:"44px 48px 40px",
+          position:"relative",
+          transform:"rotate(-0.6deg)",
+          maxWidth:540,
+        }}>
+          {/* Lined paper effect */}
+          <div style={{
+            position:"absolute", inset:"56px 48px 40px",
+            backgroundImage:`repeating-linear-gradient(transparent, transparent 31px, rgba(200,112,58,0.12) 31px, rgba(200,112,58,0.12) 32px)`,
+            pointerEvents:"none",
+          }} />
+          <p style={{
+            fontFamily:"var(--font-caveat), cursive",
+            fontSize:"1.7rem",
+            color:"#3D2010",
+            lineHeight:1.9,
+            position:"relative", zIndex:1,
+          }}>
+            This was one of the most meaningful experiences of my design journey.
+            <br /><br />
+            I&apos;m deeply grateful to Vir sir, my mentor, Shaukat sir, the product owner, and my entire team. For the learning, the trust, and the memories.
+            <br /><br />
+            Thank you. ✨
+          </p>
+          <p style={{
+            fontFamily:"var(--font-caveat), cursive",
+            fontSize:"1.35rem",
+            color:A,
+            marginTop:20,
+            textAlign:"right",
+            position:"relative", zIndex:1,
+          }}>
+            Nikunj
+          </p>
         </div>
+
         <div className="csl-reveal rd1">
           <PhotoStack />
         </div>

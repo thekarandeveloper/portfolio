@@ -1,8 +1,8 @@
 export const bibloMeta = [
-  { label: "My Role", value: "UI/UX Design Lead" },
-  { label: "Platform", value: "iOS Mobile App" },
-  { label: "Duration", value: "4 weeks · Internship" },
-  { label: "Team",     value: "Led 10 developers"  }
+  { label: "Role",     value: "UX Design Lead"    },
+  { label: "Platform", value: "iOS App"            },
+  { label: "Duration", value: "4 Week Internship"  },
+  { label: "Team",     value: "Lead Developer"     },
 ];
 
 export const bibloRoleChips = [
@@ -83,7 +83,7 @@ export const wireframes = [
 export const bibloFeatures = [
   {
     num: "01",
-    tag: "Smart Book Discovery",
+    tag: "📖 Smart Book Discovery",
     title: "Find any book before you even leave home.",
     desc: [
       "Students were wasting time visiting the library only to find the book they needed was already issued. The search system lets users browse by genre, search by author, or scan a barcode, and see real-time availability before making the trip.",
@@ -99,15 +99,15 @@ export const bibloFeatures = [
   },
   {
     num: "02",
-    tag: "Study Seat Booking",
+    tag: "🪑 Study Seat Booking",
     title: "Reserve your spot before you arrive.",
     desc: [
-      "Seat unavailability during exam season was the single most-mentioned pain point across all 8 interviews. Students can view the study hall layout, select a seat, and get a confirmation — before leaving home.",
+      "Seat unavailability during exam season was the single most-mentioned pain point across all 8 interviews. Students can view the study hall layout, select a seat, and get a confirmation before leaving home.",
     ],
     rationale:
       "11 of 12 students who stopped visiting regularly cited seat uncertainty as the reason. This single feature had the highest potential to change real behaviour.",
     rejected:
-      "Waitlist notifications were cut — push infrastructure wasn't available in the sprint. Booking-only became the viable path.",
+      "Waitlist notifications were cut; push infrastructure wasn't available in the sprint. Booking-only became the viable path.",
     impact: "📚 85% seat booking success rate",
     img:   "/Image/Biblofi/seat.png",
     phone: "seat",
@@ -115,7 +115,7 @@ export const bibloFeatures = [
   },
   {
     num: "03",
-    tag: "Scan & Search",
+    tag: "📷 Scan & Search",
     title: "Point your camera. Find the book instantly.",
     desc: [
       "Observation sessions showed students physically pulling books off shelves one by one to check availability. A barcode scan closes the physical-digital gap in under 3 seconds, no librarian needed.",
@@ -182,27 +182,27 @@ export const testResults = [
 export const learnings = [
   {
     num:   "01",
-    title: "Navigation is your first design decision, not your last",
-    text:  "We had five tabs instead of four — caught it in lo-fi. Fixing it at wireframe stage took 20 minutes. In hi-fi, the same fix would have cost two days.",
+    title: "Navigation is your first design decision",
+    text:  "We had five tabs instead of four. Caught it in lo-fi, 20 minutes to fix. In hi-fi the same change would have cost two days.",
   },
   {
     num:   "02",
-    title: "Early testing saves late rework",
-    text:  "The confirmation step in seat booking would have shipped broken without testing. That one finding alone justified the entire testing phase.",
+    title: "One test session saves a week",
+    text:  "A single usability session caught a broken booking flow before it shipped. That finding alone made the entire testing phase worth it.",
   },
   {
     num:   "03",
-    title: "Leading 10 developers is a design challenge",
-    text:  "I started writing decision rationale into Figma comments. By week 3, the dev team was referencing those notes without asking me. Documentation is part of the design.",
+    title: "Documentation is design",
+    text:  "Writing rationale into Figma comments meant the dev team could unblock themselves by week 3. They were reading the notes without being asked.",
   },
   {
     num:   "04",
-    title: "Know what to cut — and cut it cleanly",
-    text:  "Three features de-scoped in week 3 to protect quality of the 7 core flows. They didn't disappear — they went into the handoff doc as Phase 2 recommendations with full specs.",
+    title: "Cut cleanly, document it, move on",
+    text:  "Three features de-scoped in week 3. They didn't disappear; they became Phase 2 with full specs. Clean exits protect the work that stays.",
   },
   {
     num:   "05",
     title: "What I'd do differently",
-    text:  "Include librarians in research from day one. Push for 6 weeks instead of 4. Build post-launch success metrics into the brief so adoption data doesn't disappear when the internship ends.",
+    text:  "Include librarians from day one. Push for six weeks. Build post-launch metrics into the brief before the internship ends.",
   },
 ];
