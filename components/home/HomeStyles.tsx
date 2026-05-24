@@ -723,10 +723,10 @@ nav.scrolled .nav-pill{
 .dsz-float{
   position:absolute;
   font-family:var(--hand);
-  font-size:15px;
+  font-size:18px;
   line-height:1.55;
   color:rgba(0,0,0,0.58);
-  max-width:148px;
+  max-width:158px;
   animation:dszDrift var(--dur,6s) ease-in-out infinite;
   animation-delay:var(--delay,0s);
 }
@@ -773,12 +773,13 @@ nav.scrolled .nav-pill{
 .dsz-dot-blue{width:11px;height:11px;background:#1076BC;}
 .dsz-dot-coral{width:11px;height:11px;background:#F2616E;}
 .dsz-dot-blue-muted{width:7px;height:7px;background:rgba(16,118,188,0.35);align-self:flex-end;margin-bottom:1px;}
-/* pill tags */
+/* pill tags — subtler, secondary visual weight */
 .dsz-tags-row{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;max-width:300px;}
 .dsz-pill{
-  font-family: Lato, sans-serif;font-size: 15px;font-weight: 600;
-  border-radius:99px;padding:4px 10px;
-  color:#1a1a1a;background:#f2f0ec;letter-spacing:0.02em;
+  font-family: Lato, sans-serif;font-size: 11px;font-weight: 500;
+  border-radius:99px;padding:3px 9px;
+  color:#9e9c97;background:#f5f4f0;letter-spacing:0.04em;
+  border:1px solid rgba(0,0,0,0.06);
 }
 .dsz-wip-tag{background:#e3f3ff;color:#0a5a8a;display:inline-flex;align-items:center;gap:5px;}
 .dsz-pulse-dot{
@@ -810,25 +811,29 @@ nav.scrolled .nav-pill{
 .dsz-stat-chip{background:#f5f4f0;border-radius:10px;padding:10px 6px;text-align:center;}
 .dsz-stat-number{font-size:17px;font-weight:700;color:#1076BC;line-height:1;margin-bottom:4px;}
 .dsz-stat-label{font-size: 15px;font-weight: 600;color:#9e9c97;text-transform:uppercase;letter-spacing:0.06em;}
-/* inner divider */
-.dsz-inner-divider{height:1px;background:rgba(0,0,0,0.06);margin-bottom:16px;}
-/* delivered deliverables list */
-.dsz-deliverables{display:flex;flex-direction:column;gap:9px;margin-bottom:20px;}
-.dsz-deliverable{display:flex;align-items:center;gap:10px;}
-.dsz-del-check{
-  width:18px;height:18px;border-radius:50%;flex-shrink:0;
-  background:#E8F7F0;color:#059669;
-  font-size:10px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  line-height:1;
-}
-.dsz-del-label{font-family:Lato,sans-serif;font-size:13px;color:#4B5563;font-weight:500;line-height:1.4;}
+/* visual system preview */
+.dsz-sys-preview{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.dsz-preview-row{display:flex;align-items:center;gap:10px;}
+.dsz-preview-label{font-family:Lato,sans-serif;font-size:11px;font-weight:600;color:#b0aea8;text-transform:uppercase;letter-spacing:0.10em;width:82px;flex-shrink:0;}
+.dsz-swatches{display:flex;gap:5px;flex-wrap:wrap;}
+.dsz-swatch{width:20px;height:20px;border-radius:5px;flex-shrink:0;border:1px solid rgba(0,0,0,0.06);}
+/* spacing scale — bars of increasing height AND width */
+.dsz-spacing-scale{display:flex;align-items:flex-end;gap:5px;}
+.dsz-space-bar{background:#1076BC;border-radius:3px;opacity:0.22;transition:opacity 0.2s;}
+.dsz-space-bar:nth-child(1){opacity:0.10;}
+.dsz-space-bar:nth-child(2){opacity:0.15;}
+.dsz-space-bar:nth-child(3){opacity:0.22;}
+.dsz-space-bar:nth-child(4){opacity:0.30;}
+.dsz-space-bar:nth-child(5){opacity:0.42;}
+.dsz-space-bar:nth-child(6){opacity:0.56;}
+.dsz-space-bar:nth-child(7){opacity:0.72;}
+/* component pills */
+.dsz-comp-pills{display:flex;flex-wrap:wrap;gap:5px;}
+.dsz-comp-pill{font-family:Lato,sans-serif;font-size:11px;font-weight:600;background:#f0f4f8;color:#4B5563;border-radius:99px;padding:3px 10px;letter-spacing:0.02em;border:1px solid rgba(0,0,0,0.06);}
+.dsz-comp-more{background:#E3F3FF;color:#1076BC;border-color:rgba(16,118,188,0.15);}
 /* card footer */
 .dsz-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.dsz-footer-chips{display:flex;gap:6px;align-items:center;}
-.dsz-footer-chip{font-size: 15px;font-weight: 600;border-radius:6px;padding:4px 8px;}
-.dsz-chip-blue{background:#e3f3ff;color:#1076BC;}
-.dsz-chip-red{background:#fff0f0;color:#b84444;}
+.dsz-footer-solo{justify-content:flex-start;}
 /* CTA - outlined style */
 .dsz-cta{
   display:inline-flex;align-items:center;gap:6px;
