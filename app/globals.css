@@ -6903,15 +6903,16 @@ p.iq2-frame-caption,
 
 /* screen — height driven by image, capped for tall screens */
 .pfs-screen {
-  max-height: 560px;
-  overflow-y: auto;
+  max-height: 700px;
+  overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: #C8D5E8 transparent;
+  scrollbar-color: #A8BFDA transparent;
+  position: relative;
 }
-.pfs-screen::-webkit-scrollbar       { width: 4px; }
-.pfs-screen::-webkit-scrollbar-track { background: transparent; }
-.pfs-screen::-webkit-scrollbar-thumb { background: #C8D5E8; border-radius: 2px; }
+.pfs-screen::-webkit-scrollbar       { width: 6px; }
+.pfs-screen::-webkit-scrollbar-track { background: rgba(200,213,232,0.25); border-radius: 3px; }
+.pfs-screen::-webkit-scrollbar-thumb { background: #A8BFDA; border-radius: 3px; }
 .pfs-screen img {
   width: 100%;
   height: auto;
@@ -7465,13 +7466,10 @@ p.iq2-frame-caption,
 .biblo-phone-wrap {
   position: relative;
   width: 210px;
-  height: 454px;
-  background: #161616;
-  border-radius: 42px;
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.08),
-    0 32px 64px rgba(0,0,0,0.13),
-    0 8px 24px rgba(0,0,0,0.07);
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
   animation: bibloPhoneFloat 5s ease-in-out infinite;
   transform: rotate(-2deg);
 }

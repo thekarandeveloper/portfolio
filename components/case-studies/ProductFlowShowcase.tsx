@@ -66,7 +66,6 @@ export function ProductFlowShowcase({ screens }: ProductFlowShowcaseProps) {
             <div className="pfs-text">
               <p className="pfs-counter">{step}&thinsp;/&thinsp;{total}</p>
               <h3 className="pfs-h">{screen.heading}</h3>
-              <p className="pfs-sh">{screen.subheading}</p>
               <p className="pfs-desc">{screen.description}</p>
             </div>
           </div>

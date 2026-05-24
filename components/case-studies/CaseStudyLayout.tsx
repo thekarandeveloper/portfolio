@@ -372,8 +372,11 @@ export function CaseStudyPage({
   const [active, setActive] = useState(tocItems[0]?.id ?? "");
 
   useEffect(() => {
-    /* Reset scroll position so hero is always the first thing visible */
-    window.scrollTo(0, 0);
+    /* Disable browser scroll restoration so hero is always the first thing visible */
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
     document.body.classList.add("csl-page-active");
     return () => document.body.classList.remove("csl-page-active");
   }, []);

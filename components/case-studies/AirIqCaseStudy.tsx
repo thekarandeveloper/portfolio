@@ -16,7 +16,7 @@ const AIR_IQ_FLOW: FlowScreen[] = [
     stepNumber: 1, totalSteps: 7,
     heading: "Agent Authentication",
     subheading: "Trust is established before the first click",
-    description: "A split-screen separates brand proof from the login task, reducing anxiety at the highest-stakes entry point. Role-specific labels — Agent and Distributor — immediately frame the space for B2B users who have been burned by consumer UX in professional tools.",
+    description: "A split-screen separates brand proof from the login task, reducing anxiety at the highest-stakes entry point. Role-specific labels (Agent and Distributor) immediately frame the space for B2B users who have been burned by consumer UX in professional tools.",
     imageSrc: "/Image/Airiq/presentation/login.png",
     imageAlt: "AIR iQ login screen",
     url: "airiq.com/login",
@@ -25,7 +25,7 @@ const AIR_IQ_FLOW: FlowScreen[] = [
     stepNumber: 2, totalSteps: 7,
     heading: "The Command Centre",
     subheading: "Every recurring action within one gesture",
-    description: "Search anchors the F-pattern primary zone with fare type checkboxes (SME, NDC, SOTO) exposed before the query — a deliberate B2B-first decision. Recent searches and upcoming bookings eliminate re-entry friction for agents juggling multiple bookings at once.",
+    description: "Search anchors the F-pattern primary zone with fare type checkboxes (SME, NDC, SOTO) exposed before the query, a deliberate B2B-first decision. Recent searches and upcoming bookings eliminate re-entry friction for agents juggling multiple bookings at once.",
     imageSrc: "/Image/Airiq/presentation/homepage.png",
     imageAlt: "AIR iQ home dashboard",
     url: "airiq.com/home",
@@ -34,7 +34,7 @@ const AIR_IQ_FLOW: FlowScreen[] = [
     stepNumber: 3, totalSteps: 7,
     heading: "Flight Listing & Fare Discovery",
     subheading: "Nineteen filters. Zero cognitive overload.",
-    description: "Applied filter chips with one-tap removal let agents maintain precise query states without losing mental context. SME, Sales, and Corporate fare tiers stack inline per flight row — the comparison that matters most, without a single extra tap.",
+    description: "Applied filter chips with one-tap removal let agents maintain precise query states without losing mental context. SME, Sales, and Corporate fare tiers stack inline per flight row, the comparison that matters most, without a single extra tap.",
     imageSrc: "/Image/Airiq/presentation/search-result.png",
     imageAlt: "AIR iQ search results",
     url: "airiq.com/search",
@@ -43,7 +43,7 @@ const AIR_IQ_FLOW: FlowScreen[] = [
     stepNumber: 4, totalSteps: 7,
     heading: "Baggage & Itinerary Detail",
     subheading: "Every question answered without leaving the list",
-    description: "A drawer overlay keeps the results list intact underneath — dismiss means instant return to your scroll position, zero navigation cost. Per-leg, per-passenger baggage weights for adults, children, and infants surface without a page change, critical before committing a group booking.",
+    description: "A drawer overlay keeps the results list intact underneath. Dismiss returns you instantly to your scroll position, zero navigation cost. Per-leg, per-passenger baggage weights for adults, children, and infants surface without a page change, critical before committing a group booking.",
     imageSrc: "/Image/Airiq/presentation/see-details.png",
     imageAlt: "AIR iQ flight detail drawer",
     url: "airiq.com/search",
@@ -52,7 +52,7 @@ const AIR_IQ_FLOW: FlowScreen[] = [
     stepNumber: 5, totalSteps: 7,
     heading: "Passengers & Add-ons",
     subheading: "Four passengers, zero context switching",
-    description: "Saved-profile lookup auto-fills frequent flyer numbers, passports, and meal preferences for returning travellers — cutting form time by up to 60%. The seat map sits inline below each passenger tab, and switching between passengers never resets your selection or scroll position.",
+    description: "Saved-profile lookup auto-fills frequent flyer numbers, passports, and meal preferences for returning travellers, cutting form time by up to 60%. The seat map sits inline below each passenger tab, and switching between passengers never resets your selection or scroll position.",
     imageSrc: "/Image/Airiq/presentation/details.png",
     imageAlt: "AIR iQ passenger details form",
     url: "airiq.com/booking/details",
@@ -61,7 +61,7 @@ const AIR_IQ_FLOW: FlowScreen[] = [
     stepNumber: 6, totalSteps: 7,
     heading: "Final Review",
     subheading: "Every detail verifiable before commitment",
-    description: "Inline edit links on every section prevent back-navigation at the most critical step, eliminating drop-off. Wallet-first payment shows the exact deduction split before the agent confirms — removing the last source of uncertainty on a ₹2,21,000 booking.",
+    description: "Inline edit links on every section prevent back-navigation at the most critical step, eliminating drop-off. Wallet-first payment shows the exact deduction split before the agent confirms, removing the last source of uncertainty on a ₹2,21,000 booking.",
     imageSrc: "/Image/Airiq/presentation/review.png",
     imageAlt: "AIR iQ review and payment screen",
     url: "airiq.com/booking/review",
@@ -70,7 +70,7 @@ const AIR_IQ_FLOW: FlowScreen[] = [
     stepNumber: 7, totalSteps: 7,
     heading: "Booking Confirmed",
     subheading: "Every channel. One screen. Done.",
-    description: "PDF, ZIP, WhatsApp, and Email all surface on a single confirmation screen. Per-passenger checkbox selection lets agents distribute individual tickets from a group booking — a post-confirmation workflow that most B2B travel platforms completely overlook.",
+    description: "PDF, ZIP, WhatsApp, and Email all surface on a single confirmation screen. Per-passenger checkbox selection lets agents distribute individual tickets from a group booking, a post-confirmation workflow that most B2B travel platforms completely overlook.",
     imageSrc: "/Image/Airiq/presentation/confirmation.png",
     imageAlt: "AIR iQ booking confirmation",
     url: "airiq.com/booking/confirmed",
@@ -1351,8 +1351,6 @@ function StageCard({ stage, idx }: { stage: StageData; idx: number }) {
    FINAL DESIGN CARD  (elevated, with tab switcher + where it lives)
 ───────────────────────────────────────────────────────────────────── */
 function FinalDesignCard({ idx }: { idx: number }) {
-  const [activeTab, setActiveTab] = useState<"oneway" | "roundtrip">("oneway");
-  const [tabContentVis, setTabContentVis] = useState(true);
   const [vis, setVis] = useState(false);
   const [thumbVis, setThumbVis] = useState<boolean[]>([false, false, false]);
   const ref = useRef<HTMLDivElement>(null);
@@ -1386,16 +1384,6 @@ function FinalDesignCard({ idx }: { idx: number }) {
     return () => { cardObs.disconnect(); };
   }, []);
 
-  const switchTab = (tab: "oneway" | "roundtrip") => {
-    if (tab === activeTab) return;
-    setTabContentVis(false);
-    setTimeout(() => { setActiveTab(tab); setTabContentVis(true); }, 200);
-  };
-
-  const tabImg = activeTab === "oneway"
-    ? "/Image/Airiq/first%20core/final.png"
-    : "/Image/Airiq/first%20core/round-trip.png";
-
   return (
     <div
       ref={ref}
@@ -1416,13 +1404,14 @@ function FinalDesignCard({ idx }: { idx: number }) {
         zIndex: 1,
       }} />
 
-      {/* Elevated card */}
+      {/* Elevated outer card */}
       <div style={{
         position: "relative",
         background: "#0B1E3D",
         border: "1px solid rgba(30,144,255,0.35)",
-        borderRadius: 20, overflow: "hidden",
+        borderRadius: 20,
         boxShadow: "0 0 40px rgba(30,144,255,0.12), 0 8px 32px rgba(0,0,0,0.18)",
+        padding: "20px 20px 24px",
       }}>
         {/* Watermark "Final" */}
         <div style={{
@@ -1435,8 +1424,8 @@ function FinalDesignCard({ idx }: { idx: number }) {
         <div style={{ position: "relative", zIndex: 1 }}>
           {/* Header */}
           <div style={{
-            padding: "20px 24px 0",
             display: "flex", alignItems: "center", justifyContent: "space-between",
+            marginBottom: 16,
           }}>
             <span style={{
               fontSize: "12px", fontWeight: 700, textTransform: "uppercase" as const,
@@ -1447,56 +1436,27 @@ function FinalDesignCard({ idx }: { idx: number }) {
               fontSize: "12px", fontWeight: 700, textTransform: "uppercase" as const,
               letterSpacing: "0.14em", color: "#1E90FF",
               background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
-              borderRadius: 100, padding: "4px 12px",
+              borderRadius: 8, padding: "4px 12px",
             }}>✦ Shipped</span>
           </div>
 
-          {/* Tab switcher — One Way / Round Trip */}
-          <div role="tablist" style={{
-            display: "flex", justifyContent: "center", gap: 8,
-            padding: "16px 24px",
-          }}>
-            {(["oneway", "roundtrip"] as const).map((tab) => (
-              <button
-                key={tab}
-                role="tab"
-                aria-selected={activeTab === tab}
-                tabIndex={0}
-                onClick={() => switchTab(tab)}
-                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); switchTab(tab); } }}
-                style={{
-                  padding: "6px 20px", borderRadius: 100,
-                  border: activeTab === tab ? "none" : "1px solid rgba(30,144,255,0.3)",
-                  background: activeTab === tab ? "#1E90FF" : "transparent",
-                  color: activeTab === tab ? "#fff" : "rgba(255,255,255,0.5)",
-                  fontSize: "14px", fontWeight: 600,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  boxShadow: activeTab === tab ? "0 2px 12px rgba(30,144,255,0.4)" : "none",
-                  outline: "none",
-                }}
-              >
-                {tab === "oneway" ? "One Way" : "Round Trip"}
-              </button>
-            ))}
-          </div>
-
-          {/* Image with crossfade — no chrome bar */}
+          {/* Inner image card with generous padding */}
           <div style={{
-            borderTop: "1px solid rgba(30,144,255,0.15)",
-            opacity: tabContentVis ? 1 : 0,
-            transition: "opacity 200ms ease",
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(30,144,255,0.15)",
+            borderRadius: 14,
+            overflow: "hidden",
           }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={tabImg}
-              alt={activeTab === "oneway" ? "One Way fare listing" : "Round Trip fare listing"}
+              src="/Image/Airiq/first%20core/final.png"
+              alt="Final fare listing design"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
 
           {/* Why + Impact */}
-          <div style={{ padding: "24px 24px 20px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28 }}>
+          <div style={{ marginTop: 20, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
             <div>
               <p style={{ fontSize: "1rem", fontWeight: 700, color: "rgba(255,255,255,0.9)", margin: "0 0 8px", lineHeight: 1.4 }}>
                 Price hierarchy first. Everything else at a glance.
@@ -1517,18 +1477,16 @@ function FinalDesignCard({ idx }: { idx: number }) {
           </div>
 
           {/* Where else it lives */}
-          <div style={{ padding: "0 24px 28px" }}>
-            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 20, marginBottom: 20 }}>
-              <p style={{
-                fontSize: "1rem", fontWeight: 700,
-                color: "rgba(255,255,255,0.85)",
-                margin: 0, letterSpacing: "-0.01em",
-              }}>Where else it lives</p>
-              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", margin: "4px 0 0" }}>
-                This card extends across all search types
-              </p>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+          <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+            <p style={{
+              fontSize: "13px", fontWeight: 700,
+              color: "rgba(255,255,255,0.85)",
+              margin: "0 0 4px", letterSpacing: "-0.01em",
+            }}>Where else it lives</p>
+            <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", margin: "0 0 16px" }}>
+              This card extends across all search types
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
               {WHERE_IT_LIVES_DATA.map((item, i) => (
                 <div
                   key={item.label}
@@ -1541,14 +1499,15 @@ function FinalDesignCard({ idx }: { idx: number }) {
                 >
                   <div style={{
                     borderRadius: 10, overflow: "hidden",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    background: "rgba(255,255,255,0.04)",
                   }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={item.img} alt={item.label} style={{ width: "100%", height: "auto", display: "block" }} />
                   </div>
-                  <div style={{ marginTop: 8, textAlign: "center" as const }}>
-                    <div style={{ fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.8)" }}>{item.label}</div>
-                    <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", marginTop: 2 }}>{item.sub}</div>
+                  <div style={{ marginTop: 10 }}>
+                    <div style={{ fontSize: "13px", fontWeight: 700, color: "rgba(255,255,255,0.85)" }}>{item.label}</div>
+                    <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.45)", marginTop: 3 }}>{item.sub}</div>
                   </div>
                 </div>
               ))}
@@ -1634,9 +1593,9 @@ function ItineraryCardBlock() {
       <div style={{ flex: 1, height: 13, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
       {tint && (
         <span style={{
-          fontSize: "15px", fontWeight: 600, letterSpacing: "0.1em",
+          fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em",
           textTransform: "uppercase", color: "#fff",
-          background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
+          background: "#1E90FF", borderRadius: 6, padding: "3px 10px",
         }}>Shipped</span>
       )}
     </div>
@@ -1755,9 +1714,9 @@ function ReviewTableBlock() {
       <div style={{ flex: 1, height: 13, background: "rgba(0,0,0,0.06)", borderRadius: 20, marginLeft: 8 }} />
       {tint && (
         <span style={{
-          fontSize: "15px", fontWeight: 600, letterSpacing: "0.1em",
+          fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em",
           textTransform: "uppercase", color: "#fff",
-          background: "#1E90FF", borderRadius: 100, padding: "2px 8px",
+          background: "#1E90FF", borderRadius: 6, padding: "3px 10px",
         }}>Shipped</span>
       )}
     </div>
@@ -1957,7 +1916,7 @@ function ProductFlowSection() {
     <CsSection id="product">
       <CsSectionHeader
         title="Complete Product Flow"
-        sub="Seven screens. Every decision annotated. Here's how the full booking journey was designed — from the first login to the final confirmation."
+        sub="Seven screens. Every decision annotated. Here's how the full booking journey was designed, from the first login to the final confirmation."
       />
       <ProductFlowShowcase screens={AIR_IQ_FLOW} />
     </CsSection>
@@ -1968,13 +1927,20 @@ function ProductFlowSection() {
    §06  DESIGN SYSTEM
 ───────────────────────────────────────────────────────────────────── */
 function DesignSystemSection() {
-  const systemEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.designSystem)}`;
+  const DS_STATS = [
+    { val: "80+",  label: "Components",     sub: "Buttons, inputs, cards, modals" },
+    { val: "12",   label: "Color tokens",   sub: "Semantic, not just palette" },
+    { val: "3",    label: "Icon sizes",     sub: "16 · 20 · 24px, drawn from scratch" },
+    { val: "Zero", label: "Libraries used", sub: "Everything built in-house" },
+  ];
 
-  const stats = [
-    { val: "80+",  label: "Components",   sub: "buttons, inputs, cards, modals" },
-    { val: "3",    label: "Icon sizes",   sub: "16 · 20 · 24px, drawn from scratch" },
-    { val: "12",   label: "Color tokens", sub: "semantic, not just palette" },
-    { val: "Zero", label: "Libraries used", sub: "everything built in-house" },
+  const DS_GROUPS = [
+    { icon: "🎨", label: "Color System",   detail: "Navy, tech blue, semantic states" },
+    { icon: "📐", label: "Spacing Scale",   detail: "4pt base grid, 8 token steps" },
+    { icon: "✏️", label: "Typography",      detail: "5-level scale, weight + size" },
+    { icon: "🔘", label: "Radius Tokens",   detail: "sm · md · lg · pill variants" },
+    { icon: "✈",  label: "Custom Icons",    detail: "3 sizes, drawn from scratch" },
+    { icon: "⚙",  label: "Component API",   detail: "Props, states, variants in Figma" },
   ];
 
   return (
@@ -1984,34 +1950,102 @@ function DesignSystemSection() {
         sub="No library existed. Every token, component, icon, and spacing rule was built from zero in Figma."
       />
 
-      {/* Figma embed */}
-      <div className="csl-reveal" style={{ marginBottom: 24 }}>
-        <div style={{
-          borderRadius: 18, overflow: "hidden",
-          border: "1px solid rgba(0,0,0,0.08)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
-        }}>
+      {/* Preview card — links to the Figma file */}
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+        <a
+          href={airFigmaLinks.designSystem}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: "block", textDecoration: "none" }}
+        >
           <div style={{
-            height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)",
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            padding: "0 16px",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
-                <span key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, flexShrink: 0 }} />
-              ))}
-              <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginLeft: 6 }}>
-                Air IQ: Design System
+            background: "#0B1E3D",
+            borderRadius: 18,
+            border: "1px solid rgba(30,144,255,0.25)",
+            overflow: "hidden",
+            boxShadow: "0 8px 40px rgba(30,144,255,0.1), 0 2px 12px rgba(0,0,0,0.12)",
+            transition: "box-shadow 0.25s ease, transform 0.25s ease",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLDivElement).style.boxShadow = "0 16px 56px rgba(30,144,255,0.18), 0 4px 16px rgba(0,0,0,0.16)";
+            (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 40px rgba(30,144,255,0.1), 0 2px 12px rgba(0,0,0,0.12)";
+            (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+          }}
+          >
+            {/* Hero area */}
+            <div style={{ padding: "36px 36px 28px" }}>
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 28 }}>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                    <FigmaIcon />
+                    <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9CA3AF" }}>
+                      Figma · Design System
+                    </span>
+                  </div>
+                  <h3 style={{ fontSize: "1.4rem", fontWeight: 700, color: "#fff", margin: 0, lineHeight: 1.25, letterSpacing: "-0.02em" }}>
+                    AIR iQ Design System
+                  </h3>
+                  <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", margin: "8px 0 0", lineHeight: 1.65 }}>
+                    Tokens, components, icons, and spacing. Built from zero alongside engineering.
+                  </p>
+                </div>
+                <span style={{
+                  display: "inline-flex", alignItems: "center", gap: 6,
+                  fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+                  color: "#1E90FF", background: "rgba(30,144,255,0.12)",
+                  border: "1px solid rgba(30,144,255,0.3)",
+                  borderRadius: 8, padding: "6px 14px", flexShrink: 0,
+                }}>
+                  Explore ↗
+                </span>
+              </div>
+
+              {/* Stats row */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: "rgba(255,255,255,0.07)", borderRadius: 12, overflow: "hidden" }}>
+                {DS_STATS.map((s) => (
+                  <div key={s.label} style={{ padding: "16px 18px", background: "rgba(255,255,255,0.03)" }}>
+                    <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>{s.val}</div>
+                    <div style={{ fontSize: "12px", fontWeight: 700, color: "rgba(255,255,255,0.7)", marginTop: 5 }}>{s.label}</div>
+                    <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)", marginTop: 3, lineHeight: 1.5 }}>{s.sub}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* System groups */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 16 }}>
+                {DS_GROUPS.map((g) => (
+                  <div key={g.label} style={{
+                    background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)",
+                    borderRadius: 10, padding: "12px 14px",
+                    display: "flex", alignItems: "center", gap: 10,
+                  }}>
+                    <span style={{ fontSize: "18px", flexShrink: 0 }}>{g.icon}</span>
+                    <div>
+                      <div style={{ fontSize: "13px", fontWeight: 700, color: "rgba(255,255,255,0.85)" }}>{g.label}</div>
+                      <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", marginTop: 2 }}>{g.detail}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer CTA */}
+            <div style={{
+              padding: "14px 36px",
+              borderTop: "1px solid rgba(255,255,255,0.07)",
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              background: "rgba(30,144,255,0.06)",
+            }}>
+              <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)" }}>
+                View full design system in Figma
               </span>
+              <span style={{ fontSize: "16px", color: "#1E90FF" }}>↗</span>
             </div>
           </div>
-          <iframe
-            src={systemEmbedUrl}
-            allowFullScreen
-            style={{ width: "100%", height: 520, border: "none", display: "block" }}
-            loading="lazy"
-          />
-        </div>
+        </a>
       </div>
 
     </CsSection>
@@ -2048,7 +2082,7 @@ function ResultsSection() {
       sub: "support drop post-launch",
       source: "Support Team · Post-launch",
       tag: "Clearer",
-      desc: "Support tickets flagging UI confusion dropped in the first weeks. The design resolved the ambiguity agents had been reporting for months — empty cells, unclear fare rules, no error states.",
+      desc: "Support tickets flagging UI confusion dropped in the first weeks. The design resolved the ambiguity agents had been reporting for months: empty cells, unclear fare rules, no error states.",
     },
     {
       stat: <><CountUp to={25} />K<span style={{ fontSize: "2rem", fontWeight: 800, color: "#9CA3AF" }}>+</span></>,
@@ -2106,25 +2140,26 @@ function ResultsSection() {
         ))}
       </div>
 
-      {/* Quote — dark pull quote */}
+      {/* Quote — light pull quote */}
       <div className="csl-reveal rd1" style={{ marginBottom: 24 }}>
         <div style={{
-          background: "#111827", borderRadius: 16, padding: "32px 32px 28px",
+          background: "#F9FAFB", borderRadius: 16, padding: "32px 32px 28px",
           position: "relative", overflow: "hidden",
+          border: "1px solid #F3F4F6",
         }}>
           <div style={{
             position: "absolute", top: -30, right: -30,
             width: 160, height: 160, borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(30,144,255,0.1) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(30,144,255,0.07) 0%, transparent 70%)",
             pointerEvents: "none",
           }} />
           <span style={{
             position: "absolute", top: 4, left: 20,
             fontSize: "6rem", color: "#1E90FF", lineHeight: 1,
-            userSelect: "none", opacity: 0.5,
+            userSelect: "none", opacity: 0.18,
           }}>&ldquo;</span>
           <p style={{
-            fontSize: "1.2rem", fontWeight: 600, color: "rgba(255,255,255,0.9)",
+            fontSize: "1.2rem", fontWeight: 600, color: "#111827",
             lineHeight: 1.75, margin: "28px 0 20px", paddingLeft: 4,
           }}>
             Much faster and fewer mistakes than before.
@@ -2132,13 +2167,13 @@ function ResultsSection() {
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <div style={{
               width: 32, height: 32, borderRadius: "50%",
-              background: "rgba(30,144,255,0.15)",
+              background: "#EFF6FF",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
+              fontSize: "13px", fontWeight: 700, color: "#1E90FF",
             }}>TA</div>
             <div>
-              <div style={{ fontSize: "15px", color: "rgba(255,255,255,0.65)", fontWeight: 600 }}>Anonymized travel agent</div>
-              <div style={{ fontSize: "15px", color: "rgba(255,255,255,0.3)", fontWeight: 600, marginTop: 2 }}>Post-launch feedback</div>
+              <div style={{ fontSize: "14px", color: "#374151", fontWeight: 600 }}>Anonymized travel agent</div>
+              <div style={{ fontSize: "13px", color: "#9CA3AF", fontWeight: 500, marginTop: 2 }}>Post-launch feedback</div>
             </div>
           </div>
         </div>
@@ -2285,6 +2320,69 @@ function ConstraintsBlock() {
 /* ─────────────────────────────────────────────────────────────────────
    PROCESS SECTION
 ───────────────────────────────────────────────────────────────────── */
+const PROCESS_STEPS = [
+  {
+    num: "01",
+    tag: "ChatGPT",
+    tagColor: "#10A37F",
+    tagBg: "#E6F4F1",
+    title: "Requirements into user stories",
+    text: "Stakeholder notes fed into ChatGPT to extract structured user stories and edge cases. What took 2 days of affinity mapping took 20 minutes. More time for craft.",
+    saved: "3 days",
+    icon: "📋",
+  },
+  {
+    num: "02",
+    tag: "v0.dev",
+    tagColor: "#111827",
+    tagBg: "#F3F4F6",
+    title: "Layout exploration before Figma",
+    text: "Used v0 to generate 4 layout directions for the search results page in 30 minutes. Showed stakeholders real-looking options, got direction validated before a single Figma frame was opened.",
+    saved: "4 days",
+    icon: "⚡",
+  },
+  {
+    num: "03",
+    tag: "ChatGPT",
+    tagColor: "#10A37F",
+    tagBg: "#E6F4F1",
+    title: "Filter hierarchy by agent priority",
+    text: "Fifteen filter types in the panel. Used ChatGPT to map filter priority by agent use frequency. The panel hierarchy matched how agents actually work, not how I assumed.",
+    saved: "2 days",
+    icon: "🎛",
+  },
+  {
+    num: "04",
+    tag: "ChatGPT",
+    tagColor: "#10A37F",
+    tagBg: "#E6F4F1",
+    title: "Edge case discovery",
+    text: "Prompted AI with the full user journey and asked it to attack the design. Find every scenario that breaks. Found 12 edge cases in 30 minutes that I then designed for explicitly.",
+    saved: "2 days",
+    icon: "🔍",
+  },
+  {
+    num: "05",
+    tag: "ChatGPT",
+    tagColor: "#10A37F",
+    tagBg: "#E6F4F1",
+    title: "B2B microcopy and error states",
+    text: "B2B copy must be precise and non-alarming. Generated 5 variants per error message, selected and refined the best. Covered all 3 error screens: no results, timeout, sold-out.",
+    saved: "1 day",
+    icon: "✏️",
+  },
+  {
+    num: "06",
+    tag: "Figma",
+    tagColor: "#7C3AED",
+    tagBg: "#F5F3FF",
+    title: "High-fidelity with full intent",
+    text: "With direction validated and edge cases defined, every hour in Figma was intentional. No exploration, only craft. 80+ components, a full token system, and 20+ screens built from zero.",
+    saved: null,
+    icon: "✦",
+  },
+];
+
 function ProcessSection() {
   return (
     <CsSection id="process">
@@ -2292,47 +2390,187 @@ function ProcessSection() {
         title="How I Worked"
         sub="AI-assisted process, not AI-generated design. Every tool saved synthesis time so I could spend it on craft."
       />
-      <StoryCardsGrid />
+
+      {/* Context strip */}
+      <div className="csl-reveal" style={{
+        background: "#F9FAFB", borderRadius: 14, padding: "20px 24px",
+        border: "1px solid #F3F4F6", marginBottom: 32,
+        display: "flex", gap: 32, alignItems: "center",
+      }}>
+        <div style={{ textAlign: "center", flexShrink: 0 }}>
+          <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>12</div>
+          <div style={{ fontSize: "12px", fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.1em", marginTop: 4 }}>days saved</div>
+        </div>
+        <div style={{ width: 1, height: 40, background: "#E5E7EB", flexShrink: 0 }} />
+        <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
+          Across 5 steps, AI tools compressed approximately 12 days of synthesis and exploration into focused sessions. The time went straight back into Figma, where it mattered.
+        </p>
+      </div>
+
+      {/* Process steps */}
+      <div className="csl-reveal" style={{ position: "relative" }}>
+        {/* Spine line */}
+        <div style={{
+          position: "absolute", left: 19, top: 28, bottom: 28,
+          width: 2, background: "linear-gradient(to bottom, #1E90FF 0%, rgba(30,144,255,0.1) 100%)",
+          borderRadius: 2,
+        }} />
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+          {PROCESS_STEPS.map((step, i) => (
+            <div key={step.num} style={{
+              display: "grid",
+              gridTemplateColumns: "40px 1fr",
+              gap: "0 20px",
+              paddingBottom: i < PROCESS_STEPS.length - 1 ? 28 : 0,
+              position: "relative",
+            }}>
+              {/* Step dot */}
+              <div style={{
+                width: 40, height: 40, borderRadius: 12,
+                background: i === PROCESS_STEPS.length - 1 ? "#1E90FF" : "#fff",
+                border: i === PROCESS_STEPS.length - 1 ? "none" : "2px solid #E5E7EB",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: i === PROCESS_STEPS.length - 1 ? "16px" : "18px",
+                flexShrink: 0, zIndex: 1,
+                boxShadow: "0 0 0 4px #fff",
+              }}>
+                {i === PROCESS_STEPS.length - 1 ? "✦" : step.icon}
+              </div>
+
+              {/* Card */}
+              <div style={{
+                background: i === PROCESS_STEPS.length - 1 ? "#0B1E3D" : "#fff",
+                borderRadius: 14,
+                padding: "18px 20px",
+                border: i === PROCESS_STEPS.length - 1
+                  ? "1px solid rgba(30,144,255,0.3)"
+                  : "1px solid #F3F4F6",
+                boxShadow: i === PROCESS_STEPS.length - 1
+                  ? "0 8px 32px rgba(30,144,255,0.1)"
+                  : "0 1px 6px rgba(0,0,0,0.04)",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{
+                      fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em",
+                      textTransform: "uppercase", color: "#9CA3AF",
+                    }}>Step {step.num}</span>
+                    <span style={{
+                      fontSize: "11px", fontWeight: 700,
+                      color: i === PROCESS_STEPS.length - 1 ? "#9CA3AF" : step.tagColor,
+                      background: i === PROCESS_STEPS.length - 1 ? "rgba(255,255,255,0.08)" : step.tagBg,
+                      borderRadius: 100, padding: "2px 8px",
+                    }}>{step.tag}</span>
+                  </div>
+                  {step.saved && (
+                    <span style={{
+                      fontSize: "12px", fontWeight: 700,
+                      color: "#1E90FF", background: "#EFF6FF",
+                      borderRadius: 100, padding: "2px 10px",
+                    }}>-{step.saved}</span>
+                  )}
+                </div>
+                <div style={{
+                  fontSize: "15px", fontWeight: 700,
+                  color: i === PROCESS_STEPS.length - 1 ? "rgba(255,255,255,0.92)" : "#111827",
+                  marginBottom: 6, lineHeight: 1.3,
+                }}>{step.title}</div>
+                <p style={{
+                  fontSize: "14px",
+                  color: i === PROCESS_STEPS.length - 1 ? "rgba(255,255,255,0.5)" : "#6B7280",
+                  lineHeight: 1.75, margin: 0,
+                }}>{step.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Context: story cards */}
+      <div style={{ marginTop: 40, paddingTop: 40, borderTop: "1px solid #F3F4F6" }}>
+        <span className="csl-eyebrow">My role on this project</span>
+        <StoryCardsGrid />
+      </div>
     </CsSection>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   MOBILE SECTION
+   MOBILE SECTION — interactive left/right navigator
 ───────────────────────────────────────────────────────────────────── */
+const MOBILE_FLOW = [
+  {
+    step: "01 / 05",
+    heading: "Agent Login",
+    description: "Split-screen design establishes brand credibility before the first input. Role selector (Agent / Distributor) immediately sets the B2B context. No generic email form.",
+    decisions: [
+      { label: "Brand left, form right", detail: "Anxiety drops when users see who they're logging into before they type." },
+      { label: "Role selector upfront", detail: "Agents and distributors see different dashboards. Context set before credentials." },
+    ],
+    imageSrc: "/Image/Airiq/presentation/login.png",
+  },
+  {
+    step: "02 / 05",
+    heading: "Home Dashboard",
+    description: "Search takes the primary zone with fare type exposed before the query. Recent searches and upcoming bookings eliminate re-entry friction for agents juggling multiple clients.",
+    decisions: [
+      { label: "Fare type first", detail: "SME, NDC, SOTO selection before the route — agents need this before comparing prices." },
+      { label: "Quick access strip", detail: "Last 3 searches and pending bookings cut repetitive re-entry for frequent routes." },
+    ],
+    imageSrc: "/Image/Airiq/presentation/homepage.png",
+  },
+  {
+    step: "03 / 05",
+    heading: "Flight Listing",
+    description: "The fare card reflows to single column. Price and refundability stay primary. Nineteen filters adapt to a bottom sheet that persists selection across open and close cycles.",
+    decisions: [
+      { label: "Hierarchy preserved", detail: "Price and refund status visible without expanding. Desktop decision paid off here." },
+      { label: "Persistent filter sheet", detail: "Bottom sheet keeps last filter state. Agents compare results without resetting." },
+    ],
+    imageSrc: "/Image/Airiq/presentation/search-result.png",
+  },
+  {
+    step: "04 / 05",
+    heading: "Passenger Details",
+    description: "Saved profiles auto-fill frequent flyer numbers and passport data. Minimum 44px touch targets throughout. Forms grouped by section so scroll depth feels manageable.",
+    decisions: [
+      { label: "44px hit areas", detail: "Every input, dropdown, and action meets minimum touch target guidelines for one-hand use." },
+      { label: "Grouped sections", detail: "Fields clustered by purpose reduce perceived form length without removing any data." },
+    ],
+    imageSrc: "/Image/Airiq/presentation/details.png",
+  },
+  {
+    step: "05 / 05",
+    heading: "Review & Confirm",
+    description: "Full GST breakdown and wallet deduction visible before the CTA. Inline edit links prevent back-navigation. Confirmation shares tickets per passenger via PDF, WhatsApp, or Email.",
+    decisions: [
+      { label: "Thumb-zone CTA", detail: "Primary confirm button sits in the lower 60% of screen, reachable with one hand." },
+      { label: "Wallet deduction upfront", detail: "Agents confirm spend before committing. No surprises at the final step." },
+    ],
+    imageSrc: "/Image/Airiq/presentation/review.png",
+  },
+];
+
 function MobileSection() {
-  const mobileEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.mobile)}`;
-  const edgeCasesEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(airFigmaLinks.edgeCases)}`;
+  const [idx, setIdx] = useState(0);
+  const [dir, setDir] = useState<"next" | "prev">("next");
+  const [animating, setAnimating] = useState(false);
+  const current = MOBILE_FLOW[idx];
 
-  const items = [
-    {
-      num: "01",
-      title: "Sidebar becomes bottom sheet",
-      text: "The 274px filter sidebar consumes the full viewport at 375px. On mobile, filters become a sticky button opening a full-screen bottom sheet. Last selection persists. Same mental model, adapted form factor. Agents don't need to relearn — they just reach down instead of to the side.",
-    },
-    {
-      num: "02",
-      title: "Same fare card, compressed density",
-      text: "The fare listing card reflows to single column. Price and refund status stay primary. Baggage and meal details move to a tap-to-expand row: present when needed, not competing for the first scan. The hierarchy decision made in desktop paid off immediately here.",
-    },
-    {
-      num: "03",
-      title: "Touch targets and keyboard parity",
-      text: "Inputs, date pickers, and passenger forms re-evaluated for touch. 44px minimum hit areas throughout. No information removed for mobile, only reorganised. Form length was reduced by grouping related fields, reducing scroll depth without cutting data.",
-    },
-    {
-      num: "04",
-      title: "Full journey, login to confirmation",
-      text: "Every flow works end-to-end at 375px. Search, select, passenger details, review, confirm. Agents in the field needed the same capability as agents at a desk. Nothing cut. Edge cases like +1 day arrival and sold-out states were equally important on mobile — the flight doesn't care what screen you're on.",
-    },
-  ];
-
-  const mobileEdgeCases = [
-    { icon: "◒", title: "Bottom sheet filters", desc: "Filter panel adapts to full-screen sheet. Agent selections persist across open/close cycles." },
-    { icon: "↕", title: "Scroll depth management", desc: "Long passenger forms grouped by section. Visible progress reduces perceived length." },
-    { icon: "⟳", title: "Network retry state", desc: "GDS timeouts on mobile networks. Retry UI surfaces without losing form state." },
-    { icon: "✓", title: "Thumb-zone confirmation", desc: "Primary CTAs placed in the lower 60% of screen. Reachable with one hand on 375px." },
-  ];
+  const navigate = (direction: "next" | "prev") => {
+    if (animating) return;
+    const next = direction === "next"
+      ? Math.min(idx + 1, MOBILE_FLOW.length - 1)
+      : Math.max(idx - 1, 0);
+    if (next === idx) return;
+    setDir(direction);
+    setAnimating(true);
+    setTimeout(() => {
+      setIdx(next);
+      setAnimating(false);
+    }, 200);
+  };
 
   return (
     <CsSection id="mobile">
@@ -2341,48 +2579,176 @@ function MobileSection() {
         sub="Same platform, same data, different form factor. Nothing simplified for mobile, everything adapted."
       />
 
-      {/* Story flow */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 0, marginBottom: 40 }}>
-        {items.map((item, i) => (
-          <div key={item.num} className="csl-reveal" style={{
-            display: "grid", gridTemplateColumns: "40px 1fr",
-            gap: "0 16px",
-            paddingTop: i === 0 ? 0 : 28,
-            paddingBottom: 28,
-            borderBottom: i < items.length - 1 ? "1px solid #F3F4F6" : "none",
-          }}>
-            <span style={{
-              width: 36, height: 36, borderRadius: 10,
-              background: "#EFF6FF", display: "flex",
-              alignItems: "center", justifyContent: "center",
-              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
-              flexShrink: 0, marginTop: 2,
-            }}>{item.num}</span>
-            <div>
-              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{item.title}</div>
-              <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.8, margin: 0 }}>{item.text}</p>
+      <div className="csl-reveal" style={{
+        background: "linear-gradient(135deg, #EAF4FB 0%, #F5F2F0 60%, #FDFBF0 100%)",
+        borderRadius: 20,
+        padding: "40px 36px",
+        marginBottom: 40,
+      }}>
+        {/* Step progress */}
+        <div style={{
+          display: "flex", gap: 6, marginBottom: 32, alignItems: "center",
+        }}>
+          {MOBILE_FLOW.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setDir(i > idx ? "next" : "prev"); setAnimating(true); setTimeout(() => { setIdx(i); setAnimating(false); }, 200); }}
+              style={{
+                height: 3, flex: i === idx ? 2.5 : 1,
+                borderRadius: 100, border: "none", cursor: "pointer",
+                background: i === idx ? "#1E90FF" : "rgba(30,144,255,0.2)",
+                transition: "flex 0.35s ease, background 0.25s ease",
+                padding: 0,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Main two-column layout */}
+        <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 40, alignItems: "center" }}>
+
+          {/* Left: mobile phone frame */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
+            {/* Phone mockup */}
+            <div style={{
+              background: "#111827",
+              borderRadius: 28,
+              padding: "10px 8px",
+              boxShadow: "0 24px 56px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.12), inset 0 0 0 1px rgba(255,255,255,0.06)",
+              width: 200,
+              position: "relative",
+            }}>
+              {/* Notch */}
+              <div style={{
+                width: 60, height: 18, background: "#111827",
+                borderRadius: "0 0 12px 12px",
+                margin: "0 auto 6px",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+              }}>
+                <div style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.15)" }} />
+                <div style={{ width: 28, height: 5, borderRadius: 3, background: "rgba(255,255,255,0.1)" }} />
+              </div>
+              {/* Screen */}
+              <div style={{
+                borderRadius: 18,
+                overflow: "hidden",
+                height: 380,
+                background: "#F3F4F6",
+                opacity: animating ? 0 : 1,
+                transform: animating ? (dir === "next" ? "translateX(12px)" : "translateX(-12px)") : "translateX(0)",
+                transition: "opacity 0.2s ease, transform 0.2s ease",
+              }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={current.imageSrc}
+                  alt={current.heading}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
+                />
+              </div>
+              {/* Home indicator */}
+              <div style={{ width: 60, height: 4, background: "rgba(255,255,255,0.18)", borderRadius: 100, margin: "8px auto 0" }} />
+            </div>
+
+            {/* Arrow nav */}
+            <div style={{ display: "flex", gap: 8 }}>
+              <button
+                onClick={() => navigate("prev")}
+                disabled={idx === 0}
+                style={{
+                  width: 36, height: 36, borderRadius: 10,
+                  border: "1px solid rgba(30,144,255,0.25)",
+                  background: idx === 0 ? "rgba(0,0,0,0.04)" : "rgba(30,144,255,0.08)",
+                  color: idx === 0 ? "#C4C9D4" : "#1E90FF",
+                  fontSize: "16px", cursor: idx === 0 ? "not-allowed" : "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  transition: "all 0.2s ease",
+                }}
+              >←</button>
+              <button
+                onClick={() => navigate("next")}
+                disabled={idx === MOBILE_FLOW.length - 1}
+                style={{
+                  width: 36, height: 36, borderRadius: 10,
+                  border: "1px solid rgba(30,144,255,0.25)",
+                  background: idx === MOBILE_FLOW.length - 1 ? "rgba(0,0,0,0.04)" : "#1E90FF",
+                  color: idx === MOBILE_FLOW.length - 1 ? "#C4C9D4" : "#fff",
+                  fontSize: "16px", cursor: idx === MOBILE_FLOW.length - 1 ? "not-allowed" : "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  transition: "all 0.2s ease",
+                }}
+              >→</button>
             </div>
           </div>
-        ))}
+
+          {/* Right: info panel */}
+          <div style={{
+            opacity: animating ? 0 : 1,
+            transform: animating ? (dir === "next" ? "translateX(8px)" : "translateX(-8px)") : "translateX(0)",
+            transition: "opacity 0.2s ease, transform 0.2s ease",
+          }}>
+            {/* Step counter */}
+            <div style={{
+              fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em",
+              textTransform: "uppercase", color: "#1E90FF",
+              marginBottom: 12,
+            }}>
+              {current.step}
+            </div>
+
+            {/* Heading */}
+            <h3 style={{
+              fontSize: "1.5rem", fontWeight: 700, color: "#111827",
+              margin: "0 0 12px", lineHeight: 1.25, letterSpacing: "-0.02em",
+            }}>
+              {current.heading}
+            </h3>
+
+            {/* Description */}
+            <p style={{
+              fontSize: "1rem", color: "#374151", lineHeight: 1.8,
+              margin: "0 0 24px",
+            }}>
+              {current.description}
+            </p>
+
+            {/* Decision cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {current.decisions.map((d, i) => (
+                <div key={i} style={{
+                  background: "#fff", borderRadius: 12, padding: "14px 16px",
+                  border: "1px solid rgba(0,0,0,0.06)",
+                  boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
+                  display: "flex", gap: 12, alignItems: "flex-start",
+                }}>
+                  <div style={{
+                    width: 24, height: 24, borderRadius: 7,
+                    background: "#EFF6FF", flexShrink: 0,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: "10px", fontWeight: 700, color: "#1E90FF", marginTop: 1,
+                  }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#111827", marginBottom: 3 }}>{d.label}</div>
+                    <div style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65 }}>{d.detail}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Mobile Figma embed */}
-      <div className="csl-reveal" style={{ marginBottom: 40 }}>
-        <FigmaEmbed
-          url={mobileEmbedUrl}
-          label="Air IQ: Mobile · 375px"
-          height={520}
-        />
-      </div>
-
-      {/* Mobile edge cases */}
-      <div className="csl-reveal" style={{ paddingTop: 32, borderTop: "1px solid #F3F4F6", marginBottom: 28 }}>
-        <span className="csl-eyebrow">Mobile edge cases</span>
-        <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.8, margin: "0 0 20px" }}>
-          The same care applied to desktop edge cases carried over to mobile — with additional constraints around connectivity, viewport, and one-handed use.
-        </p>
+      {/* Mobile adaptations overview */}
+      <div className="csl-reveal">
+        <span className="csl-eyebrow">Key adaptations</span>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-          {mobileEdgeCases.map((ec) => (
+          {[
+            { icon: "◒", title: "Bottom sheet filters", desc: "Filter panel adapts to full-screen sheet. Agent selections persist across open and close cycles." },
+            { icon: "↕", title: "Scroll depth management", desc: "Long passenger forms grouped by section. Visible progress reduces perceived length." },
+            { icon: "⟳", title: "Network retry state", desc: "GDS timeouts on mobile networks. Retry UI surfaces without losing form state." },
+            { icon: "✓", title: "Thumb-zone confirmation", desc: "Primary CTAs placed in the lower 60% of screen. Reachable with one hand on 375px." },
+          ].map((ec) => (
             <div key={ec.title} style={{
               background: "#fff", borderRadius: 12, padding: "16px 18px",
               border: "1px solid rgba(0,0,0,0.06)",
@@ -2390,21 +2756,12 @@ function MobileSection() {
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
                 <span style={{ width: 32, height: 32, borderRadius: 8, background: "#EFF6FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", flexShrink: 0, color: "#1E90FF" }}>{ec.icon}</span>
-                <span style={{ fontSize: "15px", fontWeight: 600, color: "#111827" }}>{ec.title}</span>
+                <span style={{ fontSize: "14px", fontWeight: 600, color: "#111827" }}>{ec.title}</span>
               </div>
-              <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{ec.desc}</p>
+              <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{ec.desc}</p>
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Mobile edge cases Figma embed */}
-      <div className="csl-reveal">
-        <FigmaEmbed
-          url={edgeCasesEmbedUrl}
-          label="Air IQ: Mobile Edge Cases"
-          height={480}
-        />
       </div>
     </CsSection>
   );
