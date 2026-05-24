@@ -1538,7 +1538,7 @@ function FareListingBlock() {
   }, []);
 
   return (
-    <div className="csl-reveal" style={{ marginBottom: 64 }}>
+    <div style={{ marginBottom: 64 }}>
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 36 }}>
@@ -1602,7 +1602,7 @@ function ItineraryCardBlock() {
   );
 
   return (
-    <div className="csl-reveal" style={{ marginBottom: 64 }}>
+    <div style={{ marginBottom: 64 }}>
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 28 }}>
@@ -1657,17 +1657,19 @@ function ItineraryCardBlock() {
           marginTop: 12,
         }}>
           <div style={{ padding: "28px 28px 0" }}>
-            <Bar tint />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Image/Airiq/Second%20core/new.png" alt="Redesigned itinerary card" style={{ width: "100%", height: "auto", display: "block" }} />
+            <div style={{ borderRadius: 12, overflow: "hidden" }}>
+              <Bar tint />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Image/Airiq/Second%20core/new.png" alt="Redesigned itinerary card" style={{ width: "100%", height: "auto", display: "block" }} />
+            </div>
           </div>
           <div style={{ padding: "28px 32px 32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
             <div>
               <span style={{
-                display: "inline-flex", alignItems: "center", gap: 6,
-                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
+                display: "inline-flex", alignItems: "center", gap: 5,
+                fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em",
                 color: "#1E90FF", background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
-                borderRadius: 100, padding: "4px 12px", marginBottom: 14,
+                borderRadius: 6, padding: "4px 10px", marginBottom: 14,
               }}>✦ Why this was selected</span>
               {[
                 { label: "Segment at a glance",     detail: "Origin → destination in one clear row. No scrolling to find the route." },
@@ -1723,7 +1725,7 @@ function ReviewTableBlock() {
   );
 
   return (
-    <div className="csl-reveal" style={{ marginBottom: 64 }}>
+    <div style={{ marginBottom: 64 }}>
 
       {/* ── Header ── */}
       <div style={{ marginBottom: 28 }}>
@@ -1778,17 +1780,19 @@ function ReviewTableBlock() {
           marginTop: 12,
         }}>
           <div style={{ padding: "28px 28px 0" }}>
-            <Bar tint />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Image/Airiq/third%20core/new.png" alt="Redesigned review table" style={{ width: "100%", height: "auto", display: "block" }} />
+            <div style={{ borderRadius: 12, overflow: "hidden" }}>
+              <Bar tint />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Image/Airiq/third%20core/new.png" alt="Redesigned review table" style={{ width: "100%", height: "auto", display: "block" }} />
+            </div>
           </div>
           <div style={{ padding: "28px 32px 32px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
             <div>
               <span style={{
-                display: "inline-flex", alignItems: "center", gap: 6,
-                fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.16em",
+                display: "inline-flex", alignItems: "center", gap: 5,
+                fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em",
                 color: "#1E90FF", background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
-                borderRadius: 100, padding: "4px 12px", marginBottom: 14,
+                borderRadius: 6, padding: "4px 10px", marginBottom: 14,
               }}>✦ Why this was selected</span>
               {[
                 { label: "Optimised data density",     detail: "Every cell earns its place. Redundant columns removed, key fields promoted to primary visibility." },
@@ -1821,34 +1825,7 @@ function ReviewTableBlock() {
 function CoreComponentsSection() {
   return (
     <CsSection id="insights">
-      {/* Sticky progress label — activates the instant 1px enters viewport */}
-      <div style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 10,
-        background: "rgba(255,255,255,0.92)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-        borderBottom: "1px solid rgba(0,0,0,0.06)",
-        padding: "9px 0",
-        marginBottom: 0,
-      }}>
-        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" as const }}>
-          <span style={{
-            fontSize: "11px", fontWeight: 700, color: "#9CA3AF",
-            textTransform: "uppercase" as const, letterSpacing: "0.12em",
-          }}>Core Components</span>
-          <span style={{ color: "#D1D5DB", fontSize: "11px" }}>·</span>
-          {["Fare Listing Card", "Itinerary Card", "Review Table"].map((name, i) => (
-            <span key={name} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              {i > 0 && <span style={{ color: "#D1D5DB", fontSize: "11px" }}>·</span>}
-              <span style={{ fontSize: "12px", fontWeight: 600, color: "#374151" }}>{name}</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div style={{ paddingTop: 32 }}>
+      <div style={{ paddingTop: 0 }}>
         <CsSectionHeader
           title="3 Core Flow Fixes"
           sub="Fixing the listing, the share card, and the review table unblocked every other screen. Here's what I tried, what I scrapped, and what shipped."
@@ -2250,15 +2227,14 @@ function StoryCardsGrid() {
         const col = toneColors[card.tone] ?? toneColors["sc-blue"];
         return (
           <div key={card.kicker} style={{
-            background: "#fff", borderRadius: 14, padding: "20px 20px 18px",
+            background: "#fff", borderRadius: 4, padding: "20px 20px 18px",
             border: "1px solid rgba(0,0,0,0.06)",
-            boxShadow: "0 2px 12px rgba(0,0,0,0.04)",
           }}>
             <span style={{
-              display: "inline-block", fontSize: "15px", fontWeight: 600,
-              textTransform: "uppercase", letterSpacing: "0.14em",
+              display: "inline-block", fontSize: "10px", fontWeight: 700,
+              textTransform: "uppercase", letterSpacing: "0.12em",
               color: col.accent, background: col.bg,
-              borderRadius: 100, padding: "3px 10px", marginBottom: 10,
+              borderRadius: 4, padding: "2px 7px", marginBottom: 10,
             }}>{card.kicker}</span>
             <p style={{ fontSize: "1.05rem", fontWeight: 700, color: "#111827", margin: "0 0 8px", lineHeight: 1.3 }}>{card.title}</p>
             <p style={{ fontSize: "15px", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{card.text}</p>
@@ -2301,8 +2277,9 @@ function ConstraintsBlock() {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
         {items.map((item) => (
           <div key={item.label} style={{
-            background: "#F9FAFB", borderRadius: 12, padding: "16px 18px",
-            border: "1px solid #F3F4F6",
+            background: "linear-gradient(135deg, rgba(173,216,255,0.22), rgba(255,236,153,0.16))",
+            borderRadius: 12, padding: "16px 18px",
+            border: "1px solid rgba(173,216,255,0.3)",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
               <span style={{ fontSize: "1rem" }}>{item.icon}</span>
@@ -2371,16 +2348,6 @@ const PROCESS_STEPS = [
     saved: "1 day",
     icon: "✏️",
   },
-  {
-    num: "06",
-    tag: "Figma",
-    tagColor: "#7C3AED",
-    tagBg: "#F5F3FF",
-    title: "High-fidelity with full intent",
-    text: "With direction validated and edge cases defined, every hour in Figma was intentional. No exploration, only craft. 80+ components, a full token system, and 20+ screens built from zero.",
-    saved: null,
-    icon: "✦",
-  },
 ];
 
 function ProcessSection() {
@@ -2427,28 +2394,23 @@ function ProcessSection() {
             }}>
               {/* Step dot */}
               <div style={{
-                width: 40, height: 40, borderRadius: 12,
-                background: i === PROCESS_STEPS.length - 1 ? "#1E90FF" : "#fff",
-                border: i === PROCESS_STEPS.length - 1 ? "none" : "2px solid #E5E7EB",
+                width: 40, height: 40, borderRadius: 10,
+                background: "#fff",
+                border: "2px solid #E5E7EB",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: i === PROCESS_STEPS.length - 1 ? "16px" : "18px",
+                fontSize: "18px",
                 flexShrink: 0, zIndex: 1,
                 boxShadow: "0 0 0 4px #fff",
               }}>
-                {i === PROCESS_STEPS.length - 1 ? "✦" : step.icon}
+                {step.icon}
               </div>
 
               {/* Card */}
               <div style={{
-                background: i === PROCESS_STEPS.length - 1 ? "#0B1E3D" : "#fff",
-                borderRadius: 14,
+                background: "#fff",
+                borderRadius: 4,
                 padding: "18px 20px",
-                border: i === PROCESS_STEPS.length - 1
-                  ? "1px solid rgba(30,144,255,0.3)"
-                  : "1px solid #F3F4F6",
-                boxShadow: i === PROCESS_STEPS.length - 1
-                  ? "0 8px 32px rgba(30,144,255,0.1)"
-                  : "0 1px 6px rgba(0,0,0,0.04)",
+                border: "1px solid #F3F4F6",
               }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -2458,8 +2420,8 @@ function ProcessSection() {
                     }}>Step {step.num}</span>
                     <span style={{
                       fontSize: "11px", fontWeight: 700,
-                      color: i === PROCESS_STEPS.length - 1 ? "#9CA3AF" : step.tagColor,
-                      background: i === PROCESS_STEPS.length - 1 ? "rgba(255,255,255,0.08)" : step.tagBg,
+                      color: step.tagColor,
+                      background: step.tagBg,
                       borderRadius: 100, padding: "2px 8px",
                     }}>{step.tag}</span>
                   </div>
@@ -2473,12 +2435,12 @@ function ProcessSection() {
                 </div>
                 <div style={{
                   fontSize: "15px", fontWeight: 700,
-                  color: i === PROCESS_STEPS.length - 1 ? "rgba(255,255,255,0.92)" : "#111827",
+                  color: "#111827",
                   marginBottom: 6, lineHeight: 1.3,
                 }}>{step.title}</div>
                 <p style={{
                   fontSize: "14px",
-                  color: i === PROCESS_STEPS.length - 1 ? "rgba(255,255,255,0.5)" : "#6B7280",
+                  color: "#6B7280",
                   lineHeight: 1.75, margin: 0,
                 }}>{step.text}</p>
               </div>

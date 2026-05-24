@@ -91,6 +91,7 @@ export function PasswordGate({
   /* Session check */
   useEffect(() => {
     if (typeof window !== "undefined" && sessionStorage.getItem(storageKey) === "1") {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
       setPhase("done");
       return;
     }
@@ -105,6 +106,7 @@ export function PasswordGate({
         setPhase("success");
         setTimeout(() => {
           sessionStorage.setItem(storageKey, "1");
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
           setPhase("done");
         }, 1300);
       } else {
