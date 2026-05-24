@@ -159,11 +159,12 @@ const footerCSS = `
   color:#1E90FF;
 }
 @media(max-width:768px){
+  .gf-root{padding:3rem 24px;}
   .gf-flex{flex-direction:column;gap:2rem;}
   .gf-left{width:100%;}
-  .gf-right{max-width:100%;text-align:left;}
-  .gf-title,.gf-sub{text-align:left;}
-  .gf-links{margin-left:0;}
+  .gf-right{max-width:100%;text-align:left;margin-left:0;}
+  .gf-title,.gf-sub{text-align:left;margin-left:0;}
+  .gf-links{display:none;}
   .gf-footer-bar{justify-content:flex-start;}
 }
 /* ── Dark mode ── */
