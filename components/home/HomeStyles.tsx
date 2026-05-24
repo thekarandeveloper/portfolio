@@ -22,13 +22,11 @@ body{
 }
 ::selection{background:rgba(30,144,255,0.22);color:#0a1a2e;}
 .home-page-shell{
-  opacity:0;
-  animation:homePageFadeIn 900ms ease 240ms forwards;
+  opacity:1;
   overflow-x:hidden;
 }
 body.home-loading .home-page-shell{
   opacity:0;
-  animation:none;
 }
 .section-fade{
   opacity:0;

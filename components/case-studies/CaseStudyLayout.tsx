@@ -392,6 +392,22 @@ export function CaseStudyPage({
     );
     root.querySelectorAll(".csl-reveal").forEach((el) => revealObs.observe(el));
 
+    /* Fallback: reveal anything already in viewport after two frames,
+       in case IntersectionObserver fires too late on initial load */
+    const raf1 = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        root.querySelectorAll<Element>(".csl-reveal").forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("in");
+        });
+      });
+    });
+
+    /* Hard fallback: reveal all after 400 ms in case RAF doesn't work */
+    const fallbackTimer = setTimeout(() => {
+      root.querySelectorAll(".csl-reveal").forEach((el) => el.classList.add("in"));
+    }, 400);
+
     /* Active section tracking */
     const sections = Array.from(root.querySelectorAll<HTMLElement>("[data-s]"));
     const onScroll = () => {
@@ -409,6 +425,8 @@ export function CaseStudyPage({
     return () => {
       revealObs.disconnect();
       window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf1);
+      clearTimeout(fallbackTimer);
     };
   }, []);
 
