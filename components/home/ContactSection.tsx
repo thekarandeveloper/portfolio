@@ -4,13 +4,25 @@ const html = `<section class="contact" id="contact">
 
 
 
-    <!-- LEFT: google search mock -->
+    <!-- LEFT: ask me anything -->
     <div class="contact-left reveal from-left">
-      <div class="gsearch-bar">
-        <svg class="gsearch-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#9aa0a6" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#9aa0a6" stroke-width="2" stroke-linecap="round"/></svg>
-        <span class="gsearch-query-text" id="gsearchQuery"></span><span class="gsearch-caret" id="gsearchCaret">|</span>
+      <p class="ama-label">ask me anything</p>
+      <div class="ama-bar-wrap">
+        <div class="ama-bar" id="amaBar">
+          <svg class="ama-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+          <input class="ama-input" id="amaInput" type="text" placeholder="who is Nik?" autocomplete="off" spellcheck="false" />
+          <button class="ama-clear" id="amaClear" aria-label="Clear">&#215;</button>
+        </div>
       </div>
-      <div class="gsearch-results" id="gsearchResults"></div>
+      <div class="ama-chips" id="amaChips">
+        <button class="ama-chip" data-q="Who is Nik?">Who is Nik? 👤</button>
+        <button class="ama-chip" data-q="What does Nik design?">What does Nik design? ✦</button>
+        <button class="ama-chip" data-q="What coffee does Nik prefer?">What coffee? ☕</button>
+        <button class="ama-chip" data-q="What is Nik looking for?">What is Nik looking for? 🔍</button>
+        <button class="ama-chip" data-q="What does Nik love outside design?">Life outside design? 🎵</button>
+        <button class="ama-chip" data-q="What makes Nik's process different?">What makes her process different? 🧩</button>
+      </div>
+      <div class="ama-answer" id="amaAnswer"></div>
     </div>
 
     <!-- RIGHT: contact links -->

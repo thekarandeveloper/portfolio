@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const script = `// ── WATER SURFACE HOVER EFFECT ──
 (function(){
-  var hoverSelector='a,button,.hero-card,.pw-row,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.q-chip,.conv-replay';
+  var hoverSelector='a,button,.hero-card,.pw-row,.gallery-item,.obsession-card,.sc-card,.testimonial-card,.contact-link,.ama-chip';
   document.addEventListener('mousemove',function(e){
     var surface=e.target&&e.target.closest&&e.target.closest(hoverSelector);
     if(!surface)return;
@@ -407,77 +407,82 @@ initParallax();
 runParallax();
 
 
-// ── GOOGLE SEARCH CYCLING ANIMATION ──
+// ── ASK ME ANYTHING ──
 (function(){
-  var queryEl=document.getElementById('gsearchQuery');
-  var resultsEl=document.getElementById('gsearchResults');
-  if(!queryEl||!resultsEl)return;
-  var searches=[
-    {q:'Who is Nikunj?',items:[
-      {icon:'✦',text:'Product Designer',tag:'role'},
-      {icon:'✦',text:'UX Researcher',tag:'role'},
-      {icon:'✦',text:'Problem Solver',tag:'trait'},
-      {icon:'✦',text:'Systems Thinker',tag:'trait'}
-    ]},
-    {q:'What does she love?',items:[
-      {icon:'✦',text:'Obsessing over pixels',tag:'always'},
-      {icon:'☕',text:'Cold coffee',tag:'fuel'},
-      {icon:'✦',text:'Clean typography',tag:'passion'},
-      {icon:'🎵',text:'Lo-fi while designing',tag:'vibe'}
-    ]},
-    {q:'Where can you find her?',items:[
-      {icon:'☕',text:'Corner seat at a café',tag:'usually'},
-      {icon:'✦',text:'Deep in Figma',tag:'obviously'},
-      {icon:'✦',text:'Late nights, building',tag:'always'},
-      {icon:'✦',text:'tyaginikunj26@gmail.com',tag:'reach out'}
-    ]},
-    {q:'Which coffee?',items:[
-      {icon:'🧊',text:'Cold coffee',tag:'always'},
-      {icon:'☕',text:'Extra ice, every time',tag:'non-negotiable'},
-      {icon:'✦',text:'Never hot, ever',tag:'firm stance'},
-      {icon:'✦',text:'Iced americano > life',tag:'truth'}
-    ]}
-  ];
-  var cur=0,started=false;
-  function build(items){
-    resultsEl.innerHTML='';
-    items.forEach(function(it){
-      var d=document.createElement('div');
-      d.className='gsearch-item';
-      d.innerHTML='<div class="gsearch-item-icon">'+it.icon+'</div><span>'+it.text+'</span><span class="gsearch-item-tag">'+it.tag+'</span>';
-      resultsEl.appendChild(d);
-    });
+  var input=document.getElementById('amaInput');
+  var clearBtn=document.getElementById('amaClear');
+  var chipsEl=document.getElementById('amaChips');
+  var answerEl=document.getElementById('amaAnswer');
+  if(!input||!clearBtn||!chipsEl||!answerEl)return;
+
+  var answers={
+    'Who is Nik?':'A product designer who obsesses over the details nobody notices but everybody feels ✦<br><br>Currently building AIR iQ — a flight booking system that makes complex feel effortless ✈️<br><br>Based in India, always thinking in systems 🧩',
+    'What does Nik design?':'Interfaces that don\'t just work — they <em>feel</em> right ✦<br><br>From AI-powered tools to booking flows, the goal is always the same: make the complex feel inevitable 🎯<br><br>Typography, motion, spacing — the invisible details that make everything click',
+    'What coffee does Nik prefer?':'Cold coffee. Always cold ☕<br><br>Hot coffee is a crime against iced americanos 🧊<br><br>Corner seat, headphones on, Figma open — the holy trinity of a good design day',
+    'What is Nik looking for?':'A team that ships things people actually love 🚀<br><br>A role where design decisions matter — not just the UI, but the whole experience<br><br>Work that keeps Nik up at night (in a good way) ✦',
+    'What does Nik love outside design?':'Lo-fi playlists at 2am 🎵 · Harry Potter reruns · Cold coffee (yes, again ☕)<br><br>Film photography before it was trendy 📷<br><br>The kind of playlist that fits exactly how you feel — ask Nik, she\'ll deliver',
+    "What makes Nik's process different?":'Systems thinking from day one — not decoration, not afterthought 🧩<br><br>The first question is always "why does this exist?" — not "how should this look?"<br><br>Prototype first. Argue later. Ship it clean ✦'
+  };
+
+  function showAnswer(q){
+    var answer=answers[q];
+    if(!answer)return;
+    chipsEl.style.opacity='0';
+    chipsEl.style.pointerEvents='none';
+    answerEl.classList.remove('visible');
+    answerEl.innerHTML=answer;
+    setTimeout(function(){answerEl.classList.add('visible');},50);
+    clearBtn.classList.add('visible');
   }
-  function showResults(){Array.from(resultsEl.querySelectorAll('.gsearch-item')).forEach(function(el,i){setTimeout(function(){el.classList.add('gs-visible');},i*120);});}
-  function hideResults(cb){var els=Array.from(resultsEl.querySelectorAll('.gsearch-item')).reverse();els.forEach(function(el,i){setTimeout(function(){el.classList.remove('gs-visible');},i*70);});setTimeout(cb,els.length*70+180);}
-  function typeQ(q,cb){var i=0;(function step(){if(i<q.length){queryEl.textContent=q.slice(0,++i);setTimeout(step,55+Math.random()*35);}else{cb();}})();}
-  function delQ(cb){(function step(){var t=queryEl.textContent;if(t.length){queryEl.textContent=t.slice(0,-1);setTimeout(step,28);}else{cb();}})();}
-  function run(idx){
-    var s=searches[idx];
-    var isLast=idx===searches.length-1;
-    build(s.items);
-    typeQ(s.q,function(){
-      setTimeout(function(){
-        showResults();
-        if(isLast)return;
-        setTimeout(function(){
-          hideResults(function(){
-            delQ(function(){
-              setTimeout(function(){run(idx+1);},320);
-            });
-          });
-        },2600);
-      },380);
-    });
+
+  function clearSearch(){
+    input.value='';
+    clearBtn.classList.remove('visible');
+    answerEl.classList.remove('visible');
+    chipsEl.style.opacity='1';
+    chipsEl.style.pointerEvents='';
+    setTimeout(function(){answerEl.innerHTML='';},450);
   }
-  var contact=document.querySelector('.contact');
-  if(!contact)return;
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting&&!started){started=true;setTimeout(function(){run(0);},400);obs.disconnect();}
+
+  Array.from(chipsEl.querySelectorAll('.ama-chip')).forEach(function(chip){
+    chip.addEventListener('click',function(){
+      var q=chip.dataset.q;
+      input.value=q;
+      showAnswer(q);
     });
-  },{threshold:0.3});
-  obs.observe(contact);
+  });
+
+  clearBtn.addEventListener('click',clearSearch);
+
+  input.addEventListener('input',function(){
+    var val=input.value.trim();
+    if(val.length>0){
+      clearBtn.classList.add('visible');
+      var keys=Object.keys(answers);
+      var match=keys.find(function(k){return k.toLowerCase().includes(val.toLowerCase());});
+      if(!match)match=keys.find(function(k){return val.toLowerCase().split(' ').some(function(w){return w.length>3&&k.toLowerCase().includes(w);});});
+      if(match)showAnswer(match);
+    } else {
+      clearSearch();
+    }
+  });
+
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){
+      var val=input.value.trim();
+      if(!val)return;
+      var match=Object.keys(answers).find(function(k){return k.toLowerCase().includes(val.toLowerCase());});
+      if(match){showAnswer(match);}
+      else{
+        chipsEl.style.opacity='0';
+        chipsEl.style.pointerEvents='none';
+        answerEl.classList.remove('visible');
+        answerEl.innerHTML='Try one of the chips below — Nik\'s answers are more interesting than Google\'s 😉';
+        setTimeout(function(){answerEl.classList.add('visible');},50);
+        clearBtn.classList.add('visible');
+      }
+    }
+  });
 })();
 
 // ── HERO TYPEWRITER ──
