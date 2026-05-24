@@ -1264,9 +1264,17 @@ nav.scrolled .nav-pill{
 .ama-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;transition:opacity 0.3s;}
 .ama-chip{font-family: Lato, sans-serif;font-size:13px;color:var(--ink3);background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.09);border-radius:100px;padding:6px 13px;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s,transform 0.2s;white-space:nowrap;line-height:1.4;}
 .ama-chip:hover{background:rgba(30,144,255,0.07);border-color:rgba(30,144,255,0.22);color:var(--ink);transform:translateY(-1px);}
-.ama-answer{font-family: Lato, sans-serif;font-size:14px;color:var(--ink2);line-height:1.85;opacity:0;transform:translateY(10px);transition:opacity 0.45s ease,transform 0.45s ease;}
+.ama-answer{font-family: Lato, sans-serif;font-size:14px;color:var(--ink2);line-height:1.85;opacity:0;transform:translateY(10px);transition:opacity 0.5s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.34,1.56,0.64,1);}
 .ama-answer.visible{opacity:1;transform:translateY(0);}
-.ama-answer em{font-style:italic;color:var(--pink);}
+.ama-answer em{font-style:italic;background:linear-gradient(120deg,#1E90FF,#00BFFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ama-head{display:block;font-weight:500;background:linear-gradient(130deg,var(--ink) 20%,#1E90FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0;}
+@keyframes ama-emoji-pop{0%{transform:scale(0.4) rotate(-8deg);opacity:0;}65%{transform:scale(1.18) rotate(4deg);}100%{transform:scale(1) rotate(0deg);opacity:1;}}
+.ama-emoji{display:inline-block;}
+.ama-answer.visible .ama-emoji{animation:ama-emoji-pop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;}
+.ama-answer.visible .ama-emoji:nth-of-type(2){animation-delay:0.14s;}
+.ama-answer.visible .ama-emoji:nth-of-type(3){animation-delay:0.28s;}
+.contact-left{transition:background 0.6s ease;}
+.contact-left.has-answer{background:rgba(30,144,255,0.025);border-radius:20px;}
 
 
 
@@ -2446,6 +2454,8 @@ nav.scrolled .nav-pill{
 .dark .ama-chip{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);color:rgba(237,232,227,0.55);}
 .dark .ama-chip:hover{background:rgba(30,144,255,0.10);border-color:rgba(30,144,255,0.20);color:rgba(237,232,227,0.88);}
 .dark .ama-answer{color:rgba(237,232,227,0.72);}
+.dark .ama-head{background:linear-gradient(130deg,rgba(237,232,227,0.88) 20%,#1E90FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.dark .contact-left.has-answer{background:rgba(30,144,255,0.045);}
 
 /* ── Conversation replay ── */
 .dark .conv-replay{background:#1c1917;border-color:rgba(255,255,255,0.07);}

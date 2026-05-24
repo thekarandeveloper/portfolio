@@ -416,12 +416,12 @@ runParallax();
   if(!input||!clearBtn||!chipsEl||!answerEl)return;
 
   var answers={
-    'Who is Nik?':'A product designer who obsesses over the details nobody notices but everybody feels ✦<br><br>Currently building AIR iQ — a flight booking system that makes complex feel effortless ✈️<br><br>Based in India, always thinking in systems 🧩',
-    'What does Nik design?':'Interfaces that don\'t just work — they <em>feel</em> right ✦<br><br>From AI-powered tools to booking flows, the goal is always the same: make the complex feel inevitable 🎯<br><br>Typography, motion, spacing — the invisible details that make everything click',
-    'What coffee does Nik prefer?':'Cold coffee. Always cold ☕<br><br>Hot coffee is a crime against iced americanos 🧊<br><br>Corner seat, headphones on, Figma open — the holy trinity of a good design day',
-    'What is Nik looking for?':'A team that ships things people actually love 🚀<br><br>A role where design decisions matter — not just the UI, but the whole experience<br><br>Work that keeps Nik up at night (in a good way) ✦',
-    'What does Nik love outside design?':'Lo-fi playlists at 2am 🎵 · Harry Potter reruns · Cold coffee (yes, again ☕)<br><br>Film photography before it was trendy 📷<br><br>The kind of playlist that fits exactly how you feel — ask Nik, she\'ll deliver',
-    "What makes Nik's process different?":'Systems thinking from day one — not decoration, not afterthought 🧩<br><br>The first question is always "why does this exist?" — not "how should this look?"<br><br>Prototype first. Argue later. Ship it clean ✦'
+    'Who is Nik?':'<span class="ama-head">A product designer who obsesses over the details nobody notices but everybody feels</span> <span class="ama-emoji">✦</span><br><br>Currently building AIR iQ — a flight booking system that makes complex feel effortless <span class="ama-emoji">✈️</span><br><br>Based in India, always thinking in systems <span class="ama-emoji">🧩</span>',
+    'What does Nik design?':'<span class="ama-head">Interfaces that don\'t just work — they <em>feel</em> right</span> <span class="ama-emoji">✦</span><br><br>From AI-powered tools to booking flows, the goal is always the same: make the complex feel inevitable <span class="ama-emoji">🎯</span><br><br>Typography, motion, spacing — the invisible details that make everything click',
+    'What coffee does Nik prefer?':'<span class="ama-head">Cold coffee. Always cold</span> <span class="ama-emoji">☕</span><br><br>Hot coffee is a crime against iced americanos <span class="ama-emoji">🧊</span><br><br>Corner seat, headphones on, Figma open — the holy trinity of a good design day',
+    'What is Nik looking for?':'<span class="ama-head">A team that ships things people actually love</span> <span class="ama-emoji">🚀</span><br><br>A role where design decisions matter — not just the UI, but the whole experience<br><br>Work that keeps Nik up at night (in a good way) <span class="ama-emoji">✦</span>',
+    'What does Nik love outside design?':'<span class="ama-head">Lo-fi playlists at 2am</span> <span class="ama-emoji">🎵</span> · Harry Potter reruns · Cold coffee (yes, again ☕)<br><br>Film photography before it was trendy <span class="ama-emoji">📷</span><br><br>The kind of playlist that fits exactly how you feel — ask Nik, she\'ll deliver',
+    "What makes Nik's process different?":'<span class="ama-head">Systems thinking from day one — not decoration, not afterthought</span> <span class="ama-emoji">🧩</span><br><br>The first question is always "why does this exist?" — not "how should this look?"<br><br>Prototype first. Argue later. Ship it clean <span class="ama-emoji">✦</span>'
   };
 
   function showAnswer(q){
@@ -433,6 +433,8 @@ runParallax();
     answerEl.innerHTML=answer;
     setTimeout(function(){answerEl.classList.add('visible');},50);
     clearBtn.classList.add('visible');
+    var cl=document.querySelector('.contact-left');
+    if(cl)cl.classList.add('has-answer');
   }
 
   function clearSearch(){
@@ -442,6 +444,8 @@ runParallax();
     chipsEl.style.opacity='1';
     chipsEl.style.pointerEvents='';
     setTimeout(function(){answerEl.innerHTML='';},450);
+    var cl=document.querySelector('.contact-left');
+    if(cl)cl.classList.remove('has-answer');
   }
 
   Array.from(chipsEl.querySelectorAll('.ama-chip')).forEach(function(chip){
