@@ -8,8 +8,6 @@ import {
   bibloFeatures,
   bibloMeta,
   bibloRoleChips,
-  bibloTeam,
-  diamondSteps,
   learnings,
   personas,
   researchStats,
