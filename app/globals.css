@@ -6442,7 +6442,7 @@ p.iq2-frame-caption,
 .ds-hero-override { overflow: visible !important; }
 .ds-hero-img-col {
   overflow: visible !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   align-self: stretch !important;
   padding-top: 0 !important;
 }

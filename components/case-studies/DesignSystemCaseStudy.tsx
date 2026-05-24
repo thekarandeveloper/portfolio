@@ -358,7 +358,7 @@ function TokenLayerDemo() {
         color: "#9CA3AF", letterSpacing: "0.10em", textTransform: "uppercase",
         marginBottom: 14,
       }}>
-        Token flow — tap a layer to trace the chain
+        Token flow: tap a layer to trace the chain
       </p>
 
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
@@ -601,7 +601,7 @@ function FoundationsSection() {
       icon: FoundationIcons.type,
       decision: "Two typefaces, one purpose each. Inter for UI density and readability, Lato for marketing weight. Nine named steps in the scale. Nothing ad hoc.",
       whyQ: "Why two typefaces instead of one?",
-      whyA: "Inter handles density. Long tables, dropdowns, small labels — it reads cleanly at 12px. Lato carries marketing weight. Headings, hero copy, onboarding — it adds warmth without softness. One typeface would either feel sterile in the UI or informal in the marketing layer.",
+      whyA: "Inter handles density. Long tables, dropdowns, small labels: it reads cleanly at 12px. Lato carries marketing weight. Headings, hero copy, onboarding: it adds warmth without softness. One typeface would either feel sterile in the UI or informal in the marketing layer.",
       showDemo: false,
       height: 460,
     },
