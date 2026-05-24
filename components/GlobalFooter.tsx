@@ -164,7 +164,7 @@ const footerCSS = `
   .gf-left{width:100%;}
   .gf-right{max-width:100%;text-align:left;margin-left:0;}
   .gf-title,.gf-sub{text-align:left;margin-left:0;}
-  .gf-links{display:none;}
+  .gf-links{margin-left:0;max-width:100%;}
   .gf-footer-bar{justify-content:flex-start;}
 }
 /* ── Dark mode ── */

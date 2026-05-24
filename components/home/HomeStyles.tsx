@@ -2658,7 +2658,7 @@ nav.scrolled .nav-pill{
     overflow-x:hidden;
   }
   .hi-left{text-align:center;order:2;padding-top:0;}
-  .hi-right{order:1;display:flex;justify-content:center;margin-bottom:0.5rem;overflow:hidden;}
+  .hi-right{order:1;display:flex;justify-content:center;margin-bottom:0.5rem;}
   .hi-bio-line,.hi-sub-line{max-width:100%;}
   .hi-sticky-coffee{margin:0.75rem auto 0.9rem;}
   .hi-pm-collage{
