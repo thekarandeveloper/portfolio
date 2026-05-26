@@ -8,6 +8,8 @@ export interface FlowScreen {
   heading: string;
   subheading: string;
   description: string;
+  decisions?: [string, string];
+  highlightLabel?: string;
   imageSrc: string;
   imageAlt: string;
   url?: string;
@@ -41,7 +43,7 @@ export function ProductFlowShowcase({ screens }: ProductFlowShowcaseProps) {
 
         return (
           <div key={screen.stepNumber} className="pfs-row pfs-reveal">
-            {/* ── browser frame (top) ── */}
+            {/* ── browser frame ── */}
             <div className="pfs-frame">
               <div className="pfs-chrome">
                 <div className="pfs-chrome-dots">
@@ -62,11 +64,31 @@ export function ProductFlowShowcase({ screens }: ProductFlowShowcaseProps) {
               </div>
             </div>
 
-            {/* ── text block (below frame) ── */}
+            {/* ── decision callout strip (between frame and text) ── */}
+            {screen.highlightLabel && (
+              <div className="pfs-callout">
+                <span className="pfs-callout-eyebrow">Key decision</span>
+                <span className="pfs-callout-text">{screen.highlightLabel}</span>
+              </div>
+            )}
+
+            {/* ── text block ── */}
             <div className="pfs-text">
               <p className="pfs-counter">{step}&thinsp;/&thinsp;{total}</p>
               <h3 className="pfs-h">{screen.heading}</h3>
-              <p className="pfs-desc">{screen.description}</p>
+
+              {/* Decision chips replace paragraph */}
+              {screen.decisions ? (
+                <div className="pfs-chips">
+                  {screen.decisions.map((d, i) => (
+                    <span key={i} className={i === 0 ? "pfs-chip pfs-chip--primary" : "pfs-chip"}>
+                      ✦ {d}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <p className="pfs-desc">{screen.description}</p>
+              )}
             </div>
           </div>
         );
