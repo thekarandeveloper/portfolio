@@ -645,6 +645,238 @@ const KEY_FINDINGS = [
   "**80% of B2B bookings** leave add-ons empty, yet every portal shows those empty rows, creating confusion at review.",
 ];
 
+/* ─────────────────────────────────────────────────────────────────────
+   INTERVIEW PROCESS TIMELINE
+───────────────────────────────────────────────────────────────────── */
+const INTERVIEW_STEPS = [
+  { num: 1, color: "#EF4444", bg: "#FEE2E2", label: "Recruit",    desc: "4 active agents across agency sizes" },
+  { num: 2, color: "#F97316", bg: "#FED7AA", label: "Screen",     desc: "15-min pre-call to confirm tools & volume" },
+  { num: 3, color: "#EAB308", bg: "#FEF9C3", label: "Observe",    desc: "Watched 1 live booking per agent" },
+  { num: 4, color: "#22C55E", bg: "#DCFCE7", label: "Interview",  desc: "45 min · 7 structured questions" },
+  { num: 5, color: "#1E90FF", bg: "#EFF6FF", label: "Synthesise", desc: "Mapped patterns to design decisions" },
+];
+
+function InterviewProcessTimeline() {
+  const [vis, setVis] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } }, { threshold: 0.3 });
+    obs.observe(el); return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{
+      background: "#fff", borderRadius: 16, padding: "32px 24px 24px",
+      border: "1px solid #F3F4F6",
+      boxShadow: "0 2px 12px rgba(0,0,0,0.04)",
+    }}>
+      <div style={{ display: "flex", alignItems: "flex-start", position: "relative" }}>
+        {/* Connecting gradient line */}
+        <div style={{
+          position: "absolute", top: 19, left: 20, right: 20, height: 2,
+          background: "linear-gradient(90deg, #EF4444 0%, #F97316 25%, #EAB308 50%, #22C55E 75%, #1E90FF 100%)",
+          borderRadius: 2, zIndex: 0,
+          opacity: vis ? 1 : 0, transition: "opacity 0.8s 0.1s ease",
+        }} />
+        {INTERVIEW_STEPS.map((s, i) => (
+          <div key={s.label} style={{
+            flex: 1, display: "flex", flexDirection: "column", alignItems: "center", zIndex: 1,
+            opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(10px)",
+            transition: `opacity 0.45s ${i * 0.08}s ease, transform 0.45s ${i * 0.08}s ease`,
+          }}>
+            <div style={{
+              width: 38, height: 38, borderRadius: "50%",
+              background: s.bg, border: `2.5px solid ${s.color}`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: "14px", fontWeight: 800, color: s.color,
+              marginBottom: 12, boxShadow: `0 0 0 4px ${s.bg}`,
+            }}>{s.num}</div>
+            <div style={{ fontSize: "13px", fontWeight: 700, color: "#111827", marginBottom: 4, textAlign: "center" as const }}>{s.label}</div>
+            <div style={{ fontSize: "11px", color: "#9CA3AF", lineHeight: 1.4, textAlign: "center" as const, maxWidth: 88 }}>{s.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   INTERVIEW QUESTIONS BOARD — sticky notes around a video call
+───────────────────────────────────────────────────────────────────── */
+const STICKY_QUESTIONS = [
+  { num: "01", q: "Walk me through your last booking. What tools did you open first?",                     bg: "#FFF1F0", tape: "#FCA5A5", rot: -8 },
+  { num: "02", q: "What slows you down the most when comparing fares?",                                   bg: "#FEFCE8", tape: "#FDE047", rot: 5  },
+  { num: "03", q: "When a price changes after you've told a client — what happens next?",                  bg: "#EFF6FF", tape: "#7DD3FC", rot: -6 },
+  { num: "04", q: "How do you share fare options with clients right now?",                                 bg: "#F0FDF4", tape: "#86EFAC", rot: 7  },
+  { num: "05", q: "Which information do you check on every booking before confirming?",                   bg: "#FFF7ED", tape: "#FDB77B", rot: -5 },
+  { num: "06", q: "If you could remove one step from your current workflow, what would it be?",           bg: "#F5F3FF", tape: "#C4B5FD", rot: 6  },
+];
+
+function StickyNote({ num, q, bg, tape, rot }: typeof STICKY_QUESTIONS[0]) {
+  return (
+    <div style={{
+      transform: `rotate(${rot}deg)`, background: bg,
+      borderRadius: 4, padding: "18px 14px 22px",
+      boxShadow: "0 4px 18px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.05)",
+      position: "relative", transformOrigin: "center",
+    }}>
+      {/* Tape */}
+      <div style={{
+        position: "absolute", top: -7, left: "50%", transform: "translateX(-50%)",
+        width: 30, height: 13, borderRadius: 2,
+        background: tape, opacity: 0.7,
+      }} />
+      <div style={{
+        fontSize: "10px", fontWeight: 800, color: "rgba(0,0,0,0.3)",
+        letterSpacing: "0.1em", marginBottom: 8,
+      }}>{num}</div>
+      <p style={{
+        fontSize: "12px", color: "#1F2937", lineHeight: 1.6,
+        margin: 0, fontFamily: "Georgia, serif", fontStyle: "italic",
+      }}>{q}</p>
+    </div>
+  );
+}
+
+function VideoCallMockup() {
+  return (
+    <div style={{
+      background: "#111827", borderRadius: 22,
+      border: "6px solid #1F2937",
+      boxShadow: "0 20px 56px rgba(0,0,0,0.24)",
+      overflow: "hidden", width: "100%",
+    }}>
+      {/* Status bar */}
+      <div style={{ background: "#000", padding: "7px 14px 5px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: "9px", fontWeight: 700, color: "#fff" }}>9:41</span>
+        <div style={{ display: "flex", gap: 3, alignItems: "flex-end" }}>
+          {[5, 7, 10].map((h, i) => <div key={i} style={{ width: 3, height: h, borderRadius: 1, background: "#fff" }} />)}
+        </div>
+      </div>
+      {/* Screen */}
+      <div style={{ background: "#0f172a", padding: "8px" }}>
+        {/* Call header */}
+        <div style={{ background: "#0f3460", borderRadius: 6, padding: "5px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
+          <span style={{ fontSize: "8px", fontWeight: 700, color: "#60BFFF" }}>✦ AIR iQ · Interview</span>
+          <span style={{ fontSize: "7px", background: "#EF4444", color: "#fff", borderRadius: 3, padding: "2px 5px", fontWeight: 700 }}>● REC</span>
+        </div>
+        {/* Main participant */}
+        <div style={{ background: "#0f172a", borderRadius: 6, height: 88, marginBottom: 5, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <div style={{ width: 34, height: 34, borderRadius: "50%", background: "#1E3A5F", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "16px" }}>👤</div>
+          <span style={{ position: "absolute", bottom: 5, left: 7, fontSize: "7px", color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>Travel Agent</span>
+        </div>
+        {/* Self view */}
+        <div style={{ background: "#1e293b", borderRadius: 6, height: 44, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginBottom: 6 }}>
+          <div style={{ width: 22, height: 22, borderRadius: "50%", background: "#1E4A8F", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px" }}>👤</div>
+          <span style={{ fontSize: "7px", color: "rgba(255,255,255,0.35)" }}>Nikunj · UX Researcher</span>
+        </div>
+        {/* Controls */}
+        <div style={{ display: "flex", justifyContent: "center", gap: 7, paddingBottom: 4 }}>
+          {["🎤","📹","💬","✕"].map((icon, i) => (
+            <div key={i} style={{ width: 22, height: 22, borderRadius: "50%", background: i === 3 ? "#EF4444" : "#374151", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "8px" }}>{icon}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function InterviewQuestionsBoard() {
+  const left  = STICKY_QUESTIONS.slice(0, 3);
+  const right = STICKY_QUESTIONS.slice(3, 6);
+  return (
+    <div style={{
+      background: "linear-gradient(135deg, #F8FAFC 0%, #EDF2F7 100%)",
+      borderRadius: 20, padding: "40px 24px",
+      border: "1px solid #E2E8F0",
+    }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 180px 1fr", gap: 20, alignItems: "center" }}>
+        {/* Left notes */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+          {left.map((n) => <StickyNote key={n.num} {...n} />)}
+        </div>
+        {/* Center phone */}
+        <VideoCallMockup />
+        {/* Right notes */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+          {right.map((n) => <StickyNote key={n.num} {...n} />)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   COMPETITIVE MATRIX TABLE
+───────────────────────────────────────────────────────────────────── */
+const COMP_MATRIX_FEATURES = [
+  "Fare tiers visible inline",
+  "Refundability always shown (not on click)",
+  "Persistent filters — never modal",
+  "Mobile support",
+  "Empty SSR / add-on rows hidden",
+];
+
+const COMP_MATRIX_DATA: ("yes" | "partial" | "no")[][] = [
+  ["partial", "yes",     "yes",     "partial"],
+  ["no",      "no",      "no",      "no"     ],
+  ["no",      "no",      "no",      "no"     ],
+  ["yes",     "no",      "no",      "yes"    ],
+  ["no",      "no",      "no",      "no"     ],
+];
+
+function CompetitiveMatrix() {
+  const Cell = ({ val }: { val: "yes" | "partial" | "no" }) => {
+    if (val === "yes")     return <span style={{ color: "#22C55E", fontSize: "15px", fontWeight: 700 }}>✓</span>;
+    if (val === "partial") return <span style={{ color: "#F97316", fontSize: "14px" }}>◐</span>;
+    return <span style={{ color: "#EF4444", fontSize: "14px" }}>✕</span>;
+  };
+  return (
+    <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid #F3F4F6" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <thead>
+          <tr style={{ background: "#F9FAFB" }}>
+            <th style={{ padding: "12px 16px", textAlign: "left" as const, fontSize: "11px", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase" as const, letterSpacing: "0.1em", width: "38%" }}>Feature</th>
+            {COMPETITORS.map((p) => (
+              <th key={p.slug} style={{ padding: "12px 10px", textAlign: "center" as const, fontSize: "12px", fontWeight: 700 }}>
+                <div style={{ color: p.color }}>{p.name.split("My").join("My​")}</div>
+                <div style={{ fontSize: "10px", color: "#9CA3AF", fontWeight: 400, marginTop: 1 }}>{p.type.split(" · ")[0]}</div>
+              </th>
+            ))}
+            <th style={{ padding: "12px 10px", textAlign: "center" as const, background: "rgba(30,144,255,0.05)", borderLeft: "2px solid rgba(30,144,255,0.15)" }}>
+              <div style={{ fontSize: "12px", fontWeight: 800, color: "#1E90FF" }}>Air iQ</div>
+              <div style={{ fontSize: "10px", color: "#1E90FF", opacity: 0.7, marginTop: 1 }}>Redesign</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {COMP_MATRIX_FEATURES.map((feat, i) => (
+            <tr key={feat} style={{ borderTop: "1px solid #F3F4F6", background: i % 2 === 0 ? "#fff" : "#FAFAFA" }}>
+              <td style={{ padding: "13px 16px", fontSize: "13px", color: "#374151", fontWeight: 500 }}>{feat}</td>
+              {COMP_MATRIX_DATA[i].map((val, j) => (
+                <td key={j} style={{ padding: "13px 10px", textAlign: "center" as const }}><Cell val={val} /></td>
+              ))}
+              <td style={{ padding: "13px 10px", textAlign: "center" as const, background: "rgba(30,144,255,0.04)", borderLeft: "2px solid rgba(30,144,255,0.1)" }}>
+                <span style={{ color: "#1E90FF", fontSize: "16px", fontWeight: 800 }}>✓</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* Legend */}
+      <div style={{ padding: "10px 16px", borderTop: "1px solid #F3F4F6", display: "flex", gap: 20, background: "#F9FAFB" }}>
+        {[["✓", "#22C55E", "Yes"], ["◐", "#F97316", "Partial"], ["✕", "#EF4444", "No"]].map(([sym, col, label]) => (
+          <div key={label} style={{ display: "flex", alignItems: "center", gap: 5 }}>
+            <span style={{ color: col, fontSize: "13px" }}>{sym}</span>
+            <span style={{ fontSize: "11px", color: "#9CA3AF" }}>{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function CompetitiveCarousel() {
   /* single static embed — first competitor as reference */
   const c = COMPETITORS[0];
@@ -870,32 +1102,11 @@ function ResearchInsightCards() {
    §03  RESEARCH & APPROACH
 ───────────────────────────────────────────────────────────────────── */
 
-const AGENT_QUOTES = [
-  {
-    quote: "When the price changes after I've told the client, it's my credibility that takes the hit. The system gives me no warning at all.",
-    source: "Independent travel agent",
-    context: "Tier-2 city, 5 years experience",
-    insight: "Silent fare changes caused trust failures, not just booking failures.",
-  },
-  {
-    quote: "I know every keyboard shortcut in the GDS. This web portal makes me use the mouse for everything. It slows me down like I'm a beginner.",
-    source: "Corporate travel agent",
-    context: "High-volume booker, 200+ bookings/month",
-    insight: "The mental model mismatch was the single biggest adoption risk.",
-  },
-  {
-    quote: "By the time I've checked baggage rules on the airline site and come back, the price has already changed. The whole system works against me.",
-    source: "Senior travel agent",
-    context: "8 years experience, pre-launch interview",
-    insight: "Context-switching between tools was where time and trust were lost.",
-  },
-];
-
 const RESEARCH_SYNTHESIS = [
-  { insight: "Fare data overload on every search",       decision: "Fare listing card — explicit visual hierarchy, price first",    arrow: true },
-  { insight: "Filters break comparison loop",             decision: "Persistent 274px sidebar — never modal, always visible",        arrow: true },
-  { insight: "Fare rules hidden across all 4 platforms", decision: "Refundability inline by default — never one click away",        arrow: true },
-  { insight: "80% of bookings have empty SSR rows",      decision: "Conditional fields — only rendered when data is present",       arrow: true },
+  { insight: "Fare data overload on every search",       decision: "Fare listing card — explicit visual hierarchy, price first"   },
+  { insight: "Filters break comparison loop",             decision: "Persistent 274px sidebar — never modal, always visible"       },
+  { insight: "Fare rules hidden across all 4 platforms", decision: "Refundability inline by default — never one click away"       },
+  { insight: "80% of bookings have empty SSR rows",      decision: "Conditional fields — only rendered when data is present"      },
 ];
 
 function ApproachSection() {
@@ -903,127 +1114,67 @@ function ApproachSection() {
     <CsSection id="approach">
       <CsSectionHeader
         title="Research"
-        sub="Four agent interviews. Four competitor platforms. One month of discovery before a single frame opened in Figma."
+        sub="One month of discovery. Four agent interviews. Four competitor platforms. No wireframes until the research was done."
       />
 
-      {/* ── Methodology overview ── */}
-      <div className="csl-reveal" style={{ marginBottom: 36 }}>
-        <span className="csl-eyebrow">How I researched</span>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
-          {[
-            { num: "4", label: "Agent interviews", detail: "1-on-1 sessions with active travel agents. Observed live bookings, not just opinions.", icon: "🎙" },
-            { num: "4", label: "Competitor platforms", detail: "MakeMyTrip, TripJack, TBO, Yatra — studied fare listing, filters, and review flows.", icon: "🔍" },
-            { num: "1", label: "Observation session", detail: "Watched an agent complete 3 real bookings without interrupting their workflow.", icon: "👁" },
-          ].map((m) => (
-            <div key={m.label} style={{
-              background: "#fff", borderRadius: 14, padding: "20px",
-              border: "1px solid rgba(0,0,0,0.06)",
-              boxShadow: "0 1px 8px rgba(0,0,0,0.04)",
-            }}>
-              <span style={{ fontSize: "1.5rem", display: "block", marginBottom: 10 }}>{m.icon}</span>
-              <div style={{ fontSize: "2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em", marginBottom: 6 }}>{m.num}</div>
-              <div style={{ fontSize: "14px", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{m.label}</div>
-              <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{m.detail}</p>
-            </div>
-          ))}
+      {/* ── Interview process — horizontal timeline ── */}
+      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 16 }}>
+          <span className="csl-eyebrow" style={{ margin: 0 }}>04 · In-depth interviews</span>
+          <span style={{ fontSize: "12px", color: "#9CA3AF" }}>4 sessions · 45 min each</span>
         </div>
+        <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 20px", maxWidth: 520 }}>
+          1-on-1 sessions with active travel agents — observed one live booking per agent before asking a single question.
+        </p>
+        <InterviewProcessTimeline />
       </div>
 
-      {/* ── What agents told me ── */}
-      <div className="csl-reveal" style={{ marginBottom: 36 }}>
-        <span className="csl-eyebrow">What agents told me</span>
-        <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 20px", maxWidth: 520 }}>
-          Interviews surfaced three patterns that no stakeholder brief had mentioned. They became the foundation for every core design decision.
-        </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          {AGENT_QUOTES.map((q, i) => (
-            <div key={i} style={{
-              background: "#F9FAFB", borderRadius: 14, padding: "20px 22px",
-              border: "1px solid #F3F4F6",
-              display: "grid", gridTemplateColumns: "1fr auto", gap: 20,
-              alignItems: "start",
-            }}>
-              <div>
-                <p style={{
-                  fontSize: "1rem", fontStyle: "italic", color: "#374151",
-                  lineHeight: 1.75, margin: "0 0 12px",
-                }}>
-                  &ldquo;{q.quote}&rdquo;
-                </p>
-                <div style={{ display: "inline-block", background: "#EFF6FF", borderRadius: 6, padding: "4px 10px" }}>
-                  <span style={{ fontSize: "12px", fontWeight: 700, color: "#1E90FF" }}>→ {q.insight}</span>
-                </div>
-              </div>
-              <div style={{ textAlign: "right" as const, flexShrink: 0, minWidth: 130 }}>
-                <div style={{ fontSize: "12px", fontWeight: 700, color: "#374151" }}>{q.source}</div>
-                <div style={{ fontSize: "11px", color: "#9CA3AF", marginTop: 2, lineHeight: 1.4 }}>{q.context}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* ── Sticky note board — interview questions ── */}
+      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+        <span className="csl-eyebrow">Questions asked in every session</span>
+        <InterviewQuestionsBoard />
       </div>
 
       {/* ── Competitive analysis ── */}
-      <div className="csl-reveal" style={{ marginBottom: 36 }}>
+      <div className="csl-reveal" style={{ marginBottom: 40 }}>
         <span className="csl-eyebrow">Competitor landscape</span>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 24 }}>
+        {/* Logo row */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginBottom: 16 }}>
           {COMPETITORS.map((comp) => (
-            <div key={comp.slug} style={{
-              display: "flex", alignItems: "center", gap: 12,
-              background: "#fff", border: "1px solid rgba(0,0,0,0.07)",
-              borderRadius: 12, boxShadow: "0 1px 4px rgba(0,0,0,0.05)", padding: "12px 16px",
-            }}>
+            <div key={comp.slug} style={{ display: "flex", alignItems: "center", gap: 10, background: "#fff", border: "1px solid rgba(0,0,0,0.07)", borderRadius: 10, padding: "10px 14px" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/Image/Airiq/research/logo-${comp.slug}.png`} alt={comp.name} style={{ maxWidth: 80, maxHeight: 32, objectFit: "contain", display: "block", flexShrink: 0 }} />
-              <div>
-                <div style={{ fontSize: "14px", fontWeight: 600, color: "#111827" }}>{comp.name}</div>
-                <div style={{ fontSize: "12px", color: "#9CA3AF", marginTop: 2 }}>{comp.type}</div>
-              </div>
+              <img src={`/Image/Airiq/research/logo-${comp.slug}.png`} alt={comp.name} style={{ maxWidth: 60, maxHeight: 24, objectFit: "contain", display: "block", flexShrink: 0 }} />
             </div>
           ))}
         </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          {KEY_FINDINGS.map((text, i) => {
-            const parts = text.split(/\*\*(.*?)\*\*/g);
-            return (
-              <div key={i} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: "0 14px", alignItems: "start" }}>
-                <span style={{ width: 28, height: 28, borderRadius: 8, background: "#EFF6FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: 700, color: "#1E90FF", flexShrink: 0, marginTop: 1 }}>0{i + 1}</span>
-                <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
-                  {parts.map((part, j) => j % 2 === 1 ? <strong key={j} style={{ color: "#111827", fontWeight: 700 }}>{part}</strong> : <span key={j}>{part}</span>)}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+        {/* Matrix table */}
+        <CompetitiveMatrix />
       </div>
 
       {/* ── Insight cards ── */}
-      <div className="csl-reveal" style={{ marginBottom: 36 }}>
+      <div className="csl-reveal" style={{ marginBottom: 40 }}>
+        <span className="csl-eyebrow">What the research surfaced</span>
         <ResearchInsightCards />
       </div>
 
       {/* ── Research → Decisions synthesis bridge ── */}
       <div className="csl-reveal">
         <span className="csl-eyebrow">From research to decisions</span>
-        <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 18px", maxWidth: 520 }}>
-          Every core design decision traces back to a specific research finding. Here's the explicit chain.
-        </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 14 }}>
           {RESEARCH_SYNTHESIS.map((row, i) => (
             <div key={i} style={{
-              display: "grid", gridTemplateColumns: "1fr 24px 1fr",
+              display: "grid", gridTemplateColumns: "1fr 28px 1fr",
               gap: 12, alignItems: "center",
-              background: "#fff", borderRadius: 10, padding: "14px 16px",
+              background: "#fff", borderRadius: 10, padding: "13px 16px",
               border: "1px solid #F3F4F6",
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#FCA5A5", flexShrink: 0, display: "block" }} />
+                <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#FCA5A5", flexShrink: 0, display: "block" }} />
                 <span style={{ fontSize: "13px", color: "#374151", lineHeight: 1.5 }}>{row.insight}</span>
               </div>
               <span style={{ fontSize: "16px", color: "#1E90FF", textAlign: "center" as const, fontWeight: 700 }}>→</span>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#1E90FF", flexShrink: 0, display: "block" }} />
+                <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#1E90FF", flexShrink: 0, display: "block" }} />
                 <span style={{ fontSize: "13px", fontWeight: 600, color: "#111827", lineHeight: 1.5 }}>{row.decision}</span>
               </div>
             </div>
