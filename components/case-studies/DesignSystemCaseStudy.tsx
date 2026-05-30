@@ -132,48 +132,70 @@ function ImpactCard({
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   THREE CHALLENGES (Blade-pattern problem breakdown)
+   THREE CHALLENGES (icon card grid)
 ───────────────────────────────────────────────────────────────────── */
 function ThreeChallenges() {
   const challenges = [
     {
-      num: "01",
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          {/* three shapes at different sizes — visual inconsistency */}
+          <rect x="3" y="22" width="10" height="14" rx="2" fill="#1076BC" opacity="0.35"/>
+          <rect x="15" y="16" width="10" height="20" rx="5" fill="#1076BC" opacity="0.22"/>
+          <rect x="27" y="10" width="10" height="26" rx="3" fill="#1076BC" opacity="0.50"/>
+          <line x1="3" y1="36" x2="37" y2="36" stroke="#1076BC" strokeWidth="1.5" opacity="0.18" strokeLinecap="round"/>
+        </svg>
+      ),
       title: "Consistency",
-      body: "Products started looking inconsistent — five different button radii, three interpretations of the same status badge. Visual drift was slowing user trust.",
+      body: "Products started looking inconsistent — five different button radii, three interpretations of the same status badge.",
     },
     {
-      num: "02",
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          {/* two-way arrows = back-and-forth */}
+          <circle cx="8"  cy="20" r="5" fill="#1076BC" opacity="0.35"/>
+          <circle cx="32" cy="20" r="5" fill="#1076BC" opacity="0.35"/>
+          <path d="M13 16 L27 16" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M25 13 L28 16 L25 19" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+          <path d="M27 24 L13 24" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M15 21 L12 24 L15 27" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        </svg>
+      ),
       title: "Collaboration",
-      body: "Constant back-and-forth between designers and developers before anything shipped. No single source of truth meant every handoff needed renegotiating.",
+      body: "Constant back-and-forth between designers and developers. No single source of truth meant every handoff needed renegotiating.",
     },
     {
-      num: "03",
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          {/* modular blocks = reusable but being rebuilt custom */}
+          <rect x="4"  y="24" width="13" height="11" rx="3" fill="#1076BC" opacity="0.35"/>
+          <rect x="23" y="24" width="13" height="11" rx="3" fill="#1076BC" opacity="0.35"/>
+          <rect x="13" y="8"  width="14" height="11" rx="3" fill="#1076BC" opacity="0.55"/>
+          <line x1="10" y1="24" x2="16" y2="19" stroke="#1076BC" strokeWidth="1.5" opacity="0.30" strokeLinecap="round"/>
+          <line x1="30" y1="24" x2="24" y2="19" stroke="#1076BC" strokeWidth="1.5" opacity="0.30" strokeLinecap="round"/>
+        </svg>
+      ),
       title: "Ease of Use",
-      body: "Teams were building custom solutions for patterns that should have been reusable. Effort spent reinventing, not building.",
+      body: "Teams built custom solutions for patterns that should have been reusable. Effort spent reinventing, not building.",
     },
   ];
 
   return (
-    <div className="csl-reveal" style={{ margin: "40px 0" }}>
-      <p style={{ fontFamily: font, fontSize: 11, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 21 }}>
+    <div style={{ margin: "37px 0" }}>
+      <p style={{ fontFamily: font, fontSize: 11, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 15 }}>
         Three challenges that forced the system
       </p>
-      <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 13 }}>
         {challenges.map((c, i) => (
-          <div key={c.num} style={{
-            display: "grid", gridTemplateColumns: "60px 1fr",
-            gap: 20, padding: "21px 0",
-            borderTop: "1px solid rgba(0,0,0,0.07)",
-            borderBottom: i === challenges.length - 1 ? "1px solid rgba(0,0,0,0.07)" : "none",
-            alignItems: "start",
+          <div key={c.title} className="csl-reveal" style={{
+            background: "#f9fafb", borderRadius: 15,
+            padding: "23px 19px 19px",
+            border: "1px solid rgba(0,0,0,0.06)",
+            transitionDelay: `${i * 60}ms`,
           }}>
-            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 11, fontWeight: 700, color: ACCENT, paddingTop: 3 }}>
-              {c.num}
-            </span>
-            <div>
-              <p style={{ fontFamily: display, fontSize: 17, fontWeight: 700, color: "#111827", marginBottom: 7 }}>{c.title}</p>
-              <p style={{ fontFamily: font, fontSize: 13, color: "#6B7280", lineHeight: 1.75 }}>{c.body}</p>
-            </div>
+            <div style={{ marginBottom: 15 }}>{c.icon}</div>
+            <p style={{ fontFamily: font, fontSize: 15, fontWeight: 700, color: "#111827", marginBottom: 6 }}>{c.title}</p>
+            <p style={{ fontFamily: font, fontSize: 13, color: "#6B7280", lineHeight: 1.65 }}>{c.body}</p>
           </div>
         ))}
       </div>
@@ -530,16 +552,69 @@ function OverviewSection() {
       {/* approach grid */}
       <div className="csl-reveal" style={{ marginTop: 32 }}>
         <p style={{ fontFamily: font, fontSize: 11, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 15 }}>Approach</p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 11 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 13 }}>
           {[
-            { num: "01", title: "Token-first", body: "Every colour, spacing step and shadow is a named token. Swap the token, update every instance." },
-            { num: "02", title: "Component contracts", body: "Each component ships with defined props, states and usage rules. No ambiguity in handoff." },
-            { num: "03", title: "Built while shipping", body: "Tokens and components introduced incrementally alongside real features — not in a silo." },
-            { num: "04", title: "Documentation as design", body: "The Figma file is the doc. Annotations live inside frames, not in a Notion page nobody reads." },
+            {
+              icon: (
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <circle cx="18" cy="18" r="7" fill="#1076BC" opacity="0.13"/>
+                  <circle cx="18" cy="18" r="3" fill="#1076BC" opacity="0.5"/>
+                  <line x1="18" y1="4"  x2="18" y2="10" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="18" y1="26" x2="18" y2="32" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="4"  y1="18" x2="10" y2="18" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+                  <line x1="26" y1="18" x2="32" y2="18" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              ),
+              title: "Token-first",
+              body: "Every colour, spacing step and shadow is a named token. Swap the token, update every instance.",
+            },
+            {
+              icon: (
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <rect x="4" y="5" width="28" height="26" rx="4" stroke="#1076BC" strokeWidth="1.5" fill="none" opacity="0.35"/>
+                  <line x1="4" y1="13" x2="32" y2="13" stroke="#1076BC" strokeWidth="1.2" opacity="0.25"/>
+                  <line x1="11" y1="19" x2="25" y2="19" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" opacity="0.55"/>
+                  <line x1="11" y1="24" x2="21" y2="24" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" opacity="0.35"/>
+                </svg>
+              ),
+              title: "Component contracts",
+              body: "Each component ships with defined props, states and usage rules. No ambiguity in handoff.",
+            },
+            {
+              icon: (
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <circle cx="18" cy="18" r="11" stroke="#1076BC" strokeWidth="1.5" fill="none" opacity="0.25"/>
+                  <circle cx="18" cy="18" r="6"  fill="#1076BC" opacity="0.18"/>
+                  <path d="M18 12 L18 18 L22 21" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M7 8 L10 11" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" opacity="0.45"/>
+                  <path d="M26 8 L29 5" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" opacity="0.35"/>
+                </svg>
+              ),
+              title: "Built while shipping",
+              body: "Tokens and components introduced incrementally alongside real features — not in a silo.",
+            },
+            {
+              icon: (
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <rect x="4" y="5" width="20" height="26" rx="3" fill="#1076BC" opacity="0.10" stroke="#1076BC" strokeWidth="1.5" strokeOpacity="0.35"/>
+                  <line x1="8"  y1="12" x2="20" y2="12" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+                  <line x1="8"  y1="17" x2="20" y2="17" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" opacity="0.35"/>
+                  <line x1="8"  y1="22" x2="16" y2="22" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" opacity="0.25"/>
+                  <circle cx="28" cy="26" r="6" fill="#1076BC" opacity="0.15" stroke="#1076BC" strokeWidth="1.5" strokeOpacity="0.45"/>
+                  <path d="M25 26 L27 28 L31 24" stroke="#1076BC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ),
+              title: "Documentation as design",
+              body: "The Figma file is the doc. Annotations live inside frames, not in a Notion page nobody reads.",
+            },
           ].map((step, i) => (
-            <div key={step.num} style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)", borderRadius: 11, padding: "17px 19px", transitionDelay: `${i * 55}ms` }}>
-              <p style={{ fontFamily: font, fontSize: 11, color: ACCENT, fontWeight: 700, letterSpacing: "0.10em", marginBottom: 5 }}>{step.num}</p>
-              <p style={{ fontFamily: font, fontSize: 15, fontWeight: 700, color: "#111827", marginBottom: 7 }}>{step.title}</p>
+            <div key={step.title} style={{
+              background: "#f9fafb", border: "1px solid rgba(0,0,0,0.06)",
+              borderRadius: 15, padding: "21px 19px 19px",
+              transitionDelay: `${i * 55}ms`,
+            }}>
+              <div style={{ marginBottom: 13 }}>{step.icon}</div>
+              <p style={{ fontFamily: font, fontSize: 15, fontWeight: 700, color: "#111827", marginBottom: 6 }}>{step.title}</p>
               <p style={{ fontFamily: font, fontSize: 13, color: "#6B7280", lineHeight: 1.7 }}>{step.body}</p>
             </div>
           ))}
