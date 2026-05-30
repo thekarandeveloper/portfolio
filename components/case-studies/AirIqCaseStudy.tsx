@@ -14,16 +14,18 @@ import {
    TOC
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",       label: "Overview"        },
-  { id: "problem",        label: "The Problem"     },
-  { id: "approach",       label: "Research"        },
-  { id: "process",        label: "How I Worked"    },
-  { id: "insights",       label: "Core Flow Fixes" },
-  { id: "product",        label: "Product Flow"    },
-  { id: "mobile",         label: "Mobile"          },
-  { id: "design-system",  label: "Design System"   },
-  { id: "results",        label: "Impact"          },
-  { id: "learnings",      label: "Learnings"       },
+  { id: "overview",       label: "Overview"          },
+  { id: "agent",          label: "The Agent"         },
+  { id: "problem",        label: "The Problem"       },
+  { id: "approach",       label: "Research"          },
+  { id: "principles",     label: "Principles"        },
+  { id: "process",        label: "How I Worked"      },
+  { id: "insights",       label: "Core Decisions"    },
+  { id: "product",        label: "Product Flow"      },
+  { id: "mobile",         label: "Mobile"            },
+  { id: "design-system",  label: "Design System"     },
+  { id: "results",        label: "Impact"            },
+  { id: "learnings",      label: "Learnings"         },
 ];
 
 const META_ROWS = [
@@ -416,131 +418,121 @@ function OverviewSection() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   JOURNEY TIMELINE (before / after animation)
+   PHOTO PLACEHOLDER
 ───────────────────────────────────────────────────────────────────── */
-function JourneyTimeline() {
-  const ref  = useRef<HTMLDivElement>(null);
-  const [vis, setVis] = useState(false);
+function PhotoPlaceholder({ label, description, aspectRatio = "16/7" }: {
+  label: string; description: string; aspectRatio?: string;
+}) {
+  return (
+    <div className="csl-reveal" style={{
+      background: "linear-gradient(135deg, #F0F4F8 0%, #E8EFF5 100%)",
+      borderRadius: 16,
+      border: "2px dashed #CBD5E1",
+      aspectRatio,
+      display: "flex", flexDirection: "column",
+      alignItems: "center", justifyContent: "center",
+      gap: 10, padding: 24, marginBottom: 28,
+      textAlign: "center",
+    }}>
+      <span style={{ fontSize: "2rem" }}>📷</span>
+      <span style={{ fontSize: "14px", fontWeight: 700, color: "#475569", letterSpacing: "0.06em", textTransform: "uppercase" as const }}>
+        {label}
+      </span>
+      <span style={{ fontSize: "13px", color: "#94A3B8", lineHeight: 1.55, maxWidth: 480 }}>
+        {description}
+      </span>
+    </div>
+  );
+}
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
-      { threshold: 0.25 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  const before = [
-    { icon: "⌨", label: "GDS terminal",  sub: "Command-line only"  },
-    { icon: "📞", label: "Call airline",   sub: "No real-time data"  },
-    { icon: "📝", label: "Manual entry",   sub: "Error-prone"        },
-    { icon: "🖨",  label: "Print fare",    sub: "Paper-based"        },
-    { icon: "📧", label: "Email client",   sub: "3–4 extra steps"    },
+/* ─────────────────────────────────────────────────────────────────────
+   OLD WORKFLOW DIAGRAM — 5-step chaos before Air IQ
+───────────────────────────────────────────────────────────────────── */
+function OldWorkflowDiagram() {
+  const steps = [
+    { icon: "⌨", tool: "GDS Terminal",    action: "Search availability",  pain: "Command-line only" },
+    { icon: "🌐", tool: "Airline Website", action: "Check fare rules",      pain: "Different site per airline" },
+    { icon: "📋", tool: "Spreadsheet",     action: "Compare & track",       pain: "Manual, error-prone" },
+    { icon: "✍",  tool: "Portal Form",     action: "Re-enter all data",     pain: "No saved profiles" },
+    { icon: "📧", tool: "Email / Print",   action: "Share with client",     pain: "3–4 extra steps" },
   ];
-
-  const after = [
-    { icon: "✦", label: "Search",  sub: "Live GDS results" },
-    { icon: "◉", label: "Select",  sub: "Single screen"    },
-    { icon: "↗", label: "Confirm", sub: "Done in one flow" },
-  ];
-
-  const stepIn = (i: number, offset = 0): React.CSSProperties => ({
-    opacity: vis ? 1 : 0,
-    transform: vis ? "translateY(0) scale(1)" : "translateY(10px) scale(0.9)",
-    transition: `opacity 0.4s ${(offset + i) * 0.07}s ease, transform 0.4s ${(offset + i) * 0.07}s ease`,
-  });
-
-  const lineIn = (delay: number): React.CSSProperties => ({
-    opacity: vis ? 1 : 0,
-    transition: `opacity 0.6s ${delay}s ease`,
-  });
-
-  const StepRow = ({
-    steps, color, bg, border,
-    label, time, timeColor, offset = 0,
-    narrow = false,
-  }: {
-    steps: typeof before;
-    color: string; bg: string; border: string;
-    label: string; time: string; timeColor: string;
-    offset?: number; narrow?: boolean;
-  }) => (
-    <div style={{ marginBottom: 0 }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-        <span style={{
-          fontSize: "15px", fontWeight: 600, textTransform: "uppercase",
-          letterSpacing: "0.16em", color, background: bg,
-          padding: "4px 12px", borderRadius: 100, border: `1px solid ${border}`,
-        }}>{label}</span>
-        <span style={{ fontSize: "15px", fontWeight: 600, color: timeColor }}>{time}</span>
-      </div>
-      <div style={{ position: "relative", maxWidth: narrow ? "62%" : "100%" }}>
-        <div style={{
-          position: "absolute", top: 19,
-          left: `calc(${40 / 2}px)`, right: `calc(${40 / 2}px)`,
-          height: 1, background: bg,
-          ...lineIn(offset * 0.07 + 0.1),
-        }} />
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${steps.length}, 1fr)`,
-          gap: 8, position: "relative", zIndex: 1,
-        }}>
-          {steps.map((step, i) => (
-            <div key={step.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
-              <div style={{
-                width: 40, height: 40, borderRadius: 10,
-                background: bg, border: `1.5px solid ${border}`,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "15px", flexShrink: 0,
-                ...stepIn(i, offset),
-              }}>{step.icon}</div>
-              <div style={{ marginTop: 8, opacity: vis ? 1 : 0, transition: `opacity 0.4s ${(offset + i) * 0.07 + 0.18}s ease` }}>
-                <div style={{ fontSize: "15px", fontWeight: 600, color: "#374151", marginBottom: 2 }}>{step.label}</div>
-                <div style={{ fontSize: "15px", color: "#9CA3AF" }}>{step.sub}</div>
-              </div>
+  return (
+    <div style={{ background: "#FEF2F2", borderRadius: 16, padding: "22px 20px 18px", border: "1px solid #FECACA", overflow: "hidden" }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 0, overflowX: "auto" }}>
+        {steps.map((s, i) => (
+          <div key={s.tool} style={{ display: "flex", alignItems: "flex-start", flexShrink: 0 }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 108 }}>
+              <div style={{ width: 42, height: 42, borderRadius: 10, background: "#FEE2E2", border: "1.5px solid #FCA5A5", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem", marginBottom: 8 }}>{s.icon}</div>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: "#EF4444", textAlign: "center" as const, marginBottom: 3 }}>{s.tool}</span>
+              <span style={{ fontSize: "11px", color: "#374151", textAlign: "center" as const, lineHeight: 1.4, marginBottom: 3 }}>{s.action}</span>
+              <span style={{ fontSize: "10px", color: "#EF4444", textAlign: "center" as const, fontStyle: "italic", lineHeight: 1.3 }}>{s.pain}</span>
             </div>
-          ))}
-        </div>
+            {i < steps.length - 1 && (
+              <div style={{ display: "flex", alignItems: "center", paddingTop: 18, flexShrink: 0, margin: "0 4px" }}>
+                <div style={{ width: 16, height: 1, background: "#FCA5A5" }} />
+                <span style={{ fontSize: "10px", color: "#EF4444", lineHeight: 1 }}>→</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 14, paddingTop: 12, borderTop: "1px solid #FECACA" }}>
+        <p style={{ fontSize: "12px", color: "#991B1B", margin: 0, fontWeight: 600 }}>
+          ~12 min per booking &nbsp;·&nbsp; 3–5 tabs open &nbsp;·&nbsp; Everything re-entered every session
+        </p>
       </div>
     </div>
   );
+}
 
+/* ─────────────────────────────────────────────────────────────────────
+   §01b  THE AGENT
+───────────────────────────────────────────────────────────────────── */
+const AGENT_PROFILE_ITEMS = [
+  { icon: "⌨", label: "Keyboard-first", text: "Built their workflow around GDS commands over years. Muscle memory, not menus. A mouse-dependent portal felt like a demotion." },
+  { icon: "📞", label: "Always on a call", text: "Agents confirm fares live with clients. Every extra second of searching is a client listening to silence. Speed is credibility." },
+  { icon: "💼", label: "Commission-driven", text: "Speed is income. Saving 5 minutes per booking across 15 bookings a day is real money. Friction is not a UX problem — it is a financial one." },
+  { icon: "🔄", label: "Repeat routes, repeat clients", text: "DEL→BOM, same 3 travellers, different dates. Agents work in patterns. A tool that doesn't recognise repetition forces them to start over every session." },
+];
+
+function TheAgentSection() {
   return (
-    <div ref={ref} style={{
-      background: "#fff", borderRadius: 18, padding: "28px 24px",
-      boxShadow: "0 4px 20px rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.05)",
-    }}>
-      <StepRow
-        steps={before}
-        color="#EF4444" bg="#FEF2F2" border="#FECACA"
-        label="Before" time="~12 min · per booking" timeColor="#EF4444"
-        offset={0}
+    <CsSection id="agent">
+      <CsSectionHeader
+        title="Who is the agent?"
+        sub="25,000 users. The kind of tool they needed couldn't be designed from assumptions."
       />
 
-      <div style={{
-        display: "flex", alignItems: "center", gap: 12,
-        margin: "24px 0",
-        opacity: vis ? 1 : 0, transition: "opacity 0.5s 0.5s ease",
-      }}>
-        <div style={{ flex: 1, height: 1, background: "rgba(0,0,0,0.07)" }} />
-        <span style={{ fontSize: "15px", fontWeight: 600, color: "#9CA3AF", letterSpacing: "0.12em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
-          AIR iQ redesigned this
-        </span>
-        <div style={{ flex: 1, height: 1, background: "rgba(0,0,0,0.07)" }} />
+      <PhotoPlaceholder
+        label="Travel agent at work"
+        description="Photo: a travel agent at their desk — two monitors, headset on, GDS terminal on one screen, client notes on the other. The visual context that makes every design decision make sense."
+        aspectRatio="16/6"
+      />
+
+      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 36 }}>
+        {AGENT_PROFILE_ITEMS.map((p) => (
+          <div key={p.label} style={{
+            background: "#fff", borderRadius: 12, padding: "18px 20px",
+            border: "1px solid rgba(0,0,0,0.06)",
+            boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+              <span style={{ fontSize: "1.2rem" }}>{p.icon}</span>
+              <span style={{ fontSize: "14px", fontWeight: 700, color: "#111827" }}>{p.label}</span>
+            </div>
+            <p style={{ fontSize: "14px", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{p.text}</p>
+          </div>
+        ))}
       </div>
 
-      <StepRow
-        steps={after}
-        color="#1076BC" bg="#E8F2FB" border="#BFDBFE"
-        label="Air iQ" time="~7 min · per booking" timeColor="#1076BC"
-        offset={7}
-        narrow
-      />
-    </div>
+      <div className="csl-reveal">
+        <span className="csl-eyebrow">One booking. Five tools. Every time.</span>
+        <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 16px", maxWidth: 540 }}>
+          Before Air IQ, a single booking meant switching between a GDS terminal, airline websites, a spreadsheet, the booking portal, and then a separate tool to share the fare. Not a workflow — a workaround that agents had built over years because nothing better existed.
+        </p>
+        <OldWorkflowDiagram />
+      </div>
+    </CsSection>
   );
 }
 
@@ -579,63 +571,58 @@ function ProblemSection() {
     <CsSection id="problem">
       <CsSectionHeader
         title="The portal was slowing agents down. The business knew it."
-        sub="25,000 agents. Consistent feedback. Growing competitive pressure. Not a UI problem. A business problem that lived in the interface."
+        sub="Feedback had been consistent for months. This wasn't a feature gap — it was a product-level failure that needed to be solved at the design level."
       />
 
-      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-        {PAIN_MOMENTS.map((m) => (
-          <div key={m.title} style={{
-            borderLeft: "3px solid #1E90FF",
-            paddingLeft: 18,
+      {/* Full-width agent quote — the single most important sentence in the whole problem */}
+      <div className="csl-reveal" style={{ marginBottom: 44 }}>
+        <div style={{
+          background: "#0B1E3D", borderRadius: 20, padding: "44px 40px",
+          border: "1px solid rgba(30,144,255,0.15)",
+          position: "relative", overflow: "hidden",
+        }}>
+          <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,144,255,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
+          <span style={{ fontSize: "clamp(4rem,8vw,6rem)", color: "#1E90FF", lineHeight: 1, position: "absolute", top: 8, left: 28, opacity: 0.15, userSelect: "none", fontFamily: "serif" }}>&ldquo;</span>
+          <p style={{
+            fontSize: "clamp(1.1rem, 2.2vw, 1.4rem)", fontWeight: 600,
+            color: "rgba(255,255,255,0.9)", lineHeight: 1.7,
+            margin: "24px 0 24px", position: "relative", zIndex: 1, maxWidth: 600,
           }}>
+            I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, position: "relative", zIndex: 1 }}>
+            <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(30,144,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", fontWeight: 700, color: "#60BFFF" }}>SA</div>
+            <div>
+              <div style={{ fontSize: "13px", fontWeight: 700, color: "rgba(255,255,255,0.8)" }}>Senior travel agent</div>
+              <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)", marginTop: 1 }}>8 years experience · Pre-launch interview</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Pain moments */}
+      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        {PAIN_MOMENTS.map((m) => (
+          <div key={m.title} style={{ borderLeft: "3px solid #1E90FF", paddingLeft: 20 }}>
             <p className="csl-h3" style={{ marginBottom: 6 }}>{m.title}</p>
-            <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 10px" }}>
-              {m.scene}
-            </p>
+            <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 10px" }}>{m.scene}</p>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: "15px", color: "#9CA3AF", fontWeight: 600}}>Fixed by</span>
-              <span style={{
-                fontSize: "15px", fontWeight: 600, color: "#1E90FF",
-                background: "#EFF6FF", borderRadius: 6, padding: "3px 10px",
-              }}>{m.solvedBy}</span>
+              <span style={{ fontSize: "13px", color: "#9CA3AF", fontWeight: 600 }}>Fixed by</span>
+              <span style={{ fontSize: "13px", fontWeight: 700, color: "#1E90FF", background: "#EFF6FF", borderRadius: 6, padding: "2px 10px" }}>{m.solvedBy}</span>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Agent quote — inline pull quote */}
-      <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 32, borderTop: "1px solid #F3F4F6" }}>
-        <span className="csl-eyebrow">In their own words</span>
-        <div style={{
-          borderLeft: "3px solid #1E90FF",
-          paddingLeft: 20,
-          marginTop: 16,
-          background: "#F9FAFB",
-          borderRadius: "0 10px 10px 0",
-          padding: "18px 20px 18px 20px",
-          borderLeftWidth: 3,
-          borderLeftStyle: "solid",
-          borderLeftColor: "#1E90FF",
-        }}>
-          <p style={{
-            fontSize: "0.95rem",
-            fontStyle: "italic",
-            color: "#374151",
-            lineHeight: 1.8,
-            margin: "0 0 12px",
-            fontFamily: "inherit",
-          }}>
-            &ldquo;I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.&rdquo;
-          </p>
-          <span style={{ fontSize: "0.85rem", color: "#9CA3AF", fontWeight: 600 }}>
-            Senior travel agent · Pre-launch interview
-          </span>
-        </div>
+      {/* Photo placeholder — old portal */}
+      <div className="csl-reveal" style={{ marginTop: 36 }}>
+        <span className="csl-eyebrow">What agents were working with</span>
+        <PhotoPlaceholder
+          label="Old portal screenshot"
+          description="Screenshot: the original Air IQ portal — equal visual weight across all fare tiers, no hierarchy, dense data tables, no mobile support. The visual evidence of why this redesign was necessary."
+          aspectRatio="16/8"
+        />
       </div>
-
-      <ConstraintsBlock />
-
-
     </CsSection>
   );
 }
@@ -657,27 +644,6 @@ const KEY_FINDINGS = [
   "TripJack had the right data, wrong **visual hierarchy**. Refundability and seat count were buried every time.",
   "**80% of B2B bookings** leave add-ons empty, yet every portal shows those empty rows, creating confusion at review.",
 ];
-
-function HighlightLine({ text, active }: { text: string; active: boolean }) {
-  const parts = text.split(/\*\*(.*?)\*\*/g);
-  return (
-    <>
-      {parts.map((part, i) =>
-        i % 2 === 1 ? (
-          <span key={i} style={{
-            color: active ? "#1E90FF" : "inherit",
-            fontWeight: active ? 700 : 600,
-            transition: "color 0.22s ease",
-          }}>
-            {part}
-          </span>
-        ) : (
-          <span key={i}>{part}</span>
-        )
-      )}
-    </>
-  );
-}
 
 function CompetitiveCarousel() {
   /* single static embed — first competitor as reference */
@@ -775,23 +741,6 @@ function CompetitiveCarousel() {
           })}
         </div>
       </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   RESEARCH SCOPE PILLS
-───────────────────────────────────────────────────────────────────── */
-function ResearchScopePills({ items }: { items: string[] }) {
-  return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>
-      {items.map((item) => (
-        <span key={item} style={{
-          fontSize: "15px", fontWeight: 600, color: "#374151",
-          background: "#F3F4F6", border: "1px solid #E5E7EB",
-          borderRadius: 100, padding: "5px 14px",
-        }}>{item}</span>
-      ))}
     </div>
   );
 }
@@ -918,223 +867,232 @@ function ResearchInsightCards() {
 
 
 /* ─────────────────────────────────────────────────────────────────────
-   STANDALONE METRIC CALLOUT  (big number + progress bar + source)
+   §03  RESEARCH & APPROACH
 ───────────────────────────────────────────────────────────────────── */
-function MetricCallout({ stat, text, source, pct, last = false }: {
-  stat: string; text: React.ReactNode; source: string;
-  pct: number; last?: boolean;
-}) {
-  return (
-    <div style={{
-      padding: "32px 0",
-      borderBottom: last ? "none" : "1px solid #F3F4F6",
-    }}>
-      {/* Big number */}
-      <div style={{
-        fontSize: "clamp(3rem, 7vw, 4.8rem)", fontWeight: 800,
-        color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.04em",
-        marginBottom: 14,
-      }}>{stat}</div>
 
-      {/* Progress bar */}
-      <div style={{
-        height: 5, background: "#F3F4F6",
-        borderRadius: 100, overflow: "hidden",
-        marginBottom: 18, maxWidth: 500,
-      }}>
-        <div style={{
-          height: "100%", width: `${pct}%`,
-          background: "linear-gradient(90deg, #1E90FF 0%, #60B4FF 100%)",
-          borderRadius: 100,
-          transition: "width 1s ease",
-        }} />
-      </div>
-
-      {/* Finding text */}
-      <p style={{
-        fontSize: "1rem", color: "#374151", lineHeight: 1.75,
-        margin: "0 0 12px", maxWidth: 500,
-      }}>{text}</p>
-
-      {/* Source */}
-      <div style={{
-        fontSize: "15px", fontWeight: 600,
-        color: "#9CA3AF",
-        textTransform: "uppercase", letterSpacing: "0.12em",
-      }}>Source: {source}</div>
-    </div>
-  );
-}
-
-
-/* ─────────────────────────────────────────────────────────────────────
-   WAFFLE CHART METRIC  (10×10 terracotta dots + count-up + left border)
-───────────────────────────────────────────────────────────────────── */
-const WAFFLE_METRICS = [
+const AGENT_QUOTES = [
   {
-    filled: 72,
-    target: 72,
-    suffix: "%",
-    desc: "Booking time lost to context-switching, not the booking itself.",
-    source: "Agent Interviews · Pre-launch",
+    quote: "When the price changes after I've told the client, it's my credibility that takes the hit. The system gives me no warning at all.",
+    source: "Independent travel agent",
+    context: "Tier-2 city, 5 years experience",
+    insight: "Silent fare changes caused trust failures, not just booking failures.",
   },
   {
-    filled: 75,
-    target: 75,
-    suffix: "%",
-    desc: "Agents juggling 3+ tools every session.",
-    source: "User Interviews · 4 Sessions",
+    quote: "I know every keyboard shortcut in the GDS. This web portal makes me use the mouse for everything. It slows me down like I'm a beginner.",
+    source: "Corporate travel agent",
+    context: "High-volume booker, 200+ bookings/month",
+    insight: "The mental model mismatch was the single biggest adoption risk.",
   },
   {
-    filled: 100,
-    target: 100,
-    suffix: "%",
-    desc: "Competitors buried refundability. Never shown inline.",
-    source: "Competitive Analysis · 4 Platforms",
+    quote: "By the time I've checked baggage rules on the airline site and come back, the price has already changed. The whole system works against me.",
+    source: "Senior travel agent",
+    context: "8 years experience, pre-launch interview",
+    insight: "Context-switching between tools was where time and trust were lost.",
   },
 ];
 
-function WaffleCol({ filled, target, suffix, desc, source }: typeof WAFFLE_METRICS[0]) {
-  const [dots, setDots]   = useState<boolean[]>(Array(100).fill(false));
-  const [count, setCount] = useState(0);
-  const ref   = useRef<HTMLDivElement>(null);
-  const fired = useRef(false);
+const RESEARCH_SYNTHESIS = [
+  { insight: "Fare data overload on every search",       decision: "Fare listing card — explicit visual hierarchy, price first",    arrow: true },
+  { insight: "Filters break comparison loop",             decision: "Persistent 274px sidebar — never modal, always visible",        arrow: true },
+  { insight: "Fare rules hidden across all 4 platforms", decision: "Refundability inline by default — never one click away",        arrow: true },
+  { insight: "80% of bookings have empty SSR rows",      decision: "Conditional fields — only rendered when data is present",       arrow: true },
+];
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting || fired.current) return;
-      fired.current = true;
-      io.disconnect();
-
-      /* dot fill — one dot every 12 ms */
-      for (let i = 0; i < filled; i++) {
-        setTimeout(() => {
-          setDots(prev => {
-            const next = [...prev];
-            next[i] = true;
-            return next;
-          });
-        }, i * 12);
-      }
-
-      /* count-up over 800 ms ease-out */
-      const t0 = performance.now();
-      const tick = (now: number) => {
-        const p = Math.min((now - t0) / 800, 1);
-        const eased = 1 - Math.pow(1 - p, 2);
-        setCount(Math.floor(eased * target));
-        if (p < 1) requestAnimationFrame(tick);
-        else setCount(target);
-      };
-      requestAnimationFrame(tick);
-    }, { threshold: 0.2 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [filled, target]);
-
-  return (
-    <div ref={ref} style={{ display: "flex", flexDirection: "column" }}>
-      {/* 10×10 waffle */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(10, 8px)",
-        gap: 4,
-        width: 116,
-      }}>
-        {Array.from({ length: 100 }).map((_, i) => (
-          <div key={i} style={{
-            width: 8, height: 8, borderRadius: "50%",
-            background: i < filled
-              ? (dots[i] ? "#1E90FF" : "rgba(30,144,255,0.15)")
-              : "rgba(30,144,255,0.15)",
-            transition: dots[i] ? "background 80ms ease" : "none",
-          }} />
-        ))}
-      </div>
-
-      {/* Stat number */}
-      <div style={{
-        fontFamily: "var(--font-lato), sans-serif",
-        fontSize: "clamp(2.2rem, 3.5vw, 2.8rem)",
-        fontWeight: 400,
-        color: "#111827",
-        lineHeight: 1,
-        letterSpacing: "-0.02em",
-        marginTop: 18,
-        marginBottom: 14,
-      }}>
-        {count}{suffix}
-      </div>
-
-      {/* Description with left border */}
-      <p style={{
-        fontFamily: "var(--font-lato), sans-serif",
-        fontSize: "15px",
-        color: "#374151",
-        lineHeight: 1.65,
-        borderLeft: "2px solid #1E90FF",
-        paddingLeft: 12,
-        margin: "0 0 10px",
-      }}>
-        {desc}
-      </p>
-
-      {/* Source */}
-      <p style={{
-        fontFamily: "var(--font-lato), sans-serif",
-        fontSize: "15px",
-        color: "#9CA3AF",
-        paddingLeft: 14,
-        margin: 0,
-      }}>
-        <strong style={{ fontWeight: 600 }}>Source:</strong> {source}
-      </p>
-    </div>
-  );
-}
-
-function DotMetricRow() {
-  return (
-    <div className="csl-reveal">
-      <p style={{
-        fontFamily: "var(--font-lato), sans-serif",
-        fontSize: "15px", color: "#6B7280",
-        lineHeight: 1.7, margin: "0 0 36px", maxWidth: 480,
-      }}>
-        Numbers that shaped the design direction.
-      </p>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 40 }}>
-        {WAFFLE_METRICS.map((m) => (
-          <WaffleCol key={m.target + m.source} {...m} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   §03  RESEARCH & APPROACH
-───────────────────────────────────────────────────────────────────── */
 function ApproachSection() {
   return (
     <CsSection id="approach">
       <CsSectionHeader
-        title="Research & Approach"
-        sub="Four competitor platforms studied before a single wireframe was drawn."
+        title="Research"
+        sub="Four agent interviews. Four competitor platforms. One month of discovery before a single frame opened in Figma."
       />
 
-      <div className="csl-reveal" style={{ marginBottom: 28 }}>
-        <CompetitiveCarousel />
+      {/* ── Methodology overview ── */}
+      <div className="csl-reveal" style={{ marginBottom: 36 }}>
+        <span className="csl-eyebrow">How I researched</span>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+          {[
+            { num: "4", label: "Agent interviews", detail: "1-on-1 sessions with active travel agents. Observed live bookings, not just opinions.", icon: "🎙" },
+            { num: "4", label: "Competitor platforms", detail: "MakeMyTrip, TripJack, TBO, Yatra — studied fare listing, filters, and review flows.", icon: "🔍" },
+            { num: "1", label: "Observation session", detail: "Watched an agent complete 3 real bookings without interrupting their workflow.", icon: "👁" },
+          ].map((m) => (
+            <div key={m.label} style={{
+              background: "#fff", borderRadius: 14, padding: "20px",
+              border: "1px solid rgba(0,0,0,0.06)",
+              boxShadow: "0 1px 8px rgba(0,0,0,0.04)",
+            }}>
+              <span style={{ fontSize: "1.5rem", display: "block", marginBottom: 10 }}>{m.icon}</span>
+              <div style={{ fontSize: "2rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em", marginBottom: 6 }}>{m.num}</div>
+              <div style={{ fontSize: "14px", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{m.label}</div>
+              <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{m.detail}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Insight cards */}
-      <div className="csl-reveal" style={{ marginBottom: 8 }}>
+      {/* ── What agents told me ── */}
+      <div className="csl-reveal" style={{ marginBottom: 36 }}>
+        <span className="csl-eyebrow">What agents told me</span>
+        <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 20px", maxWidth: 520 }}>
+          Interviews surfaced three patterns that no stakeholder brief had mentioned. They became the foundation for every core design decision.
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          {AGENT_QUOTES.map((q, i) => (
+            <div key={i} style={{
+              background: "#F9FAFB", borderRadius: 14, padding: "20px 22px",
+              border: "1px solid #F3F4F6",
+              display: "grid", gridTemplateColumns: "1fr auto", gap: 20,
+              alignItems: "start",
+            }}>
+              <div>
+                <p style={{
+                  fontSize: "1rem", fontStyle: "italic", color: "#374151",
+                  lineHeight: 1.75, margin: "0 0 12px",
+                }}>
+                  &ldquo;{q.quote}&rdquo;
+                </p>
+                <div style={{ display: "inline-block", background: "#EFF6FF", borderRadius: 6, padding: "4px 10px" }}>
+                  <span style={{ fontSize: "12px", fontWeight: 700, color: "#1E90FF" }}>→ {q.insight}</span>
+                </div>
+              </div>
+              <div style={{ textAlign: "right" as const, flexShrink: 0, minWidth: 130 }}>
+                <div style={{ fontSize: "12px", fontWeight: 700, color: "#374151" }}>{q.source}</div>
+                <div style={{ fontSize: "11px", color: "#9CA3AF", marginTop: 2, lineHeight: 1.4 }}>{q.context}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Competitive analysis ── */}
+      <div className="csl-reveal" style={{ marginBottom: 36 }}>
+        <span className="csl-eyebrow">Competitor landscape</span>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 24 }}>
+          {COMPETITORS.map((comp) => (
+            <div key={comp.slug} style={{
+              display: "flex", alignItems: "center", gap: 12,
+              background: "#fff", border: "1px solid rgba(0,0,0,0.07)",
+              borderRadius: 12, boxShadow: "0 1px 4px rgba(0,0,0,0.05)", padding: "12px 16px",
+            }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/Image/Airiq/research/logo-${comp.slug}.png`} alt={comp.name} style={{ maxWidth: 80, maxHeight: 32, objectFit: "contain", display: "block", flexShrink: 0 }} />
+              <div>
+                <div style={{ fontSize: "14px", fontWeight: 600, color: "#111827" }}>{comp.name}</div>
+                <div style={{ fontSize: "12px", color: "#9CA3AF", marginTop: 2 }}>{comp.type}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {KEY_FINDINGS.map((text, i) => {
+            const parts = text.split(/\*\*(.*?)\*\*/g);
+            return (
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "28px 1fr", gap: "0 14px", alignItems: "start" }}>
+                <span style={{ width: 28, height: 28, borderRadius: 8, background: "#EFF6FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: 700, color: "#1E90FF", flexShrink: 0, marginTop: 1 }}>0{i + 1}</span>
+                <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.75, margin: 0 }}>
+                  {parts.map((part, j) => j % 2 === 1 ? <strong key={j} style={{ color: "#111827", fontWeight: 700 }}>{part}</strong> : <span key={j}>{part}</span>)}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Insight cards ── */}
+      <div className="csl-reveal" style={{ marginBottom: 36 }}>
         <ResearchInsightCards />
       </div>
 
+      {/* ── Research → Decisions synthesis bridge ── */}
+      <div className="csl-reveal">
+        <span className="csl-eyebrow">From research to decisions</span>
+        <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 18px", maxWidth: 520 }}>
+          Every core design decision traces back to a specific research finding. Here's the explicit chain.
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {RESEARCH_SYNTHESIS.map((row, i) => (
+            <div key={i} style={{
+              display: "grid", gridTemplateColumns: "1fr 24px 1fr",
+              gap: 12, alignItems: "center",
+              background: "#fff", borderRadius: 10, padding: "14px 16px",
+              border: "1px solid #F3F4F6",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#FCA5A5", flexShrink: 0, display: "block" }} />
+                <span style={{ fontSize: "13px", color: "#374151", lineHeight: 1.5 }}>{row.insight}</span>
+              </div>
+              <span style={{ fontSize: "16px", color: "#1E90FF", textAlign: "center" as const, fontWeight: 700 }}>→</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#1E90FF", flexShrink: 0, display: "block" }} />
+                <span style={{ fontSize: "13px", fontWeight: 600, color: "#111827", lineHeight: 1.5 }}>{row.decision}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </CsSection>
+  );
+}
 
+/* ─────────────────────────────────────────────────────────────────────
+   §03b  DESIGN PRINCIPLES
+───────────────────────────────────────────────────────────────────── */
+const DESIGN_PRINCIPLES = [
+  {
+    num: "01",
+    title: "Organised density, not consumer simplicity",
+    body: "B2B professionals are trained to handle complexity. Fare tiers, baggage rules, GST splits — agents need all of it. The job is to organise information by priority, not strip it away. Hiding things is a consumer-app habit that breaks professional workflows.",
+    contrast: "Consumer OTAs simplify by hiding. Air IQ simplifies by organising.",
+  },
+  {
+    num: "02",
+    title: "Always visible, never gated",
+    body: "Refundability, seat count, price alerts — agents check these on every single booking. Making critical information \"available on demand\" is not enough when demand is constant. If it matters every time, it should be present every time.",
+    contrast: "Every competitor platform: one click away. Air IQ: always on screen.",
+  },
+  {
+    num: "03",
+    title: "Zero dead ends",
+    body: "An agent mid-booking with a sold-out seat, a GDS timeout, or an infant association error has a client on hold. Every failure state, every edge case has a designed path forward. Nothing leaves the agent stranded with a blank screen and no options.",
+    contrast: "Most portals: vague error or blank screen. Air IQ: three designed failure states per scenario.",
+  },
+];
+
+function DesignPrinciplesSection() {
+  return (
+    <CsSection id="principles">
+      <CsSectionHeader
+        title="Design Principles"
+        sub="Research surfaces problems. Principles turn problems into a consistent direction. These three filtered every decision that followed."
+      />
+
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {DESIGN_PRINCIPLES.map((p, i) => (
+          <div key={p.num} className="csl-reveal" style={{
+            display: "grid", gridTemplateColumns: "1fr 1fr",
+            gap: 28, padding: "36px 0",
+            borderTop: i > 0 ? "1px solid #F3F4F6" : "none",
+            alignItems: "center",
+          }}>
+            <div>
+              <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "#1E90FF", display: "block", marginBottom: 14 }}>
+                Principle {p.num}
+              </span>
+              <h3 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#111827", margin: "0 0 14px", lineHeight: 1.25, letterSpacing: "-0.015em" }}>
+                {p.title}
+              </h3>
+              <p style={{ fontSize: "1rem", color: "#6B7280", lineHeight: 1.8, margin: 0 }}>{p.body}</p>
+            </div>
+            <div style={{
+              background: "#0B1E3D", borderRadius: 14, padding: "22px 24px",
+              border: "1px solid rgba(30,144,255,0.15)",
+            }}>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase" as const, letterSpacing: "0.12em", display: "block", marginBottom: 10 }}>In practice</span>
+              <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, margin: 0, fontStyle: "italic" }}>{p.contrast}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </CsSection>
   );
 }
@@ -2506,54 +2464,47 @@ function ResultsSection() {
 
   return (
     <CsSection id="results">
-      <CsSectionHeader title="The Impact" sub="Design decisions measured by what they changed in the real world, not what they looked like on a slide." />
+      <CsSectionHeader title="The Impact" sub="Measured against the baseline that existed before launch. Every number has a source." />
 
-      {/* Before / After table */}
+      {/* Methodology note */}
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+        <div style={{ background: "#F9FAFB", borderRadius: 10, padding: "14px 16px", border: "1px solid #F3F4F6", display: "flex", gap: 10, alignItems: "flex-start" }}>
+          <span style={{ fontSize: "1rem", flexShrink: 0, marginTop: 2 }}>ℹ</span>
+          <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>
+            Booking time was measured by operations team via session logs before and after launch. Support ticket volume was tracked by the support team across a 60-day post-launch window. Agent adoption figures are from product analytics.
+          </p>
+        </div>
+      </div>
+
       <BeforeAfterTable />
 
-      {/* 2×2 outcome cards */}
-      <div style={{
-        display: "grid", gridTemplateColumns: "1fr 1fr",
-        gap: 16, marginBottom: 40,
-      }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40 }}>
         {outcomes.map((o, i) => (
           <OutcomeCard key={i} {...o} delay={i * 0.07} />
         ))}
       </div>
 
-      {/* Quote */}
+      {/* Photo placeholder — post-launch */}
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+        <PhotoPlaceholder
+          label="Post-launch"
+          description="Photo: agents using the live Air IQ portal — or a screenshot of the live product in use. Visual proof that it shipped and is in production."
+          aspectRatio="16/7"
+        />
+      </div>
+
       <div className="csl-reveal rd1" style={{ marginBottom: 24 }}>
-        <div style={{
-          background: "#F9FAFB", borderRadius: 16, padding: "32px 32px 28px",
-          position: "relative", overflow: "hidden", border: "1px solid #F3F4F6",
-        }}>
-          <div style={{
-            position: "absolute", top: -30, right: -30,
-            width: 160, height: 160, borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(30,144,255,0.07) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }} />
-          <span style={{
-            position: "absolute", top: 4, left: 20,
-            fontSize: "6rem", color: "#1E90FF", lineHeight: 1,
-            userSelect: "none" as const, opacity: 0.18,
-          }}>&ldquo;</span>
-          <p style={{
-            fontSize: "1.2rem", fontWeight: 600, color: "#111827",
-            lineHeight: 1.75, margin: "28px 0 20px", paddingLeft: 4,
-          }}>
-            Much faster and fewer mistakes than before.
+        <div style={{ background: "#F9FAFB", borderRadius: 16, padding: "32px 32px 28px", position: "relative", overflow: "hidden", border: "1px solid #F3F4F6" }}>
+          <div style={{ position: "absolute", top: -30, right: -30, width: 160, height: 160, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,144,255,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+          <span style={{ position: "absolute", top: 4, left: 20, fontSize: "6rem", color: "#1E90FF", lineHeight: 1, userSelect: "none" as const, opacity: 0.18 }}>&ldquo;</span>
+          <p style={{ fontSize: "1.2rem", fontWeight: 600, color: "#111827", lineHeight: 1.75, margin: "28px 0 20px", paddingLeft: 4 }}>
+            Much faster and fewer mistakes than before. I don&apos;t need to open three windows anymore.
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{
-              width: 32, height: 32, borderRadius: "50%",
-              background: "#EFF6FF",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "13px", fontWeight: 700, color: "#1E90FF",
-            }}>TA</div>
+            <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#EFF6FF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", fontWeight: 700, color: "#1E90FF" }}>SA</div>
             <div>
-              <div style={{ fontSize: "14px", color: "#374151", fontWeight: 600 }}>Anonymized travel agent</div>
-              <div style={{ fontSize: "13px", color: "#9CA3AF", fontWeight: 500, marginTop: 2 }}>Post-launch feedback</div>
+              <div style={{ fontSize: "14px", color: "#374151", fontWeight: 600 }}>Senior travel agent</div>
+              <div style={{ fontSize: "13px", color: "#9CA3AF", fontWeight: 500, marginTop: 2 }}>Post-launch feedback · 60 days after go-live</div>
             </div>
           </div>
         </div>
@@ -2570,45 +2521,50 @@ function LearningsSection() {
     {
       n: "01",
       title: "The design system paid for itself",
-      text: "Screens 10–20 were built 4× faster than screens 1–5. One token change updated every screen simultaneously.",
+      text: "Screens 10–20 were built 4× faster than screens 1–5. One token change updated every screen simultaneously. Building the system felt like overhead at first — it became the biggest velocity multiplier in the project. If I did this again, I'd start the system on day one instead of week four.",
     },
     {
       n: "02",
-      title: "B2B is not B2C with a logo",
-      text: "The goal wasn't simplicity. It was the right kind of density: always present when needed, invisible when not.",
+      title: "B2B density is not a problem to solve — it's a constraint to design within",
+      text: "My first instinct was to simplify: hide complexity, reduce options, streamline flows. That's the wrong lens for professional tools. Agents are paid to manage complexity. The goal was never simplicity — it was organised density. Every field earns its place by being needed every session, not just sometimes.",
     },
     {
       n: "03",
       title: "More agent time upfront would have changed the brief",
-      text: "Four interviews wasn't enough. GDS fare logic and multi-pax edge cases surfaced during design, not before.",
+      text: "Four interviews surfaced critical patterns that weren't in any stakeholder document. GDS fare logic, multi-pax edge cases, infant-adult associations — these all appeared during design, not before. The brief was built from business requirements. What I needed was a brief built from observed behaviour. I'd spend the first two weeks doing nothing but watching agents work.",
+    },
+    {
+      n: "04",
+      title: "Working without a senior designer made every decision independently defensible",
+      text: "There was no one to defer to. Every visual choice, every information architecture decision, every edge case had to be reasoned from first principles and presented to stakeholders with a clear rationale. That constraint built something that I don't think would have developed any other way — the habit of never making a decision I can't explain.",
     },
   ];
 
   return (
     <CsSection id="learnings" last>
-      <CsSectionHeader title="Learnings" sub="What this project taught me about designing for real-world, complex B2B workflows." />
+      <CsSectionHeader title="Learnings" sub="Not a list of lessons. An honest account of what I'd do differently and what I'd do the same." />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-        {items.map((item) => (
+      <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+        {items.map((item, i) => (
           <div key={item.n} className="csl-reveal" style={{
             display: "grid", gridTemplateColumns: "28px 1fr",
-            gap: "0 16px", alignItems: "start",
+            gap: "0 18px", alignItems: "start",
+            padding: "28px 0",
+            borderTop: i > 0 ? "1px solid #F3F4F6" : "none",
           }}>
             <span style={{
-              width: 28, height: 28, borderRadius: 8,
-              background: "#EFF6FF", display: "flex",
-              alignItems: "center", justifyContent: "center",
-              fontSize: "15px", fontWeight: 600, color: "#1E90FF",
-              flexShrink: 0, marginTop: 2,
+              width: 28, height: 28, borderRadius: 8, background: "#EFF6FF",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: "12px", fontWeight: 700, color: "#1E90FF",
+              flexShrink: 0, marginTop: 3,
             }}>{item.n}</span>
             <div>
-              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 5 }}>{item.title}</div>
-              <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: 0 }}>{item.text}</p>
+              <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: 8, lineHeight: 1.3 }}>{item.title}</div>
+              <p style={{ fontSize: "1rem", color: "#6B7280", lineHeight: 1.8, margin: 0 }}>{item.text}</p>
             </div>
           </div>
         ))}
       </div>
-
     </CsSection>
   );
 }
@@ -2965,74 +2921,56 @@ function ProcessSection() {
     <CsSection id="process">
       <CsSectionHeader
         title="How I Worked"
-        sub="AI-assisted process, not AI-generated design. Every tool saved synthesis time so I could spend it on craft."
+        sub="AI-assisted synthesis, not AI-generated design. Every tool freed up time for the part that can't be automated — the decisions."
       />
 
-      {/* Dual timeline — old vs AI-assisted */}
-      <DualTimeline />
+      {/* Role summary — 3 facts, no cards */}
+      <div className="csl-reveal" style={{
+        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1,
+        background: "#F3F4F6", borderRadius: 14, overflow: "hidden", marginBottom: 32,
+      }}>
+        {[
+          { val: "Solo", label: "One designer end-to-end", sub: "Research to handoff" },
+          { val: "6mo", label: "Full project duration", sub: "Alongside an active engineering sprint" },
+          { val: "40+", label: "Screens shipped", sub: "Desktop and mobile" },
+        ].map((s) => (
+          <div key={s.val} style={{ background: "#fff", padding: "22px 20px" }}>
+            <div style={{ fontSize: "1.7rem", fontWeight: 800, color: "#1E90FF", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.val}</div>
+            <div style={{ fontSize: "13px", fontWeight: 700, color: "#111827", marginTop: 6 }}>{s.label}</div>
+            <div style={{ fontSize: "12px", color: "#9CA3AF", marginTop: 3 }}>{s.sub}</div>
+          </div>
+        ))}
+      </div>
 
       {/* Process steps */}
       <div className="csl-reveal" style={{ position: "relative" }}>
-        {/* Spine line */}
         <div style={{
           position: "absolute", left: 19, top: 28, bottom: 28,
           width: 2, background: "linear-gradient(to bottom, #1E90FF 0%, rgba(30,144,255,0.1) 100%)",
           borderRadius: 2,
         }} />
-
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {PROCESS_STEPS.map((step, i) => (
             <div key={step.num} style={{
               display: "grid", gridTemplateColumns: "40px 1fr",
-              gap: "0 20px",
-              paddingBottom: i < PROCESS_STEPS.length - 1 ? 24 : 0,
+              gap: "0 20px", paddingBottom: i < PROCESS_STEPS.length - 1 ? 24 : 0,
               position: "relative",
             }}>
-              {/* Step dot */}
-              <div style={{
-                width: 40, height: 40, borderRadius: 10,
-                background: "#fff", border: "2px solid #E5E7EB",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "18px", flexShrink: 0, zIndex: 1,
-                boxShadow: "0 0 0 4px #fff",
-              }}>
+              <div style={{ width: 40, height: 40, borderRadius: 10, background: "#fff", border: "2px solid #E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", flexShrink: 0, zIndex: 1, boxShadow: "0 0 0 4px #fff" }}>
                 {step.icon}
               </div>
-
-              {/* Card — meta left, output preview right */}
-              <div style={{
-                background: "#fff", borderRadius: 10,
-                border: "1px solid #F3F4F6", overflow: "hidden",
-                display: "grid", gridTemplateColumns: "1fr 200px",
-              }}>
-                {/* Left: meta + title only */}
+              <div style={{ background: "#fff", borderRadius: 10, border: "1px solid #F3F4F6", overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 200px" }}>
                 <div style={{ padding: "16px 18px" }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{
-                        fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em",
-                        textTransform: "uppercase" as const, color: "#9CA3AF",
-                      }}>Step {step.num}</span>
-                      <span style={{
-                        fontSize: "11px", fontWeight: 700,
-                        color: step.tagColor, background: step.tagBg,
-                        borderRadius: 100, padding: "2px 8px",
-                      }}>{step.tag}</span>
+                      <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "#9CA3AF" }}>Step {step.num}</span>
+                      <span style={{ fontSize: "11px", fontWeight: 700, color: step.tagColor, background: step.tagBg, borderRadius: 100, padding: "2px 8px" }}>{step.tag}</span>
                     </div>
-                    {step.saved && (
-                      <span style={{
-                        fontSize: "12px", fontWeight: 700,
-                        color: "#1E90FF", background: "#EFF6FF",
-                        borderRadius: 100, padding: "2px 10px",
-                      }}>−{step.saved}</span>
-                    )}
+                    {step.saved && <span style={{ fontSize: "12px", fontWeight: 700, color: "#1E90FF", background: "#EFF6FF", borderRadius: 100, padding: "2px 10px" }}>−{step.saved}</span>}
                   </div>
-                  <div style={{ fontSize: "14px", fontWeight: 700, color: "#111827", lineHeight: 1.35 }}>
-                    {step.title}
-                  </div>
+                  <div style={{ fontSize: "14px", fontWeight: 700, color: "#111827", lineHeight: 1.35, marginBottom: 4 }}>{step.title}</div>
+                  <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{step.text}</p>
                 </div>
-
-                {/* Right: output preview */}
                 <div style={{ background: "#F9FAFB", borderLeft: "1px solid #F3F4F6", padding: "10px" }}>
                   <StepOutputCard output={STEP_OUTPUTS[i]} />
                 </div>
@@ -3042,10 +2980,10 @@ function ProcessSection() {
         </div>
       </div>
 
-      {/* Context: story cards */}
-      <div style={{ marginTop: 40, paddingTop: 40, borderTop: "1px solid #F3F4F6" }}>
-        <span className="csl-eyebrow">My role on this project</span>
-        <StoryCardsGrid />
+      {/* Constraints — what made this hard */}
+      <div className="csl-reveal" style={{ marginTop: 40, paddingTop: 36, borderTop: "1px solid #F3F4F6" }}>
+        <span className="csl-eyebrow">What made this hard</span>
+        <ConstraintsBlock />
       </div>
     </CsSection>
   );
@@ -3336,8 +3274,10 @@ export function AirIqCaseStudy() {
       hero={<AirHero />}
     >
       <OverviewSection />
+      <TheAgentSection />
       <ProblemSection />
       <ApproachSection />
+      <DesignPrinciplesSection />
       <ProcessSection />
       <CoreComponentsSection />
       <ProductFlowSection />
