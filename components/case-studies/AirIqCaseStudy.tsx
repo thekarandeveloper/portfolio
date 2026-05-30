@@ -2313,22 +2313,6 @@ function ProductFlowSection() {
    §06  DESIGN SYSTEM
 ───────────────────────────────────────────────────────────────────── */
 function DesignSystemSection() {
-  const DS_STATS = [
-    { val: "80+",  label: "Components",     sub: "Buttons, inputs, cards, modals" },
-    { val: "12",   label: "Color tokens",   sub: "Semantic, not just palette" },
-    { val: "3",    label: "Icon sizes",     sub: "16 · 20 · 24px, drawn from scratch" },
-    { val: "Zero", label: "Libraries used", sub: "Everything built in-house" },
-  ];
-
-  const DS_GROUPS = [
-    { icon: "🎨", label: "Color System",   detail: "Navy, tech blue, semantic states" },
-    { icon: "📐", label: "Spacing Scale",   detail: "4pt base grid, 8 token steps" },
-    { icon: "✏️", label: "Typography",      detail: "5-level scale, weight + size" },
-    { icon: "🔘", label: "Radius Tokens",   detail: "sm · md · lg · pill variants" },
-    { icon: "✈",  label: "Custom Icons",    detail: "3 sizes, drawn from scratch" },
-    { icon: "⚙",  label: "Component API",   detail: "Props, states, variants in Figma" },
-  ];
-
   return (
     <CsSection id="design-system">
       <CsSectionHeader
@@ -2344,92 +2328,67 @@ function DesignSystemSection() {
           rel="noopener noreferrer"
           style={{ display: "block", textDecoration: "none" }}
         >
-          <div style={{
-            background: "#0B1E3D",
-            borderRadius: 18,
-            border: "1px solid rgba(30,144,255,0.25)",
-            overflow: "hidden",
-            boxShadow: "0 8px 40px rgba(30,144,255,0.1), 0 2px 12px rgba(0,0,0,0.12)",
-            transition: "box-shadow 0.25s ease, transform 0.25s ease",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLDivElement).style.boxShadow = "0 16px 56px rgba(30,144,255,0.18), 0 4px 16px rgba(0,0,0,0.16)";
-            (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 40px rgba(30,144,255,0.1), 0 2px 12px rgba(0,0,0,0.12)";
-            (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-          }}
+          <div
+            style={{
+              position: "relative",
+              background: "#ffffff",
+              border: "1px solid rgba(0,0,0,0.075)",
+              borderRadius: 20,
+              padding: "28px 32px 24px",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+              overflow: "hidden",
+              transition: "transform 0.28s ease, box-shadow 0.28s ease",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)";
+              (e.currentTarget as HTMLDivElement).style.boxShadow = "0 16px 48px rgba(0,0,0,0.09)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+              (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 8px rgba(0,0,0,0.04)";
+            }}
           >
-            {/* Hero area */}
-            <div style={{ padding: "36px 36px 28px" }}>
-              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 28 }}>
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-                    <FigmaIcon />
-                    <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9CA3AF" }}>
-                      Figma · Design System
-                    </span>
-                  </div>
-                  <h3 style={{ fontSize: "1.4rem", fontWeight: 700, color: "#fff", margin: 0, lineHeight: 1.25, letterSpacing: "-0.02em" }}>
-                    AIR iQ Design System
-                  </h3>
-                  <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", margin: "8px 0 0", lineHeight: 1.65 }}>
-                    Tokens, components, icons, and spacing. Built from zero alongside engineering.
-                  </p>
-                </div>
-                <span style={{
-                  display: "inline-flex", alignItems: "center", gap: 6,
-                  fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-                  color: "#1E90FF", background: "rgba(30,144,255,0.12)",
-                  border: "1px solid rgba(30,144,255,0.3)",
-                  borderRadius: 8, padding: "6px 14px", flexShrink: 0,
-                }}>
-                  Explore ↗
-                </span>
-              </div>
-
-              {/* Stats row */}
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: "rgba(255,255,255,0.07)", borderRadius: 12, overflow: "hidden" }}>
-                {DS_STATS.map((s) => (
-                  <div key={s.label} style={{ padding: "16px 18px", background: "rgba(255,255,255,0.03)" }}>
-                    <div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#1E90FF", lineHeight: 1, letterSpacing: "-0.03em" }}>{s.val}</div>
-                    <div style={{ fontSize: "12px", fontWeight: 700, color: "rgba(255,255,255,0.7)", marginTop: 5 }}>{s.label}</div>
-                    <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)", marginTop: 3, lineHeight: 1.5 }}>{s.sub}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* System groups */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginTop: 16 }}>
-                {DS_GROUPS.map((g) => (
-                  <div key={g.label} style={{
-                    background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)",
-                    borderRadius: 10, padding: "12px 14px",
-                    display: "flex", alignItems: "center", gap: 10,
-                  }}>
-                    <span style={{ fontSize: "18px", flexShrink: 0 }}>{g.icon}</span>
-                    <div>
-                      <div style={{ fontSize: "13px", fontWeight: 700, color: "rgba(255,255,255,0.85)" }}>{g.label}</div>
-                      <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", marginTop: 2 }}>{g.detail}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Footer CTA */}
+            {/* Top gradient accent line */}
             <div style={{
-              padding: "14px 36px",
-              borderTop: "1px solid rgba(255,255,255,0.07)",
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              background: "rgba(30,144,255,0.06)",
-            }}>
-              <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)" }}>
-                View full design system in Figma
-              </span>
-              <span style={{ fontSize: "16px", color: "#1E90FF" }}>↗</span>
+              position: "absolute", top: 0, left: 48, right: 48, height: 1,
+              background: "linear-gradient(90deg, transparent, rgba(16,118,188,0.3), transparent)",
+            }} />
+
+            {/* Header: dots logomark + pill tags */}
+            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 18 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 5, paddingTop: 2 }}>
+                <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#1076BC", flexShrink: 0 }} />
+                <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#F2616E", flexShrink: 0 }} />
+                <div style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(16,118,188,0.35)", flexShrink: 0, alignSelf: "flex-end", marginBottom: 1 }} />
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, justifyContent: "flex-end", maxWidth: 300 }}>
+                {["Design Systems", "Token-first"].map((tag) => (
+                  <span key={tag} style={{ fontFamily: "Lato, sans-serif", fontSize: 11, fontWeight: 500, borderRadius: 99, padding: "3px 9px", color: "#9e9c97", background: "#f5f4f0", letterSpacing: "0.04em", border: "1px solid rgba(0,0,0,0.06)" }}>{tag}</span>
+                ))}
+              </div>
             </div>
+
+            {/* Title */}
+            <h3 style={{ fontSize: 20, fontWeight: 700, color: "#1a1a1a", letterSpacing: "-0.025em", lineHeight: 1.25, margin: "0 0 8px" }}>
+              A single system powering four products
+            </h3>
+
+            {/* Subtitle */}
+            <p style={{ fontStyle: "italic", fontSize: 15, color: "#7a7570", lineHeight: 1.65, margin: "0 0 20px" }}>
+              Modular components and a token system built to scale, without slowing the team down.
+            </p>
+
+            {/* Hero image */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/Image/Airiq/design-system.png"
+              alt="Design System overview"
+              style={{
+                display: "block", width: "82%", margin: "0 auto",
+                borderRadius: 10,
+                filter: "drop-shadow(0 8px 22px rgba(16,118,188,0.13))",
+              }}
+            />
           </div>
         </a>
       </div>
