@@ -829,15 +829,13 @@ nav.scrolled .nav-pill{
 .dsz-comp-pills{display:flex;flex-wrap:wrap;gap:5px;}
 .dsz-comp-pill{font-family:Lato,sans-serif;font-size:11px;font-weight:600;background:#f0f4f8;color:#4B5563;border-radius:99px;padding:3px 10px;letter-spacing:0.02em;border:1px solid rgba(0,0,0,0.06);}
 .dsz-comp-more{background:#E3F3FF;color:#1076BC;border-color:rgba(16,118,188,0.15);}
-/* hero image inside card — edge-to-edge at bottom */
+/* hero image inside card — centered, contained */
 .dsz-hero-img{
   display:block;
-  width:calc(100% + 64px);
-  margin-left:-32px;
-  margin-bottom:-24px;
-  margin-top:18px;
-  border-top:1px solid rgba(0,0,0,0.06);
-  filter:drop-shadow(0 12px 32px rgba(16,118,188,0.13));
+  width:82%;
+  margin:16px auto 0;
+  border-radius:10px;
+  filter:drop-shadow(0 8px 22px rgba(16,118,188,0.13));
 }
 /* below-card row: meta + CTA outside the card */
 .dsz-card-below{
