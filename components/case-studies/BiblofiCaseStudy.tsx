@@ -59,16 +59,18 @@ const META_ROWS = [
 ───────────────────────────────────────────────────────────────────── */
 function PhotoStack() {
   const photos = [
-    "/Image/Biblofi/team-infosys.png",
-    "/Image/Biblofi/use-thum.png",
-    "/Image/Biblofi/me.png",
+    "/Image/hero/Good%20experince/certificate.png",
+    "/Image/hero/Good%20experince/v7.png",
+    "/Image/hero/Good%20experince/v4.png",
+    "/Image/hero/Good%20experince/group.png",
+    "/Image/hero/Good%20experince/campus.png",
   ];
   const [active, setActive] = useState(0);
-  const rotations = [-4, 0, 4];
+  const rotations = [-8, -4, 0, 4, 8];
   return (
     <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:12 }}>
       <div
-        style={{ position:"relative", width:260, height:180, cursor:"pointer" }}
+        style={{ position:"relative", width:320, height:240, cursor:"pointer" }}
         onClick={() => setActive((active + 1) % photos.length)}
       >
         {photos.map((photo, i) => {
@@ -78,12 +80,12 @@ function PhotoStack() {
               position:"absolute", inset:0,
               borderRadius:14, overflow:"hidden",
               boxShadow:"0 8px 24px rgba(0,0,0,0.18)",
-              transform:`rotate(${rotations[offset]}deg) translateY(${offset * 10}px)`,
+              transform:`rotate(${rotations[offset % rotations.length]}deg) translateY(${offset * 8}px)`,
               zIndex: photos.length - offset,
-              opacity: offset === 0 ? 1 : offset === 1 ? 0.75 : 0.5,
+              opacity: offset === 0 ? 1 : offset === 1 ? 0.75 : offset === 2 ? 0.55 : 0.35,
               transition:"all 0.35s cubic-bezier(0.34,1.56,0.64,1)",
             }}>
-              <Image src={photo} alt="Internship" width={520} height={360}
+              <Image src={photo} alt="Internship" width={640} height={480}
                 style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
             </div>
           );
@@ -974,16 +976,14 @@ function ExperienceSection() {
           }} />
           <p style={{
             fontFamily:"var(--font-caveat), cursive",
-            fontSize:"1.7rem",
+            fontSize:"1.45rem",
             color:"#3D2010",
             lineHeight:1.9,
             position:"relative", zIndex:1,
           }}>
-            This was one of the most meaningful experiences of my design journey.
+            This is one of the best experiences — learned so much here. The Infosys team is so humble and kind.
             <br /><br />
-            I&apos;m deeply grateful to Vir sir, my mentor, Shaukat sir, the product owner, and my entire team. For the learning, the trust, and the memories.
-            <br /><br />
-            Thank you. ✨
+            Thank you, Virag sir, my mentor, and Prasand sir for the support and guidance. And to my friends, for making this a truly memorable moment of my life. ✨
           </p>
           <p style={{
             fontFamily:"var(--font-caveat), cursive",
