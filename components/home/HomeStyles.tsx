@@ -761,8 +761,6 @@ nav.scrolled .nav-pill{
   background:linear-gradient(90deg,transparent,rgba(16,118,188,0.3),transparent);
 }
 .dsz-card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.09);}
-.dsz-card-dark::before{display:none;}
-.dsz-card-dark:hover{transform:translateY(-3px);box-shadow:0 20px 56px rgba(30,144,255,0.18),0 4px 16px rgba(0,0,0,0.18);}
 .dsz-card-header{
   display:flex;align-items:flex-start;
   justify-content:space-between;margin-bottom:18px;
