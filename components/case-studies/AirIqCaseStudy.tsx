@@ -821,13 +821,14 @@ function TheAgentSection() {
         sub="25,000 users. The kind of tool they needed couldn't be designed from assumptions."
       />
 
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/Image/Airiq/thumnail/agent-image.png"
-        alt="Travel agent at work"
-        className="csl-reveal"
-        style={{ width: "100%", borderRadius: 16, marginBottom: 28, display: "block" }}
-      />
+      <div className="csl-reveal" style={{ marginBottom: 28 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/Image/Airiq/thumnail/agent-image.png"
+          alt="Travel agent at work"
+          style={{ width: "100%", borderRadius: 16, display: "block" }}
+        />
+      </div>
 
       {/* Persona cards — horizontal scroll */}
       <div className="csl-reveal" style={{
