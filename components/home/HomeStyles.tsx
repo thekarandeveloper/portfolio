@@ -829,10 +829,55 @@ nav.scrolled .nav-pill{
 .dsz-comp-pills{display:flex;flex-wrap:wrap;gap:5px;}
 .dsz-comp-pill{font-family:Lato,sans-serif;font-size:11px;font-weight:600;background:#f0f4f8;color:#4B5563;border-radius:99px;padding:3px 10px;letter-spacing:0.02em;border:1px solid rgba(0,0,0,0.06);}
 .dsz-comp-more{background:#E3F3FF;color:#1076BC;border-color:rgba(16,118,188,0.15);}
+/* hero image inside card — edge-to-edge at bottom */
+.dsz-hero-img{
+  display:block;
+  width:calc(100% + 64px);
+  margin-left:-32px;
+  margin-bottom:-24px;
+  margin-top:18px;
+  border-top:1px solid rgba(0,0,0,0.06);
+  filter:drop-shadow(0 12px 32px rgba(16,118,188,0.13));
+}
+/* below-card row: meta + CTA outside the card */
+.dsz-card-below{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:22px 4px 0;
+}
+.dsz-below-meta{
+  font-family:Lato,sans-serif;
+  font-size:11px;font-weight:700;
+  color:#9CA3AF;
+  letter-spacing:0.10em;text-transform:uppercase;
+  margin-bottom:9px;
+}
+.dsz-below-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.dsz-below-tag{
+  font-family:Lato,sans-serif;
+  font-size:11px;font-weight:600;
+  color:#1076BC;
+  background:rgba(16,118,188,0.07);
+  border-radius:99px;padding:3px 10px;
+  border:1px solid rgba(16,118,188,0.12);
+}
+.dsz-below-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:Lato,sans-serif;font-size:13px;font-weight:700;
+  color:#111827;
+  border:1.5px solid rgba(0,0,0,0.12);
+  border-radius:8px;padding:10px 22px;
+  background:#ffffff;
+  text-decoration:none;white-space:nowrap;flex-shrink:0;
+  transition:background 0.2s ease,color 0.2s ease,border-color 0.2s ease;
+}
+.dsz-below-cta:hover{background:#1076BC;color:#fff;border-color:#1076BC;}
 /* card footer */
 .dsz-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .dsz-footer-solo{justify-content:flex-start;}
-/* CTA - outlined style */
+/* CTA - outlined style (kept for any legacy refs) */
 .dsz-cta{
   display:inline-flex;align-items:center;gap:6px;
   font-family: Lato, sans-serif;font-size: 15px;font-weight: 600;

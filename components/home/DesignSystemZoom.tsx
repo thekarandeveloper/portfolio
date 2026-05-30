@@ -41,51 +41,27 @@ const html = `
           <!-- Subtitle -->
           <p class="dsz-desc">Modular components and a token system built to scale, without slowing the team down.</p>
 
-          <!-- Visual system preview (replaces stat grid) -->
-          <div class="dsz-sys-preview">
-            <div class="dsz-preview-row">
-              <span class="dsz-preview-label">Color</span>
-              <div class="dsz-swatches">
-                <div class="dsz-swatch" style="background:#1076BC;" title="Primary"></div>
-                <div class="dsz-swatch" style="background:#E3F3FF;" title="Primary tint"></div>
-                <div class="dsz-swatch" style="background:#F2616E;" title="Error"></div>
-                <div class="dsz-swatch" style="background:#FFF0F0;" title="Error tint"></div>
-                <div class="dsz-swatch" style="background:#059669;" title="Success"></div>
-                <div class="dsz-swatch" style="background:#EAF9F1;" title="Success tint"></div>
-                <div class="dsz-swatch" style="background:#111827;" title="Text primary"></div>
-                <div class="dsz-swatch" style="background:#9CA3AF;" title="Text secondary"></div>
-              </div>
-            </div>
-            <div class="dsz-preview-row">
-              <span class="dsz-preview-label">Space</span>
-              <div class="dsz-spacing-scale">
-                <div class="dsz-space-bar" style="width:4px;height:8px;"></div>
-                <div class="dsz-space-bar" style="width:8px;height:10px;"></div>
-                <div class="dsz-space-bar" style="width:12px;height:12px;"></div>
-                <div class="dsz-space-bar" style="width:16px;height:14px;"></div>
-                <div class="dsz-space-bar" style="width:24px;height:16px;"></div>
-                <div class="dsz-space-bar" style="width:32px;height:16px;"></div>
-                <div class="dsz-space-bar" style="width:40px;height:16px;"></div>
-              </div>
-            </div>
-            <div class="dsz-preview-row">
-              <span class="dsz-preview-label">Components</span>
-              <div class="dsz-comp-pills">
-                <span class="dsz-comp-pill">Button</span>
-                <span class="dsz-comp-pill">Input</span>
-                <span class="dsz-comp-pill">Toggle</span>
-                <span class="dsz-comp-pill">Date</span>
-                <span class="dsz-comp-pill">Tabs</span>
-                <span class="dsz-comp-pill dsz-comp-more">+more</span>
-              </div>
+          <!-- Hero image — edge-to-edge at bottom of card -->
+          <img
+            src="/Image/Airiq/design-system.png"
+            alt="Design System overview"
+            class="dsz-hero-img"
+          />
+
+        </div>
+
+        <!-- Outside the card, inside dsz-card-wrap: meta + CTA -->
+        <div class="dsz-card-below">
+          <div class="dsz-below-left">
+            <p class="dsz-below-meta">Design Systems &middot; AirIQ &middot; Nov 2025</p>
+            <div class="dsz-below-tags">
+              <span class="dsz-below-tag">0&rarr;1</span>
+              <span class="dsz-below-tag">Token-first</span>
+              <span class="dsz-below-tag">4 Products</span>
+              <span class="dsz-below-tag">3 Weeks</span>
             </div>
           </div>
-
-          <!-- Footer — CTA only, no date chips -->
-          <div class="dsz-card-footer dsz-footer-solo">
-            <a href="/projects/project-5" class="dsz-cta">View Case Study &rarr;</a>
-          </div>
-
+          <a href="/projects/project-5" class="dsz-below-cta">View Case Study &rarr;</a>
         </div>
 
       </div>
