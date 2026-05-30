@@ -1,7 +1,6 @@
 "use client";
 
 import { CaseStudyPage, CsSection, CsSectionHeader } from "./CaseStudyLayout";
-import { ProductFlowShowcase, type FlowScreen } from "./ProductFlowShowcase";
 import {
   airFigmaLinks,
   airStoryCards,
@@ -10,86 +9,6 @@ import {
   airJourneyBlocks,
   airEdgeCases,
 } from "./airIqData";
-
-const AIR_IQ_FLOW: FlowScreen[] = [
-  {
-    stepNumber: 1, totalSteps: 7,
-    heading: "Agent Authentication",
-    subheading: "Trust is established before the first click",
-    description: "A split-screen separates brand proof from the login task, reducing anxiety at the highest-stakes entry point. Role-specific labels (Agent and Distributor) immediately frame the space for B2B users who have been burned by consumer UX in professional tools.",
-    decisions: ["Brand left, form right — anxiety drops before first input", "Role selector sets B2B context before credentials"],
-    highlightLabel: "Role selector — B2B context before credentials",
-    imageSrc: "/Image/Airiq/presentation/login.png",
-    imageAlt: "AIR iQ login screen",
-    url: "airiq.com/login",
-  },
-  {
-    stepNumber: 2, totalSteps: 7,
-    heading: "The Command Centre",
-    subheading: "Every recurring action within one gesture",
-    description: "Search anchors the F-pattern primary zone with fare type checkboxes (SME, NDC, SOTO) exposed before the query, a deliberate B2B-first decision. Recent searches and upcoming bookings eliminate re-entry friction for agents juggling multiple bookings at once.",
-    decisions: ["Fare type (SME / NDC / SOTO) exposed before search query", "Recent searches strip cuts re-entry for repeat routes"],
-    highlightLabel: "Fare type upfront — B2B decision, not an afterthought",
-    imageSrc: "/Image/Airiq/presentation/homepage.png",
-    imageAlt: "AIR iQ home dashboard",
-    url: "airiq.com/home",
-  },
-  {
-    stepNumber: 3, totalSteps: 7,
-    heading: "Flight Listing & Fare Discovery",
-    subheading: "Nineteen filters. Zero cognitive overload.",
-    description: "Applied filter chips with one-tap removal let agents maintain precise query states without losing mental context. SME, Sales, and Corporate fare tiers stack inline per flight row, the comparison that matters most, without a single extra tap.",
-    decisions: ["Persistent sidebar — not modal — agents filter while comparing", "Fare tiers inline per row, no extra tap to compare"],
-    highlightLabel: "Persistent filter sidebar — the core design decision",
-    imageSrc: "/Image/Airiq/presentation/search-result.png",
-    imageAlt: "AIR iQ search results",
-    url: "airiq.com/search",
-  },
-  {
-    stepNumber: 4, totalSteps: 7,
-    heading: "Baggage & Itinerary Detail",
-    subheading: "Every question answered without leaving the list",
-    description: "A drawer overlay keeps the results list intact underneath. Dismiss returns you instantly to your scroll position, zero navigation cost. Per-leg, per-passenger baggage weights for adults, children, and infants surface without a page change, critical before committing a group booking.",
-    decisions: ["Drawer keeps results list intact — dismiss = back to scroll position", "Per-leg baggage weights surface without a page change"],
-    highlightLabel: "Drawer overlay — results stay visible underneath",
-    imageSrc: "/Image/Airiq/presentation/see-details.png",
-    imageAlt: "AIR iQ flight detail drawer",
-    url: "airiq.com/search",
-  },
-  {
-    stepNumber: 5, totalSteps: 7,
-    heading: "Passengers & Add-ons",
-    subheading: "Four passengers, zero context switching",
-    description: "Saved-profile lookup auto-fills frequent flyer numbers, passports, and meal preferences for returning travellers, cutting form time by up to 60%. The seat map sits inline below each passenger tab, and switching between passengers never resets your selection or scroll position.",
-    decisions: ["Saved profiles auto-fill frequent flyer + passport in one tap", "Seat map inline below each passenger tab — no page switch"],
-    highlightLabel: "Saved profile lookup — cuts form time by up to 60%",
-    imageSrc: "/Image/Airiq/presentation/details.png",
-    imageAlt: "AIR iQ passenger details form",
-    url: "airiq.com/booking/details",
-  },
-  {
-    stepNumber: 6, totalSteps: 7,
-    heading: "Final Review",
-    subheading: "Every detail verifiable before commitment",
-    description: "Inline edit links on every section prevent back-navigation at the most critical step, eliminating drop-off. Wallet-first payment shows the exact deduction split before the agent confirms, removing the last source of uncertainty on a ₹2,21,000 booking.",
-    decisions: ["Inline edit links prevent back-navigation at final step", "Wallet deduction shown before CTA — no surprise at confirm"],
-    highlightLabel: "Inline edit — no back-navigation needed at review",
-    imageSrc: "/Image/Airiq/presentation/review.png",
-    imageAlt: "AIR iQ review and payment screen",
-    url: "airiq.com/booking/review",
-  },
-  {
-    stepNumber: 7, totalSteps: 7,
-    heading: "Booking Confirmed",
-    subheading: "Every channel. One screen. Done.",
-    description: "PDF, ZIP, WhatsApp, and Email all surface on a single confirmation screen. Per-passenger checkbox selection lets agents distribute individual tickets from a group booking, a post-confirmation workflow that most B2B travel platforms completely overlook.",
-    decisions: ["PDF / ZIP / WhatsApp / Email — all channels on one screen", "Per-passenger checkbox for individual ticket distribution"],
-    highlightLabel: "Multi-channel share — most B2B platforms skip this entirely",
-    imageSrc: "/Image/Airiq/presentation/confirmation.png",
-    imageAlt: "AIR iQ booking confirmation",
-    url: "airiq.com/booking/confirmed",
-  },
-];
 
 /* ─────────────────────────────────────────────────────────────────────
    TOC
@@ -1900,16 +1819,383 @@ function FigmaEmbed({ url, label, height = 600 }: { url: string; label: string; 
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §05  PRODUCT FLOW WALKTHROUGH
+   §05  ANNOTATED PRODUCT FLOW — data + components
 ───────────────────────────────────────────────────────────────────── */
+
+interface FlowCalloutData {
+  id: number;
+  label: string;
+  xPct: number;
+  yPct: number;
+  decision: string;
+}
+
+interface FlowStageData {
+  step: string;
+  heading: string;
+  sub: string;
+  narrative: string;
+  imageSrc: string;
+  imageAlt: string;
+  url: string;
+  callouts: FlowCalloutData[];
+  rejected?: { label: string; reason: string };
+}
+
+const FLOW_STAGES: FlowStageData[] = [
+  {
+    step: "01 / 08",
+    heading: "Agent Authentication",
+    sub: "Trust established before the first click",
+    narrative: "Most B2B portals treat login as a formality. We treated it as a trust signal — brand proof on the left before the task begins on the right.",
+    imageSrc: "/Image/Airiq/presentation/login.png",
+    imageAlt: "AIR iQ login screen",
+    url: "airiq.com/login",
+    callouts: [
+      { id: 1, xPct: 73, yPct: 38, label: "Role selector", decision: "Agent vs Distributor chosen before credentials. Each role loads a different dashboard — no disambiguation step after login." },
+      { id: 2, xPct: 24, yPct: 54, label: "Brand half", decision: "Splitting the screen: brand left, form right. Users see who they're logging into before typing a single character. Anxiety at entry drops." },
+    ],
+  },
+  {
+    step: "02 / 08",
+    heading: "The Command Centre",
+    sub: "Every recurring action within one gesture",
+    narrative: "Fare type selection surfaces before the route query — a deliberate B2B-first inversion. Every consumer OTA buries this. We surfaced it.",
+    imageSrc: "/Image/Airiq/presentation/homepage.png",
+    imageAlt: "AIR iQ home dashboard",
+    url: "airiq.com/home",
+    callouts: [
+      { id: 1, xPct: 62, yPct: 22, label: "Fare type upfront", decision: "SME / NDC / SOTO visible before the route. Agents lock contract type before comparing prices — not after. B2B logic, not consumer logic." },
+      { id: 2, xPct: 62, yPct: 74, label: "Recent searches strip", decision: "Last 3 routes surface below the search form. Agents re-book the same routes daily — re-entry friction eliminated in one decision." },
+    ],
+  },
+  {
+    step: "03 / 08",
+    heading: "Flight Listing",
+    sub: "19 filters. Zero cognitive overload.",
+    narrative: "Every competitor studied uses a modal for filters. Which breaks the compare-filter-compare loop agents depend on. We rebuilt this from first principles.",
+    imageSrc: "/Image/Airiq/presentation/search-result.png",
+    imageAlt: "AIR iQ search results",
+    url: "airiq.com/search",
+    callouts: [
+      { id: 1, xPct: 10, yPct: 55, label: "Persistent sidebar", decision: "Always visible — not modal. Agents apply a filter and see results change simultaneously. Every competitor modal destroys this comparison loop entirely." },
+      { id: 2, xPct: 65, yPct: 55, label: "Fare tiers inline", decision: "SME, Sales, Corporate tiers stack inline per flight row. The comparison that matters most — without a single extra tap." },
+      { id: 3, xPct: 52, yPct: 22, label: "Applied filter chips", decision: "Active filters shown as removable chips. Agents know their exact query state without scrolling back to the sidebar." },
+    ],
+    rejected: {
+      label: "What I tried first: modal filter panel",
+      reason: "Built a v0 prototype in 30 minutes. One walkthrough made it obvious — agents compare while filtering. The modal killed that loop entirely. Rebuilt as a 274px fixed sidebar the same week.",
+    },
+  },
+  {
+    step: "04 / 08",
+    heading: "Flight Detail",
+    sub: "Every question answered without leaving the list",
+    narrative: "A drawer that keeps the results list visible underneath. Dismiss and you're back at your exact scroll position — zero navigation cost on the most-consulted screen.",
+    imageSrc: "/Image/Airiq/presentation/see-details.png",
+    imageAlt: "AIR iQ flight detail drawer",
+    url: "airiq.com/search",
+    callouts: [
+      { id: 1, xPct: 58, yPct: 28, label: "Drawer overlay", decision: "Results stay visible under the open drawer. Dismiss = back to scroll position. No page navigation. No lost context. The list is always there." },
+      { id: 2, xPct: 58, yPct: 65, label: "Per-leg baggage", decision: "Adult, child, infant weights per leg — without a page change. Critical before committing a group booking where details compound." },
+    ],
+  },
+  {
+    step: "05 / 08",
+    heading: "Passengers & Add-ons",
+    sub: "Four passengers, zero context switching",
+    narrative: "Saved-profile lookup auto-fills frequent flyer numbers, passports, and meal preferences — cutting form completion time by up to 60%.",
+    imageSrc: "/Image/Airiq/presentation/details.png",
+    imageAlt: "AIR iQ passenger details form",
+    url: "airiq.com/booking/details",
+    callouts: [
+      { id: 1, xPct: 55, yPct: 28, label: "Saved profiles", decision: "One tap fills FF number, passport, and meal preference. Agents book repeat travellers daily — the most error-prone manual step, eliminated." },
+      { id: 2, xPct: 55, yPct: 68, label: "Inline seat map", decision: "Seat selection sits below each passenger tab. Switching passengers never resets your scroll position or your existing seat selection." },
+    ],
+  },
+  {
+    step: "06 / 08",
+    heading: "Payment",
+    sub: "Exact wallet deduction visible before commitment",
+    narrative: "Agents see the precise wallet deduction split before hitting confirm. No surprise on a ₹2,21,000 booking — the last anxiety removed.",
+    imageSrc: "/Image/Airiq/presentation/payment.png",
+    imageAlt: "AIR iQ payment screen",
+    url: "airiq.com/booking/payment",
+    callouts: [
+      { id: 1, xPct: 55, yPct: 30, label: "Wallet balance visible", decision: "Current balance shown before the payment action. Agents verify they have sufficient funds before reaching the confirm step — no failures mid-flow." },
+      { id: 2, xPct: 55, yPct: 62, label: "Deduction split upfront", decision: "Exact wallet vs outstanding split displayed before the CTA. Removes the final uncertainty on high-value bookings before the agent commits." },
+    ],
+  },
+  {
+    step: "07 / 08",
+    heading: "Final Review",
+    sub: "Every detail verifiable. Nothing locked.",
+    narrative: "Inline edit links on every section. Back-navigation eliminated at the highest-stakes step. The screen that kills most B2B conversion flows — redesigned.",
+    imageSrc: "/Image/Airiq/presentation/review.png",
+    imageAlt: "AIR iQ review screen",
+    url: "airiq.com/booking/review",
+    callouts: [
+      { id: 1, xPct: 55, yPct: 35, label: "Inline edit links", decision: "Every section has an inline edit link. Fix a passenger name without going back a page and losing your review state. Eliminates the top drop-off trigger." },
+      { id: 2, xPct: 55, yPct: 68, label: "Full GST breakdown", decision: "Fare + tax breakdown before the CTA. Agents need to see the total before committing — regulatory requirement and a trust signal." },
+    ],
+  },
+  {
+    step: "08 / 08",
+    heading: "Booking Confirmed",
+    sub: "Every channel. One screen. Done.",
+    narrative: "PDF, ZIP, WhatsApp, and Email on a single screen. Per-passenger ticket distribution — a post-booking workflow most B2B platforms never design for.",
+    imageSrc: "/Image/Airiq/presentation/confirmation.png",
+    imageAlt: "AIR iQ booking confirmation",
+    url: "airiq.com/booking/confirmed",
+    callouts: [
+      { id: 1, xPct: 55, yPct: 40, label: "Multi-channel share", decision: "PDF / ZIP / WhatsApp / Email — all on one screen. No separate share flow. Most B2B portals make agents navigate away just to send a ticket." },
+      { id: 2, xPct: 55, yPct: 68, label: "Per-passenger select", decision: "Individual passenger checkboxes for group bookings. Agents distribute single tickets from a group booking. Not found in any competitor portal studied." },
+    ],
+  },
+];
+
+const FLOW_CHAPTER_BREAKS: Record<number, { eyebrow: string; statement: string; note: string }> = {
+  2: {
+    eyebrow: "The core workspace",
+    statement: "Where agents spend 80% of their time.",
+    note: "Search → detail → selection. The loop agents repeat across every working hour.",
+  },
+  4: {
+    eyebrow: "The commitment path",
+    statement: "Every screen from here is non-reversible.",
+    note: "Passenger data, payment, review. Where errors compound and trust is everything.",
+  },
+  7: {
+    eyebrow: "The finish line",
+    statement: "Confirmation is not the end. It's the start of distribution.",
+    note: "Most portals stop at a booking ID. Agents still need to reach clients across 4 channels.",
+  },
+};
+
+/* ── Flow reel overview strip ── */
+function FlowReelStrip() {
+  return (
+    <div style={{ marginBottom: 48 }}>
+      <p style={{ fontSize: "0.9rem", color: "#9CA3AF", marginBottom: 20, letterSpacing: "0.04em" }}>
+        8 screens · login to confirmation
+      </p>
+      <div style={{
+        display: "flex", alignItems: "flex-start", overflowX: "auto",
+        paddingBottom: 8, gap: 0,
+        msOverflowStyle: "none", scrollbarWidth: "none" as React.CSSProperties["scrollbarWidth"],
+      }}>
+        {FLOW_STAGES.map((stage, i) => (
+          <div key={stage.step} style={{ display: "flex", alignItems: "flex-start", flexShrink: 0 }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+              <div style={{
+                width: 40, height: 40, borderRadius: 10,
+                background: "#EFF6FF", border: "1.5px solid rgba(30,144,255,0.35)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "12px", fontWeight: 800, color: "#1E90FF",
+              }}>
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <span style={{
+                fontSize: "10px", fontWeight: 600, color: "#9CA3AF",
+                textAlign: "center", maxWidth: 52, lineHeight: 1.3,
+              }}>
+                {stage.heading.split(" ").slice(0, 2).join(" ")}
+              </span>
+            </div>
+            {i < FLOW_STAGES.length - 1 && (
+              <div style={{ width: 24, height: 1, background: "#E5E7EB", marginTop: 19, flexShrink: 0 }} />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Editorial chapter break ── */
+function FlowChapterBreak({ eyebrow, statement, note }: { eyebrow: string; statement: string; note: string }) {
+  const [vis, setVis] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } }, { threshold: 0.25 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={ref} style={{
+      background: "linear-gradient(135deg, #0B1E3D 0%, #0f2750 60%, #0B1E3D 100%)",
+      borderRadius: 20, padding: "52px 48px", margin: "20px 0 56px",
+      border: "1px solid rgba(30,144,255,0.12)", position: "relative", overflow: "hidden",
+      opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)",
+      transition: "opacity 0.6s ease, transform 0.6s ease",
+    }}>
+      <div style={{ position: "absolute", top: -70, right: -70, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,144,255,0.09) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.2, backgroundImage: "linear-gradient(rgba(30,144,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(30,144,255,0.07) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "#1E90FF", display: "block", marginBottom: 18 }}>{eyebrow}</span>
+        <h3 style={{ fontSize: "clamp(1.7rem, 3vw, 2.4rem)", fontWeight: 800, color: "#fff", margin: "0 0 14px", lineHeight: 1.2, letterSpacing: "-0.025em", maxWidth: 500 }}>{statement}</h3>
+        <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.38)", lineHeight: 1.7, margin: 0, maxWidth: 420 }}>{note}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ── Callout pin (positioned absolutely on screenshot) ── */
+function FlowCalloutPin({ id, x, y }: { id: number; x: number; y: number }) {
+  return (
+    <div style={{ position: "absolute", left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)", zIndex: 10, pointerEvents: "none" }}>
+      <div style={{ position: "absolute", width: 38, height: 38, borderRadius: "50%", background: "rgba(30,144,255,0.22)", top: "50%", left: "50%", transform: "translate(-50%, -50%)", animation: "pulse 2.2s ease-in-out infinite" }} />
+      <div style={{ width: 26, height: 26, borderRadius: "50%", background: "#1E90FF", border: "2.5px solid #fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 800, color: "#fff", boxShadow: "0 2px 18px rgba(30,144,255,0.65)", position: "relative", letterSpacing: "-0.01em" }}>
+        {id}
+      </div>
+    </div>
+  );
+}
+
+/* ── Single annotated screen stage ── */
+function AnnotatedScreenStage({ stage, idx }: { stage: FlowStageData; idx: number }) {
+  const [vis, setVis] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } }, { threshold: 0.04 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const colCount = stage.callouts.length as 2 | 3;
+
+  return (
+    <div ref={ref} style={{ marginBottom: 72, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(28px)", transition: "opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1)" }}>
+
+      {/* Step header */}
+      <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
+        <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "#1E90FF", whiteSpace: "nowrap" as const }}>
+          Step {stage.step}
+        </span>
+        <div style={{ flex: 1, height: 1, background: "#F3F4F6" }} />
+      </div>
+
+      {/* Heading block */}
+      <div style={{ marginBottom: 24, maxWidth: 620 }}>
+        <h3 style={{ fontSize: "1.55rem", fontWeight: 800, color: "#111827", margin: "0 0 5px", lineHeight: 1.2, letterSpacing: "-0.02em" }}>{stage.heading}</h3>
+        <p style={{ fontSize: "1rem", fontWeight: 600, color: "#1E90FF", margin: "0 0 10px", lineHeight: 1.4 }}>{stage.sub}</p>
+        <p style={{ fontSize: "1rem", color: "#6B7280", lineHeight: 1.75, margin: 0 }}>{stage.narrative}</p>
+      </div>
+
+      {/* Dark screen card */}
+      <div style={{
+        background: "#0B1E3D", borderRadius: 20, padding: "18px 18px 0",
+        border: "1px solid rgba(30,144,255,0.18)",
+        boxShadow: "0 24px 64px rgba(0,0,0,0.24), 0 0 0 1px rgba(30,144,255,0.06)",
+        marginBottom: 14, overflow: "hidden",
+      }}>
+        {/* Browser chrome bar */}
+        <div style={{
+          background: "rgba(255,255,255,0.05)", borderRadius: "10px 10px 0 0",
+          padding: "9px 16px", display: "flex", alignItems: "center", gap: 7,
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
+        }}>
+          {["#FF5F57","#FFBD2E","#28CA41"].map((c) => (
+            <div key={c} style={{ width: 11, height: 11, borderRadius: "50%", background: c, flexShrink: 0 }} />
+          ))}
+          <div style={{
+            flex: 1, height: 22, background: "rgba(255,255,255,0.06)", borderRadius: 5, marginLeft: 8,
+            display: "flex", alignItems: "center", padding: "0 12px", gap: 6,
+          }}>
+            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(255,255,255,0.18)", flexShrink: 0 }} />
+            <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.22)", fontFamily: "'SF Mono',monospace", letterSpacing: "0.01em" }}>
+              {stage.url}
+            </span>
+          </div>
+          {/* Live badge */}
+          <span style={{
+            fontSize: "10px", fontWeight: 700, letterSpacing: "0.1em",
+            textTransform: "uppercase" as const, color: "#1E90FF",
+            background: "rgba(30,144,255,0.12)", border: "1px solid rgba(30,144,255,0.3)",
+            borderRadius: 6, padding: "3px 10px", flexShrink: 0,
+          }}>Live</span>
+        </div>
+
+        {/* Screenshot + pins */}
+        <div style={{ position: "relative" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={stage.imageSrc} alt={stage.imageAlt} style={{ width: "100%", height: "auto", display: "block" }} />
+          {stage.callouts.map((c) => (
+            <FlowCalloutPin key={c.id} id={c.id} x={c.xPct} y={c.yPct} />
+          ))}
+        </div>
+      </div>
+
+      {/* Decision cards — numbered to match pins */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: colCount === 3 ? "1fr 1fr 1fr" : "1fr 1fr",
+        gap: 10, marginBottom: stage.rejected ? 10 : 0,
+      }}>
+        {stage.callouts.map((c) => (
+          <div key={c.id} style={{
+            background: "#fff", border: "1px solid #F3F4F6",
+            borderRadius: 12, padding: "14px 16px",
+            display: "flex", gap: 11, alignItems: "flex-start",
+          }}>
+            <span style={{
+              width: 24, height: 24, borderRadius: "50%",
+              background: "#EFF6FF", border: "1.5px solid rgba(30,144,255,0.3)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: "11px", fontWeight: 800, color: "#1E90FF",
+              flexShrink: 0, marginTop: 1,
+            }}>{c.id}</span>
+            <div>
+              <div style={{ fontSize: "13px", fontWeight: 700, color: "#111827", marginBottom: 4, lineHeight: 1.3 }}>{c.label}</div>
+              <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{c.decision}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Rejected approach pill */}
+      {stage.rejected && (
+        <div style={{
+          background: "#FEF2F2", border: "1px solid #FECACA",
+          borderRadius: 10, padding: "13px 16px",
+          display: "flex", gap: 10, alignItems: "flex-start",
+        }}>
+          <span style={{
+            fontSize: "10px", fontWeight: 800, color: "#EF4444",
+            background: "#FEE2E2", borderRadius: 100, padding: "3px 9px",
+            flexShrink: 0, marginTop: 2, whiteSpace: "nowrap" as const,
+            textTransform: "uppercase" as const, letterSpacing: "0.08em",
+          }}>Tried first</span>
+          <p style={{ fontSize: "13px", color: "#374151", lineHeight: 1.65, margin: 0 }}>
+            <strong style={{ color: "#111827" }}>{stage.rejected.label}:</strong>{" "}
+            {stage.rejected.reason}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ProductFlowSection() {
   return (
     <CsSection id="product">
       <CsSectionHeader
-        title="Complete Product Flow"
-        sub="Seven screens. Every decision annotated. Here's how the full booking journey was designed, from the first login to the final confirmation."
+        title="Complete Booking Flow"
+        sub="Eight screens. Every design decision annotated. Login to confirmation — the full journey with the reasoning behind it."
       />
-      <ProductFlowShowcase screens={AIR_IQ_FLOW} />
+
+      <FlowReelStrip />
+
+      {FLOW_STAGES.map((stage, i) => (
+        <div key={stage.step}>
+          {FLOW_CHAPTER_BREAKS[i] && <FlowChapterBreak {...FLOW_CHAPTER_BREAKS[i]} />}
+          <AnnotatedScreenStage stage={stage} idx={i} />
+        </div>
+      ))}
     </CsSection>
   );
 }
