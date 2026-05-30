@@ -14,18 +14,19 @@ import {
    TOC
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",       label: "Overview"          },
-  { id: "agent",          label: "The Agent"         },
-  { id: "problem",        label: "The Problem"       },
-  { id: "approach",       label: "Research"          },
-  { id: "principles",     label: "Principles"        },
-  { id: "process",        label: "How I Worked"      },
-  { id: "insights",       label: "Core Decisions"    },
-  { id: "product",        label: "Product Flow"      },
-  { id: "mobile",         label: "Mobile"            },
-  { id: "design-system",  label: "Design System"     },
-  { id: "results",        label: "Impact"            },
-  { id: "learnings",      label: "Learnings"         },
+  { id: "overview",       label: "Overview"      },
+  { id: "agent",          label: "The Agent"     },
+  { id: "problem",        label: "Problem"       },
+  { id: "approach",       label: "Research"      },
+  { id: "journey",        label: "Journey Map"   },
+  { id: "hypotheses",     label: "Hypotheses"    },
+  { id: "principles",     label: "Principles"    },
+  { id: "process",        label: "Process"       },
+  { id: "insights",       label: "Decisions"     },
+  { id: "product",        label: "Flow"          },
+  { id: "design-system",  label: "Design System" },
+  { id: "results",        label: "Impact"        },
+  { id: "learnings",      label: "Learnings"     },
 ];
 
 const META_ROWS = [
@@ -488,6 +489,323 @@ function OldWorkflowDiagram() {
 /* ─────────────────────────────────────────────────────────────────────
    §01b  THE AGENT
 ───────────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────────────
+   PERSONA CARDS
+───────────────────────────────────────────────────────────────────── */
+const AGENT_PERSONAS = [
+  {
+    tag: "#SENIOR_AGENT", tagColor: "#1E90FF", tagBg: "#EFF6FF",
+    name: "Rahul", age: 34, avatarBg: "#1E3A5F", avatarInitial: "RS",
+    behaviors: ["20+ bookings per day, keyboard-first", "GDS commands as muscle memory", "Handles corporate & group accounts"],
+    painPoints: ["Context-switches 3–4 tools per booking", "Silent fare changes damage client trust"],
+    needs: ["Full keyboard navigation", "Saved client & passenger profiles"],
+  },
+  {
+    tag: "#INDEPENDENT_AGENT", tagColor: "#22C55E", tagBg: "#F0FDF4",
+    name: "Priya", age: 28, avatarBg: "#14532D", avatarInitial: "PM",
+    behaviors: ["Phone-based client communication", "Tier-2 city routes, price-sensitive clients", "Shares fares via WhatsApp"],
+    painPoints: ["No mobile portal in the old system", "3–4 steps to share a single fare"],
+    needs: ["One-tap WhatsApp share", "Full mobile support"],
+  },
+  {
+    tag: "#CORPORATE_BOOKER", tagColor: "#F97316", tagBg: "#FFF7ED",
+    name: "Arjun", age: 40, avatarBg: "#7C2D12", avatarInitial: "AS",
+    behaviors: ["4–6 passengers per group booking", "Manages company travel accounts", "Needs GST-compliant invoices"],
+    painPoints: ["Re-enters the same 6 passengers weekly", "Tax totals unclear before confirmation"],
+    needs: ["Saved multi-passenger profiles", "Full GST breakdown pre-payment"],
+  },
+];
+
+function PersonaCard({ p }: { p: typeof AGENT_PERSONAS[0] }) {
+  return (
+    <div style={{
+      background: "#fff", borderRadius: 20, padding: "20px 20px 22px",
+      border: "1px solid rgba(0,0,0,0.06)",
+      boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+      flexShrink: 0, width: 272,
+    }}>
+      {/* Tag */}
+      <div style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.1em", color: p.tagColor, background: p.tagBg, borderRadius: 100, padding: "3px 10px", display: "inline-block", marginBottom: 16 }}>{p.tag}</div>
+      {/* Name + Age + Polaroid */}
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 16 }}>
+        <div style={{ display: "flex", gap: 20 }}>
+          <div>
+            <div style={{ fontSize: "9px", color: "#9CA3AF", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 2 }}>NAME</div>
+            <div style={{ fontSize: "20px", fontWeight: 800, color: "#111827", letterSpacing: "-0.02em" }}>{p.name}</div>
+          </div>
+          <div>
+            <div style={{ fontSize: "9px", color: "#9CA3AF", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 2 }}>AGE</div>
+            <div style={{ fontSize: "20px", fontWeight: 800, color: "#111827" }}>{p.age}</div>
+          </div>
+        </div>
+        {/* Polaroid avatar */}
+        <div style={{ background: "#fff", padding: "5px 5px 14px", boxShadow: "0 3px 14px rgba(0,0,0,0.14)", borderRadius: 3, transform: "rotate(4deg)", flexShrink: 0 }}>
+          <div style={{ width: 52, height: 52, borderRadius: 2, background: p.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", fontWeight: 800, color: "rgba(255,255,255,0.75)", letterSpacing: "0.04em" }}>{p.avatarInitial}</div>
+        </div>
+      </div>
+      {/* Behavior */}
+      <div style={{ marginBottom: 14 }}>
+        <div style={{ fontSize: "9px", fontWeight: 700, color: p.tagColor, letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 6 }}>BEHAVIOR</div>
+        <ul style={{ margin: 0, padding: "0 0 0 13px" }}>
+          {p.behaviors.map((b, i) => <li key={i} style={{ fontSize: "11px", color: "#374151", lineHeight: 1.55, marginBottom: 3 }}>{b}</li>)}
+        </ul>
+      </div>
+      {/* Pain + Needs */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, borderTop: "1px solid #F3F4F6", paddingTop: 12 }}>
+        <div>
+          <div style={{ fontSize: "9px", fontWeight: 700, color: "#EF4444", letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 5 }}>PAIN POINT</div>
+          <ul style={{ margin: 0, padding: "0 0 0 12px" }}>
+            {p.painPoints.map((pt, i) => <li key={i} style={{ fontSize: "10px", color: "#374151", lineHeight: 1.5, marginBottom: 3 }}>{pt}</li>)}
+          </ul>
+        </div>
+        <div>
+          <div style={{ fontSize: "9px", fontWeight: 700, color: "#22C55E", letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 5 }}>NEEDS</div>
+          <ul style={{ margin: 0, padding: "0 0 0 12px" }}>
+            {p.needs.map((n, i) => <li key={i} style={{ fontSize: "10px", color: "#374151", lineHeight: 1.5, marginBottom: 3 }}>{n}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   COMPETITIVE FIGMA TABS
+───────────────────────────────────────────────────────────────────── */
+function CompetitiveFigmaTabs() {
+  const [active, setActive] = useState(0);
+  const platforms = COMPETITORS.map((c) => ({
+    ...c,
+    embedUrl: `https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/D6XwtXxLfGueNa2O4fwkHy/AirIQ-Case-Study?node-id=${c.nodeId}`,
+  }));
+  return (
+    <div className="csl-reveal" style={{ marginTop: 20 }}>
+      {/* Tab pills */}
+      <div style={{ display: "flex", gap: 6, marginBottom: 12, flexWrap: "wrap" as const }}>
+        {platforms.map((p, i) => (
+          <button key={p.slug} onClick={() => setActive(i)} style={{
+            display: "flex", alignItems: "center", gap: 8,
+            padding: "6px 16px", borderRadius: 100, border: "none",
+            background: i === active ? p.color : "#F3F4F6",
+            color: i === active ? "#fff" : "#374151",
+            fontSize: "12px", fontWeight: 700, cursor: "pointer",
+            transition: "all 0.2s ease",
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`/Image/Airiq/research/logo-${p.slug}.png`} alt={p.name}
+              style={{ maxHeight: 14, maxWidth: 50, objectFit: "contain", filter: i === active ? "brightness(10)" : "none" }} />
+          </button>
+        ))}
+      </div>
+      {/* Figma embed */}
+      <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}>
+        <div style={{ height: 36, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)", display: "flex", alignItems: "center", padding: "0 14px", gap: 8 }}>
+          <FigmaIcon />
+          <span style={{ fontSize: "12px", fontWeight: 600, color: "#374151" }}>
+            Competitive Analysis — {platforms[active].name}
+          </span>
+        </div>
+        <iframe
+          key={active}
+          src={platforms[active].embedUrl}
+          allowFullScreen
+          style={{ width: "100%", height: 460, border: "none", display: "block" }}
+          loading="lazy"
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   AGENT JOURNEY MAP
+───────────────────────────────────────────────────────────────────── */
+const JOURNEY_STAGES = [
+  {
+    label: "Fare Search",
+    emoji: "😤", score: 2,
+    behaviour: "Opens GDS terminal + airline site + spreadsheet simultaneously to answer one question",
+    pain: "3 tools to answer what's available at what price — every search",
+    response: "Unified fare listing with all tiers, baggage, and refundability inline",
+  },
+  {
+    label: "Compare & Filter",
+    emoji: "😕", score: 1,
+    behaviour: "Opens filter modal, loses all comparison context, has to re-scan results from scratch",
+    pain: "Every filter click destroys the comparison state just built up",
+    response: "Persistent 274px sidebar — filter and compare simultaneously",
+  },
+  {
+    label: "Select Flight",
+    emoji: "😐", score: 3,
+    behaviour: "Clicks out to airline site to verify fare rules and baggage before committing",
+    pain: "Refundability is never shown inline — agents verify manually or guess",
+    response: "Refundability + per-leg baggage always visible, no page change",
+  },
+  {
+    label: "Passenger Entry",
+    emoji: "😕", score: 2,
+    behaviour: "Re-types passenger names, passport numbers, and FF numbers from memory or a notebook",
+    pain: "Same 6 corporate travellers booked every week — entirely manual",
+    response: "Saved profiles auto-fill FF numbers, passport, and meal preference",
+  },
+  {
+    label: "Confirm & Share",
+    emoji: "😤", score: 1,
+    behaviour: "Downloads PDF, opens email, opens WhatsApp separately, re-types fare details",
+    pain: "3–4 separate actions to share what should be one step",
+    response: "PDF, WhatsApp, Email on one screen with per-passenger selection",
+  },
+];
+
+function JourneyMapSection() {
+  const scoreToTop = (s: number) => `${((5 - s) / 4) * 60 + 5}px`;
+  const scoreToSvgY = (s: number) => ((5 - s) / 4) * 60 + 10;
+  const svgPoints = JOURNEY_STAGES.map((s, i) => `${i * 25 + 12.5},${scoreToSvgY(s.score)}`).join(" ");
+
+  const ROW_LABEL_STYLE: React.CSSProperties = {
+    fontSize: "10px", fontWeight: 700, textTransform: "uppercase",
+    letterSpacing: "0.1em", lineHeight: 1.3,
+  };
+  const CELL_STYLE: React.CSSProperties = { padding: "14px 12px" };
+
+  return (
+    <CsSection id="journey">
+      <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 8 }}>
+        <span style={{ fontSize: "clamp(2.5rem,5vw,4rem)", fontWeight: 800, color: "#F3F4F6", lineHeight: 1, letterSpacing: "-0.03em", userSelect: "none" as const }}>08</span>
+        <h2 style={{ fontSize: "clamp(1.4rem,2.8vw,2rem)", fontWeight: 800, color: "#111827", margin: 0, letterSpacing: "-0.02em" }}>Agent journey map</h2>
+      </div>
+      <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 28px", maxWidth: 520 }}>
+        How agents felt across a single booking on the old portal — before Air IQ. Every emotion is a design decision waiting to happen.
+      </p>
+
+      <div className="csl-reveal" style={{ borderRadius: 16, overflow: "hidden", border: "1px solid #F3F4F6" }}>
+        {/* Stage headers */}
+        <div style={{ display: "grid", gridTemplateColumns: "130px repeat(5, 1fr)", gap: "0 1px", background: "#F3F4F6" }}>
+          <div style={{ background: "#F9FAFB", padding: "12px 16px" }} />
+          {JOURNEY_STAGES.map((s) => (
+            <div key={s.label} style={{ background: "#fff", padding: "12px 12px" }}>
+              <div style={{ ...ROW_LABEL_STYLE, color: "#9CA3AF" }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Emotions row — SVG curve + emoji */}
+        <div style={{ display: "grid", gridTemplateColumns: "130px 1fr", gap: "0 1px", background: "#F3F4F6" }}>
+          <div style={{ background: "#F9FAFB", padding: "16px", display: "flex", alignItems: "center" }}>
+            <span style={{ ...ROW_LABEL_STYLE, color: "#9CA3AF" }}>EMOTIONS</span>
+          </div>
+          <div style={{ background: "#fff", position: "relative", height: 80 }}>
+            <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} viewBox="0 0 100 80" preserveAspectRatio="none">
+              <polyline points={svgPoints} stroke="#E5E7EB" strokeWidth="1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            {JOURNEY_STAGES.map((s, i) => (
+              <div key={i} style={{
+                position: "absolute",
+                left: `${i * 20 + 10}%`,
+                top: scoreToTop(s.score),
+                transform: "translate(-50%, -50%)",
+                fontSize: "1.25rem",
+                filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.18))",
+              }}>{s.emoji}</div>
+            ))}
+          </div>
+        </div>
+
+        {/* Behaviour row */}
+        <div style={{ display: "grid", gridTemplateColumns: "130px repeat(5, 1fr)", gap: "0 1px", background: "#F3F4F6" }}>
+          <div style={{ background: "#F9FAFB", padding: "16px", display: "flex", alignItems: "flex-start", paddingTop: 16 }}>
+            <span style={{ ...ROW_LABEL_STYLE, color: "#9CA3AF" }}>BEHAVIOUR</span>
+          </div>
+          {JOURNEY_STAGES.map((s) => (
+            <div key={s.label} style={{ background: "#fff", ...CELL_STYLE }}>
+              <p style={{ fontSize: "11px", color: "#374151", lineHeight: 1.55, margin: 0 }}>{s.behaviour}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Pain points row */}
+        <div style={{ display: "grid", gridTemplateColumns: "130px repeat(5, 1fr)", gap: "0 1px", background: "#F3F4F6" }}>
+          <div style={{ background: "#FEF2F2", padding: "16px", display: "flex", alignItems: "flex-start", paddingTop: 16 }}>
+            <span style={{ ...ROW_LABEL_STYLE, color: "#EF4444" }}>PAIN POINTS</span>
+          </div>
+          {JOURNEY_STAGES.map((s) => (
+            <div key={s.label} style={{ background: "#FEF2F2", ...CELL_STYLE }}>
+              <p style={{ fontSize: "11px", color: "#374151", lineHeight: 1.55, margin: 0 }}>{s.pain}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Air iQ response row */}
+        <div style={{ display: "grid", gridTemplateColumns: "130px repeat(5, 1fr)", gap: "0 1px", background: "#F3F4F6" }}>
+          <div style={{ background: "#EFF6FF", padding: "16px", display: "flex", alignItems: "flex-start", paddingTop: 16 }}>
+            <span style={{ ...ROW_LABEL_STYLE, color: "#1E90FF" }}>AIR iQ RESPONSE</span>
+          </div>
+          {JOURNEY_STAGES.map((s) => (
+            <div key={s.label} style={{ background: "#EFF6FF", ...CELL_STYLE }}>
+              <p style={{ fontSize: "11px", color: "#1E3A8A", lineHeight: 1.55, margin: 0, fontWeight: 600 }}>{s.response}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   HYPOTHESES BOARD
+───────────────────────────────────────────────────────────────────── */
+const HYPOTHESES = [
+  { num: "01", problem: "Fare data overload at search results", hypothesis: "If we prioritise price + refundability visually, agents will scan and compare 2× faster without opening separate airline sites.", bg: "#FFF1F0", tape: "#FCA5A5", rot: -3 },
+  { num: "02", problem: "Filter modal breaks comparison loop", hypothesis: "If we make the filter panel always visible, agents will filter and compare simultaneously — no context loss.", bg: "#FEFCE8", tape: "#FDE047", rot: 4 },
+  { num: "03", problem: "Fare rules always one extra click away", hypothesis: "If we show refundability inline on every fare row, agents will stop cross-referencing airline websites mid-session.", bg: "#F0FDF4", tape: "#86EFAC", rot: -5 },
+  { num: "04", problem: "Passenger data manually re-entered every session", hypothesis: "If we save passenger profiles with FF numbers and passport details, booking form time drops by up to 60%.", bg: "#EFF6FF", tape: "#7DD3FC", rot: 3 },
+  { num: "05", problem: "Confirmation requires 3–4 extra steps to share", hypothesis: "If we surface PDF, WhatsApp, and Email on one confirmation screen, agents confirm and distribute in a single flow.", bg: "#FFF7ED", tape: "#FDB77B", rot: -4 },
+];
+
+function HypothesisNote({ h }: { h: typeof HYPOTHESES[0] }) {
+  return (
+    <div style={{
+      transform: `rotate(${h.rot}deg)`,
+      background: h.bg, borderRadius: 6,
+      padding: "20px 16px 24px",
+      boxShadow: "0 6px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.05)",
+      position: "relative", transformOrigin: "center",
+    }}>
+      <div style={{ position: "absolute", top: -7, left: "50%", transform: "translateX(-50%)", width: 32, height: 13, borderRadius: 2, background: h.tape, opacity: 0.75 }} />
+      <div style={{ fontSize: "10px", fontWeight: 800, color: "rgba(0,0,0,0.25)", letterSpacing: "0.1em", marginBottom: 8 }}>{h.num}</div>
+      <p style={{ fontSize: "12px", fontWeight: 700, color: "#111827", lineHeight: 1.4, margin: "0 0 10px" }}>{h.problem}</p>
+      <div style={{ height: 1, background: "rgba(0,0,0,0.08)", marginBottom: 10 }} />
+      <p style={{ fontSize: "12px", color: "#374151", lineHeight: 1.6, margin: 0, fontFamily: "Georgia, serif", fontStyle: "italic" }}>
+        <span style={{ fontWeight: 700, fontStyle: "normal", color: "#1E90FF" }}>If we&hellip;&nbsp;</span>
+        {h.hypothesis.replace(/^If we /, "")}
+      </p>
+    </div>
+  );
+}
+
+function HypothesesSection() {
+  return (
+    <CsSection id="hypotheses">
+      <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 8 }}>
+        <span style={{ fontSize: "clamp(2.5rem,5vw,4rem)", fontWeight: 800, color: "#F3F4F6", lineHeight: 1, letterSpacing: "-0.03em", userSelect: "none" as const }}>09</span>
+        <h2 style={{ fontSize: "clamp(1.4rem,2.8vw,2rem)", fontWeight: 800, color: "#111827", margin: 0, letterSpacing: "-0.02em" }}>Hypotheses</h2>
+      </div>
+      <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 32px", maxWidth: 520 }}>
+        Research surfaced the problems. These were the bets placed before a single wireframe was drawn — each one traceable to a specific finding.
+      </p>
+      {/* Row 1: 3 notes */}
+      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24, marginBottom: 24 }}>
+        {HYPOTHESES.slice(0, 3).map((h) => <HypothesisNote key={h.num} h={h} />)}
+      </div>
+      {/* Row 2: 2 notes centered */}
+      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, maxWidth: "67%", margin: "0 auto" }}>
+        {HYPOTHESES.slice(3).map((h) => <HypothesisNote key={h.num} h={h} />)}
+      </div>
+    </CsSection>
+  );
+}
+
 const AGENT_PROFILE_ITEMS = [
   { icon: "⌨", label: "Keyboard-first", text: "Built their workflow around GDS commands over years. Muscle memory, not menus. A mouse-dependent portal felt like a demotion." },
   { icon: "📞", label: "Always on a call", text: "Agents confirm fares live with clients. Every extra second of searching is a client listening to silence. Speed is credibility." },
@@ -503,26 +821,20 @@ function TheAgentSection() {
         sub="25,000 users. The kind of tool they needed couldn't be designed from assumptions."
       />
 
-      <PhotoPlaceholder
-        label="Travel agent at work"
-        description="Photo: a travel agent at their desk — two monitors, headset on, GDS terminal on one screen, client notes on the other. The visual context that makes every design decision make sense."
-        aspectRatio="16/6"
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/Image/Airiq/thumnail/agent-image.png"
+        alt="Travel agent at work"
+        className="csl-reveal"
+        style={{ width: "100%", borderRadius: 16, marginBottom: 28, display: "block" }}
       />
 
-      <div className="csl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 36 }}>
-        {AGENT_PROFILE_ITEMS.map((p) => (
-          <div key={p.label} style={{
-            background: "#fff", borderRadius: 12, padding: "18px 20px",
-            border: "1px solid rgba(0,0,0,0.06)",
-            boxShadow: "0 1px 6px rgba(0,0,0,0.04)",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-              <span style={{ fontSize: "1.2rem" }}>{p.icon}</span>
-              <span style={{ fontSize: "14px", fontWeight: 700, color: "#111827" }}>{p.label}</span>
-            </div>
-            <p style={{ fontSize: "14px", color: "#6B7280", lineHeight: 1.7, margin: 0 }}>{p.text}</p>
-          </div>
-        ))}
+      {/* Persona cards — horizontal scroll */}
+      <div className="csl-reveal" style={{
+        display: "flex", gap: 16, overflowX: "auto", paddingBottom: 12, marginBottom: 36,
+        scrollbarWidth: "none" as React.CSSProperties["scrollbarWidth"],
+      }}>
+        {AGENT_PERSONAS.map((p) => <PersonaCard key={p.name} p={p} />)}
       </div>
 
       <div className="csl-reveal">
