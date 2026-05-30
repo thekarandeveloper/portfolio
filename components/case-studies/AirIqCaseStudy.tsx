@@ -1461,6 +1461,11 @@ function ApproachSection() {
         </div>
         {/* Matrix table */}
         <CompetitiveMatrix />
+        {/* Figma deep-dive tabs */}
+        <div style={{ marginTop: 20 }}>
+          <span className="csl-eyebrow">Deep dive — competitor UI in Figma</span>
+          <CompetitiveFigmaTabs />
+        </div>
       </div>
 
       {/* ── Insight cards ── */}
@@ -3709,6 +3714,8 @@ export function AirIqCaseStudy() {
       <TheAgentSection />
       <ProblemSection />
       <ApproachSection />
+      <JourneyMapSection />
+      <HypothesesSection />
       <DesignPrinciplesSection />
       <ProcessSection />
       <CoreComponentsSection />
