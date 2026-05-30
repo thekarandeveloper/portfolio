@@ -2396,12 +2396,10 @@ function DesignSystemSection() {
       <p style={{ fontSize: 15, color: "#6B7280", lineHeight: 1.7, margin: 0 }}>
         Have a look at the complete structure of the design system that I built —{" "}
         <a
-          href={airFigmaLinks.designSystem}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/projects/project-5"
           style={{ color: "#1E90FF", textDecoration: "underline", textUnderlineOffset: 3 }}
         >
-          explore it in Figma ↗
+          read the case study ↗
         </a>
       </p>
 
