@@ -30,20 +30,19 @@ const FINAL = "/Image/Biblofi/final%20screens%20-%20biblofi";
    TOC + META
 ───────────────────────────────────────────────────────────────────── */
 const TOC_ITEMS = [
-  { id: "overview",      label: "Overview"            },
-  { id: "process",       label: "Design Process"      },
-  { id: "research",      label: "Research"            },
-  { id: "insights",      label: "Personas"            },
-  { id: "journey",       label: "User Journey Map"    },
-  { id: "wireframes",    label: "Rough Sketches"      },
-  { id: "lofi",          label: "Wireframes"          },
-  { id: "constraints",   label: "Constraints"         },
-  { id: "screens",       label: "Key Features"        },
-  { id: "final",         label: "Final Screens"       },
-  { id: "accessibility", label: "Accessibility"       },
-  { id: "testing",       label: "Usability Testing"   },
-  { id: "learnings",     label: "Learnings"           },
-  { id: "experience",    label: "Experience"          },
+  { id: "overview",      label: "Overview"          },
+  { id: "process",       label: "Design Process"    },
+  { id: "research",      label: "Research"          },
+  { id: "insights",      label: "Personas"          },
+  { id: "wireframes",    label: "Wireframes"        },
+  { id: "constraints",   label: "Constraints"       },
+  { id: "screens",       label: "Key Features"      },
+  { id: "final",         label: "Final Screens"     },
+  { id: "accessibility", label: "Accessibility"     },
+  { id: "testing",       label: "Usability Testing" },
+  { id: "learnings",     label: "Learnings"         },
+  { id: "shipped",       label: "Impact"            },
+  { id: "experience",    label: "Experience"        },
 ];
 
 const META_ROWS = [
@@ -190,7 +189,29 @@ function OverviewSection() {
         title={<>A library built for 1995, <em style={{ fontStyle:"italic" }}>used by students in 2024.</em></>}
       />
 
-      <div className="csl-card-2col csl-reveal">
+      {/* Research-in-numbers hook */}
+      <div className="csl-reveal" style={{
+        display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:0,
+        borderRadius:14, overflow:"hidden", border:`1px solid ${A2}`,
+        background:A5, marginBottom:32,
+      }}>
+        {[
+          { num:"38", label:"students surveyed"    },
+          { num:"8",  label:"in-depth interviews"  },
+          { num:"3",  label:"library observations" },
+          { num:"1",  label:"core insight"         },
+        ].map((s, i) => (
+          <div key={s.label} style={{
+            padding:"20px 24px", textAlign:"center",
+            borderLeft: i > 0 ? `1px solid ${A2}` : "none",
+          }}>
+            <p style={{ fontSize:"1.9rem", fontWeight:800, color:A, lineHeight:1 }}>{s.num}</p>
+            <p style={{ fontSize:"12px", color:AMut, textTransform:"uppercase", letterSpacing:"0.07em", marginTop:5 }}>{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="csl-card-2col csl-reveal rd1">
         <div>
           <p className="csl-text">
             BibloFi was a 1-month Infosys internship project with weekly sprint deliveries. Each sprint had to ship; no room to over-iterate. We were handed an SRS document outlining every required feature, and the task was to turn those requirements into an experience that actually felt good on a real phone.
@@ -216,7 +237,45 @@ function OverviewSection() {
         </div>
       </div>
 
-      <div className="csl-reveal rd2" style={{ marginTop:28, borderRadius:16, overflow:"hidden" }}>
+      {/* Before / After contrast */}
+      <div className="csl-reveal rd2" style={{
+        display:"grid", gridTemplateColumns:"1fr 1fr", gap:0,
+        borderRadius:16, overflow:"hidden", marginTop:36,
+        border:`1px solid ${A2}`,
+      }}>
+        <div style={{ background:A5, padding:"28px 32px" }}>
+          <p style={{ fontSize:"12px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:"#9CA3AF", marginBottom:18 }}>Before BibloFi</p>
+          {[
+            "Walk to library (20+ min, no confirmation)",
+            "Book not available — wasted trip",
+            "No way to reserve a seat",
+            "Forget return dates → get fined",
+            "\"Haven't been back since.\"",
+          ].map((item, i) => (
+            <div key={i} style={{ display:"flex", gap:10, alignItems:"flex-start", marginBottom:10 }}>
+              <span style={{ color:"#EF4444", flexShrink:0, marginTop:2 }}>✕</span>
+              <p style={{ fontSize:"0.95rem", color:"#374151", lineHeight:1.5, fontStyle: i === 4 ? "italic" : "normal" }}>{item}</p>
+            </div>
+          ))}
+        </div>
+        <div style={{ background:A, padding:"28px 32px" }}>
+          <p style={{ fontSize:"12px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:"rgba(255,255,255,0.55)", marginBottom:18 }}>After BibloFi</p>
+          {[
+            "Check availability from anywhere, instantly",
+            "Book confirmed before you leave home",
+            "Reserve your seat in advance",
+            "Smart due-date notifications, no surprise fines",
+            "90% of tasks completed without a librarian",
+          ].map((item, i) => (
+            <div key={i} style={{ display:"flex", gap:10, alignItems:"flex-start", marginBottom:10 }}>
+              <span style={{ color:"#fff", flexShrink:0, marginTop:2 }}>✓</span>
+              <p style={{ fontSize:"0.95rem", color:"rgba(255,255,255,0.92)", lineHeight:1.5 }}>{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="csl-reveal rd3" style={{ marginTop:28, borderRadius:16, overflow:"hidden" }}>
         <Image
           src="/Image/Biblofi/team-infosys.png"
           alt="Internship team at Infosys"
@@ -232,57 +291,45 @@ function OverviewSection() {
    §02  DESIGN PROCESS
 ───────────────────────────────────────────────────────────────────── */
 function ProcessSection() {
+  const weeks = [
+    { week:"Week 1", phase:"Discover", accent:A,         bg:A5,         tasks:["38 student surveys","8 in-depth interviews","3 library observations"] },
+    { week:"Week 2", phase:"Define",   accent:"#6366F1", bg:"#F5F3FF",  tasks:["2 user personas","User journey map","Problem statement"] },
+    { week:"Week 3", phase:"Develop",  accent:"#10B981", bg:"#F0FDF4",  tasks:["Rough sketches","7 user flows","Lo-fi wireframes"] },
+    { week:"Week 4", phase:"Deliver",  accent:A,         bg:A5,         tasks:["Hi-fi designs","Design system","Usability testing"] },
+  ];
   return (
     <CsSection id="process">
       <CsSectionHeader
         label="Design Process"
-        title={<>The Double Diamond <em style={{ fontStyle:"italic" }}>framework in practice.</em></>}
+        title={<>Four weeks. One sprint review every Friday. <em style={{ fontStyle:"italic" }}>If it didn&apos;t hold up, it was cut.</em></>}
       />
 
-      <div className="csl-reveal" style={{ display:"flex", alignItems:"center", gap:12, marginBottom:24 }}>
-        <div style={{ width:28, height:28, background:A5, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem", flexShrink:0 }}>💡</div>
-        <p style={{ fontSize:"0.95rem", color:"#6B7280", lineHeight:1.6 }}>
-          Inspired by the <strong style={{ color:A }}>Double Diamond theory</strong>: diverge to understand the problem fully, converge to a focused solution. Applied to a 4-week sprint model, one diamond per two weeks.
-        </p>
+      <div className="csl-reveal" style={{
+        display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:0,
+        borderRadius:16, overflow:"hidden", border:`1px solid ${A2}`, marginBottom:24,
+      }}>
+        {weeks.map((s, i) => (
+          <div key={s.phase} style={{
+            background:s.bg, padding:"24px 20px",
+            borderLeft: i > 0 ? `1px solid ${A2}` : "none",
+          }}>
+            <p style={{ fontSize:"11px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.1em", color:"#9CA3AF", marginBottom:4 }}>{s.week}</p>
+            <p style={{ fontSize:"1.05rem", fontWeight:800, color:s.accent, marginBottom:14 }}>{s.phase}</p>
+            {s.tasks.map((t) => (
+              <p key={t} style={{ fontSize:"13px", color:"#6B7280", lineHeight:1.6, marginBottom:4 }}>· {t}</p>
+            ))}
+          </div>
+        ))}
       </div>
 
-      <div className="csl-reveal" style={{ marginBottom:32 }}>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr 1fr", gap:0, marginBottom:28, position:"relative" }}>
-          <div style={{
-            position:"absolute", top:28, left:"12.5%", right:"12.5%", height:2,
-            background:`linear-gradient(90deg, ${A2}, ${A}, ${A}, ${A2})`,
-            zIndex:0,
-          }} />
-          {[
-            { icon:"🔍", week:"Week 1", phase:"Discover", color:A, tasks:["38 student surveys","8 in-depth interviews","3 library observations"] },
-            { icon:"📌", week:"Week 2", phase:"Define",   color:"#6366F1", tasks:["2 user personas","Journey mapping","Problem statement"] },
-            { icon:"✏️", week:"Week 3", phase:"Develop",  color:"#10B981", tasks:["Rough sketches","Lo-fi wireframes","7 user flows"] },
-            { icon:"✅", week:"Week 4", phase:"Deliver",  color:A, tasks:["Hi-fi designs","Design system","Usability testing"] },
-          ].map((s, i) => (
-            <div key={s.phase} style={{ display:"flex", flexDirection:"column", alignItems:"center", position:"relative", zIndex:1 }}>
-              <div style={{
-                width:56, height:56, borderRadius:16, background:s.color,
-                display:"flex", alignItems:"center", justifyContent:"center",
-                fontSize:"1.5rem", boxShadow:`0 4px 16px ${s.color}44`,
-                transform: i === 1 || i === 2 ? "scale(1.1)" : "scale(1)",
-              }}>
-                {s.icon}
-              </div>
-              <p style={{ fontSize:"11px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.1em", color:"#9CA3AF", marginTop:10, marginBottom:2 }}>{s.week}</p>
-              <p style={{ fontSize:"0.95rem", fontWeight:700, color:"#111827", marginBottom:8 }}>{s.phase}</p>
-              {s.tasks.map((t) => (
-                <p key={t} style={{ fontSize:"12px", color:"#6B7280", textAlign:"center", lineHeight:1.5 }}>· {t}</p>
-              ))}
-            </div>
-          ))}
-        </div>
-
-        <div style={{ background:A5, borderRadius:12, padding:"14px 20px", display:"flex", gap:12, alignItems:"center" }}>
-          <span style={{ fontSize:"1.2rem" }}>⚡</span>
-          <p style={{ fontSize:"0.93rem", color:ADrk, lineHeight:1.6 }}>
-            <strong>Tight feedback loops:</strong> every Friday was a sprint review with the dev team. If something didn&apos;t hold up, it was cut before Monday. This pace forced early decisions and prevented over-design.
-          </p>
-        </div>
+      <div className="csl-reveal rd1" style={{
+        background:ADrk, borderRadius:12, padding:"18px 24px",
+        display:"flex", gap:14, alignItems:"center",
+      }}>
+        <span style={{ fontSize:"1.3rem", flexShrink:0 }}>⚡</span>
+        <p style={{ fontSize:"0.96rem", color:"rgba(255,255,255,0.85)", lineHeight:1.65 }}>
+          Every Friday was a sprint review with the dev team. If something didn&apos;t hold up, it was cut before Monday. This pace forced early decisions and prevented over-design.
+        </p>
       </div>
     </CsSection>
   );
@@ -431,51 +478,46 @@ function WireframesSection() {
     <CsSection id="wireframes">
       <CsSectionHeader
         label="Develop: Wireframes"
-        title={<>From rough sketches <em style={{ fontStyle:"italic" }}>to structured flows.</em></>}
-        sub="The brainstorming started in WhatsApp chats and rough sketches, raw ideas translated into structured lo-fi wireframes in FigJam."
+        title={<>Rough sketches to structured flows, <em style={{ fontStyle:"italic" }}>problems caught early.</em></>}
+        sub="Brainstorming started in WhatsApp chats. Raw ideas became structured lo-fi wireframes in FigJam. Two structural problems were caught and fixed here — before a single hi-fi screen was opened."
       />
 
-      <div className="csl-reveal" style={{ borderRadius:16, overflow:"hidden" }}>
-        <Image
-          src="/Image/Biblofi/rough.png"
-          alt="Rough sketches and lo-fi wireframes"
-          width={1400} height={900}
-          style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
-        />
+      {/* Rough sketches */}
+      <div className="csl-reveal">
+        <p style={{ fontSize:"12px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.1em", color:"#9CA3AF", marginBottom:12 }}>Step 1 — Rough Sketches</p>
+        <div style={{ borderRadius:16, overflow:"hidden" }}>
+          <Image
+            src="/Image/Biblofi/rough.png"
+            alt="Rough sketches and initial ideas"
+            width={1400} height={900}
+            style={{ width:"100%", height:"auto", display:"block" }}
+          />
+        </div>
       </div>
 
-      <p className="csl-text csl-reveal rd2" style={{ marginTop:20, fontStyle:"italic", color:"#9CA3AF" }}>
-        7 complete user flows designed: Onboarding · Sign In · Browse by Genre · Search by Author · Scan &amp; Search · Notifications &amp; Profile · Seat Booking
-      </p>
-    </CsSection>
-  );
-}
+      <div className="csl-reveal rd1" style={{ textAlign:"center", padding:"14px 0", fontSize:"1.4rem", color:A }}>↓</div>
 
-/* ─────────────────────────────────────────────────────────────────────
-   §05b  LO-FI WIREFRAMES
-───────────────────────────────────────────────────────────────────── */
-function LoFiWireframesSection() {
-  return (
-    <CsSection id="lofi">
-      <CsSectionHeader
-        label="Develop: Lo-Fi Wireframes"
-        title={<>Rough ideas turned into <em style={{ fontStyle:"italic" }}>structured screens.</em></>}
-        sub="Each flow was mapped out screen by screen, laying the foundation before moving into high-fidelity design."
-      />
-
-      <div className="csl-reveal" style={{ borderRadius:16, overflow:"hidden" }}>
-        <Image
-          src="/Image/Biblofi/wireframe.png"
-          alt="Lo-fi wireframes"
-          width={1400} height={900}
-          style={{ width:"100%", height:"auto", display:"block", borderRadius:16 }}
-        />
+      {/* Lo-fi wireframes */}
+      <div className="csl-reveal rd1">
+        <p style={{ fontSize:"12px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.1em", color:"#9CA3AF", marginBottom:12 }}>Step 2 — Lo-Fi Wireframes</p>
+        <div style={{ borderRadius:16, overflow:"hidden" }}>
+          <Image
+            src="/Image/Biblofi/wireframe.png"
+            alt="Lo-fi wireframes"
+            width={1400} height={900}
+            style={{ width:"100%", height:"auto", display:"block" }}
+          />
+        </div>
       </div>
 
-      <div className="csl-callout csl-reveal rd1" style={{ marginTop:24 }}>
-        <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>What the lo-fi round revealed</p>
+      {/* What lo-fi revealed */}
+      <div className="csl-callout csl-reveal rd2" style={{ marginTop:24 }}>
+        <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Structural problems caught before hi-fi</p>
         <p style={{ fontSize:"1.08rem", color:"#374151", lineHeight:1.75 }}>
-          Two structural problems surfaced immediately. The bottom tab bar had five items, one too many for comfortable one-handed use. The &apos;Issue Book&apos; action was buried three taps deep, flagged in the first five minutes of testing. Both were fixed before opening Figma in hi-fi: tabs dropped to four, and issuing a book became a persistent action from the catalogue view.
+          Two structural problems surfaced immediately. The bottom tab bar had five items — one too many for comfortable one-handed use. The &apos;Issue Book&apos; action was buried three taps deep, flagged in the first five minutes of testing. Both were fixed before opening Figma in hi-fi: tabs dropped to four, and issuing a book became a persistent action from the catalogue view.
+        </p>
+        <p style={{ fontSize:"0.9rem", color:"#9CA3AF", marginTop:12, fontStyle:"italic" }}>
+          7 flows designed: Onboarding · Sign In · Browse by Genre · Search by Author · Scan &amp; Search · Notifications &amp; Profile · Seat Booking
         </p>
       </div>
     </CsSection>
@@ -585,6 +627,13 @@ function ScreensSection() {
               <p style={{ fontSize:"13px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.12em", color:AMed, marginBottom:4 }}>Why this approach</p>
               <p style={{ fontSize:"0.93rem", color:ADrk, lineHeight:1.6 }}>{feature.rationale}</p>
             </div>
+
+            {feature.rejected && (
+              <div style={{ background:"#F9FAFB", borderRadius:10, padding:"10px 14px", marginBottom:10, borderLeft:"3px solid #E5E7EB" }}>
+                <p style={{ fontSize:"12px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.12em", color:"#9CA3AF", marginBottom:4 }}>What we considered first</p>
+                <p style={{ fontSize:"0.9rem", color:"#6B7280", lineHeight:1.6 }}>{feature.rejected}</p>
+              </div>
+            )}
 
             <span style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:"13px", fontWeight:600, color:A, background:A5, padding:"4px 12px", borderRadius:100 }}>
               {feature.impact}
@@ -870,28 +919,42 @@ function TestingSection() {
       <CsSectionHeader
         label="Usability Testing"
         title={<>20 real users. <em style={{ fontStyle:"italic" }}>Three core tasks.</em></>}
-        sub="I conducted usability testing with 20 participants to validate the design before final delivery. Each participant attempted three core tasks without any guidance."
+        sub="Each participant attempted three core tasks without any guidance. No hints. No walkthroughs."
       />
 
-      <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16 }} className="csl-reveal">
-        {testResults.map((result) => (
-          <div key={result.task} style={{ padding:"22px 0", textAlign:"center" }}>
-            <p style={{ fontSize:"0.96rem", color:"#6B7280", marginBottom:14, lineHeight:1.5 }}>{result.task}</p>
-            <p style={{ fontSize:"2rem", fontWeight:800, color:A, lineHeight:1 }}>{result.fraction}</p>
-            <p style={{ fontSize:"15px", fontWeight:600, color:"#111827", marginTop:4 }}>{result.label}</p>
-            <p style={{ fontSize:"15px", color:"#9CA3AF", marginTop:6, lineHeight:1.5 }}>{result.note}</p>
+      {/* 90% hero stat — dark card, opens the section */}
+      <div className="csl-reveal" style={{
+        background:ADrk, borderRadius:20, padding:"40px 48px",
+        display:"flex", alignItems:"center", gap:48, marginBottom:32,
+        flexWrap:"wrap",
+      }}>
+        <div style={{ flexShrink:0 }}>
+          <p style={{ fontSize:"5.5rem", fontWeight:900, color:A, lineHeight:1 }}>90%</p>
+          <p style={{ fontSize:"1rem", color:"rgba(255,255,255,0.6)", marginTop:4 }}>overall task completion</p>
+        </div>
+        <div style={{ width:"1px", background:"rgba(255,255,255,0.12)", alignSelf:"stretch", flexShrink:0 }} />
+        <div>
+          <p style={{ fontSize:"1.15rem", fontWeight:700, color:"#fff", lineHeight:1.5, marginBottom:10 }}>
+            12 points above the Nielsen Norman Group benchmark for well-designed consumer apps.
+          </p>
+          <div style={{ display:"flex", gap:16, flexWrap:"wrap" }}>
+            <span style={{ fontSize:"0.9rem", color:"rgba(255,255,255,0.45)", background:"rgba(255,255,255,0.07)", padding:"4px 12px", borderRadius:100 }}>Industry avg: 78%</span>
+            <span style={{ fontSize:"0.9rem", color:A, background:"rgba(200,112,58,0.15)", padding:"4px 12px", borderRadius:100 }}>BibloFi: 90%</span>
+            <span style={{ fontSize:"0.9rem", color:"rgba(255,255,255,0.45)", background:"rgba(255,255,255,0.07)", padding:"4px 12px", borderRadius:100 }}>First prototype · 20 participants</span>
           </div>
-        ))}
+        </div>
       </div>
 
-      <div className="csl-reveal rd1" style={{ marginTop:20, background:A5, borderRadius:16, padding:"20px 24px", textAlign:"center" }}>
-        <p style={{ fontSize:"2.5rem", fontWeight:800, color:A, lineHeight:1 }}>90%</p>
-        <p style={{ fontSize:"1.05rem", color:AMed, marginTop:6 }}>
-          Overall task completion rate across all 3 tasks · 20 participants
-        </p>
-        <p style={{ fontSize:"0.96rem", color:AMut, marginTop:6 }}>
-          Nielsen Norman Group benchmarks average task completion for well-designed consumer apps at 78%, BibloFi tested 12 points above that on a first prototype.
-        </p>
+      {/* Task breakdown */}
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16 }} className="csl-reveal rd1">
+        {testResults.map((result) => (
+          <div key={result.task} style={{ padding:"22px 20px", background:"#FAFAFA", borderRadius:14, textAlign:"center" }}>
+            <p style={{ fontSize:"0.93rem", color:"#6B7280", marginBottom:14, lineHeight:1.5 }}>{result.task}</p>
+            <p style={{ fontSize:"2rem", fontWeight:800, color:A, lineHeight:1 }}>{result.fraction}</p>
+            <p style={{ fontSize:"15px", fontWeight:600, color:"#111827", marginTop:4 }}>{result.label}</p>
+            <p style={{ fontSize:"13px", color:"#9CA3AF", marginTop:6, lineHeight:1.5 }}>{result.note}</p>
+          </div>
+        ))}
       </div>
 
       <p className="csl-text csl-reveal rd2" style={{ marginTop:20 }}>
@@ -901,10 +964,9 @@ function TestingSection() {
       <div className="csl-callout csl-reveal rd2" style={{ marginTop:20 }}>
         <p style={{ fontSize:"15px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:8 }}>Post-delivery context</p>
         <p style={{ fontSize:"1.08rem", color:"#374151", lineHeight:1.75 }}>
-          The Figma specs and design system were handed off to the iOS engineering team at internship end. Post-launch adoption data wasn&apos;t accessible to me after the internship concluded. These testing results represent the final pre-handoff validation, not production metrics.
+          The Figma specs and design system were handed off to the iOS engineering team at internship end. These testing results represent the final pre-handoff validation, not production metrics.
         </p>
       </div>
-
     </CsSection>
   );
 }
@@ -943,6 +1005,43 @@ function LearningsSection() {
         ))}
       </div>
 
+    </CsSection>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   §13  WHAT SHIPPED
+───────────────────────────────────────────────────────────────────── */
+function ShippedSection() {
+  const stats = [
+    { value:"7",    label:"core flows shipped"        },
+    { value:"10",   label:"iOS engineers at handoff"  },
+    { value:"90%",  label:"task completion rate"      },
+    { value:"4wk",  label:"start to delivery"         },
+  ];
+  return (
+    <CsSection id="shipped">
+      <div className="csl-reveal" style={{
+        background:ADrk, borderRadius:20, padding:"44px 52px",
+      }}>
+        <p style={{ fontSize:"13px", fontWeight:700, textTransform:"uppercase", letterSpacing:"0.14em", color:A, marginBottom:14 }}>What shipped</p>
+        <h2 style={{ fontSize:"1.65rem", fontWeight:800, color:"#fff", lineHeight:1.35, marginBottom:40, maxWidth:560 }}>
+          A complete library experience —<br />
+          <em style={{ fontStyle:"italic", color:A }}>designed, tested, and handed off in 4 weeks.</em>
+        </h2>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:0 }}>
+          {stats.map((s, i) => (
+            <div key={s.label} style={{
+              borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.1)" : "none",
+              paddingLeft: i > 0 ? 32 : 0,
+              paddingRight: 32,
+            }}>
+              <p style={{ fontSize:"2.8rem", fontWeight:900, color:A, lineHeight:1 }}>{s.value}</p>
+              <p style={{ fontSize:"0.88rem", color:"rgba(255,255,255,0.5)", marginTop:8, lineHeight:1.4 }}>{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </CsSection>
   );
 }
@@ -1023,13 +1122,13 @@ export function BiblofiCaseStudy() {
       <ResearchSection />
       <InsightsSection />
       <WireframesSection />
-      <LoFiWireframesSection />
       <ConstraintsSection />
       <ScreensSection />
       <FinalScreensSection />
       <AccessibilitySection />
       <TestingSection />
       <LearningsSection />
+      <ShippedSection />
       <ExperienceSection />
     </CaseStudyPage>
   );
