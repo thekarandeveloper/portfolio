@@ -962,14 +962,16 @@ function ProblemSection() {
       </div>
 
       {/* Old portal screenshot */}
-      <div className="csl-reveal" style={{ marginTop: 36 }}>
+      <div style={{ marginTop: 36 }}>
         <span className="csl-eyebrow">What agents were working with</span>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/Image/Airiq/thumnail/old-portal.jpg"
-          alt="Old Air IQ portal screenshot"
-          style={{ width: "100%", borderRadius: 16, display: "block", marginBottom: 28 }}
-        />
+        <div className="csl-reveal" style={{ marginBottom: 28 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/Image/Airiq/thumnail/old-portal.jpg"
+            alt="Old Air IQ portal screenshot"
+            style={{ width: "100%", borderRadius: 16, display: "block" }}
+          />
+        </div>
       </div>
     </CsSection>
   );
