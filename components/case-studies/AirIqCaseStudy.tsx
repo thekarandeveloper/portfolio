@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { CaseStudyPage, CsSection, CsSectionHeader } from "./CaseStudyLayout";
 import {
   airFigmaLinks,
@@ -599,6 +600,7 @@ function PersonaCard({ p }: { p: typeof AGENT_PERSONAS[0] }) {
 ───────────────────────────────────────────────────────────────────── */
 function CompetitiveFigmaTabs() {
   const [active, setActive] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const platforms = COMPETITORS.map((c) => ({
     ...c,
     embedUrl: `https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/D6XwtXxLfGueNa2O4fwkHy/AirIQ-Case-Study?node-id=${c.nodeId}`,
@@ -613,13 +615,25 @@ function CompetitiveFigmaTabs() {
             Competitive Analysis — {platforms[active].name}
           </span>
         </div>
-        <iframe
-          key={active}
-          src={platforms[active].embedUrl}
-          allowFullScreen
-          style={{ width: "100%", height: 480, border: "none", display: "block" }}
-          loading="lazy"
-        />
+        <div style={{ position: "relative", height: 480 }}>
+          {!loaded && (
+            <div style={{
+              position: "absolute", inset: 0, background: "#f8fafc",
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
+              zIndex: 1,
+            }}>
+              <FigmaIcon />
+              <span style={{ fontSize: 13, color: "#94a3b8", fontWeight: 500 }}>Loading Figma…</span>
+            </div>
+          )}
+          <iframe
+            key={active}
+            src={platforms[active].embedUrl}
+            allowFullScreen
+            style={{ width: "100%", height: "100%", border: "none", display: "block", opacity: loaded ? 1 : 0, transition: "opacity 0.4s ease" }}
+            onLoad={() => setLoaded(true)}
+          />
+        </div>
       </div>
       {/* Switch pills below the embed — bigger, with logo + name */}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const }}>
@@ -1223,6 +1237,7 @@ function CompetitiveMatrix() {
 }
 
 function CompetitiveCarousel() {
+  const [loaded, setLoaded] = useState(false);
   /* single static embed — first competitor as reference */
   const c = COMPETITORS[0];
   const embedUrl = `https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/D6XwtXxLfGueNa2O4fwkHy/AirIQ-Case-Study?node-id=${c.nodeId}`;
@@ -1280,12 +1295,24 @@ function CompetitiveCarousel() {
             <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>AirIQ: Competitive Research</span>
           </div>
         </div>
-        <iframe
-          src={embedUrl}
-          allowFullScreen
-          style={{ width: "100%", height: 520, border: "none", display: "block" }}
-          loading="lazy"
-        />
+        <div style={{ position: "relative", height: 520 }}>
+          {!loaded && (
+            <div style={{
+              position: "absolute", inset: 0, background: "#f8fafc",
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
+              zIndex: 1,
+            }}>
+              <FigmaIcon />
+              <span style={{ fontSize: 13, color: "#94a3b8", fontWeight: 500 }}>Loading Figma…</span>
+            </div>
+          )}
+          <iframe
+            src={embedUrl}
+            allowFullScreen
+            style={{ width: "100%", height: "100%", border: "none", display: "block", opacity: loaded ? 1 : 0, transition: "opacity 0.4s ease" }}
+            onLoad={() => setLoaded(true)}
+          />
+        </div>
       </div>
 
       {/* ── Key findings ── */}
@@ -2223,6 +2250,7 @@ function FigmaIcon() {
 }
 
 function FigmaEmbed({ url, label, height = 600 }: { url: string; label: string; height?: number }) {
+  const [loaded, setLoaded] = React.useState(false);
   return (
     <div style={{
       borderRadius: 18, overflow: "hidden",
@@ -2238,12 +2266,31 @@ function FigmaEmbed({ url, label, height = 600 }: { url: string; label: string; 
           <span style={{ fontSize: "15px", fontWeight: 600, color: "#374151" }}>{label}</span>
         </div>
       </div>
-      <iframe
-        src={url}
-        allowFullScreen
-        style={{ width: "100%", height, border: "none", display: "block" }}
-        loading="lazy"
-      />
+      <div style={{ position: "relative", height }}>
+        {!loaded && (
+          <div style={{
+            position: "absolute", inset: 0, background: "#f8fafc",
+            display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
+            zIndex: 1,
+          }}>
+            <svg width="32" height="32" viewBox="0 0 38 57" fill="none" style={{ opacity: 0.3 }}>
+              <path d="M19 38C23.4183 38 27 34.4183 27 30C27 25.5817 23.4183 22 19 22C14.5817 22 11 25.5817 11 30C11 34.4183 14.5817 38 19 38Z" fill="#1E90FF"/>
+              <path d="M9.5 57H19V38H9.5C5.08172 38 1.5 41.5817 1.5 46C1.5 50.4183 5.08172 54 9.5 54V57Z" fill="#0ACF83"/>
+              <path d="M0 9.5C0 13.9183 3.58172 17.5 8 17.5H19V1.5H8C3.58172 1.5 0 5.08172 0 9.5Z" fill="#F24E1E"/>
+              <path d="M19 1.5H28.5C32.9183 1.5 36.5 5.08172 36.5 9.5C36.5 13.9183 32.9183 17.5 28.5 17.5H19V1.5Z" fill="#FF7262"/>
+              <path d="M19 17.5H28.5C32.9183 17.5 36.5 21.0817 36.5 25.5C36.5 29.9183 32.9183 33.5 28.5 33.5H19V17.5Z" fill="#A259FF"/>
+              <path d="M0 25.5C0 29.9183 3.58172 33.5 8 33.5H19V17.5H8C3.58172 17.5 0 21.0817 0 25.5Z" fill="#F24E1E"/>
+            </svg>
+            <span style={{ fontSize: 13, color: "#94a3b8", fontWeight: 500 }}>Loading Figma…</span>
+          </div>
+        )}
+        <iframe
+          src={url}
+          allowFullScreen
+          style={{ width: "100%", height: "100%", border: "none", display: "block", opacity: loaded ? 1 : 0, transition: "opacity 0.4s ease" }}
+          onLoad={() => setLoaded(true)}
+        />
+      </div>
     </div>
   );
 }
