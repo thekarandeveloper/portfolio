@@ -849,7 +849,7 @@ function TheAgentSection() {
       <div className="csl-reveal" style={{ marginBottom: 28 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/Image/Airiq/thumnail/agent-image.png"
+          src="/Image/Airiq/thumnail/agent-image.jpg"
           alt="Travel agent at work"
           style={{ width: "100%", height: 360, objectFit: "cover", borderRadius: 56, display: "block" }}
         />
