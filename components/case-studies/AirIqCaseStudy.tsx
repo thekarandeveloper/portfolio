@@ -938,18 +938,24 @@ function ProblemSection() {
         </div>
       </div>
 
-      {/* Pain moments */}
-      <div className="csl-reveal" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-        {PAIN_MOMENTS.map((m) => (
-          <div key={m.title} style={{ borderLeft: "3px solid #1E90FF", paddingLeft: 20 }}>
-            <p className="csl-h3" style={{ marginBottom: 6 }}>{m.title}</p>
-            <p style={{ fontSize: "1.05rem", color: "#6B7280", lineHeight: 1.75, margin: "0 0 10px" }}>{m.scene}</p>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: "13px", color: "#9CA3AF", fontWeight: 600 }}>Fixed by</span>
-              <span style={{ fontSize: "13px", fontWeight: 700, color: "#1E90FF", background: "#EFF6FF", borderRadius: 6, padding: "2px 10px" }}>{m.solvedBy}</span>
+      {/* Pain moments — glassmorphism cards */}
+      <div className="csl-reveal problem-glass-wrapper">
+        <div className="prob-glass-bg">
+          <div className="prob-blue-orb prob-blue-1" />
+          <div className="prob-blue-orb prob-blue-2" />
+          <div className="prob-yellow-ball prob-y-1" />
+          <div className="prob-yellow-ball prob-y-2" />
+          <div className="prob-yellow-ball prob-y-3" />
+        </div>
+        <div className="prob-glass-grid">
+          {PAIN_MOMENTS.map((m, i) => (
+            <div key={m.title} className="prob-glass-card">
+              <div className="prob-glass-num">{String(i + 1).padStart(2, "0")}</div>
+              <p className="prob-glass-title">{m.title}</p>
+              <p className="prob-glass-body">{m.scene}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Photo placeholder — old portal */}

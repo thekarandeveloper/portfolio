@@ -1035,6 +1035,149 @@ nav, header, footer, main, section, article, aside,
   margin-bottom: 8px;
 }
 
+/* Problem section glassmorphism cards */
+.airiq-case-study .problem-glass-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 40px;
+  background: linear-gradient(135deg, #060f1e 0%, #0b1e3d 60%, #050d1a 100%);
+}
+
+.airiq-case-study .prob-glass-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.airiq-case-study .prob-blue-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+}
+
+.airiq-case-study .prob-blue-1 {
+  width: 420px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(30,144,255,0.4) 0%, rgba(30,144,255,0.04) 70%);
+  top: -80px;
+  left: -60px;
+  animation: probBlueMove1 9s ease-in-out infinite alternate;
+}
+
+.airiq-case-study .prob-blue-2 {
+  width: 320px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(30,144,255,0.25) 0%, rgba(30,144,255,0.03) 70%);
+  bottom: -60px;
+  right: -40px;
+  animation: probBlueMove2 11s ease-in-out infinite alternate;
+}
+
+.airiq-case-study .prob-yellow-ball {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(253, 224, 71, 0.6);
+  filter: blur(18px);
+}
+
+.airiq-case-study .prob-y-1 {
+  width: 64px;
+  height: 64px;
+  top: 14%;
+  right: 22%;
+  animation: probYellowFloat 8s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.airiq-case-study .prob-y-2 {
+  width: 44px;
+  height: 44px;
+  bottom: 18%;
+  left: 18%;
+  animation: probYellowFloat 10s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.airiq-case-study .prob-y-3 {
+  width: 28px;
+  height: 28px;
+  top: 58%;
+  right: 38%;
+  animation: probYellowFloat 7s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+@keyframes probBlueMove1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(40px, 30px) scale(1.1); }
+  100% { transform: translate(-20px, -30px) scale(0.95); }
+}
+
+@keyframes probBlueMove2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-30px, -20px) scale(1.08); }
+  100% { transform: translate(25px, 20px) scale(0.92); }
+}
+
+@keyframes probYellowFloat {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  25%  { transform: translate(-12px, -18px) scale(1.2); opacity: 0.75; }
+  50%  { transform: translate(8px, -28px) scale(0.9); opacity: 0.45; }
+  75%  { transform: translate(16px, -10px) scale(1.1); opacity: 0.65; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+}
+
+.airiq-case-study .prob-glass-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.airiq-case-study .prob-glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.airiq-case-study .prob-glass-card:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(30, 144, 255, 0.35);
+}
+
+.airiq-case-study .prob-glass-num {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: rgba(30, 144, 255, 0.35);
+  line-height: 1;
+  margin-bottom: 14px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.airiq-case-study .prob-glass-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.4;
+  margin: 0 0 10px;
+}
+
+.airiq-case-study .prob-glass-body {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.48);
+  line-height: 1.75;
+  margin: 0;
+}
+
 .airiq-case-study .pc-text {
   font-size: 15px;
   color: rgba(255, 255, 255, 0.45);
