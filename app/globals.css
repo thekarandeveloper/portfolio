@@ -1036,7 +1036,7 @@ nav, header, footer, main, section, article, aside,
 }
 
 /* Problem section glassmorphism cards */
-.airiq-case-study .problem-glass-wrapper {
+.problem-glass-wrapper {
   position: relative;
   border-radius: 24px;
   overflow: hidden;
@@ -1044,21 +1044,21 @@ nav, header, footer, main, section, article, aside,
   background: linear-gradient(135deg, #060f1e 0%, #0b1e3d 60%, #050d1a 100%);
 }
 
-.airiq-case-study .prob-glass-bg {
+.prob-glass-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
 }
 
-.airiq-case-study .prob-blue-orb {
+.prob-blue-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.6;
 }
 
-.airiq-case-study .prob-blue-1 {
+.prob-blue-1 {
   width: 420px;
   height: 320px;
   background: radial-gradient(circle, rgba(30,144,255,0.4) 0%, rgba(30,144,255,0.04) 70%);
@@ -1067,7 +1067,7 @@ nav, header, footer, main, section, article, aside,
   animation: probBlueMove1 9s ease-in-out infinite alternate;
 }
 
-.airiq-case-study .prob-blue-2 {
+.prob-blue-2 {
   width: 320px;
   height: 260px;
   background: radial-gradient(circle, rgba(30,144,255,0.25) 0%, rgba(30,144,255,0.03) 70%);
@@ -1076,14 +1076,14 @@ nav, header, footer, main, section, article, aside,
   animation: probBlueMove2 11s ease-in-out infinite alternate;
 }
 
-.airiq-case-study .prob-yellow-ball {
+.prob-yellow-ball {
   position: absolute;
   border-radius: 50%;
   background: rgba(253, 224, 71, 0.6);
   filter: blur(18px);
 }
 
-.airiq-case-study .prob-y-1 {
+.prob-y-1 {
   width: 64px;
   height: 64px;
   top: 14%;
@@ -1092,7 +1092,7 @@ nav, header, footer, main, section, article, aside,
   animation-delay: 0s;
 }
 
-.airiq-case-study .prob-y-2 {
+.prob-y-2 {
   width: 44px;
   height: 44px;
   bottom: 18%;
@@ -1101,7 +1101,7 @@ nav, header, footer, main, section, article, aside,
   animation-delay: -3s;
 }
 
-.airiq-case-study .prob-y-3 {
+.prob-y-3 {
   width: 28px;
   height: 28px;
   top: 58%;
@@ -1130,7 +1130,7 @@ nav, header, footer, main, section, article, aside,
   100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
 }
 
-.airiq-case-study .prob-glass-grid {
+.prob-glass-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -1138,7 +1138,7 @@ nav, header, footer, main, section, article, aside,
   z-index: 2;
 }
 
-.airiq-case-study .prob-glass-card {
+.prob-glass-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -1148,12 +1148,12 @@ nav, header, footer, main, section, article, aside,
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-.airiq-case-study .prob-glass-card:hover {
+.prob-glass-card:hover {
   background: rgba(255, 255, 255, 0.09);
   border-color: rgba(30, 144, 255, 0.35);
 }
 
-.airiq-case-study .prob-glass-num {
+.prob-glass-num {
   font-size: 2.8rem;
   font-weight: 900;
   color: rgba(30, 144, 255, 0.35);
@@ -1163,7 +1163,7 @@ nav, header, footer, main, section, article, aside,
   letter-spacing: -0.02em;
 }
 
-.airiq-case-study .prob-glass-title {
+.prob-glass-title {
   font-size: 1rem;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.92);
@@ -1171,7 +1171,7 @@ nav, header, footer, main, section, article, aside,
   margin: 0 0 10px;
 }
 
-.airiq-case-study .prob-glass-body {
+.prob-glass-body {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.48);
   line-height: 1.75;
