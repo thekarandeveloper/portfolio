@@ -519,49 +519,74 @@ const AGENT_PERSONAS = [
 function PersonaCard({ p }: { p: typeof AGENT_PERSONAS[0] }) {
   return (
     <div style={{
-      background: "#fff", borderRadius: 20, padding: "20px 20px 22px",
-      border: "1px solid rgba(0,0,0,0.06)",
-      boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
-      flexShrink: 0, width: 272,
+      background: p.tagBg,
+      borderRadius: 20,
+      padding: "20px 20px 22px",
+      boxShadow: "0 6px 28px rgba(0,0,0,0.07)",
+      flexShrink: 0,
+      width: 276,
     }}>
-      {/* Tag */}
-      <div style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.1em", color: p.tagColor, background: p.tagBg, borderRadius: 100, padding: "3px 10px", display: "inline-block", marginBottom: 16 }}>{p.tag}</div>
-      {/* Name + Age + Polaroid */}
+      {/* Hashtag — plain text, no pill */}
+      <div style={{
+        fontSize: "10px", fontWeight: 700, letterSpacing: "0.1em",
+        color: p.tagColor, marginBottom: 14,
+        textTransform: "uppercase" as const,
+      }}>{p.tag}</div>
+
+      {/* Name + Age row + Polaroid photo placeholder */}
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 16 }}>
-        <div style={{ display: "flex", gap: 20 }}>
+        <div style={{ display: "flex", gap: 22 }}>
           <div>
-            <div style={{ fontSize: "9px", color: "#9CA3AF", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 2 }}>NAME</div>
-            <div style={{ fontSize: "20px", fontWeight: 800, color: "#111827", letterSpacing: "-0.02em" }}>{p.name}</div>
+            <div style={{ fontSize: "9px", color: "#9CA3AF", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 3 }}>NAME</div>
+            <div style={{ fontSize: "22px", fontWeight: 800, color: "#111827", letterSpacing: "-0.02em", lineHeight: 1 }}>{p.name}</div>
           </div>
           <div>
-            <div style={{ fontSize: "9px", color: "#9CA3AF", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 2 }}>AGE</div>
-            <div style={{ fontSize: "20px", fontWeight: 800, color: "#111827" }}>{p.age}</div>
+            <div style={{ fontSize: "9px", color: "#9CA3AF", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 3 }}>AGE</div>
+            <div style={{ fontSize: "22px", fontWeight: 800, color: "#111827", lineHeight: 1 }}>{p.age}</div>
           </div>
         </div>
-        {/* Polaroid avatar */}
-        <div style={{ background: "#fff", padding: "5px 5px 14px", boxShadow: "0 3px 14px rgba(0,0,0,0.14)", borderRadius: 3, transform: "rotate(4deg)", flexShrink: 0 }}>
-          <div style={{ width: 52, height: 52, borderRadius: 2, background: p.avatarBg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", fontWeight: 800, color: "rgba(255,255,255,0.75)", letterSpacing: "0.04em" }}>{p.avatarInitial}</div>
+        {/* Polaroid with image placeholder */}
+        <div style={{
+          background: "#fff", padding: "5px 5px 16px",
+          boxShadow: "0 4px 18px rgba(0,0,0,0.18)",
+          borderRadius: 3, transform: "rotate(5deg)", flexShrink: 0,
+          marginTop: -4,
+        }}>
+          <div style={{
+            width: 62, height: 72,
+            background: "linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%)",
+            borderRadius: 2, display: "flex", alignItems: "center",
+            justifyContent: "center", fontSize: "1.4rem",
+          }}>📷</div>
         </div>
       </div>
-      {/* Behavior */}
+
+      {/* BEHAVIOR */}
       <div style={{ marginBottom: 14 }}>
         <div style={{ fontSize: "9px", fontWeight: 700, color: p.tagColor, letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 6 }}>BEHAVIOR</div>
         <ul style={{ margin: 0, padding: "0 0 0 13px" }}>
-          {p.behaviors.map((b, i) => <li key={i} style={{ fontSize: "11px", color: "#374151", lineHeight: 1.55, marginBottom: 3 }}>{b}</li>)}
+          {p.behaviors.map((b, i) => (
+            <li key={i} style={{ fontSize: "11px", color: "#374151", lineHeight: 1.6, marginBottom: 3 }}>{b}</li>
+          ))}
         </ul>
       </div>
-      {/* Pain + Needs */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, borderTop: "1px solid #F3F4F6", paddingTop: 12 }}>
+
+      {/* PAIN POINT | NEEDS */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, borderTop: "1px solid rgba(0,0,0,0.07)", paddingTop: 12 }}>
         <div>
           <div style={{ fontSize: "9px", fontWeight: 700, color: "#EF4444", letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 5 }}>PAIN POINT</div>
           <ul style={{ margin: 0, padding: "0 0 0 12px" }}>
-            {p.painPoints.map((pt, i) => <li key={i} style={{ fontSize: "10px", color: "#374151", lineHeight: 1.5, marginBottom: 3 }}>{pt}</li>)}
+            {p.painPoints.map((pt, i) => (
+              <li key={i} style={{ fontSize: "10px", color: "#374151", lineHeight: 1.55, marginBottom: 3 }}>{pt}</li>
+            ))}
           </ul>
         </div>
         <div>
           <div style={{ fontSize: "9px", fontWeight: 700, color: "#22C55E", letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: 5 }}>NEEDS</div>
           <ul style={{ margin: 0, padding: "0 0 0 12px" }}>
-            {p.needs.map((n, i) => <li key={i} style={{ fontSize: "10px", color: "#374151", lineHeight: 1.5, marginBottom: 3 }}>{n}</li>)}
+            {p.needs.map((n, i) => (
+              <li key={i} style={{ fontSize: "10px", color: "#374151", lineHeight: 1.55, marginBottom: 3 }}>{n}</li>
+            ))}
           </ul>
         </div>
       </div>
@@ -826,7 +851,7 @@ function TheAgentSection() {
         <img
           src="/Image/Airiq/thumnail/agent-image.png"
           alt="Travel agent at work"
-          style={{ width: "100%", borderRadius: 16, display: "block" }}
+          style={{ width: "100%", height: 360, objectFit: "cover", borderRadius: 56, display: "block" }}
         />
       </div>
 

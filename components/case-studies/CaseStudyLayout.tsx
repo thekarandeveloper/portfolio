@@ -370,6 +370,7 @@ export function CaseStudyPage({
 }) {
   const rootRef    = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(tocItems[0]?.id ?? "");
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     /* Disable browser scroll restoration so hero is always the first thing visible */
@@ -378,7 +379,12 @@ export function CaseStudyPage({
     }
     window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
     document.body.classList.add("csl-page-active");
-    return () => document.body.classList.remove("csl-page-active");
+    /* Fade in after scroll lands — prevents footer flash on password unlock */
+    const t = setTimeout(() => setVisible(true), 60);
+    return () => {
+      document.body.classList.remove("csl-page-active");
+      clearTimeout(t);
+    };
   }, []);
 
   useEffect(() => {
@@ -431,7 +437,11 @@ export function CaseStudyPage({
   }, []);
 
   return (
-    <div className="csl-root" data-csl-theme={theme} ref={rootRef} style={THEME_VARS[theme]}>
+    <div className="csl-root" data-csl-theme={theme} ref={rootRef} style={{
+      ...THEME_VARS[theme],
+      opacity: visible ? 1 : 0,
+      transition: "opacity 0.45s ease",
+    }}>
       {hero}
       <div className="csl-body">
         <aside className="csl-sidebar">
