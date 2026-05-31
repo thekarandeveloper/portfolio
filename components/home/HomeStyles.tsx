@@ -243,7 +243,7 @@ nav.scrolled .nav-pill{
 .nav-cta:hover{background:#333;}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:12rem 200px 4rem 200px;gap:40px;position:relative;overflow:visible;}
+.hero{min-height:100vh;display:grid;grid-template-columns:50% 50%;align-items:start;padding:12rem 200px 2rem 200px;gap:40px;position:relative;overflow:visible;}
 
 /* about-style intro hero */
 .hi-left{position:relative;z-index:2;text-align:left;padding-top:1.5rem;}
@@ -589,7 +589,7 @@ nav.scrolled .nav-pill{
 /* ═══════════════════════════════════════════════════════════════
    CSWK — Editorial Case Study Showcase Section
    ═══════════════════════════════════════════════════════════════ */
-.cswk{padding:5rem 200px;}
+.cswk{padding:3rem 200px 5rem;}
 .cswk-head{margin-bottom:4rem;}
 .cswk-eyebrow{display:block;font-family: Lato, sans-serif;font-size: 15px;font-weight: 600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink4);margin-bottom:1rem;}
 .cswk-headline{font-family:var(--serif);font-size:clamp(2rem,4.2vw,3.2rem);font-weight:400;color:#111827;line-height:1.1;margin:0;letter-spacing:-0.01em;}
