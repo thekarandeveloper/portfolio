@@ -3358,6 +3358,10 @@ function StepOutputCard({ output }: { output: typeof STEP_OUTPUTS[0] }) {
 }
 
 function ProcessSection() {
+  const [active, setActive] = useState(0);
+  const step = PROCESS_STEPS[active];
+  const output = STEP_OUTPUTS[active];
+
   return (
     <CsSection id="process">
       <CsSectionHeader
@@ -3365,15 +3369,15 @@ function ProcessSection() {
         sub="AI-assisted synthesis, not AI-generated design. Every tool freed up time for the part that can't be automated — the decisions."
       />
 
-      {/* Role summary — 3 facts, no cards */}
+      {/* Role summary — 3 facts */}
       <div className="csl-reveal" style={{
         display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1,
         background: "#F3F4F6", borderRadius: 14, overflow: "hidden", marginBottom: 32,
       }}>
         {[
           { val: "Solo", label: "One designer end-to-end", sub: "Research to handoff" },
-          { val: "6mo", label: "Full project duration", sub: "Alongside an active engineering sprint" },
-          { val: "40+", label: "Screens shipped", sub: "Desktop and mobile" },
+          { val: "6mo",  label: "Full project duration",   sub: "Alongside an active engineering sprint" },
+          { val: "40+",  label: "Screens shipped",         sub: "Desktop and mobile" },
         ].map((s) => (
           <div key={s.val} style={{ background: "#fff", padding: "22px 20px" }}>
             <div style={{ fontSize: "1.7rem", fontWeight: 800, color: "#1E90FF", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.val}</div>
@@ -3383,42 +3387,79 @@ function ProcessSection() {
         ))}
       </div>
 
-      {/* Process steps */}
-      <div className="csl-reveal" style={{ position: "relative" }}>
-        <div style={{
-          position: "absolute", left: 19, top: 28, bottom: 28,
-          width: 2, background: "linear-gradient(to bottom, #1E90FF 0%, rgba(30,144,255,0.1) 100%)",
-          borderRadius: 2,
-        }} />
-        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-          {PROCESS_STEPS.map((step, i) => (
-            <div key={step.num} style={{
-              display: "grid", gridTemplateColumns: "40px 1fr",
-              gap: "0 20px", paddingBottom: i < PROCESS_STEPS.length - 1 ? 24 : 0,
-              position: "relative",
-            }}>
-              <div style={{ width: 40, height: 40, borderRadius: 10, background: "#fff", border: "2px solid #E5E7EB", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", flexShrink: 0, zIndex: 1, boxShadow: "0 0 0 4px #fff" }}>
-                {step.icon}
-              </div>
-              <div style={{ background: "#fff", borderRadius: 10, border: "1px solid #F3F4F6", overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 200px" }}>
-                <div style={{ padding: "16px 18px" }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: "#9CA3AF" }}>Step {step.num}</span>
-                      <span style={{ fontSize: "11px", fontWeight: 700, color: step.tagColor, background: step.tagBg, borderRadius: 100, padding: "2px 8px" }}>{step.tag}</span>
-                    </div>
-                    {step.saved && <span style={{ fontSize: "12px", fontWeight: 700, color: "#1E90FF", background: "#EFF6FF", borderRadius: 100, padding: "2px 10px" }}>−{step.saved}</span>}
-                  </div>
-                  <div style={{ fontSize: "14px", fontWeight: 700, color: "#111827", lineHeight: 1.35, marginBottom: 4 }}>{step.title}</div>
-                  <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>{step.text}</p>
-                </div>
-                <div style={{ background: "#F9FAFB", borderLeft: "1px solid #F3F4F6", padding: "10px" }}>
-                  <StepOutputCard output={STEP_OUTPUTS[i]} />
-                </div>
-              </div>
-            </div>
+      {/* Interactive step explorer */}
+      <div className="csl-reveal">
+        {/* Step selector tabs */}
+        <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" as const }}>
+          {PROCESS_STEPS.map((s, i) => (
+            <button
+              key={s.num}
+              onClick={() => setActive(i)}
+              style={{
+                padding: "7px 14px",
+                borderRadius: 100,
+                border: `1.5px solid ${active === i ? "#1E90FF" : "#E5E7EB"}`,
+                background: active === i ? "#EFF6FF" : "#fff",
+                color: active === i ? "#1E90FF" : "#6B7280",
+                fontWeight: 700,
+                fontSize: "12px",
+                cursor: "pointer",
+                transition: "all 0.15s ease",
+                display: "flex",
+                alignItems: "center",
+                gap: 5,
+                outline: "none",
+              }}
+            >
+              <span style={{ fontSize: "14px" }}>{s.icon}</span>
+              <span>{s.num}</span>
+              <span style={{ opacity: 0.4 }}>·</span>
+              <span>{s.tag}</span>
+            </button>
           ))}
         </div>
+
+        {/* Active step panel */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 210px",
+          background: "#fff",
+          borderRadius: 12,
+          border: "1px solid #F0F0F2",
+          overflow: "hidden",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+          minHeight: 160,
+        }}>
+          <div style={{ padding: "20px 22px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10, flexWrap: "wrap" as const }}>
+              <span style={{ fontSize: "10px", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase" as const, letterSpacing: "0.12em" }}>
+                Step {step.num}
+              </span>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: step.tagColor, background: step.tagBg, borderRadius: 100, padding: "2px 8px" }}>
+                {step.tag}
+              </span>
+              {step.saved && (
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "#1E90FF", background: "#EFF6FF", borderRadius: 100, padding: "2px 10px", marginLeft: "auto" }}>
+                  −{step.saved}
+                </span>
+              )}
+            </div>
+            <div style={{ fontSize: "15px", fontWeight: 700, color: "#111827", lineHeight: 1.3, marginBottom: 8 }}>
+              {step.title}
+            </div>
+            <p style={{ fontSize: "13px", color: "#6B7280", lineHeight: 1.65, margin: 0 }}>
+              {step.text}
+            </p>
+          </div>
+          <div style={{ background: "#F9FAFB", borderLeft: "1px solid #F3F4F6", padding: 12, display: "flex", alignItems: "center" }}>
+            <StepOutputCard output={output} />
+          </div>
+        </div>
+      </div>
+
+      {/* Time savings chart — the visual payoff */}
+      <div className="csl-reveal" style={{ marginTop: 24 }}>
+        <DualTimeline />
       </div>
 
       {/* Constraints — what made this hard */}
