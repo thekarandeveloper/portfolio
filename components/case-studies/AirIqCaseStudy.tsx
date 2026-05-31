@@ -699,10 +699,7 @@ function JourneyMapSection() {
 
   return (
     <CsSection id="journey">
-      <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 8 }}>
-        <span style={{ fontSize: "clamp(2.5rem,5vw,4rem)", fontWeight: 800, color: "#F3F4F6", lineHeight: 1, letterSpacing: "-0.03em", userSelect: "none" as const }}>08</span>
-        <h2 style={{ fontSize: "clamp(1.4rem,2.8vw,2rem)", fontWeight: 800, color: "#111827", margin: 0, letterSpacing: "-0.02em" }}>Agent journey map</h2>
-      </div>
+      <h2 style={{ fontSize: "clamp(1.4rem,2.8vw,2rem)", fontWeight: 800, color: "#111827", margin: "0 0 8px", letterSpacing: "-0.02em" }}>Agent journey map</h2>
       <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 28px", maxWidth: 520 }}>
         How agents felt across a single booking on the old portal — before Air IQ. Every emotion is a design decision waiting to happen.
       </p>
@@ -815,10 +812,7 @@ function HypothesisNote({ h }: { h: typeof HYPOTHESES[0] }) {
 function HypothesesSection() {
   return (
     <CsSection id="hypotheses">
-      <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 8 }}>
-        <span style={{ fontSize: "clamp(2.5rem,5vw,4rem)", fontWeight: 800, color: "#F3F4F6", lineHeight: 1, letterSpacing: "-0.03em", userSelect: "none" as const }}>09</span>
-        <h2 style={{ fontSize: "clamp(1.4rem,2.8vw,2rem)", fontWeight: 800, color: "#111827", margin: 0, letterSpacing: "-0.02em" }}>Hypotheses</h2>
-      </div>
+      <h2 style={{ fontSize: "clamp(1.4rem,2.8vw,2rem)", fontWeight: 800, color: "#111827", margin: "0 0 8px", letterSpacing: "-0.02em" }}>Hypotheses</h2>
       <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 32px", maxWidth: 520 }}>
         Research surfaced the problems. These were the bets placed before a single wireframe was drawn — each one traceable to a specific finding.
       </p>
