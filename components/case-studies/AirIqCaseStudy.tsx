@@ -495,21 +495,21 @@ function OldWorkflowDiagram() {
 const AGENT_PERSONAS = [
   {
     tag: "#SENIOR_AGENT", tagColor: "#1E90FF", tagBg: "#EFF6FF",
-    name: "Rahul", age: 34, avatarBg: "#1E3A5F", avatarInitial: "RS",
+    name: "Rahul", age: 34, photo: "/Image/Airiq/thumnail/rahul.jpg",
     behaviors: ["20+ bookings per day, keyboard-first", "GDS commands as muscle memory", "Handles corporate & group accounts"],
     painPoints: ["Context-switches 3–4 tools per booking", "Silent fare changes damage client trust"],
     needs: ["Full keyboard navigation", "Saved client & passenger profiles"],
   },
   {
     tag: "#INDEPENDENT_AGENT", tagColor: "#22C55E", tagBg: "#F0FDF4",
-    name: "Priya", age: 28, avatarBg: "#14532D", avatarInitial: "PM",
+    name: "Priya", age: 28, photo: "/Image/Airiq/thumnail/priya.jpg",
     behaviors: ["Phone-based client communication", "Tier-2 city routes, price-sensitive clients", "Shares fares via WhatsApp"],
     painPoints: ["No mobile portal in the old system", "3–4 steps to share a single fare"],
     needs: ["One-tap WhatsApp share", "Full mobile support"],
   },
   {
     tag: "#CORPORATE_BOOKER", tagColor: "#F97316", tagBg: "#FFF7ED",
-    name: "Arjun", age: 40, avatarBg: "#7C2D12", avatarInitial: "AS",
+    name: "Arjun", age: 40, photo: "/Image/Airiq/thumnail/arjun.jpg",
     behaviors: ["4–6 passengers per group booking", "Manages company travel accounts", "Needs GST-compliant invoices"],
     painPoints: ["Re-enters the same 6 passengers weekly", "Tax totals unclear before confirmation"],
     needs: ["Saved multi-passenger profiles", "Full GST breakdown pre-payment"],
@@ -545,19 +545,19 @@ function PersonaCard({ p }: { p: typeof AGENT_PERSONAS[0] }) {
             <div style={{ fontSize: "22px", fontWeight: 800, color: "#111827", lineHeight: 1 }}>{p.age}</div>
           </div>
         </div>
-        {/* Polaroid with image placeholder */}
+        {/* Polaroid photo */}
         <div style={{
           background: "#fff", padding: "5px 5px 16px",
           boxShadow: "0 4px 18px rgba(0,0,0,0.18)",
           borderRadius: 3, transform: "rotate(5deg)", flexShrink: 0,
           marginTop: -4,
         }}>
-          <div style={{
-            width: 62, height: 72,
-            background: "linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%)",
-            borderRadius: 2, display: "flex", alignItems: "center",
-            justifyContent: "center", fontSize: "1.4rem",
-          }}>📷</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={p.photo}
+            alt={p.name}
+            style={{ width: 62, height: 72, objectFit: "cover", borderRadius: 2, display: "block" }}
+          />
         </div>
       </div>
 
