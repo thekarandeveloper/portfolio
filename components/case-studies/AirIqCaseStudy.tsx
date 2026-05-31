@@ -605,28 +605,11 @@ function CompetitiveFigmaTabs() {
   }));
   return (
     <div className="csl-reveal" style={{ marginTop: 20 }}>
-      {/* Tab pills */}
-      <div style={{ display: "flex", gap: 6, marginBottom: 12, flexWrap: "wrap" as const }}>
-        {platforms.map((p, i) => (
-          <button key={p.slug} onClick={() => setActive(i)} style={{
-            display: "flex", alignItems: "center", gap: 8,
-            padding: "6px 16px", borderRadius: 100, border: "none",
-            background: i === active ? p.color : "#F3F4F6",
-            color: i === active ? "#fff" : "#374151",
-            fontSize: "12px", fontWeight: 700, cursor: "pointer",
-            transition: "all 0.2s ease",
-          }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/Image/Airiq/research/logo-${p.slug}.png`} alt={p.name}
-              style={{ maxHeight: 14, maxWidth: 50, objectFit: "contain", filter: i === active ? "brightness(10)" : "none" }} />
-          </button>
-        ))}
-      </div>
-      {/* Figma embed */}
-      <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}>
-        <div style={{ height: 36, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)", display: "flex", alignItems: "center", padding: "0 14px", gap: 8 }}>
+      {/* Figma embed shown first */}
+      <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 24px rgba(0,0,0,0.06)", marginBottom: 16 }}>
+        <div style={{ height: 40, background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)", display: "flex", alignItems: "center", padding: "0 16px", gap: 10 }}>
           <FigmaIcon />
-          <span style={{ fontSize: "12px", fontWeight: 600, color: "#374151" }}>
+          <span style={{ fontSize: "13px", fontWeight: 600, color: "#374151" }}>
             Competitive Analysis — {platforms[active].name}
           </span>
         </div>
@@ -634,9 +617,29 @@ function CompetitiveFigmaTabs() {
           key={active}
           src={platforms[active].embedUrl}
           allowFullScreen
-          style={{ width: "100%", height: 460, border: "none", display: "block" }}
+          style={{ width: "100%", height: 480, border: "none", display: "block" }}
           loading="lazy"
         />
+      </div>
+      {/* Switch pills below the embed — bigger, with logo + name */}
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" as const }}>
+        {platforms.map((p, i) => (
+          <button key={p.slug} onClick={() => setActive(i)} style={{
+            display: "flex", alignItems: "center", gap: 10,
+            padding: "10px 20px", borderRadius: 100, border: "1.5px solid",
+            borderColor: i === active ? p.color : "#E5E7EB",
+            background: i === active ? p.color : "#fff",
+            color: i === active ? "#fff" : "#374151",
+            fontSize: "14px", fontWeight: 700, cursor: "pointer",
+            transition: "all 0.2s ease",
+            boxShadow: i === active ? `0 4px 12px ${p.color}40` : "0 1px 4px rgba(0,0,0,0.06)",
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`/Image/Airiq/research/logo-${p.slug}.png`} alt={p.name}
+              style={{ maxHeight: 20, maxWidth: 64, objectFit: "contain", display: "block", filter: i === active ? "brightness(0) invert(1)" : "none" }} />
+            <span>{p.name}</span>
+          </button>
+        ))}
       </div>
     </div>
   );
@@ -958,13 +961,14 @@ function ProblemSection() {
         </div>
       </div>
 
-      {/* Photo placeholder — old portal */}
+      {/* Old portal screenshot */}
       <div className="csl-reveal" style={{ marginTop: 36 }}>
         <span className="csl-eyebrow">What agents were working with</span>
-        <PhotoPlaceholder
-          label="Old portal screenshot"
-          description="Screenshot: the original Air IQ portal — equal visual weight across all fare tiers, no hierarchy, dense data tables, no mobile support. The visual evidence of why this redesign was necessary."
-          aspectRatio="16/8"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/Image/Airiq/thumnail/old-portal.jpg"
+          alt="Old Air IQ portal screenshot"
+          style={{ width: "100%", borderRadius: 16, display: "block", marginBottom: 28 }}
         />
       </div>
     </CsSection>
@@ -1172,48 +1176,48 @@ const COMP_MATRIX_DATA: ("yes" | "partial" | "no")[][] = [
 
 function CompetitiveMatrix() {
   const Cell = ({ val }: { val: "yes" | "partial" | "no" }) => {
-    if (val === "yes")     return <span style={{ color: "#22C55E", fontSize: "15px", fontWeight: 700 }}>✓</span>;
-    if (val === "partial") return <span style={{ color: "#F97316", fontSize: "14px" }}>◐</span>;
-    return <span style={{ color: "#EF4444", fontSize: "14px" }}>✕</span>;
+    if (val === "yes")     return <span style={{ color: "#22C55E", fontSize: "18px", fontWeight: 700 }}>✓</span>;
+    if (val === "partial") return <span style={{ color: "#F97316", fontSize: "17px" }}>◐</span>;
+    return <span style={{ color: "#EF4444", fontSize: "17px" }}>✕</span>;
   };
   return (
-    <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid #F3F4F6" }}>
+    <div style={{ borderRadius: 14, overflow: "hidden", border: "1px solid #E5E7EB" }}>
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr style={{ background: "#F9FAFB" }}>
-            <th style={{ padding: "12px 16px", textAlign: "left" as const, fontSize: "11px", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase" as const, letterSpacing: "0.1em", width: "38%" }}>Feature</th>
+            <th style={{ padding: "14px 18px", textAlign: "left" as const, fontSize: "13px", fontWeight: 700, color: "#6B7280", textTransform: "uppercase" as const, letterSpacing: "0.08em", width: "36%" }}>Feature</th>
             {COMPETITORS.map((p) => (
-              <th key={p.slug} style={{ padding: "12px 10px", textAlign: "center" as const, fontSize: "12px", fontWeight: 700 }}>
+              <th key={p.slug} style={{ padding: "14px 12px", textAlign: "center" as const, fontSize: "14px", fontWeight: 700 }}>
                 <div style={{ color: p.color }}>{p.name.split("My").join("My​")}</div>
-                <div style={{ fontSize: "10px", color: "#9CA3AF", fontWeight: 400, marginTop: 1 }}>{p.type.split(" · ")[0]}</div>
+                <div style={{ fontSize: "12px", color: "#9CA3AF", fontWeight: 400, marginTop: 2 }}>{p.type.split(" · ")[0]}</div>
               </th>
             ))}
-            <th style={{ padding: "12px 10px", textAlign: "center" as const, background: "rgba(30,144,255,0.05)", borderLeft: "2px solid rgba(30,144,255,0.15)" }}>
-              <div style={{ fontSize: "12px", fontWeight: 800, color: "#1E90FF" }}>Air iQ</div>
-              <div style={{ fontSize: "10px", color: "#1E90FF", opacity: 0.7, marginTop: 1 }}>Redesign</div>
+            <th style={{ padding: "14px 12px", textAlign: "center" as const, background: "rgba(30,144,255,0.06)", borderLeft: "2px solid rgba(30,144,255,0.2)" }}>
+              <div style={{ fontSize: "14px", fontWeight: 800, color: "#1E90FF" }}>Air iQ</div>
+              <div style={{ fontSize: "12px", color: "#1E90FF", opacity: 0.7, marginTop: 2 }}>Redesign</div>
             </th>
           </tr>
         </thead>
         <tbody>
           {COMP_MATRIX_FEATURES.map((feat, i) => (
             <tr key={feat} style={{ borderTop: "1px solid #F3F4F6", background: i % 2 === 0 ? "#fff" : "#FAFAFA" }}>
-              <td style={{ padding: "13px 16px", fontSize: "13px", color: "#374151", fontWeight: 500 }}>{feat}</td>
+              <td style={{ padding: "15px 18px", fontSize: "14px", color: "#374151", fontWeight: 500, lineHeight: 1.45 }}>{feat}</td>
               {COMP_MATRIX_DATA[i].map((val, j) => (
-                <td key={j} style={{ padding: "13px 10px", textAlign: "center" as const }}><Cell val={val} /></td>
+                <td key={j} style={{ padding: "15px 12px", textAlign: "center" as const }}><Cell val={val} /></td>
               ))}
-              <td style={{ padding: "13px 10px", textAlign: "center" as const, background: "rgba(30,144,255,0.04)", borderLeft: "2px solid rgba(30,144,255,0.1)" }}>
-                <span style={{ color: "#1E90FF", fontSize: "16px", fontWeight: 800 }}>✓</span>
+              <td style={{ padding: "15px 12px", textAlign: "center" as const, background: "rgba(30,144,255,0.05)", borderLeft: "2px solid rgba(30,144,255,0.12)" }}>
+                <span style={{ color: "#1E90FF", fontSize: "20px", fontWeight: 800 }}>✓</span>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       {/* Legend */}
-      <div style={{ padding: "10px 16px", borderTop: "1px solid #F3F4F6", display: "flex", gap: 20, background: "#F9FAFB" }}>
+      <div style={{ padding: "12px 18px", borderTop: "1px solid #F3F4F6", display: "flex", gap: 24, background: "#F9FAFB" }}>
         {[["✓", "#22C55E", "Yes"], ["◐", "#F97316", "Partial"], ["✕", "#EF4444", "No"]].map(([sym, col, label]) => (
-          <div key={label} style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span style={{ color: col, fontSize: "13px" }}>{sym}</span>
-            <span style={{ fontSize: "11px", color: "#9CA3AF" }}>{label}</span>
+          <div key={label} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <span style={{ color: col, fontSize: "15px" }}>{sym}</span>
+            <span style={{ fontSize: "13px", color: "#6B7280", fontWeight: 500 }}>{label}</span>
           </div>
         ))}
       </div>
@@ -1348,9 +1352,9 @@ const AGENT_INSIGHTS = [
     heading: "Keyboard-first agents, mouse-dependent portal",
     text: "Agents navigate by shortcut and muscle memory. Every forced click added seconds. At 25,000 agents, it compounds.",
     dataText: "The portal required clicks for actions agents expected in a single keystroke.",
-    statNum: 0,
+    statNum: 23,
     statSuffix: "",
-    statUnit: "keyboard shortcuts designed for",
+    statUnit: "keyboard shortcuts in Air iQ",
   },
   {
     label: "Insight 04",
@@ -1412,7 +1416,7 @@ function ResearchInsightCards() {
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
               }}>
-                {ins.statNum > 0 ? <CountUp to={ins.statNum} /> : "0"}{ins.statSuffix}
+                <CountUp to={ins.statNum} />{ins.statSuffix}
               </div>
               <div style={{
                 fontFamily: "var(--font-lato), sans-serif",
@@ -1446,13 +1450,6 @@ function ResearchInsightCards() {
    §03  RESEARCH & APPROACH
 ───────────────────────────────────────────────────────────────────── */
 
-const RESEARCH_SYNTHESIS = [
-  { insight: "Fare data overload on every search",       decision: "Fare listing card — explicit visual hierarchy, price first"   },
-  { insight: "Filters break comparison loop",             decision: "Persistent 274px sidebar — never modal, always visible"       },
-  { insight: "Fare rules hidden across all 4 platforms", decision: "Refundability inline by default — never one click away"       },
-  { insight: "80% of bookings have empty SSR rows",      decision: "Conditional fields — only rendered when data is present"      },
-];
-
 function ApproachSection() {
   return (
     <CsSection id="approach">
@@ -1478,64 +1475,42 @@ function ApproachSection() {
         <span className="csl-eyebrow">Questions asked in every session</span>
         <InterviewQuestionsBoard />
       </div>
+    </CsSection>
+  );
+}
 
-      {/* ── Competitive analysis ── */}
+/* ─────────────────────────────────────────────────────────────────────
+   §03b  COMPETITIVE RESEARCH & KEY INSIGHTS
+───────────────────────────────────────────────────────────────────── */
+function CompetitiveResearchSection() {
+  return (
+    <CsSection id="competitive">
+      {/* ── Figma deep-dive first, then switch + table below ── */}
       <div className="csl-reveal" style={{ marginBottom: 40 }}>
-        <span className="csl-eyebrow">Competitor landscape</span>
-        {/* Logo row */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginBottom: 16 }}>
-          {COMPETITORS.map((comp) => (
-            <div key={comp.slug} style={{ display: "flex", alignItems: "center", gap: 10, background: "#fff", border: "1px solid rgba(0,0,0,0.07)", borderRadius: 10, padding: "10px 14px" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/Image/Airiq/research/logo-${comp.slug}.png`} alt={comp.name} style={{ maxWidth: 60, maxHeight: 24, objectFit: "contain", display: "block", flexShrink: 0 }} />
-            </div>
-          ))}
-        </div>
-        {/* Matrix table */}
-        <CompetitiveMatrix />
-        {/* Figma deep-dive tabs */}
-        <div style={{ marginTop: 20 }}>
-          <span className="csl-eyebrow">Deep dive — competitor UI in Figma</span>
-          <CompetitiveFigmaTabs />
+        <span className="csl-eyebrow">Competitor landscape — UI deep dive</span>
+        <p style={{ fontSize: "0.95rem", color: "#6B7280", lineHeight: 1.7, margin: "0 0 20px", maxWidth: 520 }}>
+          Four B2B and B2C travel platforms studied. Every screen annotated for what worked, what broke agent workflows, and what Air IQ needed to do differently.
+        </p>
+        {/* Figma tabs — embed shown first, switch below */}
+        <CompetitiveFigmaTabs />
+        {/* Comparison matrix below */}
+        <div style={{ marginTop: 28 }}>
+          <span className="csl-eyebrow">Feature comparison</span>
+          <CompetitiveMatrix />
         </div>
       </div>
 
-      {/* ── Insight cards ── */}
+      {/* ── Key insight cards ── */}
       <div className="csl-reveal" style={{ marginBottom: 40 }}>
         <span className="csl-eyebrow">What the research surfaced</span>
         <ResearchInsightCards />
-      </div>
-
-      {/* ── Research → Decisions synthesis bridge ── */}
-      <div className="csl-reveal">
-        <span className="csl-eyebrow">From research to decisions</span>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 14 }}>
-          {RESEARCH_SYNTHESIS.map((row, i) => (
-            <div key={i} style={{
-              display: "grid", gridTemplateColumns: "1fr 28px 1fr",
-              gap: 12, alignItems: "center",
-              background: "#fff", borderRadius: 10, padding: "13px 16px",
-              border: "1px solid #F3F4F6",
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#FCA5A5", flexShrink: 0, display: "block" }} />
-                <span style={{ fontSize: "13px", color: "#374151", lineHeight: 1.5 }}>{row.insight}</span>
-              </div>
-              <span style={{ fontSize: "16px", color: "#1E90FF", textAlign: "center" as const, fontWeight: 700 }}>→</span>
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#1E90FF", flexShrink: 0, display: "block" }} />
-                <span style={{ fontSize: "13px", fontWeight: 600, color: "#111827", lineHeight: 1.5 }}>{row.decision}</span>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </CsSection>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   §03b  DESIGN PRINCIPLES
+   §03c  DESIGN PRINCIPLES
 ───────────────────────────────────────────────────────────────────── */
 const DESIGN_PRINCIPLES = [
   {
@@ -3748,6 +3723,7 @@ export function AirIqCaseStudy() {
       <ApproachSection />
       <JourneyMapSection />
       <HypothesesSection />
+      <CompetitiveResearchSection />
       <DesignPrinciplesSection />
       <ProcessSection />
       <CoreComponentsSection />
