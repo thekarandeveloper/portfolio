@@ -909,27 +909,28 @@ function ProblemSection() {
         sub="Feedback had been consistent for months. This wasn't a feature gap — it was a product-level failure that needed to be solved at the design level."
       />
 
-      {/* Full-width agent quote — the single most important sentence in the whole problem */}
+      {/* Full-width agent quote */}
       <div className="csl-reveal" style={{ marginBottom: 44 }}>
         <div style={{
-          background: "#0B1E3D", borderRadius: 20, padding: "44px 40px",
-          border: "1px solid rgba(30,144,255,0.15)",
+          background: "#EFF6FF", borderRadius: 20, padding: "44px 40px",
+          border: "1px solid rgba(30,144,255,0.18)",
           position: "relative", overflow: "hidden",
+          boxShadow: "0 4px 24px rgba(30,144,255,0.07)",
         }}>
-          <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,144,255,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
-          <span style={{ fontSize: "clamp(4rem,8vw,6rem)", color: "#1E90FF", lineHeight: 1, position: "absolute", top: 8, left: 28, opacity: 0.15, userSelect: "none", fontFamily: "serif" }}>&ldquo;</span>
+          <div style={{ position: "absolute", top: -60, right: -60, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle, rgba(30,144,255,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
+          <span style={{ fontSize: "clamp(4rem,8vw,6rem)", color: "#1E90FF", lineHeight: 1, position: "absolute", top: 8, left: 28, opacity: 0.2, userSelect: "none", fontFamily: "serif" }}>&ldquo;</span>
           <p style={{
             fontSize: "clamp(1.1rem, 2.2vw, 1.4rem)", fontWeight: 600,
-            color: "rgba(255,255,255,0.9)", lineHeight: 1.7,
+            color: "#111827", lineHeight: 1.7,
             margin: "24px 0 24px", position: "relative", zIndex: 1, maxWidth: 600,
           }}>
             I open three windows just to check one fare. GDS for availability, the airline site for the rules, and a spreadsheet to track what I&apos;ve already told the client.
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 10, position: "relative", zIndex: 1 }}>
-            <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(30,144,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", fontWeight: 700, color: "#60BFFF" }}>SA</div>
+            <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(30,144,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", fontWeight: 700, color: "#1E90FF" }}>SA</div>
             <div>
-              <div style={{ fontSize: "13px", fontWeight: 700, color: "rgba(255,255,255,0.8)" }}>Senior travel agent</div>
-              <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)", marginTop: 1 }}>8 years experience · Pre-launch interview</div>
+              <div style={{ fontSize: "13px", fontWeight: 700, color: "#111827" }}>Senior travel agent</div>
+              <div style={{ fontSize: "12px", color: "#9CA3AF", marginTop: 1 }}>8 years experience · Pre-launch interview</div>
             </div>
           </div>
         </div>

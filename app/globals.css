@@ -1041,7 +1041,8 @@ nav, header, footer, main, section, article, aside,
   border-radius: 24px;
   overflow: hidden;
   padding: 40px;
-  background: linear-gradient(135deg, #060f1e 0%, #0b1e3d 60%, #050d1a 100%);
+  background: linear-gradient(135deg, #F0F6FF 0%, #EBF3FF 55%, #F5F8FF 100%);
+  border: 1px solid rgba(30, 144, 255, 0.1);
 }
 
 .prob-glass-bg {
@@ -1055,13 +1056,13 @@ nav, header, footer, main, section, article, aside,
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.6;
+  opacity: 0.35;
 }
 
 .prob-blue-1 {
   width: 420px;
   height: 320px;
-  background: radial-gradient(circle, rgba(30,144,255,0.4) 0%, rgba(30,144,255,0.04) 70%);
+  background: radial-gradient(circle, rgba(30,144,255,0.22) 0%, rgba(30,144,255,0.02) 70%);
   top: -80px;
   left: -60px;
   animation: probBlueMove1 9s ease-in-out infinite alternate;
@@ -1070,7 +1071,7 @@ nav, header, footer, main, section, article, aside,
 .prob-blue-2 {
   width: 320px;
   height: 260px;
-  background: radial-gradient(circle, rgba(30,144,255,0.25) 0%, rgba(30,144,255,0.03) 70%);
+  background: radial-gradient(circle, rgba(30,144,255,0.14) 0%, rgba(30,144,255,0.01) 70%);
   bottom: -60px;
   right: -40px;
   animation: probBlueMove2 11s ease-in-out infinite alternate;
@@ -1079,8 +1080,8 @@ nav, header, footer, main, section, article, aside,
 .prob-yellow-ball {
   position: absolute;
   border-radius: 50%;
-  background: rgba(253, 224, 71, 0.6);
-  filter: blur(18px);
+  background: rgba(253, 224, 71, 0.35);
+  filter: blur(22px);
 }
 
 .prob-y-1 {
@@ -1123,11 +1124,11 @@ nav, header, footer, main, section, article, aside,
 }
 
 @keyframes probYellowFloat {
-  0%   { transform: translate(0, 0) scale(1); opacity: 0.6; }
-  25%  { transform: translate(-12px, -18px) scale(1.2); opacity: 0.75; }
-  50%  { transform: translate(8px, -28px) scale(0.9); opacity: 0.45; }
-  75%  { transform: translate(16px, -10px) scale(1.1); opacity: 0.65; }
-  100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.35; }
+  25%  { transform: translate(-12px, -18px) scale(1.2); opacity: 0.5; }
+  50%  { transform: translate(8px, -28px) scale(0.9); opacity: 0.25; }
+  75%  { transform: translate(16px, -10px) scale(1.1); opacity: 0.4; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
 }
 
 .prob-glass-grid {
@@ -1139,24 +1140,26 @@ nav, header, footer, main, section, article, aside,
 }
 
 .prob-glass-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 144, 255, 0.12);
   border-radius: 16px;
   padding: 28px 24px;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 12px rgba(30, 144, 255, 0.06);
 }
 
 .prob-glass-card:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(30, 144, 255, 0.35);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(30, 144, 255, 0.28);
+  box-shadow: 0 4px 20px rgba(30, 144, 255, 0.1);
 }
 
 .prob-glass-num {
   font-size: 2.8rem;
   font-weight: 900;
-  color: rgba(30, 144, 255, 0.35);
+  color: rgba(30, 144, 255, 0.25);
   line-height: 1;
   margin-bottom: 14px;
   font-variant-numeric: tabular-nums;
@@ -1166,14 +1169,14 @@ nav, header, footer, main, section, article, aside,
 .prob-glass-title {
   font-size: 1rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.92);
+  color: #111827;
   line-height: 1.4;
   margin: 0 0 10px;
 }
 
 .prob-glass-body {
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.48);
+  color: #4B5563;
   line-height: 1.75;
   margin: 0;
 }
